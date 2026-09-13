@@ -1,0 +1,1811 @@
+
+<!DOCTYPE html>
+
+<html>
+  <head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" /><meta name="generator" content="Docutils 0.17.1: http://docutils.sourceforge.net/" />
+
+    <title>Day 8 In-class Assignment: Exploring Great Lakes Water Levels using NumPy &#8212; CMSE 201</title>
+    
+  <!-- Loaded before other Sphinx assets -->
+  <link href="../_static/styles/theme.css?digest=1999514e3f237ded88cf" rel="stylesheet">
+<link href="../_static/styles/pydata-sphinx-theme.css?digest=1999514e3f237ded88cf" rel="stylesheet">
+
+    
+  <link rel="stylesheet"
+    href="../_static/vendor/fontawesome/5.13.0/css/all.min.css">
+  <link rel="preload" as="font" type="font/woff2" crossorigin
+    href="../_static/vendor/fontawesome/5.13.0/webfonts/fa-solid-900.woff2">
+  <link rel="preload" as="font" type="font/woff2" crossorigin
+    href="../_static/vendor/fontawesome/5.13.0/webfonts/fa-brands-400.woff2">
+
+    <link rel="stylesheet" type="text/css" href="../_static/pygments.css" />
+    <link rel="stylesheet" href="../_static/styles/sphinx-book-theme.css?digest=5115cc725059bd94278eecd172e13a965bf8f5a9" type="text/css" />
+    <link rel="stylesheet" type="text/css" href="../_static/togglebutton.css" />
+    <link rel="stylesheet" type="text/css" href="../_static/copybutton.css" />
+    <link rel="stylesheet" type="text/css" href="../_static/mystnb.css" />
+    <link rel="stylesheet" type="text/css" href="../_static/sphinx-thebe.css" />
+    <link rel="stylesheet" type="text/css" href="../_static/design-style.b7bb847fb20b106c3d81b95245e65545.min.css" />
+    
+  <!-- Pre-loaded scripts that we'll load fully later -->
+  <link rel="preload" as="script" href="../_static/scripts/pydata-sphinx-theme.js?digest=1999514e3f237ded88cf">
+
+    <script data-url_root="../" id="documentation_options" src="../_static/documentation_options.js"></script>
+    <script src="../_static/jquery.js"></script>
+    <script src="../_static/underscore.js"></script>
+    <script src="../_static/doctools.js"></script>
+    <script src="../_static/clipboard.min.js"></script>
+    <script src="../_static/copybutton.js"></script>
+    <script src="../_static/scripts/sphinx-book-theme.js?digest=9c920249402e914e316237a7dbc6769907cce411"></script>
+    <script>let toggleHintShow = 'Click to show';</script>
+    <script>let toggleHintHide = 'Click to hide';</script>
+    <script>let toggleOpenOnPrint = 'true';</script>
+    <script src="../_static/togglebutton.js"></script>
+    <script>var togglebuttonSelector = '.toggle, .admonition.dropdown, .tag_hide_input div.cell_input, .tag_hide-input div.cell_input, .tag_hide_output div.cell_output, .tag_hide-output div.cell_output, .tag_hide_cell.cell, .tag_hide-cell.cell';</script>
+    <script src="../_static/design-tabs.js"></script>
+    <script>const THEBE_JS_URL = "https://unpkg.com/thebe@0.8.2/lib/index.js"
+const thebe_selector = ".thebe,.cell"
+const thebe_selector_input = "pre"
+const thebe_selector_output = ".output, .cell_output"
+</script>
+    <script async="async" src="../_static/sphinx-thebe.js"></script>
+    <script>window.MathJax = {"options": {"processHtmlClass": "tex2jax_process|mathjax_process|math|output_area"}}</script>
+    <script defer="defer" src="https://cdn.jsdelivr.net/npm/mathjax@3/es5/tex-mml-chtml.js"></script>
+    <link rel="shortcut icon" href="../_static/cmse_fav.ico"/>
+    <link rel="index" title="Index" href="../genindex.html" />
+    <link rel="search" title="Search" href="../search.html" />
+    <link rel="next" title="Day 9 Pre-class Assignment: Computational Models Overview and The Pandas Data Analysis Library" href="../Day-09/Day-09_Pre-Class_Pandas-STUDENT.html" />
+    <link rel="prev" title="Day 8 Pre-Class: Introduction to NumPy" href="Day-08_Pre-Class_IntroToNumPy-STUDENT.html" />
+    <meta name="viewport" content="width=device-width, initial-scale=1" />
+    <meta name="docsearch:language" content="None">
+    
+
+    <!-- Google Analytics -->
+    
+  </head>
+  <body data-spy="scroll" data-target="#bd-toc-nav" data-offset="60">
+<!-- Checkboxes to toggle the left sidebar -->
+<input type="checkbox" class="sidebar-toggle" name="__navigation" id="__navigation" aria-label="Toggle navigation sidebar">
+<label class="overlay overlay-navbar" for="__navigation">
+    <div class="visually-hidden">Toggle navigation sidebar</div>
+</label>
+<!-- Checkboxes to toggle the in-page toc -->
+<input type="checkbox" class="sidebar-toggle" name="__page-toc" id="__page-toc" aria-label="Toggle in-page Table of Contents">
+<label class="overlay overlay-pagetoc" for="__page-toc">
+    <div class="visually-hidden">Toggle in-page Table of Contents</div>
+</label>
+<!-- Headers at the top -->
+<div class="announcement header-item noprint"></div>
+<div class="header header-item noprint"></div>
+
+    
+    <div class="container-fluid" id="banner"></div>
+
+    
+
+    <div class="container-xl">
+      <div class="row">
+          
+<!-- Sidebar -->
+<div class="bd-sidebar noprint" id="site-navigation">
+    <div class="bd-sidebar__content">
+        <div class="bd-sidebar__top"><div class="navbar-brand-box">
+    <a class="navbar-brand text-wrap" href="../index.html">
+      
+        <!-- `logo` is deprecated in Sphinx 4.0, so remove this when we stop supporting 3 -->
+        
+      
+      
+      <img src="../_static/logo.png" class="logo" alt="logo">
+      
+      
+      <h1 class="site-logo" id="site-title">CMSE 201</h1>
+      
+    </a>
+</div><form class="bd-search d-flex align-items-center" action="../search.html" method="get">
+  <i class="icon fas fa-search"></i>
+  <input type="search" class="form-control" name="q" id="search-input" placeholder="Search this book..." aria-label="Search this book..." autocomplete="off" >
+</form><nav class="bd-links" id="bd-docs-nav" aria-label="Main">
+    <div class="bd-toc-item active">
+        
+        <ul class="nav bd-sidenav bd-sidenav__home-link">
+            <li class="toctree-l1">
+                <a class="reference internal" href="../intro.html">
+                    Welcome to Computational Modeling and Data Analysis I!
+                </a>
+            </li>
+        </ul>
+        <p aria-level="2" class="caption" role="heading">
+ <span class="caption-text">
+  Course Materials
+ </span>
+</p>
+<ul class="nav bd-sidenav">
+ <li class="toctree-l1 has-children">
+  <a class="reference internal" href="../Course_Materials-201/CourseDocuments.html">
+   Important Course information
+  </a>
+  <input class="toctree-checkbox" id="toctree-checkbox-1" name="toctree-checkbox-1" type="checkbox"/>
+  <label for="toctree-checkbox-1">
+   <i class="fas fa-chevron-down">
+   </i>
+  </label>
+  <ul>
+   <li class="toctree-l2">
+    <a class="reference internal" href="../Course_Materials-201/CMSE201-Syllabus.html">
+     Syllabus
+    </a>
+   </li>
+   <li class="toctree-l2">
+    <a class="reference internal" href="../Course_Materials-201/CMSE201-Schedule.html">
+     Course Schedule
+    </a>
+   </li>
+   <li class="toctree-l2">
+    <a class="reference internal" href="../Course_Materials-201/SoftwareSetupGuide.html">
+     Software Setup Guide
+    </a>
+   </li>
+   <li class="toctree-l2">
+    <a class="reference internal" href="../Course_Materials-201/classroom_participation.html">
+     Classroom Participation
+    </a>
+   </li>
+  </ul>
+ </li>
+</ul>
+<p aria-level="2" class="caption" role="heading">
+ <span class="caption-text">
+  Day 01
+ </span>
+</p>
+<ul class="nav bd-sidenav">
+ <li class="toctree-l1">
+  <a class="reference internal" href="../Day-01/Day-01_In-Class_SortingAlgorithm-STUDENT.html">
+   Day 1 In-Class Assignment: Introductions and Sorting Algorithms
+  </a>
+ </li>
+</ul>
+<p aria-level="2" class="caption" role="heading">
+ <span class="caption-text">
+  Day 02
+ </span>
+</p>
+<ul class="nav bd-sidenav">
+ <li class="toctree-l1">
+  <a class="reference internal" href="../Day-02/Day-02_Pre-Class_IntroToPython-STUDENT.html">
+   Day 2 Pre-class Assignment: Intro to Python
+  </a>
+ </li>
+ <li class="toctree-l1">
+  <a class="reference internal" href="../Day-02/Day-02_In-Class_OrderOfMagnitudeModeling-STUDENT.html">
+   Day 2 In-class Assignment: Order of Magnitude Modeling
+  </a>
+ </li>
+</ul>
+<p aria-level="2" class="caption" role="heading">
+ <span class="caption-text">
+  Day 03
+ </span>
+</p>
+<ul class="nav bd-sidenav">
+ <li class="toctree-l1">
+  <a class="reference internal" href="../Day-03/Day-03_Pre-Class_ListsAndLoops-STUDENT.html">
+   Day 3: Pre-Class Assignment: Lists and Loops
+  </a>
+ </li>
+ <li class="toctree-l1">
+  <a class="reference internal" href="../Day-03/Day-03_In-Class_ListsLoopsAndSaving-STUDENT.html">
+   Day 3 In-class Assignment: The power of compound interest
+  </a>
+ </li>
+</ul>
+<p aria-level="2" class="caption" role="heading">
+ <span class="caption-text">
+  Day 04
+ </span>
+</p>
+<ul class="nav bd-sidenav">
+ <li class="toctree-l1">
+  <a class="reference internal" href="../Day-04/Day_04_PreClass_DataAlgorithmicBias-STUDENT.html">
+   Day 4 Pre-class Assignment: Introduction to Data Ethics: Data and Algorithmic Bias
+  </a>
+ </li>
+ <li class="toctree-l1">
+  <a class="reference internal" href="../Day-04/Day_04_In_Class_DataAlgorithmicBias-STUDENT.html">
+   Day 4 In-class Assignment: Data and Algorithmic Bias, Academic Integrity, and Coding Best Practices
+  </a>
+ </li>
+</ul>
+<p aria-level="2" class="caption" role="heading">
+ <span class="caption-text">
+  Day 05
+ </span>
+</p>
+<ul class="nav bd-sidenav">
+ <li class="toctree-l1">
+  <a class="reference internal" href="../Day-05/Day-05_Pre-Class_IfStatementsAndFunctions-STUDENT.html">
+   Day 5 Pre-class Assignment: Boolean logic, if statements, and an introduction to functions
+  </a>
+ </li>
+ <li class="toctree-l1">
+  <a class="reference internal" href="../Day-05/Day-05_In-Class_IfStatementsAndFunctions-STUDENT.html">
+   Day 5 In-class Assignment: Savings for Everyone
+  </a>
+ </li>
+</ul>
+<p aria-level="2" class="caption" role="heading">
+ <span class="caption-text">
+  Day 06
+ </span>
+</p>
+<ul class="nav bd-sidenav">
+ <li class="toctree-l1">
+  <a class="reference internal" href="../Day-06/Day-06_Pre-Class_MoreFunctions-STUDENT.html">
+   Day 6 Pre-class Assignment: Thinking more about functions
+  </a>
+ </li>
+ <li class="toctree-l1">
+  <a class="reference internal" href="../Day-06/Day-06_In-Class_FunctionsAndSquirrels-STUDENT.html">
+   Day 6 In Class Assignment: A Scurry of Squirrels in Central Park
+  </a>
+ </li>
+ <li class="toctree-l1">
+  <a class="reference internal" href="../Day-06/Day-06_In-Class_FunctionsAndSquirrels-INSTRUCTOR.html">
+   Day 6 In Class Assignment: A Scurry of Squirrels in Central Park
+  </a>
+ </li>
+</ul>
+<p aria-level="2" class="caption" role="heading">
+ <span class="caption-text">
+  Day 07
+ </span>
+</p>
+<ul class="nav bd-sidenav">
+ <li class="toctree-l1">
+  <a class="reference internal" href="../Day-07/Day-07_Pre-Class_ModulesMathAndPlots-STUDENT.html">
+   Day 7 Pre-Class Assignment: Python Modules: Numpy and Plots
+  </a>
+ </li>
+ <li class="toctree-l1">
+  <a class="reference internal" href="../Day-07/Day-07_In-Class_MathAndPlotting-STUDENT.html">
+   Day 7 In-class Assignment: Visualizing population growth
+  </a>
+ </li>
+</ul>
+<p aria-level="2" class="caption" role="heading">
+ <span class="caption-text">
+  Day 08
+ </span>
+</p>
+<ul class="current nav bd-sidenav">
+ <li class="toctree-l1">
+  <a class="reference internal" href="Day-08_Pre-Class_IntroToNumPy-STUDENT.html">
+   Day 8 Pre-Class: Introduction to NumPy
+  </a>
+ </li>
+ <li class="toctree-l1">
+  <a class="reference external" href="https://raw.githubusercontent.com/msu-cmse-courses/cmse201-F21-data/main/Day-08/michigan_pop.csv">
+   michigan_pop.csv
+  </a>
+ </li>
+ <li class="toctree-l1 current active">
+  <a class="current reference internal" href="#">
+   Day 8 In-class Assignment: Exploring Great Lakes Water Levels using NumPy
+  </a>
+ </li>
+ <li class="toctree-l1">
+  <a class="reference external" href="https://raw.githubusercontent.com/msu-cmse-courses/cmse201-F21-data/main/Day-08/lake_erie.csv">
+   lake_erie.csv
+  </a>
+ </li>
+ <li class="toctree-l1">
+  <a class="reference external" href="https://raw.githubusercontent.com/msu-cmse-courses/cmse201-F21-data/main/Day-08/lake_michigan_huron.csv">
+   lake_michigan_huron.csv
+  </a>
+ </li>
+ <li class="toctree-l1">
+  <a class="reference external" href="https://raw.githubusercontent.com/msu-cmse-courses/cmse201-F21-data/main/Day-08/lake_ontario.csv">
+   lake_ontario.csv
+  </a>
+ </li>
+ <li class="toctree-l1">
+  <a class="reference external" href="https://raw.githubusercontent.com/msu-cmse-courses/cmse201-F21-data/main/Day-08/lake_superior.csv">
+   lake_superior.csv
+  </a>
+ </li>
+</ul>
+<p aria-level="2" class="caption" role="heading">
+ <span class="caption-text">
+  Day 09
+ </span>
+</p>
+<ul class="nav bd-sidenav">
+ <li class="toctree-l1">
+  <a class="reference internal" href="../Day-09/Day-09_Pre-Class_Pandas-STUDENT.html">
+   Day 9 Pre-class Assignment: Computational Models Overview and The Pandas Data Analysis Library
+  </a>
+ </li>
+ <li class="toctree-l1">
+  <a class="reference internal" href="../Day-09/Day-09_In-Class_GDP-STUDENT.html">
+   Day 9 In-Class: Cleaning and Analyzing Economic Data
+  </a>
+ </li>
+ <li class="toctree-l1">
+  <a class="reference external" href="https://raw.githubusercontent.com/msu-cmse-courses/cmse201-S22-data/main/Day-10/API_NY.GDP.MKTP.CD_DS2_en_csv_v2_3011433.csv">
+   API_NY.GDP.MKTP.CD_DS2_en_csv_v2_3011433.csv
+  </a>
+ </li>
+</ul>
+<p aria-level="2" class="caption" role="heading">
+ <span class="caption-text">
+  Day 10
+ </span>
+</p>
+<ul class="nav bd-sidenav">
+ <li class="toctree-l1">
+  <a class="reference internal" href="../Day-10/Day-10_Pre-Class_Masking-STUDENT.html">
+   Day 10 Pre-class Assignment: Normal Distributions, Masking, and Log Plots
+  </a>
+ </li>
+ <li class="toctree-l1">
+  <a class="reference external" href="https://raw.githubusercontent.com/msu-cmse-courses/cmse201-S22-data/main/Day-11/GDP_Cleaned.csv">
+   GDP_Cleaned.csv
+  </a>
+ </li>
+ <li class="toctree-l1">
+  <a class="reference internal" href="../Day-10/Day-10_In-Class_Flint-STUDENT.html">
+   Day 10 In-class Assignment: Get the Lead Out: Understanding The Water Crisis in Flint, MI
+  </a>
+ </li>
+ <li class="toctree-l1">
+  <a class="reference external" href="https://raw.githubusercontent.com/msu-cmse-courses/cmse201-S22-data/main/Day-11/flint_water_data.csv">
+   flint_water_data.csv
+  </a>
+ </li>
+</ul>
+<p aria-level="2" class="caption" role="heading">
+ <span class="caption-text">
+  Day 11
+ </span>
+</p>
+<ul class="nav bd-sidenav">
+ <li class="toctree-l1">
+  <a class="reference internal" href="../Day-11/Day-11_Pre-Class_Data_File_Formats_Manipulation-STUDENT.html">
+   Day 11 Pre-Class Assignment: Overview of data and file formats
+  </a>
+ </li>
+ <li class="toctree-l1">
+  <a class="reference external" href="https://raw.githubusercontent.com/msu-cmse-courses/cmse201-S22-data/main/Day-12/us_pop_by_state_2010_2011.csv">
+   us_pop_by_state_2010_2011.csv
+  </a>
+ </li>
+ <li class="toctree-l1">
+  <a class="reference external" href="https://github.com/msu-cmse-courses/cmse201-S22-data/raw/main/Day-12/us_pop_by_state_2012_2013_encoding_utf-16be.csv">
+   us_pop_by_state_2012_2013_encoding_utf-16be.csv
+  </a>
+ </li>
+ <li class="toctree-l1">
+  <a class="reference external" href="https://raw.githubusercontent.com/msu-cmse-courses/cmse201-S22-data/main/Day-12/us_pop_by_state_2014_2015_windows_linefeed.csv">
+   us_pop_by_state_2014_2015_windows_linefeed.csv
+  </a>
+ </li>
+ <li class="toctree-l1">
+  <a class="reference external" href="https://github.com/msu-cmse-courses/cmse201-S22-data/blob/main/Day-12/us_pop_by_state_2016a.csv?raw=true">
+   us_pop_by_state_2016a.csv
+  </a>
+ </li>
+ <li class="toctree-l1">
+  <a class="reference external" href="https://github.com/msu-cmse-courses/cmse201-S22-data/blob/main/Day-12/us_pop_by_state_2017a.yaff?raw=true">
+   us_pop_by_state2017a.yaff
+  </a>
+ </li>
+ <li class="toctree-l1">
+  <a class="reference external" href="https://github.com/msu-cmse-courses/cmse201-S22-data/blob/main/Day-12/us_pop_by_state_2018_2019.bin?raw=true">
+   us_pop_by_state_2018_2019.bin
+  </a>
+ </li>
+ <li class="toctree-l1">
+  <a class="reference internal" href="../Day-11/Day-11_In-Class_Data_File_Formats_Manipulation-STUDENT.html">
+   Day 11 In-Class: Overview of data and file formats; US Population and Representation
+  </a>
+ </li>
+</ul>
+<p aria-level="2" class="caption" role="heading">
+ <span class="caption-text">
+  Day 12
+ </span>
+</p>
+<ul class="nav bd-sidenav">
+ <li class="toctree-l1">
+  <a class="reference internal" href="../Day-12/Day-12_Pre-Class_Online_Resources_STUDENT.html">
+   Day 12 Pre-class Assignment: Finding Resources Online
+  </a>
+ </li>
+ <li class="toctree-l1">
+  <a class="reference internal" href="../Day-12/Day-12_In-Class_Online_Resources_STUDENT.html">
+   Day 12 In-Class: Using Resources from Online
+  </a>
+ </li>
+</ul>
+<p aria-level="2" class="caption" role="heading">
+ <span class="caption-text">
+  Day 13
+ </span>
+</p>
+<ul class="nav bd-sidenav">
+ <li class="toctree-l1">
+  <a class="reference internal" href="../Day-13/Day-13_Pre-Class_CurveFitting-STUDENT.html">
+   Day 13 Pre-Class Assignment: Fitting functions to data (curve-fitting) and thinking more about models
+  </a>
+ </li>
+ <li class="toctree-l1">
+  <a class="reference internal" href="../Day-13/Day-13_In-Class_FittingCurves-STUDENT.html">
+   Day 13 In-Class Assignment: (Thoughtfully) fitting models to data
+  </a>
+ </li>
+ <li class="toctree-l1">
+  <a class="reference external" href="https://raw.githubusercontent.com/msu-cmse-courses/cmse201-S22-data/main/Day-14/pop200.csv">
+   pop200.csv
+  </a>
+ </li>
+ <li class="toctree-l1">
+  <a class="reference external" href="https://raw.githubusercontent.com/msu-cmse-courses/cmse201-S22-data/main/Day-14/pop300.csv">
+   pop300.csv
+  </a>
+ </li>
+</ul>
+<p aria-level="2" class="caption" role="heading">
+ <span class="caption-text">
+  Day 14
+ </span>
+</p>
+<ul class="nav bd-sidenav">
+ <li class="toctree-l1">
+  <a class="reference internal" href="../Day-14/Day-14_Pre-Class_Evaluating_Fits-STUDENT.html">
+   Day 14 Pre-Class Assignment: Making Predictions Using Data
+  </a>
+ </li>
+ <li class="toctree-l1">
+  <a class="reference internal" href="../Day-14/Day-14_In-Class_Evaluating_Fits-STUDENT.html">
+   Day 14 In-Class Assignment: Evaluating Models
+  </a>
+ </li>
+</ul>
+<p aria-level="2" class="caption" role="heading">
+ <span class="caption-text">
+  Day 15
+ </span>
+</p>
+<ul class="nav bd-sidenav">
+ <li class="toctree-l1">
+  <a class="reference internal" href="../Day-15/Day-15-Pre-Class_IntroToDataVisualization-STUDENT.html">
+   Day 15 Pre-class Assignment: Introduction to Data Visualization
+  </a>
+ </li>
+ <li class="toctree-l1">
+  <a class="reference internal" href="../Day-15/Day-15-In-Class_IntroToDataVisualization-STUDENT.html">
+   Day 15 In-Class: Introduction to Data Visualization
+  </a>
+ </li>
+</ul>
+<p aria-level="2" class="caption" role="heading">
+ <span class="caption-text">
+  Day 16
+ </span>
+</p>
+<ul class="nav bd-sidenav">
+ <li class="toctree-l1">
+  <a class="reference internal" href="../Day-16/Day-16-Intro_to_ODEs_Pre-Class_STUDENT.html">
+   Day 16: Pre-class Assignment: Introduction to Modeling with Ordinary Differential Equations
+  </a>
+ </li>
+ <li class="toctree-l1">
+  <a class="reference internal" href="../Day-16/Day-16-Intro_to_ODEs_In-Class_STUDENT.html">
+   Day 16: In-class Assignment: Introduction to Modeling with ODEs
+  </a>
+ </li>
+</ul>
+<p aria-level="2" class="caption" role="heading">
+ <span class="caption-text">
+  Day 17
+ </span>
+</p>
+<ul class="nav bd-sidenav">
+ <li class="toctree-l1">
+  <a class="reference internal" href="../Day-17/Day-17_Pre-Class_ModelingWithODEs-STUDENT.html">
+   Day 17: Pre-class Assignment: Modeling with Ordinary Differential Equations
+  </a>
+ </li>
+ <li class="toctree-l1">
+  <a class="reference internal" href="../Day-17/Day-17_In-Class_ModelingWithODEs-STUDENT.html">
+   Day 17: In-class Assignment: Modeling with ODEs
+  </a>
+ </li>
+ <li class="toctree-l1">
+  <a class="reference internal" href="../Day-17/Day-17_In-Class_ModelingWithODEs-INSTRUCTOR.html">
+   Day 17: In-class Assignment: Modeling with ODEs
+  </a>
+ </li>
+</ul>
+<p aria-level="2" class="caption" role="heading">
+ <span class="caption-text">
+  Day 18
+ </span>
+</p>
+<ul class="nav bd-sidenav">
+ <li class="toctree-l1">
+  <a class="reference internal" href="../Day-18/Day-18_Pre-Class_ViralKinetics-STUDENT.html">
+   Day 18 Pre-Class: Viral Kinetics
+  </a>
+ </li>
+ <li class="toctree-l1">
+  <a class="reference internal" href="../Day-18/Day-18_In-Class_CompartmentalModeling-STUDENT.html">
+   Day 18 In-class: Building Compartmental Models
+  </a>
+ </li>
+</ul>
+<p aria-level="2" class="caption" role="heading">
+ <span class="caption-text">
+  Day 19
+ </span>
+</p>
+<ul class="nav bd-sidenav">
+ <li class="toctree-l1">
+  <a class="reference internal" href="../Day-19/Day-19_Pre-Class_Zombies-STUDENT.html">
+   Day 19 Pre-class Assignment: ZOMBIES!!
+  </a>
+ </li>
+ <li class="toctree-l1">
+  <a class="reference internal" href="../Day-19/Day-19_In-Class_CompartmentsWithSolveIVP-STUDENT.html">
+   Day 19 In-Class Assignment: Compartmental Modeling, moving from the model to the Code
+  </a>
+ </li>
+ <li class="toctree-l1">
+  <a class="reference external" href="https://github.com/msu-cmse-courses/cmse201-F21-data/blob/main/Day-16/latent.png">
+   latent.png
+  </a>
+ </li>
+</ul>
+<p aria-level="2" class="caption" role="heading">
+ <span class="caption-text">
+  Day 20
+ </span>
+</p>
+<ul class="nav bd-sidenav">
+ <li class="toctree-l1">
+  <a class="reference internal" href="../Day-20/Day-20_Pre-Class_2DNumPyArrays-STUDENT.html">
+   Day 20 Pre-Class: 2D NumPy Arrays
+  </a>
+ </li>
+ <li class="toctree-l1">
+  <a class="reference external" href="https://raw.githubusercontent.com/msu-cmse-courses/cmse201-F21-data/main/Day-17/PCA_files/cars.csv">
+   cars.csv
+  </a>
+ </li>
+ <li class="toctree-l1">
+  <a class="reference external" href="https://github.com/msu-cmse-courses/cmse201-F21-data/raw/main/Day-17/PCA_files/example.jpeg">
+   example.jpeg
+  </a>
+ </li>
+ <li class="toctree-l1">
+  <a class="reference internal" href="../Day-20/Day-20_In-Class_2DImageAnalysis-STUDENT.html">
+   Day 20 In-Class Assignment: Image Analysis
+  </a>
+ </li>
+ <li class="toctree-l1">
+  <a class="reference external" href="https://github.com/msu-cmse-courses/cmse201-F21-data/blob/main/Day-17/ICA_files/beach.jpeg">
+   beach.jpeg
+  </a>
+ </li>
+ <li class="toctree-l1">
+  <a class="reference external" href="https://github.com/msu-cmse-courses/cmse201-F21-data/blob/main/Day-17/ICA_files/landscape.jpeg">
+   landscape.jpeg
+  </a>
+ </li>
+ <li class="toctree-l1">
+  <a class="reference external" href="https://github.com/msu-cmse-courses/cmse201-F21-data/blob/main/Day-17/ICA_files/zebra.png">
+   zebra.png
+  </a>
+ </li>
+</ul>
+<p aria-level="2" class="caption" role="heading">
+ <span class="caption-text">
+  Day 21
+ </span>
+</p>
+<ul class="nav bd-sidenav">
+ <li class="toctree-l1">
+  <a class="reference internal" href="../Day-21/Day-21_Pre-Class_ABMForestFire-STUDENT.html">
+   Day 21 Pre-class: Agent-based models and forest fires
+  </a>
+ </li>
+ <li class="toctree-l1">
+  <a class="reference internal" href="../Day-21/Day-21_In-Class_ForestFiresPartI-STUDENT.html">
+   Day 21 Part 1 In-class Assignment: Modeling forest fires with an Agent-based Model
+  </a>
+ </li>
+</ul>
+<p aria-level="2" class="caption" role="heading">
+ <span class="caption-text">
+  Day 22
+ </span>
+</p>
+<ul class="nav bd-sidenav">
+ <li class="toctree-l1">
+  <a class="reference internal" href="../Day-22/Day-22_Pre-Class_ABMForestFire_Part2-STUDENT.html">
+   Day 22 Pre-class: Reviewing 2D Numpy Arrays
+  </a>
+ </li>
+ <li class="toctree-l1">
+  <a class="reference internal" href="../Day-22/Day-22_In-Class_ForestFiresPartII-STUDENT.html">
+   Day 22 In-class Assignment: Modeling forest fires with an Agent-based Model (Part II)
+  </a>
+ </li>
+</ul>
+<p aria-level="2" class="caption" role="heading">
+ <span class="caption-text">
+  Day 23
+ </span>
+</p>
+<ul class="nav bd-sidenav">
+ <li class="toctree-l1">
+  <a class="reference internal" href="../Day-23/Day-23_Pre-Class_ProjectWorkDay-STUDENT.html">
+   Day 23 Pre-class: Project Update Preparation
+  </a>
+ </li>
+ <li class="toctree-l1">
+  <a class="reference internal" href="../Day-23/Day-23_In-Class_ProjectWorkDay-STUDENT.html">
+   Day 23 In-class Assignment: Project Work Day
+  </a>
+ </li>
+</ul>
+<p aria-level="2" class="caption" role="heading">
+ <span class="caption-text">
+  Day 24
+ </span>
+</p>
+<ul class="nav bd-sidenav">
+ <li class="toctree-l1">
+  <a class="reference internal" href="../Day-24/Day-24_Pre-Class_Climate-STUDENT.html">
+   Day 24 Pre-class:  Global warming and climate modeling
+  </a>
+ </li>
+ <li class="toctree-l1">
+  <a class="reference internal" href="../Day-24/Day-24_In-Class_Climate-STUDENT.html">
+   Day 24 In-class Assignment: Analyzing climate data
+  </a>
+ </li>
+ <li class="toctree-l1">
+  <a class="reference external" href="https://raw.githubusercontent.com/msu-cmse-courses/cmse201-F21-data/main/Day-22/GLB.Ts.csv">
+   GLB.Ts.csv
+  </a>
+ </li>
+ <li class="toctree-l1">
+  <a class="reference external" href="https://raw.githubusercontent.com/msu-cmse-courses/cmse201-F21-data/main/Day-22/bintanja2008.txt">
+   bintanja2008.txt
+  </a>
+ </li>
+ <li class="toctree-l1">
+  <a class="reference external" href="https://raw.githubusercontent.com/msu-cmse-courses/cmse201-F21-data/main/Day-22/ch4_annmean_gl.txt">
+   ch4_annmean_gl.txt
+  </a>
+ </li>
+ <li class="toctree-l1">
+  <a class="reference external" href="https://raw.githubusercontent.com/msu-cmse-courses/cmse201-F21-data/main/Day-22/co2_mm_mlo.txt">
+   co2_mm_mlo.txt
+  </a>
+ </li>
+ <li class="toctree-l1">
+  <a class="reference external" href="https://raw.githubusercontent.com/msu-cmse-courses/cmse201-F21-data/main/Day-22/vostok-ch4nat.txt">
+   vostok-ch4nat.txt
+  </a>
+ </li>
+ <li class="toctree-l1">
+  <a class="reference external" href="https://raw.githubusercontent.com/msu-cmse-courses/cmse201-F21-data/main/Day-22/vostok-co2nat.txt">
+   vostok-co2nat.txt
+  </a>
+ </li>
+ <li class="toctree-l1">
+  <a class="reference external" href="https://raw.githubusercontent.com/msu-cmse-courses/cmse201-F21-data/main/Day-22/vostok-deutnat.txt">
+   vostok-deutnat.txt
+  </a>
+ </li>
+</ul>
+<p aria-level="2" class="caption" role="heading">
+ <span class="caption-text">
+  Day 25
+ </span>
+</p>
+<ul class="nav bd-sidenav">
+ <li class="toctree-l1">
+  <a class="reference internal" href="../Day-25/Day-25_Pre-Class_Climate-STUDENT.html">
+   Day 25 pre-class assignment: climate modeling
+  </a>
+ </li>
+ <li class="toctree-l1">
+  <a class="reference internal" href="../Day-25/Day-25_In-Class_Climate-STUDENT.html">
+   Day 25 In-class Assignment: A simple model for global temperature
+  </a>
+ </li>
+ <li class="toctree-l1">
+  <a class="reference external" href="https://github.com/msu-cmse-courses/cmse201-F21-data/blob/main/Day-23/listentothee.png">
+   listentothee.png
+  </a>
+ </li>
+ <li class="toctree-l1">
+  <a class="reference external" href="https://github.com/msu-cmse-courses/cmse201-F21-data/blob/main/Day-23/simple_model.png">
+   simple_model.png
+  </a>
+ </li>
+</ul>
+<p aria-level="2" class="caption" role="heading">
+ <span class="caption-text">
+  Homework
+ </span>
+</p>
+<ul class="nav bd-sidenav">
+ <li class="toctree-l1">
+  <a class="reference internal" href="../Homework/Homework_1/HW_01_F22_STUDENT.html">
+   Homework 1: Introduction to Variables, Lists, and Loops
+  </a>
+ </li>
+ <li class="toctree-l1">
+  <a class="reference internal" href="../Homework/Homework_2/HW_02_F22-STUDENT.html">
+   Homework 2: Dictionaries, If Statements, Functions, and Modules
+  </a>
+ </li>
+ <li class="toctree-l1">
+  <a class="reference external" href="https://raw.githubusercontent.com/msu-cmse-courses/cmse201-S22-data/main/Homework/state_data.csv">
+   state_data.csv
+  </a>
+ </li>
+ <li class="toctree-l1">
+  <a class="reference internal" href="../Homework/Homework_3/HW3_F22-STUDENT.html">
+   Homework 3: Pandas Data Analysis
+  </a>
+ </li>
+ <li class="toctree-l1">
+  <a class="reference external" href="https://raw.githubusercontent.com/msu-cmse-courses/cmse201-S22-data/main/Homework/EV_Sale.csv">
+   EV_Sale.csv
+  </a>
+ </li>
+ <li class="toctree-l1">
+  <a class="reference internal" href="../Homework/Homework_4/HW-04_STUDENT.html">
+   Homework 4: Modeling Bacterial Growth
+  </a>
+ </li>
+ <li class="toctree-l1">
+  <a class="reference external" href="https://raw.githubusercontent.com/msu-cmse-courses/cmse201-S22-data/main/OD600.csv">
+   OD600.csv
+  </a>
+ </li>
+ <li class="toctree-l1">
+  <a class="reference internal" href="../Homework/Homework_5/HW-05_STUDENT.html">
+   Homework 5: 2D Arrays and Agent-based Modeling (EXTRA CREDIT)
+  </a>
+ </li>
+ <li class="toctree-l1">
+  <a class="reference external" href="https://raw.githubusercontent.com/msu-cmse-courses/cmse201-F21-data/main/blurred-math.png">
+   blurred-math.png
+  </a>
+ </li>
+ <li class="toctree-l1">
+  <a class="reference external" href="https://raw.githubusercontent.com/msu-cmse-courses/cmse201-F21-data/main/blurred-scream.png">
+   blurred-scream.png
+  </a>
+ </li>
+ <li class="toctree-l1">
+  <a class="reference external" href="https://raw.githubusercontent.com/msu-cmse-courses/cmse201-F21-data/main/scream.png">
+   scream.png
+  </a>
+ </li>
+ <li class="toctree-l1">
+  <a class="reference internal" href="../Homework/Code_Portfolio/Code_Portfolio_Assignment.html">
+   Code Portfolio Assignment
+  </a>
+ </li>
+ <li class="toctree-l1">
+  <a class="reference internal" href="../Homework/Code_Portfolio/Code_Portfolio_Example.html">
+   Code Portfolio Example
+  </a>
+ </li>
+</ul>
+<p aria-level="2" class="caption" role="heading">
+ <span class="caption-text">
+  Bootcamps
+ </span>
+</p>
+<ul class="nav bd-sidenav">
+ <li class="toctree-l1">
+  <a class="reference internal" href="../Bootcamp_Notebooks/Bootcamp1-Python_Fundamentals_STUDENT.html">
+   Bootcamp 1: Python Fundamentals
+  </a>
+ </li>
+ <li class="toctree-l1">
+  <a class="reference internal" href="../Bootcamp_Notebooks/Bootcamp2-InitialConceptsReview.html">
+   Bootcamp 2: Initial Concepts Review Cheatsheet
+  </a>
+ </li>
+ <li class="toctree-l1">
+  <a class="reference internal" href="../Bootcamp_Notebooks/Bootcamp3-Debugging_STUDENT.html">
+   Bootcamp 3: Debugging
+  </a>
+ </li>
+ <li class="toctree-l1">
+  <a class="reference internal" href="../Bootcamp_Notebooks/Bootcamp4-IfStatements_STUDENT.html">
+   Bootcamp 4: If Statements
+  </a>
+ </li>
+ <li class="toctree-l1">
+  <a class="reference internal" href="../Bootcamp_Notebooks/Bootcamp5-Functions_STUDENT.html">
+   Bootcamp 5: Functions
+  </a>
+ </li>
+ <li class="toctree-l1">
+  <a class="reference internal" href="../Bootcamp_Notebooks/Bootcamp6-Matplotlib_STUDENT.html">
+   Bootcamp 6: Matplotlib
+  </a>
+ </li>
+ <li class="toctree-l1">
+  <a class="reference internal" href="../Bootcamp_Notebooks/Bootcamp8_Pandas_STUDENT.html">
+   Bootcamp 8: Practice with Pandas
+  </a>
+ </li>
+ <li class="toctree-l1">
+  <a class="reference internal" href="../Bootcamp_Notebooks/Bootcamp8_Pandas_INSTRUCTOR.html">
+   Bootcamp 8: Practice with Pandas (Solution)
+  </a>
+ </li>
+ <li class="toctree-l1">
+  <a class="reference external" href="https://raw.githubusercontent.com/msu-cmse-courses/cmse201-S22-data/main/weather.csv">
+   weather.csv
+  </a>
+ </li>
+ <li class="toctree-l1">
+  <a class="reference internal" href="../Bootcamp_Notebooks/Bootcamp9-ScipyCurveFit_STUDENT.html">
+   Bootcamp 9:  Scipy curve_fit
+  </a>
+ </li>
+ <li class="toctree-l1">
+  <a class="reference internal" href="../Bootcamp_Notebooks/Bootcamp9-ScipyCurveFit_INSTRUCTOR.html">
+   Bootcamp 9:  Scipy curve_fit
+  </a>
+ </li>
+ <li class="toctree-l1">
+  <a class="reference internal" href="../Bootcamp_Notebooks/Bootcamp10-CompartmentalModels_STUDENT.html">
+   Bootcamp 10: Compartmental Models
+  </a>
+ </li>
+ <li class="toctree-l1">
+  <a class="reference internal" href="../Bootcamp_Notebooks/Bootcamp10-CompartmentalModels_INSTRUCTOR.html">
+   Bootcamp 10: Compartmental Models
+  </a>
+ </li>
+ <li class="toctree-l1">
+  <a class="reference internal" href="../Bootcamp_Notebooks/Bootcamp11_Solve_IVP_STUDENT.html">
+   Bootcamp 11: Practice with
+   <code class="docutils literal notranslate">
+    <span class="pre">
+     solve_ivp
+    </span>
+   </code>
+  </a>
+ </li>
+ <li class="toctree-l1">
+  <a class="reference internal" href="../Bootcamp_Notebooks/Bootcamp11_Solve_IVP_INSTRUCTOR.html">
+   Bootcamp 11: Practice with
+   <code class="docutils literal notranslate">
+    <span class="pre">
+     solve_ivp
+    </span>
+   </code>
+  </a>
+ </li>
+</ul>
+<p aria-level="2" class="caption" role="heading">
+ <span class="caption-text">
+  Semester Project
+ </span>
+</p>
+<ul class="nav bd-sidenav">
+ <li class="toctree-l1">
+  <a class="reference internal" href="../Project_Materials/CMSE201_SemesterProjectDetails.html">
+   Semester Project Details
+  </a>
+ </li>
+ <li class="toctree-l1">
+  <a class="reference internal" href="../Project_Materials/First_Project_Checkpoint.html">
+   First Project Checkpoint
+  </a>
+ </li>
+ <li class="toctree-l1">
+  <a class="reference internal" href="../Project_Materials/CMSE201_FinalProjectTemplate.html">
+   CMSE 201 Final Project Template
+  </a>
+ </li>
+ <li class="toctree-l1">
+  <a class="reference external" href="https://raw.githubusercontent.com/msu-cmse-courses/cmse201-S22-data/main/Projects/CMSE201_ExampleProject_A.pdf">
+   CMSE201_ExampleProject_A.pdf
+  </a>
+ </li>
+ <li class="toctree-l1">
+  <a class="reference external" href="https://raw.githubusercontent.com/msu-cmse-courses/cmse201-S22-data/main/Projects/CMSE201_ExampleProject_B.pdf">
+   CMSE201_ExampleProject_B.pdf
+  </a>
+ </li>
+ <li class="toctree-l1">
+  <a class="reference external" href="https://raw.githubusercontent.com/msu-cmse-courses/cmse201-S22-data/main/Projects/CMSE201_ExampleProject_C.pdf">
+   CMSE201_ExampleProject_C.pdf
+  </a>
+ </li>
+ <li class="toctree-l1">
+  <a class="reference external" href="https://raw.githubusercontent.com/msu-cmse-courses/cmse201-S22-data/main/Projects/CMSE201_ExampleProject_D.pdf">
+   CMSE201_ExampleProject_D.pdf
+  </a>
+ </li>
+ <li class="toctree-l1">
+  <a class="reference external" href="https://raw.githubusercontent.com/msu-cmse-courses/cmse201-S22-data/main/Projects/CMSE201_ExampleProject_E.pdf">
+   CMSE201_ExampleProject_E.pdf
+  </a>
+ </li>
+ <li class="toctree-l1">
+  <a class="reference external" href="https://raw.githubusercontent.com/msu-cmse-courses/cmse201-S22-data/main/Projects/CMSE201_final_project_example_1.pdf">
+   CMSE201_final_project_example_1.pdf
+  </a>
+ </li>
+ <li class="toctree-l1">
+  <a class="reference external" href="https://raw.githubusercontent.com/msu-cmse-courses/cmse201-S22-data/main/Projects/CMSE201_final_project_example_2.pdf">
+   CMSE201_final_project_example_2.pdf
+  </a>
+ </li>
+ <li class="toctree-l1">
+  <a class="reference external" href="https://raw.githubusercontent.com/msu-cmse-courses/cmse201-S22-data/main/Projects/CMSE201_final_project_example_3.pdf">
+   CMSE201_final_project_example_3.pdf
+  </a>
+ </li>
+ <li class="toctree-l1">
+  <a class="reference external" href="https://raw.githubusercontent.com/msu-cmse-courses/cmse201-S22-data/main/Projects/CMSE201_final_project_example_4.pdf">
+   CMSE201_final_project_example_4.pdf
+  </a>
+ </li>
+ <li class="toctree-l1">
+  <a class="reference internal" href="../Project_Materials/CMSE201FinalProject_RequirementsAndGradingRubric.html">
+   Requirements and Grading Rubric
+  </a>
+ </li>
+</ul>
+
+    </div>
+</nav></div>
+        <div class="bd-sidebar__bottom">
+             <!-- To handle the deprecated key -->
+            
+            <div class="navbar_extra_footer">
+            Powered by <a href="https://jupyterbook.org">Jupyter Book</a>
+            </div>
+            
+        </div>
+    </div>
+    <div id="rtd-footer-container"></div>
+</div>
+
+
+          
+
+
+          
+<!-- A tiny helper pixel to detect if we've scrolled -->
+<div class="sbt-scroll-pixel-helper"></div>
+<!-- Main content -->
+<div class="col py-0 content-container">
+    
+    <div class="header-article row sticky-top noprint">
+        
+
+
+
+<div class="col py-1 d-flex header-article-main">
+    <div class="header-article__left">
+        
+        <label for="__navigation"
+  class="headerbtn"
+  data-toggle="tooltip"
+data-placement="right"
+title="Toggle navigation"
+>
+  
+
+<span class="headerbtn__icon-container">
+  <i class="fas fa-bars"></i>
+  </span>
+
+</label>
+
+        
+    </div>
+    <div class="header-article__right">
+<div class="menu-dropdown menu-dropdown-launch-buttons">
+  <button class="headerbtn menu-dropdown__trigger"
+      aria-label="Launch interactive content">
+      <i class="fas fa-rocket"></i>
+  </button>
+  <div class="menu-dropdown__content">
+    <ul>
+      <li>
+        <a href="https://mybinder.org/v2/gh/msu-cmse-courses/cmse201-F22-jb/main?urlpath=tree/Day-08/Day-08_In-Class_NumPyWithTheGreatLakes-STUDENT.ipynb"
+   class="headerbtn"
+   data-toggle="tooltip"
+data-placement="left"
+title="Launch on Binder"
+>
+  
+
+<span class="headerbtn__icon-container">
+  
+    <img src="../_static/images/logo_binder.svg">
+  </span>
+<span class="headerbtn__text-container">Binder</span>
+</a>
+
+      </li>
+      
+    </ul>
+  </div>
+</div>
+
+<button onclick="toggleFullScreen()"
+  class="headerbtn"
+  data-toggle="tooltip"
+data-placement="bottom"
+title="Fullscreen mode"
+>
+  
+
+<span class="headerbtn__icon-container">
+  <i class="fas fa-expand"></i>
+  </span>
+
+</button>
+
+<div class="menu-dropdown menu-dropdown-repository-buttons">
+  <button class="headerbtn menu-dropdown__trigger"
+      aria-label="Source repositories">
+      <i class="fab fa-github"></i>
+  </button>
+  <div class="menu-dropdown__content">
+    <ul>
+      <li>
+        <a href="https://github.com/msu-cmse-courses/cmse201-F22-jb"
+   class="headerbtn"
+   data-toggle="tooltip"
+data-placement="left"
+title="Source repository"
+>
+  
+
+<span class="headerbtn__icon-container">
+  <i class="fab fa-github"></i>
+  </span>
+<span class="headerbtn__text-container">repository</span>
+</a>
+
+      </li>
+      
+      <li>
+        <a href="https://github.com/msu-cmse-courses/cmse201-F22-jb/issues/new?title=Issue%20on%20page%20%2FDay-08/Day-08_In-Class_NumPyWithTheGreatLakes-STUDENT.html&body=Your%20issue%20content%20here."
+   class="headerbtn"
+   data-toggle="tooltip"
+data-placement="left"
+title="Open an issue"
+>
+  
+
+<span class="headerbtn__icon-container">
+  <i class="fas fa-lightbulb"></i>
+  </span>
+<span class="headerbtn__text-container">open issue</span>
+</a>
+
+      </li>
+      
+    </ul>
+  </div>
+</div>
+
+<div class="menu-dropdown menu-dropdown-download-buttons">
+  <button class="headerbtn menu-dropdown__trigger"
+      aria-label="Download this page">
+      <i class="fas fa-download"></i>
+  </button>
+  <div class="menu-dropdown__content">
+    <ul>
+      <li>
+        <a href="../_sources/Day-08/Day-08_In-Class_NumPyWithTheGreatLakes-STUDENT.ipynb"
+   class="headerbtn"
+   data-toggle="tooltip"
+data-placement="left"
+title="Download source file"
+>
+  
+
+<span class="headerbtn__icon-container">
+  <i class="fas fa-file"></i>
+  </span>
+<span class="headerbtn__text-container">.ipynb</span>
+</a>
+
+      </li>
+      
+      <li>
+        
+<button onclick="printPdf(this)"
+  class="headerbtn"
+  data-toggle="tooltip"
+data-placement="left"
+title="Print to PDF"
+>
+  
+
+<span class="headerbtn__icon-container">
+  <i class="fas fa-file-pdf"></i>
+  </span>
+<span class="headerbtn__text-container">.pdf</span>
+</button>
+
+      </li>
+      
+    </ul>
+  </div>
+</div>
+<label for="__page-toc"
+  class="headerbtn headerbtn-page-toc"
+  
+>
+  
+
+<span class="headerbtn__icon-container">
+  <i class="fas fa-list"></i>
+  </span>
+
+</label>
+
+    </div>
+</div>
+
+<!-- Table of contents -->
+<div class="col-md-3 bd-toc show noprint">
+    <div class="tocsection onthispage pt-5 pb-3">
+        <i class="fas fa-list"></i> Contents
+    </div>
+    <nav id="bd-toc-nav" aria-label="Page">
+        <ul class="visible nav section-nav flex-column">
+ <li class="toc-h1 nav-item toc-entry">
+  <a class="reference internal nav-link" href="#">
+   Day 8 In-class Assignment: Exploring Great Lakes Water Levels using NumPy
+  </a>
+  <ul class="visible nav section-nav flex-column">
+   <li class="toc-h2 nav-item toc-entry">
+    <a class="reference internal nav-link" href="#p-style-text-align-right-put-your-name-here-p">
+     <p style="text-align: right;">
+      ✅ Put your name here
+     </p>
+    </a>
+    <ul class="nav section-nav flex-column">
+     <li class="toc-h3 nav-item toc-entry">
+      <a class="reference internal nav-link" href="#p-style-text-align-right-put-names-of-your-group-members-p">
+       <p style="text-align: right;">
+        ✅ Put names of your group members
+       </p>
+      </a>
+     </li>
+    </ul>
+   </li>
+   <li class="toc-h2 nav-item toc-entry">
+    <a class="reference internal nav-link" href="#learning-goals">
+     Learning Goals:
+    </a>
+   </li>
+   <li class="toc-h2 nav-item toc-entry">
+    <a class="reference internal nav-link" href="#part-1-using-numpy-to-explore-the-water-level-history-of-the-great-lakes">
+     Part 1: Using NumPy to explore the water level history of the Great Lakes
+    </a>
+   </li>
+   <li class="toc-h2 nav-item toc-entry">
+    <a class="reference internal nav-link" href="#part-2-descriptive-statistics-of-data-sets">
+     Part 2: Descriptive Statistics of Data Sets
+    </a>
+    <ul class="nav section-nav flex-column">
+     <li class="toc-h3 nav-item toc-entry">
+      <a class="reference internal nav-link" href="#means-and-medians">
+       <strong>
+        2.1 Means and Medians
+       </strong>
+      </a>
+     </li>
+     <li class="toc-h3 nav-item toc-entry">
+      <a class="reference internal nav-link" href="#using-numpy-to-calculate-mean-and-median">
+       <strong>
+        Using numpy to Calculate Mean and Median
+       </strong>
+      </a>
+     </li>
+     <li class="toc-h3 nav-item toc-entry">
+      <a class="reference internal nav-link" href="#calculating-standard-deviation">
+       <strong>
+        2.2 Calculating Standard Deviation
+       </strong>
+      </a>
+     </li>
+     <li class="toc-h3 nav-item toc-entry">
+      <a class="reference internal nav-link" href="#sigma-sqrt-frac-sum-limits-i-1-n-x-i-mu-2-n">
+       $
+       <span class="math notranslate nohighlight">
+        \( \sigma = \sqrt{\frac{\sum\limits_{i=1}^{N} (x_{i}-\mu)^2}{N}} \)
+       </span>
+       $
+      </a>
+     </li>
+     <li class="toc-h3 nav-item toc-entry">
+      <a class="reference internal nav-link" href="#visualizing-the-data-with-matplotlib">
+       2.3 Visualizing the Data with matplotlib
+      </a>
+     </li>
+    </ul>
+   </li>
+   <li class="toc-h2 nav-item toc-entry">
+    <a class="reference internal nav-link" href="#part-3-looking-for-correlations-in-data-time-permitting">
+     Part 3: Looking for correlations in data (Time Permitting)
+    </a>
+    <ul class="nav section-nav flex-column">
+     <li class="toc-h3 nav-item toc-entry">
+      <a class="reference internal nav-link" href="#pearson-correlation-coefficient-with-np-corrcoef">
+       3.2 Pearson Correlation Coefficient with
+       <code class="docutils literal notranslate">
+        <span class="pre">
+         np.corrcoef()
+        </span>
+       </code>
+      </a>
+     </li>
+     <li class="toc-h3 nav-item toc-entry">
+      <a class="reference internal nav-link" href="#using-np-corrcoef">
+       Using
+       <code class="docutils literal notranslate">
+        <span class="pre">
+         np.corrcoef()
+        </span>
+       </code>
+      </a>
+     </li>
+    </ul>
+   </li>
+  </ul>
+ </li>
+ <li class="toc-h1 nav-item toc-entry">
+  <a class="reference internal nav-link" href="#aside-saving-plots">
+   ASIDE: Saving Plots
+  </a>
+  <ul class="visible nav section-nav flex-column">
+   <li class="toc-h2 nav-item toc-entry">
+    <a class="reference internal nav-link" href="#assignment-wrapup">
+     Assignment wrapup
+    </a>
+   </li>
+   <li class="toc-h2 nav-item toc-entry">
+    <a class="reference internal nav-link" href="#congratulations-you-re-done">
+     Congratulations, you’re done!
+    </a>
+   </li>
+  </ul>
+ </li>
+</ul>
+
+    </nav>
+</div>
+    </div>
+    <div class="article row">
+        <div class="col pl-md-3 pl-lg-5 content-container">
+            <!-- Table of contents that is only displayed when printing the page -->
+            <div id="jb-print-docs-body" class="onlyprint">
+                <h1>Day 8 In-class Assignment: Exploring Great Lakes Water Levels using NumPy</h1>
+                <!-- Table of contents -->
+                <div id="print-main-content">
+                    <div id="jb-print-toc">
+                        
+                        <div>
+                            <h2> Contents </h2>
+                        </div>
+                        <nav aria-label="Page">
+                            <ul class="visible nav section-nav flex-column">
+ <li class="toc-h1 nav-item toc-entry">
+  <a class="reference internal nav-link" href="#">
+   Day 8 In-class Assignment: Exploring Great Lakes Water Levels using NumPy
+  </a>
+  <ul class="visible nav section-nav flex-column">
+   <li class="toc-h2 nav-item toc-entry">
+    <a class="reference internal nav-link" href="#p-style-text-align-right-put-your-name-here-p">
+     <p style="text-align: right;">
+      ✅ Put your name here
+     </p>
+    </a>
+    <ul class="nav section-nav flex-column">
+     <li class="toc-h3 nav-item toc-entry">
+      <a class="reference internal nav-link" href="#p-style-text-align-right-put-names-of-your-group-members-p">
+       <p style="text-align: right;">
+        ✅ Put names of your group members
+       </p>
+      </a>
+     </li>
+    </ul>
+   </li>
+   <li class="toc-h2 nav-item toc-entry">
+    <a class="reference internal nav-link" href="#learning-goals">
+     Learning Goals:
+    </a>
+   </li>
+   <li class="toc-h2 nav-item toc-entry">
+    <a class="reference internal nav-link" href="#part-1-using-numpy-to-explore-the-water-level-history-of-the-great-lakes">
+     Part 1: Using NumPy to explore the water level history of the Great Lakes
+    </a>
+   </li>
+   <li class="toc-h2 nav-item toc-entry">
+    <a class="reference internal nav-link" href="#part-2-descriptive-statistics-of-data-sets">
+     Part 2: Descriptive Statistics of Data Sets
+    </a>
+    <ul class="nav section-nav flex-column">
+     <li class="toc-h3 nav-item toc-entry">
+      <a class="reference internal nav-link" href="#means-and-medians">
+       <strong>
+        2.1 Means and Medians
+       </strong>
+      </a>
+     </li>
+     <li class="toc-h3 nav-item toc-entry">
+      <a class="reference internal nav-link" href="#using-numpy-to-calculate-mean-and-median">
+       <strong>
+        Using numpy to Calculate Mean and Median
+       </strong>
+      </a>
+     </li>
+     <li class="toc-h3 nav-item toc-entry">
+      <a class="reference internal nav-link" href="#calculating-standard-deviation">
+       <strong>
+        2.2 Calculating Standard Deviation
+       </strong>
+      </a>
+     </li>
+     <li class="toc-h3 nav-item toc-entry">
+      <a class="reference internal nav-link" href="#sigma-sqrt-frac-sum-limits-i-1-n-x-i-mu-2-n">
+       $
+       <span class="math notranslate nohighlight">
+        \( \sigma = \sqrt{\frac{\sum\limits_{i=1}^{N} (x_{i}-\mu)^2}{N}} \)
+       </span>
+       $
+      </a>
+     </li>
+     <li class="toc-h3 nav-item toc-entry">
+      <a class="reference internal nav-link" href="#visualizing-the-data-with-matplotlib">
+       2.3 Visualizing the Data with matplotlib
+      </a>
+     </li>
+    </ul>
+   </li>
+   <li class="toc-h2 nav-item toc-entry">
+    <a class="reference internal nav-link" href="#part-3-looking-for-correlations-in-data-time-permitting">
+     Part 3: Looking for correlations in data (Time Permitting)
+    </a>
+    <ul class="nav section-nav flex-column">
+     <li class="toc-h3 nav-item toc-entry">
+      <a class="reference internal nav-link" href="#pearson-correlation-coefficient-with-np-corrcoef">
+       3.2 Pearson Correlation Coefficient with
+       <code class="docutils literal notranslate">
+        <span class="pre">
+         np.corrcoef()
+        </span>
+       </code>
+      </a>
+     </li>
+     <li class="toc-h3 nav-item toc-entry">
+      <a class="reference internal nav-link" href="#using-np-corrcoef">
+       Using
+       <code class="docutils literal notranslate">
+        <span class="pre">
+         np.corrcoef()
+        </span>
+       </code>
+      </a>
+     </li>
+    </ul>
+   </li>
+  </ul>
+ </li>
+ <li class="toc-h1 nav-item toc-entry">
+  <a class="reference internal nav-link" href="#aside-saving-plots">
+   ASIDE: Saving Plots
+  </a>
+  <ul class="visible nav section-nav flex-column">
+   <li class="toc-h2 nav-item toc-entry">
+    <a class="reference internal nav-link" href="#assignment-wrapup">
+     Assignment wrapup
+    </a>
+   </li>
+   <li class="toc-h2 nav-item toc-entry">
+    <a class="reference internal nav-link" href="#congratulations-you-re-done">
+     Congratulations, you’re done!
+    </a>
+   </li>
+  </ul>
+ </li>
+</ul>
+
+                        </nav>
+                    </div>
+                </div>
+            </div>
+            <main id="main-content" role="main">
+                
+              <div>
+                
+  <section class="tex2jax_ignore mathjax_ignore" id="day-8-in-class-assignment-exploring-great-lakes-water-levels-using-numpy">
+<h1>Day 8 In-class Assignment: Exploring Great Lakes Water Levels using NumPy<a class="headerlink" href="#day-8-in-class-assignment-exploring-great-lakes-water-levels-using-numpy" title="Permalink to this headline">#</a></h1>
+<section id="p-style-text-align-right-put-your-name-here-p">
+<h2><p style="text-align: right;"> ✅ Put your name here</p><a class="headerlink" href="#p-style-text-align-right-put-your-name-here-p" title="Permalink to this headline">#</a></h2>
+<section id="p-style-text-align-right-put-names-of-your-group-members-p">
+<h3><p style="text-align: right;"> ✅ Put names of your group members</p><a class="headerlink" href="#p-style-text-align-right-put-names-of-your-group-members-p" title="Permalink to this headline">#</a></h3>
+<p>In today’s activity, were going to use NumPy and Matplotlib to interact with some data that pertains to the water levels of the Great Lakes.</p>
+<p>In recent years there have been some rapid changes in Great Lakes water levels that have led to flooding.  It has also driven speculation that such changes are driven by extreme precipitation events brought on by climate change.</p>
+<p><img alt="picture" src="https://static01.nyt.com/newsgraphics/2021/05/24/chicago/a2fcf9e876edbc083fd69ac91ffd4a3a1ccde852/threat.jpg" /></p>
+<p><strong>Today we will examine over 100 years of water level measurements</strong> for each Great Lake, using data collected by the National Oceanic and Atmospheric Administration (NOAA).  You can find this dataset here: <a class="reference external" href="https://www.glerl.noaa.gov/data/wlevels/#observations">https://www.glerl.noaa.gov/data/wlevels/#observations</a>.  This also gives us an opportunity to practice working with numpy arrays and matplotlib!</p>
+</section>
+</section>
+<section id="learning-goals">
+<h2>Learning Goals:<a class="headerlink" href="#learning-goals" title="Permalink to this headline">#</a></h2>
+<p>By the end of this assignment you should be able to:</p>
+<ul class="simple">
+<li><p>Load data using NumPy so that you can visualize it using matplotlib</p></li>
+<li><p>Work with NumPy “array” objects to compute simple statistics using built-in NumPy functions.</p></li>
+<li><p>Use NumPy and matplotlib to look for correlation in data</p></li>
+</ul>
+</section>
+<hr class="docutils" />
+<section id="part-1-using-numpy-to-explore-the-water-level-history-of-the-great-lakes">
+<h2>Part 1: Using NumPy to explore the water level history of the Great Lakes<a class="headerlink" href="#part-1-using-numpy-to-explore-the-water-level-history-of-the-great-lakes" title="Permalink to this headline">#</a></h2>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="c1"># Although there are some exceptions, it is generally a good idea to keep all of your</span>
+<span class="c1"># imports in one place so that you can easily manage them. Doing so also makes it easy</span>
+<span class="c1"># to copy all of them at once and paste them into a new notebook you are starting.</span>
+
+<span class="c1"># Bring in NumPy and Matplotlib</span>
+<span class="kn">import</span> <span class="nn">numpy</span> <span class="k">as</span> <span class="nn">np</span>
+<span class="kn">import</span> <span class="nn">matplotlib.pyplot</span> <span class="k">as</span> <span class="nn">plt</span>
+</pre></div>
+</div>
+</div>
+</div>
+<p>To use this notebook for your in-class assignment, you will need these files:</p>
+<ul class="simple">
+<li><p><code class="docutils literal notranslate"><span class="pre">lake_michigan_huron.csv</span></code></p></li>
+<li><p><code class="docutils literal notranslate"><span class="pre">lake_superior.csv</span></code></p></li>
+<li><p><code class="docutils literal notranslate"><span class="pre">lake_erie.csv</span></code></p></li>
+<li><p><code class="docutils literal notranslate"><span class="pre">lake_ontario.csv</span></code></p></li>
+</ul>
+<p>These files are given with this notebook on D2L. You will read data from those files and it is important that the files are in the same place as the Jupyter notebook on your computer. Work with other members of your group to be sure everyone knows where the files are.</p>
+<ul class="simple">
+<li><p>Take a moment to look at the contents of these files with an editor on your computer.  For example, <code class="docutils literal notranslate"><span class="pre">*.csv</span></code> files open with Excel or, even better, look at it with a simple text editor like NotePad or TextEdit or just try opening it inside your Jupyter Notebook interface.</p></li>
+</ul>
+<p>As you saw in the pre-class assignment, you can use the command below to load in the data.</p>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="c1"># use NumPy to read data from a csv file</span>
+<span class="c1"># second, better example of loadtxt()</span>
+<span class="n">mhu_date</span><span class="p">,</span> <span class="n">mhu_level</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">loadtxt</span><span class="p">(</span><span class="s2">&quot;lake_michigan_huron.csv&quot;</span><span class="p">,</span> <span class="n">usecols</span> <span class="o">=</span> <span class="p">[</span><span class="mi">0</span><span class="p">,</span><span class="mi">1</span><span class="p">],</span> <span class="n">unpack</span><span class="o">=</span><span class="kc">True</span><span class="p">,</span> <span class="n">delimiter</span><span class="o">=</span><span class="s1">&#39;,&#39;</span><span class="p">)</span> <span class="c1"># example for the mhu.csv file</span>
+</pre></div>
+</div>
+</div>
+</div>
+<p>Once you have your data, it is always a good idea to look at some of it to be sure it is what you think it is. You could use a print statement, or just type the variable name in an empty cell.</p>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">mhu_date</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<div class="output text_plain highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>array([1918.        , 1918.08333333, 1918.16666667, ..., 2020.75      ,
+       2020.83333333, 2020.91666667])
+</pre></div>
+</div>
+</div>
+</div>
+<p>✅  What do you think this data represents?</p>
+<p>/ answer here /</p>
+<p>✅  Next, write some code in this cell to read the data from the other files. Use descriptive variable names to store the results.</p>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="c1"># Read in data from the remaining files.</span>
+
+<span class="c1"># Print some of the values coming in from the files to ensure they look fine.</span>
+</pre></div>
+</div>
+</div>
+</div>
+<p>✅  <strong>Question</strong>: Before you move on, what is the variable type of the lake data you’ve loaded? Use the <code class="docutils literal notranslate"><span class="pre">type()</span></code> function to check on the <code class="docutils literal notranslate"><span class="pre">mhu_date</span></code> and <code class="docutils literal notranslate"><span class="pre">mhu_level</span></code> variables. Does this match your expectations?</p>
+<p><font size="+3">✎</font> <em>Put your answer here</em></p>
+</section>
+<hr class="docutils" />
+<section id="part-2-descriptive-statistics-of-data-sets">
+<h2>Part 2: Descriptive Statistics of Data Sets<a class="headerlink" href="#part-2-descriptive-statistics-of-data-sets" title="Permalink to this headline">#</a></h2>
+<hr class="docutils" />
+<p>✅  Now that you have read in the data, use NumPy’s <a class="reference external" href="https://numpy.org/doc/stable/reference/routines.statistics.html">statistics operations</a> from the pre-class to compare various properties of the water levels for all of the lakes.</p>
+<ul class="simple">
+<li><p>mean</p></li>
+<li><p>median</p></li>
+<li><p>standard deviation</p></li>
+</ul>
+<section id="means-and-medians">
+<h3><strong>2.1 Means and Medians</strong><a class="headerlink" href="#means-and-medians" title="Permalink to this headline">#</a></h3>
+<p><strong>What is the mean of a data set?</strong></p>
+<p>The <strong>mean</strong>, also referred to as the average, is calculated by adding up all of the observations in a data set, and dividing by the number of observations in the data set.</p>
+<p><span class="math notranslate nohighlight">\(mean = \frac{\sum\limits_{i=1}^{N} x_i}{N}\)</span>, <span class="math notranslate nohighlight">\(N\)</span> = number of observations, <span class="math notranslate nohighlight">\(x_i\)</span> = an observation</p>
+<p>More simply put,</p>
+<p>mean = sum of observations / number of observations</p>
+<p>The mean of a data set is useful because it provides a single number to describe a dataset that can be very large. However, the mean is sensitive to outliers (observations that are far from the mean), so it is best suited for data sets where the observations are close together.</p>
+<p><strong>What is the median of a data set?</strong></p>
+<p>The <strong>median</strong> of a data set is the middle value of a data set, or the value that divides the data set into two halves. The median also requires the data to be sorted from least to greatest. If the number of observations is odd, then the median is the middle value of the data set. If the number of observations is even, then the median is the average of the two middle numbers.</p>
+<p>Unlike the mean, because the median is the midpoint of a data set, it is not strongly affected by a small number of outliers.</p>
+</section>
+<section id="using-numpy-to-calculate-mean-and-median">
+<h3><strong>Using numpy to Calculate Mean and Median</strong><a class="headerlink" href="#using-numpy-to-calculate-mean-and-median" title="Permalink to this headline">#</a></h3>
+<p>We can calculate the mean and median from scratch, but we are going to introduce one option for functions in Python that will do the calculations for you. Because the calculations of mean and median are so useful, many Python packages include a function to calculate them, but here we are going to use the calculations from numpy.</p>
+<p>The <a class="reference external" href="https://numpy.org/doc/stable/reference/generated/numpy.mean.html">documentation</a> for numpy mean shows additional options, but the basic use is:</p>
+<p><code class="docutils literal notranslate"><span class="pre">np.mean(data)</span></code></p>
+<p>Similarly, the median is calculated by:</p>
+<p><code class="docutils literal notranslate"><span class="pre">np.median(data)</span></code></p>
+<p><strong>In the cell below, calculate the mean and median of the water level for each of the four lakes using the numpy functions.</strong></p>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="c1"># Put your code here</span>
+</pre></div>
+</div>
+</div>
+</div>
+</section>
+<section id="calculating-standard-deviation">
+<h3><strong>2.2 Calculating Standard Deviation</strong><a class="headerlink" href="#calculating-standard-deviation" title="Permalink to this headline">#</a></h3>
+<p>One way to describe the distribution of a data set is the <strong>standard deviation</strong>. The standard deviation is the square root of the <strong>variance</strong> of the data. The variance is a measure of how “spread out” the distribution of the data is. More specifically, it is the squared difference between a single observation in a data set from the mean. The standard deviation is often represented with the greek symbol sigma (<span class="math notranslate nohighlight">\(\sigma\)</span>).</p>
+<p>Mathematically, the equation for standard deivation is:</p>
+</section>
+<section id="sigma-sqrt-frac-sum-limits-i-1-n-x-i-mu-2-n">
+<h3>$<span class="math notranslate nohighlight">\( \sigma = \sqrt{\frac{\sum\limits_{i=1}^{N} (x_{i}-\mu)^2}{N}} \)</span>$<a class="headerlink" href="#sigma-sqrt-frac-sum-limits-i-1-n-x-i-mu-2-n" title="Permalink to this headline">#</a></h3>
+<p>where the symbols in this equation represent the following:</p>
+<ul class="simple">
+<li><p><span class="math notranslate nohighlight">\(\sigma\)</span>: Standard Deviation</p></li>
+<li><p><span class="math notranslate nohighlight">\(\mu\)</span>: Mean</p></li>
+<li><p><span class="math notranslate nohighlight">\(N\)</span>: Number of observations</p></li>
+<li><p><span class="math notranslate nohighlight">\(x_{i}\)</span>: the value of dataset at position <span class="math notranslate nohighlight">\(i\)</span></p></li>
+</ul>
+<p>Similarly to <code class="docutils literal notranslate"><span class="pre">np.mean()</span></code> and <code class="docutils literal notranslate"><span class="pre">np.median()</span></code>, we can calculate the standard deviation and percentiles with numpy as follows:</p>
+<p><code class="docutils literal notranslate"><span class="pre">np.std(data)</span></code></p>
+<p><strong>In the cell below, calculate the standard deviation of the water level for each of the four lakes using the numpy function.</strong></p>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="c1"># put your code here</span>
+</pre></div>
+</div>
+</div>
+</div>
+</section>
+<section id="visualizing-the-data-with-matplotlib">
+<h3>2.3 Visualizing the Data with matplotlib<a class="headerlink" href="#visualizing-the-data-with-matplotlib" title="Permalink to this headline">#</a></h3>
+<hr class="docutils" />
+<p>✅  Now, let’s see what is in the files by plotting the second column versus the first column using <code class="docutils literal notranslate"><span class="pre">matplotlib</span></code>. Do this for all of the files. This is our first example of doing some (very simple!) data science - looking at some real data. As a reminder, the data came from <a class="reference external" href="https://www.glerl.noaa.gov/data/wlevels/#observations">here</a>; if you ever find data like this in the real world, you could build a notebook like this one to examine it. In fact, your projects at the end of the semester might be much larger versions of this.</p>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="c1"># plot the water levels here</span>
+</pre></div>
+</div>
+</div>
+</div>
+<p>Plots like this are not very useful. If you showed them to someone else they would have no idea what is in them. In fact, if <em>you</em> looked at them next week, you wouldn’t remember what is in them. Let’s use a little more <code class="docutils literal notranslate"><span class="pre">matplotlib</span></code> to make them of professional quality. There are two things that every plot should have: labels on each axis. And, there are many other options:</p>
+<ul class="simple">
+<li><p><a class="reference external" href="https://matplotlib.org/devdocs/api/_as_gen/matplotlib.pyplot.grid.html">grid</a></p></li>
+<li><p><a class="reference external" href="https://matplotlib.org/devdocs/api/_as_gen/matplotlib.pyplot.title.html">title</a></p></li>
+<li><p><a class="reference external" href="https://matplotlib.org/examples/lines_bars_and_markers/marker_reference.html">markers</a></p></li>
+<li><p><a class="reference external" href="https://matplotlib.org/users/legend_guide.html">legend</a></p></li>
+<li><p>and many more we will see over time…</p></li>
+</ul>
+<p>✅  <strong>First</strong>, remake separate figures for each of the datasets you read in and include in the plots: <span class="math notranslate nohighlight">\(x\)</span>-axis labels, <span class="math notranslate nohighlight">\(y\)</span>-axis labels, grid lines, markers, and a title.</p>
+<p>✅ <strong>Then</strong>, make all of them in the <em>same</em> plot using the same formating techniques you used in the separate plots but also <em>add a legend</em>.</p>
+<p>We are not going to tell you how to do this directly! But, we’re here to help you to figure it out. If you find yourself waiting for help from an instructor, you can also try using Google to answer your questions. Searching the internet for coding tips and tricks is a very common practice!</p>
+<p>The Python community also provides helpful resources: they have created a comprehensive gallery of just about any plot you can think of with an example <em>and the code that goes with it</em>. That gallery is <a class="reference external" href="https://matplotlib.org/gallery.html">here</a> and you should be able to find many examples of how to make your plots look professional. (You just might want to bookmark that webpage…..)</p>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="c1"># Put your code here to make each plot separately. You might need to create multiple notebook cells or use &quot;subplot&quot;</span>
+<span class="c1"># Make sure they are professionaly constructed using all of the options above.</span>
+</pre></div>
+</div>
+</div>
+</div>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="c1"># Make another plot here with all the data in the same plot and include a legend</span>
+<span class="c1"># It still might not be super useful, but at least with a legend you can tell which line is which!</span>
+</pre></div>
+</div>
+</div>
+</div>
+<p>✅  <strong>What observations about the data do you have?</strong> <strong>Are the lake levels higher or lower than they have been in the past? Put your answer here</strong>:</p>
+<p><font size="+3">✎</font> In the data I see….</p>
+</section>
+</section>
+<hr class="docutils" />
+<section id="part-3-looking-for-correlations-in-data-time-permitting">
+<h2>Part 3: Looking for correlations in data (Time Permitting)<a class="headerlink" href="#part-3-looking-for-correlations-in-data-time-permitting" title="Permalink to this headline">#</a></h2>
+<hr class="docutils" />
+<p>In the plots you have made so far you have plotted water levels versus time. This is fairly intuitive and corresponds to the way the data was given to us. Next, we are going to do something a little more abstract to seek correlations in the data, a standard goal in data science. As you have seen, there are a lot of fluctuations in the data - what do they tell us? For example, do the levels go up at certain times of year? In certain years that had more rain? Can we see evidence of global warming? While we won’t answer these questions at this point, we can look for patterns across the lakes to see if the fluctations in levels might correspond to trends. To do this, we will plot the <strong>level of one lake versus the level of another lake</strong> (we will <em>not</em> plot either level against time). Note that we somewhat lose the time information because we aren’t using that array anymore.</p>
+<p>✅  In the cell below, plot the <strong>level of one lake versus the level of another lake (time should <em>not</em> be involved in your plot command)</strong> - do this for several combinations. Put them in separate cells if you need to - otherwise each will be in the same plot, which might be less useful. (If you’re feeling comfortable using <a class="reference external" href="https://matplotlib.org/2.0.2/examples/pylab_examples/subplots_demo.html">subplot</a> feel free to use that.)</p>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="c1"># add your plots here (with labels, titles, legend, grid)</span>
+<span class="c1"># what line type should you use? what are the best markers to use?</span>
+</pre></div>
+</div>
+</div>
+</div>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="c1"># next lake here, and so on.....</span>
+</pre></div>
+</div>
+</div>
+</div>
+<p>✅  <strong>In this cell</strong>, write your observations. What do you observe about the lake levels?</p>
+<p><font size="+3">✎</font> I observed…..</p>
+<section id="pearson-correlation-coefficient-with-np-corrcoef">
+<h3>3.2 Pearson Correlation Coefficient with <code class="docutils literal notranslate"><span class="pre">np.corrcoef()</span></code><a class="headerlink" href="#pearson-correlation-coefficient-with-np-corrcoef" title="Permalink to this headline">#</a></h3>
+<p>Now that you have made some qualitative observations of the water levels, we are going to explore how to <strong>quantify</strong> those observations. There are many ways to measure correlation, but we are going to use the <strong>Pearson Correlation Coefficient</strong> (also referred to as “r”, “<span class="math notranslate nohighlight">\(\rho\)</span>”, or “correlation coefficient”). The Pearson Correlation Coefficient ranges from -1 to 1 and provides a measure of how dependent on one another your variables are.</p>
+<p>If the correlation coefficient is close to 1 or -1, then the correlation is strong, if it is close to zero, the correlation is weak. If the the correlation coefficient is negative, then the y values decrease as x increases. If the correlation coefficient is positive, then the y values increase as x increases. See the image below for a visualization of this!</p>
+<hr class="docutils" />
+<p><img alt="Correlation Coeficient Examples" src="https://upload.wikimedia.org/wikipedia/commons/thumb/3/34/Correlation_coefficient.png/800px-Correlation_coefficient.png" />.</p>
+</section>
+<section id="using-np-corrcoef">
+<h3>Using <code class="docutils literal notranslate"><span class="pre">np.corrcoef()</span></code><a class="headerlink" href="#using-np-corrcoef" title="Permalink to this headline">#</a></h3>
+<p>To calculate the correlation coefficient, we are going to use another <code class="docutils literal notranslate"><span class="pre">numpy</span></code> function, <a class="reference external" href="https://numpy.org/doc/stable/reference/generated/numpy.corrcoef.html">np.corrcoef</a>. To use <code class="docutils literal notranslate"><span class="pre">np.corrcoef()</span></code>, you will call it with your x and y variables like this:</p>
+<p><code class="docutils literal notranslate"><span class="pre">np.corrcoef(x,y)</span></code></p>
+<p>It will return all of the possible correlation coefficients (including the data with itself) as an array.</p>
+<p>✅  In the cell(s) below, choose two of the plots you made in the beginning of Part 3 and calculate the correlation coefficient on the data from each plot. Were there any differences between your qualitative observations and your quantitative calculations?</p>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="c1"># put your code here</span>
+</pre></div>
+</div>
+</div>
+</div>
+<p><font size="+3">✎</font> I observed…..</p>
+</section>
+</section>
+</section>
+<hr class="docutils" />
+<section class="tex2jax_ignore mathjax_ignore" id="aside-saving-plots">
+<h1>ASIDE: Saving Plots<a class="headerlink" href="#aside-saving-plots" title="Permalink to this headline">#</a></h1>
+<hr class="docutils" />
+<p>Finally, you will need to use your plots for something. In your other classes and labs you often will need to make plots for your assignments and lab reports - now is the time to start using Python for that! Modify the code above to write the plot into a file in PNG format. Here are a couple of examples for how you can save files as a PNG file and as a PDF file:</p>
+<p><code class="docutils literal notranslate"><span class="pre">plt.savefig('foo.png')</span></code></p>
+<p><code class="docutils literal notranslate"><span class="pre">plt.savefig('foo.pdf')</span></code></p>
+<p><strong>Put your name in the filename</strong> so that we can keep track of your work.</p>
+<hr class="docutils" />
+<section id="assignment-wrapup">
+<h2>Assignment wrapup<a class="headerlink" href="#assignment-wrapup" title="Permalink to this headline">#</a></h2>
+<p>Please fill out the form that appears when you run the code below. <strong>You must completely fill this out in order to receive credit for the assignment!</strong></p>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="kn">from</span> <span class="nn">IPython.display</span> <span class="kn">import</span> <span class="n">HTML</span>
+<span class="n">HTML</span><span class="p">(</span>
+<span class="sd">&quot;&quot;&quot;</span>
+<span class="sd">&lt;iframe </span>
+<span class="sd">	src=&quot;https://cmse.msu.edu/cmse201-ic-survey&quot; </span>
+<span class="sd">	width=&quot;800px&quot; </span>
+<span class="sd">	height=&quot;600px&quot; </span>
+<span class="sd">	frameborder=&quot;0&quot; </span>
+<span class="sd">	marginheight=&quot;0&quot; </span>
+<span class="sd">	marginwidth=&quot;0&quot;&gt;</span>
+<span class="sd">	Loading...</span>
+<span class="sd">&lt;/iframe&gt;</span>
+<span class="sd">&quot;&quot;&quot;</span>
+<span class="p">)</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<div class="output text_html">
+<iframe 
+	src="https://cmse.msu.edu/cmse201-ic-survey" 
+	width="800px" 
+	height="600px" 
+	frameborder="0" 
+	marginheight="0" 
+	marginwidth="0">
+	Loading...
+</iframe>
+</div></div>
+</div>
+</section>
+<hr class="docutils" />
+<section id="congratulations-you-re-done">
+<h2>Congratulations, you’re done!<a class="headerlink" href="#congratulations-you-re-done" title="Permalink to this headline">#</a></h2>
+<p>Submit this assignment by uploading it to the course Desire2Learn web page.  Go to the “In-class assignments” folder, find the appropriate submission folder, and upload it there. Make sure to upload your plot images as well!</p>
+<p>If the rest of your group is still working, help them out and show them some of the things you learned!</p>
+<p>See you next class!</p>
+</section>
+</section>
+
+    <script type="text/x-thebe-config">
+    {
+        requestKernel: true,
+        binderOptions: {
+            repo: "binder-examples/jupyter-stacks-datascience",
+            ref: "master",
+        },
+        codeMirrorConfig: {
+            theme: "abcdef",
+            mode: "python"
+        },
+        kernelOptions: {
+            kernelName: "python3",
+            path: "./Day-08"
+        },
+        predefinedOutput: true
+    }
+    </script>
+    <script>kernelName = 'python3'</script>
+
+              </div>
+              
+            </main>
+            <footer class="footer-article noprint">
+                
+    <!-- Previous / next buttons -->
+<div class='prev-next-area'>
+    <a class='left-prev' id="prev-link" href="Day-08_Pre-Class_IntroToNumPy-STUDENT.html" title="previous page">
+        <i class="fas fa-angle-left"></i>
+        <div class="prev-next-info">
+            <p class="prev-next-subtitle">previous</p>
+            <p class="prev-next-title">Day 8 Pre-Class: Introduction to NumPy</p>
+        </div>
+    </a>
+    <a class='right-next' id="next-link" href="../Day-09/Day-09_Pre-Class_Pandas-STUDENT.html" title="next page">
+    <div class="prev-next-info">
+        <p class="prev-next-subtitle">next</p>
+        <p class="prev-next-title">Day 9 Pre-class Assignment: Computational Models Overview and The Pandas Data Analysis Library</p>
+    </div>
+    <i class="fas fa-angle-right"></i>
+    </a>
+</div>
+            </footer>
+        </div>
+    </div>
+    <div class="footer-content row">
+        <footer class="col footer"><p>
+  
+    By MSU CMSE<br/>
+  
+      &copy; Copyright 2022.<br/>
+</p>
+        </footer>
+    </div>
+    
+</div>
+
+
+      </div>
+    </div>
+  
+  <!-- Scripts loaded after <body> so the DOM is not blocked -->
+  <script src="../_static/scripts/pydata-sphinx-theme.js?digest=1999514e3f237ded88cf"></script>
+
+
+  </body>
+</html>

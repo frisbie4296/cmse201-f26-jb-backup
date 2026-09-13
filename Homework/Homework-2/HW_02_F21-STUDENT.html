@@ -1,0 +1,1624 @@
+
+<!DOCTYPE html>
+
+<html>
+  <head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Homework 2: If Statements, Functions, and Modules &#8212; CMSE 201</title>
+    
+  <link href="../../_static/css/theme.css" rel="stylesheet" />
+  <link href="../../_static/css/index.c5995385ac14fb8791e8eb36b4908be2.css" rel="stylesheet" />
+
+    
+  <link rel="stylesheet"
+    href="../../_static/vendor/fontawesome/5.13.0/css/all.min.css">
+  <link rel="preload" as="font" type="font/woff2" crossorigin
+    href="../../_static/vendor/fontawesome/5.13.0/webfonts/fa-solid-900.woff2">
+  <link rel="preload" as="font" type="font/woff2" crossorigin
+    href="../../_static/vendor/fontawesome/5.13.0/webfonts/fa-brands-400.woff2">
+
+    
+      
+
+    
+    <link rel="stylesheet" href="../../_static/pygments.css" type="text/css" />
+    <link rel="stylesheet" href="../../_static/sphinx-book-theme.e8f53015daec13862f6db5e763c41738.css" type="text/css" />
+    <link rel="stylesheet" type="text/css" href="../../_static/togglebutton.css" />
+    <link rel="stylesheet" type="text/css" href="../../_static/copybutton.css" />
+    <link rel="stylesheet" type="text/css" href="../../_static/mystnb.css" />
+    <link rel="stylesheet" type="text/css" href="../../_static/sphinx-thebe.css" />
+    <link rel="stylesheet" type="text/css" href="../../_static/panels-main.c949a650a448cc0ae9fd3441c0e17fb0.css" />
+    <link rel="stylesheet" type="text/css" href="../../_static/panels-variables.06eb56fa6e07937060861dad626602ad.css" />
+    
+  <link rel="preload" as="script" href="../../_static/js/index.1c5a1a01449ed65a7b51.js">
+
+    <script id="documentation_options" data-url_root="../../" src="../../_static/documentation_options.js"></script>
+    <script src="../../_static/jquery.js"></script>
+    <script src="../../_static/underscore.js"></script>
+    <script src="../../_static/doctools.js"></script>
+    <script src="../../_static/togglebutton.js"></script>
+    <script src="../../_static/clipboard.min.js"></script>
+    <script src="../../_static/copybutton.js"></script>
+    <script >var togglebuttonSelector = '.toggle, .admonition.dropdown, .tag_hide_input div.cell_input, .tag_hide-input div.cell_input, .tag_hide_output div.cell_output, .tag_hide-output div.cell_output, .tag_hide_cell.cell, .tag_hide-cell.cell';</script>
+    <script src="../../_static/sphinx-book-theme.12a9622fbb08dcb3a2a40b2c02b83a57.js"></script>
+    <script async="async" src="https://cdnjs.cloudflare.com/ajax/libs/mathjax/2.7.7/latest.js?config=TeX-AMS-MML_HTMLorMML"></script>
+    <script type="text/x-mathjax-config">MathJax.Hub.Config({"tex2jax": {"inlineMath": [["\\(", "\\)"]], "displayMath": [["\\[", "\\]"]], "processRefs": false, "processEnvironments": false}})</script>
+    <script async="async" src="https://unpkg.com/thebe@0.5.1/lib/index.js"></script>
+    <script >
+        const thebe_selector = ".thebe"
+        const thebe_selector_input = "pre"
+        const thebe_selector_output = ".output"
+    </script>
+    <script async="async" src="../../_static/sphinx-thebe.js"></script>
+    <link rel="shortcut icon" href="../../_static/cmse_fav.ico"/>
+    <link rel="index" title="Index" href="../../genindex.html" />
+    <link rel="search" title="Search" href="../../search.html" />
+    <link rel="next" title="Homework 3: Data Analysis with Pandas, Numpy, and Matplotlib" href="../Homework-3/HOMEWORK_3_STUDENT.html" />
+    <link rel="prev" title="Homework 1: Introduction to Loops, Lists, and Dictionaries" href="../Homework-1/HW_01_F21_STUDENT.html" />
+    <meta name="viewport" content="width=device-width, initial-scale=1" />
+    <meta name="docsearch:language" content="en" />
+    
+  </head>
+  <body data-spy="scroll" data-target="#bd-toc-nav" data-offset="80">
+    
+    <div class="container-fluid" id="banner"></div>
+
+    
+
+    <div class="container-xl">
+      <div class="row">
+          
+<div class="col-12 col-md-3 bd-sidebar site-navigation show" id="site-navigation">
+    
+        <div class="navbar-brand-box">
+    <a class="navbar-brand text-wrap" href="../../index.html">
+      
+      <img src="../../_static/logo.png" class="logo" alt="logo">
+      
+      
+      <h1 class="site-logo" id="site-title">CMSE 201</h1>
+      
+    </a>
+</div><form class="bd-search d-flex align-items-center" action="../../search.html" method="get">
+  <i class="icon fas fa-search"></i>
+  <input type="search" class="form-control" name="q" id="search-input" placeholder="Search this book..." aria-label="Search this book..." autocomplete="off" >
+</form><nav class="bd-links" id="bd-docs-nav" aria-label="Main">
+    <div class="bd-toc-item active">
+        <ul class="nav bd-sidenav">
+ <li class="toctree-l1">
+  <a class="reference internal" href="../../intro.html">
+   Welcome to Computational Modeling and Data Analysis I!
+  </a>
+ </li>
+</ul>
+<p class="caption">
+ <span class="caption-text">
+  Course Materials
+ </span>
+</p>
+<ul class="nav bd-sidenav">
+ <li class="toctree-l1 has-children">
+  <a class="reference internal" href="../../Course_Materials-201/CourseDocuments.html">
+   Important Course information
+  </a>
+  <input class="toctree-checkbox" id="toctree-checkbox-1" name="toctree-checkbox-1" type="checkbox"/>
+  <label for="toctree-checkbox-1">
+   <i class="fas fa-chevron-down">
+   </i>
+  </label>
+  <ul>
+   <li class="toctree-l2">
+    <a class="reference internal" href="../../Course_Materials-201/CMSE201-Syllabus.html">
+     Syllabus
+    </a>
+   </li>
+   <li class="toctree-l2">
+    <a class="reference internal" href="../../Course_Materials-201/CMSE201-Schedule.html">
+     Course Schedule
+    </a>
+   </li>
+   <li class="toctree-l2">
+    <a class="reference internal" href="../../Course_Materials-201/SoftwareSetupGuide.html">
+     Software Setup Guide
+    </a>
+   </li>
+   <li class="toctree-l2">
+    <a class="reference internal" href="../../Course_Materials-201/classroom_participation.html">
+     Classroom Participation
+    </a>
+   </li>
+  </ul>
+ </li>
+</ul>
+<p class="caption">
+ <span class="caption-text">
+  Day 01
+ </span>
+</p>
+<ul class="nav bd-sidenav">
+ <li class="toctree-l1">
+  <a class="reference internal" href="../../Day-01/Day-01_In-Class_SortingAlgorithm-STUDENT.html">
+   Day 1 In-Class Assignment
+  </a>
+ </li>
+</ul>
+<p class="caption">
+ <span class="caption-text">
+  Day 02
+ </span>
+</p>
+<ul class="nav bd-sidenav">
+ <li class="toctree-l1">
+  <a class="reference internal" href="../../Day-02/Day-02_Pre-Class_IntroToPython-STUDENT.html">
+   Day 2 Pre-class Assignment: Intro to Python
+  </a>
+ </li>
+ <li class="toctree-l1">
+  <a class="reference internal" href="../../Day-02/Day-02_In-Class_OrderOfMagnitudeModeling-STUDENT.html">
+   Day 2 In-class Assignment: Order of Magnitude Modeling
+  </a>
+ </li>
+</ul>
+<p class="caption">
+ <span class="caption-text">
+  Day 03
+ </span>
+</p>
+<ul class="nav bd-sidenav">
+ <li class="toctree-l1">
+  <a class="reference internal" href="../../Day-03/Day-03_Pre-Class_ListsAndLoops-STUDENT.html">
+   Day 3: Pre-Class Assignment: Lists and Loops
+  </a>
+ </li>
+ <li class="toctree-l1">
+  <a class="reference internal" href="../../Day-03/Day-03_In-Class_ListsLoopsAndSaving-STUDENT.html">
+   Day 3 In-class Assignment: The power of compound interest
+  </a>
+ </li>
+</ul>
+<p class="caption">
+ <span class="caption-text">
+  Day 04
+ </span>
+</p>
+<ul class="nav bd-sidenav">
+ <li class="toctree-l1">
+  <a class="reference internal" href="../../Day-04/Day-04_Pre-Class_DataEthics_AcademicIntegrity-STUDENT.html">
+   Day 4 Pre-class Assignment: Introduction to Data Ethics and Practice with Lists and Loops
+  </a>
+ </li>
+ <li class="toctree-l1">
+  <a class="reference internal" href="../../Day-04/Day-04_In-Class_AcademicIntegrity_CodingPractices-STUDENT.html">
+   Day 4 In-class Assignment: Academic Integrity and Coding Best Practices
+  </a>
+ </li>
+</ul>
+<p class="caption">
+ <span class="caption-text">
+  Day 05
+ </span>
+</p>
+<ul class="nav bd-sidenav">
+ <li class="toctree-l1">
+  <a class="reference internal" href="../../Day-05/Day-05_Pre-Class_IfStatementsAndFunctions-STUDENT.html">
+   Day 5 Pre-class Assignment: Boolean logic, if statements, and an introduction to functions
+  </a>
+ </li>
+ <li class="toctree-l1">
+  <a class="reference internal" href="../../Day-05/Day-05_In-Class_IfStatementsAndFunctions-STUDENT.html">
+   Day 5 In-class Assignment: Savings for Everyone
+  </a>
+ </li>
+</ul>
+<p class="caption">
+ <span class="caption-text">
+  Day 06
+ </span>
+</p>
+<ul class="nav bd-sidenav">
+ <li class="toctree-l1">
+  <a class="reference internal" href="../../Day-06/Day-06_Pre-Class_MoreFunctions-STUDENT.html">
+   Day 6 Pre-class Assignment: Thinking more about functions
+  </a>
+ </li>
+ <li class="toctree-l1">
+  <a class="reference internal" href="../../Day-06/Day-06_In-Class_MoreFunctions-STUDENT.html">
+   Day 6 In-class Assignment: Using functions for fun and profit!
+  </a>
+ </li>
+</ul>
+<p class="caption">
+ <span class="caption-text">
+  Day 07
+ </span>
+</p>
+<ul class="nav bd-sidenav">
+ <li class="toctree-l1">
+  <a class="reference internal" href="../../Day-07/Day-07_Pre-Class_ModulesMathAndPlots-STUDENT.html">
+   Day 7 Pre-Class Assignment: Python Modules: Math and Plots
+  </a>
+ </li>
+ <li class="toctree-l1">
+  <a class="reference internal" href="../../Day-07/Day-07_In-Class_MathAndPlotting-STUDENT.html">
+   Day 7 In-class Assignment: Visualizing population growth and projectile motion
+  </a>
+ </li>
+</ul>
+<p class="caption">
+ <span class="caption-text">
+  Day 08
+ </span>
+</p>
+<ul class="nav bd-sidenav">
+ <li class="toctree-l1">
+  <a class="reference internal" href="../../Day-08/Day-08_Pre-Class_IntroToNumPy-STUDENT.html">
+   Day 8 Pre-Class: Introduction to NumPy
+  </a>
+ </li>
+ <li class="toctree-l1">
+  <a class="reference external" href="https://raw.githubusercontent.com/msu-cmse-courses/cmse201-F21-data/main/Day-08/michigan_pop.csv">
+   michigan_pop.csv
+  </a>
+ </li>
+ <li class="toctree-l1">
+  <a class="reference internal" href="../../Day-08/Day-08_In-Class_NumPyWithTheGreatLakes-STUDENT.html">
+   Day 8 In-class Assignment: Exploring Great Lakes Water Levels using NumPy
+  </a>
+ </li>
+ <li class="toctree-l1">
+  <a class="reference external" href="https://raw.githubusercontent.com/msu-cmse-courses/cmse201-F21-data/main/Day-08/lake_erie.csv">
+   lake_erie.csv
+  </a>
+ </li>
+ <li class="toctree-l1">
+  <a class="reference external" href="https://raw.githubusercontent.com/msu-cmse-courses/cmse201-F21-data/main/Day-08/lake_michigan_huron.csv">
+   lake_michigan_huron.csv
+  </a>
+ </li>
+ <li class="toctree-l1">
+  <a class="reference external" href="https://raw.githubusercontent.com/msu-cmse-courses/cmse201-F21-data/main/Day-08/lake_ontario.csv">
+   lake_ontario.csv
+  </a>
+ </li>
+ <li class="toctree-l1">
+  <a class="reference external" href="https://raw.githubusercontent.com/msu-cmse-courses/cmse201-F21-data/main/Day-08/lake_superior.csv">
+   lake_superior.csv
+  </a>
+ </li>
+</ul>
+<p class="caption">
+ <span class="caption-text">
+  Day 09
+ </span>
+</p>
+<ul class="nav bd-sidenav">
+ <li class="toctree-l1">
+  <a class="reference internal" href="../../Day-09/Day-09_Pre-Class_Pandas-STUDENT.html">
+   Day 9 Pre-class Assignment: Computational Models Overview and The Pandas Data Analysis Library
+  </a>
+ </li>
+ <li class="toctree-l1">
+  <a class="reference internal" href="../../Day-09/Day-09_In-Class_GDP-STUDENT.html">
+   Day 9 In-Class: Cleaning and Analyzing Economic Data
+  </a>
+ </li>
+</ul>
+<p class="caption">
+ <span class="caption-text">
+  Day 10
+ </span>
+</p>
+<ul class="nav bd-sidenav">
+ <li class="toctree-l1">
+  <a class="reference internal" href="../../Day-10/Day-10_Pre-Class_Masking-STUDENT.html">
+   Day 10 Pre-class Assignment: Normal Distributions, Masking, and Log Plots
+  </a>
+ </li>
+ <li class="toctree-l1">
+  <a class="reference external" href="https://raw.githubusercontent.com/msu-cmse-courses/cmse201-F21-data/main/Day-10/GDP_Cleaned.csv">
+   GDP_Cleaned.csv
+  </a>
+ </li>
+ <li class="toctree-l1">
+  <a class="reference internal" href="../../Day-10/Day-10_In-Class_Flint-STUDENT.html">
+   Day 10 In-class Assignment: Get the Lead Out: Understanding The Water Crisis in Flint, MI
+  </a>
+ </li>
+ <li class="toctree-l1">
+  <a class="reference external" href="https://raw.githubusercontent.com/msu-cmse-courses/cmse201-F21-data/main/Day-10/flint_water_data.csv">
+   flint_water_data.csv
+  </a>
+ </li>
+</ul>
+<p class="caption">
+ <span class="caption-text">
+  Day 11
+ </span>
+</p>
+<ul class="nav bd-sidenav">
+ <li class="toctree-l1">
+  <a class="reference internal" href="../../Day-11/Day-11_Pre-Class_Data_File_Formats_Manipulation-STUDENT.html">
+   Day 11 Pre-Class Assignment: Overview of data and file formats
+  </a>
+ </li>
+ <li class="toctree-l1">
+  <a class="reference external" href="https://raw.githubusercontent.com/msu-cmse-courses/cmse201-F21-data/main/Day-11/us_house_rep_by_state_2019.csv">
+   us_house_rep_by_state_2019.csv
+  </a>
+ </li>
+ <li class="toctree-l1">
+  <a class="reference external" href="https://raw.githubusercontent.com/msu-cmse-courses/cmse201-F21-data/main/Day-11/us_pop_by_state_2010_2011.csv">
+   us_pop_by_state_2010_2011.csv
+  </a>
+ </li>
+ <li class="toctree-l1">
+  <a class="reference external" href="https://github.com/msu-cmse-courses/cmse201-F21-data/raw/main/Day-11/us_pop_by_state_2012_2013_encoding_utf-16be.csv">
+   us_pop_by_state_2012_2013_encoding_utf-16be.csv
+  </a>
+ </li>
+ <li class="toctree-l1">
+  <a class="reference external" href="https://raw.githubusercontent.com/msu-cmse-courses/cmse201-F21-data/main/Day-11/us_pop_by_state_2014_2015_windows_linefeed.csv">
+   us_pop_by_state_2014_2015_windows_linefeed.csv
+  </a>
+ </li>
+ <li class="toctree-l1">
+  <a class="reference external" href="https://github.com/msu-cmse-courses/cmse201-F21-data/blob/main/Day-11/us_pop_by_state_2016a.csv?raw=true">
+   us_pop_by_state_2016a.csv
+  </a>
+ </li>
+ <li class="toctree-l1">
+  <a class="reference external" href="https://github.com/msu-cmse-courses/cmse201-F21-data/blob/main/Day-11/us_pop_by_state_2017a.yaff?raw=true">
+   us_pop_by_state2017a.yaff
+  </a>
+ </li>
+ <li class="toctree-l1">
+  <a class="reference external" href="https://github.com/msu-cmse-courses/cmse201-F21-data/blob/main/Day-11/us_pop_by_state_2018_2019.bin?raw=true">
+   us_pop_by_state_2018_2019.bin
+  </a>
+ </li>
+</ul>
+<p class="caption">
+ <span class="caption-text">
+  Day 12
+ </span>
+</p>
+<ul class="nav bd-sidenav">
+ <li class="toctree-l1">
+  <a class="reference internal" href="../../Day-12/Day-12_Pre-Class_Regression-STUDENT.html">
+   Day 12 Pre-Class Assignment: Regression
+  </a>
+ </li>
+ <li class="toctree-l1">
+  <a class="reference internal" href="../../Day-12/Day-12_In-Class_PolynomialFitting-STUDENT.html">
+   Day 12 In-Class Assignment: Linear regression and polynomial fitting
+  </a>
+ </li>
+ <li class="toctree-l1">
+  <a class="reference external" href="https://github.com/msu-cmse-courses/cmse201-F21-data/raw/main/Day-12/microprocessor-trend-data-master.zip">
+   microprocessor-trend-data-master.zip
+  </a>
+ </li>
+</ul>
+<p class="caption">
+ <span class="caption-text">
+  Day 13
+ </span>
+</p>
+<ul class="nav bd-sidenav">
+ <li class="toctree-l1">
+  <a class="reference internal" href="../../Day-13/Day-13_Pre-Class_CurveFitting-STUDENT.html">
+   Day 13 Pre-Class Assignment: Fitting functions to data (curve-fitting) and thinking more about models
+  </a>
+ </li>
+ <li class="toctree-l1">
+  <a class="reference internal" href="../../Day-13/Day-13_In-Class_FittingCurves-STUDENT.html">
+   Day 13 In-Class Assignment: (Thoughtfully) fitting models to data
+  </a>
+ </li>
+ <li class="toctree-l1">
+  <a class="reference external" href="https://raw.githubusercontent.com/msu-cmse-courses/cmse201-F21-data/main/Day-13/pop200.csv">
+   pop200.csv
+  </a>
+ </li>
+ <li class="toctree-l1">
+  <a class="reference external" href="https://raw.githubusercontent.com/msu-cmse-courses/cmse201-F21-data/main/Day-13/pop300.csv">
+   pop300.csv
+  </a>
+ </li>
+</ul>
+<p class="caption">
+ <span class="caption-text">
+  Day 14
+ </span>
+</p>
+<ul class="nav bd-sidenav">
+ <li class="toctree-l1">
+  <a class="reference internal" href="../../Day-14/Day-14_Pre-Class_ModelingWithODEs-STUDENT.html">
+   Day 14: Pre-class Assignment: Modeling with Ordinary Differential Equations
+  </a>
+ </li>
+ <li class="toctree-l1">
+  <a class="reference internal" href="../../Day-14/Day-14_In-Class_ModelingWithODEs-STUDENT.html">
+   Day 14: In-class Assignment: Modeling with ODEs
+  </a>
+ </li>
+ <li class="toctree-l1">
+  <a class="reference external" href="https://github.com/msu-cmse-courses/cmse201-F21-data/blob/main/Day-14/undamped_length.png">
+   undamped_length.png
+  </a>
+ </li>
+ <li class="toctree-l1">
+  <a class="reference external" href="https://github.com/msu-cmse-courses/cmse201-F21-data/blob/main/Day-14/undamped_vel.png">
+   undamped_vel.png
+  </a>
+ </li>
+</ul>
+<p class="caption">
+ <span class="caption-text">
+  Day 15
+ </span>
+</p>
+<ul class="nav bd-sidenav">
+ <li class="toctree-l1">
+  <a class="reference internal" href="../../Day-15/Day-15_Pre-Class_ViralKinetics-STUDENT.html">
+   Day 15 Pre-Class: Viral Kinetics
+  </a>
+ </li>
+ <li class="toctree-l1">
+  <a class="reference internal" href="../../Day-15/Day-15_In-Class_CompartmentalModeling-STUDENT.html">
+   Day 15 In-class: Building Compartmental Models
+  </a>
+ </li>
+</ul>
+<p class="caption">
+ <span class="caption-text">
+  Day 16
+ </span>
+</p>
+<ul class="nav bd-sidenav">
+ <li class="toctree-l1">
+  <a class="reference internal" href="../../Day-16/Day-16_Pre-Class_Zombies-STUDENT.html">
+   Day 16 Pre-class Assignment: ZOMBIES!!
+  </a>
+ </li>
+ <li class="toctree-l1">
+  <a class="reference internal" href="../../Day-16/Day-16_In-Class_CompartmentsWithSolveIVP-STUDENT.html">
+   Day 16 In-Class Assignment: Compartmental Modeling, moving from the model to the Code
+  </a>
+ </li>
+ <li class="toctree-l1">
+  <a class="reference external" href="https://github.com/msu-cmse-courses/cmse201-F21-data/blob/main/Day-16/latent.png">
+   latent.png
+  </a>
+ </li>
+</ul>
+<p class="caption">
+ <span class="caption-text">
+  Day 17
+ </span>
+</p>
+<ul class="nav bd-sidenav">
+ <li class="toctree-l1">
+  <a class="reference internal" href="../../Day-17/Day-17_Pre-Class_2DNumPyArrays-STUDENT.html">
+   Day 17 Pre-Class: 2D NumPy Arrays
+  </a>
+ </li>
+ <li class="toctree-l1">
+  <a class="reference external" href="https://raw.githubusercontent.com/msu-cmse-courses/cmse201-F21-data/main/Day-17/PCA_files/cars.csv">
+   cars.csv
+  </a>
+ </li>
+ <li class="toctree-l1">
+  <a class="reference external" href="https://github.com/msu-cmse-courses/cmse201-F21-data/raw/main/Day-17/PCA_files/example.jpeg">
+   example.jpeg
+  </a>
+ </li>
+ <li class="toctree-l1">
+  <a class="reference internal" href="../../Day-17/Day-17_In-Class_2DImageAnalysis-STUDENT.html">
+   Day 17 In-Class Assignment: Image Analysis
+  </a>
+ </li>
+ <li class="toctree-l1">
+  <a class="reference external" href="https://github.com/msu-cmse-courses/cmse201-F21-data/blob/main/Day-17/ICA_files/beach.jpeg">
+   beach.jpeg
+  </a>
+ </li>
+ <li class="toctree-l1">
+  <a class="reference external" href="https://github.com/msu-cmse-courses/cmse201-F21-data/blob/main/Day-17/ICA_files/landscape.jpeg">
+   landscape.jpeg
+  </a>
+ </li>
+ <li class="toctree-l1">
+  <a class="reference external" href="https://github.com/msu-cmse-courses/cmse201-F21-data/blob/main/Day-17/ICA_files/zebra.png">
+   zebra.png
+  </a>
+ </li>
+</ul>
+<p class="caption">
+ <span class="caption-text">
+  Day 18
+ </span>
+</p>
+<ul class="nav bd-sidenav">
+ <li class="toctree-l1">
+  <a class="reference internal" href="../../Day-18/Day-18_Pre-Class_ABMForestFire-STUDENT.html">
+   Day 18 Pre-class: Agent-based models and forest fires
+  </a>
+ </li>
+ <li class="toctree-l1">
+  <a class="reference internal" href="../../Day-18/Day-18_In-Class_ForestFiresPartI-STUDENT.html">
+   Day 18 Part 1 In-class Assignment: Modeling forest fires with an Agent-based Model
+  </a>
+ </li>
+</ul>
+<p class="caption">
+ <span class="caption-text">
+  Day 19
+ </span>
+</p>
+<ul class="nav bd-sidenav">
+ <li class="toctree-l1">
+  <a class="reference internal" href="../../Day-19/Day-19_Pre-Class_ABMForestFire_Part2-STUDENT.html">
+   Day 19 Pre-class: Agent-based models and forest fires, Part 2
+  </a>
+ </li>
+ <li class="toctree-l1">
+  <a class="reference internal" href="../../Day-19/Day-19_In-Class_ForestFiresPartII-STUDENT.html">
+   Day 19 In-class Assignment: Modeling forest fires with an Agent-based Model (Part II)
+  </a>
+ </li>
+</ul>
+<p class="caption">
+ <span class="caption-text">
+  Day 20
+ </span>
+</p>
+<ul class="nav bd-sidenav">
+ <li class="toctree-l1">
+  <a class="reference internal" href="../../Day-20/Day-20_Pre-Class_RandomNumbers-STUDENT.html">
+   Day 20 Pre-Class Assignment: Random Numbers
+  </a>
+ </li>
+ <li class="toctree-l1">
+  <a class="reference internal" href="../../Day-20/Day-20_In-Class_RandomWalks-STUDENT.html">
+   Day 20 In-class Assignment: Random Walks
+  </a>
+ </li>
+ <li class="toctree-l1">
+  <a class="reference external" href="https://github.com/msu-cmse-courses/cmse201-F21-data/blob/main/Day-20/distance_v_steps_randomwalk.png">
+   distance_v_steps_randomwalk.png
+  </a>
+ </li>
+</ul>
+<p class="caption">
+ <span class="caption-text">
+  Day 21
+ </span>
+</p>
+<ul class="nav bd-sidenav">
+ <li class="toctree-l1">
+  <a class="reference internal" href="../../Day-21/Day-21_Pre-Class_ProjectUpdates-STUDENT.html">
+   Day 21 Pre-class assignment: Making project progress!
+  </a>
+ </li>
+</ul>
+<p class="caption">
+ <span class="caption-text">
+  Day 22
+ </span>
+</p>
+<ul class="nav bd-sidenav">
+ <li class="toctree-l1">
+  <a class="reference internal" href="../../Day-22/Day-22_Pre-Class_Climate-STUDENT.html">
+   Day 22 Pre-class:  Global warming and climate modeling
+  </a>
+ </li>
+ <li class="toctree-l1">
+  <a class="reference internal" href="../../Day-22/Day-22_In-Class_Climate-STUDENT.html">
+   Day 22 In-class Assignment: Analyzing climate data
+  </a>
+ </li>
+ <li class="toctree-l1">
+  <a class="reference external" href="https://raw.githubusercontent.com/msu-cmse-courses/cmse201-F21-data/main/Day-22/GLB.Ts.csv">
+   GLB.Ts.csv
+  </a>
+ </li>
+ <li class="toctree-l1">
+  <a class="reference external" href="https://raw.githubusercontent.com/msu-cmse-courses/cmse201-F21-data/main/Day-22/bintanja2008.txt">
+   bintanja2008.txt
+  </a>
+ </li>
+ <li class="toctree-l1">
+  <a class="reference external" href="https://raw.githubusercontent.com/msu-cmse-courses/cmse201-F21-data/main/Day-22/ch4_annmean_gl.txt">
+   ch4_annmean_gl.txt
+  </a>
+ </li>
+ <li class="toctree-l1">
+  <a class="reference external" href="https://raw.githubusercontent.com/msu-cmse-courses/cmse201-F21-data/main/Day-22/co2_mm_mlo.txt">
+   co2_mm_mlo.txt
+  </a>
+ </li>
+ <li class="toctree-l1">
+  <a class="reference external" href="https://raw.githubusercontent.com/msu-cmse-courses/cmse201-F21-data/main/Day-22/vostok-ch4nat.txt">
+   vostok-ch4nat.txt
+  </a>
+ </li>
+ <li class="toctree-l1">
+  <a class="reference external" href="https://raw.githubusercontent.com/msu-cmse-courses/cmse201-F21-data/main/Day-22/vostok-co2nat.txt">
+   vostok-co2nat.txt
+  </a>
+ </li>
+ <li class="toctree-l1">
+  <a class="reference external" href="https://raw.githubusercontent.com/msu-cmse-courses/cmse201-F21-data/main/Day-22/vostok-deutnat.txt">
+   vostok-deutnat.txt
+  </a>
+ </li>
+</ul>
+<p class="caption">
+ <span class="caption-text">
+  Day 23
+ </span>
+</p>
+<ul class="nav bd-sidenav">
+ <li class="toctree-l1">
+  <a class="reference internal" href="../../Day-23/Day-23_Pre-Class_Climate-STUDENT.html">
+   Day 23 pre-class assignment: climate modeling
+  </a>
+ </li>
+ <li class="toctree-l1">
+  <a class="reference internal" href="../../Day-23/Day-23_In-Class_Climate-STUDENT.html">
+   Day 23 In-class Assignment: A simple model for global temperature
+  </a>
+ </li>
+ <li class="toctree-l1">
+  <a class="reference external" href="https://github.com/msu-cmse-courses/cmse201-F21-data/blob/main/Day-23/listentothee.png">
+   listentothee.png
+  </a>
+ </li>
+ <li class="toctree-l1">
+  <a class="reference external" href="https://github.com/msu-cmse-courses/cmse201-F21-data/blob/main/Day-23/simple_model.png">
+   simple_model.png
+  </a>
+ </li>
+</ul>
+<p class="caption">
+ <span class="caption-text">
+  Homework
+ </span>
+</p>
+<ul class="current nav bd-sidenav">
+ <li class="toctree-l1">
+  <a class="reference internal" href="../Homework-1/HW_01_F21_STUDENT.html">
+   Homework 1: Introduction to Loops, Lists, and Dictionaries
+  </a>
+ </li>
+ <li class="toctree-l1 current active">
+  <a class="current reference internal" href="#">
+   Homework 2: If Statements, Functions, and Modules
+  </a>
+ </li>
+ <li class="toctree-l1">
+  <a class="reference internal" href="../Homework-3/HOMEWORK_3_STUDENT.html">
+   Homework 3: Data Analysis with Pandas, Numpy, and Matplotlib
+  </a>
+ </li>
+ <li class="toctree-l1">
+  <a class="reference external" href="https://raw.githubusercontent.com/msu-cmse-courses/cmse201-F21-data/main/Homework/americas_gpin_2014_16.csv">
+   americas_gpin_2014_16.csv
+  </a>
+ </li>
+ <li class="toctree-l1">
+  <a class="reference internal" href="../Homework-4/HW-04-Fall2021_Final-STUDENT.html">
+   Homework 4: Fitting data using NumPy and SciPy
+  </a>
+ </li>
+ <li class="toctree-l1">
+  <a class="reference external" href="https://github.com/msu-cmse-courses/cmse201-F21-data/raw/main/Homework/Wage.csv">
+   Wage.csv
+  </a>
+ </li>
+ <li class="toctree-l1">
+  <a class="reference internal" href="../Homework-5/HW_05_F21-STUDENT.html">
+   Homework 5: Modeling Physical Systems and Heating Up the House with ODEs
+  </a>
+ </li>
+ <li class="toctree-l1">
+  <a class="reference internal" href="../Homework-6/HW-06_F21-STUDENT.html">
+   Homework 6: Agent Based Modeling
+  </a>
+ </li>
+</ul>
+<p class="caption">
+ <span class="caption-text">
+  Midterm Bootcamps
+ </span>
+</p>
+<ul class="nav bd-sidenav">
+ <li class="toctree-l1">
+  <a class="reference internal" href="../../Bootcamp_Notebooks/Bootcamp1-Python_Fundamentals_STUDENT.html">
+   Bootcamp 1: Python Fundamentals
+  </a>
+ </li>
+ <li class="toctree-l1">
+  <a class="reference internal" href="../../Bootcamp_Notebooks/Bootcamp2-InitialConceptsReview.html">
+   Bootcamp 2: Initial Concepts Review Cheatsheet
+  </a>
+ </li>
+ <li class="toctree-l1">
+  <a class="reference internal" href="../../Bootcamp_Notebooks/Bootcamp3-Debugging_STUDENT.html">
+   Bootcamp 3: Debugging
+  </a>
+ </li>
+ <li class="toctree-l1">
+  <a class="reference internal" href="../../Bootcamp_Notebooks/Bootcamp4-IfStatements_STUDENT.html">
+   Bootcamp 4: If Statements
+  </a>
+ </li>
+ <li class="toctree-l1">
+  <a class="reference internal" href="../../Bootcamp_Notebooks/Bootcamp5-Functions_STUDENT.html">
+   Bootcamp 5: Functions
+  </a>
+ </li>
+ <li class="toctree-l1">
+  <a class="reference internal" href="../../Bootcamp_Notebooks/Bootcamp6-Matplotlib_STUDENT.html">
+   Bootcamp 6: Matplotlib
+  </a>
+ </li>
+</ul>
+<p class="caption">
+ <span class="caption-text">
+  Semester Projects
+ </span>
+</p>
+<ul class="nav bd-sidenav">
+ <li class="toctree-l1">
+  <a class="reference internal" href="../../Project_Materials/CMSE201_SemesterProjectDetails.html">
+   Semester Project Details
+  </a>
+ </li>
+ <li class="toctree-l1">
+  <a class="reference internal" href="../../Project_Materials/CMSE201_FinalProject_ExampleA.html">
+   CMSE 201 Final Project Example A
+  </a>
+ </li>
+ <li class="toctree-l1">
+  <a class="reference internal" href="../../Project_Materials/CMSE201_FinalProject_ExampleB.html">
+   CMSE 201 Final Project Example B
+  </a>
+ </li>
+ <li class="toctree-l1">
+  <a class="reference external" href="https://github.com/msu-cmse-courses/cmse201-F21-data/raw/main/Projects/CMSE201_Example_Projects.zip">
+   CMSE201_Example_Projects.zip
+  </a>
+ </li>
+ <li class="toctree-l1">
+  <a class="reference internal" href="../../Project_Materials/First_Project_Checkpoint.html">
+   First Project Checkpoint
+  </a>
+ </li>
+ <li class="toctree-l1">
+  <a class="reference internal" href="../../Project_Materials/CMSE201FinalProject_RequirementsAndGradingRubric.html">
+   Requirements and Grading Rubric
+  </a>
+ </li>
+ <li class="toctree-l1">
+  <a class="reference internal" href="../../Project_Materials/CMSE201_FinalProjectTemplate.html">
+   CMSE 201 Final Project Template
+  </a>
+ </li>
+</ul>
+
+    </div>
+</nav> <!-- To handle the deprecated key -->
+
+<div class="navbar_extra_footer">
+  Powered by <a href="https://jupyterbook.org">Jupyter Book</a>
+</div>
+
+</div>
+
+
+          
+
+
+          
+<main class="col py-md-3 pl-md-4 bd-content overflow-auto" role="main">
+    
+    <div class="topbar container-xl fixed-top">
+    <div class="topbar-contents row">
+        <div class="col-12 col-md-3 bd-topbar-whitespace site-navigation show"></div>
+        <div class="col pl-md-4 topbar-main">
+            
+            <button id="navbar-toggler" class="navbar-toggler ml-0" type="button" data-toggle="collapse"
+                data-toggle="tooltip" data-placement="bottom" data-target=".site-navigation" aria-controls="navbar-menu"
+                aria-expanded="true" aria-label="Toggle navigation" aria-controls="site-navigation"
+                title="Toggle navigation" data-toggle="tooltip" data-placement="left">
+                <i class="fas fa-bars"></i>
+                <i class="fas fa-arrow-left"></i>
+                <i class="fas fa-arrow-up"></i>
+            </button>
+            
+            
+<div class="dropdown-buttons-trigger">
+    <button id="dropdown-buttons-trigger" class="btn btn-secondary topbarbtn" aria-label="Download this page"><i
+            class="fas fa-download"></i></button>
+
+    <div class="dropdown-buttons">
+        <!-- ipynb file if we had a myst markdown file -->
+        
+        <!-- Download raw file -->
+        <a class="dropdown-buttons" href="../../_sources/Homework/Homework-2/HW_02_F21-STUDENT.ipynb"><button type="button"
+                class="btn btn-secondary topbarbtn" title="Download source file" data-toggle="tooltip"
+                data-placement="left">.ipynb</button></a>
+        <!-- Download PDF via print -->
+        <button type="button" id="download-print" class="btn btn-secondary topbarbtn" title="Print to PDF"
+            onClick="window.print()" data-toggle="tooltip" data-placement="left">.pdf</button>
+    </div>
+</div>
+
+            <!-- Source interaction buttons -->
+
+<div class="dropdown-buttons-trigger">
+    <button id="dropdown-buttons-trigger" class="btn btn-secondary topbarbtn"
+        aria-label="Connect with source repository"><i class="fab fa-github"></i></button>
+    <div class="dropdown-buttons sourcebuttons">
+        <a class="repository-button"
+            href="https://github.com/msu-cmse-courses/cmse201-F21-jb"><button type="button" class="btn btn-secondary topbarbtn"
+                data-toggle="tooltip" data-placement="left" title="Source repository"><i
+                    class="fab fa-github"></i>repository</button></a>
+        <a class="issues-button"
+            href="https://github.com/msu-cmse-courses/cmse201-F21-jb/issues/new?title=Issue%20on%20page%20%2FHomework/Homework-2/HW_02_F21-STUDENT.html&body=Your%20issue%20content%20here."><button
+                type="button" class="btn btn-secondary topbarbtn" data-toggle="tooltip" data-placement="left"
+                title="Open an issue"><i class="fas fa-lightbulb"></i>open issue</button></a>
+        
+    </div>
+</div>
+
+            <!-- Full screen (wrap in <a> to have style consistency -->
+
+<a class="full-screen-button"><button type="button" class="btn btn-secondary topbarbtn" data-toggle="tooltip"
+        data-placement="bottom" onclick="toggleFullScreen()" aria-label="Fullscreen mode"
+        title="Fullscreen mode"><i
+            class="fas fa-expand"></i></button></a>
+
+            <!-- Launch buttons -->
+
+<div class="dropdown-buttons-trigger">
+    <button id="dropdown-buttons-trigger" class="btn btn-secondary topbarbtn"
+        aria-label="Launch interactive content"><i class="fas fa-rocket"></i></button>
+    <div class="dropdown-buttons">
+        
+        <a class="binder-button" href="https://mybinder.org/v2/gh/msu-cmse-courses/cmse201-F21-jb/main?urlpath=tree/Homework/Homework-2/HW_02_F21-STUDENT.ipynb"><button type="button"
+                class="btn btn-secondary topbarbtn" title="Launch Binder" data-toggle="tooltip"
+                data-placement="left"><img class="binder-button-logo"
+                    src="../../_static/images/logo_binder.svg"
+                    alt="Interact on binder">Binder</button></a>
+        
+        
+        
+        
+    </div>
+</div>
+
+        </div>
+
+        <!-- Table of contents -->
+        <div class="d-none d-md-block col-md-2 bd-toc show">
+            
+            <div class="tocsection onthispage pt-5 pb-3">
+                <i class="fas fa-list"></i> Contents
+            </div>
+            <nav id="bd-toc-nav" aria-label="Page">
+                <ul class="visible nav section-nav flex-column">
+ <li class="toc-h1 nav-item toc-entry">
+  <a class="reference internal nav-link" href="#">
+   Homework 2: If Statements, Functions, and Modules
+  </a>
+  <ul class="visible nav section-nav flex-column">
+   <li class="toc-h2 nav-item toc-entry">
+    <a class="reference internal nav-link" href="#p-style-text-align-right-put-your-name-here-p">
+     <p style="text-align: right;">
+      ✅
+      <strong>
+       Put your name here
+      </strong>
+     </p>
+    </a>
+   </li>
+  </ul>
+ </li>
+ <li class="toc-h1 nav-item toc-entry">
+  <a class="reference internal nav-link" href="#cmse-201-fall-2021">
+   <strong>
+    CMSE  201 – Fall 2021
+   </strong>
+  </a>
+  <ul class="visible nav section-nav flex-column">
+   <li class="toc-h2 nav-item toc-entry">
+    <a class="reference internal nav-link" href="#learning-goals">
+     Learning Goals
+    </a>
+    <ul class="nav section-nav flex-column">
+     <li class="toc-h3 nav-item toc-entry">
+      <a class="reference internal nav-link" href="#content-goals">
+       Content Goals
+      </a>
+     </li>
+     <li class="toc-h3 nav-item toc-entry">
+      <a class="reference internal nav-link" href="#practice-goals">
+       Practice Goals
+      </a>
+     </li>
+    </ul>
+   </li>
+   <li class="toc-h2 nav-item toc-entry">
+    <a class="reference internal nav-link" href="#assignment-instructions">
+     Assignment instructions
+    </a>
+   </li>
+   <li class="toc-h2 nav-item toc-entry">
+    <a class="reference internal nav-link" href="#grading">
+     Grading
+    </a>
+   </li>
+  </ul>
+ </li>
+ <li class="toc-h1 nav-item toc-entry">
+  <a class="reference internal nav-link" href="#id1">
+   —
+  </a>
+ </li>
+ <li class="toc-h1 nav-item toc-entry">
+  <a class="reference internal nav-link" href="#academic-integrity-statement-1-point">
+   Academic integrity statement (1 point)
+  </a>
+  <ul class="visible nav section-nav flex-column">
+   <li class="toc-h2 nav-item toc-entry">
+    <a class="reference internal nav-link" href="#part-1-designing-a-zoo-layout">
+     Part 1: Designing a Zoo Layout
+    </a>
+    <ul class="nav section-nav flex-column">
+     <li class="toc-h3 nav-item toc-entry">
+      <a class="reference internal nav-link" href="#making-lists-2-points">
+       1.1 Making Lists (2 points)
+      </a>
+     </li>
+     <li class="toc-h3 nav-item toc-entry">
+      <a class="reference internal nav-link" href="#categorizing-animals">
+       1.2 Categorizing Animals
+      </a>
+     </li>
+     <li class="toc-h3 nav-item toc-entry">
+      <a class="reference internal nav-link" href="#pseudocoding-2-points">
+       1.2.1 Pseudocoding (2 points)
+      </a>
+     </li>
+     <li class="toc-h3 nav-item toc-entry">
+      <a class="reference internal nav-link" href="#now-turn-your-pseudocode-in-to-code-3-points">
+       1.2.2 Now turn your pseudocode in to code! (3 points)
+      </a>
+     </li>
+    </ul>
+   </li>
+   <li class="toc-h2 nav-item toc-entry">
+    <a class="reference internal nav-link" href="#part-2-functions">
+     Part 2: Functions
+    </a>
+   </li>
+   <li class="toc-h2 nav-item toc-entry">
+    <a class="reference internal nav-link" href="#backpacking-in-europe">
+     2.1 Backpacking in Europe
+    </a>
+    <ul class="nav section-nav flex-column">
+     <li class="toc-h3 nav-item toc-entry">
+      <a class="reference internal nav-link" href="#points">
+       2.1.1 (2 points)
+      </a>
+     </li>
+     <li class="toc-h3 nav-item toc-entry">
+      <a class="reference internal nav-link" href="#id2">
+       2.1.2 (2 points)
+      </a>
+     </li>
+     <li class="toc-h3 nav-item toc-entry">
+      <a class="reference internal nav-link" href="#id3">
+       2.1.3 (5 points)
+      </a>
+     </li>
+     <li class="toc-h3 nav-item toc-entry">
+      <a class="reference internal nav-link" href="#checking-your-work-1-point">
+       2.1.4 Checking your work (1 point)
+      </a>
+     </li>
+    </ul>
+   </li>
+   <li class="toc-h2 nav-item toc-entry">
+    <a class="reference internal nav-link" href="#tracking-stock-prices">
+     2.2 Tracking Stock Prices
+    </a>
+    <ul class="nav section-nav flex-column">
+     <li class="toc-h3 nav-item toc-entry">
+      <a class="reference internal nav-link" href="#understanding-percent-difference-1-point">
+       2.2.1 Understanding Percent Difference (1 point)
+      </a>
+     </li>
+     <li class="toc-h3 nav-item toc-entry">
+      <a class="reference internal nav-link" href="#planning-1-point">
+       2.2.2 Planning (1 point)
+      </a>
+     </li>
+     <li class="toc-h3 nav-item toc-entry">
+      <a class="reference internal nav-link" href="#developing-your-function-5-points">
+       2.2.3 Developing your function (5 points)
+      </a>
+     </li>
+     <li class="toc-h3 nav-item toc-entry">
+      <a class="reference internal nav-link" href="#id4">
+       2.2.4 Checking your work (1 point)
+      </a>
+     </li>
+     <li class="toc-h3 nav-item toc-entry">
+      <a class="reference internal nav-link" href="#plotting-data-2-points">
+       2.2.5 Plotting Data (2 points)
+      </a>
+     </li>
+     <li class="toc-h3 nav-item toc-entry">
+      <a class="reference internal nav-link" href="#making-observations-1-point">
+       2.2.6 Making Observations (1 point)
+      </a>
+     </li>
+    </ul>
+   </li>
+   <li class="toc-h2 nav-item toc-entry">
+    <a class="reference internal nav-link" href="#part-3-modules-and-plotting">
+     Part 3: Modules and Plotting
+    </a>
+    <ul class="nav section-nav flex-column">
+     <li class="toc-h3 nav-item toc-entry">
+      <a class="reference internal nav-link" href="#modules-2-points">
+       3.1 Modules (2 points)
+      </a>
+     </li>
+     <li class="toc-h3 nav-item toc-entry">
+      <a class="reference internal nav-link" href="#plotting-2-points">
+       3.2 Plotting (2 points)
+      </a>
+     </li>
+     <li class="toc-h3 nav-item toc-entry">
+      <a class="reference internal nav-link" href="#streamlining-plots">
+       3.3 Streamlining plots
+      </a>
+     </li>
+     <li class="toc-h3 nav-item toc-entry">
+      <a class="reference internal nav-link" href="#id5">
+       3.3.1 (6 points)
+      </a>
+     </li>
+     <li class="toc-h3 nav-item toc-entry">
+      <a class="reference internal nav-link" href="#making-your-plotting-function-more-flexible-2-points">
+       3.4 Making your plotting function more flexible (2 points)
+      </a>
+     </li>
+    </ul>
+   </li>
+   <li class="toc-h2 nav-item toc-entry">
+    <a class="reference internal nav-link" href="#assignment-wrap-up">
+     Assignment Wrap-up
+    </a>
+    <ul class="nav section-nav flex-column">
+     <li class="toc-h3 nav-item toc-entry">
+      <a class="reference internal nav-link" href="#congratulations-you-re-done">
+       Congratulations, you’re done!
+      </a>
+     </li>
+    </ul>
+   </li>
+  </ul>
+ </li>
+</ul>
+
+            </nav>
+        </div>
+    </div>
+</div>
+    <div id="main-content" class="row">
+        <div class="col-12 col-md-9 pl-md-3 pr-md-0">
+        
+              <div>
+                
+  <div class="section" id="homework-2-if-statements-functions-and-modules">
+<h1>Homework 2: If Statements, Functions, and Modules<a class="headerlink" href="#homework-2-if-statements-functions-and-modules" title="Permalink to this headline">¶</a></h1>
+<div class="section" id="p-style-text-align-right-put-your-name-here-p">
+<h2><p style="text-align: right;"> ✅ <strong>Put your name here</strong> </p><a class="headerlink" href="#p-style-text-align-right-put-your-name-here-p" title="Permalink to this headline">¶</a></h2>
+</div>
+</div>
+<div class="section" id="cmse-201-fall-2021">
+<h1><strong>CMSE  201 – Fall 2021</strong><a class="headerlink" href="#cmse-201-fall-2021" title="Permalink to this headline">¶</a></h1>
+<p><img src="https://cmse.msu.edu/sites/_cmse/assets/Image/image002.jpg"
+     alt="CMSE Logo"
+     align="right" 
+     height="100" 
+     width="100" /></p>
+<div class="section" id="learning-goals">
+<h2>Learning Goals<a class="headerlink" href="#learning-goals" title="Permalink to this headline">¶</a></h2>
+<div class="section" id="content-goals">
+<h3>Content Goals<a class="headerlink" href="#content-goals" title="Permalink to this headline">¶</a></h3>
+<ul class="simple">
+<li><p><strong>Use if/elif/else statements to implement a logical flow</strong></p></li>
+<li><p><strong>Write and execute functions</strong></p></li>
+<li><p><strong>Use the python math module</strong></p></li>
+<li><p><strong>Display data on plots using matplotlib</strong></p></li>
+</ul>
+</div>
+<div class="section" id="practice-goals">
+<h3>Practice Goals<a class="headerlink" href="#practice-goals" title="Permalink to this headline">¶</a></h3>
+<ul class="simple">
+<li><p><strong>Commenting code</strong></p></li>
+<li><p><strong>Using functions to build reusable/transferable code</strong></p></li>
+<li><p><strong>Use visualization best practices to make informative plots</strong></p></li>
+</ul>
+</div>
+</div>
+<hr class="docutils" />
+<div class="section" id="assignment-instructions">
+<h2>Assignment instructions<a class="headerlink" href="#assignment-instructions" title="Permalink to this headline">¶</a></h2>
+<p>Work through the following assignment, making sure to follow all the directions and answer all the questions.</p>
+<p><strong>This assignment is due at 11:59 pm on Friday, October 1st.</strong> It should be uploaded into the “Homework Assignments” submission folder for Homework #2.  Submission instructions can be found at the end of the notebook.</p>
+</div>
+<hr class="docutils" />
+<div class="section" id="grading">
+<h2>Grading<a class="headerlink" href="#grading" title="Permalink to this headline">¶</a></h2>
+<ul class="simple">
+<li><p>Part 1: Designing a Zoo Layout (7 points)</p>
+<ul>
+<li><p>1.1: (2 points)</p></li>
+<li><p>1.2: (5 points)</p></li>
+</ul>
+</li>
+<li><p>Part 2: Functions (20 points)</p>
+<ul>
+<li><p>2.1: Backpacking in Europe (10 points)</p></li>
+<li><p>2.2: Stock Prices (10 points)</p></li>
+</ul>
+</li>
+<li><p>Part 3: Modules and matplotlib (12 points)</p></li>
+</ul>
+<p>Total points possible: <strong>40</strong></p>
+</div>
+</div>
+<hr class="docutils" />
+<div class="section" id="id1">
+<h1>—<a class="headerlink" href="#id1" title="Permalink to this headline">¶</a></h1>
+</div>
+<div class="section" id="academic-integrity-statement-1-point">
+<h1>Academic integrity statement (1 point)<a class="headerlink" href="#academic-integrity-statement-1-point" title="Permalink to this headline">¶</a></h1>
+<p>In the markdown cell below, put your personal academic integrity statement (composed during the Day04 In-Class Assignment). By including this statement, you are confirming that the work you submit in the assignment is wholly your own.</p>
+<p><font size=6 color="#009600">✎</font> <em>Put your personal academic integrity statement here.</em></p>
+<p><img src="https://www.jbzoo.org/uploads/images/JBZ_Summer2021_MapWebFINAL.jpg"
+     alt="John Ball Zoo, Grand Rapids, MI"
+     align="center" 
+     height="800" 
+     width="800" /></p>
+<div class="section" id="part-1-designing-a-zoo-layout">
+<h2>Part 1: Designing a Zoo Layout<a class="headerlink" href="#part-1-designing-a-zoo-layout" title="Permalink to this headline">¶</a></h2>
+<p>You are working with a team to redesign a zoo layout. The designers have decided that the zoo will be divided into sections based on the continent the animals are found on and their habitats. You have the data table below containing the species name, continent, and if their habitat requirements are primarily water, primarily flying, or primarily land.</p>
+<table class="colwidths-auto table">
+<thead>
+<tr class="row-odd"><th class="text-align:left head"><p>Species</p></th>
+<th class="text-align:left head"><p>Continent</p></th>
+<th class="text-align:left head"><p>Water Habitat</p></th>
+<th class="text-align:left head"><p>Flying Habitat</p></th>
+<th class="text-align:left head"><p>Land Habitat</p></th>
+</tr>
+</thead>
+<tbody>
+<tr class="row-even"><td class="text-align:left"><p>River Otter</p></td>
+<td class="text-align:left"><p>North America</p></td>
+<td class="text-align:left"><p>Yes</p></td>
+<td class="text-align:left"><p>No</p></td>
+<td class="text-align:left"><p>No</p></td>
+</tr>
+<tr class="row-odd"><td class="text-align:left"><p>Viscacha</p></td>
+<td class="text-align:left"><p>South America</p></td>
+<td class="text-align:left"><p>No</p></td>
+<td class="text-align:left"><p>No</p></td>
+<td class="text-align:left"><p>Yes</p></td>
+</tr>
+<tr class="row-even"><td class="text-align:left"><p>Emperor Penguin</p></td>
+<td class="text-align:left"><p>Antarctica</p></td>
+<td class="text-align:left"><p>Yes</p></td>
+<td class="text-align:left"><p>No</p></td>
+<td class="text-align:left"><p>No</p></td>
+</tr>
+<tr class="row-odd"><td class="text-align:left"><p>Toco Toucan</p></td>
+<td class="text-align:left"><p>South America</p></td>
+<td class="text-align:left"><p>No</p></td>
+<td class="text-align:left"><p>Yes</p></td>
+<td class="text-align:left"><p>No</p></td>
+</tr>
+<tr class="row-even"><td class="text-align:left"><p>Lion</p></td>
+<td class="text-align:left"><p>Africa</p></td>
+<td class="text-align:left"><p>No</p></td>
+<td class="text-align:left"><p>No</p></td>
+<td class="text-align:left"><p>Yes</p></td>
+</tr>
+<tr class="row-odd"><td class="text-align:left"><p>Platypus</p></td>
+<td class="text-align:left"><p>Australia</p></td>
+<td class="text-align:left"><p>Yes</p></td>
+<td class="text-align:left"><p>No</p></td>
+<td class="text-align:left"><p>No</p></td>
+</tr>
+<tr class="row-even"><td class="text-align:left"><p>Pink Flamingo</p></td>
+<td class="text-align:left"><p>Europe</p></td>
+<td class="text-align:left"><p>No</p></td>
+<td class="text-align:left"><p>Yes</p></td>
+<td class="text-align:left"><p>No</p></td>
+</tr>
+<tr class="row-odd"><td class="text-align:left"><p>Binturong</p></td>
+<td class="text-align:left"><p>Asia</p></td>
+<td class="text-align:left"><p>No</p></td>
+<td class="text-align:left"><p>No</p></td>
+<td class="text-align:left"><p>Yes</p></td>
+</tr>
+<tr class="row-even"><td class="text-align:left"><p>Grizzly Bear</p></td>
+<td class="text-align:left"><p>North America</p></td>
+<td class="text-align:left"><p>No</p></td>
+<td class="text-align:left"><p>No</p></td>
+<td class="text-align:left"><p>Yes</p></td>
+</tr>
+</tbody>
+</table>
+<div class="section" id="making-lists-2-points">
+<h3>1.1 Making Lists (2 points)<a class="headerlink" href="#making-lists-2-points" title="Permalink to this headline">¶</a></h3>
+<p>✅  In the cell below, create a list of lists that contains all of the data in the table above. The structure of the list should be <code class="docutils literal notranslate"><span class="pre">animal_data</span> <span class="pre">=</span> <span class="pre">[list0,</span> <span class="pre">list1,</span> <span class="pre">list2,...]</span></code> with as many entries as rows. Each list in <code class="docutils literal notranslate"><span class="pre">animal_data</span></code> is the information for one animal. For example, <code class="docutils literal notranslate"><span class="pre">list0</span></code> would contain all of the information about the river otter (<code class="docutils literal notranslate"><span class="pre">list0</span> <span class="pre">=</span> <span class="pre">['River</span> <span class="pre">Otter',</span> <span class="pre">'North</span> <span class="pre">America','Yes','No','No']</span></code>).</p>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="c1"># put your code here</span>
+</pre></div>
+</div>
+</div>
+</div>
+</div>
+<div class="section" id="categorizing-animals">
+<h3>1.2 Categorizing Animals<a class="headerlink" href="#categorizing-animals" title="Permalink to this headline">¶</a></h3>
+<p>✅  Loop through your list from part 1.1 with a <code class="docutils literal notranslate"><span class="pre">for</span></code> or <code class="docutils literal notranslate"><span class="pre">while</span></code> loop, and using appropriate <code class="docutils literal notranslate"><span class="pre">if/elif/else</span></code> statements, determine the region and habitat for each animal in the zoo and print them out as a string.</p>
+<p>For example, for <em>River Otter</em> your loop should print <code class="docutils literal notranslate"><span class="pre">River</span> <span class="pre">Otter</span> <span class="pre">is</span> <span class="pre">in</span> <span class="pre">the</span> <span class="pre">North</span> <span class="pre">America</span> <span class="pre">Region</span> <span class="pre">in</span> <span class="pre">a</span> <span class="pre">primarily</span> <span class="pre">Water</span> <span class="pre">Habitat</span></code>.</p>
+<p><strong>Note:</strong> Your solution should use the information in the Contintent/Water Habitat/Flying Habitat/Land Habitat along with appropriate <code class="docutils literal notranslate"><span class="pre">if/elif/else</span></code> statements.</p>
+</div>
+<div class="section" id="pseudocoding-2-points">
+<h3>1.2.1 Pseudocoding (2 points)<a class="headerlink" href="#pseudocoding-2-points" title="Permalink to this headline">¶</a></h3>
+<p>✅  Write out your plan for how you will write your code to solve the problem in the cell below.</p>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="c1"># put your pseudocode here</span>
+</pre></div>
+</div>
+</div>
+</div>
+</div>
+<div class="section" id="now-turn-your-pseudocode-in-to-code-3-points">
+<h3>1.2.2 Now turn your pseudocode in to code! (3 points)<a class="headerlink" href="#now-turn-your-pseudocode-in-to-code-3-points" title="Permalink to this headline">¶</a></h3>
+<p>✅  In the cell(s) below, write out your solution. Don’t forget to use code comments where appropriate!</p>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="c1"># put your code here</span>
+</pre></div>
+</div>
+</div>
+</div>
+</div>
+</div>
+<div class="section" id="part-2-functions">
+<h2>Part 2: Functions<a class="headerlink" href="#part-2-functions" title="Permalink to this headline">¶</a></h2>
+</div>
+<div class="section" id="backpacking-in-europe">
+<h2>2.1 Backpacking in Europe<a class="headerlink" href="#backpacking-in-europe" title="Permalink to this headline">¶</a></h2>
+<p>You and your friends are trying to plan a backpacking trip to Europe, but all of the information you can find is in metric units (meters, liters, kilograms) and your friends are only familiar with imperial units (feet, gallons, pounds). However, you remember that you know python and can write yourself a tool to convert units as necessary!</p>
+<div class="section" id="points">
+<h3>2.1.1 (2 points)<a class="headerlink" href="#points" title="Permalink to this headline">¶</a></h3>
+<p>✅  In the cell below, write a separate calculation for converting liters to gallons, meters to feet, and kilograms to pounds. You should use the internet to determine the values for conversion. <strong>Test your conversions by converting 2 liters to gallons, 5000 meters to feet, and 150 kilograms to pounds.</strong></p>
+<p>For example, there are 3600 seconds in one hour, so to convert from hours to seconds, you need to multiply the number of hours by 3600.</p>
+<p><code class="docutils literal notranslate"><span class="pre">hours</span> <span class="pre">=</span> <span class="pre">4</span> <span class="pre">seconds_in_an_hour</span> <span class="pre">=</span> <span class="pre">3600</span> <span class="pre">time_in_seconds</span> <span class="pre">=</span> <span class="pre">hours*seconds_in_an_hour</span> <span class="pre">print(time_in_seconds)</span></code></p>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="c1"># put your code here</span>
+</pre></div>
+</div>
+</div>
+</div>
+</div>
+<div class="section" id="id2">
+<h3>2.1.2 (2 points)<a class="headerlink" href="#id2" title="Permalink to this headline">¶</a></h3>
+<p>While it’s pretty easy to do multiplication in python, it’s rather slow to have to type a new equation every time, so to make things faster for you and your friends, you will write a function that takes in the metric value and returns the imperial value.</p>
+<p>✅  In the cell below, write a function to calculate the conversion of liters to gallons.</p>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="c1"># put your code here</span>
+</pre></div>
+</div>
+</div>
+</div>
+</div>
+<div class="section" id="id3">
+<h3>2.1.3 (5 points)<a class="headerlink" href="#id3" title="Permalink to this headline">¶</a></h3>
+<p>To make your conversion tool the most useful by all of your friends, you need to expand your function to calculate the conversions for meters and kilograms as well. Your function should be able to take a value and its metric units and return the imperial units.</p>
+<p>✅  In the cell below, plan out your function using pseudocode.</p>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="c1"># put your pseudocode here</span>
+</pre></div>
+</div>
+</div>
+</div>
+<p>✅  In the cell below, write your function. Feel free to add additional cells if necessary.</p>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="c1"># put your code here</span>
+</pre></div>
+</div>
+</div>
+</div>
+</div>
+<div class="section" id="checking-your-work-1-point">
+<h3>2.1.4 Checking your work (1 point)<a class="headerlink" href="#checking-your-work-1-point" title="Permalink to this headline">¶</a></h3>
+<p>✅  In the cell below, demonstrate that your code works as you intend with words and code examples.</p>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="c1"># put your explanation here</span>
+</pre></div>
+</div>
+</div>
+</div>
+</div>
+</div>
+<div class="section" id="tracking-stock-prices">
+<h2>2.2 Tracking Stock Prices<a class="headerlink" href="#tracking-stock-prices" title="Permalink to this headline">¶</a></h2>
+<p>You are investing in the stock market, and you want to keep an eye on the stocks that are <strong>increasing or decreasing</strong> the most over time. To do this, you will <strong>write a function</strong> to calculate the percent difference between open and close each day and plot it.</p>
+<p>Percent difference can be calculated by <span class="math notranslate nohighlight">\(\% \ difference = \frac{(close-open)}{open}\)</span></p>
+<div class="section" id="understanding-percent-difference-1-point">
+<h3>2.2.1 Understanding Percent Difference (1 point)<a class="headerlink" href="#understanding-percent-difference-1-point" title="Permalink to this headline">¶</a></h3>
+<p>In your own words, describe what the percent difference tells you about data. <strong>Hint:</strong> What does it mean if the percent difference is large? What about if it is small?</p>
+<p><font size="+3">✎</font> <em>Put your answer here</em></p>
+</div>
+<div class="section" id="planning-1-point">
+<h3>2.2.2 Planning (1 point)<a class="headerlink" href="#planning-1-point" title="Permalink to this headline">¶</a></h3>
+<p>✅  In the cell below write out your plan for your percent difference function.</p>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span> <span class="c1"># put your pseudocode here</span>
+</pre></div>
+</div>
+</div>
+</div>
+</div>
+<div class="section" id="developing-your-function-5-points">
+<h3>2.2.3 Developing your function (5 points)<a class="headerlink" href="#developing-your-function-5-points" title="Permalink to this headline">¶</a></h3>
+<p>✅  In the cell below, write your percent difference function and test it using the test data. Feel free to add additional cells as needed.</p>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="c1"># test data</span>
+<span class="n">test_open</span> <span class="o">=</span> <span class="p">[</span><span class="mi">40</span><span class="p">,</span><span class="mi">42</span><span class="p">,</span><span class="mi">48</span><span class="p">,</span><span class="mi">36</span><span class="p">,</span><span class="mi">40</span><span class="p">,</span><span class="mi">45</span><span class="p">]</span>
+<span class="n">test_close</span> <span class="o">=</span> <span class="p">[</span><span class="mi">41</span><span class="p">,</span><span class="mi">46</span><span class="p">,</span><span class="mi">37</span><span class="p">,</span><span class="mi">38</span><span class="p">,</span><span class="mi">44</span><span class="p">,</span><span class="mi">45</span><span class="p">,</span><span class="mi">42</span><span class="p">]</span>
+<span class="n">test_days</span> <span class="o">=</span> <span class="nb">list</span><span class="p">(</span><span class="nb">range</span><span class="p">(</span><span class="nb">len</span><span class="p">(</span><span class="n">test_open</span><span class="p">)))</span>
+</pre></div>
+</div>
+</div>
+</div>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="c1">#put your code here</span>
+</pre></div>
+</div>
+</div>
+</div>
+</div>
+<div class="section" id="id4">
+<h3>2.2.4 Checking your work (1 point)<a class="headerlink" href="#id4" title="Permalink to this headline">¶</a></h3>
+<p>✅  In the cell below, demonstrate that your function works with code and exmaples.</p>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="c1"># put your explanation here</span>
+</pre></div>
+</div>
+</div>
+</div>
+</div>
+<div class="section" id="plotting-data-2-points">
+<h3>2.2.5 Plotting Data (2 points)<a class="headerlink" href="#plotting-data-2-points" title="Permalink to this headline">¶</a></h3>
+<p>✅  Using your function, calculate the daily percent difference for the stock data below and plot your results.</p>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="c1"># Stock data source: https://eoddata.com/stockquote/NYSE/GME.htm?e=NYSE&amp;s=GME</span>
+<span class="n">daily_open</span> <span class="o">=</span> <span class="p">[</span><span class="mf">19.0</span><span class="p">,</span> <span class="mf">17.35</span><span class="p">,</span> <span class="mf">17.34</span><span class="p">,</span> <span class="mf">18.47</span><span class="p">,</span> <span class="mf">18.18</span><span class="p">,</span> <span class="mf">19.41</span><span class="p">,</span> <span class="mf">19.96</span><span class="p">,</span> <span class="mf">20.42</span><span class="p">,</span> <span class="mf">38.09</span><span class="p">,</span> <span class="mf">38.49</span><span class="p">,</span> <span class="mf">35.5</span><span class="p">,</span> <span class="mf">41.55</span><span class="p">,</span> <span class="mf">37.37</span><span class="p">,</span> <span class="mf">39.23</span><span class="p">,</span> <span class="mf">42.59</span><span class="p">,</span> <span class="mf">96.73</span><span class="p">,</span> <span class="mf">88.56</span><span class="p">,</span> <span class="mf">354.83</span><span class="p">,</span> <span class="mf">265.0</span><span class="p">,</span> <span class="mf">383.17</span><span class="p">,</span> <span class="mf">316.56</span><span class="p">,</span> <span class="mf">140.76</span><span class="p">,</span> <span class="mf">112.01</span><span class="p">,</span> <span class="mf">91.19</span><span class="p">,</span> <span class="mf">54.04</span><span class="p">,</span> <span class="mf">72.41</span><span class="p">,</span> <span class="mf">56.61</span><span class="p">,</span> <span class="mf">50.77</span><span class="p">,</span> <span class="mf">50.01</span><span class="p">,</span> <span class="mf">50.75</span><span class="p">,</span> <span class="mf">52.4</span><span class="p">,</span> <span class="mf">52.99</span><span class="p">,</span> <span class="mf">49.55</span><span class="p">,</span> <span class="mf">48.49</span><span class="p">,</span> <span class="mf">41.28</span><span class="p">,</span> <span class="mf">46.69</span><span class="p">,</span> <span class="mf">44.97</span><span class="p">,</span> <span class="mf">44.7</span><span class="p">,</span> <span class="mf">169.56</span><span class="p">,</span> <span class="mf">117.46</span><span class="p">,</span> <span class="mf">104.54</span><span class="p">,</span> <span class="mf">116.93</span><span class="p">,</span> <span class="mf">122.51</span><span class="p">,</span> <span class="mf">125.0</span><span class="p">,</span> <span class="mf">128.17</span><span class="p">,</span> <span class="mf">154.89</span><span class="p">,</span> <span class="mf">217.71</span><span class="p">,</span> <span class="mf">269.43</span><span class="p">,</span> <span class="mf">241.64</span><span class="p">,</span> <span class="mf">275.0</span><span class="p">,</span> <span class="mf">277.52</span><span class="p">,</span> <span class="mf">203.16</span><span class="p">,</span> <span class="mf">217.84</span><span class="p">,</span> <span class="mf">214.0</span><span class="p">,</span> <span class="mf">195.73</span><span class="p">,</span> <span class="mf">205.26</span><span class="p">,</span> <span class="mf">197.5</span><span class="p">,</span> <span class="mf">157.98</span><span class="p">,</span> <span class="mf">123.49</span><span class="p">,</span> <span class="mf">197.68</span><span class="p">,</span> <span class="mf">180.75</span><span class="p">,</span> <span class="mf">187.5</span><span class="p">,</span> <span class="mf">197.5</span><span class="p">,</span> <span class="mf">193.36</span><span class="p">,</span> <span class="mf">191.45</span><span class="p">,</span> <span class="mf">171.0</span><span class="p">,</span> <span class="mf">185.21</span><span class="p">,</span> <span class="mf">183.22</span><span class="p">,</span> <span class="mf">185.88</span><span class="p">,</span> <span class="mf">169.7</span><span class="p">,</span> <span class="mf">158.11</span><span class="p">,</span> <span class="mf">141.88</span><span class="p">,</span> <span class="mf">143.57</span><span class="p">,</span> <span class="mf">163.0</span><span class="p">,</span> <span class="mf">156.0</span><span class="p">,</span> <span class="mf">171.8</span><span class="p">,</span> <span class="mf">164.14</span><span class="p">,</span> <span class="mf">158.4</span><span class="p">,</span> <span class="mf">159.1</span><span class="p">,</span> <span class="mf">149.0</span><span class="p">,</span> <span class="mf">150.98</span><span class="p">,</span> <span class="mf">183.55</span><span class="p">,</span> <span class="mf">172.1</span><span class="p">,</span> <span class="mf">176.56</span><span class="p">,</span> <span class="mf">175.0</span><span class="p">,</span> <span class="mf">177.49</span><span class="p">,</span> <span class="mf">159.0</span><span class="p">,</span> <span class="mf">161.83</span><span class="p">,</span> <span class="mf">160.86</span><span class="p">,</span> <span class="mf">160.11</span><span class="p">,</span> <span class="mf">161.31</span><span class="p">,</span> <span class="mf">137.0</span><span class="p">,</span> <span class="mf">145.7</span><span class="p">,</span> <span class="mf">147.44</span><span class="p">,</span> <span class="mf">160.0</span><span class="p">,</span> <span class="mf">159.85</span><span class="p">,</span> <span class="mf">174.54</span><span class="p">,</span> <span class="mf">172.91</span><span class="p">,</span> <span class="mf">170.79</span><span class="p">,</span> <span class="mf">171.0</span><span class="p">,</span> <span class="mf">175.85</span><span class="p">,</span> <span class="mf">181.0</span><span class="p">,</span> <span class="mf">229.0</span><span class="p">,</span> <span class="mf">229.8</span><span class="p">,</span> <span class="mf">262.97</span><span class="p">,</span> <span class="mf">222.0</span><span class="p">,</span> <span class="mf">233.48</span><span class="p">,</span> <span class="mf">248.88</span><span class="p">,</span> <span class="mf">265.71</span><span class="p">,</span> <span class="mf">256.02</span><span class="p">,</span> <span class="mf">258.0</span><span class="p">,</span> <span class="mf">292.0</span><span class="p">,</span> <span class="mf">303.12</span><span class="p">,</span> <span class="mf">282.0</span><span class="p">,</span> <span class="mf">222.35</span><span class="p">,</span> <span class="mf">236.5</span><span class="p">,</span> <span class="mf">226.36</span><span class="p">,</span> <span class="mf">215.24</span><span class="p">,</span> <span class="mf">224.0</span><span class="p">,</span> <span class="mf">219.86</span><span class="p">,</span> <span class="mf">216.95</span><span class="p">,</span> <span class="mf">217.73</span><span class="p">,</span> <span class="mf">221.45</span><span class="p">,</span> <span class="mf">221.16</span><span class="p">,</span> <span class="mf">214.0</span><span class="p">,</span> <span class="mf">211.25</span><span class="p">,</span> <span class="mf">213.59</span><span class="p">,</span> <span class="mf">209.69</span><span class="p">,</span> <span class="mf">213.4</span><span class="p">,</span> <span class="mf">204.8</span><span class="p">,</span> <span class="mf">202.83</span><span class="p">,</span> <span class="mf">204.0</span><span class="p">,</span> <span class="mf">196.0</span><span class="p">,</span> <span class="mf">179.83</span><span class="p">,</span> <span class="mf">190.88</span><span class="p">,</span> <span class="mf">191.42</span><span class="p">,</span> <span class="mf">187.68</span><span class="p">,</span> <span class="mf">180.49</span><span class="p">,</span> <span class="mf">160.0</span><span class="p">,</span> <span class="mf">170.15</span><span class="p">,</span> <span class="mf">163.14</span><span class="p">,</span> <span class="mf">173.9</span><span class="p">,</span> <span class="mf">187.79</span><span class="p">,</span> <span class="mf">185.3</span><span class="p">,</span> <span class="mf">181.0</span><span class="p">,</span> <span class="mf">180.36</span><span class="p">,</span> <span class="mf">183.0</span><span class="p">,</span> <span class="mf">175.72</span><span class="p">,</span> <span class="mf">170.6</span><span class="p">,</span> <span class="mf">165.0</span><span class="p">,</span> <span class="mf">162.0</span><span class="p">,</span> <span class="mf">156.74</span><span class="p">,</span> <span class="mf">152.73</span><span class="p">,</span> <span class="mf">148.0</span><span class="p">,</span> <span class="mf">154.59</span><span class="p">,</span> <span class="mf">151.8</span><span class="p">,</span> <span class="mf">161.36</span><span class="p">,</span> <span class="mf">158.43</span><span class="p">,</span> <span class="mf">159.88</span><span class="p">,</span> <span class="mf">160.47</span><span class="p">,</span> <span class="mf">161.0</span><span class="p">,</span> <span class="mf">161.19</span><span class="p">,</span> <span class="mf">163.25</span><span class="p">,</span> <span class="mf">156.77</span><span class="p">,</span> <span class="mf">153.8</span><span class="p">,</span> <span class="mf">162.38</span><span class="p">,</span> <span class="mf">166.29</span><span class="p">,</span> <span class="mf">206.65</span><span class="p">,</span> <span class="mf">200.68</span><span class="p">,</span> <span class="mf">207.7</span><span class="p">,</span> <span class="mf">205.0</span><span class="p">,</span> <span class="mf">212.7</span><span class="p">,</span> <span class="mf">224.0</span><span class="p">,</span> <span class="mf">213.86</span><span class="p">,</span> <span class="mf">212.05</span><span class="p">,</span> <span class="mf">206.25</span><span class="p">,</span> <span class="mf">201.86</span><span class="p">,</span> <span class="mf">180.09</span><span class="p">,</span> <span class="mf">198.41</span><span class="p">,</span> <span class="mf">193.75</span><span class="p">,</span> <span class="mf">200.65</span><span class="p">]</span>
+<span class="n">daily_close</span> <span class="o">=</span> <span class="p">[</span><span class="mf">17.25</span><span class="p">,</span> <span class="mf">17.37</span><span class="p">,</span> <span class="mf">18.36</span><span class="p">,</span> <span class="mf">18.08</span><span class="p">,</span> <span class="mf">17.69</span><span class="p">,</span> <span class="mf">19.94</span><span class="p">,</span> <span class="mf">19.95</span><span class="p">,</span> <span class="mf">31.4</span><span class="p">,</span> <span class="mf">39.91</span><span class="p">,</span> <span class="mf">35.5</span><span class="p">,</span> <span class="mf">35.5</span><span class="p">,</span> <span class="mf">39.36</span><span class="p">,</span> <span class="mf">39.12</span><span class="p">,</span> <span class="mf">43.03</span><span class="p">,</span> <span class="mf">65.01</span><span class="p">,</span> <span class="mf">76.79</span><span class="p">,</span> <span class="mf">147.98</span><span class="p">,</span> <span class="mf">347.51</span><span class="p">,</span> <span class="mf">193.6</span><span class="p">,</span> <span class="mf">325.0</span><span class="p">,</span> <span class="mf">225.0</span><span class="p">,</span> <span class="mf">90.0</span><span class="p">,</span> <span class="mf">92.41</span><span class="p">,</span> <span class="mf">53.5</span><span class="p">,</span> <span class="mf">63.77</span><span class="p">,</span> <span class="mf">60.0</span><span class="p">,</span> <span class="mf">50.31</span><span class="p">,</span> <span class="mf">51.2</span><span class="p">,</span> <span class="mf">51.1</span><span class="p">,</span> <span class="mf">52.4</span><span class="p">,</span> <span class="mf">52.4</span><span class="p">,</span> <span class="mf">49.51</span><span class="p">,</span> <span class="mf">45.94</span><span class="p">,</span> <span class="mf">40.69</span><span class="p">,</span> <span class="mf">40.59</span><span class="p">,</span> <span class="mf">46.0</span><span class="p">,</span> <span class="mf">44.97</span><span class="p">,</span> <span class="mf">91.71</span><span class="p">,</span> <span class="mf">108.73</span><span class="p">,</span> <span class="mf">101.74</span><span class="p">,</span> <span class="mf">120.4</span><span class="p">,</span> <span class="mf">118.18</span><span class="p">,</span> <span class="mf">124.18</span><span class="p">,</span> <span class="mf">132.35</span><span class="p">,</span> <span class="mf">137.74</span><span class="p">,</span> <span class="mf">194.5</span><span class="p">,</span> <span class="mf">246.9</span><span class="p">,</span> <span class="mf">265.0</span><span class="p">,</span> <span class="mf">260.0</span><span class="p">,</span> <span class="mf">264.5</span><span class="p">,</span> <span class="mf">220.14</span><span class="p">,</span> <span class="mf">208.17</span><span class="p">,</span> <span class="mf">209.81</span><span class="p">,</span> <span class="mf">201.75</span><span class="p">,</span> <span class="mf">200.27</span><span class="p">,</span> <span class="mf">194.49</span><span class="p">,</span> <span class="mf">181.75</span><span class="p">,</span> <span class="mf">120.34</span><span class="p">,</span> <span class="mf">183.75</span><span class="p">,</span> <span class="mf">181.0</span><span class="p">,</span> <span class="mf">181.3</span><span class="p">,</span> <span class="mf">194.46</span><span class="p">,</span> <span class="mf">189.82</span><span class="p">,</span> <span class="mf">191.45</span><span class="p">,</span> <span class="mf">191.45</span><span class="p">,</span> <span class="mf">186.95</span><span class="p">,</span> <span class="mf">184.5</span><span class="p">,</span> <span class="mf">177.97</span><span class="p">,</span> <span class="mf">170.26</span><span class="p">,</span> <span class="mf">158.36</span><span class="p">,</span> <span class="mf">141.09</span><span class="p">,</span> <span class="mf">140.99</span><span class="p">,</span> <span class="mf">166.53</span><span class="p">,</span> <span class="mf">156.44</span><span class="p">,</span> <span class="mf">154.69</span><span class="p">,</span> <span class="mf">164.37</span><span class="p">,</span> <span class="mf">158.53</span><span class="p">,</span> <span class="mf">158.51</span><span class="p">,</span> <span class="mf">151.17</span><span class="p">,</span> <span class="mf">151.18</span><span class="p">,</span> <span class="mf">168.93</span><span class="p">,</span> <span class="mf">177.77</span><span class="p">,</span> <span class="mf">178.58</span><span class="p">,</span> <span class="mf">176.19</span><span class="p">,</span> <span class="mf">173.59</span><span class="p">,</span> <span class="mf">162.2</span><span class="p">,</span> <span class="mf">160.73</span><span class="p">,</span> <span class="mf">159.48</span><span class="p">,</span> <span class="mf">161.01</span><span class="p">,</span> <span class="mf">161.11</span><span class="p">,</span> <span class="mf">143.22</span><span class="p">,</span> <span class="mf">146.92</span><span class="p">,</span> <span class="mf">144.79</span><span class="p">,</span> <span class="mf">164.5</span><span class="p">,</span> <span class="mf">159.92</span><span class="p">,</span> <span class="mf">180.6</span><span class="p">,</span> <span class="mf">180.67</span><span class="p">,</span> <span class="mf">168.83</span><span class="p">,</span> <span class="mf">170.49</span><span class="p">,</span> <span class="mf">176.79</span><span class="p">,</span> <span class="mf">180.01</span><span class="p">,</span> <span class="mf">209.43</span><span class="p">,</span> <span class="mf">242.56</span><span class="p">,</span> <span class="mf">254.13</span><span class="p">,</span> <span class="mf">222.0</span><span class="p">,</span> <span class="mf">222.0</span><span class="p">,</span> <span class="mf">249.02</span><span class="p">,</span> <span class="mf">282.24</span><span class="p">,</span> <span class="mf">258.18</span><span class="p">,</span> <span class="mf">248.36</span><span class="p">,</span> <span class="mf">280.01</span><span class="p">,</span> <span class="mf">300.0</span><span class="p">,</span> <span class="mf">302.56</span><span class="p">,</span> <span class="mf">220.39</span><span class="p">,</span> <span class="mf">233.34</span><span class="p">,</span> <span class="mf">229.44</span><span class="p">,</span> <span class="mf">222.5</span><span class="p">,</span> <span class="mf">222.97</span><span class="p">,</span> <span class="mf">223.59</span><span class="p">,</span> <span class="mf">213.82</span><span class="p">,</span> <span class="mf">200.37</span><span class="p">,</span> <span class="mf">220.4</span><span class="p">,</span> <span class="mf">219.34</span><span class="p">,</span> <span class="mf">212.31</span><span class="p">,</span> <span class="mf">209.51</span><span class="p">,</span> <span class="mf">213.25</span><span class="p">,</span> <span class="mf">210.88</span><span class="p">,</span> <span class="mf">214.14</span><span class="p">,</span> <span class="mf">204.36</span><span class="p">,</span> <span class="mf">202.83</span><span class="p">,</span> <span class="mf">202.83</span><span class="p">,</span> <span class="mf">199.56</span><span class="p">,</span> <span class="mf">190.66</span><span class="p">,</span> <span class="mf">191.38</span><span class="p">,</span> <span class="mf">191.23</span><span class="p">,</span> <span class="mf">189.25</span><span class="p">,</span> <span class="mf">180.06</span><span class="p">,</span> <span class="mf">167.62</span><span class="p">,</span> <span class="mf">166.82</span><span class="p">,</span> <span class="mf">169.04</span><span class="p">,</span> <span class="mf">173.49</span><span class="p">,</span> <span class="mf">191.18</span><span class="p">,</span> <span class="mf">185.81</span><span class="p">,</span> <span class="mf">178.85</span><span class="p">,</span> <span class="mf">180.36</span><span class="p">,</span> <span class="mf">183.94</span><span class="p">,</span> <span class="mf">178.54</span><span class="p">,</span> <span class="mf">169.12</span><span class="p">,</span> <span class="mf">164.86</span><span class="p">,</span> <span class="mf">161.12</span><span class="p">,</span> <span class="mf">157.65</span><span class="p">,</span> <span class="mf">152.75</span><span class="p">,</span> <span class="mf">146.8</span><span class="p">,</span> <span class="mf">153.44</span><span class="p">,</span> <span class="mf">151.77</span><span class="p">,</span> <span class="mf">161.13</span><span class="p">,</span> <span class="mf">159.05</span><span class="p">,</span> <span class="mf">158.78</span><span class="p">,</span> <span class="mf">162.35</span><span class="p">,</span> <span class="mf">162.52</span><span class="p">,</span> <span class="mf">163.93</span><span class="p">,</span> <span class="mf">163.55</span><span class="p">,</span> <span class="mf">157.05</span><span class="p">,</span> <span class="mf">152.9</span><span class="p">,</span> <span class="mf">159.3</span><span class="p">,</span> <span class="mf">164.89</span><span class="p">,</span> <span class="mf">210.29</span><span class="p">,</span> <span class="mf">199.65</span><span class="p">,</span> <span class="mf">205.22</span><span class="p">,</span> <span class="mf">204.95</span><span class="p">,</span> <span class="mf">209.2</span><span class="p">,</span> <span class="mf">218.24</span><span class="p">,</span> <span class="mf">212.97</span><span class="p">,</span> <span class="mf">213.52</span><span class="p">,</span> <span class="mf">202.75</span><span class="p">,</span> <span class="mf">199.0</span><span class="p">,</span> <span class="mf">198.8</span><span class="p">,</span> <span class="mf">199.18</span><span class="p">,</span> <span class="mf">190.41</span><span class="p">,</span> <span class="mf">203.4</span><span class="p">,</span> <span class="mf">199.24</span><span class="p">]</span>
+<span class="n">days</span> <span class="o">=</span> <span class="nb">list</span><span class="p">(</span><span class="nb">range</span><span class="p">(</span><span class="nb">len</span><span class="p">(</span><span class="n">daily_open</span><span class="p">)))</span>
+</pre></div>
+</div>
+</div>
+</div>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="c1"># put your code here</span>
+</pre></div>
+</div>
+</div>
+</div>
+</div>
+<div class="section" id="making-observations-1-point">
+<h3>2.2.6 Making Observations (1 point)<a class="headerlink" href="#making-observations-1-point" title="Permalink to this headline">¶</a></h3>
+<p>✅  In 2.2.1, you provided reasoning for what percent difference calculations tell us about data. Given what you now know about percent differences, make observations about the percent difference measurements over time in your plot and describe anything you find particularly notable.</p>
+<p><font size="+3">✎</font> <em>Put your answer here</em></p>
+</div>
+</div>
+<div class="section" id="part-3-modules-and-plotting">
+<h2>Part 3: Modules and Plotting<a class="headerlink" href="#part-3-modules-and-plotting" title="Permalink to this headline">¶</a></h2>
+<div class="section" id="modules-2-points">
+<h3>3.1 Modules (2 points)<a class="headerlink" href="#modules-2-points" title="Permalink to this headline">¶</a></h3>
+<p>The math module contains the basic trigonometric functions (sine, cosine, tangent, arcsine, arcosine, arctangent, etc.).</p>
+<p>✅  In the cell below, choose three of the trigonometric functions and generate x and y values for each. You should use the <code class="docutils literal notranslate"><span class="pre">math</span></code> module and/or the <code class="docutils literal notranslate"><span class="pre">numpy</span></code> module.</p>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="c1"># put your answer here</span>
+</pre></div>
+</div>
+</div>
+</div>
+</div>
+<div class="section" id="plotting-2-points">
+<h3>3.2 Plotting (2 points)<a class="headerlink" href="#plotting-2-points" title="Permalink to this headline">¶</a></h3>
+<p>✅  In the cell below, make a plot for one of your trigonometric functions. Make sure to include axis labels, a title, and a legend.</p>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="c1"># put your answer here</span>
+</pre></div>
+</div>
+</div>
+</div>
+</div>
+<div class="section" id="streamlining-plots">
+<h3>3.3 Streamlining plots<a class="headerlink" href="#streamlining-plots" title="Permalink to this headline">¶</a></h3>
+<p>In CMSE 201, you will be making plots often. To help future you save time, you are going to write a function to use when you make plots!</p>
+</div>
+<div class="section" id="id5">
+<h3>3.3.1 (6 points)<a class="headerlink" href="#id5" title="Permalink to this headline">¶</a></h3>
+<p>✅  In the cells below, write a function that takes the x and y values from all three of your trigonometric functions above and appropriate labels and returns a plot with a panel for each trigonometric function. You should use plt.subplot() and make use of labels, line shapes, and colors to make your plots clear. <strong>You must also test your function to receive full credit</strong></p>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="c1"># put your answer here</span>
+</pre></div>
+</div>
+</div>
+</div>
+</div>
+<div class="section" id="making-your-plotting-function-more-flexible-2-points">
+<h3>3.4 Making your plotting function more flexible (2 points)<a class="headerlink" href="#making-your-plotting-function-more-flexible-2-points" title="Permalink to this headline">¶</a></h3>
+<p>✅  In the cell below, look at your function from 3.3 and write in words and/or pseudocode how you might change it to handle any number of subplots.</p>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="c1"># put your answer here</span>
+</pre></div>
+</div>
+</div>
+</div>
+</div>
+</div>
+<hr class="docutils" />
+<div class="section" id="assignment-wrap-up">
+<h2>Assignment Wrap-up<a class="headerlink" href="#assignment-wrap-up" title="Permalink to this headline">¶</a></h2>
+<p>Please fill out the following Form before you submit your assignment. <strong>You must completely fill this out in order to receive credit for the assignment!</strong></p>
+<p><strong>COMPLETE THIS SURVEY through <a class="reference external" href="https://forms.office.com/Pages/ResponsePage.aspx?id=MHEXIi9k2UGSEXQjetVoffh-a-g_jQVGqbV9Nr124R5UOEVGM1Y1Wjc4NDdGTDAwTFRVTTVSVkFBWi4u">this link</a> or through cell below.</strong></p>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="c1">###update this for homework 2</span>
+<span class="kn">from</span> <span class="nn">IPython.display</span> <span class="kn">import</span> <span class="n">HTML</span>
+<span class="n">HTML</span><span class="p">(</span>
+<span class="sd">&quot;&quot;&quot;</span>
+<span class="sd">&lt;iframe </span>
+<span class="sd">	src=&quot;https://forms.office.com/Pages/ResponsePage.aspx?id=MHEXIi9k2UGSEXQjetVoffh-a-g_jQVGqbV9Nr124R5UOEVGM1Y1Wjc4NDdGTDAwTFRVTTVSVkFBWi4u&quot; </span>
+<span class="sd">	width=&quot;80%&quot; </span>
+<span class="sd">	height=&quot;1200px&quot; </span>
+<span class="sd">	frameborder=&quot;0&quot; </span>
+<span class="sd">	marginheight=&quot;0&quot; </span>
+<span class="sd">	marginwidth=&quot;0&quot;&gt;</span>
+<span class="sd">	Loading...</span>
+<span class="sd">&lt;/iframe&gt;</span>
+<span class="sd">&quot;&quot;&quot;</span>
+<span class="p">)</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<div class="output text_html">
+<iframe 
+	src="https://forms.office.com/Pages/ResponsePage.aspx?id=MHEXIi9k2UGSEXQjetVoffh-a-g_jQVGqbV9Nr124R5UOEVGM1Y1Wjc4NDdGTDAwTFRVTTVSVkFBWi4u" 
+	width="80%" 
+	height="1200px" 
+	frameborder="0" 
+	marginheight="0" 
+	marginwidth="0">
+	Loading...
+</iframe>
+</div></div>
+</div>
+<hr class="docutils" />
+<div class="section" id="congratulations-you-re-done">
+<h3>Congratulations, you’re done!<a class="headerlink" href="#congratulations-you-re-done" title="Permalink to this headline">¶</a></h3>
+<p>Submit this assignment by uploading it to the course Desire2Learn web page.  Go to the “Homework Assignments” section, find the submission folder link for Homework #2, and upload it there.</p>
+</div>
+</div>
+</div>
+
+    <script type="text/x-thebe-config">
+    {
+        requestKernel: true,
+        binderOptions: {
+            repo: "binder-examples/jupyter-stacks-datascience",
+            ref: "master",
+        },
+        codeMirrorConfig: {
+            theme: "abcdef",
+            mode: "python"
+        },
+        kernelOptions: {
+            kernelName: "python3",
+            path: "./Homework/Homework-2"
+        },
+        predefinedOutput: true
+    }
+    </script>
+    <script>kernelName = 'python3'</script>
+
+              </div>
+              
+        
+            
+
+
+
+<div class='prev-next-bottom'>
+    
+    <div id="prev">
+        <a class="left-prev" href="../Homework-1/HW_01_F21_STUDENT.html" title="previous page">
+            <i class="prevnext-label fas fa-angle-left"></i>
+            <div class="prevnext-info">
+                <p class="prevnext-label">previous</p>
+                <p class="prevnext-title">Homework 1: Introduction to Loops, Lists, and Dictionaries</p>
+            </div>
+        </a>
+    </div>
+     <div id="next">
+        <a class="right-next" href="../Homework-3/HOMEWORK_3_STUDENT.html" title="next page">
+            <div class="prevnext-info">
+                <p class="prevnext-label">next</p>
+                <p class="prevnext-title">Homework 3: Data Analysis with Pandas, Numpy, and Matplotlib</p>
+            </div>
+            <i class="prevnext-label fas fa-angle-right"></i>
+        </a>
+     </div>
+
+</div>
+        
+        </div>
+    </div>
+    <footer class="footer mt-5 mt-md-0">
+    <div class="container">
+      <p>
+        
+          By MSU CMSE<br/>
+        
+            &copy; Copyright 2021.<br/>
+      </p>
+    </div>
+  </footer>
+</main>
+
+
+      </div>
+    </div>
+  
+  <script src="../../_static/js/index.1c5a1a01449ed65a7b51.js"></script>
+
+  
+  </body>
+</html>

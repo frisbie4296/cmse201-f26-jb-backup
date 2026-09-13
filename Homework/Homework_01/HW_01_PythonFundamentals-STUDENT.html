@@ -1,0 +1,1291 @@
+
+<!DOCTYPE html>
+
+
+<html lang="en" data-content_root="../../" >
+
+  <head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" /><meta name="viewport" content="width=device-width, initial-scale=1" />
+
+    <title>Homework 1: Python fundamentals and using external resources to better understand code! &#8212; CMSE 201</title>
+  
+  
+  
+  <script data-cfasync="false">
+    document.documentElement.dataset.mode = localStorage.getItem("mode") || "";
+    document.documentElement.dataset.theme = localStorage.getItem("theme") || "";
+  </script>
+  
+  <!-- Loaded before other Sphinx assets -->
+  <link href="../../_static/styles/theme.css?digest=3ee479438cf8b5e0d341" rel="stylesheet" />
+<link href="../../_static/styles/bootstrap.css?digest=3ee479438cf8b5e0d341" rel="stylesheet" />
+<link href="../../_static/styles/pydata-sphinx-theme.css?digest=3ee479438cf8b5e0d341" rel="stylesheet" />
+
+  
+  <link href="../../_static/vendor/fontawesome/6.5.2/css/all.min.css?digest=3ee479438cf8b5e0d341" rel="stylesheet" />
+  <link rel="preload" as="font" type="font/woff2" crossorigin href="../../_static/vendor/fontawesome/6.5.2/webfonts/fa-solid-900.woff2" />
+<link rel="preload" as="font" type="font/woff2" crossorigin href="../../_static/vendor/fontawesome/6.5.2/webfonts/fa-brands-400.woff2" />
+<link rel="preload" as="font" type="font/woff2" crossorigin href="../../_static/vendor/fontawesome/6.5.2/webfonts/fa-regular-400.woff2" />
+
+    <link rel="stylesheet" type="text/css" href="../../_static/pygments.css?v=fa44fd50" />
+    <link rel="stylesheet" type="text/css" href="../../_static/styles/sphinx-book-theme.css?v=384b581d" />
+    <link rel="stylesheet" type="text/css" href="../../_static/togglebutton.css?v=13237357" />
+    <link rel="stylesheet" type="text/css" href="../../_static/copybutton.css?v=76b2166b" />
+    <link rel="stylesheet" type="text/css" href="../../_static/mystnb.4510f1fc1dee50b3e5859aac5469c37c29e427902b24a333a5f9fcb2f0b3ac41.css?v=be8a1c11" />
+    <link rel="stylesheet" type="text/css" href="../../_static/sphinx-thebe.css?v=4fa983c6" />
+    <link rel="stylesheet" type="text/css" href="../../_static/sphinx-design.min.css?v=87e54e7c" />
+  
+  <!-- Pre-loaded scripts that we'll load fully later -->
+  <link rel="preload" as="script" href="../../_static/scripts/bootstrap.js?digest=3ee479438cf8b5e0d341" />
+<link rel="preload" as="script" href="../../_static/scripts/pydata-sphinx-theme.js?digest=3ee479438cf8b5e0d341" />
+  <script src="../../_static/vendor/fontawesome/6.5.2/js/all.min.js?digest=3ee479438cf8b5e0d341"></script>
+
+    <script src="../../_static/documentation_options.js?v=9eb32ce0"></script>
+    <script src="../../_static/doctools.js?v=9a2dae69"></script>
+    <script src="../../_static/sphinx_highlight.js?v=dc90522c"></script>
+    <script src="../../_static/clipboard.min.js?v=a7894cd8"></script>
+    <script src="../../_static/copybutton.js?v=f281be69"></script>
+    <script src="../../_static/scripts/sphinx-book-theme.js?v=efea14e4"></script>
+    <script>let toggleHintShow = 'Click to show';</script>
+    <script>let toggleHintHide = 'Click to hide';</script>
+    <script>let toggleOpenOnPrint = 'true';</script>
+    <script src="../../_static/togglebutton.js?v=4a39c7ea"></script>
+    <script>var togglebuttonSelector = '.toggle, .admonition.dropdown';</script>
+    <script src="../../_static/design-tabs.js?v=36754332"></script>
+    <script>const THEBE_JS_URL = "https://unpkg.com/thebe@0.8.2/lib/index.js"; const thebe_selector = ".thebe,.cell"; const thebe_selector_input = "pre"; const thebe_selector_output = ".output, .cell_output"</script>
+    <script async="async" src="../../_static/sphinx-thebe.js?v=c100c467"></script>
+    <script>var togglebuttonSelector = '.toggle, .admonition.dropdown';</script>
+    <script>const THEBE_JS_URL = "https://unpkg.com/thebe@0.8.2/lib/index.js"; const thebe_selector = ".thebe,.cell"; const thebe_selector_input = "pre"; const thebe_selector_output = ".output, .cell_output"</script>
+    <script>window.MathJax = {"options": {"processHtmlClass": "tex2jax_process|mathjax_process|math|output_area"}}</script>
+    <script defer="defer" src="https://cdn.jsdelivr.net/npm/mathjax@3/es5/tex-mml-chtml.js"></script>
+    <script>DOCUMENTATION_OPTIONS.pagename = 'Homework/Homework_01/HW_01_PythonFundamentals-STUDENT';</script>
+    <link rel="icon" href="../../_static/cmse_fav.ico"/>
+    <link rel="index" title="Index" href="../../genindex.html" />
+    <link rel="search" title="Search" href="../../search.html" />
+    <link rel="next" title="Homework 2: Dictionaries, If Statements, Functions, and Modules" href="../Homework_02/HW_02_SS26-Spring-2026-STUDENT.html" />
+    <link rel="prev" title="Day 25 In-class Assignment: Project Work Day" href="../../Day-25/Day-25_In-Class_ProjectWorkDay-STUDENT.html" />
+  <meta name="viewport" content="width=device-width, initial-scale=1"/>
+  <meta name="docsearch:language" content="en"/>
+  </head>
+  
+  
+  <body data-bs-spy="scroll" data-bs-target=".bd-toc-nav" data-offset="180" data-bs-root-margin="0px 0px -60%" data-default-mode="">
+
+  
+  
+  <div id="pst-skip-link" class="skip-link d-print-none"><a href="#main-content">Skip to main content</a></div>
+  
+  <div id="pst-scroll-pixel-helper"></div>
+  
+  <button type="button" class="btn rounded-pill" id="pst-back-to-top">
+    <i class="fa-solid fa-arrow-up"></i>Back to top</button>
+
+  
+  <input type="checkbox"
+          class="sidebar-toggle"
+          id="pst-primary-sidebar-checkbox"/>
+  <label class="overlay overlay-primary" for="pst-primary-sidebar-checkbox"></label>
+  
+  <input type="checkbox"
+          class="sidebar-toggle"
+          id="pst-secondary-sidebar-checkbox"/>
+  <label class="overlay overlay-secondary" for="pst-secondary-sidebar-checkbox"></label>
+  
+  <div class="search-button__wrapper">
+    <div class="search-button__overlay"></div>
+    <div class="search-button__search-container">
+<form class="bd-search d-flex align-items-center"
+      action="../../search.html"
+      method="get">
+  <i class="fa-solid fa-magnifying-glass"></i>
+  <input type="search"
+         class="form-control"
+         name="q"
+         id="search-input"
+         placeholder="Search..."
+         aria-label="Search..."
+         autocomplete="off"
+         autocorrect="off"
+         autocapitalize="off"
+         spellcheck="false"/>
+  <span class="search-button__kbd-shortcut"><kbd class="kbd-shortcut__modifier">Ctrl</kbd>+<kbd>K</kbd></span>
+</form></div>
+  </div>
+
+  <div class="pst-async-banner-revealer d-none">
+  <aside id="bd-header-version-warning" class="d-none d-print-none" aria-label="Version warning"></aside>
+</div>
+
+  
+    <header class="bd-header navbar navbar-expand-lg bd-navbar d-print-none">
+    </header>
+  
+
+  <div class="bd-container">
+    <div class="bd-container__inner bd-page-width">
+      
+      
+      
+      <div class="bd-sidebar-primary bd-sidebar">
+        
+
+  
+  <div class="sidebar-header-items sidebar-primary__section">
+    
+    
+    
+    
+  </div>
+  
+    <div class="sidebar-primary-items__start sidebar-primary__section">
+        <div class="sidebar-primary-item">
+
+  
+
+<a class="navbar-brand logo" href="../../intro.html">
+  
+  
+  
+  
+  
+    
+    
+      
+    
+    
+    <img src="../../_static/logo.png" class="logo__image only-light" alt="CMSE 201 - Home"/>
+    <script>document.write(`<img src="../../_static/logo.png" class="logo__image only-dark" alt="CMSE 201 - Home"/>`);</script>
+  
+  
+</a></div>
+        <div class="sidebar-primary-item">
+
+ <script>
+ document.write(`
+   <button class="btn navbar-btn search-button-field search-button__button" title="Search" aria-label="Search" data-bs-placement="bottom" data-bs-toggle="tooltip">
+    <i class="fa-solid fa-magnifying-glass"></i>
+    <span class="search-button__default-text">Search</span>
+    <span class="search-button__kbd-shortcut"><kbd class="kbd-shortcut__modifier">Ctrl</kbd>+<kbd class="kbd-shortcut__modifier">K</kbd></span>
+   </button>
+ `);
+ </script></div>
+        <div class="sidebar-primary-item"><nav class="bd-links bd-docs-nav" aria-label="Main">
+    <div class="bd-toc-item navbar-nav active">
+        <p aria-level="2" class="caption" role="heading"><span class="caption-text">Course Materials</span></p>
+<ul class="nav bd-sidenav">
+<li class="toctree-l1 has-children"><a class="reference internal" href="../../Course_Materials-201/CourseDocuments.html">Important Course information</a><details><summary><span class="toctree-toggle" role="presentation"><i class="fa-solid fa-chevron-down"></i></span></summary><ul>
+<li class="toctree-l2"><a class="reference internal" href="../../Course_Materials-201/CMSE201-Syllabus.html">Syllabus</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../../Course_Materials-201/CMSE201-Schedule.html">Course Schedule</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../../Course_Materials-201/SoftwareSetupGuide.html">Software Setup Guide</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../../Course_Materials-201/classroom_participation.html">Classroom Participation</a></li>
+</ul>
+</details></li>
+</ul>
+<p aria-level="2" class="caption" role="heading"><span class="caption-text">CodeGrade</span></p>
+<ul class="nav bd-sidenav">
+<li class="toctree-l1"><a class="reference external" href="https://raw.githubusercontent.com/msu-cmse-courses/cmse201-supplemental/main/CodeGrade_Students.pdf">CodeGrade flowchart</a></li>
+</ul>
+<p aria-level="2" class="caption" role="heading"><span class="caption-text">Day 01</span></p>
+<ul class="nav bd-sidenav">
+<li class="toctree-l1"><a class="reference internal" href="../../Day-01/Day-01_In-Class_SortingAlgorithm-STUDENT.html">Day 1 In-Class Assignment: Introductions and Sorting Algorithms</a></li>
+
+
+
+</ul>
+<p aria-level="2" class="caption" role="heading"><span class="caption-text">Day 02</span></p>
+<ul class="nav bd-sidenav">
+<li class="toctree-l1"><a class="reference internal" href="../../Day-02/Day-02_In-Class_OrderOfMagnitudeModeling-STUDENT.html">Day 2 In-class Assignment: Order of Magnitude Modeling</a></li>
+
+
+</ul>
+<p aria-level="2" class="caption" role="heading"><span class="caption-text">Day 03</span></p>
+<ul class="nav bd-sidenav">
+<li class="toctree-l1"><a class="reference internal" href="../../Day-03/Day-03_In-Class_ListsLoopsAndSaving-STUDENT.html">Day 3 In-class Assignment: The power of compound interest</a></li>
+</ul>
+<p aria-level="2" class="caption" role="heading"><span class="caption-text">Day 04</span></p>
+<ul class="nav bd-sidenav">
+<li class="toctree-l1"><a class="reference internal" href="../../Day-04/Day_04_In_Class_DataAlgorithmicBias-STUDENT.html">Day 4 In-class Assignment: Data and Algorithmic Bias, Academic Integrity, and Coding Best Practices</a></li>
+
+</ul>
+<p aria-level="2" class="caption" role="heading"><span class="caption-text">Day 05</span></p>
+<ul class="nav bd-sidenav">
+<li class="toctree-l1"><a class="reference internal" href="../../Day-05/Day-05_In-Class_IfStatementsAndFunctions-STUDENT.html">Day 5 In-class Assignment: Savings for Everyone</a></li>
+</ul>
+<p aria-level="2" class="caption" role="heading"><span class="caption-text">Day 06</span></p>
+<ul class="nav bd-sidenav">
+<li class="toctree-l1"><a class="reference internal" href="../../Day-06/Day-06_In-Class_FunctionsAndSquirrels-STUDENT.html">Day 6 In Class Assignment: A Scurry of Squirrels in Central Park</a></li>
+
+
+
+
+
+</ul>
+<p aria-level="2" class="caption" role="heading"><span class="caption-text">Day 07</span></p>
+<ul class="nav bd-sidenav">
+<li class="toctree-l1"><a class="reference internal" href="../../Day-07/Day-07_In-Class_ReviewingAndPracticingConcepts-STUDENT.html">Day 7 In-class Assignment: Reviewing and practicing prior concepts</a></li>
+
+<li class="toctree-l1"><a class="reference internal" href="../../Day-07/Day-07_In-Class_ReviewingAndPracticingConcepts-Solutions.html">Day 7 In-class Assignment: Reviewing and practicing prior concepts</a></li>
+
+<li class="toctree-l1"><a class="reference internal" href="../../Day-07/Debugging-STUDENT.html">Practice with Debugging</a></li>
+
+
+</ul>
+<p aria-level="2" class="caption" role="heading"><span class="caption-text">Day 08</span></p>
+<ul class="nav bd-sidenav">
+<li class="toctree-l1"><a class="reference internal" href="../../Day-08/Day-08_In-Class_MathAndPlotting-STUDENT.html">Day 8 In-class Assignment: Visualizing population growth</a></li>
+</ul>
+<p aria-level="2" class="caption" role="heading"><span class="caption-text">Day 09</span></p>
+<ul class="nav bd-sidenav">
+<li class="toctree-l1"><a class="reference internal" href="../../Day-09/Day-09_In-Class_NumPyWithTheGreatLakes-STUDENT.html">Day 9 In-class Assignment: Exploring Great Lakes Water Levels using NumPy</a></li>
+
+<li class="toctree-l1"><a class="reference external" href="https://raw.githubusercontent.com/msu-cmse-courses/cmse201-supplemental/main/ICA_datasets/lake_erie.csv">lake_erie.csv</a></li>
+<li class="toctree-l1"><a class="reference external" href="https://raw.githubusercontent.com/msu-cmse-courses/cmse201-supplemental/main/ICA_datasets/lake_michigan_huron.csv">lake_michigan_huron.csv</a></li>
+<li class="toctree-l1"><a class="reference external" href="https://raw.githubusercontent.com/msu-cmse-courses/cmse201-supplemental/main/ICA_datasets/lake_ontario.csv">lake_ontario.csv</a></li>
+<li class="toctree-l1"><a class="reference external" href="https://raw.githubusercontent.com/msu-cmse-courses/cmse201-supplemental/main/ICA_datasets/lake_superior.csv">lake_superior.csv</a></li>
+</ul>
+<p aria-level="2" class="caption" role="heading"><span class="caption-text">Day 10</span></p>
+<ul class="nav bd-sidenav">
+<li class="toctree-l1"><a class="reference internal" href="../../Day-10/Day-10_In-Class_GDP-STUDENT.html">Day 10 In-Class: Cleaning and Analyzing Economic Data</a></li>
+
+
+<li class="toctree-l1"><a class="reference external" href="https://raw.githubusercontent.com/msu-cmse-courses/cmse201-supplemental/main/ICA_datasets/API_NY.GDP.MKTP.CD_DS2_en_csv_v2_31795.csv">API_NY.GDP.MKTP.CD_DS2_en_csv_v2_31795.csv</a></li>
+</ul>
+<p aria-level="2" class="caption" role="heading"><span class="caption-text">Day 11</span></p>
+<ul class="nav bd-sidenav">
+<li class="toctree-l1"><a class="reference internal" href="../../Day-11/Day-11_In-Class_Flint-STUDENT.html">Day 11 In-class Assignment: Get the Lead Out: Understanding The Water Crisis in Flint, MI</a></li>
+
+
+<li class="toctree-l1"><a class="reference external" href="https://raw.githubusercontent.com/msu-cmse-courses/cmse201-supplemental/main/ICA_datasets/flint_water_data.csv">flint_water_data.csv</a></li>
+</ul>
+<p aria-level="2" class="caption" role="heading"><span class="caption-text">Day 12</span></p>
+<ul class="nav bd-sidenav">
+<li class="toctree-l1"><a class="reference internal" href="../../Day-12/Day-12_In-Class_Unprocessed_Data-STUDENT.html">Day 12 In-Class: Data Contextualization and Wrangling</a></li>
+</ul>
+<p aria-level="2" class="caption" role="heading"><span class="caption-text">Day 13</span></p>
+<ul class="nav bd-sidenav">
+<li class="toctree-l1"><a class="reference internal" href="../../Day-13/Day-13_Pre-Class_Online_Resources-STUDENT.html">Day 13 Pre-class Assignment: Finding resources online and tinkering wth code</a></li>
+
+
+<li class="toctree-l1"><a class="reference internal" href="../../Day-13/Day-13_In-Class_Online_Resources-STUDENT.html">Day 13 In-Class: Using online resources (code and data)</a></li>
+</ul>
+<p aria-level="2" class="caption" role="heading"><span class="caption-text">Day 14</span></p>
+<ul class="nav bd-sidenav">
+<li class="toctree-l1"><a class="reference internal" href="../../Day-14/Day-14_In-Class_Evaluating_Fits-STUDENT.html">Day 14 In-Class Assignment: Evaluating Models</a></li>
+</ul>
+<p aria-level="2" class="caption" role="heading"><span class="caption-text">Day 15</span></p>
+<ul class="nav bd-sidenav">
+<li class="toctree-l1"><a class="reference external" href="https://raw.githubusercontent.com/msu-cmse-courses/cmse201-supplemental/main/image_critique_ver2.pptx">Image Critique</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../Day-15/Day-15_In-Class_FittingCurves-STUDENT.html">Day 15 In-Class Assignment: (Thoughtfully) fitting models to data</a></li>
+<li class="toctree-l1"><a class="reference external" href="https://raw.githubusercontent.com/msu-cmse-courses/cmse201-S22-data/main/Day-14/pop200.csv">pop200.csv</a></li>
+<li class="toctree-l1"><a class="reference external" href="https://raw.githubusercontent.com/msu-cmse-courses/cmse201-S22-data/main/Day-14/pop300.csv">pop300.csv</a></li>
+</ul>
+<p aria-level="2" class="caption" role="heading"><span class="caption-text">Day 16</span></p>
+<ul class="nav bd-sidenav">
+<li class="toctree-l1"><a class="reference internal" href="../../Day-16/Day-16-Intro_to_ODEs_In-Class_STUDENT.html">Day 16: In-class Assignment: Introduction to Modeling with ODEs</a></li>
+</ul>
+<p aria-level="2" class="caption" role="heading"><span class="caption-text">Day 17</span></p>
+<ul class="nav bd-sidenav">
+<li class="toctree-l1"><a class="reference internal" href="../../Day-17/Day-17_In-Class_ModelingWithODEs-STUDENT.html">Day 17: In-class Assignment: Modeling with Ordinary Differential Equations</a></li>
+
+
+
+</ul>
+<p aria-level="2" class="caption" role="heading"><span class="caption-text">Day 18</span></p>
+<ul class="nav bd-sidenav">
+<li class="toctree-l1"><a class="reference internal" href="../../Day-18/Day-18_In-Class_CompartmentalModeling-STUDENT.html">Day 18 In-class Assignment: Building Compartmental Models</a></li>
+
+
+
+</ul>
+<p aria-level="2" class="caption" role="heading"><span class="caption-text">Day 19</span></p>
+<ul class="nav bd-sidenav">
+<li class="toctree-l1"><a class="reference internal" href="../../Day-19/Day-19_In-Class_CompartmentsWithSolveIVP-STUDENT.html">Day 19 In-Class Assignment: Compartmental Modeling, moving from the model to the code</a></li>
+</ul>
+<p aria-level="2" class="caption" role="heading"><span class="caption-text">Day 20</span></p>
+<ul class="nav bd-sidenav">
+<li class="toctree-l1"><a class="reference internal" href="../../Day-20/Day-20_In-Class_IntroToDataVisualization-STUDENT.html">Day 20 In-Class: Introduction to Data Visualization</a></li>
+</ul>
+<p aria-level="2" class="caption" role="heading"><span class="caption-text">Day 21</span></p>
+<ul class="nav bd-sidenav">
+<li class="toctree-l1"><a class="reference internal" href="../../Day-21/Day-21_In-Class_2DImageAnalysis-STUDENT.html">Day 21 In-Class Assignment: Image Analysis</a></li>
+<li class="toctree-l1"><a class="reference external" href="https://raw.githubusercontent.com/msu-cmse-courses/cmse201-supplemental/main/Day-17/ICA_files/beach.jpeg">beach.jpeg</a></li>
+<li class="toctree-l1"><a class="reference external" href="https://raw.githubusercontent.com/msu-cmse-courses/cmse201-supplemental/main/Day-17/ICA_files/landscape.jpeg">landscape.jpeg</a></li>
+<li class="toctree-l1"><a class="reference external" href="https://raw.githubusercontent.com/msu-cmse-courses/cmse201-supplemental/main/Day-17/ICA_files/zebra.png">zebra.png</a></li>
+</ul>
+<p aria-level="2" class="caption" role="heading"><span class="caption-text">Day 22</span></p>
+<ul class="nav bd-sidenav">
+<li class="toctree-l1"><a class="reference internal" href="../../Day-22/Day-22_In-Class_ForestFiresPartI-STUDENT.html">Day 22 Part 1 In-class Assignment: Modeling forest fires with an Agent-based Model</a></li>
+</ul>
+<p aria-level="2" class="caption" role="heading"><span class="caption-text">Day 23</span></p>
+<ul class="nav bd-sidenav">
+<li class="toctree-l1"><a class="reference internal" href="../../Day-23/Day-23_In-Class_ForestFiresPartII-STUDENT.html">Day 23 In-class Assignment: Modeling forest fires with an Agent-based Model (Part II)</a></li>
+</ul>
+<p aria-level="2" class="caption" role="heading"><span class="caption-text">Day 24</span></p>
+<ul class="nav bd-sidenav">
+<li class="toctree-l1"><a class="reference internal" href="../../Day-24/Day-24_In-Class_DataDilemmas-STUDENT.html">Day 24 - In-Class - Data Dilemmas: Ethics in an Algorithmic World</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../Day-24/biased_data_gen.html">Data Generation Sheet</a></li>
+</ul>
+<p aria-level="2" class="caption" role="heading"><span class="caption-text">Day 25</span></p>
+<ul class="nav bd-sidenav">
+<li class="toctree-l1"><a class="reference internal" href="../../Day-25/Day-25_In-Class_ProjectWorkDay-STUDENT.html">Day 25 In-class Assignment: Project Work Day</a></li>
+</ul>
+<p aria-level="2" class="caption" role="heading"><span class="caption-text">Homework</span></p>
+<ul class="current nav bd-sidenav">
+<li class="toctree-l1 current active"><a class="current reference internal" href="#">Homework 1: Python fundamentals and using external resources to better understand code!</a></li>
+
+
+
+
+
+
+<li class="toctree-l1"><a class="reference internal" href="../Homework_02/HW_02_SS26-Spring-2026-STUDENT.html">Homework 2: Dictionaries, If Statements, Functions, and Modules</a></li>
+
+<li class="toctree-l1"><a class="reference external" href="https://raw.githubusercontent.com/msu-cmse-courses/cmse201-supplemental/main/stock_data.csv">stock_data.csv</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../Homework_03/HW_03_SS26_-Spring-2026-STUDENT.html">Homework 3 - Loading, Cleaning, Analyzing, and Visualizing Data with Pandas</a></li>
+<li class="toctree-l1"><a class="reference external" href="https://raw.githubusercontent.com/msu-cmse-courses/cmse201-supplemental/main/Homework/ahuacatl.csv">ahuacatl.csv</a></li>
+<li class="toctree-l1"><a class="reference external" href="https://raw.githubusercontent.com/msu-cmse-courses/cmse201-supplemental/main/Homework/nahuatl_names.csv">nahuatl_names.csv</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../Homework_04/HW4_SS26-STUDENT.html">Homework 4 - Compartmental Models + Data Visualization</a></li>
+<li class="toctree-l1"><a class="reference external" href="https://raw.githubusercontent.com/msu-cmse-courses/cmse201-supplemental/main/Homework/nypd_collisions_sample.csv">nypd_collisions_sample.csv</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../Homework_05/HW-05_SS26_STUDENT.html">Homework 5: Algorithmic Bias and Agent-based Modeling (EXTRA CREDIT)</a></li>
+
+
+
+</ul>
+<p aria-level="2" class="caption" role="heading"><span class="caption-text">Code Portfolio</span></p>
+<ul class="nav bd-sidenav">
+<li class="toctree-l1"><a class="reference internal" href="../Code_Portfolio/Code_Portfolio_Assignment.html">Code Portfolio Assignment</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../Code_Portfolio/Code_Portfolio_Example-CodeGrade.html">Code Portfolio Example</a></li>
+
+</ul>
+<p aria-level="2" class="caption" role="heading"><span class="caption-text">Semester Project</span></p>
+<ul class="nav bd-sidenav">
+<li class="toctree-l1"><a class="reference internal" href="../../Project_Materials/CMSE201_SemesterProjectDetails.html">Semester Project Details</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../Project_Materials/Project_Plan_Check-in.html">First Project Checkpoint</a></li>
+
+
+
+<li class="toctree-l1"><a class="reference internal" href="../../Project_Materials/First_Project_Checkpoint.html">First Project Checkpoint</a></li>
+
+
+
+<li class="toctree-l1"><a class="reference internal" href="../../Project_Materials/CMSE201_FinalProjectTemplate.html">CMSE 201 Final Project Template</a></li>
+
+<li class="toctree-l1"><a class="reference external" href="https://raw.githubusercontent.com/msu-cmse-courses/cmse201-supplemental/main/Projects/CMSE201_final_project_examples.zip">Zip file of example projects</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../Project_Materials/CMSE201FinalProject_RequirementsAndGradingRubric.html">Requirements and Grading Rubric</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../Project_Materials/peer_assessment.html">Peer Assessment Notebook</a></li>
+<li class="toctree-l1"><a class="reference external" href="https://github.com/msu-cmse-courses/cmse201-supplemental/raw/main/Projects/Presentation_Evaluation_Rubric.pdf">Presentation Evaluation Rubric</a></li>
+</ul>
+<p aria-level="2" class="caption" role="heading"><span class="caption-text">Practice Notebooks</span></p>
+<ul class="nav bd-sidenav">
+<li class="toctree-l1"><a class="reference internal" href="../../Quiz_Prep_Notebooks/PracticeNotebook_IfStatements-STUDENT.html">Practice with: <code class="docutils literal notranslate"><span class="pre">if</span></code> statements</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../Quiz_Prep_Notebooks/PracticeNotebook_Functions-STUDENT.html">Practice with: functions</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../Quiz_Prep_Notebooks/PracticeNotebook_Matplotlib-STUDENT.html">Practice with: <code class="docutils literal notranslate"><span class="pre">matplotlib</span></code></a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../Quiz_Prep_Notebooks/filtering_ws_ver2.html">Practice with Masking</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../Quiz_Prep_Notebooks/PracticeNotebook_Pandas-STUDENT.html">Practice with: Pandas</a></li>
+<li class="toctree-l1"><a class="reference external" href="https://raw.githubusercontent.com/msu-cmse-courses/cmse201-supplemental/main/PracticeNotebooks/weather.csv">weather.csv</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../Quiz_Prep_Notebooks/PracticeNotebook_ScipyCurveFit-STUDENT.html">Practice with: SciPy <code class="docutils literal notranslate"><span class="pre">curve_fit</span></code></a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../Quiz_Prep_Notebooks/PracticeNotebook_CompartmentalModels-STUDENT.html">Practice with: Compartmental Models</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../Quiz_Prep_Notebooks/PracticeNotebook_SolveIVP-STUDENT.html">Practice with: <code class="docutils literal notranslate"><span class="pre">solve_ivp</span></code></a></li>
+</ul>
+
+    </div>
+</nav></div>
+    </div>
+  
+  
+  <div class="sidebar-primary-items__end sidebar-primary__section">
+  </div>
+  
+  <div id="rtd-footer-container"></div>
+
+
+      </div>
+      
+      <main id="main-content" class="bd-main" role="main">
+        
+        
+
+<div class="sbt-scroll-pixel-helper"></div>
+
+          <div class="bd-content">
+            <div class="bd-article-container">
+              
+              <div class="bd-header-article d-print-none">
+<div class="header-article-items header-article__inner">
+  
+    <div class="header-article-items__start">
+      
+        <div class="header-article-item"><label class="sidebar-toggle primary-toggle btn btn-sm" for="__primary" title="Toggle primary sidebar" data-bs-placement="bottom" data-bs-toggle="tooltip">
+  <span class="fa-solid fa-bars"></span>
+</label></div>
+      
+    </div>
+  
+  
+    <div class="header-article-items__end">
+      
+        <div class="header-article-item">
+
+<div class="article-header-buttons">
+
+
+
+
+
+<div class="dropdown dropdown-download-buttons">
+  <button class="btn dropdown-toggle" type="button" data-bs-toggle="dropdown" aria-expanded="false" aria-label="Download this page">
+    <i class="fas fa-download"></i>
+  </button>
+  <ul class="dropdown-menu">
+      
+      
+      
+      <li><a href="../../_sources/Homework/Homework_01/HW_01_PythonFundamentals-STUDENT.ipynb" target="_blank"
+   class="btn btn-sm btn-download-source-button dropdown-item"
+   title="Download source file"
+   data-bs-placement="left" data-bs-toggle="tooltip"
+>
+  
+
+<span class="btn__icon-container">
+  <i class="fas fa-file"></i>
+  </span>
+<span class="btn__text-container">.ipynb</span>
+</a>
+</li>
+      
+      
+      
+      
+      <li>
+<button onclick="window.print()"
+  class="btn btn-sm btn-download-pdf-button dropdown-item"
+  title="Print to PDF"
+  data-bs-placement="left" data-bs-toggle="tooltip"
+>
+  
+
+<span class="btn__icon-container">
+  <i class="fas fa-file-pdf"></i>
+  </span>
+<span class="btn__text-container">.pdf</span>
+</button>
+</li>
+      
+  </ul>
+</div>
+
+
+
+
+<button onclick="toggleFullScreen()"
+  class="btn btn-sm btn-fullscreen-button"
+  title="Fullscreen mode"
+  data-bs-placement="bottom" data-bs-toggle="tooltip"
+>
+  
+
+<span class="btn__icon-container">
+  <i class="fas fa-expand"></i>
+  </span>
+
+</button>
+
+
+
+<script>
+document.write(`
+  <button class="btn btn-sm navbar-btn theme-switch-button" title="light/dark" aria-label="light/dark" data-bs-placement="bottom" data-bs-toggle="tooltip">
+    <span class="theme-switch nav-link" data-mode="light"><i class="fa-solid fa-sun fa-lg"></i></span>
+    <span class="theme-switch nav-link" data-mode="dark"><i class="fa-solid fa-moon fa-lg"></i></span>
+    <span class="theme-switch nav-link" data-mode="auto"><i class="fa-solid fa-circle-half-stroke fa-lg"></i></span>
+  </button>
+`);
+</script>
+
+
+<script>
+document.write(`
+  <button class="btn btn-sm navbar-btn search-button search-button__button" title="Search" aria-label="Search" data-bs-placement="bottom" data-bs-toggle="tooltip">
+    <i class="fa-solid fa-magnifying-glass fa-lg"></i>
+  </button>
+`);
+</script>
+<label class="sidebar-toggle secondary-toggle btn btn-sm" for="__secondary"title="Toggle secondary sidebar" data-bs-placement="bottom" data-bs-toggle="tooltip">
+    <span class="fa-solid fa-list"></span>
+</label>
+</div></div>
+      
+    </div>
+  
+</div>
+</div>
+              
+              
+
+<div id="jb-print-docs-body" class="onlyprint">
+    <h1>Homework 1: Python fundamentals and using external resources to better understand code!</h1>
+    <!-- Table of contents -->
+    <div id="print-main-content">
+        <div id="jb-print-toc">
+            
+            <div>
+                <h2> Contents </h2>
+            </div>
+            <nav aria-label="Page">
+                <ul class="visible nav section-nav flex-column">
+<li class="toc-h1 nav-item toc-entry"><a class="reference internal nav-link" href="#">Homework 1: Python fundamentals and using external resources to better understand code!</a><ul class="visible nav section-nav flex-column">
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#put-your-name-here">✅ <strong>Put your name here</strong></a></li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#learning-goals">Learning Goals</a><ul class="nav section-nav flex-column">
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#content-goals">Content Goals</a></li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#practice-goals">Practice Goals</a></li>
+</ul>
+</li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#assignment-instructions">Assignment instructions</a></li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#this-assignment-is-due-at-11-59-pm-on-friday-february-6th-it-should-be-uploaded-into-the-homework-assignments-submission-folder-for-homework-1-submission-instructions-can-be-found-at-the-end-of-the-notebook"><strong>This assignment is due at 11:59 pm on Friday, February 6th.</strong> It should be uploaded into the “Homework Assignments” submission folder for Homework #1.  Submission instructions can be found at the end of the notebook.</a></li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#version-check">Version check</a></li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#grading">Grading</a></li>
+</ul>
+</li>
+<li class="toc-h1 nav-item toc-entry"><a class="reference internal nav-link" href="#academic-integrity-statement-2-points">0.1 Academic integrity statement (2 Points)</a></li>
+<li class="toc-h1 nav-item toc-entry"><a class="reference internal nav-link" href="#going-to-office-help-room-hours-8-points">0.2 Going to Office/Help Room Hours (8 Points)</a><ul class="visible nav section-nav flex-column">
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#why-are-we-doing-this">Why are we doing this?</a></li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#what-will-you-do">What will you do?</a></li>
+</ul>
+</li>
+<li class="toc-h1 nav-item toc-entry"><a class="reference internal nav-link" href="#doing-basic-math-with-python-10-points">1. Doing basic math with Python (10 points)</a><ul class="visible nav section-nav flex-column">
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#question-1-1-2-points">✅  Question 1.1 (2 points)</a></li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#question-1-2-2-points">✅  Question 1.2 (2 points)</a></li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#question-1-3-2-points">✅  Question 1.3 (2 points)</a></li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#question-1-4-2-points">✅  Question 1.4 (2 points)</a></li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#question-1-5-2-points">✅  Question 1.5 (2 points)</a></li>
+</ul>
+</li>
+<li class="toc-h1 nav-item toc-entry"><a class="reference internal nav-link" href="#storing-and-accessing-data-using-lists-20-points">2. Storing and accessing data using lists (20 points)</a><ul class="visible nav section-nav flex-column">
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#creating-a-list-from-scratch">Creating a list from scratch</a></li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#list-creation-and-manipulation-5-points">2.1 List Creation and Manipulation (5 points)</a><ul class="nav section-nav flex-column">
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#metacognition-5-points">2.1.1 Metacognition (5 points)</a></li>
+</ul>
+</li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#accessing-and-changing-values-stored-in-a-python-list">Accessing and changing values stored in a Python list</a></li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#adding-or-appending-values-to-a-python-list">Adding or “appending” values to a Python list</a></li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#list-indexing-and-appending-5-points">2.2 List Indexing and Appending (5 points)</a><ul class="nav section-nav flex-column">
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#id1">2.2.1 Metacognition (5 points)</a></li>
+</ul>
+</li>
+</ul>
+</li>
+<li class="toc-h1 nav-item toc-entry"><a class="reference internal nav-link" href="#writing-for-loops-in-python-20-points">3. Writing <code class="docutils literal notranslate"><span class="pre">for</span></code> loops in Python (20 points)</a><ul class="visible nav section-nav flex-column">
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#looping-by-integers-or-index">Looping by integers or index</a></li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#writing-a-basic-for-loop-by-index-5-points">3.1 Writing a basic <code class="docutils literal notranslate"><span class="pre">for</span></code> loop by index (5 points)</a><ul class="nav section-nav flex-column">
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#id2">3.1.1 Metacognition (5 points)</a></li>
+</ul>
+</li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#looping-by-value-e-g-through-a-list">Looping by value (e.g. through a list)</a></li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#writing-a-basic-for-loop-by-value-5-points">3.2 Writing a basic <code class="docutils literal notranslate"><span class="pre">for</span></code> loop by value (5 points)</a><ul class="nav section-nav flex-column">
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#id3">3.2.1 Metacognition (5 points)</a></li>
+</ul>
+</li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#writing-a-loop-that-accesses-list-values-using-integers-or-by-index">Writing a loop that accesses list values using integers or “by index”</a></li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#writing-a-basic-for-loop-to-access-values-in-a-list-5-points">3.3 Writing a basic <code class="docutils literal notranslate"><span class="pre">for</span></code> loop to access values in a list (5 points)</a></li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#id4">3.3.1 Metacognition (5 points)</a></li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#writing-while-loops-in-python-25-points">4. Writing <code class="docutils literal notranslate"><span class="pre">while</span></code> loops in Python (25 points)</a><ul class="nav section-nav flex-column">
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#looping-by-condition">Looping by condition</a></li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#it-s-a-pokemon-battle-5-points">4.1 It’s a Pokemon Battle! (5 points)</a><ul class="nav section-nav flex-column">
+<li class="toc-h4 nav-item toc-entry"><a class="reference internal nav-link" href="#id5">4.1.1 Metacognition (5 points)</a></li>
+</ul>
+</li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#the-zookeeper-s-to-do-list-10-points">4.2 The Zookeeper’s To Do List (10 points)</a><ul class="nav section-nav flex-column">
+<li class="toc-h4 nav-item toc-entry"><a class="reference internal nav-link" href="#id6">4.2.1 Metacognition (5 points)</a></li>
+</ul>
+</li>
+</ul>
+</li>
+</ul>
+</li>
+<li class="toc-h1 nav-item toc-entry"><a class="reference internal nav-link" href="#writing-if-statements-in-python-20-points">5. Writing “<code class="docutils literal notranslate"><span class="pre">if</span></code>” statements in Python (20 points)</a><ul class="visible nav section-nav flex-column">
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#creating-your-pokemon-battle-team-for-the-six-letter-tournament-10-points">5.1 Creating your Pokemon Battle Team for the Six-Letter Tournament (10 points)</a><ul class="nav section-nav flex-column">
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#id7">5.1.1 Metacognition (5 points)</a></li>
+</ul>
+</li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#drawing-a-troll-10-points">5.2 Drawing a Troll (10 points)</a><ul class="nav section-nav flex-column">
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#id8">5.2.1 Metacognition (5 points)</a></li>
+</ul>
+</li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#wait-before-you-submit-your-notebook-read-the-following-important-recommendations">Wait! Before you submit your notebook, read the following important recommendations</a><ul class="nav section-nav flex-column">
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#congratulations-you-re-done">Congratulations, you’re done!</a></li>
+</ul>
+</li>
+</ul>
+</li>
+</ul>
+
+            </nav>
+        </div>
+    </div>
+</div>
+
+              
+                
+<div id="searchbox"></div>
+                <article class="bd-article">
+                  
+  <section class="tex2jax_ignore mathjax_ignore" id="homework-1-python-fundamentals-and-using-external-resources-to-better-understand-code">
+<h1>Homework 1: Python fundamentals and using external resources to better understand code!<a class="headerlink" href="#homework-1-python-fundamentals-and-using-external-resources-to-better-understand-code" title="Link to this heading">#</a></h1>
+<section id="put-your-name-here">
+<h2>✅ <strong>Put your name here</strong><a class="headerlink" href="#put-your-name-here" title="Link to this heading">#</a></h2>
+</section>
+<section id="learning-goals">
+<h2>Learning Goals<a class="headerlink" href="#learning-goals" title="Link to this heading">#</a></h2>
+<section id="content-goals">
+<h3>Content Goals<a class="headerlink" href="#content-goals" title="Link to this heading">#</a></h3>
+<ul class="simple">
+<li><p>Review the arithmetic operators in Python</p></li>
+<li><p>Utilize loops to perform repeated operations and to store, access, and manipulate data in one more or lists</p></li>
+<li><p>Utilize variables and lists to store and access data</p></li>
+<li><p>Use conditional statements to control code flow.</p></li>
+</ul>
+</section>
+<section id="practice-goals">
+<h3>Practice Goals<a class="headerlink" href="#practice-goals" title="Link to this heading">#</a></h3>
+<ul class="simple">
+<li><p>Use the internet as a resource for learning how to write code, learn new things, and troubleshoot problems</p></li>
+<li><p>Solve a variety of problems using code</p></li>
+<li><p>Troubleshoot errors and debug your code as issues arise (you’ll do this all the time in this course!)</p></li>
+</ul>
+</section>
+</section>
+<hr class="docutils" />
+<section id="assignment-instructions">
+<h2>Assignment instructions<a class="headerlink" href="#assignment-instructions" title="Link to this heading">#</a></h2>
+<p>Work through the following assignment, making sure to follow all the directions and answer all the questions.</p>
+</section>
+<section id="this-assignment-is-due-at-11-59-pm-on-friday-february-6th-it-should-be-uploaded-into-the-homework-assignments-submission-folder-for-homework-1-submission-instructions-can-be-found-at-the-end-of-the-notebook">
+<h2><strong>This assignment is due at 11:59 pm on Friday, February 6th.</strong> It should be uploaded into the “Homework Assignments” submission folder for Homework #1.  Submission instructions can be found at the end of the notebook.<a class="headerlink" href="#this-assignment-is-due-at-11-59-pm-on-friday-february-6th-it-should-be-uploaded-into-the-homework-assignments-submission-folder-for-homework-1-submission-instructions-can-be-found-at-the-end-of-the-notebook" title="Link to this heading">#</a></h2>
+</section>
+<section id="version-check">
+<h2>Version check<a class="headerlink" href="#version-check" title="Link to this heading">#</a></h2>
+<p>Before you begin, make sure your Jupyter kernel is Python 3. There are significant differences between Python 2 and Python 3, and we use Python 3 in this course. The kernel type at the upper-right corner should say “Python 3”, and the following code should show a version of the form: <code class="docutils literal notranslate"><span class="pre">3.x.y</span></code> (where “x” and “y” are the sub-version numbers).</p>
+<p>If your kernel is Python 2, try selecting Python 3 from the Kernel menu above under the sub-menu “Change kernel”. If that does not work, consult the Teams help channel for assistance.</p>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="kn">import</span> <span class="nn">sys</span>
+<span class="nb">print</span><span class="p">(</span><span class="n">sys</span><span class="o">.</span><span class="n">version</span><span class="p">)</span>
+</pre></div>
+</div>
+</div>
+</div>
+</section>
+<section id="grading">
+<h2>Grading<a class="headerlink" href="#grading" title="Link to this heading">#</a></h2>
+<ol class="arabic simple" start="0">
+<li><p>Integrity statement and office hours</p>
+<ol class="arabic simple">
+<li><p>Academic Integrity Statement (2 points)</p></li>
+<li><p>Going to Office Hours (8 Points)</p></li>
+</ol>
+</li>
+<li><p>Doing basic math with Python (10 points)</p></li>
+<li><p>Storing and accessing data using lists (20 points)</p></li>
+<li><p>Writing for loops in Python (30 points)</p></li>
+<li><p>Writing while loops in Python (20 points)</p></li>
+<li><p>Writing if statements in Python (20 points)</p></li>
+</ol>
+<p><strong>Total points possible</strong>: 110</p>
+</section>
+</section>
+<hr class="docutils" />
+<section class="tex2jax_ignore mathjax_ignore" id="academic-integrity-statement-2-points">
+<h1>0.1 Academic integrity statement (2 Points)<a class="headerlink" href="#academic-integrity-statement-2-points" title="Link to this heading">#</a></h1>
+<p>In the markdown cell below, paste your personal academic integrity statement. <strong>You should have generated this in the Day 4 pre-class assignment</strong>, if you did not do this pre-class assignment, locate that assignment, find the appropriate section, and draft your integrity statment now.</p>
+<p>By including this statement, you are confirming that you are submitting this as your own work and not that of someone else.</p>
+<p>✎ <em>Put your personal academic integrity statement here.</em></p>
+</section>
+<section class="tex2jax_ignore mathjax_ignore" id="going-to-office-help-room-hours-8-points">
+<h1>0.2 Going to Office/Help Room Hours (8 Points)<a class="headerlink" href="#going-to-office-help-room-hours-8-points" title="Link to this heading">#</a></h1>
+<section id="why-are-we-doing-this">
+<h2>Why are we doing this?<a class="headerlink" href="#why-are-we-doing-this" title="Link to this heading">#</a></h2>
+<p>We want to make sure that everyone knows how to access the resources
+available to you. One of the best resources you have at your disposal is office/help room hours, which are offered by the instructors, TAs, and LAs associated with CMSE 201.</p>
+</section>
+<section id="what-will-you-do">
+<h2>What will you do?<a class="headerlink" href="#what-will-you-do" title="Link to this heading">#</a></h2>
+<p>(At minimum) Go to one office hour session â(it doesnât matter which one you go to). Come with one question that you would like to talk about. It can be big or small. Ask your question. All of the instructional staff for CMSE 201 (section instructors, TAs, and LAs) will have access to a roster of the folks enrolled in CMSE 201 and will be able to mark off that you stopped in. As long as there ends up being a check next to your name, youâll get credit for this part of Homework 1.</p>
+<p>If your schedule is such that none of the nearly 40 hours of office hours/help room work with your schedule. Send and email to the CMSE 201 lead instructor, Dr. Rachel Frisbie (<a class="reference external" href="mailto:salmonra&#37;&#52;&#48;msu&#46;edu">salmonra<span>&#64;</span>msu<span>&#46;</span>edu</a>), to coordinate an option to make sure you can get credit for this part of the assignment.</p>
+<p><strong>NOTE:</strong> The day when the homework is due (<strong>Friday, February 6th</strong>) will be the busiest time for folks to go to office hours. You are <strong>STRONGLY</strong> encouraged to go to office hours before that Friday to get credit for this part of this assignment. If you show up to office/help room hours on that Friday and it’s very busy, there is no guarantee that one of the instructors, TAs, or LAs will be able to check you off for this part of the assignment. (You should still feel free to go to office hours on Friday for help, though!)</p>
+<p>You can find the office hours calendar on the <a class="reference external" href="https://cmse.msu.edu/cmse201">course website</a>. There is a link to the calendar on the front page and the calendar itself is embedded near the bottom of the front page. Double-check the calendar events for details on which zoom room or physical location the office/help room hours are being held in. The information is also pinned in the cmse201-s26-help channel on Teams!</p>
+</section>
+</section>
+<hr class="docutils" />
+<section class="tex2jax_ignore mathjax_ignore" id="doing-basic-math-with-python-10-points">
+<h1>1. Doing basic math with Python (10 points)<a class="headerlink" href="#doing-basic-math-with-python-10-points" title="Link to this heading">#</a></h1>
+<p>As you explored with your order of magnitude modeling assignment in the Day 2 in-class assignment, Python is great at doing basic math – much like your favorite calculator! As you get more comfortable with writing Python code, you might find yourself writing a bit of code when you need to do some calculations instead of pulling digging out your calculator or launching the calculator app on your phone.</p>
+<p>Doing basic math with Python involves using various “<strong>operators</strong>” – these operators are the Python symbols used to do the actual math. For example, to add two variables, we use the “<code class="docutils literal notranslate"><span class="pre">+</span></code>” operator. To subtract, we use the “<code class="docutils literal notranslate"><span class="pre">-</span></code>” operator.</p>
+<p>There are a number of other arithmetic (math) operators as well.</p>
+<section id="question-1-1-2-points">
+<h2>✅  Question 1.1 (2 points)<a class="headerlink" href="#question-1-1-2-points" title="Link to this heading">#</a></h2>
+<p>What is your major/minor/field of study?</p>
+<p>✎ Put your answer here!</p>
+</section>
+<section id="question-1-2-2-points">
+<h2>✅  Question 1.2 (2 points)<a class="headerlink" href="#question-1-2-2-points" title="Link to this heading">#</a></h2>
+<p>From your major/minor/field of study, provide an example of where you use an arithmetic operator.</p>
+<p><strong>Example:</strong> I am an astronomy major, and we use exponentiation (i.e. **) in the equation for Luminosity of a star: <span class="math notranslate nohighlight">\(L = 4 \pi R^2 \sigma T^4\)</span></p>
+<p><strong>Note:</strong> The example given is for an equation, but simple examples are also acceptable (e.g. I am a history major and I want to know how many decades it has been since World War II)</p>
+<p>✎ Put your answer here!</p>
+</section>
+<section id="question-1-3-2-points">
+<h2>✅  Question 1.3 (2 points)<a class="headerlink" href="#question-1-3-2-points" title="Link to this heading">#</a></h2>
+<p>Describe how you came up with this example.</p>
+<p><strong>Example:</strong> First, I decided to choose exponentiation. Then, I remembered that in my intro class, we calculated lots of things with numers or variables to a power. I went back to my notes, and the first equation I flipped to that was easy to write in Markdown was the Luminosity equation, so that is what I picked.</p>
+<p>✎ Put your answer here!</p>
+</section>
+<section id="question-1-4-2-points">
+<h2>✅  Question 1.4 (2 points)<a class="headerlink" href="#question-1-4-2-points" title="Link to this heading">#</a></h2>
+<p>Using your mathematics example, use code to demonstrate how you could use Python to perform the calculation.</p>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="c1">### EXAMPLE ###</span>
+<span class="n">R</span> <span class="o">=</span> <span class="mf">6.96e8</span> <span class="c1">#radius of sun in meters</span>
+<span class="n">sigma</span> <span class="o">=</span> <span class="mf">5.67e-8</span> <span class="c1"># stefan-boltzmann constant in W/(m**2*K**4)</span>
+<span class="n">T</span> <span class="o">=</span> <span class="mi">5778</span> <span class="c1"># temperature of sun in Kelvin</span>
+<span class="n">pi</span> <span class="o">=</span> <span class="mf">3.14</span>
+<span class="n">L</span> <span class="o">=</span> <span class="mi">4</span><span class="o">*</span><span class="n">pi</span><span class="o">*</span><span class="n">R</span><span class="o">**</span><span class="mi">2</span><span class="o">*</span><span class="n">sigma</span><span class="o">*</span><span class="n">T</span><span class="o">**</span><span class="mi">4</span>
+<span class="nb">print</span><span class="p">(</span><span class="n">L</span><span class="p">)</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>3.845044120577153e+26
+</pre></div>
+</div>
+</div>
+</div>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="c1"># put any code here</span>
+</pre></div>
+</div>
+</div>
+</div>
+</section>
+<section id="question-1-5-2-points">
+<h2>✅  Question 1.5 (2 points)<a class="headerlink" href="#question-1-5-2-points" title="Link to this heading">#</a></h2>
+<p>Describe in detail how you created your example.</p>
+<p><strong>Example:</strong> I wanted Python to calculate a value for luminosity based on the variables and constants I had. I decided to use SI units because those were the units that Google gave me when I looked up the Stefan-Boltzmann constant. I chose the Sun because it was easy to find the luminosity and the temperature in the units I wanted. I decided it would make the code cleaner and help me keep track of units if I defined each variable and then combined them in the equation. Then I printed out the result. Then, I Googled the result I got and found out that it matched what it should have been, so my math should be correct.</p>
+<p>✎ Put your answer here!</p>
+</section>
+</section>
+<section class="tex2jax_ignore mathjax_ignore" id="storing-and-accessing-data-using-lists-20-points">
+<h1>2. Storing and accessing data using lists (20 points)<a class="headerlink" href="#storing-and-accessing-data-using-lists-20-points" title="Link to this heading">#</a></h1>
+<p>The Python <code class="docutils literal notranslate"><span class="pre">list</span></code> datatype can be a really useful way to store and access data using the functionality that is built into the default version of Python. As the semester progresses, we’ll learn about other Python “libraries” (packages of code designed to do useful things) designed to work with data, but for now, the <code class="docutils literal notranslate"><span class="pre">list</span></code> datatype is our primary tool.</p>
+<section id="creating-a-list-from-scratch">
+<h2>Creating a list from scratch<a class="headerlink" href="#creating-a-list-from-scratch" title="Link to this heading">#</a></h2>
+<p>There are a variety of ways you can create a list and fill it with values and you’ll want to make sure you’re comfortable doing this.</p>
+</section>
+<section id="list-creation-and-manipulation-5-points">
+<h2>2.1 List Creation and Manipulation (5 points)<a class="headerlink" href="#list-creation-and-manipulation-5-points" title="Link to this heading">#</a></h2>
+<p>Create a list containing your first name, your age (as an integer), and your favorite food. Print that list.</p>
+<p>Then, answer the questions below.</p>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="c1"># Put your code here</span>
+</pre></div>
+</div>
+</div>
+</div>
+<section id="metacognition-5-points">
+<h3>2.1.1 Metacognition (5 points)<a class="headerlink" href="#metacognition-5-points" title="Link to this heading">#</a></h3>
+<ul class="simple">
+<li><p>What are the different data types you used for each item in your list?</p></li>
+<li><p>Why did you choose to use those specific types for each piece of information?</p></li>
+</ul>
+<p>✎ Put your answer here!</p>
+</section>
+</section>
+<section id="accessing-and-changing-values-stored-in-a-python-list">
+<h2>Accessing and changing values stored in a Python list<a class="headerlink" href="#accessing-and-changing-values-stored-in-a-python-list" title="Link to this heading">#</a></h2>
+<p>Once we get comfortable with creating lists with some set of initial values, we need to get comfortable with accessing the information stored in the list. The way that we access information is by using an <strong>index</strong> to access a value at a particular position in the list. Index values are <strong>integers</strong> that allow you to refer to values at specific positions in the list. The first index is always 0 in Python. So the <em>third element</em> in a list would be accessed using an index of “2”. <strong>You’ll just need to get in the habit of thinking this way when working with Python</strong>.</p>
+<p>Using an index not only allows us to access a value in a list, but <strong>it also allows us to update or change values in a list.</strong></p>
+</section>
+<section id="adding-or-appending-values-to-a-python-list">
+<h2>Adding or “appending” values to a Python list<a class="headerlink" href="#adding-or-appending-values-to-a-python-list" title="Link to this heading">#</a></h2>
+<p>From time to time, we might need to do more than just access and change values inside a list, we might need to <strong>add or “append” items to a list</strong>. This can be especially useful if our code generates information in a loop and we want to make sure we store that information as we go along. Or, alternatively, we might find situations where we want to append certain information to our list based on a specific condition. In these sorts of situations, the <code class="docutils literal notranslate"><span class="pre">append()</span></code> function is useful for adding items to a pre-existing list.</p>
+</section>
+<section id="list-indexing-and-appending-5-points">
+<h2>2.2 List Indexing and Appending (5 points)<a class="headerlink" href="#list-indexing-and-appending-5-points" title="Link to this heading">#</a></h2>
+<p>Use list indexing to replace your age with the current year. Use the append() method to add a new item to the end of the list: your favorite color. Print the final, modified list.</p>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="c1"># put your code here</span>
+</pre></div>
+</div>
+</div>
+</div>
+<section id="id1">
+<h3>2.2.1 Metacognition (5 points)<a class="headerlink" href="#id1" title="Link to this heading">#</a></h3>
+<ul class="simple">
+<li><p>Why is it important that you used indexing (e.g., my_list[1] = 2026) to change the value, instead of just creating a whole new list?”</p></li>
+<li><p>What do you think would happen if you tried to access an index that doesn’t exist in the list, for example, my_list[5]?”</p></li>
+</ul>
+<p>✎ Put your answer here!</p>
+</section>
+</section>
+</section>
+<section class="tex2jax_ignore mathjax_ignore" id="writing-for-loops-in-python-20-points">
+<h1>3. Writing <code class="docutils literal notranslate"><span class="pre">for</span></code> loops in Python (20 points)<a class="headerlink" href="#writing-for-loops-in-python-20-points" title="Link to this heading">#</a></h1>
+<p>The <code class="docutils literal notranslate"><span class="pre">for</span></code> loop is a fundamental programming concept in many programming languages and it is one method of what is referred to as “control flow,” which is simply how the flow of execution of a program is controlled (get it?). The <code class="docutils literal notranslate"><span class="pre">for</span></code> loop basically tells the computer to execute the code inside the loop a specific numbers of times. The number of times the loop should be executed can be defined using the <code class="docutils literal notranslate"><span class="pre">range()</span></code> function or you can tell Python to iterate through sequence of values, e.g. a list, and run the loop until every value has been accessed. We’ll sometimes refer to these as <strong>“looping by index”</strong> or <strong>“looping by value”</strong>, respectively.</p>
+<section id="looping-by-integers-or-index">
+<h2>Looping by integers or index<a class="headerlink" href="#looping-by-integers-or-index" title="Link to this heading">#</a></h2>
+<p>When we use the <code class="docutils literal notranslate"><span class="pre">range()</span></code> function in a <code class="docutils literal notranslate"><span class="pre">for</span></code> loop, we end up generating a set of integer values, which we often use as the <strong>index</strong> for accessing information stored in a Python container, like a list.</p>
+<p>Itâs important to understand how to use these integer index values to access elements of a list in the code that lies <em>inside</em> the loop, but for now we’ll just think about how we can loop over a set of integer values using a <code class="docutils literal notranslate"><span class="pre">for</span></code> loop.</p>
+</section>
+<section id="writing-a-basic-for-loop-by-index-5-points">
+<h2>3.1 Writing a basic <code class="docutils literal notranslate"><span class="pre">for</span></code> loop by index (5 points)<a class="headerlink" href="#writing-a-basic-for-loop-by-index-5-points" title="Link to this heading">#</a></h2>
+<p>Write a for loop (using the <code class="docutils literal notranslate"><span class="pre">range</span></code> function) that runs for a number of iterations equal to the number of course credits you are taking this semester. For every iteration, the loop should print a sentence of your choice (e.g. “CMSE 201 is my favorite class this semester”). Then, answer the metacognition questions below.</p>
+<ul class="simple">
+<li><p>Write your number of credits here for reference:</p></li>
+</ul>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="c1"># put your code here</span>
+</pre></div>
+</div>
+</div>
+</div>
+<section id="id2">
+<h3>3.1.1 Metacognition (5 points)<a class="headerlink" href="#id2" title="Link to this heading">#</a></h3>
+<p>In the cell below, answer the following:</p>
+<ol class="arabic simple">
+<li><p>How did you determine the argument(s) for the range() function to ensure the loop ran for the correct number of iterations? What would happen if you used range(credits - 1) or range(credits + 1) instead?</p></li>
+<li><p>If you wanted to print a different sentence for each iteration (e.g., “My first class is CMSE 201”, “My second class is MTH 132”), how would you modify your loop to achieve this? What Python concept would be most useful here?</p></li>
+</ol>
+<p>✎ Put your answer here!</p>
+</section>
+</section>
+<section id="looping-by-value-e-g-through-a-list">
+<h2>Looping by value (e.g. through a list)<a class="headerlink" href="#looping-by-value-e-g-through-a-list" title="Link to this heading">#</a></h2>
+<p>Another way that Python allows us to write <code class="docutils literal notranslate"><span class="pre">for</span></code> loops is by looping through values stored in a sequence of some sort. We often seen this with <code class="docutils literal notranslate"><span class="pre">for</span></code> loops that <strong>iterate through a Python list</strong>.</p>
+<p>This can be really useful if we have some important data stored in a list and want to go through and do something with each value/item stored in that list. For example, if you had a list of all the students in your section of CMSE 201, you could use a <code class="docutils literal notranslate"><span class="pre">for</span></code> loop to print out all of their names when you wanted to see the class roster.</p>
+</section>
+<section id="writing-a-basic-for-loop-by-value-5-points">
+<h2>3.2 Writing a basic <code class="docutils literal notranslate"><span class="pre">for</span></code> loop by value (5 points)<a class="headerlink" href="#writing-a-basic-for-loop-by-value-5-points" title="Link to this heading">#</a></h2>
+<p>Define a list that holds the names of the courses that you are taking as strings. Then write a <code class="docutils literal notranslate"><span class="pre">for</span></code> loop that <strong>loops by value</strong> over that list and prints out the name of each course. Then, answer the metacognition questions below.</p>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="c1"># put your code here</span>
+</pre></div>
+</div>
+</div>
+</div>
+<section id="id3">
+<h3>3.2.1 Metacognition (5 points)<a class="headerlink" href="#id3" title="Link to this heading">#</a></h3>
+<ol class="arabic simple">
+<li><p>This problem specifically asks you to loop “by value.” What is the difference between looping by value (e.g., for course in course_list:) and looping by index (e.g., for i in range(len(course_list)):)? In what situation might you choose one method over the other?</p></li>
+<li><p>Imagine you also had a second list containing the number of credits for each course, in the same order. How would looping by value make it difficult to print both the course name and its corresponding credit number in the same loop? What approach would be better for that task?</p></li>
+</ol>
+<p>✎ Put your answer here!</p>
+</section>
+</section>
+<section id="writing-a-loop-that-accesses-list-values-using-integers-or-by-index">
+<h2>Writing a loop that accesses list values using integers or “by index”<a class="headerlink" href="#writing-a-loop-that-accesses-list-values-using-integers-or-by-index" title="Link to this heading">#</a></h2>
+<p>Now that you’ve looked at how you can use a <code class="docutils literal notranslate"><span class="pre">for</span></code> loop to move through a series of integer values and how you can use a <code class="docutils literal notranslate"><span class="pre">for</span></code> loop to step through a Python list of values, you’re go to explore how you can use the integer-based <code class="docutils literal notranslate"><span class="pre">for</span></code> loop approach to <strong>index values in a list inside a loops</strong>.</p>
+<p>If you find yourself in a situation where you need to do a set of repeated operations on using more than one list at a time, using this integer or <strong>index-based</strong> approach can be really valuable.</p>
+</section>
+<section id="writing-a-basic-for-loop-to-access-values-in-a-list-5-points">
+<h2>3.3 Writing a basic <code class="docutils literal notranslate"><span class="pre">for</span></code> loop to access values in a list (5 points)<a class="headerlink" href="#writing-a-basic-for-loop-to-access-values-in-a-list-5-points" title="Link to this heading">#</a></h2>
+<p>From Part 3.2, you have a list of your courses. Create an additional list with the number of credits for each course as integers (make sure they are in the same order). Write a loop that iterates over the lists and prints a sentence stating the course and the corresponding number of credits. In addition, create a variable to add up the total amount of credits. Print the total after your loop. Then, answer the metacognition question below.</p>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="c1"># put your code here</span>
+</pre></div>
+</div>
+</div>
+</div>
+</section>
+<section id="id4">
+<h2>3.3.1 Metacognition (5 points)<a class="headerlink" href="#id4" title="Link to this heading">#</a></h2>
+<p>To print the course name and its corresponding credit value, you needed to access elements from two different lists at the same position in each loop iteration. Which looping method (looping by index or looping by value) did you choose to solve this, and why was that method the most effective choice for this specific task?</p>
+<p>✎ Put your answer here!</p>
+</section>
+<section id="writing-while-loops-in-python-25-points">
+<h2>4. Writing <code class="docutils literal notranslate"><span class="pre">while</span></code> loops in Python (25 points)<a class="headerlink" href="#writing-while-loops-in-python-25-points" title="Link to this heading">#</a></h2>
+<p>The <code class="docutils literal notranslate"><span class="pre">while</span></code> loop is another fundamental programming concept in many programming languages and another “control flow” method. The <code class="docutils literal notranslate"><span class="pre">while</span></code> loop basically tells the computer to execute the code inside the loop until a particlar condition is met. This means that the number of times the loop is executed may not be immediately known because the conditional statement used to determine when to exit the loop is often dependent on the code that is being called inside the loop.</p>
+<p>While using a conditional statement to determine when to stop iterating over the loop can be really useful, it can also be <strong>really problematic</strong>. A poorly written <code class="docutils literal notranslate"><span class="pre">while</span></code> loop can result in what is often referred to as an <strong>“infinite” or “endless” loop</strong>. An infinite loop is a loop that, as you might expect, runs continuously with no end (hence the alternate “endless” name). Infinite loops occur when the conditional statement used in the <code class="docutils literal notranslate"><span class="pre">while</span></code> loop never becomes <code class="docutils literal notranslate"><span class="pre">False</span></code>. If the conditional statement is always <code class="docutils literal notranslate"><span class="pre">True</span></code>, then the loop will run forever.</p>
+<p><strong>When using <code class="docutils literal notranslate"><span class="pre">while</span></code> loops in Python, watch out for infinite loops!</strong>. You’ll often notice that you’ve created an infinite loop when you see <code class="docutils literal notranslate"><span class="pre">In[*]</span></code> on the left-hand side of the cell you just executed for longer than expected. Normally, when a cell finishes running, the <code class="docutils literal notranslate"><span class="pre">*</span></code> becomes a number. <strong>Take a look at your code cells above to confirm this.</strong></p>
+<p>If, in this assignment, you’ve found that you created an infinite loop, or suspect that you might have, you can “interrupt” the notebook and stop the code from trying to run. Then you can fix your error and try again. To interrupt your notebook and stop the cell from running, click on the “Kernel” tab at the top of your notebook and select “Interrupt” or, simply click on the ■ at the top of the notebook. You may also need to select “Restart Kernel and Clear Outputs of All Cells” from the “Kernel” menu.</p>
+<section id="looping-by-condition">
+<h3>Looping by condition<a class="headerlink" href="#looping-by-condition" title="Link to this heading">#</a></h3>
+<p>When we use a <code class="docutils literal notranslate"><span class="pre">while</span></code> loop, we are telling the computer to repeat a block of code until a particular condition is met. The condition may be met with only a few iterations or it may take many iterations. If we’re not sure in advance how many iterations will be necessary, using this condition-based <code class="docutils literal notranslate"><span class="pre">while</span></code> loop can be a great option.</p>
+<p><strong>Important</strong>: When deciding to use a <code class="docutils literal notranslate"><span class="pre">while</span></code> loop to tackle a problem make sure to first ask yourself, does this really require a <code class="docutils literal notranslate"><span class="pre">while</span></code> loop or would I have better luck with a <code class="docutils literal notranslate"><span class="pre">for</span></code> loop? It’s important to get into the habit of choosing the right tool for the job!</p>
+</section>
+<section id="it-s-a-pokemon-battle-5-points">
+<h3>4.1 It’s a Pokemon Battle! (5 points)<a class="headerlink" href="#it-s-a-pokemon-battle-5-points" title="Link to this heading">#</a></h3>
+<p>You need a program that will help you know when you should throw a Pokeball to catch a Pokemon. Fortunately, you just started in CMSE 201 and learned about <code class="docutils literal notranslate"><span class="pre">while</span></code> loops, so you’ve got this!</p>
+<p>Write a <code class="docutils literal notranslate"><span class="pre">while</span></code> loop that starts with a maximum health number and decreases each iteration until it reaches one half of the maximum health number. You should print out the value of the health each time. When the loop condition is met, your program should print “Quick! Throw your Pokeball! The Pokemon’s health is:” and then the value of the Pokemon’s health. Make sure your loop stops before the Pokemon’s health reaches 0, otherwise it will faint and you can’t catch it!</p>
+<p>Then, answer the metacognition questions below.</p>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="c1"># put your code here</span>
+</pre></div>
+</div>
+</div>
+</div>
+<section id="id5">
+<h4>4.1.1 Metacognition (5 points)<a class="headerlink" href="#id5" title="Link to this heading">#</a></h4>
+<ol class="arabic simple">
+<li><p>Why is a while loop a better choice for this problem than a for loop? What information do you have (or not have) that makes one loop structure more suitable than the other?</p></li>
+<li><p>How did you decide on the condition to use in your while loop to make sure it stops at the right time?</p></li>
+<li><p>Consider the placement of your print() statements. Why is it important where you place the statement that prints the health during the loop versus the statement that tells you to throw the Pokeball after the loop?</p></li>
+</ol>
+<p>✎ Put your answer here!</p>
+</section>
+</section>
+<section id="the-zookeeper-s-to-do-list-10-points">
+<h3>4.2 The Zookeeper’s To Do List (10 points)<a class="headerlink" href="#the-zookeeper-s-to-do-list-10-points" title="Link to this heading">#</a></h3>
+<p><em>Problem inspired by Dr. Frisbie’s 4 year old</em></p>
+<p>Your preschooler told you that a zookeeper’s job is to “feed the animals and teach people about the animals.” You’ve decided to turn this into a programming game. You have a list of animals your preschooler likes and a list of tasks. Your goal is to create a “To-Do” list and then complete all the tasks.</p>
+<p>Write a Python program that does the following:</p>
+<ol class="arabic simple">
+<li><p>Start with the two provided lists: animals and tasks.</p>
+<ul class="simple">
+<li><p>Create a new empty list called <code class="docutils literal notranslate"><span class="pre">zookeeper_todo_list</span></code>.</p></li>
+<li><p>Fill it up with to-do items using a loop and/or .append()</p></li>
+</ul>
+</li>
+<li><p>Print out your complete <code class="docutils literal notranslate"><span class="pre">zookeeper_todo_list</span></code> to see what needs to be done.</p></li>
+<li><p>Now, write a <code class="docutils literal notranslate"><span class="pre">while</span></code> loop to “complete” the tasks. The loop should continue as long as there are items in the <code class="docutils literal notranslate"><span class="pre">zookeeper_todo_list</span></code> that have not been changed to “done”.
+Inside the <code class="docutils literal notranslate"><span class="pre">while</span></code> loop:</p>
+<ul class="simple">
+<li><p>First, access the last item in the list using [-1] indexing and store it in a variable.</p></li>
+<li><p>Print a message like: “Task completed: [task description]”, using the variable you just created.</p></li>
+<li><p>Then, replace the completed item with the string “done”</p></li>
+<li><p>Increment your counting variable by 1</p></li>
+</ul>
+</li>
+<li><p>After the loop finishes, print a final message: “All done! Here is the final checklist:” and print the modified <code class="docutils literal notranslate"><span class="pre">zookeeper_todo_list</span></code>.
+Here are the lists to start with:</p></li>
+</ol>
+<p>animals = [“Penguins”, “Otters”, “Goats”,”Arctic Fox”,”Eagles”,”Emus”,”Kangaroos”,”Bats”]
+tasks = [“Feed the”, “Teach people about the”]</p>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="c1"># put your code here</span>
+</pre></div>
+</div>
+</div>
+</div>
+<section id="id6">
+<h4>4.2.1 Metacognition (5 points)<a class="headerlink" href="#id6" title="Link to this heading">#</a></h4>
+<ol class="arabic simple">
+<li><p>In the while loop, you access an item using [-1] but then replace a different item using your counter variable. What would happen if you tried to replace the item at index [-1] in every iteration? How does using a separate counter change the way the program works?</p></li>
+<li><p>This problem uses a while loop to modify the list. Could you achieve the same final checklist using a for loop instead? What challenges or advantages would you encounter if you tried to solve it that way?</p></li>
+</ol>
+<p>✎ Put your answer here!</p>
+</section>
+</section>
+</section>
+</section>
+<section class="tex2jax_ignore mathjax_ignore" id="writing-if-statements-in-python-20-points">
+<h1>5. Writing “<code class="docutils literal notranslate"><span class="pre">if</span></code>” statements in Python (20 points)<a class="headerlink" href="#writing-if-statements-in-python-20-points" title="Link to this heading">#</a></h1>
+<p>Conditional statements that are used outside of <code class="docutils literal notranslate"><span class="pre">while</span></code> loops in Python, often referred to as “<code class="docutils literal notranslate"><span class="pre">if</span></code>” statements, are a really useful way to control the flow of your code so that certain pieces of code are only executed when specific conditions are met (hence the term “conditional”). Getting used to using <code class="docutils literal notranslate"><span class="pre">if</span></code> statements, and more complex <code class="docutils literal notranslate"><span class="pre">if</span></code>-<code class="docutils literal notranslate"><span class="pre">else</span></code> or <code class="docutils literal notranslate"><span class="pre">if</span></code>-<code class="docutils literal notranslate"><span class="pre">elif</span></code>-<code class="docutils literal notranslate"><span class="pre">else</span></code> statements, is an important part of learning to build evermore complex algorithms.</p>
+<p>One of the most challenging aspects of writing <code class="docutils literal notranslate"><span class="pre">if</span></code> statements is just thinking through the logic of what the right conditions are to get the code to do what you want. When writing <code class="docutils literal notranslate"><span class="pre">if</span></code> statements, it can be a useful exercise to try and think through the variety of outcomes that might be possible when your code runs and determine how your <code class="docutils literal notranslate"><span class="pre">if</span></code> statements would be evaluated given these possible outcomes.</p>
+<section id="creating-your-pokemon-battle-team-for-the-six-letter-tournament-10-points">
+<h2>5.1 Creating your Pokemon Battle Team for the Six-Letter Tournament (10 points)<a class="headerlink" href="#creating-your-pokemon-battle-team-for-the-six-letter-tournament-10-points" title="Link to this heading">#</a></h2>
+<p>You are a Pokemon trainer building your team for a tournament. You have a list of available Pokemon, but you only want to add Pokemon to your team if their name has 6 or more letters. You also have a rule that your team can only have a maximum of 6 Pokemon.</p>
+<p>Write a Python program that does the following:</p>
+<ol class="arabic simple">
+<li><p>Start with the provided list of available_pokemon.</p></li>
+<li><p>Create an empty list called battle_team.</p></li>
+<li><p>Use a for loop to go through each Pokemon in the available_pokemon list.</p></li>
+<li><p>Inside the loop, use an if statement to check two conditions:</p>
+<ul class="simple">
+<li><p>Is the length of the Pokemon’s name 6 or more characters?</p></li>
+<li><p>Is the number of Pokemon currently in your battle_team less than 6?</p></li>
+</ul>
+</li>
+<li><p>If both conditions are true, add the Pokemon to your battle_team list and print a message like: “Eevee has been added to your team!”</p></li>
+<li><p>After the loop finishes, print a final message: “Your team selection is complete! Here is your team:” followed by the final battle_team list.</p></li>
+</ol>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="c1"># put your code here</span>
+<span class="n">available_pokemon</span> <span class="o">=</span> <span class="p">[</span><span class="s2">&quot;Pikachu&quot;</span><span class="p">,</span> <span class="s2">&quot;Teddiursa&quot;</span><span class="p">,</span> <span class="s2">&quot;Rowlet&quot;</span><span class="p">,</span> <span class="s2">&quot;Torchic&quot;</span><span class="p">,</span> <span class="s2">&quot;Eevee&quot;</span><span class="p">,</span> <span class="s2">&quot;Piplup&quot;</span><span class="p">,</span>
+    <span class="s2">&quot;Empoleon&quot;</span><span class="p">,</span> <span class="s2">&quot;Ariados&quot;</span><span class="p">,</span> <span class="s2">&quot;Growlithe&quot;</span><span class="p">,</span> <span class="s2">&quot;Ekans&quot;</span><span class="p">,</span> <span class="s2">&quot;Arbok&quot;</span><span class="p">]</span>
+</pre></div>
+</div>
+</div>
+</div>
+<section id="id7">
+<h3>5.1.1 Metacognition (5 points)<a class="headerlink" href="#id7" title="Link to this heading">#</a></h3>
+<ol class="arabic simple">
+<li><p>Why is it important to check both the Pokemon’s name length and the current size of your battle_team inside the loop? What might happen if you only checked for the name length?</p></li>
+<li><p>This problem was solved using a for loop. Could you have solved it with a while loop instead? What would need to change in your logic to make a while loop work, and which approach feels more natural for this specific task?</p></li>
+</ol>
+<p>✎ Put your answer here!</p>
+</section>
+</section>
+<section id="drawing-a-troll-10-points">
+<h2>5.2 Drawing a Troll (10 points)<a class="headerlink" href="#drawing-a-troll-10-points" title="Link to this heading">#</a></h2>
+<p><em>This problem inspired by the Hilda Graphic novel series by Luke Pearson</em></p>
+<p><strong>Background:</strong></p>
+<p>Hilda is a blue-haired girl that lives in the wilderness outside of Trolberg with her mother. She loves to explore the wilderrness and draw the things she sees. One day, she comes across a suspiciously shaped rock that turns out to be a troll rock! Fortunately for Hilda’s desire to draw everything she sees, trolls are frozen as rocks during the day and only come alive once the sun has set. Your task is to write a program that keeps track of the oncoming sunset to make sure the troll doesn’t wake up and chase Hilda!</p>
+<p>You will need to write a program that does the following:</p>
+<ol class="arabic simple">
+<li><p>Initializes a variable to represent the sun level to a starting value (e.g. <code class="docutils literal notranslate"><span class="pre">sun_level</span> <span class="pre">=</span> <span class="pre">100</span></code> meaning full daylight)</p></li>
+<li><p>Initializes a variable to represent the a threshold of sun level that is low enough for the troll to wake up (e.g. <code class="docutils literal notranslate"><span class="pre">threshold</span> <span class="pre">=</span> <span class="pre">10</span></code>)</p></li>
+<li><p>Initializes a variable to represent a warning threshold of sun level that tells Hilda to get ready to leave (e.g. <code class="docutils literal notranslate"><span class="pre">warning</span> <span class="pre">=</span> <span class="pre">30</span></code>)</p></li>
+<li><p>Use a <code class="docutils literal notranslate"><span class="pre">while</span></code> loop to simulate the sun setting. The loop should continue as long as your sun level variable is greater than 0 (the sun hasn’t completely disappeared).</p>
+<ul class="simple">
+<li><p>Inside the while loop:</p>
+<ul>
+<li><p>Print the current sun level.</p></li>
+<li><p>Use <code class="docutils literal notranslate"><span class="pre">if/elif/else</span></code> statements to provide different messages to Hilda:</p>
+<ul>
+<li><p>If the sun level is greater than the warning threshold, print a statement that tells Hilda she is safe to still be drawing.</p></li>
+<li><p>Else if the sun level is greater than the threshold but not greater than the warning threshold, print a statement that warns Hilda it is time to clean up and get going</p></li>
+<li><p>Else if the sun level is below the threshold, print a statement that tells Hilda to run away because the troll is waking up!</p></li>
+</ul>
+</li>
+<li><p>Each time through the loop, your sun level should decrease by a small amount</p></li>
+</ul>
+</li>
+</ul>
+</li>
+<li><p>After the while loop finishes, print a final message indicating the end of the simulation.</p></li>
+<li><p>Answer the metacognition questions below.</p></li>
+</ol>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="c1"># put your code here</span>
+</pre></div>
+</div>
+</div>
+</div>
+<section id="id8">
+<h3>5.2.1 Metacognition (5 points)<a class="headerlink" href="#id8" title="Link to this heading">#</a></h3>
+<ol class="arabic simple">
+<li><p>How did you determine the order of your if, elif, and else conditions? What would happen if you changed the order of these conditions, and why is the current order important for the program’s logic?</p></li>
+<li><p>The problem uses a while loop to simulate the sun setting. Could you have achieved a similar outcome using a for loop with a range() function? What are the advantages or disadvantages of using a while loop versus a for loop for this specific simulation?</p></li>
+</ol>
+<p>✎ Put your answer here!</p>
+</section>
+</section>
+<section id="wait-before-you-submit-your-notebook-read-the-following-important-recommendations">
+<h2>Wait! Before you submit your notebook, read the following important recommendations<a class="headerlink" href="#wait-before-you-submit-your-notebook-read-the-following-important-recommendations" title="Link to this heading">#</a></h2>
+<p>When your TA opens your notebook to grade the assignment, it will be really useful if your notebook is saved in a fully executed state so that they can see the output of all your code. Additionally, it may be necessary from time to time for the TA to actually run your notebook, but when they run the notebook, it is important that you are certain that all the code will actually run for them!</p>
+<p>You should get into the following habit: <strong>before you save and submit your final notebook for your assignments, go to the “Kernel” tab at the top of the notebook and select “Restart and Run all”.</strong> This will restart your notebook and try to run the code cell-by-cell from the top to the bottom. Once it finished, review you notebook and make sure there weren’t any errors that popped up. Sometimes, when working with notebooks, we accidentally change code in one cell that break our code in another cell. If your TA stumbles across code cells that don’t work, <strong>they will likely have to give you a zero for those portions of the notebook that don’t work</strong>. Testing your notebook one last time is a good way to make sure this doesn’t happen.</p>
+<p><strong>Once you’ve tested your whole notebook again, make sure you save it one last time before you upload it to D2L.</strong></p>
+<section id="congratulations-you-re-done">
+<h3>Congratulations, you’re done!<a class="headerlink" href="#congratulations-you-re-done" title="Link to this heading">#</a></h3>
+<p>Submit this assignment by uploading it to the course Desire2Learn web page. Go to the “Homework Assignments” section, find the submission folder link for Homework #1, and upload it there.</p>
+<p>Copyright © 2026, <a class="reference external" href="https://cmse.msu.edu/">Department of Computational Mathematics, Science and Engineering</a> at Michigan State University, All rights reserved.</p>
+</section>
+</section>
+</section>
+
+    <script type="text/x-thebe-config">
+    {
+        requestKernel: true,
+        binderOptions: {
+            repo: "binder-examples/jupyter-stacks-datascience",
+            ref: "master",
+        },
+        codeMirrorConfig: {
+            theme: "abcdef",
+            mode: "python"
+        },
+        kernelOptions: {
+            name: "python3",
+            path: "./Homework\Homework_01"
+        },
+        predefinedOutput: true
+    }
+    </script>
+    <script>kernelName = 'python3'</script>
+
+                </article>
+              
+
+              
+              
+              
+              
+                <footer class="prev-next-footer d-print-none">
+                  
+<div class="prev-next-area">
+    <a class="left-prev"
+       href="../../Day-25/Day-25_In-Class_ProjectWorkDay-STUDENT.html"
+       title="previous page">
+      <i class="fa-solid fa-angle-left"></i>
+      <div class="prev-next-info">
+        <p class="prev-next-subtitle">previous</p>
+        <p class="prev-next-title">Day 25 In-class Assignment: Project Work Day</p>
+      </div>
+    </a>
+    <a class="right-next"
+       href="../Homework_02/HW_02_SS26-Spring-2026-STUDENT.html"
+       title="next page">
+      <div class="prev-next-info">
+        <p class="prev-next-subtitle">next</p>
+        <p class="prev-next-title">Homework 2: Dictionaries, If Statements, Functions, and Modules</p>
+      </div>
+      <i class="fa-solid fa-angle-right"></i>
+    </a>
+</div>
+                </footer>
+              
+            </div>
+            
+            
+              
+                <div class="bd-sidebar-secondary bd-toc"><div class="sidebar-secondary-items sidebar-secondary__inner">
+
+
+  <div class="sidebar-secondary-item">
+  <div class="page-toc tocsection onthispage">
+    <i class="fa-solid fa-list"></i> Contents
+  </div>
+  <nav class="bd-toc-nav page-toc">
+    <ul class="visible nav section-nav flex-column">
+<li class="toc-h1 nav-item toc-entry"><a class="reference internal nav-link" href="#">Homework 1: Python fundamentals and using external resources to better understand code!</a><ul class="visible nav section-nav flex-column">
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#put-your-name-here">✅ <strong>Put your name here</strong></a></li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#learning-goals">Learning Goals</a><ul class="nav section-nav flex-column">
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#content-goals">Content Goals</a></li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#practice-goals">Practice Goals</a></li>
+</ul>
+</li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#assignment-instructions">Assignment instructions</a></li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#this-assignment-is-due-at-11-59-pm-on-friday-february-6th-it-should-be-uploaded-into-the-homework-assignments-submission-folder-for-homework-1-submission-instructions-can-be-found-at-the-end-of-the-notebook"><strong>This assignment is due at 11:59 pm on Friday, February 6th.</strong> It should be uploaded into the “Homework Assignments” submission folder for Homework #1.  Submission instructions can be found at the end of the notebook.</a></li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#version-check">Version check</a></li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#grading">Grading</a></li>
+</ul>
+</li>
+<li class="toc-h1 nav-item toc-entry"><a class="reference internal nav-link" href="#academic-integrity-statement-2-points">0.1 Academic integrity statement (2 Points)</a></li>
+<li class="toc-h1 nav-item toc-entry"><a class="reference internal nav-link" href="#going-to-office-help-room-hours-8-points">0.2 Going to Office/Help Room Hours (8 Points)</a><ul class="visible nav section-nav flex-column">
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#why-are-we-doing-this">Why are we doing this?</a></li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#what-will-you-do">What will you do?</a></li>
+</ul>
+</li>
+<li class="toc-h1 nav-item toc-entry"><a class="reference internal nav-link" href="#doing-basic-math-with-python-10-points">1. Doing basic math with Python (10 points)</a><ul class="visible nav section-nav flex-column">
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#question-1-1-2-points">✅  Question 1.1 (2 points)</a></li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#question-1-2-2-points">✅  Question 1.2 (2 points)</a></li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#question-1-3-2-points">✅  Question 1.3 (2 points)</a></li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#question-1-4-2-points">✅  Question 1.4 (2 points)</a></li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#question-1-5-2-points">✅  Question 1.5 (2 points)</a></li>
+</ul>
+</li>
+<li class="toc-h1 nav-item toc-entry"><a class="reference internal nav-link" href="#storing-and-accessing-data-using-lists-20-points">2. Storing and accessing data using lists (20 points)</a><ul class="visible nav section-nav flex-column">
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#creating-a-list-from-scratch">Creating a list from scratch</a></li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#list-creation-and-manipulation-5-points">2.1 List Creation and Manipulation (5 points)</a><ul class="nav section-nav flex-column">
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#metacognition-5-points">2.1.1 Metacognition (5 points)</a></li>
+</ul>
+</li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#accessing-and-changing-values-stored-in-a-python-list">Accessing and changing values stored in a Python list</a></li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#adding-or-appending-values-to-a-python-list">Adding or “appending” values to a Python list</a></li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#list-indexing-and-appending-5-points">2.2 List Indexing and Appending (5 points)</a><ul class="nav section-nav flex-column">
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#id1">2.2.1 Metacognition (5 points)</a></li>
+</ul>
+</li>
+</ul>
+</li>
+<li class="toc-h1 nav-item toc-entry"><a class="reference internal nav-link" href="#writing-for-loops-in-python-20-points">3. Writing <code class="docutils literal notranslate"><span class="pre">for</span></code> loops in Python (20 points)</a><ul class="visible nav section-nav flex-column">
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#looping-by-integers-or-index">Looping by integers or index</a></li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#writing-a-basic-for-loop-by-index-5-points">3.1 Writing a basic <code class="docutils literal notranslate"><span class="pre">for</span></code> loop by index (5 points)</a><ul class="nav section-nav flex-column">
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#id2">3.1.1 Metacognition (5 points)</a></li>
+</ul>
+</li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#looping-by-value-e-g-through-a-list">Looping by value (e.g. through a list)</a></li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#writing-a-basic-for-loop-by-value-5-points">3.2 Writing a basic <code class="docutils literal notranslate"><span class="pre">for</span></code> loop by value (5 points)</a><ul class="nav section-nav flex-column">
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#id3">3.2.1 Metacognition (5 points)</a></li>
+</ul>
+</li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#writing-a-loop-that-accesses-list-values-using-integers-or-by-index">Writing a loop that accesses list values using integers or “by index”</a></li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#writing-a-basic-for-loop-to-access-values-in-a-list-5-points">3.3 Writing a basic <code class="docutils literal notranslate"><span class="pre">for</span></code> loop to access values in a list (5 points)</a></li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#id4">3.3.1 Metacognition (5 points)</a></li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#writing-while-loops-in-python-25-points">4. Writing <code class="docutils literal notranslate"><span class="pre">while</span></code> loops in Python (25 points)</a><ul class="nav section-nav flex-column">
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#looping-by-condition">Looping by condition</a></li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#it-s-a-pokemon-battle-5-points">4.1 It’s a Pokemon Battle! (5 points)</a><ul class="nav section-nav flex-column">
+<li class="toc-h4 nav-item toc-entry"><a class="reference internal nav-link" href="#id5">4.1.1 Metacognition (5 points)</a></li>
+</ul>
+</li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#the-zookeeper-s-to-do-list-10-points">4.2 The Zookeeper’s To Do List (10 points)</a><ul class="nav section-nav flex-column">
+<li class="toc-h4 nav-item toc-entry"><a class="reference internal nav-link" href="#id6">4.2.1 Metacognition (5 points)</a></li>
+</ul>
+</li>
+</ul>
+</li>
+</ul>
+</li>
+<li class="toc-h1 nav-item toc-entry"><a class="reference internal nav-link" href="#writing-if-statements-in-python-20-points">5. Writing “<code class="docutils literal notranslate"><span class="pre">if</span></code>” statements in Python (20 points)</a><ul class="visible nav section-nav flex-column">
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#creating-your-pokemon-battle-team-for-the-six-letter-tournament-10-points">5.1 Creating your Pokemon Battle Team for the Six-Letter Tournament (10 points)</a><ul class="nav section-nav flex-column">
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#id7">5.1.1 Metacognition (5 points)</a></li>
+</ul>
+</li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#drawing-a-troll-10-points">5.2 Drawing a Troll (10 points)</a><ul class="nav section-nav flex-column">
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#id8">5.2.1 Metacognition (5 points)</a></li>
+</ul>
+</li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#wait-before-you-submit-your-notebook-read-the-following-important-recommendations">Wait! Before you submit your notebook, read the following important recommendations</a><ul class="nav section-nav flex-column">
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#congratulations-you-re-done">Congratulations, you’re done!</a></li>
+</ul>
+</li>
+</ul>
+</li>
+</ul>
+
+  </nav></div>
+
+</div></div>
+              
+            
+          </div>
+          <footer class="bd-footer-content">
+            
+<div class="bd-footer-content__inner container">
+  
+  <div class="footer-item">
+    
+<p class="component-author">
+By the Department of Computational Mathematics, Science and Engineering at Michigan State University
+</p>
+
+  </div>
+  
+  <div class="footer-item">
+    
+
+  <p class="copyright">
+    
+      © Copyright 2026.
+      <br/>
+    
+  </p>
+
+  </div>
+  
+  <div class="footer-item">
+    
+  </div>
+  
+  <div class="footer-item">
+    
+  </div>
+  
+</div>
+          </footer>
+        
+
+      </main>
+    </div>
+  </div>
+  
+  <!-- Scripts loaded after <body> so the DOM is not blocked -->
+  <script src="../../_static/scripts/bootstrap.js?digest=3ee479438cf8b5e0d341"></script>
+<script src="../../_static/scripts/pydata-sphinx-theme.js?digest=3ee479438cf8b5e0d341"></script>
+
+  <footer class="bd-footer">
+  </footer>
+  </body>
+</html>

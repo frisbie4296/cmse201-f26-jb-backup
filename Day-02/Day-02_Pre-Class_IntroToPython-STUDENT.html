@@ -1,0 +1,796 @@
+
+<!DOCTYPE html>
+
+
+<html lang="en" data-content_root="../" >
+
+  <head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" /><meta name="viewport" content="width=device-width, initial-scale=1" />
+
+    <title>Day 2 Pre-class Assignment: Intro to Python &#8212; CMSE 201</title>
+  
+  
+  
+  <script data-cfasync="false">
+    document.documentElement.dataset.mode = localStorage.getItem("mode") || "";
+    document.documentElement.dataset.theme = localStorage.getItem("theme") || "";
+  </script>
+  
+  <!-- Loaded before other Sphinx assets -->
+  <link href="../_static/styles/theme.css?digest=3ee479438cf8b5e0d341" rel="stylesheet" />
+<link href="../_static/styles/bootstrap.css?digest=3ee479438cf8b5e0d341" rel="stylesheet" />
+<link href="../_static/styles/pydata-sphinx-theme.css?digest=3ee479438cf8b5e0d341" rel="stylesheet" />
+
+  
+  <link href="../_static/vendor/fontawesome/6.5.2/css/all.min.css?digest=3ee479438cf8b5e0d341" rel="stylesheet" />
+  <link rel="preload" as="font" type="font/woff2" crossorigin href="../_static/vendor/fontawesome/6.5.2/webfonts/fa-solid-900.woff2" />
+<link rel="preload" as="font" type="font/woff2" crossorigin href="../_static/vendor/fontawesome/6.5.2/webfonts/fa-brands-400.woff2" />
+<link rel="preload" as="font" type="font/woff2" crossorigin href="../_static/vendor/fontawesome/6.5.2/webfonts/fa-regular-400.woff2" />
+
+    <link rel="stylesheet" type="text/css" href="../_static/pygments.css?v=fa44fd50" />
+    <link rel="stylesheet" type="text/css" href="../_static/styles/sphinx-book-theme.css?v=384b581d" />
+    <link rel="stylesheet" type="text/css" href="../_static/togglebutton.css?v=13237357" />
+    <link rel="stylesheet" type="text/css" href="../_static/copybutton.css?v=76b2166b" />
+    <link rel="stylesheet" type="text/css" href="../_static/mystnb.4510f1fc1dee50b3e5859aac5469c37c29e427902b24a333a5f9fcb2f0b3ac41.css?v=be8a1c11" />
+    <link rel="stylesheet" type="text/css" href="../_static/sphinx-thebe.css?v=4fa983c6" />
+    <link rel="stylesheet" type="text/css" href="../_static/sphinx-design.min.css?v=87e54e7c" />
+  
+  <!-- Pre-loaded scripts that we'll load fully later -->
+  <link rel="preload" as="script" href="../_static/scripts/bootstrap.js?digest=3ee479438cf8b5e0d341" />
+<link rel="preload" as="script" href="../_static/scripts/pydata-sphinx-theme.js?digest=3ee479438cf8b5e0d341" />
+  <script src="../_static/vendor/fontawesome/6.5.2/js/all.min.js?digest=3ee479438cf8b5e0d341"></script>
+
+    <script src="../_static/documentation_options.js?v=9eb32ce0"></script>
+    <script src="../_static/doctools.js?v=9a2dae69"></script>
+    <script src="../_static/sphinx_highlight.js?v=dc90522c"></script>
+    <script src="../_static/clipboard.min.js?v=a7894cd8"></script>
+    <script src="../_static/copybutton.js?v=f281be69"></script>
+    <script src="../_static/scripts/sphinx-book-theme.js?v=efea14e4"></script>
+    <script>let toggleHintShow = 'Click to show';</script>
+    <script>let toggleHintHide = 'Click to hide';</script>
+    <script>let toggleOpenOnPrint = 'true';</script>
+    <script src="../_static/togglebutton.js?v=4a39c7ea"></script>
+    <script>var togglebuttonSelector = '.toggle, .admonition.dropdown';</script>
+    <script src="../_static/design-tabs.js?v=36754332"></script>
+    <script>const THEBE_JS_URL = "https://unpkg.com/thebe@0.8.2/lib/index.js"; const thebe_selector = ".thebe,.cell"; const thebe_selector_input = "pre"; const thebe_selector_output = ".output, .cell_output"</script>
+    <script async="async" src="../_static/sphinx-thebe.js?v=c100c467"></script>
+    <script>var togglebuttonSelector = '.toggle, .admonition.dropdown';</script>
+    <script>const THEBE_JS_URL = "https://unpkg.com/thebe@0.8.2/lib/index.js"; const thebe_selector = ".thebe,.cell"; const thebe_selector_input = "pre"; const thebe_selector_output = ".output, .cell_output"</script>
+    <script>DOCUMENTATION_OPTIONS.pagename = 'Day-02/Day-02_Pre-Class_IntroToPython-STUDENT';</script>
+    <link rel="icon" href="../_static/cmse_fav.ico"/>
+    <link rel="index" title="Index" href="../genindex.html" />
+    <link rel="search" title="Search" href="../search.html" />
+    <link rel="next" title="Day 2 In-class Assignment: Order of Magnitude Modeling" href="Day-02_In-Class_OrderOfMagnitudeModeling-STUDENT.html" />
+    <link rel="prev" title="Day 1 In-Class Assignment: Introductions and Sorting Algorithms" href="../Day-01/Day-01_In-Class_SortingAlgorithm-STUDENT.html" />
+  <meta name="viewport" content="width=device-width, initial-scale=1"/>
+  <meta name="docsearch:language" content="en"/>
+  </head>
+  
+  
+  <body data-bs-spy="scroll" data-bs-target=".bd-toc-nav" data-offset="180" data-bs-root-margin="0px 0px -60%" data-default-mode="">
+
+  
+  
+  <div id="pst-skip-link" class="skip-link d-print-none"><a href="#main-content">Skip to main content</a></div>
+  
+  <div id="pst-scroll-pixel-helper"></div>
+  
+  <button type="button" class="btn rounded-pill" id="pst-back-to-top">
+    <i class="fa-solid fa-arrow-up"></i>Back to top</button>
+
+  
+  <input type="checkbox"
+          class="sidebar-toggle"
+          id="pst-primary-sidebar-checkbox"/>
+  <label class="overlay overlay-primary" for="pst-primary-sidebar-checkbox"></label>
+  
+  <input type="checkbox"
+          class="sidebar-toggle"
+          id="pst-secondary-sidebar-checkbox"/>
+  <label class="overlay overlay-secondary" for="pst-secondary-sidebar-checkbox"></label>
+  
+  <div class="search-button__wrapper">
+    <div class="search-button__overlay"></div>
+    <div class="search-button__search-container">
+<form class="bd-search d-flex align-items-center"
+      action="../search.html"
+      method="get">
+  <i class="fa-solid fa-magnifying-glass"></i>
+  <input type="search"
+         class="form-control"
+         name="q"
+         id="search-input"
+         placeholder="Search..."
+         aria-label="Search..."
+         autocomplete="off"
+         autocorrect="off"
+         autocapitalize="off"
+         spellcheck="false"/>
+  <span class="search-button__kbd-shortcut"><kbd class="kbd-shortcut__modifier">Ctrl</kbd>+<kbd>K</kbd></span>
+</form></div>
+  </div>
+
+  <div class="pst-async-banner-revealer d-none">
+  <aside id="bd-header-version-warning" class="d-none d-print-none" aria-label="Version warning"></aside>
+</div>
+
+  
+    <header class="bd-header navbar navbar-expand-lg bd-navbar d-print-none">
+    </header>
+  
+
+  <div class="bd-container">
+    <div class="bd-container__inner bd-page-width">
+      
+      
+      
+      <div class="bd-sidebar-primary bd-sidebar">
+        
+
+  
+  <div class="sidebar-header-items sidebar-primary__section">
+    
+    
+    
+    
+  </div>
+  
+    <div class="sidebar-primary-items__start sidebar-primary__section">
+        <div class="sidebar-primary-item">
+
+  
+
+<a class="navbar-brand logo" href="../intro.html">
+  
+  
+  
+  
+  
+    
+    
+      
+    
+    
+    <img src="../_static/logo.png" class="logo__image only-light" alt="CMSE 201 - Home"/>
+    <script>document.write(`<img src="../_static/logo.png" class="logo__image only-dark" alt="CMSE 201 - Home"/>`);</script>
+  
+  
+</a></div>
+        <div class="sidebar-primary-item">
+
+ <script>
+ document.write(`
+   <button class="btn navbar-btn search-button-field search-button__button" title="Search" aria-label="Search" data-bs-placement="bottom" data-bs-toggle="tooltip">
+    <i class="fa-solid fa-magnifying-glass"></i>
+    <span class="search-button__default-text">Search</span>
+    <span class="search-button__kbd-shortcut"><kbd class="kbd-shortcut__modifier">Ctrl</kbd>+<kbd class="kbd-shortcut__modifier">K</kbd></span>
+   </button>
+ `);
+ </script></div>
+        <div class="sidebar-primary-item"><nav class="bd-links bd-docs-nav" aria-label="Main">
+    <div class="bd-toc-item navbar-nav active">
+        <p aria-level="2" class="caption" role="heading"><span class="caption-text">Course Materials</span></p>
+<ul class="nav bd-sidenav">
+<li class="toctree-l1 has-children"><a class="reference internal" href="../Course_Materials-201/CourseDocuments.html">Important Course information</a><details><summary><span class="toctree-toggle" role="presentation"><i class="fa-solid fa-chevron-down"></i></span></summary><ul>
+<li class="toctree-l2"><a class="reference internal" href="../Course_Materials-201/CMSE201-Syllabus.html">Syllabus</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../Course_Materials-201/CMSE201-Schedule.html">Course Schedule</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../Course_Materials-201/SoftwareSetupGuide.html">Software Setup Guide</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../Course_Materials-201/classroom_participation.html">Classroom Participation</a></li>
+</ul>
+</details></li>
+</ul>
+<p aria-level="2" class="caption" role="heading"><span class="caption-text">Day 01</span></p>
+<ul class="nav bd-sidenav">
+<li class="toctree-l1"><a class="reference internal" href="../Day-01/Day-01_In-Class_SortingAlgorithm-STUDENT.html">Day 1 In-Class Assignment: Introductions and Sorting Algorithms</a></li>
+
+
+
+</ul>
+<p aria-level="2" class="caption" role="heading"><span class="caption-text">Day 02</span></p>
+<ul class="current nav bd-sidenav">
+<li class="toctree-l1 current active"><a class="current reference internal" href="#">Day 2 Pre-class Assignment: Intro to Python</a></li>
+
+
+
+<li class="toctree-l1"><a class="reference internal" href="Day-02_In-Class_OrderOfMagnitudeModeling-STUDENT.html">Day 2 In-class Assignment: Order of Magnitude Modeling</a></li>
+
+
+</ul>
+<p aria-level="2" class="caption" role="heading"><span class="caption-text">Day 03</span></p>
+<ul class="nav bd-sidenav">
+<li class="toctree-l1"><a class="reference internal" href="../Day-03/Day-03_Pre-Class_ListsAndLoops-STUDENT.html">Day 3: Pre-Class Assignment: Lists and Loops</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../Day-03/Day-03_In-Class_ListsLoopsAndSaving-STUDENT.html">Day 3 In-class Assignment: The power of compound interest</a></li>
+</ul>
+<p aria-level="2" class="caption" role="heading"><span class="caption-text">Day 04</span></p>
+<ul class="nav bd-sidenav">
+<li class="toctree-l1"><a class="reference internal" href="../Day-04/Day_04_PreClass_DataAlgorithmicBias-STUDENT.html">Day 4 Pre-class Assignment: Introduction to Data Ethics: Data and Algorithmic Bias</a></li>
+
+
+
+
+
+</ul>
+
+    </div>
+</nav></div>
+    </div>
+  
+  
+  <div class="sidebar-primary-items__end sidebar-primary__section">
+  </div>
+  
+  <div id="rtd-footer-container"></div>
+
+
+      </div>
+      
+      <main id="main-content" class="bd-main" role="main">
+        
+        
+
+<div class="sbt-scroll-pixel-helper"></div>
+
+          <div class="bd-content">
+            <div class="bd-article-container">
+              
+              <div class="bd-header-article d-print-none">
+<div class="header-article-items header-article__inner">
+  
+    <div class="header-article-items__start">
+      
+        <div class="header-article-item"><label class="sidebar-toggle primary-toggle btn btn-sm" for="__primary" title="Toggle primary sidebar" data-bs-placement="bottom" data-bs-toggle="tooltip">
+  <span class="fa-solid fa-bars"></span>
+</label></div>
+      
+    </div>
+  
+  
+    <div class="header-article-items__end">
+      
+        <div class="header-article-item">
+
+<div class="article-header-buttons">
+
+
+
+
+
+<div class="dropdown dropdown-download-buttons">
+  <button class="btn dropdown-toggle" type="button" data-bs-toggle="dropdown" aria-expanded="false" aria-label="Download this page">
+    <i class="fas fa-download"></i>
+  </button>
+  <ul class="dropdown-menu">
+      
+      
+      
+      <li><a href="../_sources/Day-02/Day-02_Pre-Class_IntroToPython-STUDENT.ipynb" target="_blank"
+   class="btn btn-sm btn-download-source-button dropdown-item"
+   title="Download source file"
+   data-bs-placement="left" data-bs-toggle="tooltip"
+>
+  
+
+<span class="btn__icon-container">
+  <i class="fas fa-file"></i>
+  </span>
+<span class="btn__text-container">.ipynb</span>
+</a>
+</li>
+      
+      
+      
+      
+      <li>
+<button onclick="window.print()"
+  class="btn btn-sm btn-download-pdf-button dropdown-item"
+  title="Print to PDF"
+  data-bs-placement="left" data-bs-toggle="tooltip"
+>
+  
+
+<span class="btn__icon-container">
+  <i class="fas fa-file-pdf"></i>
+  </span>
+<span class="btn__text-container">.pdf</span>
+</button>
+</li>
+      
+  </ul>
+</div>
+
+
+
+
+<button onclick="toggleFullScreen()"
+  class="btn btn-sm btn-fullscreen-button"
+  title="Fullscreen mode"
+  data-bs-placement="bottom" data-bs-toggle="tooltip"
+>
+  
+
+<span class="btn__icon-container">
+  <i class="fas fa-expand"></i>
+  </span>
+
+</button>
+
+
+
+<script>
+document.write(`
+  <button class="btn btn-sm navbar-btn theme-switch-button" title="light/dark" aria-label="light/dark" data-bs-placement="bottom" data-bs-toggle="tooltip">
+    <span class="theme-switch nav-link" data-mode="light"><i class="fa-solid fa-sun fa-lg"></i></span>
+    <span class="theme-switch nav-link" data-mode="dark"><i class="fa-solid fa-moon fa-lg"></i></span>
+    <span class="theme-switch nav-link" data-mode="auto"><i class="fa-solid fa-circle-half-stroke fa-lg"></i></span>
+  </button>
+`);
+</script>
+
+
+<script>
+document.write(`
+  <button class="btn btn-sm navbar-btn search-button search-button__button" title="Search" aria-label="Search" data-bs-placement="bottom" data-bs-toggle="tooltip">
+    <i class="fa-solid fa-magnifying-glass fa-lg"></i>
+  </button>
+`);
+</script>
+<label class="sidebar-toggle secondary-toggle btn btn-sm" for="__secondary"title="Toggle secondary sidebar" data-bs-placement="bottom" data-bs-toggle="tooltip">
+    <span class="fa-solid fa-list"></span>
+</label>
+</div></div>
+      
+    </div>
+  
+</div>
+</div>
+              
+              
+
+<div id="jb-print-docs-body" class="onlyprint">
+    <h1>Day 2 Pre-class Assignment: Intro to Python</h1>
+    <!-- Table of contents -->
+    <div id="print-main-content">
+        <div id="jb-print-toc">
+            
+            <div>
+                <h2> Contents </h2>
+            </div>
+            <nav aria-label="Page">
+                <ul class="visible nav section-nav flex-column">
+<li class="toc-h1 nav-item toc-entry"><a class="reference internal nav-link" href="#">Day 2 Pre-class Assignment: Intro to Python</a><ul class="visible nav section-nav flex-column">
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#goals-for-today-s-pre-class-assignment">Goals for today’s pre-class assignment</a></li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#now-pause-and-read-this">NOW PAUSE AND READ THIS!</a></li>
+</ul>
+</li>
+<li class="toc-h1 nav-item toc-entry"><a class="reference internal nav-link" href="#part-1-what-is-a-flipped-classroom">Part 1: What is a Flipped Classroom?</a></li>
+<li class="toc-h1 nav-item toc-entry"><a class="reference internal nav-link" href="#part-2-working-on-python-fundamentals-and-thinking-about-order-of-magnitude-approximations">Part 2: Working on Python fundamentals and thinking about “Order-of-magnitude” approximations</a><ul class="visible nav section-nav flex-column">
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#jupyter-notebooks-and-markdown">2.1 Jupyter notebooks and Markdown</a></li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#python-101">2.2 Python 101</a></li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#variable-types">2.3 Variable types</a></li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#approximation-and-modeling">2.4 Approximation and modeling</a><ul class="nav section-nav flex-column">
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#having-problems">Having problems?</a></li>
+</ul>
+</li>
+</ul>
+</li>
+<li class="toc-h1 nav-item toc-entry"><a class="reference internal nav-link" href="#part-3-follow-up-questions">Part 3: Follow-up Questions</a><ul class="visible nav section-nav flex-column">
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#assignment-wrap-up">Assignment wrap-up</a></li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#congratulations-you-re-done">Congratulations, you’re done!</a></li>
+</ul>
+</li>
+</ul>
+
+            </nav>
+        </div>
+    </div>
+</div>
+
+              
+                
+<div id="searchbox"></div>
+                <article class="bd-article">
+                  
+  <section class="tex2jax_ignore mathjax_ignore" id="day-2-pre-class-assignment-intro-to-python">
+<h1>Day 2 Pre-class Assignment: Intro to Python<a class="headerlink" href="#day-2-pre-class-assignment-intro-to-python" title="Link to this heading">#</a></h1>
+<p style="text-align: right;"> &#9989; Put your name here</p><section id="goals-for-today-s-pre-class-assignment">
+<h2>Goals for today’s pre-class assignment<a class="headerlink" href="#goals-for-today-s-pre-class-assignment" title="Link to this heading">#</a></h2>
+<ul class="simple">
+<li><p>Explore the nature of flipped classrooms and why we used a flipped classroom model in CMSE 201</p></li>
+<li><p>Learn more about Jupyter notebooks and Markdown</p></li>
+<li><p>Write a Python program to make simple calculations</p></li>
+<li><p>Work with number and string data types</p></li>
+<li><p>Work with the list data type</p></li>
+<li><p>Learn how to do order-of-magnitude approximations</p></li>
+</ul>
+<p><strong>This assignment is due by 11:59 p.m. the day before class,</strong> and should be uploaded into the appropriate “Pre-Class Assignments” submission folder on D2L.  Submission instructions can be found at the end of the notebook.</p>
+</section>
+<hr class="docutils" />
+<section id="now-pause-and-read-this">
+<h2>NOW PAUSE AND READ THIS!<a class="headerlink" href="#now-pause-and-read-this" title="Link to this heading">#</a></h2>
+<p>The following cell must be executed in order for YouTube video to run within the notebook. If you ever find that your YouTube videos are throwing an error claiming that “<code class="docutils literal notranslate"><span class="pre">YouTubeVideo</span> <span class="pre">is</span> <span class="pre">not</span> <span class="pre">defined</span></code>”, it likely means that this little piece of code is either missed or was never executed.</p>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="c1"># Imports the functionality that we need to display YouTube videos in a Jupyter notebook.  </span>
+<span class="c1"># You need to run this cell before you run ANY of the YouTube videos.</span>
+<span class="kn">from</span> <span class="nn">IPython.display</span> <span class="kn">import</span> <span class="n">YouTubeVideo</span>
+</pre></div>
+</div>
+</div>
+</div>
+<p>🛑 <strong>STOP!!!</strong> Did you run the cell above (by hitting “shift+enter”) as suggested above? Your videos <em>will not work</em> if you do not execute that cell!</p>
+</section>
+</section>
+<hr class="docutils" />
+<section class="tex2jax_ignore mathjax_ignore" id="part-1-what-is-a-flipped-classroom">
+<h1>Part 1: What is a Flipped Classroom?<a class="headerlink" href="#part-1-what-is-a-flipped-classroom" title="Link to this heading">#</a></h1>
+<p>One aspect of CMSE 201 that is very important to understand, aside from Python programming, is understanding how the class is structured. CMSE 201 is being taught using what is known as the “flipped classroom” model. This may or may not be familiar to you, so watch the following video on what a flipped classroom is to help you get up to speed.</p>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="c1"># Watch this short video to get an overview of what a &quot;flipped&quot; classroom is</span>
+<span class="n">YouTubeVideo</span><span class="p">(</span><span class="s2">&quot;ojiebVw8O0g&quot;</span><span class="p">,</span><span class="n">width</span><span class="o">=</span><span class="mi">640</span><span class="p">,</span><span class="n">height</span><span class="o">=</span><span class="mi">360</span><span class="p">)</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<div class="output text_html">
+        <iframe
+            width="640"
+            height="360"
+            src="https://www.youtube.com/embed/ojiebVw8O0g"
+            frameborder="0"
+            allowfullscreen
+            
+        ></iframe>
+        </div></div>
+</div>
+<p>If the embedded YouTube video isn’t working for you, try this link: <a class="reference external" href="https://mediaspace.msu.edu/media/The+Flipped+Classroom+Model/1_v550t3pf">https://mediaspace.msu.edu/media/The+Flipped+Classroom+Model/1_v550t3pf</a></p>
+<p>In short, a flipped classroom has students spending time outside of class working through instructional materials developed by the professor known as pre-class assignments. In the context of this course, this will entail things such as watching video lectures made by the instructional staff or found online, reading articles, and working through structured coding activities. One benefit to doing this is it allows students to learn from these materials at their own pace. During a lecture, students must work at the pace of whoever is giving the lecture. But here, one can rewind videos as needed, reread passages, or move past material they feel they have already mastered.</p>
+<p>The main purpose of the work being done at home is so that the time in class can be spent working on what would have traditionally been labeled as “homework assignments” with other students in this class. We will be referring to these as “in-class assignments.” During these in-class assignments, the instructional staff are there to provide focused support where needed and help to alleviate any confusion surrounding the material. This model of instruction allows for students to get more one-on-one attention from teachers as well as additional support that comes from working with other people.</p>
+<p>Need an example of how this works? Here’s an example from our own state! Watch the following video and think about what you’re seeing being done here (And yes, we know vine isn’t a thing anymore).</p>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="c1"># Watch this video for an example of how flipped classrooms are being used right here in Michigan</span>
+<span class="n">YouTubeVideo</span><span class="p">(</span><span class="s2">&quot;G_p63W_2F_4&quot;</span><span class="p">,</span><span class="n">width</span><span class="o">=</span><span class="mi">640</span><span class="p">,</span><span class="n">height</span><span class="o">=</span><span class="mi">360</span><span class="p">)</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<div class="output text_html">
+        <iframe
+            width="640"
+            height="360"
+            src="https://www.youtube.com/embed/G_p63W_2F_4"
+            frameborder="0"
+            allowfullscreen
+            
+        ></iframe>
+        </div></div>
+</div>
+<p>If the YouTube link is not working for you, try this one: <a class="reference external" href="https://mediaspace.msu.edu/media/What+a+%27flipped%27+classroom+looks+like/1_nmznu0q5">https://mediaspace.msu.edu/media/What+a+’flipped’+classroom+looks+like/1_nmznu0q5</a></p>
+<p>The classroom is “flipped” in the sense that what would have traditionally been done in class (e.g. lecturing) is now being done at home (pre-class assignments), and the aspects that would normally be done at home (in-class assignments) is being worked on during class where the instructional staff can provide needed support.</p>
+<p>The rationale for adopting this model in the specific context of our course is so that time outside of class can be spent learning about the underlying concepts of computational modeling and data analysis, and in-class time can be spent <em><strong>doing</strong></em> computational modeling and data analysis.</p>
+<p>This approach to learning might be quite different than what you are used to, especially if most of your prior classes have used traditional lecture formats. However, although this classroom experience is different, the end result will still be the same – you <strong>will</strong> learn the content! In fact, research has shown that there are many benefits to learning in a flipped classroom and many times students learn <strong>more</strong> than they would in a more traditional classroom.</p>
+<p>Of course, in order to get the most of out of the flipped classrooms model used by CMSE 201, <strong>you need to complete the pre-class assignments and fully engage with the in-class activities</strong>. If you don’t invest the time before coming to class, you will find that the in-class activities are much more challenging.</p>
+<p>If you have any questions about the format of CMSE 201, contact your section instructor!</p>
+</section>
+<hr class="docutils" />
+<section class="tex2jax_ignore mathjax_ignore" id="part-2-working-on-python-fundamentals-and-thinking-about-order-of-magnitude-approximations">
+<h1>Part 2: Working on Python fundamentals and thinking about “Order-of-magnitude” approximations<a class="headerlink" href="#part-2-working-on-python-fundamentals-and-thinking-about-order-of-magnitude-approximations" title="Link to this heading">#</a></h1>
+<section id="jupyter-notebooks-and-markdown">
+<h2>2.1 Jupyter notebooks and Markdown<a class="headerlink" href="#jupyter-notebooks-and-markdown" title="Link to this heading">#</a></h2>
+<p>The following video will provide you with a bit more information about Jupyter notebooks, how they work, and how you can use them to write both code and text. Note that when you execute the cell below, the code will run only a portion of the video, going from ~3:30 to ~11:30. You only need to watch that portion of the video as the rest of the video is related to material from past versions of CMSE 201.</p>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="c1"># Watch this video to learn about Markdown in Jupyter notebooks</span>
+<span class="c1"># Please get familiar with this, since we will be using these all semester</span>
+<span class="n">YouTubeVideo</span><span class="p">(</span><span class="s2">&quot;zSDfRY8-3QE&quot;</span><span class="p">,</span><span class="n">width</span><span class="o">=</span><span class="mi">640</span><span class="p">,</span><span class="n">height</span><span class="o">=</span><span class="mi">360</span><span class="p">,</span><span class="n">start</span><span class="o">=</span><span class="mi">202</span><span class="p">,</span><span class="n">end</span><span class="o">=</span><span class="mi">719</span><span class="p">)</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<div class="output text_html">
+        <iframe
+            width="640"
+            height="360"
+            src="https://www.youtube.com/embed/zSDfRY8-3QE?start=202&end=719"
+            frameborder="0"
+            allowfullscreen
+            
+        ></iframe>
+        </div></div>
+</div>
+<p>If the YouTube link doesn’t work for you, try this one: <a class="reference external" href="https://mediaspace.msu.edu/media/Jupyter+%28markdown%29%2C+Python+and+Variables+%28strings%2C+floats%2C+lists%2C+arrays%29/1_nsf6zsu2?st=210&amp;amp;ed=713">https://mediaspace.msu.edu/media/Jupyter+(markdown)%2C+Python+and+Variables+(strings%2C+floats%2C+lists%2C+arrays)/1_nsf6zsu2?st=210&amp;ed=713</a></p>
+<p>✅ <strong>Question 1:</strong> Create a cell below, write your first name in italics and last name in bold.</p>
+</section>
+<section id="python-101">
+<h2>2.2 Python 101<a class="headerlink" href="#python-101" title="Link to this heading">#</a></h2>
+<p>Watch the following video to see an example of how to write a very simple piece of code in Python.</p>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="c1"># Write a simple Python program by example </span>
+<span class="n">YouTubeVideo</span><span class="p">(</span><span class="s2">&quot;cCLB1sNpNYo&quot;</span><span class="p">,</span><span class="n">width</span><span class="o">=</span><span class="mi">640</span><span class="p">,</span><span class="n">height</span><span class="o">=</span><span class="mi">360</span><span class="p">)</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<div class="output text_html">
+        <iframe
+            width="640"
+            height="360"
+            src="https://www.youtube.com/embed/cCLB1sNpNYo"
+            frameborder="0"
+            allowfullscreen
+            
+        ></iframe>
+        </div></div>
+</div>
+<p>If the YouTube video doesn’t work, try this link: <a class="reference external" href="https://mediaspace.msu.edu/media/Writing+a+simple+Python+program+by+example/1_cvqav1t0">https://mediaspace.msu.edu/media/Writing+a+simple+Python+program+by+example/1_cvqav1t0</a></p>
+<p>✅  <strong>Question 2:</strong> In the cell below, write a simple program to calculate the area of a rectangle, where you give it the length and width of the rectangle as variables, store the area in a third variable and print it out.  Add comments to each line (using <code class="docutils literal notranslate"><span class="pre">#</span></code>) to explain what you’re doing!</p>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="c1"># Write your Python program here.  Don&#39;t forget that you execute your program by holding</span>
+<span class="c1"># down &#39;shift&#39; and pressing &#39;enter&#39;</span>
+</pre></div>
+</div>
+</div>
+</div>
+</section>
+<section id="variable-types">
+<h2>2.3 Variable types<a class="headerlink" href="#variable-types" title="Link to this heading">#</a></h2>
+<p>Watch the following video to learn a bit about variable types in Python</p>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="c1"># Watch this video to learn about some fundamental Python variable types </span>
+<span class="n">YouTubeVideo</span><span class="p">(</span><span class="s2">&quot;yv7klK57Ezc&quot;</span><span class="p">,</span><span class="n">width</span><span class="o">=</span><span class="mi">640</span><span class="p">,</span><span class="n">height</span><span class="o">=</span><span class="mi">360</span><span class="p">)</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<div class="output text_html">
+        <iframe
+            width="640"
+            height="360"
+            src="https://www.youtube.com/embed/yv7klK57Ezc"
+            frameborder="0"
+            allowfullscreen
+            
+        ></iframe>
+        </div></div>
+</div>
+<p>If the YouTube video doesn’t work, try this link: <a class="reference external" href="https://mediaspace.msu.edu/media/Some+fundamental+python+variable+types/1_sqs5qxoo">https://mediaspace.msu.edu/media/Some+fundamental+python+variable+types/1_sqs5qxoo</a></p>
+<p>✅  <strong>Question 3:</strong> In the cells below,</p>
+<ul class="simple">
+<li><p>Create a variable containing a floating-point number and a second variable containing an integer.</p></li>
+<li><p>Turn both into strings, concatenate them, and store the result in a new variable.</p></li>
+<li><p>Print out the <em>last</em> value in your concatenated variable.<br />
+You can use more than one cell if you need to print out multiple quantities!</p></li>
+</ul>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="c1"># Write your program here, using multiple cells if necessary. Add extra cells using</span>
+<span class="c1"># the &#39;Cell&#39; menu at the top of this notebook.  Don&#39;t forget that you can execute </span>
+<span class="c1"># your program by holding down &#39;shift&#39; and pressing &#39;enter&#39; in each cell!</span>
+</pre></div>
+</div>
+</div>
+</div>
+</section>
+<section id="approximation-and-modeling">
+<h2>2.4 Approximation and modeling<a class="headerlink" href="#approximation-and-modeling" title="Link to this heading">#</a></h2>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="c1"># Watch this video to learn about order-of-magnitude approximation and how to build a model</span>
+<span class="c1"># We will do more model-building in class; make sure you are comfortable with the concept</span>
+<span class="n">YouTubeVideo</span><span class="p">(</span><span class="s2">&quot;rVhV_9YZZXw&quot;</span><span class="p">,</span><span class="n">width</span><span class="o">=</span><span class="mi">640</span><span class="p">,</span><span class="n">height</span><span class="o">=</span><span class="mi">360</span><span class="p">)</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<div class="output text_html">
+        <iframe
+            width="640"
+            height="360"
+            src="https://www.youtube.com/embed/rVhV_9YZZXw"
+            frameborder="0"
+            allowfullscreen
+            
+        ></iframe>
+        </div></div>
+</div>
+<p>If the YouTube video doesn’t work, try this link: <a class="reference external" href="https://mediaspace.msu.edu/media/order-of-magnitude+approximation/1_59s5sqk5">https://mediaspace.msu.edu/media/order-of-magnitude+approximation/1_59s5sqk5</a></p>
+<p>✅  <strong>Question 4</strong></p>
+<p>As a human being, you need water to survive.</p>
+<p>How many Olympic-sized swimming pools could you fill with
+the water an average human being will drink in their lifetime?</p>
+<p>Create a cell below, explain how you would solve this problem and provide
+an estimate of the answer (and range of possible solutions).</p>
+<section id="having-problems">
+<h3>Having problems?<a class="headerlink" href="#having-problems" title="Link to this heading">#</a></h3>
+<p>If you’re running into issues with any parts of this pre-class assignment, <strong>you should trying sending a message in the CMSE 201 “help” channel in Teams</strong>. Some of your fellow students or one of the instructors might be able to lend a hand!</p>
+</section>
+</section>
+</section>
+<hr class="docutils" />
+<section class="tex2jax_ignore mathjax_ignore" id="part-3-follow-up-questions">
+<h1>Part 3: Follow-up Questions<a class="headerlink" href="#part-3-follow-up-questions" title="Link to this heading">#</a></h1>
+<p>Copy and paste the following questions into the appropriate box in the assignment survey include below and answer them there. (Note: You’ll have to fill out the section number and the assignment number and go to the “NEXT” section of the survey to paste in these questions.)</p>
+<ol class="arabic simple">
+<li><p>Why does CMSE 201 use a “flipped classroom”?</p></li>
+<li><p>When might you use a “string” variable type versus an “integer” variable type in Python?</p></li>
+<li><p>What symbol do you use to include “comments” in your Python code?</p></li>
+</ol>
+<hr class="docutils" />
+<section id="assignment-wrap-up">
+<h2>Assignment wrap-up<a class="headerlink" href="#assignment-wrap-up" title="Link to this heading">#</a></h2>
+<p>Please fill out the form that appears when you run the code below.  <strong>You must completely fill this out in order to receive credit for the assignment!</strong> Press “shift + enter” to execute the cell and bring up the assignment survey.</p>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="kn">from</span> <span class="nn">IPython.display</span> <span class="kn">import</span> <span class="n">HTML</span>
+<span class="n">HTML</span><span class="p">(</span>
+<span class="sd">&quot;&quot;&quot;</span>
+<span class="sd">&lt;iframe </span>
+<span class="sd">	src=&quot;https://cmse.msu.edu/cmse201-pc-survey&quot; </span>
+<span class="sd">	width=&quot;800px&quot; </span>
+<span class="sd">	height=&quot;600px&quot; </span>
+<span class="sd">	frameborder=&quot;0&quot; </span>
+<span class="sd">	marginheight=&quot;0&quot; </span>
+<span class="sd">	marginwidth=&quot;0&quot;&gt;</span>
+<span class="sd">	Loading...</span>
+<span class="sd">&lt;/iframe&gt;</span>
+<span class="sd">&quot;&quot;&quot;</span>
+<span class="p">)</span>
+</pre></div>
+</div>
+</div>
+</div>
+</section>
+<section id="congratulations-you-re-done">
+<h2>Congratulations, you’re done!<a class="headerlink" href="#congratulations-you-re-done" title="Link to this heading">#</a></h2>
+<p>Submit this assignment by uploading it to the course Desire2Learn web page.  Go to the “Pre-class assignments” folder, find the appropriate submission folder link, and upload it there.</p>
+<p>See you in class!</p>
+<p>© Copyright 2023, Department of Computational Mathematics, Science and Engineering at Michigan State University.</p>
+</section>
+</section>
+
+    <script type="text/x-thebe-config">
+    {
+        requestKernel: true,
+        binderOptions: {
+            repo: "binder-examples/jupyter-stacks-datascience",
+            ref: "master",
+        },
+        codeMirrorConfig: {
+            theme: "abcdef",
+            mode: "python"
+        },
+        kernelOptions: {
+            name: "python3",
+            path: "./Day-02"
+        },
+        predefinedOutput: true
+    }
+    </script>
+    <script>kernelName = 'python3'</script>
+
+                </article>
+              
+
+              
+              
+              
+              
+                <footer class="prev-next-footer d-print-none">
+                  
+<div class="prev-next-area">
+    <a class="left-prev"
+       href="../Day-01/Day-01_In-Class_SortingAlgorithm-STUDENT.html"
+       title="previous page">
+      <i class="fa-solid fa-angle-left"></i>
+      <div class="prev-next-info">
+        <p class="prev-next-subtitle">previous</p>
+        <p class="prev-next-title">Day 1 In-Class Assignment: Introductions and Sorting Algorithms</p>
+      </div>
+    </a>
+    <a class="right-next"
+       href="Day-02_In-Class_OrderOfMagnitudeModeling-STUDENT.html"
+       title="next page">
+      <div class="prev-next-info">
+        <p class="prev-next-subtitle">next</p>
+        <p class="prev-next-title">Day 2 In-class Assignment: Order of Magnitude Modeling</p>
+      </div>
+      <i class="fa-solid fa-angle-right"></i>
+    </a>
+</div>
+                </footer>
+              
+            </div>
+            
+            
+              
+                <div class="bd-sidebar-secondary bd-toc"><div class="sidebar-secondary-items sidebar-secondary__inner">
+
+
+  <div class="sidebar-secondary-item">
+  <div class="page-toc tocsection onthispage">
+    <i class="fa-solid fa-list"></i> Contents
+  </div>
+  <nav class="bd-toc-nav page-toc">
+    <ul class="visible nav section-nav flex-column">
+<li class="toc-h1 nav-item toc-entry"><a class="reference internal nav-link" href="#">Day 2 Pre-class Assignment: Intro to Python</a><ul class="visible nav section-nav flex-column">
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#goals-for-today-s-pre-class-assignment">Goals for today’s pre-class assignment</a></li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#now-pause-and-read-this">NOW PAUSE AND READ THIS!</a></li>
+</ul>
+</li>
+<li class="toc-h1 nav-item toc-entry"><a class="reference internal nav-link" href="#part-1-what-is-a-flipped-classroom">Part 1: What is a Flipped Classroom?</a></li>
+<li class="toc-h1 nav-item toc-entry"><a class="reference internal nav-link" href="#part-2-working-on-python-fundamentals-and-thinking-about-order-of-magnitude-approximations">Part 2: Working on Python fundamentals and thinking about “Order-of-magnitude” approximations</a><ul class="visible nav section-nav flex-column">
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#jupyter-notebooks-and-markdown">2.1 Jupyter notebooks and Markdown</a></li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#python-101">2.2 Python 101</a></li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#variable-types">2.3 Variable types</a></li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#approximation-and-modeling">2.4 Approximation and modeling</a><ul class="nav section-nav flex-column">
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#having-problems">Having problems?</a></li>
+</ul>
+</li>
+</ul>
+</li>
+<li class="toc-h1 nav-item toc-entry"><a class="reference internal nav-link" href="#part-3-follow-up-questions">Part 3: Follow-up Questions</a><ul class="visible nav section-nav flex-column">
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#assignment-wrap-up">Assignment wrap-up</a></li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#congratulations-you-re-done">Congratulations, you’re done!</a></li>
+</ul>
+</li>
+</ul>
+
+  </nav></div>
+
+</div></div>
+              
+            
+          </div>
+          <footer class="bd-footer-content">
+            
+<div class="bd-footer-content__inner container">
+  
+  <div class="footer-item">
+    
+<p class="component-author">
+By the Department of Computational Mathematics, Science and Engineering at Michigan State University
+</p>
+
+  </div>
+  
+  <div class="footer-item">
+    
+
+  <p class="copyright">
+    
+      © Copyright 2026.
+      <br/>
+    
+  </p>
+
+  </div>
+  
+  <div class="footer-item">
+    
+  </div>
+  
+  <div class="footer-item">
+    
+  </div>
+  
+</div>
+          </footer>
+        
+
+      </main>
+    </div>
+  </div>
+  
+  <!-- Scripts loaded after <body> so the DOM is not blocked -->
+  <script src="../_static/scripts/bootstrap.js?digest=3ee479438cf8b5e0d341"></script>
+<script src="../_static/scripts/pydata-sphinx-theme.js?digest=3ee479438cf8b5e0d341"></script>
+
+  <footer class="bd-footer">
+  </footer>
+  </body>
+</html>

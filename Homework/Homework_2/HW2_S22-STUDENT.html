@@ -1,0 +1,1269 @@
+
+<!DOCTYPE html>
+
+<html>
+  <head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" /><meta name="generator" content="Docutils 0.17.1: http://docutils.sourceforge.net/" />
+
+    <title>Homework 2: If Statements, Functions, and Modules &#8212; CMSE 201</title>
+    
+  <!-- Loaded before other Sphinx assets -->
+  <link href="../../_static/styles/theme.css?digest=1999514e3f237ded88cf" rel="stylesheet">
+<link href="../../_static/styles/pydata-sphinx-theme.css?digest=1999514e3f237ded88cf" rel="stylesheet">
+
+    
+  <link rel="stylesheet"
+    href="../../_static/vendor/fontawesome/5.13.0/css/all.min.css">
+  <link rel="preload" as="font" type="font/woff2" crossorigin
+    href="../../_static/vendor/fontawesome/5.13.0/webfonts/fa-solid-900.woff2">
+  <link rel="preload" as="font" type="font/woff2" crossorigin
+    href="../../_static/vendor/fontawesome/5.13.0/webfonts/fa-brands-400.woff2">
+
+    <link rel="stylesheet" type="text/css" href="../../_static/pygments.css" />
+    <link rel="stylesheet" href="../../_static/styles/sphinx-book-theme.css?digest=5115cc725059bd94278eecd172e13a965bf8f5a9" type="text/css" />
+    <link rel="stylesheet" type="text/css" href="../../_static/togglebutton.css" />
+    <link rel="stylesheet" type="text/css" href="../../_static/copybutton.css" />
+    <link rel="stylesheet" type="text/css" href="../../_static/mystnb.css" />
+    <link rel="stylesheet" type="text/css" href="../../_static/sphinx-thebe.css" />
+    <link rel="stylesheet" type="text/css" href="../../_static/design-style.b7bb847fb20b106c3d81b95245e65545.min.css" />
+    
+  <!-- Pre-loaded scripts that we'll load fully later -->
+  <link rel="preload" as="script" href="../../_static/scripts/pydata-sphinx-theme.js?digest=1999514e3f237ded88cf">
+
+    <script data-url_root="../../" id="documentation_options" src="../../_static/documentation_options.js"></script>
+    <script src="../../_static/jquery.js"></script>
+    <script src="../../_static/underscore.js"></script>
+    <script src="../../_static/doctools.js"></script>
+    <script src="../../_static/clipboard.min.js"></script>
+    <script src="../../_static/copybutton.js"></script>
+    <script src="../../_static/scripts/sphinx-book-theme.js?digest=9c920249402e914e316237a7dbc6769907cce411"></script>
+    <script>let toggleHintShow = 'Click to show';</script>
+    <script>let toggleHintHide = 'Click to hide';</script>
+    <script>let toggleOpenOnPrint = 'true';</script>
+    <script src="../../_static/togglebutton.js"></script>
+    <script>var togglebuttonSelector = '.toggle, .admonition.dropdown, .tag_hide_input div.cell_input, .tag_hide-input div.cell_input, .tag_hide_output div.cell_output, .tag_hide-output div.cell_output, .tag_hide_cell.cell, .tag_hide-cell.cell';</script>
+    <script src="../../_static/design-tabs.js"></script>
+    <script>const THEBE_JS_URL = "https://unpkg.com/thebe@0.8.2/lib/index.js"
+const thebe_selector = ".thebe,.cell"
+const thebe_selector_input = "pre"
+const thebe_selector_output = ".output, .cell_output"
+</script>
+    <script async="async" src="../../_static/sphinx-thebe.js"></script>
+    <script>window.MathJax = {"options": {"processHtmlClass": "tex2jax_process|mathjax_process|math|output_area"}}</script>
+    <script defer="defer" src="https://cdn.jsdelivr.net/npm/mathjax@3/es5/tex-mml-chtml.js"></script>
+    <link rel="shortcut icon" href="../../_static/cmse_fav.ico"/>
+    <link rel="index" title="Index" href="../../genindex.html" />
+    <link rel="search" title="Search" href="../../search.html" />
+    <link rel="next" title="Homework 3: Pandas data analysis" href="../Homework_3/HW3_S22-STUDENT.html" />
+    <link rel="prev" title="Homework 1: Introduction to Loops, Lists, and Dictionaries" href="../Homework_1/HW_01_S22_STUDENT.html" />
+    <meta name="viewport" content="width=device-width, initial-scale=1" />
+    <meta name="docsearch:language" content="None">
+    
+
+    <!-- Google Analytics -->
+    
+  </head>
+  <body data-spy="scroll" data-target="#bd-toc-nav" data-offset="60">
+<!-- Checkboxes to toggle the left sidebar -->
+<input type="checkbox" class="sidebar-toggle" name="__navigation" id="__navigation" aria-label="Toggle navigation sidebar">
+<label class="overlay overlay-navbar" for="__navigation">
+    <div class="visually-hidden">Toggle navigation sidebar</div>
+</label>
+<!-- Checkboxes to toggle the in-page toc -->
+<input type="checkbox" class="sidebar-toggle" name="__page-toc" id="__page-toc" aria-label="Toggle in-page Table of Contents">
+<label class="overlay overlay-pagetoc" for="__page-toc">
+    <div class="visually-hidden">Toggle in-page Table of Contents</div>
+</label>
+<!-- Headers at the top -->
+<div class="announcement header-item noprint"></div>
+<div class="header header-item noprint"></div>
+
+    
+    <div class="container-fluid" id="banner"></div>
+
+    
+
+    <div class="container-xl">
+      <div class="row">
+          
+<!-- Sidebar -->
+<div class="bd-sidebar noprint" id="site-navigation">
+    <div class="bd-sidebar__content">
+        <div class="bd-sidebar__top"><div class="navbar-brand-box">
+    <a class="navbar-brand text-wrap" href="../../index.html">
+      
+        <!-- `logo` is deprecated in Sphinx 4.0, so remove this when we stop supporting 3 -->
+        
+      
+      
+      <img src="../../_static/logo.png" class="logo" alt="logo">
+      
+      
+      <h1 class="site-logo" id="site-title">CMSE 201</h1>
+      
+    </a>
+</div><form class="bd-search d-flex align-items-center" action="../../search.html" method="get">
+  <i class="icon fas fa-search"></i>
+  <input type="search" class="form-control" name="q" id="search-input" placeholder="Search this book..." aria-label="Search this book..." autocomplete="off" >
+</form><nav class="bd-links" id="bd-docs-nav" aria-label="Main">
+    <div class="bd-toc-item active">
+        
+        <ul class="nav bd-sidenav bd-sidenav__home-link">
+            <li class="toctree-l1">
+                <a class="reference internal" href="../../intro.html">
+                    Welcome to Computational Modeling and Data Analysis I!
+                </a>
+            </li>
+        </ul>
+        <p aria-level="2" class="caption" role="heading">
+ <span class="caption-text">
+  Course Materials
+ </span>
+</p>
+<ul class="nav bd-sidenav">
+ <li class="toctree-l1 has-children">
+  <a class="reference internal" href="../../Course_Materials-201/CourseDocuments.html">
+   Important Course information
+  </a>
+  <input class="toctree-checkbox" id="toctree-checkbox-1" name="toctree-checkbox-1" type="checkbox"/>
+  <label for="toctree-checkbox-1">
+   <i class="fas fa-chevron-down">
+   </i>
+  </label>
+  <ul>
+   <li class="toctree-l2">
+    <a class="reference internal" href="../../Course_Materials-201/CMSE201-Syllabus.html">
+     Syllabus
+    </a>
+   </li>
+   <li class="toctree-l2">
+    <a class="reference internal" href="../../Course_Materials-201/classroom_participation.html">
+     Classroom Participation
+    </a>
+   </li>
+  </ul>
+ </li>
+</ul>
+<p aria-level="2" class="caption" role="heading">
+ <span class="caption-text">
+  Homework
+ </span>
+</p>
+<ul class="current nav bd-sidenav">
+ <li class="toctree-l1">
+  <a class="reference internal" href="../Homework_1/HW_01_S22_STUDENT.html">
+   Homework 1: Introduction to Loops, Lists, and Dictionaries
+  </a>
+ </li>
+ <li class="toctree-l1 current active">
+  <a class="current reference internal" href="#">
+   Homework 2: If Statements, Functions, and Modules
+  </a>
+ </li>
+ <li class="toctree-l1">
+  <a class="reference external" href="https://raw.githubusercontent.com/msu-cmse-courses/cmse201-F21-data/main/Homework/S22/game.txt">
+   game.txt
+  </a>
+ </li>
+ <li class="toctree-l1">
+  <a class="reference internal" href="../Homework_3/HW3_S22-STUDENT.html">
+   Homework 3: Pandas data analysis
+  </a>
+ </li>
+ <li class="toctree-l1">
+  <a class="reference external" href="https://raw.githubusercontent.com/msu-cmse-courses/cmse201-S22-data/main/Homework/HW_3/happiness_index.csv">
+   happiness_index.csv
+  </a>
+ </li>
+ <li class="toctree-l1">
+  <a class="reference internal" href="../Homework_4/HW4_S22-STUDENT.html">
+   Homework 4: Fitting data using SciPy
+  </a>
+ </li>
+ <li class="toctree-l1">
+  <a class="reference internal" href="../Homework_5/HW-05.html">
+   Homework 5: Modeling Bacterial Growth
+  </a>
+ </li>
+ <li class="toctree-l1">
+  <a class="reference internal" href="../Homework_6/HW-06_Programming_a_robotic_sheepdog-STUDENT.html">
+   Homework 6: Programming a Robotic Sheepdog (Extra Credit)
+  </a>
+ </li>
+ <li class="toctree-l1">
+  <a class="reference internal" href="../Code_Portfolio/Code_Portfolio_Assignment.html">
+   Code Portfolio Assignment
+  </a>
+ </li>
+ <li class="toctree-l1">
+  <a class="reference internal" href="../Code_Portfolio/Code_Portfolio_Example.html">
+   Code Portfolio Example
+  </a>
+ </li>
+</ul>
+<p aria-level="2" class="caption" role="heading">
+ <span class="caption-text">
+  Bootcamps
+ </span>
+</p>
+<ul class="nav bd-sidenav">
+ <li class="toctree-l1">
+  <a class="reference internal" href="../../Bootcamp_Notebooks/Bootcamp1-Python_Fundamentals_STUDENT.html">
+   Bootcamp 1: Python Fundamentals
+  </a>
+ </li>
+ <li class="toctree-l1">
+  <a class="reference internal" href="../../Bootcamp_Notebooks/Bootcamp2-InitialConceptsReview.html">
+   Bootcamp 2: Initial Concepts Review Cheatsheet
+  </a>
+ </li>
+ <li class="toctree-l1">
+  <a class="reference internal" href="../../Bootcamp_Notebooks/Bootcamp3-Debugging_STUDENT.html">
+   Bootcamp 3: Debugging
+  </a>
+ </li>
+ <li class="toctree-l1">
+  <a class="reference internal" href="../../Bootcamp_Notebooks/Bootcamp4-IfStatements_STUDENT.html">
+   Bootcamp 4: If Statements
+  </a>
+ </li>
+ <li class="toctree-l1">
+  <a class="reference internal" href="../../Bootcamp_Notebooks/Bootcamp5-Functions_STUDENT.html">
+   Bootcamp 5: Functions
+  </a>
+ </li>
+ <li class="toctree-l1">
+  <a class="reference internal" href="../../Bootcamp_Notebooks/Bootcamp6-Matplotlib_STUDENT.html">
+   Bootcamp 6: Matplotlib
+  </a>
+ </li>
+ <li class="toctree-l1">
+  <a class="reference internal" href="../../Bootcamp_Notebooks/Bootcamp7-Arrays_STUDENT.html">
+   Bootcamp 7: Practice with Indexing and Masking 2D Arrays
+  </a>
+ </li>
+ <li class="toctree-l1">
+  <a class="reference internal" href="../../Bootcamp_Notebooks/Bootcamp8_Pandas_STUDENT.html">
+   Bootcamp 8: Practice with Pandas
+  </a>
+ </li>
+ <li class="toctree-l1">
+  <a class="reference external" href="https://raw.githubusercontent.com/msu-cmse-courses/cmse201-F21-data/main/Homework/americas_gpin_2014_16.csv?raw=true">
+   americas_gpin_2014_16.csv
+  </a>
+ </li>
+ <li class="toctree-l1">
+  <a class="reference internal" href="../../Bootcamp_Notebooks/Bootcamp9-ScipyCurveFit_STUDENT.html">
+   Bootcamp 9:  Scipy curve_fit
+  </a>
+ </li>
+ <li class="toctree-l1">
+  <a class="reference internal" href="../../Bootcamp_Notebooks/Bootcamp10-CompartmentalModels_STUDENT.html">
+   Bootcamp 10: Compartmental Models
+  </a>
+ </li>
+ <li class="toctree-l1">
+  <a class="reference internal" href="../../Bootcamp_Notebooks/Bootcamp11_Solve_IVP_STUDENT.html">
+   Bootcamp 11: Practice with
+   <code class="docutils literal notranslate">
+    <span class="pre">
+     solve_ivp
+    </span>
+   </code>
+  </a>
+ </li>
+</ul>
+<p aria-level="2" class="caption" role="heading">
+ <span class="caption-text">
+  Semester Projects
+ </span>
+</p>
+<ul class="nav bd-sidenav">
+ <li class="toctree-l1">
+  <a class="reference internal" href="../../Project_Materials/CMSE201_SemesterProjectDetails.html">
+   Semester Project Details
+  </a>
+ </li>
+ <li class="toctree-l1">
+  <a class="reference internal" href="../../Project_Materials/Project_Work_Week_Summary.html">
+   Project Work Week Summary
+  </a>
+ </li>
+ <li class="toctree-l1">
+  <a class="reference internal" href="../../Project_Materials/Project_Rough_Draft_Guidelines_Feedback.html">
+   Rough Draft Guidelines/Feedback
+  </a>
+ </li>
+ <li class="toctree-l1">
+  <a class="reference internal" href="../../Project_Materials/Lightning_Presentation_Details.html">
+   Lightning Presentation Details
+  </a>
+ </li>
+ <li class="toctree-l1">
+  <a class="reference internal" href="../../Project_Materials/Second_Project_Checkpoint.html">
+   Second Project Checkpoint
+  </a>
+ </li>
+ <li class="toctree-l1">
+  <a class="reference internal" href="../../Project_Materials/First_Project_Checkpoint.html">
+   First Project Checkpoint
+  </a>
+ </li>
+ <li class="toctree-l1">
+  <a class="reference external" href="https://github.com/msu-cmse-courses/cmse201-S22-data/raw/main/Projects/Example_Football_Dataset.csv">
+   Example_Football_Dataset.csv
+  </a>
+ </li>
+ <li class="toctree-l1">
+  <a class="reference internal" href="../../Project_Materials/CMSE201_FinalProjectTemplate.html">
+   CMSE 201 Final Project Template
+  </a>
+ </li>
+ <li class="toctree-l1">
+  <a class="reference external" href="https://raw.githubusercontent.com/msu-cmse-courses/cmse201-S22-data/main/Projects/CMSE201_ExampleProject_A.pdf">
+   CMSE201_ExampleProject_A.pdf
+  </a>
+ </li>
+ <li class="toctree-l1">
+  <a class="reference external" href="https://raw.githubusercontent.com/msu-cmse-courses/cmse201-S22-data/main/Projects/CMSE201_ExampleProject_B.pdf">
+   CMSE201_ExampleProject_B.pdf
+  </a>
+ </li>
+ <li class="toctree-l1">
+  <a class="reference external" href="https://raw.githubusercontent.com/msu-cmse-courses/cmse201-S22-data/main/Projects/CMSE201_ExampleProject_C.pdf">
+   CMSE201_ExampleProject_C.pdf
+  </a>
+ </li>
+ <li class="toctree-l1">
+  <a class="reference external" href="https://raw.githubusercontent.com/msu-cmse-courses/cmse201-S22-data/main/Projects/CMSE201_ExampleProject_D.pdf">
+   CMSE201_ExampleProject_D.pdf
+  </a>
+ </li>
+ <li class="toctree-l1">
+  <a class="reference external" href="https://raw.githubusercontent.com/msu-cmse-courses/cmse201-S22-data/main/Projects/CMSE201_ExampleProject_E.pdf">
+   CMSE201_ExampleProject_E.pdf
+  </a>
+ </li>
+</ul>
+
+    </div>
+</nav></div>
+        <div class="bd-sidebar__bottom">
+             <!-- To handle the deprecated key -->
+            
+            <div class="navbar_extra_footer">
+            Powered by <a href="https://jupyterbook.org">Jupyter Book</a>
+            </div>
+            
+        </div>
+    </div>
+    <div id="rtd-footer-container"></div>
+</div>
+
+
+          
+
+
+          
+<!-- A tiny helper pixel to detect if we've scrolled -->
+<div class="sbt-scroll-pixel-helper"></div>
+<!-- Main content -->
+<div class="col py-0 content-container">
+    
+    <div class="header-article row sticky-top noprint">
+        
+
+
+
+<div class="col py-1 d-flex header-article-main">
+    <div class="header-article__left">
+        
+        <label for="__navigation"
+  class="headerbtn"
+  data-toggle="tooltip"
+data-placement="right"
+title="Toggle navigation"
+>
+  
+
+<span class="headerbtn__icon-container">
+  <i class="fas fa-bars"></i>
+  </span>
+
+</label>
+
+        
+    </div>
+    <div class="header-article__right">
+<div class="menu-dropdown menu-dropdown-launch-buttons">
+  <button class="headerbtn menu-dropdown__trigger"
+      aria-label="Launch interactive content">
+      <i class="fas fa-rocket"></i>
+  </button>
+  <div class="menu-dropdown__content">
+    <ul>
+      <li>
+        <a href="https://mybinder.org/v2/gh/msu-cmse-courses/cmse201-S22-jb/main?urlpath=tree/Homework/Homework_2/HW2_S22-STUDENT.ipynb"
+   class="headerbtn"
+   data-toggle="tooltip"
+data-placement="left"
+title="Launch on Binder"
+>
+  
+
+<span class="headerbtn__icon-container">
+  
+    <img src="../../_static/images/logo_binder.svg">
+  </span>
+<span class="headerbtn__text-container">Binder</span>
+</a>
+
+      </li>
+      
+    </ul>
+  </div>
+</div>
+
+<button onclick="toggleFullScreen()"
+  class="headerbtn"
+  data-toggle="tooltip"
+data-placement="bottom"
+title="Fullscreen mode"
+>
+  
+
+<span class="headerbtn__icon-container">
+  <i class="fas fa-expand"></i>
+  </span>
+
+</button>
+
+<div class="menu-dropdown menu-dropdown-repository-buttons">
+  <button class="headerbtn menu-dropdown__trigger"
+      aria-label="Source repositories">
+      <i class="fab fa-github"></i>
+  </button>
+  <div class="menu-dropdown__content">
+    <ul>
+      <li>
+        <a href="https://github.com/msu-cmse-courses/cmse201-S22-jb"
+   class="headerbtn"
+   data-toggle="tooltip"
+data-placement="left"
+title="Source repository"
+>
+  
+
+<span class="headerbtn__icon-container">
+  <i class="fab fa-github"></i>
+  </span>
+<span class="headerbtn__text-container">repository</span>
+</a>
+
+      </li>
+      
+      <li>
+        <a href="https://github.com/msu-cmse-courses/cmse201-S22-jb/issues/new?title=Issue%20on%20page%20%2FHomework/Homework_2/HW2_S22-STUDENT.html&body=Your%20issue%20content%20here."
+   class="headerbtn"
+   data-toggle="tooltip"
+data-placement="left"
+title="Open an issue"
+>
+  
+
+<span class="headerbtn__icon-container">
+  <i class="fas fa-lightbulb"></i>
+  </span>
+<span class="headerbtn__text-container">open issue</span>
+</a>
+
+      </li>
+      
+    </ul>
+  </div>
+</div>
+
+<div class="menu-dropdown menu-dropdown-download-buttons">
+  <button class="headerbtn menu-dropdown__trigger"
+      aria-label="Download this page">
+      <i class="fas fa-download"></i>
+  </button>
+  <div class="menu-dropdown__content">
+    <ul>
+      <li>
+        <a href="../../_sources/Homework/Homework_2/HW2_S22-STUDENT.ipynb"
+   class="headerbtn"
+   data-toggle="tooltip"
+data-placement="left"
+title="Download source file"
+>
+  
+
+<span class="headerbtn__icon-container">
+  <i class="fas fa-file"></i>
+  </span>
+<span class="headerbtn__text-container">.ipynb</span>
+</a>
+
+      </li>
+      
+      <li>
+        
+<button onclick="printPdf(this)"
+  class="headerbtn"
+  data-toggle="tooltip"
+data-placement="left"
+title="Print to PDF"
+>
+  
+
+<span class="headerbtn__icon-container">
+  <i class="fas fa-file-pdf"></i>
+  </span>
+<span class="headerbtn__text-container">.pdf</span>
+</button>
+
+      </li>
+      
+    </ul>
+  </div>
+</div>
+<label for="__page-toc"
+  class="headerbtn headerbtn-page-toc"
+  
+>
+  
+
+<span class="headerbtn__icon-container">
+  <i class="fas fa-list"></i>
+  </span>
+
+</label>
+
+    </div>
+</div>
+
+<!-- Table of contents -->
+<div class="col-md-3 bd-toc show noprint">
+    <div class="tocsection onthispage pt-5 pb-3">
+        <i class="fas fa-list"></i> Contents
+    </div>
+    <nav id="bd-toc-nav" aria-label="Page">
+        <ul class="visible nav section-nav flex-column">
+ <li class="toc-h1 nav-item toc-entry">
+  <a class="reference internal nav-link" href="#">
+   Homework 2: If Statements, Functions, and Modules
+  </a>
+  <ul class="visible nav section-nav flex-column">
+   <li class="toc-h2 nav-item toc-entry">
+    <a class="reference internal nav-link" href="#p-style-text-align-right-put-your-name-here-p">
+     <p style="text-align: right;">
+      ✅
+      <strong>
+       Put your name here
+      </strong>
+     </p>
+    </a>
+   </li>
+  </ul>
+ </li>
+ <li class="toc-h1 nav-item toc-entry">
+  <a class="reference internal nav-link" href="#cmse-201-spring-2022">
+   <strong>
+    CMSE  201 – Spring 2022
+   </strong>
+  </a>
+  <ul class="visible nav section-nav flex-column">
+   <li class="toc-h2 nav-item toc-entry">
+    <a class="reference internal nav-link" href="#learning-goals">
+     Learning Goals
+    </a>
+    <ul class="nav section-nav flex-column">
+     <li class="toc-h3 nav-item toc-entry">
+      <a class="reference internal nav-link" href="#content-goals">
+       Content Goals
+      </a>
+     </li>
+     <li class="toc-h3 nav-item toc-entry">
+      <a class="reference internal nav-link" href="#practice-goals">
+       Practice Goals
+      </a>
+     </li>
+    </ul>
+   </li>
+   <li class="toc-h2 nav-item toc-entry">
+    <a class="reference internal nav-link" href="#academic-integrity-statement-1-point">
+     Academic integrity statement (1 Point)
+    </a>
+   </li>
+   <li class="toc-h2 nav-item toc-entry">
+    <a class="reference internal nav-link" href="#let-it-snow">
+     1. Let it Snow!
+    </a>
+   </li>
+   <li class="toc-h2 nav-item toc-entry">
+    <a class="reference internal nav-link" href="#table-1-relative-humidity-and-snowfall-temperature">
+     <strong>
+      Table 1: Relative Humidity and Snowfall Temperature
+     </strong>
+    </a>
+    <ul class="nav section-nav flex-column">
+     <li class="toc-h3 nav-item toc-entry">
+      <a class="reference internal nav-link" href="#example-output">
+       Example Output:
+      </a>
+     </li>
+     <li class="toc-h3 nav-item toc-entry">
+      <a class="reference internal nav-link" href="#task-3-points">
+       1.1 Task (3 points)
+      </a>
+     </li>
+     <li class="toc-h3 nav-item toc-entry">
+      <a class="reference internal nav-link" href="#task-7-points">
+       1.2 Task (7 points)
+      </a>
+     </li>
+     <li class="toc-h3 nav-item toc-entry">
+      <a class="reference internal nav-link" href="#task-2-points">
+       1.3 Task (2 points)
+      </a>
+     </li>
+    </ul>
+   </li>
+   <li class="toc-h2 nav-item toc-entry">
+    <a class="reference internal nav-link" href="#cmse-201-homework-grade-calculator">
+     2. CMSE 201 Homework Grade Calculator
+    </a>
+    <ul class="nav section-nav flex-column">
+     <li class="toc-h3 nav-item toc-entry">
+      <a class="reference internal nav-link" href="#homework-1-rubric">
+       Homework 1 Rubric
+      </a>
+     </li>
+     <li class="toc-h3 nav-item toc-entry">
+      <a class="reference internal nav-link" href="#id1">
+       2.1 Task (3 points)
+      </a>
+     </li>
+     <li class="toc-h3 nav-item toc-entry">
+      <a class="reference internal nav-link" href="#id2">
+       2.2 Task (3 points)
+      </a>
+     </li>
+     <li class="toc-h3 nav-item toc-entry">
+      <a class="reference internal nav-link" href="#id3">
+       2.3 Task (3 points)
+      </a>
+     </li>
+     <li class="toc-h3 nav-item toc-entry">
+      <a class="reference internal nav-link" href="#id4">
+       2.4 Task (3 points)
+      </a>
+     </li>
+    </ul>
+   </li>
+   <li class="toc-h2 nav-item toc-entry">
+    <a class="reference internal nav-link" href="#basketball-scoring">
+     3. Basketball Scoring
+    </a>
+    <ul class="nav section-nav flex-column">
+     <li class="toc-h3 nav-item toc-entry">
+      <a class="reference internal nav-link" href="#id5">
+       3.1 Task (2 points)
+      </a>
+     </li>
+     <li class="toc-h3 nav-item toc-entry">
+      <a class="reference internal nav-link" href="#id6">
+       3.2 Task (2 points)
+      </a>
+     </li>
+     <li class="toc-h3 nav-item toc-entry">
+      <a class="reference internal nav-link" href="#task-6-points">
+       3.3 Task (6 points)
+      </a>
+     </li>
+     <li class="toc-h3 nav-item toc-entry">
+      <a class="reference internal nav-link" href="#id7">
+       3.4 Task (2 points)
+      </a>
+     </li>
+    </ul>
+   </li>
+   <li class="toc-h2 nav-item toc-entry">
+    <a class="reference internal nav-link" href="#question-4-drawing-with-matplotlib">
+     Question 4: Drawing with matplotlib
+    </a>
+    <ul class="nav section-nav flex-column">
+     <li class="toc-h3 nav-item toc-entry">
+      <a class="reference internal nav-link" href="#writing-the-function-4-points">
+       4.1 Writing the Function (4 points)
+      </a>
+     </li>
+     <li class="toc-h3 nav-item toc-entry">
+      <a class="reference internal nav-link" href="#testing-your-function-2-points">
+       4.2 Testing your function (2 points)
+      </a>
+     </li>
+     <li class="toc-h3 nav-item toc-entry">
+      <a class="reference internal nav-link" href="#drawing-the-flower-7-points">
+       4.3 Drawing the Flower (7 points)
+      </a>
+     </li>
+     <li class="toc-h3 nav-item toc-entry">
+      <a class="reference internal nav-link" href="#congratulations-you-re-done">
+       Congratulations, you’re done!
+      </a>
+     </li>
+    </ul>
+   </li>
+  </ul>
+ </li>
+</ul>
+
+    </nav>
+</div>
+    </div>
+    <div class="article row">
+        <div class="col pl-md-3 pl-lg-5 content-container">
+            <!-- Table of contents that is only displayed when printing the page -->
+            <div id="jb-print-docs-body" class="onlyprint">
+                <h1>Homework 2: If Statements, Functions, and Modules</h1>
+                <!-- Table of contents -->
+                <div id="print-main-content">
+                    <div id="jb-print-toc">
+                        
+                        <div>
+                            <h2> Contents </h2>
+                        </div>
+                        <nav aria-label="Page">
+                            <ul class="visible nav section-nav flex-column">
+ <li class="toc-h1 nav-item toc-entry">
+  <a class="reference internal nav-link" href="#">
+   Homework 2: If Statements, Functions, and Modules
+  </a>
+  <ul class="visible nav section-nav flex-column">
+   <li class="toc-h2 nav-item toc-entry">
+    <a class="reference internal nav-link" href="#p-style-text-align-right-put-your-name-here-p">
+     <p style="text-align: right;">
+      ✅
+      <strong>
+       Put your name here
+      </strong>
+     </p>
+    </a>
+   </li>
+  </ul>
+ </li>
+ <li class="toc-h1 nav-item toc-entry">
+  <a class="reference internal nav-link" href="#cmse-201-spring-2022">
+   <strong>
+    CMSE  201 – Spring 2022
+   </strong>
+  </a>
+  <ul class="visible nav section-nav flex-column">
+   <li class="toc-h2 nav-item toc-entry">
+    <a class="reference internal nav-link" href="#learning-goals">
+     Learning Goals
+    </a>
+    <ul class="nav section-nav flex-column">
+     <li class="toc-h3 nav-item toc-entry">
+      <a class="reference internal nav-link" href="#content-goals">
+       Content Goals
+      </a>
+     </li>
+     <li class="toc-h3 nav-item toc-entry">
+      <a class="reference internal nav-link" href="#practice-goals">
+       Practice Goals
+      </a>
+     </li>
+    </ul>
+   </li>
+   <li class="toc-h2 nav-item toc-entry">
+    <a class="reference internal nav-link" href="#academic-integrity-statement-1-point">
+     Academic integrity statement (1 Point)
+    </a>
+   </li>
+   <li class="toc-h2 nav-item toc-entry">
+    <a class="reference internal nav-link" href="#let-it-snow">
+     1. Let it Snow!
+    </a>
+   </li>
+   <li class="toc-h2 nav-item toc-entry">
+    <a class="reference internal nav-link" href="#table-1-relative-humidity-and-snowfall-temperature">
+     <strong>
+      Table 1: Relative Humidity and Snowfall Temperature
+     </strong>
+    </a>
+    <ul class="nav section-nav flex-column">
+     <li class="toc-h3 nav-item toc-entry">
+      <a class="reference internal nav-link" href="#example-output">
+       Example Output:
+      </a>
+     </li>
+     <li class="toc-h3 nav-item toc-entry">
+      <a class="reference internal nav-link" href="#task-3-points">
+       1.1 Task (3 points)
+      </a>
+     </li>
+     <li class="toc-h3 nav-item toc-entry">
+      <a class="reference internal nav-link" href="#task-7-points">
+       1.2 Task (7 points)
+      </a>
+     </li>
+     <li class="toc-h3 nav-item toc-entry">
+      <a class="reference internal nav-link" href="#task-2-points">
+       1.3 Task (2 points)
+      </a>
+     </li>
+    </ul>
+   </li>
+   <li class="toc-h2 nav-item toc-entry">
+    <a class="reference internal nav-link" href="#cmse-201-homework-grade-calculator">
+     2. CMSE 201 Homework Grade Calculator
+    </a>
+    <ul class="nav section-nav flex-column">
+     <li class="toc-h3 nav-item toc-entry">
+      <a class="reference internal nav-link" href="#homework-1-rubric">
+       Homework 1 Rubric
+      </a>
+     </li>
+     <li class="toc-h3 nav-item toc-entry">
+      <a class="reference internal nav-link" href="#id1">
+       2.1 Task (3 points)
+      </a>
+     </li>
+     <li class="toc-h3 nav-item toc-entry">
+      <a class="reference internal nav-link" href="#id2">
+       2.2 Task (3 points)
+      </a>
+     </li>
+     <li class="toc-h3 nav-item toc-entry">
+      <a class="reference internal nav-link" href="#id3">
+       2.3 Task (3 points)
+      </a>
+     </li>
+     <li class="toc-h3 nav-item toc-entry">
+      <a class="reference internal nav-link" href="#id4">
+       2.4 Task (3 points)
+      </a>
+     </li>
+    </ul>
+   </li>
+   <li class="toc-h2 nav-item toc-entry">
+    <a class="reference internal nav-link" href="#basketball-scoring">
+     3. Basketball Scoring
+    </a>
+    <ul class="nav section-nav flex-column">
+     <li class="toc-h3 nav-item toc-entry">
+      <a class="reference internal nav-link" href="#id5">
+       3.1 Task (2 points)
+      </a>
+     </li>
+     <li class="toc-h3 nav-item toc-entry">
+      <a class="reference internal nav-link" href="#id6">
+       3.2 Task (2 points)
+      </a>
+     </li>
+     <li class="toc-h3 nav-item toc-entry">
+      <a class="reference internal nav-link" href="#task-6-points">
+       3.3 Task (6 points)
+      </a>
+     </li>
+     <li class="toc-h3 nav-item toc-entry">
+      <a class="reference internal nav-link" href="#id7">
+       3.4 Task (2 points)
+      </a>
+     </li>
+    </ul>
+   </li>
+   <li class="toc-h2 nav-item toc-entry">
+    <a class="reference internal nav-link" href="#question-4-drawing-with-matplotlib">
+     Question 4: Drawing with matplotlib
+    </a>
+    <ul class="nav section-nav flex-column">
+     <li class="toc-h3 nav-item toc-entry">
+      <a class="reference internal nav-link" href="#writing-the-function-4-points">
+       4.1 Writing the Function (4 points)
+      </a>
+     </li>
+     <li class="toc-h3 nav-item toc-entry">
+      <a class="reference internal nav-link" href="#testing-your-function-2-points">
+       4.2 Testing your function (2 points)
+      </a>
+     </li>
+     <li class="toc-h3 nav-item toc-entry">
+      <a class="reference internal nav-link" href="#drawing-the-flower-7-points">
+       4.3 Drawing the Flower (7 points)
+      </a>
+     </li>
+     <li class="toc-h3 nav-item toc-entry">
+      <a class="reference internal nav-link" href="#congratulations-you-re-done">
+       Congratulations, you’re done!
+      </a>
+     </li>
+    </ul>
+   </li>
+  </ul>
+ </li>
+</ul>
+
+                        </nav>
+                    </div>
+                </div>
+            </div>
+            <main id="main-content" role="main">
+                
+              <div>
+                
+  <section class="tex2jax_ignore mathjax_ignore" id="homework-2-if-statements-functions-and-modules">
+<h1>Homework 2: If Statements, Functions, and Modules<a class="headerlink" href="#homework-2-if-statements-functions-and-modules" title="Permalink to this headline">#</a></h1>
+<section id="p-style-text-align-right-put-your-name-here-p">
+<h2><p style="text-align: right;"> ✅ <strong>Put your name here</strong> </p><a class="headerlink" href="#p-style-text-align-right-put-your-name-here-p" title="Permalink to this headline">#</a></h2>
+</section>
+</section>
+<section class="tex2jax_ignore mathjax_ignore" id="cmse-201-spring-2022">
+<h1><strong>CMSE  201 – Spring 2022</strong><a class="headerlink" href="#cmse-201-spring-2022" title="Permalink to this headline">#</a></h1>
+<p><img src="https://cmse.msu.edu/sites/_cmse/assets/Image/image002.jpg"
+     alt="CMSE Logo"
+     align="right" 
+     height="100" 
+     width="100" /></p>
+<section id="learning-goals">
+<h2>Learning Goals<a class="headerlink" href="#learning-goals" title="Permalink to this headline">#</a></h2>
+<section id="content-goals">
+<h3>Content Goals<a class="headerlink" href="#content-goals" title="Permalink to this headline">#</a></h3>
+<ul class="simple">
+<li><p><strong>Use if/elif/else statements to implement a logical flow</strong></p></li>
+<li><p><strong>Write and execute functions</strong></p></li>
+<li><p><strong>Use the python math module</strong></p></li>
+<li><p><strong>Display data on plots using matplotlib</strong></p></li>
+</ul>
+</section>
+<section id="practice-goals">
+<h3>Practice Goals<a class="headerlink" href="#practice-goals" title="Permalink to this headline">#</a></h3>
+<ul class="simple">
+<li><p><strong>Commenting code</strong></p></li>
+<li><p><strong>Using functions to build reusable/transferable code</strong></p></li>
+<li><p><strong>Use visualization best practices to make informative plots</strong></p></li>
+</ul>
+</section>
+</section>
+<hr class="docutils" />
+<section id="academic-integrity-statement-1-point">
+<h2>Academic integrity statement (1 Point)<a class="headerlink" href="#academic-integrity-statement-1-point" title="Permalink to this headline">#</a></h2>
+<p>In the markdown cell below, paste your personal academic integrity statement. By including this statement, you are confirming that you are submitting this as your own work and not that of someone else.</p>
+<p><font size=6 color="#009600">✎</font> <em>Put your personal academic integrity statement here.</em></p>
+</section>
+<section id="let-it-snow">
+<h2>1. Let it Snow!<a class="headerlink" href="#let-it-snow" title="Permalink to this headline">#</a></h2>
+<p>While it is often assumed that a temperature of 0 ° C (32 ° F) marks the divide between rain and snow, snowfall is actually dependent on relative humidity as well as temperature <a class="reference external" href="https://www.nature.com/articles/s41467-018-03629-7">Jennings 2018</a>. High relative humidity (lots of moisture in the air) means that snowfall requires lower air temperatures than in places with low relative humidity. The table below shows the temperature (in Celsius) below which snow will fall for the corresponding range of relative humidity values.</p>
+<p><em>Note: Values are taken from Jennings 2018 and have been rounded for ease of interpretation.</em></p>
+</section>
+<section id="table-1-relative-humidity-and-snowfall-temperature">
+<h2><strong>Table 1: Relative Humidity and Snowfall Temperature</strong><a class="headerlink" href="#table-1-relative-humidity-and-snowfall-temperature" title="Permalink to this headline">#</a></h2>
+<table class="colwidths-auto table">
+<thead>
+<tr class="row-odd"><th class="text-align:center head"><p>Relative Humidity Range (%)</p></th>
+<th class="text-align:center head"><p>Temperature (° C)</p></th>
+</tr>
+</thead>
+<tbody>
+<tr class="row-even"><td class="text-align:center"><p>90–100</p></td>
+<td class="text-align:center"><p>1.0</p></td>
+</tr>
+<tr class="row-odd"><td class="text-align:center"><p>80–89</p></td>
+<td class="text-align:center"><p>2.0</p></td>
+</tr>
+<tr class="row-even"><td class="text-align:center"><p>70–79</p></td>
+<td class="text-align:center"><p>2.5</p></td>
+</tr>
+<tr class="row-odd"><td class="text-align:center"><p>60–69</p></td>
+<td class="text-align:center"><p>3.1</p></td>
+</tr>
+<tr class="row-even"><td class="text-align:center"><p>50–59</p></td>
+<td class="text-align:center"><p>4.0</p></td>
+</tr>
+<tr class="row-odd"><td class="text-align:center"><p>40–49</p></td>
+<td class="text-align:center"><p>5.0</p></td>
+</tr>
+</tbody>
+</table>
+<hr class="docutils" />
+<p>Your task is to take the list of temperature values and determine if it will snow or rain for each relative humidity range using loops and if/else statements. Your code should create a list that contains the “Snow” or “Rain” result for all relative humidity ranges for each temperature data point. See the example output below for one temperature for more guidance.</p>
+<hr class="docutils" />
+<section id="example-output">
+<h3>Example Output:<a class="headerlink" href="#example-output" title="Permalink to this headline">#</a></h3>
+<p>For a temperature of 2.0 °C, the resulting list should be:</p>
+<p><code class="docutils literal notranslate"><span class="pre">['Snow',</span> <span class="pre">'Snow',</span> <span class="pre">'Snow',</span> <span class="pre">'Snow',</span> <span class="pre">'Snow',</span> <span class="pre">'Rain']</span></code></p>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">temperature</span> <span class="o">=</span> <span class="p">[</span><span class="mf">0.0</span><span class="p">,</span> <span class="mf">1.1</span><span class="p">,</span> <span class="mf">3.0</span><span class="p">,</span> <span class="mf">5.0</span><span class="p">,</span> <span class="mf">7.5</span><span class="p">,</span> <span class="o">-</span><span class="mf">0.5</span><span class="p">,</span> <span class="mf">0.4</span><span class="p">,</span> <span class="mf">7.0</span><span class="p">,</span> <span class="mf">4.3</span><span class="p">,</span> <span class="mf">1.2</span><span class="p">]</span> <span class="c1"># temperature in degrees celsius</span>
+<span class="n">relative_humidity</span> <span class="o">=</span> <span class="p">[</span><span class="mi">40</span><span class="p">,</span> <span class="mi">50</span><span class="p">,</span> <span class="mi">60</span><span class="p">,</span> <span class="mi">70</span><span class="p">,</span> <span class="mi">80</span><span class="p">,</span> <span class="mi">90</span><span class="p">]</span> <span class="c1">#relative humidity list (optional to use)</span>
+</pre></div>
+</div>
+</div>
+</div>
+</section>
+<section id="task-3-points">
+<h3>1.1 Task (3 points)<a class="headerlink" href="#task-3-points" title="Permalink to this headline">#</a></h3>
+<p>In the cell below, write out the basic structure of your loops and if/else statements in pseudocode.</p>
+<p><font size="+3">✎</font> <em>Put your answer here</em></p>
+</section>
+<section id="task-7-points">
+<h3>1.2 Task (7 points)<a class="headerlink" href="#task-7-points" title="Permalink to this headline">#</a></h3>
+<p>In the cell below, translate your pseudocode into code. Include comments where needed.</p>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="c1"># put your code here</span>
+</pre></div>
+</div>
+</div>
+</div>
+</section>
+<section id="task-2-points">
+<h3>1.3 Task (2 points)<a class="headerlink" href="#task-2-points" title="Permalink to this headline">#</a></h3>
+<p>How do you know your code is working? Use words and/or code to support your answer.</p>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="c1"># put any code here</span>
+</pre></div>
+</div>
+</div>
+</div>
+<p><font size="+3">✎</font> <em>Put any descriptions here</em></p>
+</section>
+</section>
+<section id="cmse-201-homework-grade-calculator">
+<h2>2. CMSE 201 Homework Grade Calculator<a class="headerlink" href="#cmse-201-homework-grade-calculator" title="Permalink to this headline">#</a></h2>
+<p>As a student in CMSE 201, you may want to pay attention to your grades to have an idea of how you are doing this semester. Your task is to write a function to calculate the grade of your Homework 1 assignment. Your function should take in the score for each component, calculate the percentage grade, convert it to the 4.0 scale, and return the 4.0 scale grade. The rubric for Homework 1 is below for reference.</p>
+<hr class="docutils" />
+<section id="homework-1-rubric">
+<h3>Homework 1 Rubric<a class="headerlink" href="#homework-1-rubric" title="Permalink to this headline">#</a></h3>
+<p>Academic integrity statement (1 Point)</p>
+<ol class="simple">
+<li><p>Going to Office Hours (8 Points)</p></li>
+<li><p>Looping by Index (10 Points)</p></li>
+<li><p>Looping by Value (10 Points)</p></li>
+<li><p>Working with Lists and Dictionaries (9 Points)</p></li>
+<li><p>Debugging Dictionary Construction (12 Points)</p></li>
+</ol>
+<p>Total points possible: <strong>50</strong></p>
+</section>
+<hr class="docutils" />
+<section id="id1">
+<h3>2.1 Task (3 points)<a class="headerlink" href="#id1" title="Permalink to this headline">#</a></h3>
+<p>In the cell below, write out your plan for your function in pseudocode. It should include the structure of your function (inputs and outputs) and how you will calculate the grade. You should use the grade information on the Course Website to determine the 4.0 scale.</p>
+<p><font size="+3">✎</font> <em>Put your answer here</em></p>
+</section>
+<section id="id2">
+<h3>2.2 Task (3 points)<a class="headerlink" href="#id2" title="Permalink to this headline">#</a></h3>
+<p>In the cell(s) below, translate your pseudocode into code.</p>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="c1"># put your answer here</span>
+</pre></div>
+</div>
+</div>
+</div>
+</section>
+<section id="id3">
+<h3>2.3 Task (3 points)<a class="headerlink" href="#id3" title="Permalink to this headline">#</a></h3>
+<p>In the cell below, demonstrate that your function work correctly using words and/or code. Your explanation should in clude at least one example calculation using your function.</p>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="c1"># put any code here</span>
+</pre></div>
+</div>
+</div>
+</div>
+<p><font size="+3">✎</font> <em>Put any descriptions here</em></p>
+</section>
+<section id="id4">
+<h3>2.4 Task (3 points)<a class="headerlink" href="#id4" title="Permalink to this headline">#</a></h3>
+<p>Suppose you wanted to generalize your function to be used for all of your CMSE 201 homework assignments. What are the limitations of this function? How might you address them to make your function more flexible?</p>
+<p><font size="+3">✎</font> <em>Put your answer here</em></p>
+</section>
+</section>
+<section id="basketball-scoring">
+<h2>3. Basketball Scoring<a class="headerlink" href="#basketball-scoring" title="Permalink to this headline">#</a></h2>
+<p>You are in charge of writing Python code to keep score of a basketball game. You will write a function that takes in two team names, an array with the team name and an array with the type of play and returns the final score of the game.</p>
+<hr class="docutils" />
+<p>Example output:</p>
+<p><code class="docutils literal notranslate"><span class="pre">MSU</span> <span class="pre">-</span> <span class="pre">83,</span> <span class="pre">UMich</span> <span class="pre">-</span> <span class="pre">67</span></code></p>
+<section id="id5">
+<h3>3.1 Task (2 points)<a class="headerlink" href="#id5" title="Permalink to this headline">#</a></h3>
+<p>Write a series of if/else statements that adds 1 point to the score for free throws, 2 points for jumpers, layups, or dunks, and 3 points for three pointers. Use this lists below to write and test your function.</p>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="c1"># put your code here</span>
+
+<span class="n">points</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">array</span><span class="p">([</span><span class="s1">&#39;Layup&#39;</span><span class="p">,</span><span class="s1">&#39;Jumper&#39;</span><span class="p">,</span><span class="s1">&#39;Layup&#39;</span><span class="p">,</span><span class="s1">&#39;Layup&#39;</span><span class="p">,</span><span class="s1">&#39;Layup&#39;</span><span class="p">,</span><span class="s1">&#39;Layup&#39;</span><span class="p">,</span><span class="s1">&#39;Layup&#39;</span><span class="p">,</span><span class="s1">&#39;Free Throw&#39;</span><span class="p">,</span><span class="s1">&#39;Free Throw&#39;</span><span class="p">,</span><span class="s1">&#39;Dunk&#39;</span><span class="p">,</span><span class="s1">&#39;Layup&#39;</span><span class="p">,</span><span class="s1">&#39;Free Throw&#39;</span><span class="p">,</span><span class="s1">&#39;Free Throw&#39;</span><span class="p">,</span><span class="s1">&#39;Three Pointer&#39;</span><span class="p">])</span>
+<span class="n">team</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">array</span><span class="p">([</span><span class="s1">&#39;UMich&#39;</span><span class="p">,</span><span class="s1">&#39;MSU&#39;</span><span class="p">,</span><span class="s1">&#39;UMich&#39;</span><span class="p">,</span><span class="s1">&#39;MSU&#39;</span><span class="p">,</span><span class="s1">&#39;MSU&#39;</span><span class="p">,</span><span class="s1">&#39;UMich&#39;</span><span class="p">,</span><span class="s1">&#39;MSU&#39;</span><span class="p">,</span><span class="s1">&#39;UMich&#39;</span><span class="p">,</span><span class="s1">&#39;UMich&#39;</span><span class="p">,</span><span class="s1">&#39;UMich&#39;</span><span class="p">,</span><span class="s1">&#39;UMich&#39;</span><span class="p">,</span><span class="s1">&#39;UMich&#39;</span><span class="p">,</span><span class="s1">&#39;UMich&#39;</span><span class="p">,</span><span class="s1">&#39;MSU&#39;</span><span class="p">])</span>
+</pre></div>
+</div>
+</div>
+</div>
+</section>
+<section id="id6">
+<h3>3.2 Task (2 points)<a class="headerlink" href="#id6" title="Permalink to this headline">#</a></h3>
+<p>Now write pseudocode for how you will implement your code from above to write your function.</p>
+<p><font size="+3">✎</font> <em>Put your answer here</em></p>
+</section>
+<section id="task-6-points">
+<h3>3.3 Task (6 points)<a class="headerlink" href="#task-6-points" title="Permalink to this headline">#</a></h3>
+<p>Now write your function!</p>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="c1"># put your code here</span>
+</pre></div>
+</div>
+</div>
+</div>
+</section>
+<section id="id7">
+<h3>3.4 Task (2 points)<a class="headerlink" href="#id7" title="Permalink to this headline">#</a></h3>
+<p>Along with this homework assignment is a text file named <code class="docutils literal notranslate"><span class="pre">game.txt</span></code>. Using numpy, read in the data and then use your function to calculate the final score of the game. The data file is in the same format as the test lists given in 3.1. If you need to make any changes to your function to get it to work, explain why using code comments or additional Markdown cells.</p>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="c1"># put your code here</span>
+</pre></div>
+</div>
+</div>
+</div>
+</section>
+</section>
+<section id="question-4-drawing-with-matplotlib">
+<h2>Question 4: Drawing with matplotlib<a class="headerlink" href="#question-4-drawing-with-matplotlib" title="Permalink to this headline">#</a></h2>
+<p>You are taking a graphic design class, and you discovered that you can generate pretty designs on plots by using trigonometric functions and matplotlib. below are two equations that give the (x,y) points for values of k (ranging from 0 to 9000). When all 9000 points are plotted, you will see that it draws out a flower design.</p>
+<p><span class="math notranslate nohighlight">\(x(k) = \mathrm{cos}\Big(\frac{14 \pi k}{9000}\Big)\Big(1-\frac{3}{4}\mathrm{sin}\Big(\frac{20\pi k}{9000}\Big)-\frac{1}{4}\mathrm{cos}\Big(\frac{60 \pi k}{9000}\Big)\Big)\)</span></p>
+<p><span class="math notranslate nohighlight">\(y(k) = \mathrm{sin}\Big(\frac{14 \pi k}{9000}\Big)\Big(1-\frac{3}{4}\mathrm{sin}\Big(\frac{20\pi k}{9000}\Big)-\frac{1}{4}\mathrm{cos}\Big(\frac{60 \pi k}{9000}\Big)\Big)\)</span></p>
+<section id="writing-the-function-4-points">
+<h3>4.1 Writing the Function (4 points)<a class="headerlink" href="#writing-the-function-4-points" title="Permalink to this headline">#</a></h3>
+<p>Using the starter code below, create a function that returns the values of x(k) and y(k). You can use math or numpy.</p>
+<p>The function <code class="docutils literal notranslate"><span class="pre">draw_flower_points</span></code> below is what you will use to generate your values to draw a flower. State the inputs and outputs of this function.</p>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="c1"># put your code here</span>
+
+<span class="k">def</span> <span class="nf">draw_flower_points</span><span class="p">(</span><span class="c1"># add arguments here):</span>
+    <span class="c1"># write your function here</span>
+    <span class="k">return</span> <span class="n">x_k</span><span class="p">,</span> <span class="n">y_k</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<div class="output traceback highlight-ipythontb notranslate"><div class="highlight"><pre><span></span><span class="gt">  File</span><span class="nn"> &quot;C:\Users\rache\AppData\Local\Temp/ipykernel_9256/5442394.py&quot;</span><span class="gt">, line </span><span class="mi">5</span>
+    <span class="k">return</span> <span class="n">x_k</span><span class="p">,</span> <span class="n">y_k</span>
+    <span class="o">^</span>
+<span class="ne">SyntaxError</span>: invalid syntax
+</pre></div>
+</div>
+</div>
+</div>
+</section>
+<section id="testing-your-function-2-points">
+<h3>4.2 Testing your function (2 points)<a class="headerlink" href="#testing-your-function-2-points" title="Permalink to this headline">#</a></h3>
+<p>Using the <code class="docutils literal notranslate"><span class="pre">draw_flower_points</span></code> function above, test it out by generating a list (or array) of x values and a list (or array) of y values for k from 0 to 10 and print the results.</p>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="c1"># put your answer here</span>
+</pre></div>
+</div>
+</div>
+</div>
+</section>
+<section id="drawing-the-flower-7-points">
+<h3>4.3 Drawing the Flower (7 points)<a class="headerlink" href="#drawing-the-flower-7-points" title="Permalink to this headline">#</a></h3>
+<p>Now, using the <code class="docutils literal notranslate"><span class="pre">draw_flower_points</span></code> function, generate x and y values for k ranging from 0 to 9000. Using plt.subplot, plot the final flower design as well as at least 2 additional panels showing the drawing in progress (i.e. for values of k less than 9000).</p>
+<p>Your plot should include:</p>
+<ul class="simple">
+<li><p>at least 3 total panels</p></li>
+<li><p>axis labels (label the x-axis ‘x’ and the y axis ‘y’)</p></li>
+<li><p>a legend</p></li>
+<li><p>different linestyles for each panel</p></li>
+<li><p>different line color for each panel</p></li>
+</ul>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="c1"># put your answer here</span>
+</pre></div>
+</div>
+</div>
+</div>
+</section>
+<hr class="docutils" />
+<section id="congratulations-you-re-done">
+<h3>Congratulations, you’re done!<a class="headerlink" href="#congratulations-you-re-done" title="Permalink to this headline">#</a></h3>
+<p>Submit this assignment by uploading it to the course Desire2Learn web page.  Go to the “Homework Assignments” section, find the submission folder link for Homework #2, and upload it there.</p>
+</section>
+</section>
+</section>
+
+    <script type="text/x-thebe-config">
+    {
+        requestKernel: true,
+        binderOptions: {
+            repo: "binder-examples/jupyter-stacks-datascience",
+            ref: "master",
+        },
+        codeMirrorConfig: {
+            theme: "abcdef",
+            mode: "python"
+        },
+        kernelOptions: {
+            kernelName: "python3",
+            path: "./Homework\Homework_2"
+        },
+        predefinedOutput: true
+    }
+    </script>
+    <script>kernelName = 'python3'</script>
+
+              </div>
+              
+            </main>
+            <footer class="footer-article noprint">
+                
+    <!-- Previous / next buttons -->
+<div class='prev-next-area'>
+    <a class='left-prev' id="prev-link" href="../Homework_1/HW_01_S22_STUDENT.html" title="previous page">
+        <i class="fas fa-angle-left"></i>
+        <div class="prev-next-info">
+            <p class="prev-next-subtitle">previous</p>
+            <p class="prev-next-title">Homework 1: Introduction to Loops, Lists, and Dictionaries</p>
+        </div>
+    </a>
+    <a class='right-next' id="next-link" href="../Homework_3/HW3_S22-STUDENT.html" title="next page">
+    <div class="prev-next-info">
+        <p class="prev-next-subtitle">next</p>
+        <p class="prev-next-title">Homework 3: Pandas data analysis</p>
+    </div>
+    <i class="fas fa-angle-right"></i>
+    </a>
+</div>
+            </footer>
+        </div>
+    </div>
+    <div class="footer-content row">
+        <footer class="col footer"><p>
+  
+    By MSU CMSE<br/>
+  
+      &copy; Copyright 2022.<br/>
+</p>
+        </footer>
+    </div>
+    
+</div>
+
+
+      </div>
+    </div>
+  
+  <!-- Scripts loaded after <body> so the DOM is not blocked -->
+  <script src="../../_static/scripts/pydata-sphinx-theme.js?digest=1999514e3f237ded88cf"></script>
+
+
+  </body>
+</html>

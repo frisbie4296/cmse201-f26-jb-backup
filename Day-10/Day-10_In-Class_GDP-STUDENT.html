@@ -1,0 +1,1268 @@
+
+<!DOCTYPE html>
+
+
+<html lang="en" data-content_root="../" >
+
+  <head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" /><meta name="viewport" content="width=device-width, initial-scale=1" />
+
+    <title>Day 10 In-Class: Cleaning and Analyzing Economic Data &#8212; CMSE 201</title>
+  
+  
+  
+  <script data-cfasync="false">
+    document.documentElement.dataset.mode = localStorage.getItem("mode") || "";
+    document.documentElement.dataset.theme = localStorage.getItem("theme") || "";
+  </script>
+  
+  <!-- Loaded before other Sphinx assets -->
+  <link href="../_static/styles/theme.css?digest=3ee479438cf8b5e0d341" rel="stylesheet" />
+<link href="../_static/styles/bootstrap.css?digest=3ee479438cf8b5e0d341" rel="stylesheet" />
+<link href="../_static/styles/pydata-sphinx-theme.css?digest=3ee479438cf8b5e0d341" rel="stylesheet" />
+
+  
+  <link href="../_static/vendor/fontawesome/6.5.2/css/all.min.css?digest=3ee479438cf8b5e0d341" rel="stylesheet" />
+  <link rel="preload" as="font" type="font/woff2" crossorigin href="../_static/vendor/fontawesome/6.5.2/webfonts/fa-solid-900.woff2" />
+<link rel="preload" as="font" type="font/woff2" crossorigin href="../_static/vendor/fontawesome/6.5.2/webfonts/fa-brands-400.woff2" />
+<link rel="preload" as="font" type="font/woff2" crossorigin href="../_static/vendor/fontawesome/6.5.2/webfonts/fa-regular-400.woff2" />
+
+    <link rel="stylesheet" type="text/css" href="../_static/pygments.css?v=fa44fd50" />
+    <link rel="stylesheet" type="text/css" href="../_static/styles/sphinx-book-theme.css?v=384b581d" />
+    <link rel="stylesheet" type="text/css" href="../_static/togglebutton.css?v=13237357" />
+    <link rel="stylesheet" type="text/css" href="../_static/copybutton.css?v=76b2166b" />
+    <link rel="stylesheet" type="text/css" href="../_static/mystnb.4510f1fc1dee50b3e5859aac5469c37c29e427902b24a333a5f9fcb2f0b3ac41.css?v=be8a1c11" />
+    <link rel="stylesheet" type="text/css" href="../_static/sphinx-thebe.css?v=4fa983c6" />
+    <link rel="stylesheet" type="text/css" href="../_static/sphinx-design.min.css?v=87e54e7c" />
+  
+  <!-- Pre-loaded scripts that we'll load fully later -->
+  <link rel="preload" as="script" href="../_static/scripts/bootstrap.js?digest=3ee479438cf8b5e0d341" />
+<link rel="preload" as="script" href="../_static/scripts/pydata-sphinx-theme.js?digest=3ee479438cf8b5e0d341" />
+  <script src="../_static/vendor/fontawesome/6.5.2/js/all.min.js?digest=3ee479438cf8b5e0d341"></script>
+
+    <script src="../_static/documentation_options.js?v=9eb32ce0"></script>
+    <script src="../_static/doctools.js?v=9a2dae69"></script>
+    <script src="../_static/sphinx_highlight.js?v=dc90522c"></script>
+    <script src="../_static/clipboard.min.js?v=a7894cd8"></script>
+    <script src="../_static/copybutton.js?v=f281be69"></script>
+    <script src="../_static/scripts/sphinx-book-theme.js?v=efea14e4"></script>
+    <script>let toggleHintShow = 'Click to show';</script>
+    <script>let toggleHintHide = 'Click to hide';</script>
+    <script>let toggleOpenOnPrint = 'true';</script>
+    <script src="../_static/togglebutton.js?v=4a39c7ea"></script>
+    <script>var togglebuttonSelector = '.toggle, .admonition.dropdown';</script>
+    <script src="../_static/design-tabs.js?v=36754332"></script>
+    <script>const THEBE_JS_URL = "https://unpkg.com/thebe@0.8.2/lib/index.js"; const thebe_selector = ".thebe,.cell"; const thebe_selector_input = "pre"; const thebe_selector_output = ".output, .cell_output"</script>
+    <script async="async" src="../_static/sphinx-thebe.js?v=c100c467"></script>
+    <script>var togglebuttonSelector = '.toggle, .admonition.dropdown';</script>
+    <script>const THEBE_JS_URL = "https://unpkg.com/thebe@0.8.2/lib/index.js"; const thebe_selector = ".thebe,.cell"; const thebe_selector_input = "pre"; const thebe_selector_output = ".output, .cell_output"</script>
+    <script>DOCUMENTATION_OPTIONS.pagename = 'Day-10/Day-10_In-Class_GDP-STUDENT';</script>
+    <link rel="icon" href="../_static/cmse_fav.ico"/>
+    <link rel="index" title="Index" href="../genindex.html" />
+    <link rel="search" title="Search" href="../search.html" />
+    <link rel="next" title="Day 11 In-class Assignment: Get the Lead Out: Understanding The Water Crisis in Flint, MI" href="../Day-11/Day-11_In-Class_Flint-STUDENT.html" />
+    <link rel="prev" title="Day 9 In-class Assignment: Exploring Great Lakes Water Levels using NumPy" href="../Day-09/Day-09_In-Class_NumPyWithTheGreatLakes-STUDENT.html" />
+  <meta name="viewport" content="width=device-width, initial-scale=1"/>
+  <meta name="docsearch:language" content="en"/>
+  </head>
+  
+  
+  <body data-bs-spy="scroll" data-bs-target=".bd-toc-nav" data-offset="180" data-bs-root-margin="0px 0px -60%" data-default-mode="">
+
+  
+  
+  <div id="pst-skip-link" class="skip-link d-print-none"><a href="#main-content">Skip to main content</a></div>
+  
+  <div id="pst-scroll-pixel-helper"></div>
+  
+  <button type="button" class="btn rounded-pill" id="pst-back-to-top">
+    <i class="fa-solid fa-arrow-up"></i>Back to top</button>
+
+  
+  <input type="checkbox"
+          class="sidebar-toggle"
+          id="pst-primary-sidebar-checkbox"/>
+  <label class="overlay overlay-primary" for="pst-primary-sidebar-checkbox"></label>
+  
+  <input type="checkbox"
+          class="sidebar-toggle"
+          id="pst-secondary-sidebar-checkbox"/>
+  <label class="overlay overlay-secondary" for="pst-secondary-sidebar-checkbox"></label>
+  
+  <div class="search-button__wrapper">
+    <div class="search-button__overlay"></div>
+    <div class="search-button__search-container">
+<form class="bd-search d-flex align-items-center"
+      action="../search.html"
+      method="get">
+  <i class="fa-solid fa-magnifying-glass"></i>
+  <input type="search"
+         class="form-control"
+         name="q"
+         id="search-input"
+         placeholder="Search..."
+         aria-label="Search..."
+         autocomplete="off"
+         autocorrect="off"
+         autocapitalize="off"
+         spellcheck="false"/>
+  <span class="search-button__kbd-shortcut"><kbd class="kbd-shortcut__modifier">Ctrl</kbd>+<kbd>K</kbd></span>
+</form></div>
+  </div>
+
+  <div class="pst-async-banner-revealer d-none">
+  <aside id="bd-header-version-warning" class="d-none d-print-none" aria-label="Version warning"></aside>
+</div>
+
+  
+    <header class="bd-header navbar navbar-expand-lg bd-navbar d-print-none">
+    </header>
+  
+
+  <div class="bd-container">
+    <div class="bd-container__inner bd-page-width">
+      
+      
+      
+      <div class="bd-sidebar-primary bd-sidebar">
+        
+
+  
+  <div class="sidebar-header-items sidebar-primary__section">
+    
+    
+    
+    
+  </div>
+  
+    <div class="sidebar-primary-items__start sidebar-primary__section">
+        <div class="sidebar-primary-item">
+
+  
+
+<a class="navbar-brand logo" href="../intro.html">
+  
+  
+  
+  
+  
+    
+    
+      
+    
+    
+    <img src="../_static/logo.png" class="logo__image only-light" alt="CMSE 201 - Home"/>
+    <script>document.write(`<img src="../_static/logo.png" class="logo__image only-dark" alt="CMSE 201 - Home"/>`);</script>
+  
+  
+</a></div>
+        <div class="sidebar-primary-item">
+
+ <script>
+ document.write(`
+   <button class="btn navbar-btn search-button-field search-button__button" title="Search" aria-label="Search" data-bs-placement="bottom" data-bs-toggle="tooltip">
+    <i class="fa-solid fa-magnifying-glass"></i>
+    <span class="search-button__default-text">Search</span>
+    <span class="search-button__kbd-shortcut"><kbd class="kbd-shortcut__modifier">Ctrl</kbd>+<kbd class="kbd-shortcut__modifier">K</kbd></span>
+   </button>
+ `);
+ </script></div>
+        <div class="sidebar-primary-item"><nav class="bd-links bd-docs-nav" aria-label="Main">
+    <div class="bd-toc-item navbar-nav active">
+        <p aria-level="2" class="caption" role="heading"><span class="caption-text">Course Materials</span></p>
+<ul class="nav bd-sidenav">
+<li class="toctree-l1 has-children"><a class="reference internal" href="../Course_Materials-201/CourseDocuments.html">Important Course information</a><details><summary><span class="toctree-toggle" role="presentation"><i class="fa-solid fa-chevron-down"></i></span></summary><ul>
+<li class="toctree-l2"><a class="reference internal" href="../Course_Materials-201/CMSE201-Syllabus.html">Syllabus</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../Course_Materials-201/CMSE201-Schedule.html">Course Schedule</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../Course_Materials-201/SoftwareSetupGuide.html">Software Setup Guide</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../Course_Materials-201/classroom_participation.html">Classroom Participation</a></li>
+</ul>
+</details></li>
+</ul>
+<p aria-level="2" class="caption" role="heading"><span class="caption-text">CodeGrade</span></p>
+<ul class="nav bd-sidenav">
+<li class="toctree-l1"><a class="reference external" href="https://raw.githubusercontent.com/msu-cmse-courses/cmse201-supplemental/main/CodeGrade_Students.pdf">CodeGrade flowchart</a></li>
+</ul>
+<p aria-level="2" class="caption" role="heading"><span class="caption-text">Day 01</span></p>
+<ul class="nav bd-sidenav">
+<li class="toctree-l1"><a class="reference internal" href="../Day-01/Day-01_In-Class_SortingAlgorithm-STUDENT.html">Day 1 In-Class Assignment: Introductions and Sorting Algorithms</a></li>
+
+
+
+</ul>
+<p aria-level="2" class="caption" role="heading"><span class="caption-text">Day 02</span></p>
+<ul class="nav bd-sidenav">
+<li class="toctree-l1"><a class="reference internal" href="../Day-02/Day-02_In-Class_OrderOfMagnitudeModeling-STUDENT.html">Day 2 In-class Assignment: Order of Magnitude Modeling</a></li>
+
+
+</ul>
+<p aria-level="2" class="caption" role="heading"><span class="caption-text">Day 03</span></p>
+<ul class="nav bd-sidenav">
+<li class="toctree-l1"><a class="reference internal" href="../Day-03/Day-03_In-Class_ListsLoopsAndSaving-STUDENT.html">Day 3 In-class Assignment: The power of compound interest</a></li>
+</ul>
+<p aria-level="2" class="caption" role="heading"><span class="caption-text">Day 04</span></p>
+<ul class="nav bd-sidenav">
+<li class="toctree-l1"><a class="reference internal" href="../Day-04/Day_04_In_Class_DataAlgorithmicBias-STUDENT.html">Day 4 In-class Assignment: Data and Algorithmic Bias, Academic Integrity, and Coding Best Practices</a></li>
+
+</ul>
+<p aria-level="2" class="caption" role="heading"><span class="caption-text">Day 05</span></p>
+<ul class="nav bd-sidenav">
+<li class="toctree-l1"><a class="reference internal" href="../Day-05/Day-05_In-Class_IfStatementsAndFunctions-STUDENT.html">Day 5 In-class Assignment: Savings for Everyone</a></li>
+</ul>
+<p aria-level="2" class="caption" role="heading"><span class="caption-text">Day 06</span></p>
+<ul class="nav bd-sidenav">
+<li class="toctree-l1"><a class="reference internal" href="../Day-06/Day-06_In-Class_FunctionsAndSquirrels-STUDENT.html">Day 6 In Class Assignment: A Scurry of Squirrels in Central Park</a></li>
+
+
+
+
+
+</ul>
+<p aria-level="2" class="caption" role="heading"><span class="caption-text">Day 07</span></p>
+<ul class="nav bd-sidenav">
+<li class="toctree-l1"><a class="reference internal" href="../Day-07/Day-07_In-Class_ReviewingAndPracticingConcepts-STUDENT.html">Day 7 In-class Assignment: Reviewing and practicing prior concepts</a></li>
+
+<li class="toctree-l1"><a class="reference internal" href="../Day-07/Day-07_In-Class_ReviewingAndPracticingConcepts-Solutions.html">Day 7 In-class Assignment: Reviewing and practicing prior concepts</a></li>
+
+<li class="toctree-l1"><a class="reference internal" href="../Day-07/Debugging-STUDENT.html">Practice with Debugging</a></li>
+
+
+</ul>
+<p aria-level="2" class="caption" role="heading"><span class="caption-text">Day 08</span></p>
+<ul class="nav bd-sidenav">
+<li class="toctree-l1"><a class="reference internal" href="../Day-08/Day-08_In-Class_MathAndPlotting-STUDENT.html">Day 8 In-class Assignment: Visualizing population growth</a></li>
+</ul>
+<p aria-level="2" class="caption" role="heading"><span class="caption-text">Day 09</span></p>
+<ul class="nav bd-sidenav">
+<li class="toctree-l1"><a class="reference internal" href="../Day-09/Day-09_In-Class_NumPyWithTheGreatLakes-STUDENT.html">Day 9 In-class Assignment: Exploring Great Lakes Water Levels using NumPy</a></li>
+
+<li class="toctree-l1"><a class="reference external" href="https://raw.githubusercontent.com/msu-cmse-courses/cmse201-supplemental/main/ICA_datasets/lake_erie.csv">lake_erie.csv</a></li>
+<li class="toctree-l1"><a class="reference external" href="https://raw.githubusercontent.com/msu-cmse-courses/cmse201-supplemental/main/ICA_datasets/lake_michigan_huron.csv">lake_michigan_huron.csv</a></li>
+<li class="toctree-l1"><a class="reference external" href="https://raw.githubusercontent.com/msu-cmse-courses/cmse201-supplemental/main/ICA_datasets/lake_ontario.csv">lake_ontario.csv</a></li>
+<li class="toctree-l1"><a class="reference external" href="https://raw.githubusercontent.com/msu-cmse-courses/cmse201-supplemental/main/ICA_datasets/lake_superior.csv">lake_superior.csv</a></li>
+</ul>
+<p aria-level="2" class="caption" role="heading"><span class="caption-text">Day 10</span></p>
+<ul class="current nav bd-sidenav">
+<li class="toctree-l1 current active"><a class="current reference internal" href="#">Day 10 In-Class: Cleaning and Analyzing Economic Data</a></li>
+
+
+<li class="toctree-l1"><a class="reference external" href="https://raw.githubusercontent.com/msu-cmse-courses/cmse201-supplemental/main/ICA_datasets/API_NY.GDP.MKTP.CD_DS2_en_csv_v2_31795.csv">API_NY.GDP.MKTP.CD_DS2_en_csv_v2_31795.csv</a></li>
+</ul>
+<p aria-level="2" class="caption" role="heading"><span class="caption-text">Day 11</span></p>
+<ul class="nav bd-sidenav">
+<li class="toctree-l1"><a class="reference internal" href="../Day-11/Day-11_In-Class_Flint-STUDENT.html">Day 11 In-class Assignment: Get the Lead Out: Understanding The Water Crisis in Flint, MI</a></li>
+
+
+<li class="toctree-l1"><a class="reference external" href="https://raw.githubusercontent.com/msu-cmse-courses/cmse201-supplemental/main/ICA_datasets/flint_water_data.csv">flint_water_data.csv</a></li>
+</ul>
+<p aria-level="2" class="caption" role="heading"><span class="caption-text">Day 12</span></p>
+<ul class="nav bd-sidenav">
+<li class="toctree-l1"><a class="reference internal" href="../Day-12/Day-12_In-Class_Unprocessed_Data-STUDENT.html">Day 12 In-Class: Data Contextualization and Wrangling</a></li>
+</ul>
+<p aria-level="2" class="caption" role="heading"><span class="caption-text">Day 13</span></p>
+<ul class="nav bd-sidenav">
+<li class="toctree-l1"><a class="reference internal" href="../Day-13/Day-13_Pre-Class_Online_Resources-STUDENT.html">Day 13 Pre-class Assignment: Finding resources online and tinkering wth code</a></li>
+
+
+<li class="toctree-l1"><a class="reference internal" href="../Day-13/Day-13_In-Class_Online_Resources-STUDENT.html">Day 13 In-Class: Using online resources (code and data)</a></li>
+</ul>
+<p aria-level="2" class="caption" role="heading"><span class="caption-text">Day 14</span></p>
+<ul class="nav bd-sidenav">
+<li class="toctree-l1"><a class="reference internal" href="../Day-14/Day-14_In-Class_Evaluating_Fits-STUDENT.html">Day 14 In-Class Assignment: Evaluating Models</a></li>
+</ul>
+<p aria-level="2" class="caption" role="heading"><span class="caption-text">Day 15</span></p>
+<ul class="nav bd-sidenav">
+<li class="toctree-l1"><a class="reference external" href="https://raw.githubusercontent.com/msu-cmse-courses/cmse201-supplemental/main/image_critique_ver2.pptx">Image Critique</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../Day-15/Day-15_In-Class_FittingCurves-STUDENT.html">Day 15 In-Class Assignment: (Thoughtfully) fitting models to data</a></li>
+<li class="toctree-l1"><a class="reference external" href="https://raw.githubusercontent.com/msu-cmse-courses/cmse201-S22-data/main/Day-14/pop200.csv">pop200.csv</a></li>
+<li class="toctree-l1"><a class="reference external" href="https://raw.githubusercontent.com/msu-cmse-courses/cmse201-S22-data/main/Day-14/pop300.csv">pop300.csv</a></li>
+</ul>
+<p aria-level="2" class="caption" role="heading"><span class="caption-text">Day 16</span></p>
+<ul class="nav bd-sidenav">
+<li class="toctree-l1"><a class="reference internal" href="../Day-16/Day-16-Intro_to_ODEs_In-Class_STUDENT.html">Day 16: In-class Assignment: Introduction to Modeling with ODEs</a></li>
+</ul>
+<p aria-level="2" class="caption" role="heading"><span class="caption-text">Day 17</span></p>
+<ul class="nav bd-sidenav">
+<li class="toctree-l1"><a class="reference internal" href="../Day-17/Day-17_In-Class_ModelingWithODEs-STUDENT.html">Day 17: In-class Assignment: Modeling with Ordinary Differential Equations</a></li>
+
+
+
+</ul>
+<p aria-level="2" class="caption" role="heading"><span class="caption-text">Day 18</span></p>
+<ul class="nav bd-sidenav">
+<li class="toctree-l1"><a class="reference internal" href="../Day-18/Day-18_In-Class_CompartmentalModeling-STUDENT.html">Day 18 In-class Assignment: Building Compartmental Models</a></li>
+
+
+
+</ul>
+<p aria-level="2" class="caption" role="heading"><span class="caption-text">Day 19</span></p>
+<ul class="nav bd-sidenav">
+<li class="toctree-l1"><a class="reference internal" href="../Day-19/Day-19_In-Class_CompartmentsWithSolveIVP-STUDENT.html">Day 19 In-Class Assignment: Compartmental Modeling, moving from the model to the code</a></li>
+</ul>
+<p aria-level="2" class="caption" role="heading"><span class="caption-text">Day 20</span></p>
+<ul class="nav bd-sidenav">
+<li class="toctree-l1"><a class="reference internal" href="../Day-20/Day-20_In-Class_IntroToDataVisualization-STUDENT.html">Day 20 In-Class: Introduction to Data Visualization</a></li>
+</ul>
+<p aria-level="2" class="caption" role="heading"><span class="caption-text">Day 21</span></p>
+<ul class="nav bd-sidenav">
+<li class="toctree-l1"><a class="reference internal" href="../Day-21/Day-21_In-Class_2DImageAnalysis-STUDENT.html">Day 21 In-Class Assignment: Image Analysis</a></li>
+<li class="toctree-l1"><a class="reference external" href="https://raw.githubusercontent.com/msu-cmse-courses/cmse201-supplemental/main/Day-17/ICA_files/beach.jpeg">beach.jpeg</a></li>
+<li class="toctree-l1"><a class="reference external" href="https://raw.githubusercontent.com/msu-cmse-courses/cmse201-supplemental/main/Day-17/ICA_files/landscape.jpeg">landscape.jpeg</a></li>
+<li class="toctree-l1"><a class="reference external" href="https://raw.githubusercontent.com/msu-cmse-courses/cmse201-supplemental/main/Day-17/ICA_files/zebra.png">zebra.png</a></li>
+</ul>
+<p aria-level="2" class="caption" role="heading"><span class="caption-text">Day 22</span></p>
+<ul class="nav bd-sidenav">
+<li class="toctree-l1"><a class="reference internal" href="../Day-22/Day-22_In-Class_ForestFiresPartI-STUDENT.html">Day 22 Part 1 In-class Assignment: Modeling forest fires with an Agent-based Model</a></li>
+</ul>
+<p aria-level="2" class="caption" role="heading"><span class="caption-text">Day 23</span></p>
+<ul class="nav bd-sidenav">
+<li class="toctree-l1"><a class="reference internal" href="../Day-23/Day-23_In-Class_ForestFiresPartII-STUDENT.html">Day 23 In-class Assignment: Modeling forest fires with an Agent-based Model (Part II)</a></li>
+</ul>
+<p aria-level="2" class="caption" role="heading"><span class="caption-text">Day 24</span></p>
+<ul class="nav bd-sidenav">
+<li class="toctree-l1"><a class="reference internal" href="../Day-24/Day-24_In-Class_DataDilemmas-STUDENT.html">Day 24 - In-Class - Data Dilemmas: Ethics in an Algorithmic World</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../Day-24/biased_data_gen.html">Data Generation Sheet</a></li>
+</ul>
+<p aria-level="2" class="caption" role="heading"><span class="caption-text">Day 25</span></p>
+<ul class="nav bd-sidenav">
+<li class="toctree-l1"><a class="reference internal" href="../Day-25/Day-25_In-Class_ProjectWorkDay-STUDENT.html">Day 25 In-class Assignment: Project Work Day</a></li>
+</ul>
+<p aria-level="2" class="caption" role="heading"><span class="caption-text">Homework</span></p>
+<ul class="nav bd-sidenav">
+<li class="toctree-l1"><a class="reference internal" href="../Homework/Homework_01/HW_01_PythonFundamentals-STUDENT.html">Homework 1: Python fundamentals and using external resources to better understand code!</a></li>
+
+
+
+
+
+
+<li class="toctree-l1"><a class="reference internal" href="../Homework/Homework_02/HW_02_SS26-Spring-2026-STUDENT.html">Homework 2: Dictionaries, If Statements, Functions, and Modules</a></li>
+
+<li class="toctree-l1"><a class="reference external" href="https://raw.githubusercontent.com/msu-cmse-courses/cmse201-supplemental/main/stock_data.csv">stock_data.csv</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../Homework/Homework_03/HW_03_SS26_-Spring-2026-STUDENT.html">Homework 3 - Loading, Cleaning, Analyzing, and Visualizing Data with Pandas</a></li>
+<li class="toctree-l1"><a class="reference external" href="https://raw.githubusercontent.com/msu-cmse-courses/cmse201-supplemental/main/Homework/ahuacatl.csv">ahuacatl.csv</a></li>
+<li class="toctree-l1"><a class="reference external" href="https://raw.githubusercontent.com/msu-cmse-courses/cmse201-supplemental/main/Homework/nahuatl_names.csv">nahuatl_names.csv</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../Homework/Homework_04/HW4_SS26-STUDENT.html">Homework 4 - Compartmental Models + Data Visualization</a></li>
+<li class="toctree-l1"><a class="reference external" href="https://raw.githubusercontent.com/msu-cmse-courses/cmse201-supplemental/main/Homework/nypd_collisions_sample.csv">nypd_collisions_sample.csv</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../Homework/Homework_05/HW-05_SS26_STUDENT.html">Homework 5: Algorithmic Bias and Agent-based Modeling (EXTRA CREDIT)</a></li>
+
+
+
+</ul>
+<p aria-level="2" class="caption" role="heading"><span class="caption-text">Code Portfolio</span></p>
+<ul class="nav bd-sidenav">
+<li class="toctree-l1"><a class="reference internal" href="../Homework/Code_Portfolio/Code_Portfolio_Assignment.html">Code Portfolio Assignment</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../Homework/Code_Portfolio/Code_Portfolio_Example-CodeGrade.html">Code Portfolio Example</a></li>
+
+</ul>
+<p aria-level="2" class="caption" role="heading"><span class="caption-text">Semester Project</span></p>
+<ul class="nav bd-sidenav">
+<li class="toctree-l1"><a class="reference internal" href="../Project_Materials/CMSE201_SemesterProjectDetails.html">Semester Project Details</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../Project_Materials/Project_Plan_Check-in.html">First Project Checkpoint</a></li>
+
+
+
+<li class="toctree-l1"><a class="reference internal" href="../Project_Materials/First_Project_Checkpoint.html">First Project Checkpoint</a></li>
+
+
+
+<li class="toctree-l1"><a class="reference internal" href="../Project_Materials/CMSE201_FinalProjectTemplate.html">CMSE 201 Final Project Template</a></li>
+
+<li class="toctree-l1"><a class="reference external" href="https://raw.githubusercontent.com/msu-cmse-courses/cmse201-supplemental/main/Projects/CMSE201_final_project_examples.zip">Zip file of example projects</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../Project_Materials/CMSE201FinalProject_RequirementsAndGradingRubric.html">Requirements and Grading Rubric</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../Project_Materials/peer_assessment.html">Peer Assessment Notebook</a></li>
+<li class="toctree-l1"><a class="reference external" href="https://github.com/msu-cmse-courses/cmse201-supplemental/raw/main/Projects/Presentation_Evaluation_Rubric.pdf">Presentation Evaluation Rubric</a></li>
+</ul>
+<p aria-level="2" class="caption" role="heading"><span class="caption-text">Practice Notebooks</span></p>
+<ul class="nav bd-sidenav">
+<li class="toctree-l1"><a class="reference internal" href="../Quiz_Prep_Notebooks/PracticeNotebook_IfStatements-STUDENT.html">Practice with: <code class="docutils literal notranslate"><span class="pre">if</span></code> statements</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../Quiz_Prep_Notebooks/PracticeNotebook_Functions-STUDENT.html">Practice with: functions</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../Quiz_Prep_Notebooks/PracticeNotebook_Matplotlib-STUDENT.html">Practice with: <code class="docutils literal notranslate"><span class="pre">matplotlib</span></code></a></li>
+<li class="toctree-l1"><a class="reference internal" href="../Quiz_Prep_Notebooks/filtering_ws_ver2.html">Practice with Masking</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../Quiz_Prep_Notebooks/PracticeNotebook_Pandas-STUDENT.html">Practice with: Pandas</a></li>
+<li class="toctree-l1"><a class="reference external" href="https://raw.githubusercontent.com/msu-cmse-courses/cmse201-supplemental/main/PracticeNotebooks/weather.csv">weather.csv</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../Quiz_Prep_Notebooks/PracticeNotebook_ScipyCurveFit-STUDENT.html">Practice with: SciPy <code class="docutils literal notranslate"><span class="pre">curve_fit</span></code></a></li>
+<li class="toctree-l1"><a class="reference internal" href="../Quiz_Prep_Notebooks/PracticeNotebook_CompartmentalModels-STUDENT.html">Practice with: Compartmental Models</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../Quiz_Prep_Notebooks/PracticeNotebook_SolveIVP-STUDENT.html">Practice with: <code class="docutils literal notranslate"><span class="pre">solve_ivp</span></code></a></li>
+</ul>
+
+    </div>
+</nav></div>
+    </div>
+  
+  
+  <div class="sidebar-primary-items__end sidebar-primary__section">
+  </div>
+  
+  <div id="rtd-footer-container"></div>
+
+
+      </div>
+      
+      <main id="main-content" class="bd-main" role="main">
+        
+        
+
+<div class="sbt-scroll-pixel-helper"></div>
+
+          <div class="bd-content">
+            <div class="bd-article-container">
+              
+              <div class="bd-header-article d-print-none">
+<div class="header-article-items header-article__inner">
+  
+    <div class="header-article-items__start">
+      
+        <div class="header-article-item"><label class="sidebar-toggle primary-toggle btn btn-sm" for="__primary" title="Toggle primary sidebar" data-bs-placement="bottom" data-bs-toggle="tooltip">
+  <span class="fa-solid fa-bars"></span>
+</label></div>
+      
+    </div>
+  
+  
+    <div class="header-article-items__end">
+      
+        <div class="header-article-item">
+
+<div class="article-header-buttons">
+
+
+
+
+
+<div class="dropdown dropdown-download-buttons">
+  <button class="btn dropdown-toggle" type="button" data-bs-toggle="dropdown" aria-expanded="false" aria-label="Download this page">
+    <i class="fas fa-download"></i>
+  </button>
+  <ul class="dropdown-menu">
+      
+      
+      
+      <li><a href="../_sources/Day-10/Day-10_In-Class_GDP-STUDENT.ipynb" target="_blank"
+   class="btn btn-sm btn-download-source-button dropdown-item"
+   title="Download source file"
+   data-bs-placement="left" data-bs-toggle="tooltip"
+>
+  
+
+<span class="btn__icon-container">
+  <i class="fas fa-file"></i>
+  </span>
+<span class="btn__text-container">.ipynb</span>
+</a>
+</li>
+      
+      
+      
+      
+      <li>
+<button onclick="window.print()"
+  class="btn btn-sm btn-download-pdf-button dropdown-item"
+  title="Print to PDF"
+  data-bs-placement="left" data-bs-toggle="tooltip"
+>
+  
+
+<span class="btn__icon-container">
+  <i class="fas fa-file-pdf"></i>
+  </span>
+<span class="btn__text-container">.pdf</span>
+</button>
+</li>
+      
+  </ul>
+</div>
+
+
+
+
+<button onclick="toggleFullScreen()"
+  class="btn btn-sm btn-fullscreen-button"
+  title="Fullscreen mode"
+  data-bs-placement="bottom" data-bs-toggle="tooltip"
+>
+  
+
+<span class="btn__icon-container">
+  <i class="fas fa-expand"></i>
+  </span>
+
+</button>
+
+
+
+<script>
+document.write(`
+  <button class="btn btn-sm navbar-btn theme-switch-button" title="light/dark" aria-label="light/dark" data-bs-placement="bottom" data-bs-toggle="tooltip">
+    <span class="theme-switch nav-link" data-mode="light"><i class="fa-solid fa-sun fa-lg"></i></span>
+    <span class="theme-switch nav-link" data-mode="dark"><i class="fa-solid fa-moon fa-lg"></i></span>
+    <span class="theme-switch nav-link" data-mode="auto"><i class="fa-solid fa-circle-half-stroke fa-lg"></i></span>
+  </button>
+`);
+</script>
+
+
+<script>
+document.write(`
+  <button class="btn btn-sm navbar-btn search-button search-button__button" title="Search" aria-label="Search" data-bs-placement="bottom" data-bs-toggle="tooltip">
+    <i class="fa-solid fa-magnifying-glass fa-lg"></i>
+  </button>
+`);
+</script>
+<label class="sidebar-toggle secondary-toggle btn btn-sm" for="__secondary"title="Toggle secondary sidebar" data-bs-placement="bottom" data-bs-toggle="tooltip">
+    <span class="fa-solid fa-list"></span>
+</label>
+</div></div>
+      
+    </div>
+  
+</div>
+</div>
+              
+              
+
+<div id="jb-print-docs-body" class="onlyprint">
+    <h1>Day 10 In-Class: Cleaning and Analyzing Economic Data</h1>
+    <!-- Table of contents -->
+    <div id="print-main-content">
+        <div id="jb-print-toc">
+            
+            <div>
+                <h2> Contents </h2>
+            </div>
+            <nav aria-label="Page">
+                <ul class="visible nav section-nav flex-column">
+<li class="toc-h1 nav-item toc-entry"><a class="reference internal nav-link" href="#">Day 10 In-Class: Cleaning and Analyzing Economic Data</a><ul class="visible nav section-nav flex-column">
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#put-your-name-here"><p style="text-align: right;"> ✅ Put your name here </p></a><ul class="nav section-nav flex-column">
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#put-your-group-member-names-here"><p style="text-align: right;"> ✅ Put your group member names here.</p></a></li>
+</ul>
+</li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#goals-for-today-s-in-class-project">Goals for today’s in-class project</a></li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#assignment-instructions">Assignment instructions</a></li>
+</ul>
+</li>
+<li class="toc-h1 nav-item toc-entry"><a class="reference internal nav-link" href="#part-1-practice-calculating-statistics-using-python">Part 1: Practice calculating statistics using Python</a><ul class="visible nav section-nav flex-column">
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#applying-descriptive-statistics-to-a-distribution-visually">1.1 Applying Descriptive Statistics to a Distribution <em>visually</em></a></li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#compute-and-compare">1.2 Compute and Compare</a></li>
+</ul>
+</li>
+<li class="toc-h1 nav-item toc-entry"><a class="reference internal nav-link" href="#part-2-loading-in-and-cleaning-economic-data">Part 2: Loading in and cleaning economic data</a><ul class="visible nav section-nav flex-column">
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#what-data-are-we-working-with">What data are we working with?</a><ul class="nav section-nav flex-column">
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#cleaning-data-is-an-important-part-analyzing-data">2.1 Cleaning data is an important part analyzing data.</a></li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#making-the-dataset-easier-to-explore">Making the dataset easier to explore</a></li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#exploring-the-data">2.2 Exploring the Data</a></li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#exploring-the-log-linear-plot">2.3 Exploring the log-linear plot</a></li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#analyzing-growth-rates">2.4 Analyzing growth rates</a></li>
+</ul>
+</li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#time-permitting-part-3-more-data-manipulation">(TIME PERMITTING) Part 3: More Data Manipulation</a><ul class="nav section-nav flex-column">
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#filtering-sorting-and-calculating-new-quantities">Filtering, sorting, and calculating new quantities</a></li>
+</ul>
+</li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#assignment-wrapup">Assignment wrapup</a></li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#congratulations-you-re-done">Congratulations, you’re done!</a></li>
+</ul>
+</li>
+</ul>
+
+            </nav>
+        </div>
+    </div>
+</div>
+
+              
+                
+<div id="searchbox"></div>
+                <article class="bd-article">
+                  
+  <section class="tex2jax_ignore mathjax_ignore" id="day-10-in-class-cleaning-and-analyzing-economic-data">
+<h1>Day 10 In-Class: Cleaning and Analyzing Economic Data<a class="headerlink" href="#day-10-in-class-cleaning-and-analyzing-economic-data" title="Link to this heading">#</a></h1>
+<section id="put-your-name-here">
+<h2><p style="text-align: right;"> ✅ Put your name here </p><a class="headerlink" href="#put-your-name-here" title="Link to this heading">#</a></h2>
+<section id="put-your-group-member-names-here">
+<h3><p style="text-align: right;"> ✅ Put your group member names here.</p><a class="headerlink" href="#put-your-group-member-names-here" title="Link to this heading">#</a></h3>
+<img src="https://www.visualcapitalist.com/wp-content/uploads/2023/08/global-economy-2023-1200px.jpg" width=400px align="right">
+</section>
+</section>
+<section id="goals-for-today-s-in-class-project">
+<h2>Goals for today’s in-class project<a class="headerlink" href="#goals-for-today-s-in-class-project" title="Link to this heading">#</a></h2>
+<ul class="simple">
+<li><p>Load in data and clean Pandas dataframes</p></li>
+<li><p>Learn different ways to index Pandas dataframes</p></li>
+<li><p>Analyze different countries GDP data</p></li>
+<li><p>Practice using online research to learn new programming skills</p></li>
+</ul>
+</section>
+<section id="assignment-instructions">
+<h2>Assignment instructions<a class="headerlink" href="#assignment-instructions" title="Link to this heading">#</a></h2>
+<p>Work with your group to complete this assignment. The assignment is due at the end of class and should be uploaded to the appropriate submission folder on D2L.</p>
+</section>
+</section>
+<hr class="docutils" />
+<section class="tex2jax_ignore mathjax_ignore" id="part-1-practice-calculating-statistics-using-python">
+<h1>Part 1: Practice calculating statistics using Python<a class="headerlink" href="#part-1-practice-calculating-statistics-using-python" title="Link to this heading">#</a></h1>
+<p>Recall from the Day 9 in class assignment that we can use descriptive statistics such as mean, median, and standard deviation to get a sense for how data are distributed. To build on your previous work and learn more about how we can use descriptive statistics, we are going to explore them <em>visually.</em></p>
+<section id="applying-descriptive-statistics-to-a-distribution-visually">
+<h2>1.1 Applying Descriptive Statistics to a Distribution <em>visually</em><a class="headerlink" href="#applying-descriptive-statistics-to-a-distribution-visually" title="Link to this heading">#</a></h2>
+<p>First, let’s cover how to visualize the distribution of a one-dimensional data set. We begin with a random distribution of numbers from a random number generator in the NumPy library.</p>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="c1"># You might not be familiar this with random number generator, that&#39;s OK,</span>
+<span class="c1"># This is one of _many_ that are available in NumPy.</span>
+<span class="kn">import</span> <span class="nn">numpy</span> <span class="k">as</span> <span class="nn">np</span>
+<span class="n">random_distribution</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">random</span><span class="o">.</span><span class="n">wald</span><span class="p">(</span><span class="mi">200</span><span class="p">,</span><span class="mi">500</span><span class="p">,</span><span class="n">size</span><span class="o">=</span><span class="mi">1000</span><span class="p">)</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<div class="output stderr highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>A module that was compiled using NumPy 1.x cannot be run in
+NumPy 2.0.2 as it may crash. To support both 1.x and 2.x
+versions of NumPy, modules must be compiled with NumPy 2.0.
+Some module may need to rebuild instead e.g. with &#39;pybind11&gt;=2.12&#39;.
+
+If you are a user of the module, the easiest solution will be to
+downgrade to &#39;numpy&lt;2&#39; or try to upgrade the affected module.
+We expect that some modules will need time to support NumPy 2.
+
+Traceback (most recent call last):  File &quot;&lt;frozen runpy&gt;&quot;, line 198, in _run_module_as_main
+  File &quot;&lt;frozen runpy&gt;&quot;, line 88, in _run_code
+  File &quot;C:\Users\rache\anaconda3\Lib\site-packages\ipykernel_launcher.py&quot;, line 17, in &lt;module&gt;
+    app.launch_new_instance()
+  File &quot;C:\Users\rache\anaconda3\Lib\site-packages\traitlets\config\application.py&quot;, line 992, in launch_instance
+    app.start()
+  File &quot;C:\Users\rache\anaconda3\Lib\site-packages\ipykernel\kernelapp.py&quot;, line 736, in start
+    self.io_loop.start()
+  File &quot;C:\Users\rache\anaconda3\Lib\site-packages\tornado\platform\asyncio.py&quot;, line 195, in start
+    self.asyncio_loop.run_forever()
+  File &quot;C:\Users\rache\anaconda3\Lib\asyncio\base_events.py&quot;, line 607, in run_forever
+    self._run_once()
+  File &quot;C:\Users\rache\anaconda3\Lib\asyncio\base_events.py&quot;, line 1922, in _run_once
+    handle._run()
+  File &quot;C:\Users\rache\anaconda3\Lib\asyncio\events.py&quot;, line 80, in _run
+    self._context.run(self._callback, *self._args)
+  File &quot;C:\Users\rache\anaconda3\Lib\site-packages\ipykernel\kernelbase.py&quot;, line 516, in dispatch_queue
+    await self.process_one()
+  File &quot;C:\Users\rache\anaconda3\Lib\site-packages\ipykernel\kernelbase.py&quot;, line 505, in process_one
+    await dispatch(*args)
+  File &quot;C:\Users\rache\anaconda3\Lib\site-packages\ipykernel\kernelbase.py&quot;, line 412, in dispatch_shell
+    await result
+  File &quot;C:\Users\rache\anaconda3\Lib\site-packages\ipykernel\kernelbase.py&quot;, line 740, in execute_request
+    reply_content = await reply_content
+  File &quot;C:\Users\rache\anaconda3\Lib\site-packages\ipykernel\ipkernel.py&quot;, line 422, in do_execute
+    res = shell.run_cell(
+  File &quot;C:\Users\rache\anaconda3\Lib\site-packages\ipykernel\zmqshell.py&quot;, line 546, in run_cell
+    return super().run_cell(*args, **kwargs)
+  File &quot;C:\Users\rache\anaconda3\Lib\site-packages\IPython\core\interactiveshell.py&quot;, line 3024, in run_cell
+    result = self._run_cell(
+  File &quot;C:\Users\rache\anaconda3\Lib\site-packages\IPython\core\interactiveshell.py&quot;, line 3079, in _run_cell
+    result = runner(coro)
+  File &quot;C:\Users\rache\anaconda3\Lib\site-packages\IPython\core\async_helpers.py&quot;, line 129, in _pseudo_sync_runner
+    coro.send(None)
+  File &quot;C:\Users\rache\anaconda3\Lib\site-packages\IPython\core\interactiveshell.py&quot;, line 3284, in run_cell_async
+    has_raised = await self.run_ast_nodes(code_ast.body, cell_name,
+  File &quot;C:\Users\rache\anaconda3\Lib\site-packages\IPython\core\interactiveshell.py&quot;, line 3466, in run_ast_nodes
+    if await self.run_code(code, result, async_=asy):
+  File &quot;C:\Users\rache\anaconda3\Lib\site-packages\IPython\core\interactiveshell.py&quot;, line 3526, in run_code
+    exec(code_obj, self.user_global_ns, self.user_ns)
+  File &quot;C:\Users\rache\AppData\Local\Temp\ipykernel_5164\2734650917.py&quot;, line 3, in &lt;module&gt;
+    import matplotlib.pyplot as plt
+  File &quot;C:\Users\rache\anaconda3\Lib\site-packages\matplotlib\__init__.py&quot;, line 129, in &lt;module&gt;
+    from . import _api, _version, cbook, _docstring, rcsetup
+  File &quot;C:\Users\rache\anaconda3\Lib\site-packages\matplotlib\rcsetup.py&quot;, line 27, in &lt;module&gt;
+    from matplotlib.colors import Colormap, is_color_like
+  File &quot;C:\Users\rache\anaconda3\Lib\site-packages\matplotlib\colors.py&quot;, line 56, in &lt;module&gt;
+    from matplotlib import _api, _cm, cbook, scale
+  File &quot;C:\Users\rache\anaconda3\Lib\site-packages\matplotlib\scale.py&quot;, line 22, in &lt;module&gt;
+    from matplotlib.ticker import (
+  File &quot;C:\Users\rache\anaconda3\Lib\site-packages\matplotlib\ticker.py&quot;, line 138, in &lt;module&gt;
+    from matplotlib import transforms as mtransforms
+  File &quot;C:\Users\rache\anaconda3\Lib\site-packages\matplotlib\transforms.py&quot;, line 49, in &lt;module&gt;
+    from matplotlib._path import (
+</pre></div>
+</div>
+<div class="output traceback highlight-ipythontb notranslate"><div class="highlight"><pre><span></span><span class="gt">---------------------------------------------------------------------------</span>
+<span class="ne">AttributeError</span><span class="g g-Whitespace">                            </span>Traceback (most recent call last)
+<span class="ne">AttributeError</span>: _ARRAY_API not found
+</pre></div>
+</div>
+<div class="output traceback highlight-ipythontb notranslate"><div class="highlight"><pre><span></span><span class="gt">---------------------------------------------------------------------------</span>
+<span class="ne">ImportError</span><span class="g g-Whitespace">                               </span>Traceback (most recent call last)
+<span class="n">Cell</span> <span class="n">In</span><span class="p">[</span><span class="mi">1</span><span class="p">],</span> <span class="n">line</span> <span class="mi">3</span>
+<span class="g g-Whitespace">      </span><span class="mi">1</span> <span class="c1"># You might not be familiar this with random number generator, that&#39;s OK,</span>
+<span class="g g-Whitespace">      </span><span class="mi">2</span> <span class="c1"># This is one of _many_ that are available in NumPy.</span>
+<span class="ne">----&gt; </span><span class="mi">3</span> <span class="kn">import</span> <span class="nn">matplotlib.pyplot</span> <span class="k">as</span> <span class="nn">plt</span>
+<span class="g g-Whitespace">      </span><span class="mi">4</span> <span class="kn">import</span> <span class="nn">numpy</span> <span class="k">as</span> <span class="nn">np</span>
+<span class="g g-Whitespace">      </span><span class="mi">5</span> <span class="n">random_distribution</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">random</span><span class="o">.</span><span class="n">wald</span><span class="p">(</span><span class="mi">200</span><span class="p">,</span><span class="mi">500</span><span class="p">,</span><span class="n">size</span><span class="o">=</span><span class="mi">1000</span><span class="p">)</span>
+
+<span class="n">File</span> <span class="o">~</span>\<span class="n">anaconda3</span>\<span class="n">Lib</span>\<span class="n">site</span><span class="o">-</span><span class="n">packages</span>\<span class="n">matplotlib</span>\<span class="fm">__init__</span><span class="o">.</span><span class="n">py</span><span class="p">:</span><span class="mi">129</span>
+<span class="g g-Whitespace">    </span><span class="mi">125</span> <span class="kn">from</span> <span class="nn">packaging.version</span> <span class="kn">import</span> <span class="n">parse</span> <span class="k">as</span> <span class="n">parse_version</span>
+<span class="g g-Whitespace">    </span><span class="mi">127</span> <span class="c1"># cbook must import matplotlib only within function</span>
+<span class="g g-Whitespace">    </span><span class="mi">128</span> <span class="c1"># definitions, so it is safe to import from it here.</span>
+<span class="ne">--&gt; </span><span class="mi">129</span> <span class="kn">from</span> <span class="nn">.</span> <span class="kn">import</span> <span class="n">_api</span><span class="p">,</span> <span class="n">_version</span><span class="p">,</span> <span class="n">cbook</span><span class="p">,</span> <span class="n">_docstring</span><span class="p">,</span> <span class="n">rcsetup</span>
+<span class="g g-Whitespace">    </span><span class="mi">130</span> <span class="kn">from</span> <span class="nn">matplotlib.cbook</span> <span class="kn">import</span> <span class="n">sanitize_sequence</span>
+<span class="g g-Whitespace">    </span><span class="mi">131</span> <span class="kn">from</span> <span class="nn">matplotlib._api</span> <span class="kn">import</span> <span class="n">MatplotlibDeprecationWarning</span>
+
+<span class="n">File</span> <span class="o">~</span>\<span class="n">anaconda3</span>\<span class="n">Lib</span>\<span class="n">site</span><span class="o">-</span><span class="n">packages</span>\<span class="n">matplotlib</span>\<span class="n">rcsetup</span><span class="o">.</span><span class="n">py</span><span class="p">:</span><span class="mi">27</span>
+<span class="g g-Whitespace">     </span><span class="mi">25</span> <span class="kn">from</span> <span class="nn">matplotlib</span> <span class="kn">import</span> <span class="n">_api</span><span class="p">,</span> <span class="n">cbook</span>
+<span class="g g-Whitespace">     </span><span class="mi">26</span> <span class="kn">from</span> <span class="nn">matplotlib.cbook</span> <span class="kn">import</span> <span class="n">ls_mapper</span>
+<span class="ne">---&gt; </span><span class="mi">27</span> <span class="kn">from</span> <span class="nn">matplotlib.colors</span> <span class="kn">import</span> <span class="n">Colormap</span><span class="p">,</span> <span class="n">is_color_like</span>
+<span class="g g-Whitespace">     </span><span class="mi">28</span> <span class="kn">from</span> <span class="nn">matplotlib._fontconfig_pattern</span> <span class="kn">import</span> <span class="n">parse_fontconfig_pattern</span>
+<span class="g g-Whitespace">     </span><span class="mi">29</span> <span class="kn">from</span> <span class="nn">matplotlib._enums</span> <span class="kn">import</span> <span class="n">JoinStyle</span><span class="p">,</span> <span class="n">CapStyle</span>
+
+<span class="n">File</span> <span class="o">~</span>\<span class="n">anaconda3</span>\<span class="n">Lib</span>\<span class="n">site</span><span class="o">-</span><span class="n">packages</span>\<span class="n">matplotlib</span>\<span class="n">colors</span><span class="o">.</span><span class="n">py</span><span class="p">:</span><span class="mi">56</span>
+<span class="g g-Whitespace">     </span><span class="mi">54</span> <span class="kn">import</span> <span class="nn">matplotlib</span> <span class="k">as</span> <span class="nn">mpl</span>
+<span class="g g-Whitespace">     </span><span class="mi">55</span> <span class="kn">import</span> <span class="nn">numpy</span> <span class="k">as</span> <span class="nn">np</span>
+<span class="ne">---&gt; </span><span class="mi">56</span> <span class="kn">from</span> <span class="nn">matplotlib</span> <span class="kn">import</span> <span class="n">_api</span><span class="p">,</span> <span class="n">_cm</span><span class="p">,</span> <span class="n">cbook</span><span class="p">,</span> <span class="n">scale</span>
+<span class="g g-Whitespace">     </span><span class="mi">57</span> <span class="kn">from</span> <span class="nn">._color_data</span> <span class="kn">import</span> <span class="n">BASE_COLORS</span><span class="p">,</span> <span class="n">TABLEAU_COLORS</span><span class="p">,</span> <span class="n">CSS4_COLORS</span><span class="p">,</span> <span class="n">XKCD_COLORS</span>
+<span class="g g-Whitespace">     </span><span class="mi">60</span> <span class="k">class</span> <span class="nc">_ColorMapping</span><span class="p">(</span><span class="nb">dict</span><span class="p">):</span>
+
+<span class="n">File</span> <span class="o">~</span>\<span class="n">anaconda3</span>\<span class="n">Lib</span>\<span class="n">site</span><span class="o">-</span><span class="n">packages</span>\<span class="n">matplotlib</span>\<span class="n">scale</span><span class="o">.</span><span class="n">py</span><span class="p">:</span><span class="mi">22</span>
+<span class="g g-Whitespace">     </span><span class="mi">20</span> <span class="kn">import</span> <span class="nn">matplotlib</span> <span class="k">as</span> <span class="nn">mpl</span>
+<span class="g g-Whitespace">     </span><span class="mi">21</span> <span class="kn">from</span> <span class="nn">matplotlib</span> <span class="kn">import</span> <span class="n">_api</span><span class="p">,</span> <span class="n">_docstring</span>
+<span class="ne">---&gt; </span><span class="mi">22</span> <span class="kn">from</span> <span class="nn">matplotlib.ticker</span> <span class="kn">import</span> <span class="p">(</span>
+<span class="g g-Whitespace">     </span><span class="mi">23</span>     <span class="n">NullFormatter</span><span class="p">,</span> <span class="n">ScalarFormatter</span><span class="p">,</span> <span class="n">LogFormatterSciNotation</span><span class="p">,</span> <span class="n">LogitFormatter</span><span class="p">,</span>
+<span class="g g-Whitespace">     </span><span class="mi">24</span>     <span class="n">NullLocator</span><span class="p">,</span> <span class="n">LogLocator</span><span class="p">,</span> <span class="n">AutoLocator</span><span class="p">,</span> <span class="n">AutoMinorLocator</span><span class="p">,</span>
+<span class="g g-Whitespace">     </span><span class="mi">25</span>     <span class="n">SymmetricalLogLocator</span><span class="p">,</span> <span class="n">AsinhLocator</span><span class="p">,</span> <span class="n">LogitLocator</span><span class="p">)</span>
+<span class="g g-Whitespace">     </span><span class="mi">26</span> <span class="kn">from</span> <span class="nn">matplotlib.transforms</span> <span class="kn">import</span> <span class="n">Transform</span><span class="p">,</span> <span class="n">IdentityTransform</span>
+<span class="g g-Whitespace">     </span><span class="mi">29</span> <span class="k">class</span> <span class="nc">ScaleBase</span><span class="p">:</span>
+
+<span class="n">File</span> <span class="o">~</span>\<span class="n">anaconda3</span>\<span class="n">Lib</span>\<span class="n">site</span><span class="o">-</span><span class="n">packages</span>\<span class="n">matplotlib</span>\<span class="n">ticker</span><span class="o">.</span><span class="n">py</span><span class="p">:</span><span class="mi">138</span>
+<span class="g g-Whitespace">    </span><span class="mi">136</span> <span class="kn">import</span> <span class="nn">matplotlib</span> <span class="k">as</span> <span class="nn">mpl</span>
+<span class="g g-Whitespace">    </span><span class="mi">137</span> <span class="kn">from</span> <span class="nn">matplotlib</span> <span class="kn">import</span> <span class="n">_api</span><span class="p">,</span> <span class="n">cbook</span>
+<span class="ne">--&gt; </span><span class="mi">138</span> <span class="kn">from</span> <span class="nn">matplotlib</span> <span class="kn">import</span> <span class="n">transforms</span> <span class="k">as</span> <span class="n">mtransforms</span>
+<span class="g g-Whitespace">    </span><span class="mi">140</span> <span class="n">_log</span> <span class="o">=</span> <span class="n">logging</span><span class="o">.</span><span class="n">getLogger</span><span class="p">(</span><span class="vm">__name__</span><span class="p">)</span>
+<span class="g g-Whitespace">    </span><span class="mi">142</span> <span class="n">__all__</span> <span class="o">=</span> <span class="p">(</span><span class="s1">&#39;TickHelper&#39;</span><span class="p">,</span> <span class="s1">&#39;Formatter&#39;</span><span class="p">,</span> <span class="s1">&#39;FixedFormatter&#39;</span><span class="p">,</span>
+<span class="g g-Whitespace">    </span><span class="mi">143</span>            <span class="s1">&#39;NullFormatter&#39;</span><span class="p">,</span> <span class="s1">&#39;FuncFormatter&#39;</span><span class="p">,</span> <span class="s1">&#39;FormatStrFormatter&#39;</span><span class="p">,</span>
+<span class="g g-Whitespace">    </span><span class="mi">144</span>            <span class="s1">&#39;StrMethodFormatter&#39;</span><span class="p">,</span> <span class="s1">&#39;ScalarFormatter&#39;</span><span class="p">,</span> <span class="s1">&#39;LogFormatter&#39;</span><span class="p">,</span>
+   <span class="p">(</span><span class="o">...</span><span class="p">)</span>
+<span class="g g-Whitespace">    </span><span class="mi">150</span>            <span class="s1">&#39;MultipleLocator&#39;</span><span class="p">,</span> <span class="s1">&#39;MaxNLocator&#39;</span><span class="p">,</span> <span class="s1">&#39;AutoMinorLocator&#39;</span><span class="p">,</span>
+<span class="g g-Whitespace">    </span><span class="mi">151</span>            <span class="s1">&#39;SymmetricalLogLocator&#39;</span><span class="p">,</span> <span class="s1">&#39;AsinhLocator&#39;</span><span class="p">,</span> <span class="s1">&#39;LogitLocator&#39;</span><span class="p">)</span>
+
+<span class="n">File</span> <span class="o">~</span>\<span class="n">anaconda3</span>\<span class="n">Lib</span>\<span class="n">site</span><span class="o">-</span><span class="n">packages</span>\<span class="n">matplotlib</span>\<span class="n">transforms</span><span class="o">.</span><span class="n">py</span><span class="p">:</span><span class="mi">49</span>
+<span class="g g-Whitespace">     </span><span class="mi">46</span> <span class="kn">from</span> <span class="nn">numpy.linalg</span> <span class="kn">import</span> <span class="n">inv</span>
+<span class="g g-Whitespace">     </span><span class="mi">48</span> <span class="kn">from</span> <span class="nn">matplotlib</span> <span class="kn">import</span> <span class="n">_api</span>
+<span class="ne">---&gt; </span><span class="mi">49</span> <span class="kn">from</span> <span class="nn">matplotlib._path</span> <span class="kn">import</span> <span class="p">(</span>
+<span class="g g-Whitespace">     </span><span class="mi">50</span>     <span class="n">affine_transform</span><span class="p">,</span> <span class="n">count_bboxes_overlapping_bbox</span><span class="p">,</span> <span class="n">update_path_extents</span><span class="p">)</span>
+<span class="g g-Whitespace">     </span><span class="mi">51</span> <span class="kn">from</span> <span class="nn">.path</span> <span class="kn">import</span> <span class="n">Path</span>
+<span class="g g-Whitespace">     </span><span class="mi">53</span> <span class="n">DEBUG</span> <span class="o">=</span> <span class="kc">False</span>
+
+<span class="ne">ImportError</span>: numpy.core.multiarray failed to import
+</pre></div>
+</div>
+</div>
+</div>
+<p>This is an array holding 1000 random numbers, generated from a statistical distribution called the “<a class="reference external" href="https://en.wikipedia.org/wiki/Inverse_Gaussian_distribution">Wald distribution</a>” (or “inverse gaussian distribution”).</p>
+<p>Let’s look at the first 10 numbers. <strong>Take special notice of how we are “slicing” the array to get just a subset of the values using “<code class="docutils literal notranslate"><span class="pre">:</span></code>”!</strong></p>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="c1"># Run this cell!</span>
+<span class="n">random_distribution</span><span class="p">[</span><span class="mi">0</span><span class="p">:</span><span class="mi">10</span><span class="p">]</span>
+</pre></div>
+</div>
+</div>
+</div>
+<p>And now let’s make a plot all of the elements:</p>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="c1"># Run this cell!</span>
+<span class="kn">import</span> <span class="nn">matplotlib.pyplot</span> <span class="k">as</span> <span class="nn">plt</span>
+<span class="n">plt</span><span class="o">.</span><span class="n">plot</span><span class="p">(</span><span class="n">random_distribution</span><span class="p">,</span><span class="s1">&#39;o&#39;</span><span class="p">)</span>
+<span class="n">plt</span><span class="o">.</span><span class="n">xlabel</span><span class="p">(</span><span class="s1">&#39;Index&#39;</span><span class="p">)</span>
+<span class="n">plt</span><span class="o">.</span><span class="n">ylabel</span><span class="p">(</span><span class="s1">&#39;Value&#39;</span><span class="p">)</span>
+</pre></div>
+</div>
+</div>
+</div>
+<p>What are some other ways we can analyze and visualize this data?  One visualization is a box plot, which shows where the <em><strong>quartiles</strong></em> of the data set are, as well as <strong>outliers</strong>.</p>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="c1"># Run this cell!</span>
+<span class="n">box</span> <span class="o">=</span> <span class="n">plt</span><span class="o">.</span><span class="n">boxplot</span><span class="p">(</span><span class="n">random_distribution</span><span class="p">,</span> <span class="n">vert</span><span class="o">=</span><span class="kc">False</span><span class="p">)</span>
+<span class="n">ylabel</span> <span class="o">=</span> <span class="n">plt</span><span class="o">.</span><span class="n">ylabel</span><span class="p">(</span><span class="s2">&quot;Frequency&quot;</span><span class="p">)</span>
+<span class="n">xlabel</span> <span class="o">=</span> <span class="n">plt</span><span class="o">.</span><span class="n">xlabel</span><span class="p">(</span><span class="s2">&quot;Value&quot;</span><span class="p">)</span>
+<span class="n">title</span> <span class="o">=</span> <span class="n">plt</span><span class="o">.</span><span class="n">title</span><span class="p">(</span><span class="s2">&quot;Wald Distribution&quot;</span><span class="p">)</span>
+</pre></div>
+</div>
+</div>
+</div>
+<p>Another visualization is a <strong>histogram</strong>, which splits the data set into a bunch of equally sized intervals, and then graphs the number of data points that fall into each interval. The higher the bar on a histogram, the more data points in that interval. Thought of another way, a histogram shows you the “count” or “frequency” of values falling into a specific bin on the x-axis.</p>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="c1"># Run this cell!</span>
+<span class="n">hist</span> <span class="o">=</span> <span class="n">plt</span><span class="o">.</span><span class="n">hist</span><span class="p">(</span><span class="n">random_distribution</span><span class="p">,</span> <span class="n">bins</span><span class="o">=</span><span class="mi">50</span><span class="p">,</span> <span class="n">color</span><span class="o">=</span><span class="s2">&quot;k&quot;</span><span class="p">,</span> <span class="n">alpha</span><span class="o">=</span><span class="mf">0.5</span><span class="p">)</span> <span class="c1">#what&#39;s the alpha argument doing?</span>
+<span class="n">ylabel</span> <span class="o">=</span> <span class="n">plt</span><span class="o">.</span><span class="n">ylabel</span><span class="p">(</span><span class="s2">&quot;Frequency&quot;</span><span class="p">)</span>
+<span class="n">xlabel</span> <span class="o">=</span> <span class="n">plt</span><span class="o">.</span><span class="n">xlabel</span><span class="p">(</span><span class="s2">&quot;Value&quot;</span><span class="p">)</span>
+<span class="n">title</span> <span class="o">=</span> <span class="n">plt</span><span class="o">.</span><span class="n">title</span><span class="p">(</span><span class="s2">&quot;Wald Distribution&quot;</span><span class="p">)</span>
+</pre></div>
+</div>
+</div>
+</div>
+<p>✅  <strong>Compare the representations above</strong></p>
+<p>What are the similarities between how the boxplot represents the data set versus the histogram? What does the boxplot do a better job of showing? What does the histogram do a better job of showing?</p>
+<p><font size=+3>✎</font> <em>Put your answer here</em></p>
+</section>
+<section id="compute-and-compare">
+<h2>1.2 Compute and Compare<a class="headerlink" href="#compute-and-compare" title="Link to this heading">#</a></h2>
+<p>✅  <strong>Now lets actually compute the mean and median and visualize them on the distribution graph.</strong></p>
+<p>Add <strong>two vertical lines</strong> with different colors where the <strong>mean</strong> and <strong>median</strong> are using Matplotlib’s <a class="reference external" href="https://matplotlib.org/3.1.1/api/_as_gen/matplotlib.pyplot.axvline.html"><code class="docutils literal notranslate"><span class="pre">plt.axvline()</span></code></a> function – this might be new to you, so make sure you understand how it works!</p>
+<p><strong>Make sure you label your lines and include a legend.</strong></p>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">hist</span> <span class="o">=</span> <span class="n">plt</span><span class="o">.</span><span class="n">hist</span><span class="p">(</span><span class="n">random_distribution</span><span class="p">,</span><span class="n">bins</span><span class="o">=</span><span class="mi">50</span><span class="p">,</span><span class="n">color</span><span class="o">=</span><span class="s2">&quot;k&quot;</span><span class="p">,</span><span class="n">alpha</span><span class="o">=</span><span class="mf">0.5</span><span class="p">)</span>
+<span class="c1"># Add your additional plotting commands here</span>
+
+<span class="c1"># The following line is provided to help get you started, you need to decide what to use for the &quot;x&quot; argument</span>
+<span class="c1">#plt.axvline(x=?,linewidth=2, color=&#39;r&#39;,label = &quot;Median&quot;)</span>
+</pre></div>
+</div>
+</div>
+</div>
+<p>✅  <strong>Which is larger for this data set, mean or median? Explain why you think that is.</strong></p>
+<p><font size=+3>✎</font> <em>Put your answer here</em></p>
+</section>
+</section>
+<hr class="docutils" />
+<section class="tex2jax_ignore mathjax_ignore" id="part-2-loading-in-and-cleaning-economic-data">
+<h1>Part 2: Loading in and cleaning economic data<a class="headerlink" href="#part-2-loading-in-and-cleaning-economic-data" title="Link to this heading">#</a></h1>
+<p>The next part we will focus on transforming and manipulating a dataset using Pandas. As data scientist/computational professional in training, one of the goals we want you to accomplish is to be comfortable searching through online resources to try and solve problems. There are far too many functions and concepts in programming to remember everything so in practice it’s essential to utilize package documentation, stack overflow, etc. Some of the questions you will see below will ask you to use or look for a function you’ve never used before to get you to practice Googling questions that help you accomplish your task.</p>
+<hr class="docutils" />
+<section id="what-data-are-we-working-with">
+<h2>What data are we working with?<a class="headerlink" href="#what-data-are-we-working-with" title="Link to this heading">#</a></h2>
+<p>We will be analyzing a dataset from the World Bank containing yearly GDP data for countries from 1960-2023. The GDP numbers have been converted to USD for all countries by the exchange rate at the time. Which is important to note because depending on the exchange rates at the time this could over/under value the non US countries numbers or increase the variance of GDP.</p>
+<p>The dataset comes from here: <a class="reference external" href="https://data.worldbank.org/indicator/ny.gdp.mktp.cd">https://data.worldbank.org/indicator/ny.gdp.mktp.cd</a></p>
+<p>GDP stands for <strong>Gross Domestic Product</strong> and it is equal to the market value of all the finished goods and services produced within a country’s borders in a specific time period.</p>
+<p>GDP = Consumer Spending + Private Investment + Government Expenditure + Net Exports</p>
+<hr class="docutils" />
+<section id="cleaning-data-is-an-important-part-analyzing-data">
+<h3>2.1 Cleaning data is an important part analyzing data.<a class="headerlink" href="#cleaning-data-is-an-important-part-analyzing-data" title="Link to this heading">#</a></h3>
+<p>First, we’re going to load in the <code class="docutils literal notranslate"><span class="pre">.csv</span></code> dataset into a Pandas Dataframe and explore the original structure of the data and think about if it could be formatted in a more useful way. <strong>If you were to download the data from the website, you might end up with more than one .csv file, we’ve provided the one that contains the GDP information on the course website.</strong></p>
+<p>Make sure you import the Pandas module before moving on!</p>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="c1"># put your Pandas import command here</span>
+</pre></div>
+</div>
+</div>
+</div>
+<p>✅  <strong>Load in the API_NY.GDP.MKTP.CD_DS2_en_csv_v2_31795.csv file using <code class="docutils literal notranslate"><span class="pre">pd.read_csv()</span></code>.  Skip the first 4 rows and use a comma as the delimiter. Then display the first few lines using <code class="docutils literal notranslate"><span class="pre">.head()</span></code>.</strong></p>
+<p>Use <code class="docutils literal notranslate"><span class="pre">gdp</span></code> as the variable name for storing your dataframe as indicated in the code cell below.</p>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="c1"># Load in GDP.csv</span>
+<span class="c1">#gdp = # Finish this line to load in the data!</span>
+</pre></div>
+</div>
+</div>
+</div>
+<p>As a first step to cleaning a data set, it can be helpful to get rid of rows that have a lot of “NaN” values. NaN means “Not a Number,” and it is a value that sometimes takes the place of a blank entry. Countries that did not track GDP as far back as 1960 will have some NaN values, such as Aruba and Angola. You may want to keep these rows in your own data sets, but for this assignment, we are going to “drop” them from the data set, using a handy pandas function called “dropna”.</p>
+<p><strong>Important note</strong>: sometimes when you use Pandas function is modifies your dataframe directly, but other times it generates a <em>new</em> dataframe based on the old one. When the function <strong>returns</strong> a new dataframe, we need to make sure we store that result in a variable. <strong>Look carefully at the code below to see how this is being done</strong>.</p>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">gdp</span> <span class="o">=</span> <span class="n">gdp</span><span class="o">.</span><span class="n">dropna</span><span class="p">(</span><span class="n">axis</span><span class="o">=</span><span class="s2">&quot;columns&quot;</span><span class="p">,</span> <span class="n">how</span><span class="o">=</span><span class="s2">&quot;all&quot;</span><span class="p">)</span> <span class="c1"># drop empty columns, like the last column in gdp</span>
+<span class="n">gdp</span> <span class="o">=</span> <span class="n">gdp</span><span class="o">.</span><span class="n">dropna</span><span class="p">()</span> <span class="c1"># drop rows with NaNs, like Aruba and Angola</span>
+<span class="n">gdp</span><span class="o">.</span><span class="n">head</span><span class="p">()</span>
+</pre></div>
+</div>
+</div>
+</div>
+<hr class="docutils" />
+<p><strong>Note that the <code class="docutils literal notranslate"><span class="pre">dropna</span></code> function was accessed from the dataframe itself (<code class="docutils literal notranslate"><span class="pre">gdp.dropna()</span></code>).</strong>  These functions are included with each dataframe object. We’ve already seen this with functions like <code class="docutils literal notranslate"><span class="pre">describe()</span></code>, and even with numpy array functions like <code class="docutils literal notranslate"><span class="pre">my_array.sum()</span></code>.  Many of the functions you’ll be using today are included with the dataframe objects.</p>
+<p>You can browse through these built-in functions by typing the name of a dataframe followed by <code class="docutils literal notranslate"><span class="pre">.</span></code> and then hitting the tab key.  Try it out below!</p>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="c1"># uncomment the line below, then go to the end of the line and hit tab </span>
+<span class="c1">#gdp.</span>
+</pre></div>
+</div>
+</div>
+</div>
+<p>If you want to learn more about something, select it (or type it out), add a question mark (<code class="docutils literal notranslate"><span class="pre">?</span></code>) and then run the cell. <strong>Ask an instructor for help if you can’t get the <code class="docutils literal notranslate"><span class="pre">?</span></code> mark trick to work!</strong></p>
+</section>
+<hr class="docutils" />
+<section id="making-the-dataset-easier-to-explore">
+<h3>Making the dataset easier to explore<a class="headerlink" href="#making-the-dataset-easier-to-explore" title="Link to this heading">#</a></h3>
+<p>Typically when we are looking at data over time we represent each time step as a row rather than a column. Switching the rows and columns is an operation known as “Transposing” and <a class="reference external" href="https://pandas.pydata.org/docs/reference/api/pandas.DataFrame.transpose.html">Pandas has a function</a> that does that!</p>
+<p><strong>IMPORTANT:</strong> When you use Pandas functions on dataframes, some operations will affect the original dataframe (referred to as “<strong>in place</strong>” operations), and some will not (referred to as “<strong>not in place</strong>” operations). Transposing a dataframe is a <strong>not in place</strong> operation, meaning that the results are not saved unless you save them to a variable!</p>
+<p>Let’s transpose the dataset to get years as rows instead of columns.</p>
+<p>Example of Transposing:</p>
+<img src="https://www.howtogeek.com/wp-content/uploads/2016/06/00_lead_image_transpose_word_table.png" width=500px>
+<p>✅  <strong>Transpose the data</strong> to flip the orientation of the rows and columns.</p>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="c1"># Transpose the dataframe here and check to see if it worked</span>
+<span class="c1"># MAKE SURE YOU SAVE YOUR TRANSPOSED DATAFRAME AS A VARIABLE</span>
+</pre></div>
+</div>
+</div>
+</div>
+<p>One of the benefits of Pandas Dataframe is being able to index a column by name rather than a number.</p>
+<p>✅  <strong>Modify the dataframe so that each country name is used as the column headers by assigning the first row of the dataframe to be the column headers.</strong></p>
+<p>Think back to the Pre-Class Assignment. What information are you looking to retrieve? What tools do you have to access this information? You may want to use <code class="docutils literal notranslate"><span class="pre">.iloc</span></code> to do this. If done correctly, you then should be able to index a column out of our dataframe using <code class="docutils literal notranslate"><span class="pre">gdp['United</span> <span class="pre">States']</span></code>, for example. Make sure to test this out!</p>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="c1"># Change the column headers to be the country names here.</span>
+</pre></div>
+</div>
+</div>
+</div>
+<p>This is looking pretty good!</p>
+<p>Of course, now we have a few redundant rows: “Country Name”, “Country Code”, “Indicator Name”, and “Indicator Code”. We don’t really need these any more now that we’ve change the column labels.</p>
+<p>✅  <strong>Remove these four rows, since they don’t contain yearly GDP data.</strong> There’s more than one way to do this. The best option is to use the <code class="docutils literal notranslate"><span class="pre">gdp.drop()</span></code> function. Figure out how it works with <code class="docutils literal notranslate"><span class="pre">gdp.drop?</span></code>.</p>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="c1"># Try to remove the rows that don&#39;t represent years here</span>
+</pre></div>
+</div>
+</div>
+</div>
+<p>Now our dataset should be in an easier format. The next step is to examine the structure of our data.</p>
+<p>✅  <strong>Review the following code and comment what each line is doing.</strong></p>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="nb">print</span><span class="p">(</span><span class="n">gdp</span><span class="o">.</span><span class="n">index</span><span class="p">)</span> <span class="c1">#comment here</span>
+
+
+<span class="nb">print</span><span class="p">(</span><span class="nb">type</span><span class="p">(</span><span class="n">gdp</span><span class="o">.</span><span class="n">index</span><span class="p">[</span><span class="mi">0</span><span class="p">]))</span> <span class="c1">#comment here</span>
+</pre></div>
+</div>
+</div>
+</div>
+<p>We can see the index column is made up of strings representing years, which isn’t ideal!</p>
+<p>The code below will change the data type from strings to integers. This will be helpful for when we begin plotting because when you try to plot strings as numbers it doesn’t usually work out very well!</p>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">gdp</span><span class="o">.</span><span class="n">index</span> <span class="o">=</span> <span class="n">gdp</span><span class="o">.</span><span class="n">index</span><span class="o">.</span><span class="n">astype</span><span class="p">(</span><span class="nb">int</span><span class="p">)</span>
+<span class="n">gdp</span><span class="o">.</span><span class="n">index</span>
+</pre></div>
+</div>
+</div>
+</div>
+</section>
+<section id="exploring-the-data">
+<h3>2.2 Exploring the Data<a class="headerlink" href="#exploring-the-data" title="Link to this heading">#</a></h3>
+<p>✅  <strong>Now pick 2 countries and print the GDP for year 1975 using <code class="docutils literal notranslate"><span class="pre">.loc</span></code> and the column name.</strong> Again, look back at the dataset and think about what information we are looking to retrieve. What information is stored in our columns? What information is stored in our rows?</p>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="c1"># Put your code here</span>
+</pre></div>
+</div>
+</div>
+</div>
+<p>✅  Now, <strong>plot those two countries GDP <em>in billions of dollars</em> from 1960-2020, make sure to have proper labels and legends.</strong></p>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="c1"># Put your plotting commands here</span>
+</pre></div>
+</div>
+</div>
+</div>
+<p>✅  <strong>Question</strong> Is this a good way visual comparison for the two countries? If one country has a much larger GDP or much larger population than the other country what would be a better way to normalize or compare the data? This might involve doing some sort of calculation or visualizing the data differently.</p>
+<p><font size=+3>✎</font> <em>Put your answer here</em></p>
+</section>
+<section id="exploring-the-log-linear-plot">
+<h3>2.3 Exploring the log-linear plot<a class="headerlink" href="#exploring-the-log-linear-plot" title="Link to this heading">#</a></h3>
+<p>During the COVID-19 pandemic, some of the visualizations floating around that show the numbers of confirmed cases in various places around the world have been “log-linear” plots which uses a logarithmic scale (tick marks indicate powers of 10) on the y-axis and a linear scale on the x-axis. Some folks have even written papers about <a class="reference external" href="https://www.ncbi.nlm.nih.gov/pmc/articles/PMC7200843/">how these sort of plots may or may not impact how people perceive the need for confinement</a> to stop the spread of the virus.</p>
+<p>You can change the scaling of an axis for a matplotlib plot using <code class="docutils literal notranslate"><span class="pre">plt.yscale('log')</span></code>. Or, you can try using the <code class="docutils literal notranslate"><span class="pre">plt.semilogy()</span></code> function.</p>
+<p>✅  Try using a log scale for the GDP in the previous plot for the two different countries to see if it facilitates a better comparison!</p>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="c1"># Try making a &quot;semilogy&quot; plot here or try use the `plt.yscale()` function to modify your plot</span>
+</pre></div>
+</div>
+</div>
+</div>
+<p>✅  <strong>Question</strong> Do you find this to be a better way to visualize the data, yes or no? Explain your reasoning!</p>
+<p><font size=+3>✎</font> <em>Put your answer here</em></p>
+</section>
+<section id="analyzing-growth-rates">
+<h3>2.4 Analyzing growth rates<a class="headerlink" href="#analyzing-growth-rates" title="Link to this heading">#</a></h3>
+<p>One way to compare GDP between different countries in a way that is unit free would be to consider the countries <em>growth rates</em>. The growth rate for a year would be equal to the <strong>percent change</strong> going from one year to another, defined like so:</p>
+<ul class="simple">
+<li><p>Growth Rate in 1961 = (GDP in year 1961 - GDP in year 1960) / GDP in year 1960</p></li>
+</ul>
+<p>✅  <strong>Lets plot two countries growth rates on the same plot over time making sure to properly label our graph.</strong></p>
+<p>(<strong>Hint</strong>: Pandas dataframes might have a function that can compute the percent change for you – time to consult the internet again!)</p>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="c1"># Calculate and plot the growth rates as a function of time</span>
+</pre></div>
+</div>
+</div>
+</div>
+<p>✅  <strong>Question</strong>: Why might comparing growth rates be a better comparison for countries that have GDP’s of very different magnitudes?</p>
+<p><font size=+3>✎</font> <em>Put your answer here</em></p>
+</section>
+</section>
+<hr class="docutils" />
+<section id="time-permitting-part-3-more-data-manipulation">
+<h2>(TIME PERMITTING) Part 3: More Data Manipulation<a class="headerlink" href="#time-permitting-part-3-more-data-manipulation" title="Link to this heading">#</a></h2>
+<section id="filtering-sorting-and-calculating-new-quantities">
+<h3>Filtering, sorting, and calculating new quantities<a class="headerlink" href="#filtering-sorting-and-calculating-new-quantities" title="Link to this heading">#</a></h3>
+<p>You’ve been able to clean, transform, and visualize the data, but for an extra challenge let’s use any time you have remaining to work on filtering and sorting your data.</p>
+<p>The below analyses are going to focus on data for individual countries for the year 2020. To get started, we’re going to:</p>
+<ol class="arabic simple">
+<li><p>create a new dataset for only the year 2023, and</p></li>
+<li><p>drop columns that don’t correspond to individual countries</p></li>
+</ol>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">gdp2023</span><span class="o">=</span> <span class="n">gdp</span><span class="o">.</span><span class="n">loc</span><span class="p">[</span><span class="mi">2023</span><span class="p">]</span>
+<span class="n">gdp2023</span> <span class="o">=</span> <span class="n">gdp2023</span><span class="o">.</span><span class="n">drop</span><span class="p">([</span><span class="s1">&#39;World&#39;</span><span class="p">,</span> <span class="s1">&#39;High income&#39;</span><span class="p">,</span> <span class="s1">&#39;OECD members&#39;</span><span class="p">,</span> <span class="s1">&#39;Post-demographic dividend&#39;</span><span class="p">,</span> <span class="s1">&#39;IDA &amp; IBRD total&#39;</span><span class="p">,</span> 
+                        <span class="s1">&#39;Low &amp; middle income&#39;</span><span class="p">,</span> <span class="s1">&#39;Middle income&#39;</span><span class="p">,</span> <span class="s1">&#39;IBRD only&#39;</span><span class="p">,</span> <span class="s1">&#39;Upper middle income&#39;</span><span class="p">,</span>
+                        <span class="s1">&#39;North America&#39;</span><span class="p">,</span> <span class="s1">&#39;Late-demographic dividend&#39;</span><span class="p">,</span>
+                        <span class="s1">&#39;East Asia &amp; Pacific&#39;</span><span class="p">,</span>
+                        <span class="s1">&#39;East Asia &amp; Pacific (excluding high income)&#39;</span><span class="p">,</span>
+                        <span class="s1">&#39;East Asia &amp; Pacific (IDA &amp; IBRD countries)&#39;</span><span class="p">,</span> <span class="s1">&#39;Euro area&#39;</span><span class="p">,</span> <span class="s1">&#39;Early-demographic dividend&#39;</span><span class="p">,</span>
+                        <span class="s1">&#39;Lower middle income&#39;</span><span class="p">,</span> <span class="s1">&#39;South Asia&#39;</span><span class="p">,</span>
+                        <span class="s1">&#39;South Asia (IDA &amp; IBRD)&#39;</span><span class="p">,</span> <span class="s1">&#39;IDA total&#39;</span><span class="p">,</span>
+                        <span class="s1">&#39;Sub-Saharan Africa&#39;</span><span class="p">,</span> <span class="s1">&#39;Sub-Saharan Africa (IDA &amp; IBRD countries)&#39;</span><span class="p">,</span>
+                        <span class="s1">&#39;Sub-Saharan Africa (excluding high income)&#39;</span><span class="p">,</span> <span class="s1">&#39;IDA only&#39;</span><span class="p">,</span><span class="s1">&#39;Europe &amp; Central Asia&#39;</span><span class="p">,</span> <span class="s1">&#39;European Union&#39;</span><span class="p">,</span><span class="s1">&#39;Fragile and conflict affected situations&#39;</span><span class="p">])</span>
+</pre></div>
+</div>
+</div>
+</div>
+<p>✅  <strong>Great!  Now filter the top 10% of countries in the cleaned up data set by their 2023 GDP, print their names, and store the names in a list in ordered by their GDP ranking.</strong></p>
+<p>(<strong>Hint</strong>: Pandas has a <code class="docutils literal notranslate"><span class="pre">quantile</span></code> function that could be useful to find the value for the 10% cut off as well as a function for sorting the values)</p>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="c1"># Put your code for finding the countries with the highest 10 GDP values and sorting them here</span>
+</pre></div>
+</div>
+</div>
+</div>
+<p>✅  <strong>Let’s take a closer look at how the countries rank by plotting a horizontal bar graph of the top 10% countries GDP in billions by ranking order starting with the highest GDP.</strong></p>
+<p>Pandas dataframes have a horizontal bar graph function as well (<code class="docutils literal notranslate"><span class="pre">.plot.barh()</span></code>) – isn’t Pandas handy?</p>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="c1"># Make your horizonal bar graph here</span>
+</pre></div>
+</div>
+</div>
+</div>
+<p>✅  <strong>With Pandas, we can pull multiple columns at the same time. Using that list of the top 10% of countries, create a subset of the original GDP dataframe that has data for only the last 20 years for countries in your list of top 10%.</strong></p>
+<p>We can create a subset by setting a new variable to equal the subset of the Dataframe.</p>
+<p>(something like: <code class="docutils literal notranslate"><span class="pre">Subset</span> <span class="pre">=</span> <span class="pre">DataFrame[list_of_columns_headers]</span></code>)</p>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="c1"># Put your code here and create additional code cells as needed</span>
+</pre></div>
+</div>
+</div>
+</div>
+<p>✅  Next, <strong>calculate the standard deviation of GDP for each country in the subset dataframe over the last 20 years. Recreate the Horizontal Bargraph above with but using the standard deviation.</strong></p>
+<p>✅  <strong>Are there similiarities between the GDP graph and the standard deviation graph? Explain why you think they look similiar and what the limitation is with using standard deviation to compare the variation of the GDP for different contries.</strong></p>
+<p><font size=+3>✎</font> <em>Put your answer here</em></p>
+<hr class="docutils" />
+<p><strong>Let’s pause and think about the following example:</strong></p>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">X</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">array</span><span class="p">([</span><span class="mi">2</span><span class="p">,</span><span class="mi">4</span><span class="p">,</span><span class="mi">10</span><span class="p">,</span><span class="mi">15</span><span class="p">,</span><span class="mi">30</span><span class="p">,</span><span class="mi">50</span><span class="p">])</span>
+<span class="nb">print</span><span class="p">(</span><span class="n">np</span><span class="o">.</span><span class="n">std</span><span class="p">(</span><span class="n">X</span><span class="p">))</span>
+
+<span class="n">X2</span> <span class="o">=</span> <span class="n">X</span><span class="o">*</span><span class="mi">50</span>
+<span class="nb">print</span><span class="p">(</span><span class="n">np</span><span class="o">.</span><span class="n">std</span><span class="p">(</span><span class="n">X2</span><span class="p">))</span>
+</pre></div>
+</div>
+</div>
+</div>
+<p>The idea here is the spread between the numbers in the datasets <code class="docutils literal notranslate"><span class="pre">X</span></code> &amp; <code class="docutils literal notranslate"><span class="pre">X2</span></code> are the same in when considered as a percentage of the total, but the standard deviation will be proportionally higher for <code class="docutils literal notranslate"><span class="pre">X2</span></code>. This means the difference between each observation and the mean from a percentage basis is the same, but because the values in <code class="docutils literal notranslate"><span class="pre">X2</span></code> are 50 times larger, the standard deviation will be 50 times larger.</p>
+<p>The take away is if we want to compare how much a countries GDP growth varies relative to another country, we want an apples to apples comparison. For example, taking the standard deviation of the United States compared to Thailand we would expect United States to have a higher standard deviation because the US GDP is much higher. When in reality, Thailand’s GDP varies relatively more than the United States GDP varies.</p>
+<hr class="docutils" />
+<p>In order to compare the variation in GDP by countries of different magnitudes we want to be looking at the change in GDP from a percentage view.</p>
+<p>✅  <strong>Recreate the horizontal bar graph again, but this time take the standard deviation of the percent changes, or growth rates, of GDP for the last 20 years.</strong></p>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="c1"># Put your code here</span>
+</pre></div>
+</div>
+</div>
+</div>
+<p>✅  <strong>What do you observe? Why is taking the standard deviation of growth rates a better assessment of volatility than standard deviation of normal GDP for this data?</strong></p>
+<p><font size=+3>✎</font> <em>Put your answer here</em></p>
+</section>
+</section>
+<hr class="docutils" />
+<section id="assignment-wrapup">
+<h2>Assignment wrapup<a class="headerlink" href="#assignment-wrapup" title="Link to this heading">#</a></h2>
+<p>Please fill out the form that appears when you run the code below. <strong>You must completely fill this out in order to receive credit for the assignment!</strong></p>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="kn">from</span> <span class="nn">IPython.display</span> <span class="kn">import</span> <span class="n">HTML</span>
+<span class="n">HTML</span><span class="p">(</span>
+<span class="sd">&quot;&quot;&quot;</span>
+<span class="sd">&lt;iframe </span>
+<span class="sd">	src=&quot;https://cmse.msu.edu/cmse201-ic-survey&quot; </span>
+<span class="sd">	width=&quot;800px&quot; </span>
+<span class="sd">	height=&quot;600px&quot; </span>
+<span class="sd">	frameborder=&quot;0&quot; </span>
+<span class="sd">	marginheight=&quot;0&quot; </span>
+<span class="sd">	marginwidth=&quot;0&quot;&gt;</span>
+<span class="sd">	Loading...</span>
+<span class="sd">&lt;/iframe&gt;</span>
+<span class="sd">&quot;&quot;&quot;</span>
+<span class="p">)</span>
+</pre></div>
+</div>
+</div>
+</div>
+</section>
+<hr class="docutils" />
+<section id="congratulations-you-re-done">
+<h2>Congratulations, you’re done!<a class="headerlink" href="#congratulations-you-re-done" title="Link to this heading">#</a></h2>
+<p>Submit this assignment by uploading your notebook to the course Desire2Learn web page.  Go to the “In-Class Assignments” folder, find the appropriate submission link, and upload everything there. Make sure your name is on it!</p>
+<p>© Copyright 2024,  The Department of Computational Mathematics, Science and Engineering at Michigan State University.</p>
+</section>
+</section>
+
+    <script type="text/x-thebe-config">
+    {
+        requestKernel: true,
+        binderOptions: {
+            repo: "binder-examples/jupyter-stacks-datascience",
+            ref: "master",
+        },
+        codeMirrorConfig: {
+            theme: "abcdef",
+            mode: "python"
+        },
+        kernelOptions: {
+            name: "python3",
+            path: "./Day-10"
+        },
+        predefinedOutput: true
+    }
+    </script>
+    <script>kernelName = 'python3'</script>
+
+                </article>
+              
+
+              
+              
+              
+              
+                <footer class="prev-next-footer d-print-none">
+                  
+<div class="prev-next-area">
+    <a class="left-prev"
+       href="../Day-09/Day-09_In-Class_NumPyWithTheGreatLakes-STUDENT.html"
+       title="previous page">
+      <i class="fa-solid fa-angle-left"></i>
+      <div class="prev-next-info">
+        <p class="prev-next-subtitle">previous</p>
+        <p class="prev-next-title">Day 9 In-class Assignment: Exploring Great Lakes Water Levels using NumPy</p>
+      </div>
+    </a>
+    <a class="right-next"
+       href="../Day-11/Day-11_In-Class_Flint-STUDENT.html"
+       title="next page">
+      <div class="prev-next-info">
+        <p class="prev-next-subtitle">next</p>
+        <p class="prev-next-title">Day 11 In-class Assignment: Get the Lead Out: Understanding The Water Crisis in Flint, MI</p>
+      </div>
+      <i class="fa-solid fa-angle-right"></i>
+    </a>
+</div>
+                </footer>
+              
+            </div>
+            
+            
+              
+                <div class="bd-sidebar-secondary bd-toc"><div class="sidebar-secondary-items sidebar-secondary__inner">
+
+
+  <div class="sidebar-secondary-item">
+  <div class="page-toc tocsection onthispage">
+    <i class="fa-solid fa-list"></i> Contents
+  </div>
+  <nav class="bd-toc-nav page-toc">
+    <ul class="visible nav section-nav flex-column">
+<li class="toc-h1 nav-item toc-entry"><a class="reference internal nav-link" href="#">Day 10 In-Class: Cleaning and Analyzing Economic Data</a><ul class="visible nav section-nav flex-column">
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#put-your-name-here"><p style="text-align: right;"> ✅ Put your name here </p></a><ul class="nav section-nav flex-column">
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#put-your-group-member-names-here"><p style="text-align: right;"> ✅ Put your group member names here.</p></a></li>
+</ul>
+</li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#goals-for-today-s-in-class-project">Goals for today’s in-class project</a></li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#assignment-instructions">Assignment instructions</a></li>
+</ul>
+</li>
+<li class="toc-h1 nav-item toc-entry"><a class="reference internal nav-link" href="#part-1-practice-calculating-statistics-using-python">Part 1: Practice calculating statistics using Python</a><ul class="visible nav section-nav flex-column">
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#applying-descriptive-statistics-to-a-distribution-visually">1.1 Applying Descriptive Statistics to a Distribution <em>visually</em></a></li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#compute-and-compare">1.2 Compute and Compare</a></li>
+</ul>
+</li>
+<li class="toc-h1 nav-item toc-entry"><a class="reference internal nav-link" href="#part-2-loading-in-and-cleaning-economic-data">Part 2: Loading in and cleaning economic data</a><ul class="visible nav section-nav flex-column">
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#what-data-are-we-working-with">What data are we working with?</a><ul class="nav section-nav flex-column">
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#cleaning-data-is-an-important-part-analyzing-data">2.1 Cleaning data is an important part analyzing data.</a></li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#making-the-dataset-easier-to-explore">Making the dataset easier to explore</a></li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#exploring-the-data">2.2 Exploring the Data</a></li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#exploring-the-log-linear-plot">2.3 Exploring the log-linear plot</a></li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#analyzing-growth-rates">2.4 Analyzing growth rates</a></li>
+</ul>
+</li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#time-permitting-part-3-more-data-manipulation">(TIME PERMITTING) Part 3: More Data Manipulation</a><ul class="nav section-nav flex-column">
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#filtering-sorting-and-calculating-new-quantities">Filtering, sorting, and calculating new quantities</a></li>
+</ul>
+</li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#assignment-wrapup">Assignment wrapup</a></li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#congratulations-you-re-done">Congratulations, you’re done!</a></li>
+</ul>
+</li>
+</ul>
+
+  </nav></div>
+
+</div></div>
+              
+            
+          </div>
+          <footer class="bd-footer-content">
+            
+<div class="bd-footer-content__inner container">
+  
+  <div class="footer-item">
+    
+<p class="component-author">
+By the Department of Computational Mathematics, Science and Engineering at Michigan State University
+</p>
+
+  </div>
+  
+  <div class="footer-item">
+    
+
+  <p class="copyright">
+    
+      © Copyright 2026.
+      <br/>
+    
+  </p>
+
+  </div>
+  
+  <div class="footer-item">
+    
+  </div>
+  
+  <div class="footer-item">
+    
+  </div>
+  
+</div>
+          </footer>
+        
+
+      </main>
+    </div>
+  </div>
+  
+  <!-- Scripts loaded after <body> so the DOM is not blocked -->
+  <script src="../_static/scripts/bootstrap.js?digest=3ee479438cf8b5e0d341"></script>
+<script src="../_static/scripts/pydata-sphinx-theme.js?digest=3ee479438cf8b5e0d341"></script>
+
+  <footer class="bd-footer">
+  </footer>
+  </body>
+</html>

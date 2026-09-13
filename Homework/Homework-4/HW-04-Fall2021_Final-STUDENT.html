@@ -1,0 +1,1642 @@
+
+<!DOCTYPE html>
+
+<html>
+  <head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Homework 4: Fitting data using NumPy and SciPy &#8212; CMSE 201</title>
+    
+  <link href="../../_static/css/theme.css" rel="stylesheet" />
+  <link href="../../_static/css/index.c5995385ac14fb8791e8eb36b4908be2.css" rel="stylesheet" />
+
+    
+  <link rel="stylesheet"
+    href="../../_static/vendor/fontawesome/5.13.0/css/all.min.css">
+  <link rel="preload" as="font" type="font/woff2" crossorigin
+    href="../../_static/vendor/fontawesome/5.13.0/webfonts/fa-solid-900.woff2">
+  <link rel="preload" as="font" type="font/woff2" crossorigin
+    href="../../_static/vendor/fontawesome/5.13.0/webfonts/fa-brands-400.woff2">
+
+    
+      
+
+    
+    <link rel="stylesheet" href="../../_static/pygments.css" type="text/css" />
+    <link rel="stylesheet" href="../../_static/sphinx-book-theme.e8f53015daec13862f6db5e763c41738.css" type="text/css" />
+    <link rel="stylesheet" type="text/css" href="../../_static/togglebutton.css" />
+    <link rel="stylesheet" type="text/css" href="../../_static/copybutton.css" />
+    <link rel="stylesheet" type="text/css" href="../../_static/mystnb.css" />
+    <link rel="stylesheet" type="text/css" href="../../_static/sphinx-thebe.css" />
+    <link rel="stylesheet" type="text/css" href="../../_static/panels-main.c949a650a448cc0ae9fd3441c0e17fb0.css" />
+    <link rel="stylesheet" type="text/css" href="../../_static/panels-variables.06eb56fa6e07937060861dad626602ad.css" />
+    
+  <link rel="preload" as="script" href="../../_static/js/index.1c5a1a01449ed65a7b51.js">
+
+    <script id="documentation_options" data-url_root="../../" src="../../_static/documentation_options.js"></script>
+    <script src="../../_static/jquery.js"></script>
+    <script src="../../_static/underscore.js"></script>
+    <script src="../../_static/doctools.js"></script>
+    <script src="../../_static/togglebutton.js"></script>
+    <script src="../../_static/clipboard.min.js"></script>
+    <script src="../../_static/copybutton.js"></script>
+    <script >var togglebuttonSelector = '.toggle, .admonition.dropdown, .tag_hide_input div.cell_input, .tag_hide-input div.cell_input, .tag_hide_output div.cell_output, .tag_hide-output div.cell_output, .tag_hide_cell.cell, .tag_hide-cell.cell';</script>
+    <script src="../../_static/sphinx-book-theme.12a9622fbb08dcb3a2a40b2c02b83a57.js"></script>
+    <script async="async" src="https://cdnjs.cloudflare.com/ajax/libs/mathjax/2.7.7/latest.js?config=TeX-AMS-MML_HTMLorMML"></script>
+    <script type="text/x-mathjax-config">MathJax.Hub.Config({"tex2jax": {"inlineMath": [["\\(", "\\)"]], "displayMath": [["\\[", "\\]"]], "processRefs": false, "processEnvironments": false}})</script>
+    <script async="async" src="https://unpkg.com/thebe@0.5.1/lib/index.js"></script>
+    <script >
+        const thebe_selector = ".thebe"
+        const thebe_selector_input = "pre"
+        const thebe_selector_output = ".output"
+    </script>
+    <script async="async" src="../../_static/sphinx-thebe.js"></script>
+    <link rel="shortcut icon" href="../../_static/cmse_fav.ico"/>
+    <link rel="index" title="Index" href="../../genindex.html" />
+    <link rel="search" title="Search" href="../../search.html" />
+    <link rel="next" title="Homework 5: Modeling Physical Systems and Heating Up the House with ODEs" href="../Homework-5/HW_05_F21-STUDENT.html" />
+    <link rel="prev" title="Homework 3: Data Analysis with Pandas, Numpy, and Matplotlib" href="../Homework-3/HOMEWORK_3_STUDENT.html" />
+    <meta name="viewport" content="width=device-width, initial-scale=1" />
+    <meta name="docsearch:language" content="en" />
+    
+  </head>
+  <body data-spy="scroll" data-target="#bd-toc-nav" data-offset="80">
+    
+    <div class="container-fluid" id="banner"></div>
+
+    
+
+    <div class="container-xl">
+      <div class="row">
+          
+<div class="col-12 col-md-3 bd-sidebar site-navigation show" id="site-navigation">
+    
+        <div class="navbar-brand-box">
+    <a class="navbar-brand text-wrap" href="../../index.html">
+      
+      <img src="../../_static/logo.png" class="logo" alt="logo">
+      
+      
+      <h1 class="site-logo" id="site-title">CMSE 201</h1>
+      
+    </a>
+</div><form class="bd-search d-flex align-items-center" action="../../search.html" method="get">
+  <i class="icon fas fa-search"></i>
+  <input type="search" class="form-control" name="q" id="search-input" placeholder="Search this book..." aria-label="Search this book..." autocomplete="off" >
+</form><nav class="bd-links" id="bd-docs-nav" aria-label="Main">
+    <div class="bd-toc-item active">
+        <ul class="nav bd-sidenav">
+ <li class="toctree-l1">
+  <a class="reference internal" href="../../intro.html">
+   Welcome to Computational Modeling and Data Analysis I!
+  </a>
+ </li>
+</ul>
+<p class="caption">
+ <span class="caption-text">
+  Course Materials
+ </span>
+</p>
+<ul class="nav bd-sidenav">
+ <li class="toctree-l1 has-children">
+  <a class="reference internal" href="../../Course_Materials-201/CourseDocuments.html">
+   Important Course information
+  </a>
+  <input class="toctree-checkbox" id="toctree-checkbox-1" name="toctree-checkbox-1" type="checkbox"/>
+  <label for="toctree-checkbox-1">
+   <i class="fas fa-chevron-down">
+   </i>
+  </label>
+  <ul>
+   <li class="toctree-l2">
+    <a class="reference internal" href="../../Course_Materials-201/CMSE201-Syllabus.html">
+     Syllabus
+    </a>
+   </li>
+   <li class="toctree-l2">
+    <a class="reference internal" href="../../Course_Materials-201/CMSE201-Schedule.html">
+     Course Schedule
+    </a>
+   </li>
+   <li class="toctree-l2">
+    <a class="reference internal" href="../../Course_Materials-201/SoftwareSetupGuide.html">
+     Software Setup Guide
+    </a>
+   </li>
+   <li class="toctree-l2">
+    <a class="reference internal" href="../../Course_Materials-201/classroom_participation.html">
+     Classroom Participation
+    </a>
+   </li>
+  </ul>
+ </li>
+</ul>
+<p class="caption">
+ <span class="caption-text">
+  Day 01
+ </span>
+</p>
+<ul class="nav bd-sidenav">
+ <li class="toctree-l1">
+  <a class="reference internal" href="../../Day-01/Day-01_In-Class_SortingAlgorithm-STUDENT.html">
+   Day 1 In-Class Assignment
+  </a>
+ </li>
+</ul>
+<p class="caption">
+ <span class="caption-text">
+  Day 02
+ </span>
+</p>
+<ul class="nav bd-sidenav">
+ <li class="toctree-l1">
+  <a class="reference internal" href="../../Day-02/Day-02_Pre-Class_IntroToPython-STUDENT.html">
+   Day 2 Pre-class Assignment: Intro to Python
+  </a>
+ </li>
+ <li class="toctree-l1">
+  <a class="reference internal" href="../../Day-02/Day-02_In-Class_OrderOfMagnitudeModeling-STUDENT.html">
+   Day 2 In-class Assignment: Order of Magnitude Modeling
+  </a>
+ </li>
+</ul>
+<p class="caption">
+ <span class="caption-text">
+  Day 03
+ </span>
+</p>
+<ul class="nav bd-sidenav">
+ <li class="toctree-l1">
+  <a class="reference internal" href="../../Day-03/Day-03_Pre-Class_ListsAndLoops-STUDENT.html">
+   Day 3: Pre-Class Assignment: Lists and Loops
+  </a>
+ </li>
+ <li class="toctree-l1">
+  <a class="reference internal" href="../../Day-03/Day-03_In-Class_ListsLoopsAndSaving-STUDENT.html">
+   Day 3 In-class Assignment: The power of compound interest
+  </a>
+ </li>
+</ul>
+<p class="caption">
+ <span class="caption-text">
+  Day 04
+ </span>
+</p>
+<ul class="nav bd-sidenav">
+ <li class="toctree-l1">
+  <a class="reference internal" href="../../Day-04/Day-04_Pre-Class_DataEthics_AcademicIntegrity-STUDENT.html">
+   Day 4 Pre-class Assignment: Introduction to Data Ethics and Practice with Lists and Loops
+  </a>
+ </li>
+ <li class="toctree-l1">
+  <a class="reference internal" href="../../Day-04/Day-04_In-Class_AcademicIntegrity_CodingPractices-STUDENT.html">
+   Day 4 In-class Assignment: Academic Integrity and Coding Best Practices
+  </a>
+ </li>
+</ul>
+<p class="caption">
+ <span class="caption-text">
+  Day 05
+ </span>
+</p>
+<ul class="nav bd-sidenav">
+ <li class="toctree-l1">
+  <a class="reference internal" href="../../Day-05/Day-05_Pre-Class_IfStatementsAndFunctions-STUDENT.html">
+   Day 5 Pre-class Assignment: Boolean logic, if statements, and an introduction to functions
+  </a>
+ </li>
+ <li class="toctree-l1">
+  <a class="reference internal" href="../../Day-05/Day-05_In-Class_IfStatementsAndFunctions-STUDENT.html">
+   Day 5 In-class Assignment: Savings for Everyone
+  </a>
+ </li>
+</ul>
+<p class="caption">
+ <span class="caption-text">
+  Day 06
+ </span>
+</p>
+<ul class="nav bd-sidenav">
+ <li class="toctree-l1">
+  <a class="reference internal" href="../../Day-06/Day-06_Pre-Class_MoreFunctions-STUDENT.html">
+   Day 6 Pre-class Assignment: Thinking more about functions
+  </a>
+ </li>
+ <li class="toctree-l1">
+  <a class="reference internal" href="../../Day-06/Day-06_In-Class_MoreFunctions-STUDENT.html">
+   Day 6 In-class Assignment: Using functions for fun and profit!
+  </a>
+ </li>
+</ul>
+<p class="caption">
+ <span class="caption-text">
+  Day 07
+ </span>
+</p>
+<ul class="nav bd-sidenav">
+ <li class="toctree-l1">
+  <a class="reference internal" href="../../Day-07/Day-07_Pre-Class_ModulesMathAndPlots-STUDENT.html">
+   Day 7 Pre-Class Assignment: Python Modules: Math and Plots
+  </a>
+ </li>
+ <li class="toctree-l1">
+  <a class="reference internal" href="../../Day-07/Day-07_In-Class_MathAndPlotting-STUDENT.html">
+   Day 7 In-class Assignment: Visualizing population growth and projectile motion
+  </a>
+ </li>
+</ul>
+<p class="caption">
+ <span class="caption-text">
+  Day 08
+ </span>
+</p>
+<ul class="nav bd-sidenav">
+ <li class="toctree-l1">
+  <a class="reference internal" href="../../Day-08/Day-08_Pre-Class_IntroToNumPy-STUDENT.html">
+   Day 8 Pre-Class: Introduction to NumPy
+  </a>
+ </li>
+ <li class="toctree-l1">
+  <a class="reference external" href="https://raw.githubusercontent.com/msu-cmse-courses/cmse201-F21-data/main/Day-08/michigan_pop.csv">
+   michigan_pop.csv
+  </a>
+ </li>
+ <li class="toctree-l1">
+  <a class="reference internal" href="../../Day-08/Day-08_In-Class_NumPyWithTheGreatLakes-STUDENT.html">
+   Day 8 In-class Assignment: Exploring Great Lakes Water Levels using NumPy
+  </a>
+ </li>
+ <li class="toctree-l1">
+  <a class="reference external" href="https://raw.githubusercontent.com/msu-cmse-courses/cmse201-F21-data/main/Day-08/lake_erie.csv">
+   lake_erie.csv
+  </a>
+ </li>
+ <li class="toctree-l1">
+  <a class="reference external" href="https://raw.githubusercontent.com/msu-cmse-courses/cmse201-F21-data/main/Day-08/lake_michigan_huron.csv">
+   lake_michigan_huron.csv
+  </a>
+ </li>
+ <li class="toctree-l1">
+  <a class="reference external" href="https://raw.githubusercontent.com/msu-cmse-courses/cmse201-F21-data/main/Day-08/lake_ontario.csv">
+   lake_ontario.csv
+  </a>
+ </li>
+ <li class="toctree-l1">
+  <a class="reference external" href="https://raw.githubusercontent.com/msu-cmse-courses/cmse201-F21-data/main/Day-08/lake_superior.csv">
+   lake_superior.csv
+  </a>
+ </li>
+</ul>
+<p class="caption">
+ <span class="caption-text">
+  Day 09
+ </span>
+</p>
+<ul class="nav bd-sidenav">
+ <li class="toctree-l1">
+  <a class="reference internal" href="../../Day-09/Day-09_Pre-Class_Pandas-STUDENT.html">
+   Day 9 Pre-class Assignment: Computational Models Overview and The Pandas Data Analysis Library
+  </a>
+ </li>
+ <li class="toctree-l1">
+  <a class="reference internal" href="../../Day-09/Day-09_In-Class_GDP-STUDENT.html">
+   Day 9 In-Class: Cleaning and Analyzing Economic Data
+  </a>
+ </li>
+</ul>
+<p class="caption">
+ <span class="caption-text">
+  Day 10
+ </span>
+</p>
+<ul class="nav bd-sidenav">
+ <li class="toctree-l1">
+  <a class="reference internal" href="../../Day-10/Day-10_Pre-Class_Masking-STUDENT.html">
+   Day 10 Pre-class Assignment: Normal Distributions, Masking, and Log Plots
+  </a>
+ </li>
+ <li class="toctree-l1">
+  <a class="reference external" href="https://raw.githubusercontent.com/msu-cmse-courses/cmse201-F21-data/main/Day-10/GDP_Cleaned.csv">
+   GDP_Cleaned.csv
+  </a>
+ </li>
+ <li class="toctree-l1">
+  <a class="reference internal" href="../../Day-10/Day-10_In-Class_Flint-STUDENT.html">
+   Day 10 In-class Assignment: Get the Lead Out: Understanding The Water Crisis in Flint, MI
+  </a>
+ </li>
+ <li class="toctree-l1">
+  <a class="reference external" href="https://raw.githubusercontent.com/msu-cmse-courses/cmse201-F21-data/main/Day-10/flint_water_data.csv">
+   flint_water_data.csv
+  </a>
+ </li>
+</ul>
+<p class="caption">
+ <span class="caption-text">
+  Day 11
+ </span>
+</p>
+<ul class="nav bd-sidenav">
+ <li class="toctree-l1">
+  <a class="reference internal" href="../../Day-11/Day-11_Pre-Class_Data_File_Formats_Manipulation-STUDENT.html">
+   Day 11 Pre-Class Assignment: Overview of data and file formats
+  </a>
+ </li>
+ <li class="toctree-l1">
+  <a class="reference external" href="https://raw.githubusercontent.com/msu-cmse-courses/cmse201-F21-data/main/Day-11/us_house_rep_by_state_2019.csv">
+   us_house_rep_by_state_2019.csv
+  </a>
+ </li>
+ <li class="toctree-l1">
+  <a class="reference external" href="https://raw.githubusercontent.com/msu-cmse-courses/cmse201-F21-data/main/Day-11/us_pop_by_state_2010_2011.csv">
+   us_pop_by_state_2010_2011.csv
+  </a>
+ </li>
+ <li class="toctree-l1">
+  <a class="reference external" href="https://github.com/msu-cmse-courses/cmse201-F21-data/raw/main/Day-11/us_pop_by_state_2012_2013_encoding_utf-16be.csv">
+   us_pop_by_state_2012_2013_encoding_utf-16be.csv
+  </a>
+ </li>
+ <li class="toctree-l1">
+  <a class="reference external" href="https://raw.githubusercontent.com/msu-cmse-courses/cmse201-F21-data/main/Day-11/us_pop_by_state_2014_2015_windows_linefeed.csv">
+   us_pop_by_state_2014_2015_windows_linefeed.csv
+  </a>
+ </li>
+ <li class="toctree-l1">
+  <a class="reference external" href="https://github.com/msu-cmse-courses/cmse201-F21-data/blob/main/Day-11/us_pop_by_state_2016a.csv?raw=true">
+   us_pop_by_state_2016a.csv
+  </a>
+ </li>
+ <li class="toctree-l1">
+  <a class="reference external" href="https://github.com/msu-cmse-courses/cmse201-F21-data/blob/main/Day-11/us_pop_by_state_2017a.yaff?raw=true">
+   us_pop_by_state2017a.yaff
+  </a>
+ </li>
+ <li class="toctree-l1">
+  <a class="reference external" href="https://github.com/msu-cmse-courses/cmse201-F21-data/blob/main/Day-11/us_pop_by_state_2018_2019.bin?raw=true">
+   us_pop_by_state_2018_2019.bin
+  </a>
+ </li>
+</ul>
+<p class="caption">
+ <span class="caption-text">
+  Day 12
+ </span>
+</p>
+<ul class="nav bd-sidenav">
+ <li class="toctree-l1">
+  <a class="reference internal" href="../../Day-12/Day-12_Pre-Class_Regression-STUDENT.html">
+   Day 12 Pre-Class Assignment: Regression
+  </a>
+ </li>
+ <li class="toctree-l1">
+  <a class="reference internal" href="../../Day-12/Day-12_In-Class_PolynomialFitting-STUDENT.html">
+   Day 12 In-Class Assignment: Linear regression and polynomial fitting
+  </a>
+ </li>
+ <li class="toctree-l1">
+  <a class="reference external" href="https://github.com/msu-cmse-courses/cmse201-F21-data/raw/main/Day-12/microprocessor-trend-data-master.zip">
+   microprocessor-trend-data-master.zip
+  </a>
+ </li>
+</ul>
+<p class="caption">
+ <span class="caption-text">
+  Day 13
+ </span>
+</p>
+<ul class="nav bd-sidenav">
+ <li class="toctree-l1">
+  <a class="reference internal" href="../../Day-13/Day-13_Pre-Class_CurveFitting-STUDENT.html">
+   Day 13 Pre-Class Assignment: Fitting functions to data (curve-fitting) and thinking more about models
+  </a>
+ </li>
+ <li class="toctree-l1">
+  <a class="reference internal" href="../../Day-13/Day-13_In-Class_FittingCurves-STUDENT.html">
+   Day 13 In-Class Assignment: (Thoughtfully) fitting models to data
+  </a>
+ </li>
+ <li class="toctree-l1">
+  <a class="reference external" href="https://raw.githubusercontent.com/msu-cmse-courses/cmse201-F21-data/main/Day-13/pop200.csv">
+   pop200.csv
+  </a>
+ </li>
+ <li class="toctree-l1">
+  <a class="reference external" href="https://raw.githubusercontent.com/msu-cmse-courses/cmse201-F21-data/main/Day-13/pop300.csv">
+   pop300.csv
+  </a>
+ </li>
+</ul>
+<p class="caption">
+ <span class="caption-text">
+  Day 14
+ </span>
+</p>
+<ul class="nav bd-sidenav">
+ <li class="toctree-l1">
+  <a class="reference internal" href="../../Day-14/Day-14_Pre-Class_ModelingWithODEs-STUDENT.html">
+   Day 14: Pre-class Assignment: Modeling with Ordinary Differential Equations
+  </a>
+ </li>
+ <li class="toctree-l1">
+  <a class="reference internal" href="../../Day-14/Day-14_In-Class_ModelingWithODEs-STUDENT.html">
+   Day 14: In-class Assignment: Modeling with ODEs
+  </a>
+ </li>
+ <li class="toctree-l1">
+  <a class="reference external" href="https://github.com/msu-cmse-courses/cmse201-F21-data/blob/main/Day-14/undamped_length.png">
+   undamped_length.png
+  </a>
+ </li>
+ <li class="toctree-l1">
+  <a class="reference external" href="https://github.com/msu-cmse-courses/cmse201-F21-data/blob/main/Day-14/undamped_vel.png">
+   undamped_vel.png
+  </a>
+ </li>
+</ul>
+<p class="caption">
+ <span class="caption-text">
+  Day 15
+ </span>
+</p>
+<ul class="nav bd-sidenav">
+ <li class="toctree-l1">
+  <a class="reference internal" href="../../Day-15/Day-15_Pre-Class_ViralKinetics-STUDENT.html">
+   Day 15 Pre-Class: Viral Kinetics
+  </a>
+ </li>
+ <li class="toctree-l1">
+  <a class="reference internal" href="../../Day-15/Day-15_In-Class_CompartmentalModeling-STUDENT.html">
+   Day 15 In-class: Building Compartmental Models
+  </a>
+ </li>
+</ul>
+<p class="caption">
+ <span class="caption-text">
+  Day 16
+ </span>
+</p>
+<ul class="nav bd-sidenav">
+ <li class="toctree-l1">
+  <a class="reference internal" href="../../Day-16/Day-16_Pre-Class_Zombies-STUDENT.html">
+   Day 16 Pre-class Assignment: ZOMBIES!!
+  </a>
+ </li>
+ <li class="toctree-l1">
+  <a class="reference internal" href="../../Day-16/Day-16_In-Class_CompartmentsWithSolveIVP-STUDENT.html">
+   Day 16 In-Class Assignment: Compartmental Modeling, moving from the model to the Code
+  </a>
+ </li>
+ <li class="toctree-l1">
+  <a class="reference external" href="https://github.com/msu-cmse-courses/cmse201-F21-data/blob/main/Day-16/latent.png">
+   latent.png
+  </a>
+ </li>
+</ul>
+<p class="caption">
+ <span class="caption-text">
+  Day 17
+ </span>
+</p>
+<ul class="nav bd-sidenav">
+ <li class="toctree-l1">
+  <a class="reference internal" href="../../Day-17/Day-17_Pre-Class_2DNumPyArrays-STUDENT.html">
+   Day 17 Pre-Class: 2D NumPy Arrays
+  </a>
+ </li>
+ <li class="toctree-l1">
+  <a class="reference external" href="https://raw.githubusercontent.com/msu-cmse-courses/cmse201-F21-data/main/Day-17/PCA_files/cars.csv">
+   cars.csv
+  </a>
+ </li>
+ <li class="toctree-l1">
+  <a class="reference external" href="https://github.com/msu-cmse-courses/cmse201-F21-data/raw/main/Day-17/PCA_files/example.jpeg">
+   example.jpeg
+  </a>
+ </li>
+ <li class="toctree-l1">
+  <a class="reference internal" href="../../Day-17/Day-17_In-Class_2DImageAnalysis-STUDENT.html">
+   Day 17 In-Class Assignment: Image Analysis
+  </a>
+ </li>
+ <li class="toctree-l1">
+  <a class="reference external" href="https://github.com/msu-cmse-courses/cmse201-F21-data/blob/main/Day-17/ICA_files/beach.jpeg">
+   beach.jpeg
+  </a>
+ </li>
+ <li class="toctree-l1">
+  <a class="reference external" href="https://github.com/msu-cmse-courses/cmse201-F21-data/blob/main/Day-17/ICA_files/landscape.jpeg">
+   landscape.jpeg
+  </a>
+ </li>
+ <li class="toctree-l1">
+  <a class="reference external" href="https://github.com/msu-cmse-courses/cmse201-F21-data/blob/main/Day-17/ICA_files/zebra.png">
+   zebra.png
+  </a>
+ </li>
+</ul>
+<p class="caption">
+ <span class="caption-text">
+  Day 18
+ </span>
+</p>
+<ul class="nav bd-sidenav">
+ <li class="toctree-l1">
+  <a class="reference internal" href="../../Day-18/Day-18_Pre-Class_ABMForestFire-STUDENT.html">
+   Day 18 Pre-class: Agent-based models and forest fires
+  </a>
+ </li>
+ <li class="toctree-l1">
+  <a class="reference internal" href="../../Day-18/Day-18_In-Class_ForestFiresPartI-STUDENT.html">
+   Day 18 Part 1 In-class Assignment: Modeling forest fires with an Agent-based Model
+  </a>
+ </li>
+</ul>
+<p class="caption">
+ <span class="caption-text">
+  Day 19
+ </span>
+</p>
+<ul class="nav bd-sidenav">
+ <li class="toctree-l1">
+  <a class="reference internal" href="../../Day-19/Day-19_Pre-Class_ABMForestFire_Part2-STUDENT.html">
+   Day 19 Pre-class: Agent-based models and forest fires, Part 2
+  </a>
+ </li>
+ <li class="toctree-l1">
+  <a class="reference internal" href="../../Day-19/Day-19_In-Class_ForestFiresPartII-STUDENT.html">
+   Day 19 In-class Assignment: Modeling forest fires with an Agent-based Model (Part II)
+  </a>
+ </li>
+</ul>
+<p class="caption">
+ <span class="caption-text">
+  Day 20
+ </span>
+</p>
+<ul class="nav bd-sidenav">
+ <li class="toctree-l1">
+  <a class="reference internal" href="../../Day-20/Day-20_Pre-Class_RandomNumbers-STUDENT.html">
+   Day 20 Pre-Class Assignment: Random Numbers
+  </a>
+ </li>
+ <li class="toctree-l1">
+  <a class="reference internal" href="../../Day-20/Day-20_In-Class_RandomWalks-STUDENT.html">
+   Day 20 In-class Assignment: Random Walks
+  </a>
+ </li>
+ <li class="toctree-l1">
+  <a class="reference external" href="https://github.com/msu-cmse-courses/cmse201-F21-data/blob/main/Day-20/distance_v_steps_randomwalk.png">
+   distance_v_steps_randomwalk.png
+  </a>
+ </li>
+</ul>
+<p class="caption">
+ <span class="caption-text">
+  Day 21
+ </span>
+</p>
+<ul class="nav bd-sidenav">
+ <li class="toctree-l1">
+  <a class="reference internal" href="../../Day-21/Day-21_Pre-Class_ProjectUpdates-STUDENT.html">
+   Day 21 Pre-class assignment: Making project progress!
+  </a>
+ </li>
+</ul>
+<p class="caption">
+ <span class="caption-text">
+  Day 22
+ </span>
+</p>
+<ul class="nav bd-sidenav">
+ <li class="toctree-l1">
+  <a class="reference internal" href="../../Day-22/Day-22_Pre-Class_Climate-STUDENT.html">
+   Day 22 Pre-class:  Global warming and climate modeling
+  </a>
+ </li>
+ <li class="toctree-l1">
+  <a class="reference internal" href="../../Day-22/Day-22_In-Class_Climate-STUDENT.html">
+   Day 22 In-class Assignment: Analyzing climate data
+  </a>
+ </li>
+ <li class="toctree-l1">
+  <a class="reference external" href="https://raw.githubusercontent.com/msu-cmse-courses/cmse201-F21-data/main/Day-22/GLB.Ts.csv">
+   GLB.Ts.csv
+  </a>
+ </li>
+ <li class="toctree-l1">
+  <a class="reference external" href="https://raw.githubusercontent.com/msu-cmse-courses/cmse201-F21-data/main/Day-22/bintanja2008.txt">
+   bintanja2008.txt
+  </a>
+ </li>
+ <li class="toctree-l1">
+  <a class="reference external" href="https://raw.githubusercontent.com/msu-cmse-courses/cmse201-F21-data/main/Day-22/ch4_annmean_gl.txt">
+   ch4_annmean_gl.txt
+  </a>
+ </li>
+ <li class="toctree-l1">
+  <a class="reference external" href="https://raw.githubusercontent.com/msu-cmse-courses/cmse201-F21-data/main/Day-22/co2_mm_mlo.txt">
+   co2_mm_mlo.txt
+  </a>
+ </li>
+ <li class="toctree-l1">
+  <a class="reference external" href="https://raw.githubusercontent.com/msu-cmse-courses/cmse201-F21-data/main/Day-22/vostok-ch4nat.txt">
+   vostok-ch4nat.txt
+  </a>
+ </li>
+ <li class="toctree-l1">
+  <a class="reference external" href="https://raw.githubusercontent.com/msu-cmse-courses/cmse201-F21-data/main/Day-22/vostok-co2nat.txt">
+   vostok-co2nat.txt
+  </a>
+ </li>
+ <li class="toctree-l1">
+  <a class="reference external" href="https://raw.githubusercontent.com/msu-cmse-courses/cmse201-F21-data/main/Day-22/vostok-deutnat.txt">
+   vostok-deutnat.txt
+  </a>
+ </li>
+</ul>
+<p class="caption">
+ <span class="caption-text">
+  Day 23
+ </span>
+</p>
+<ul class="nav bd-sidenav">
+ <li class="toctree-l1">
+  <a class="reference internal" href="../../Day-23/Day-23_Pre-Class_Climate-STUDENT.html">
+   Day 23 pre-class assignment: climate modeling
+  </a>
+ </li>
+ <li class="toctree-l1">
+  <a class="reference internal" href="../../Day-23/Day-23_In-Class_Climate-STUDENT.html">
+   Day 23 In-class Assignment: A simple model for global temperature
+  </a>
+ </li>
+ <li class="toctree-l1">
+  <a class="reference external" href="https://github.com/msu-cmse-courses/cmse201-F21-data/blob/main/Day-23/listentothee.png">
+   listentothee.png
+  </a>
+ </li>
+ <li class="toctree-l1">
+  <a class="reference external" href="https://github.com/msu-cmse-courses/cmse201-F21-data/blob/main/Day-23/simple_model.png">
+   simple_model.png
+  </a>
+ </li>
+</ul>
+<p class="caption">
+ <span class="caption-text">
+  Homework
+ </span>
+</p>
+<ul class="current nav bd-sidenav">
+ <li class="toctree-l1">
+  <a class="reference internal" href="../Homework-1/HW_01_F21_STUDENT.html">
+   Homework 1: Introduction to Loops, Lists, and Dictionaries
+  </a>
+ </li>
+ <li class="toctree-l1">
+  <a class="reference internal" href="../Homework-2/HW_02_F21-STUDENT.html">
+   Homework 2: If Statements, Functions, and Modules
+  </a>
+ </li>
+ <li class="toctree-l1">
+  <a class="reference internal" href="../Homework-3/HOMEWORK_3_STUDENT.html">
+   Homework 3: Data Analysis with Pandas, Numpy, and Matplotlib
+  </a>
+ </li>
+ <li class="toctree-l1">
+  <a class="reference external" href="https://raw.githubusercontent.com/msu-cmse-courses/cmse201-F21-data/main/Homework/americas_gpin_2014_16.csv">
+   americas_gpin_2014_16.csv
+  </a>
+ </li>
+ <li class="toctree-l1 current active">
+  <a class="current reference internal" href="#">
+   Homework 4: Fitting data using NumPy and SciPy
+  </a>
+ </li>
+ <li class="toctree-l1">
+  <a class="reference external" href="https://github.com/msu-cmse-courses/cmse201-F21-data/raw/main/Homework/Wage.csv">
+   Wage.csv
+  </a>
+ </li>
+ <li class="toctree-l1">
+  <a class="reference internal" href="../Homework-5/HW_05_F21-STUDENT.html">
+   Homework 5: Modeling Physical Systems and Heating Up the House with ODEs
+  </a>
+ </li>
+ <li class="toctree-l1">
+  <a class="reference internal" href="../Homework-6/HW-06_F21-STUDENT.html">
+   Homework 6: Agent Based Modeling
+  </a>
+ </li>
+</ul>
+<p class="caption">
+ <span class="caption-text">
+  Midterm Bootcamps
+ </span>
+</p>
+<ul class="nav bd-sidenav">
+ <li class="toctree-l1">
+  <a class="reference internal" href="../../Bootcamp_Notebooks/Bootcamp1-Python_Fundamentals_STUDENT.html">
+   Bootcamp 1: Python Fundamentals
+  </a>
+ </li>
+ <li class="toctree-l1">
+  <a class="reference internal" href="../../Bootcamp_Notebooks/Bootcamp2-InitialConceptsReview.html">
+   Bootcamp 2: Initial Concepts Review Cheatsheet
+  </a>
+ </li>
+ <li class="toctree-l1">
+  <a class="reference internal" href="../../Bootcamp_Notebooks/Bootcamp3-Debugging_STUDENT.html">
+   Bootcamp 3: Debugging
+  </a>
+ </li>
+ <li class="toctree-l1">
+  <a class="reference internal" href="../../Bootcamp_Notebooks/Bootcamp4-IfStatements_STUDENT.html">
+   Bootcamp 4: If Statements
+  </a>
+ </li>
+ <li class="toctree-l1">
+  <a class="reference internal" href="../../Bootcamp_Notebooks/Bootcamp5-Functions_STUDENT.html">
+   Bootcamp 5: Functions
+  </a>
+ </li>
+ <li class="toctree-l1">
+  <a class="reference internal" href="../../Bootcamp_Notebooks/Bootcamp6-Matplotlib_STUDENT.html">
+   Bootcamp 6: Matplotlib
+  </a>
+ </li>
+</ul>
+<p class="caption">
+ <span class="caption-text">
+  Semester Projects
+ </span>
+</p>
+<ul class="nav bd-sidenav">
+ <li class="toctree-l1">
+  <a class="reference internal" href="../../Project_Materials/CMSE201_SemesterProjectDetails.html">
+   Semester Project Details
+  </a>
+ </li>
+ <li class="toctree-l1">
+  <a class="reference internal" href="../../Project_Materials/CMSE201_FinalProject_ExampleA.html">
+   CMSE 201 Final Project Example A
+  </a>
+ </li>
+ <li class="toctree-l1">
+  <a class="reference internal" href="../../Project_Materials/CMSE201_FinalProject_ExampleB.html">
+   CMSE 201 Final Project Example B
+  </a>
+ </li>
+ <li class="toctree-l1">
+  <a class="reference external" href="https://github.com/msu-cmse-courses/cmse201-F21-data/raw/main/Projects/CMSE201_Example_Projects.zip">
+   CMSE201_Example_Projects.zip
+  </a>
+ </li>
+ <li class="toctree-l1">
+  <a class="reference internal" href="../../Project_Materials/First_Project_Checkpoint.html">
+   First Project Checkpoint
+  </a>
+ </li>
+ <li class="toctree-l1">
+  <a class="reference internal" href="../../Project_Materials/CMSE201FinalProject_RequirementsAndGradingRubric.html">
+   Requirements and Grading Rubric
+  </a>
+ </li>
+ <li class="toctree-l1">
+  <a class="reference internal" href="../../Project_Materials/CMSE201_FinalProjectTemplate.html">
+   CMSE 201 Final Project Template
+  </a>
+ </li>
+</ul>
+
+    </div>
+</nav> <!-- To handle the deprecated key -->
+
+<div class="navbar_extra_footer">
+  Powered by <a href="https://jupyterbook.org">Jupyter Book</a>
+</div>
+
+</div>
+
+
+          
+
+
+          
+<main class="col py-md-3 pl-md-4 bd-content overflow-auto" role="main">
+    
+    <div class="topbar container-xl fixed-top">
+    <div class="topbar-contents row">
+        <div class="col-12 col-md-3 bd-topbar-whitespace site-navigation show"></div>
+        <div class="col pl-md-4 topbar-main">
+            
+            <button id="navbar-toggler" class="navbar-toggler ml-0" type="button" data-toggle="collapse"
+                data-toggle="tooltip" data-placement="bottom" data-target=".site-navigation" aria-controls="navbar-menu"
+                aria-expanded="true" aria-label="Toggle navigation" aria-controls="site-navigation"
+                title="Toggle navigation" data-toggle="tooltip" data-placement="left">
+                <i class="fas fa-bars"></i>
+                <i class="fas fa-arrow-left"></i>
+                <i class="fas fa-arrow-up"></i>
+            </button>
+            
+            
+<div class="dropdown-buttons-trigger">
+    <button id="dropdown-buttons-trigger" class="btn btn-secondary topbarbtn" aria-label="Download this page"><i
+            class="fas fa-download"></i></button>
+
+    <div class="dropdown-buttons">
+        <!-- ipynb file if we had a myst markdown file -->
+        
+        <!-- Download raw file -->
+        <a class="dropdown-buttons" href="../../_sources/Homework/Homework-4/HW-04-Fall2021_Final-STUDENT.ipynb"><button type="button"
+                class="btn btn-secondary topbarbtn" title="Download source file" data-toggle="tooltip"
+                data-placement="left">.ipynb</button></a>
+        <!-- Download PDF via print -->
+        <button type="button" id="download-print" class="btn btn-secondary topbarbtn" title="Print to PDF"
+            onClick="window.print()" data-toggle="tooltip" data-placement="left">.pdf</button>
+    </div>
+</div>
+
+            <!-- Source interaction buttons -->
+
+<div class="dropdown-buttons-trigger">
+    <button id="dropdown-buttons-trigger" class="btn btn-secondary topbarbtn"
+        aria-label="Connect with source repository"><i class="fab fa-github"></i></button>
+    <div class="dropdown-buttons sourcebuttons">
+        <a class="repository-button"
+            href="https://github.com/msu-cmse-courses/cmse201-F21-jb"><button type="button" class="btn btn-secondary topbarbtn"
+                data-toggle="tooltip" data-placement="left" title="Source repository"><i
+                    class="fab fa-github"></i>repository</button></a>
+        <a class="issues-button"
+            href="https://github.com/msu-cmse-courses/cmse201-F21-jb/issues/new?title=Issue%20on%20page%20%2FHomework/Homework-4/HW-04-Fall2021_Final-STUDENT.html&body=Your%20issue%20content%20here."><button
+                type="button" class="btn btn-secondary topbarbtn" data-toggle="tooltip" data-placement="left"
+                title="Open an issue"><i class="fas fa-lightbulb"></i>open issue</button></a>
+        
+    </div>
+</div>
+
+            <!-- Full screen (wrap in <a> to have style consistency -->
+
+<a class="full-screen-button"><button type="button" class="btn btn-secondary topbarbtn" data-toggle="tooltip"
+        data-placement="bottom" onclick="toggleFullScreen()" aria-label="Fullscreen mode"
+        title="Fullscreen mode"><i
+            class="fas fa-expand"></i></button></a>
+
+            <!-- Launch buttons -->
+
+<div class="dropdown-buttons-trigger">
+    <button id="dropdown-buttons-trigger" class="btn btn-secondary topbarbtn"
+        aria-label="Launch interactive content"><i class="fas fa-rocket"></i></button>
+    <div class="dropdown-buttons">
+        
+        <a class="binder-button" href="https://mybinder.org/v2/gh/msu-cmse-courses/cmse201-F21-jb/main?urlpath=tree/Homework/Homework-4/HW-04-Fall2021_Final-STUDENT.ipynb"><button type="button"
+                class="btn btn-secondary topbarbtn" title="Launch Binder" data-toggle="tooltip"
+                data-placement="left"><img class="binder-button-logo"
+                    src="../../_static/images/logo_binder.svg"
+                    alt="Interact on binder">Binder</button></a>
+        
+        
+        
+        
+    </div>
+</div>
+
+        </div>
+
+        <!-- Table of contents -->
+        <div class="d-none d-md-block col-md-2 bd-toc show">
+            
+            <div class="tocsection onthispage pt-5 pb-3">
+                <i class="fas fa-list"></i> Contents
+            </div>
+            <nav id="bd-toc-nav" aria-label="Page">
+                <ul class="visible nav section-nav flex-column">
+ <li class="toc-h1 nav-item toc-entry">
+  <a class="reference internal nav-link" href="#">
+   Homework 4: Fitting data using NumPy and SciPy
+  </a>
+ </li>
+ <li class="toc-h1 nav-item toc-entry">
+  <a class="reference internal nav-link" href="#cmse-201-fall-2021">
+   <strong>
+    CMSE  201 – Fall 2021
+   </strong>
+  </a>
+  <ul class="visible nav section-nav flex-column">
+   <li class="toc-h2 nav-item toc-entry">
+    <a class="reference internal nav-link" href="#p-style-text-align-right-put-your-name-here-p">
+     <p style="text-align: right;">
+      ✅ Put your name here
+     </p>
+    </a>
+   </li>
+   <li class="toc-h2 nav-item toc-entry">
+    <a class="reference internal nav-link" href="#goals">
+     Goals
+    </a>
+    <ul class="nav section-nav flex-column">
+     <li class="toc-h3 nav-item toc-entry">
+      <a class="reference internal nav-link" href="#by-the-end-of-the-homework-assignment-you-will-have-practiced">
+       By the end of the homework assignment you will have practiced:
+      </a>
+     </li>
+    </ul>
+   </li>
+   <li class="toc-h2 nav-item toc-entry">
+    <a class="reference internal nav-link" href="#assignment-instructions">
+     Assignment instructions
+    </a>
+   </li>
+   <li class="toc-h2 nav-item toc-entry">
+    <a class="reference internal nav-link" href="#grading">
+     Grading
+    </a>
+   </li>
+  </ul>
+ </li>
+ <li class="toc-h1 nav-item toc-entry">
+  <a class="reference internal nav-link" href="#academic-integrity-statement-1-point">
+   Academic integrity statement (1 point)
+  </a>
+  <ul class="visible nav section-nav flex-column">
+   <li class="toc-h2 nav-item toc-entry">
+    <a class="reference internal nav-link" href="#part-1-fitting-piece-wise-linear-functions-to-data">
+     Part 1: Fitting Piece-wise Linear Functions to Data
+    </a>
+    <ul class="nav section-nav flex-column">
+     <li class="toc-h3 nav-item toc-entry">
+      <a class="reference internal nav-link" href="#question-1-1-setting-up-your-python-modules-2-points">
+       ✅  Question 1.1: Setting up your Python modules (2 points)
+      </a>
+     </li>
+     <li class="toc-h3 nav-item toc-entry">
+      <a class="reference internal nav-link" href="#question-1-2-generate-and-plot-data-4-points">
+       Question 1.2: Generate and Plot Data (4 points)
+      </a>
+      <ul class="nav section-nav flex-column">
+       <li class="toc-h4 nav-item toc-entry">
+        <a class="reference internal nav-link" href="#question-1-2-1-generating-piece-wise-data-set-1-point">
+         ✅  Question 1.2.1: Generating Piece-Wise Data Set (1 point)
+        </a>
+       </li>
+       <li class="toc-h4 nav-item toc-entry">
+        <a class="reference internal nav-link" href="#question-1-2-2-plotting-piece-wise-data-set-1-point">
+         ✅  Question 1.2.2: Plotting Piece-Wise Data Set (1 point)
+        </a>
+       </li>
+       <li class="toc-h4 nav-item toc-entry">
+        <a class="reference internal nav-link" href="#question-1-2-3-adding-noise-and-plotting-2-points">
+         ✅  Question 1.2.3: Adding Noise and Plotting (2 points)
+        </a>
+       </li>
+      </ul>
+     </li>
+     <li class="toc-h3 nav-item toc-entry">
+      <a class="reference internal nav-link" href="#polynomial-fitting-5-points">
+       1.3: Polynomial Fitting (5 points)
+      </a>
+      <ul class="nav section-nav flex-column">
+       <li class="toc-h4 nav-item toc-entry">
+        <a class="reference internal nav-link" href="#question-1-3-1-thinking-about-fitting-piece-wise-functions-1-point">
+         ✅  Question 1.3.1: Thinking about Fitting Piece-Wise Functions (1 point)
+        </a>
+       </li>
+       <li class="toc-h4 nav-item toc-entry">
+        <a class="reference internal nav-link" href="#question-1-3-2-fitting-piece-wise-functions-3-points">
+         ✅  Question 1.3.2: Fitting Piece-Wise Functions (3 points)
+        </a>
+       </li>
+       <li class="toc-h4 nav-item toc-entry">
+        <a class="reference internal nav-link" href="#question-1-3-3-plotting-the-best-fit-function-1-point">
+         ✅  Question 1.3.3: Plotting the Best Fit Function (1 point)
+        </a>
+       </li>
+      </ul>
+     </li>
+     <li class="toc-h3 nav-item toc-entry">
+      <a class="reference internal nav-link" href="#question-1-4-using-curve-fit-for-the-data-8-points">
+       Question 1.4: Using Curve Fit for the data (8 points)
+      </a>
+      <ul class="nav section-nav flex-column">
+       <li class="toc-h4 nav-item toc-entry">
+        <a class="reference internal nav-link" href="#question-1-4-1-writing-the-function-3-points">
+         ✅  Question 1.4.1: Writing the Function (3 points)
+        </a>
+       </li>
+       <li class="toc-h4 nav-item toc-entry">
+        <a class="reference internal nav-link" href="#question-1-4-2-fitting-the-function-and-plotting-the-results-4-points">
+         ✅  Question 1.4.2: Fitting the Function and Plotting the Results (4 Points)
+        </a>
+       </li>
+      </ul>
+     </li>
+    </ul>
+   </li>
+   <li class="toc-h2 nav-item toc-entry">
+    <a class="reference internal nav-link" href="#part-2-fitting-models-to-real-data">
+     Part 2: Fitting Models to Real Data
+    </a>
+    <ul class="nav section-nav flex-column">
+     <li class="toc-h3 nav-item toc-entry">
+      <a class="reference internal nav-link" href="#question-2-1-reading-and-inspecting-the-data-2-points">
+       ✅  Question 2.1: Reading and inspecting the data (2 points)
+      </a>
+     </li>
+     <li class="toc-h3 nav-item toc-entry">
+      <a class="reference internal nav-link" href="#question-2-2-split-the-data-into-training-and-testing-data-2-points">
+       Question 2.2: Split the data into training and testing data. (2 points)
+      </a>
+      <ul class="nav section-nav flex-column">
+       <li class="toc-h4 nav-item toc-entry">
+        <a class="reference internal nav-link" href="#question-2-2-1-generating-wages-test-1-point">
+         ✅  Question 2.2.1: Generating
+         <code class="docutils literal notranslate">
+          <span class="pre">
+           wages_test
+          </span>
+         </code>
+         (1 point)
+        </a>
+       </li>
+       <li class="toc-h4 nav-item toc-entry">
+        <a class="reference internal nav-link" href="#question-2-2-2-generating-wages-train-1-point">
+         ✅  Question 2.2.2: Generating
+         <code class="docutils literal notranslate">
+          <span class="pre">
+           wages_train
+          </span>
+         </code>
+         (1 point)
+        </a>
+       </li>
+      </ul>
+     </li>
+     <li class="toc-h3 nav-item toc-entry">
+      <a class="reference internal nav-link" href="#question-2-3-polynomial-fitting-3-points">
+       Question 2.3: Polynomial fitting (3 points)
+      </a>
+      <ul class="nav section-nav flex-column">
+       <li class="toc-h4 nav-item toc-entry">
+        <a class="reference internal nav-link" href="#question-2-3-1-fitting-the-polynomial-2-points">
+         ✅  Question 2.3.1: Fitting the Polynomial (2 points)
+        </a>
+       </li>
+       <li class="toc-h4 nav-item toc-entry">
+        <a class="reference internal nav-link" href="#question-2-3-2-plotting-the-fit-1-point">
+         ✅  Question 2.3.2: Plotting the Fit (1 point)
+        </a>
+       </li>
+      </ul>
+     </li>
+     <li class="toc-h3 nav-item toc-entry">
+      <a class="reference internal nav-link" href="#question-2-4-finding-and-removing-outliers-8-points">
+       ✅  Question 2.4: Finding and Removing outliers (8 points)
+      </a>
+      <ul class="nav section-nav flex-column">
+       <li class="toc-h4 nav-item toc-entry">
+        <a class="reference internal nav-link" href="#question-2-4-1-calculating-residuals-1-point">
+         ✅  Question 2.4.1: Calculating Residuals (1 point)
+        </a>
+       </li>
+       <li class="toc-h4 nav-item toc-entry">
+        <a class="reference internal nav-link" href="#question-2-4-2-identifying-outliers-2-points">
+         ✅  Question 2.4.2: Identifying Outliers (2 points)
+        </a>
+       </li>
+       <li class="toc-h4 nav-item toc-entry">
+        <a class="reference internal nav-link" href="#question-2-4-3-plotting-outliers-1-point">
+         ✅  Question 2.4.3: Plotting Outliers (1 point)
+        </a>
+       </li>
+       <li class="toc-h4 nav-item toc-entry">
+        <a class="reference internal nav-link" href="#question-2-4-4-refitting-the-data-2-points">
+         ✅  Question 2.4.4: Refitting the Data ( 2 points)
+        </a>
+       </li>
+       <li class="toc-h4 nav-item toc-entry">
+        <a class="reference internal nav-link" href="#question-2-4-5-plotting-everything-together-1-point">
+         ✅  Question 2.4.5: Plotting Everything Together ( 1 point)
+        </a>
+       </li>
+       <li class="toc-h4 nav-item toc-entry">
+        <a class="reference internal nav-link" href="#question-2-4-6-reflecting-on-your-best-fits-1-point">
+         ✅  Question 2.4.6: Reflecting on your Best Fits ( 1 point)
+        </a>
+       </li>
+      </ul>
+     </li>
+     <li class="toc-h3 nav-item toc-entry">
+      <a class="reference internal nav-link" href="#question-2-5-calculating-the-test-error-5-point">
+       Question 2.5: Calculating the Test Error. (5 point)
+      </a>
+      <ul class="nav section-nav flex-column">
+       <li class="toc-h4 nav-item toc-entry">
+        <a class="reference internal nav-link" href="#question-2-5-1-creating-a-function-to-calculate-mse-2-point">
+         ✅  Question 2.5.1: Creating a Function to Calculate MSE (2 point)
+        </a>
+       </li>
+       <li class="toc-h4 nav-item toc-entry">
+        <a class="reference internal nav-link" href="#question-2-5-2-calculating-mse-1-point">
+         ✅  Question 2.5.2: Calculating MSE (1 point)
+        </a>
+       </li>
+       <li class="toc-h4 nav-item toc-entry">
+        <a class="reference internal nav-link" href="#question-2-5-3-reflecting-on-the-best-fit-models-2-points">
+         ✅  Question 2.5.3: Reflecting on the Best Fit Models (2 points)
+        </a>
+       </li>
+      </ul>
+     </li>
+    </ul>
+   </li>
+   <li class="toc-h2 nav-item toc-entry">
+    <a class="reference internal nav-link" href="#assignment-wrap-up">
+     Assignment Wrap-up
+    </a>
+    <ul class="nav section-nav flex-column">
+     <li class="toc-h3 nav-item toc-entry">
+      <a class="reference internal nav-link" href="#congratulations-you-re-done">
+       Congratulations, you’re done!
+      </a>
+     </li>
+    </ul>
+   </li>
+  </ul>
+ </li>
+</ul>
+
+            </nav>
+        </div>
+    </div>
+</div>
+    <div id="main-content" class="row">
+        <div class="col-12 col-md-9 pl-md-3 pr-md-0">
+        
+              <div>
+                
+  <div class="section" id="homework-4-fitting-data-using-numpy-and-scipy">
+<h1>Homework 4: Fitting data using NumPy and SciPy<a class="headerlink" href="#homework-4-fitting-data-using-numpy-and-scipy" title="Permalink to this headline">¶</a></h1>
+</div>
+<div class="section" id="cmse-201-fall-2021">
+<h1><strong>CMSE  201 – Fall 2021</strong><a class="headerlink" href="#cmse-201-fall-2021" title="Permalink to this headline">¶</a></h1>
+<p><img src="https://cmse.msu.edu/sites/_cmse/assets/Image/image002.jpg"
+     alt="CMSE Logo"
+     align="right" 
+     height="100" 
+     width="100" /></p>
+<div class="section" id="p-style-text-align-right-put-your-name-here-p">
+<h2><p style="text-align: right;"> ✅ Put your name here</p><a class="headerlink" href="#p-style-text-align-right-put-your-name-here-p" title="Permalink to this headline">¶</a></h2>
+</div>
+<div class="section" id="goals">
+<h2>Goals<a class="headerlink" href="#goals" title="Permalink to this headline">¶</a></h2>
+<div class="section" id="by-the-end-of-the-homework-assignment-you-will-have-practiced">
+<h3>By the end of the homework assignment you will have practiced:<a class="headerlink" href="#by-the-end-of-the-homework-assignment-you-will-have-practiced" title="Permalink to this headline">¶</a></h3>
+<ol class="simple">
+<li><p>Loading in data</p></li>
+<li><p>Polynomial fitting using NumPy</p></li>
+<li><p>Fitting curves using SciPy</p></li>
+<li><p>Plotting data and the correspoding best-fit results</p></li>
+<li><p>Calculating residuals when fitting a models to data</p></li>
+</ol>
+</div>
+</div>
+<div class="section" id="assignment-instructions">
+<h2>Assignment instructions<a class="headerlink" href="#assignment-instructions" title="Permalink to this headline">¶</a></h2>
+<p>Work through the following assignment, making sure to follow all of the directions and answer all of the questions.</p>
+<p><strong>This assignment is due at 11:59pm on Friday, Nov 5th.</strong></p>
+<p>It should be uploaded to D2L in the approach “Homework” submission folder.  Submission instructions can be found at the end of the notebook as well.</p>
+</div>
+<div class="section" id="grading">
+<h2>Grading<a class="headerlink" href="#grading" title="Permalink to this headline">¶</a></h2>
+<ul class="simple">
+<li><p>Academic Integrity (1 pt)</p></li>
+<li><p>Part 1 (20 pts)</p></li>
+<li><p>Part 2 (24 pts)</p></li>
+</ul>
+<p><strong>Total:</strong> 45 pts</p>
+</div>
+</div>
+<hr class="docutils" />
+<div class="section" id="academic-integrity-statement-1-point">
+<h1>Academic integrity statement (1 point)<a class="headerlink" href="#academic-integrity-statement-1-point" title="Permalink to this headline">¶</a></h1>
+<p>In the markdown cell below, put your personal academic integrity statement (composed during the Day04 In-Class Assignment). By including this statement, you are confirming that the work you submit in the assignment is wholly your own.</p>
+<p><font size=6 color="#009600">✎</font> <em>Put your personal academic integrity statement here.</em></p>
+<hr class="docutils" />
+<div class="section" id="part-1-fitting-piece-wise-linear-functions-to-data">
+<h2>Part 1: Fitting Piece-wise Linear Functions to Data<a class="headerlink" href="#part-1-fitting-piece-wise-linear-functions-to-data" title="Permalink to this headline">¶</a></h2>
+<p>In this problem, we will look at fitting more unusual functions to data.</p>
+<div class="section" id="question-1-1-setting-up-your-python-modules-2-points">
+<h3>✅  Question 1.1: Setting up your Python modules (2 points)<a class="headerlink" href="#question-1-1-setting-up-your-python-modules-2-points" title="Permalink to this headline">¶</a></h3>
+<p>In this homework, you will be mainly using Matplotlib, Pandas, NumPy, and SciPy’s <code class="docutils literal notranslate"><span class="pre">curve_fit</span></code> function. Make sure to include all of the important <code class="docutils literal notranslate"><span class="pre">import</span></code> comments here.</p>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="c1"># Load needed modules here</span>
+</pre></div>
+</div>
+</div>
+</div>
+</div>
+<div class="section" id="question-1-2-generate-and-plot-data-4-points">
+<h3>Question 1.2: Generate and Plot Data (4 points)<a class="headerlink" href="#question-1-2-generate-and-plot-data-4-points" title="Permalink to this headline">¶</a></h3>
+<div class="section" id="question-1-2-1-generating-piece-wise-data-set-1-point">
+<h4>✅  Question 1.2.1: Generating Piece-Wise Data Set (1 point)<a class="headerlink" href="#question-1-2-1-generating-piece-wise-data-set-1-point" title="Permalink to this headline">¶</a></h4>
+<p>Consider a function <span class="math notranslate nohighlight">\(y=f(x)\)</span> such that:</p>
+<p>\begin{eqnarray}
+f(x) &amp;=&amp; 2x \quad &amp;\mathrm{for}&amp; \quad 0 \leq x \leq 0.5 \
+f(x) &amp;=&amp; 3-4x \quad &amp;\mathrm{for}&amp; \quad 0.5 \leq x \leq 1
+\end{eqnarray}</p>
+<p><strong>Create a set of 200 <span class="math notranslate nohighlight">\(x\)</span> values that spans from <span class="math notranslate nohighlight">\(x = \)</span> 0 to 1</strong> (<em>Hint: consider using <code class="docutils literal notranslate"><span class="pre">np.linsapce</span></code></em>). <strong>Then use these <span class="math notranslate nohighlight">\(x\)</span> values to create a set of <span class="math notranslate nohighlight">\(y\)</span> values that follow the function <span class="math notranslate nohighlight">\(f(x)\)</span> given above.</strong></p>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="c1"># Put your code here</span>
+</pre></div>
+</div>
+</div>
+</div>
+</div>
+<div class="section" id="question-1-2-2-plotting-piece-wise-data-set-1-point">
+<h4>✅  Question 1.2.2: Plotting Piece-Wise Data Set (1 point)<a class="headerlink" href="#question-1-2-2-plotting-piece-wise-data-set-1-point" title="Permalink to this headline">¶</a></h4>
+<p><strong>Plot the <span class="math notranslate nohighlight">\(x\)</span> and <span class="math notranslate nohighlight">\(y\)</span> values generated in the previous problem. Label all axes on the plots.</strong></p>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="c1"># Put your code here</span>
+</pre></div>
+</div>
+</div>
+</div>
+</div>
+<div class="section" id="question-1-2-3-adding-noise-and-plotting-2-points">
+<h4>✅  Question 1.2.3: Adding Noise and Plotting (2 points)<a class="headerlink" href="#question-1-2-3-adding-noise-and-plotting-2-points" title="Permalink to this headline">¶</a></h4>
+<p><strong>Generate a noisy version <span class="math notranslate nohighlight">\(y\)</span> by adding Gaussian noise (I.e., <code class="docutils literal notranslate"><span class="pre">np.random.normal</span></code>) with mean zero and standard deviation 0.2 to all of the <span class="math notranslate nohighlight">\(y\)</span> values from this function. (Essentially, make <span class="math notranslate nohighlight">\(y_{noisy} = f(x) \, + \)</span> Gaussian(<span class="math notranslate nohighlight">\(x\)</span>)). Plot the noisy data (versus <span class="math notranslate nohighlight">\(x\)</span> values) in a new plot. Label all axes on the plots.</strong></p>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="c1"># Put your code here</span>
+</pre></div>
+</div>
+</div>
+</div>
+</div>
+</div>
+<hr class="docutils" />
+<div class="section" id="polynomial-fitting-5-points">
+<h3>1.3: Polynomial Fitting (5 points)<a class="headerlink" href="#polynomial-fitting-5-points" title="Permalink to this headline">¶</a></h3>
+<div class="section" id="question-1-3-1-thinking-about-fitting-piece-wise-functions-1-point">
+<h4>✅  Question 1.3.1: Thinking about Fitting Piece-Wise Functions (1 point)<a class="headerlink" href="#question-1-3-1-thinking-about-fitting-piece-wise-functions-1-point" title="Permalink to this headline">¶</a></h4>
+<p>How would you use NumPy’s <code class="docutils literal notranslate"><span class="pre">polyfit</span></code> and <code class="docutils literal notranslate"><span class="pre">poly1d</span></code> functions to fit a model like <span class="math notranslate nohighlight">\(f(x)\)</span> (i.e., polynomial in two pieces) to the corrupted or noisy data? Explain your approach. Your answer should use only first order polynomials for this. <em>Hint: You may fit more than one polynomial to this type of data.</em></p>
+<p><font size=+3>✎</font> <em>Put your explanation here.</em></p>
+</div>
+<div class="section" id="question-1-3-2-fitting-piece-wise-functions-3-points">
+<h4>✅  Question 1.3.2: Fitting Piece-Wise Functions (3 points)<a class="headerlink" href="#question-1-3-2-fitting-piece-wise-functions-3-points" title="Permalink to this headline">¶</a></h4>
+<p>Turn your plan above into code; <strong>use the <code class="docutils literal notranslate"><span class="pre">polyfit</span></code> and <code class="docutils literal notranslate"><span class="pre">poly1d</span></code> functions to fit a model to the data. Make sure to print out the best fit parameters.</strong></p>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="c1"># Put your code here</span>
+</pre></div>
+</div>
+</div>
+</div>
+</div>
+<div class="section" id="question-1-3-3-plotting-the-best-fit-function-1-point">
+<h4>✅  Question 1.3.3: Plotting the Best Fit Function (1 point)<a class="headerlink" href="#question-1-3-3-plotting-the-best-fit-function-1-point" title="Permalink to this headline">¶</a></h4>
+<p><strong>Plot the data together with the best fit model</strong>. Include a legend to make it clear what information represents the data and what information represents the best fit.</p>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="c1"># Put your code here</span>
+</pre></div>
+</div>
+</div>
+</div>
+</div>
+</div>
+<hr class="docutils" />
+<div class="section" id="question-1-4-using-curve-fit-for-the-data-8-points">
+<h3>Question 1.4: Using Curve Fit for the data (8 points)<a class="headerlink" href="#question-1-4-using-curve-fit-for-the-data-8-points" title="Permalink to this headline">¶</a></h3>
+<div class="section" id="question-1-4-1-writing-the-function-3-points">
+<h4>✅  Question 1.4.1: Writing the Function (3 points)<a class="headerlink" href="#question-1-4-1-writing-the-function-3-points" title="Permalink to this headline">¶</a></h4>
+<p><strong>Write a function called <code class="docutils literal notranslate"><span class="pre">fitting_function</span></code>.</strong> The function should:</p>
+<ol class="simple">
+<li><p>Take the arguments: <code class="docutils literal notranslate"><span class="pre">x</span></code>, <code class="docutils literal notranslate"><span class="pre">m_1</span></code>, <code class="docutils literal notranslate"><span class="pre">b_1</span></code>, <code class="docutils literal notranslate"><span class="pre">m_2</span></code>, <code class="docutils literal notranslate"><span class="pre">b_2</span></code>, where <code class="docutils literal notranslate"><span class="pre">x</span></code> is a NumPy array and the rest are all fit parameters corresponding to the slopes of the lines/pieces and their intercepts.</p></li>
+<li><p>Return an array with values <span class="math notranslate nohighlight">\(f(x) = m_1*x + b_1\)</span> when <span class="math notranslate nohighlight">\(0 \leq x \leq 0.5\)</span> and <span class="math notranslate nohighlight">\(f(x) = m_2*x + b_2\)</span> where <span class="math notranslate nohighlight">\(0.5 \leq x \leq 1\)</span>.</p></li>
+</ol>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="c1"># Put your code here</span>
+</pre></div>
+</div>
+</div>
+</div>
+</div>
+<div class="section" id="question-1-4-2-fitting-the-function-and-plotting-the-results-4-points">
+<h4>✅  Question 1.4.2: Fitting the Function and Plotting the Results (4 Points)<a class="headerlink" href="#question-1-4-2-fitting-the-function-and-plotting-the-results-4-points" title="Permalink to this headline">¶</a></h4>
+<p><strong>Use SciPy’s <code class="docutils literal notranslate"><span class="pre">curve_fit</span></code> function to find the best fit model parameters for the corrupted data using your <code class="docutils literal notranslate"><span class="pre">fitting_function</span></code>. Plot the data and the best fit. Label all axes and include a legend. Also print the resulting parameters.</strong></p>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="c1"># Put your code here</span>
+</pre></div>
+</div>
+</div>
+</div>
+</div>
+</div>
+</div>
+<hr class="docutils" />
+<div class="section" id="part-2-fitting-models-to-real-data">
+<h2>Part 2: Fitting Models to Real Data<a class="headerlink" href="#part-2-fitting-models-to-real-data" title="Permalink to this headline">¶</a></h2>
+<p>In this problem, we will look at fitting models to a real Wage data. You can download the <a class="reference external" href="https://drive.google.com/file/d/1DMSCODqMuapFHAl1jHnCy7yN-DOuKzQj/view?usp=sharing">data.</a>. You will use your model-fitting skills to see if you can find a good mathematical model for how the data behaves.</p>
+<div class="section" id="question-2-1-reading-and-inspecting-the-data-2-points">
+<h3>✅  Question 2.1: Reading and inspecting the data (2 points)<a class="headerlink" href="#question-2-1-reading-and-inspecting-the-data-2-points" title="Permalink to this headline">¶</a></h3>
+<p>Read in the data using Pandas. Print out a few rows of the data as well as the summary statistics of the data (mean, standard deviation, etc.) to get a sense of the data.</p>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="c1"># Put your code here</span>
+</pre></div>
+</div>
+</div>
+</div>
+</div>
+<div class="section" id="question-2-2-split-the-data-into-training-and-testing-data-2-points">
+<h3>Question 2.2: Split the data into training and testing data. (2 points)<a class="headerlink" href="#question-2-2-split-the-data-into-training-and-testing-data-2-points" title="Permalink to this headline">¶</a></h3>
+<p>Ultimately the goal of fitting a model to data is so that we can use the model to make <em><strong>predictions.</strong></em> To help us with this process, we’re going to separate our dataset into two chunks:</p>
+<ul class="simple">
+<li><p><code class="docutils literal notranslate"><span class="pre">wages_test</span></code>: a randomly selected sample of 300 data points that we’ll use to test our model.</p></li>
+<li><p><code class="docutils literal notranslate"><span class="pre">wages_train</span></code>: the rest of our dataset (i.e., everything <em>not</em> in <code class="docutils literal notranslate"><span class="pre">wages_test</span></code>), which we’ll use to create our model.</p></li>
+</ul>
+<div class="section" id="question-2-2-1-generating-wages-test-1-point">
+<h4>✅  Question 2.2.1: Generating <code class="docutils literal notranslate"><span class="pre">wages_test</span></code> (1 point)<a class="headerlink" href="#question-2-2-1-generating-wages-test-1-point" title="Permalink to this headline">¶</a></h4>
+<p>We’ve provided a bit of code below which will generate a set of random numbers. <strong>Use the random numbers to create your <code class="docutils literal notranslate"><span class="pre">wages_test</span></code> dataset.</strong></p>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="kn">import</span> <span class="nn">random</span>
+<span class="n">random</span><span class="o">.</span><span class="n">seed</span><span class="p">(</span><span class="mi">6</span><span class="p">)</span>
+<span class="n">test_id</span> <span class="o">=</span> <span class="n">random</span><span class="o">.</span><span class="n">sample</span><span class="p">(</span><span class="nb">range</span><span class="p">(</span><span class="mi">2918</span><span class="p">),</span> <span class="mi">300</span><span class="p">)</span> 
+<span class="n">test_id</span><span class="o">.</span><span class="n">sort</span><span class="p">()</span>
+<span class="c1">#test_id</span>
+<span class="c1"># use test_id to generate wage_test and wage_train</span>
+<span class="c1"># Put your code here</span>
+</pre></div>
+</div>
+</div>
+</div>
+</div>
+<div class="section" id="question-2-2-2-generating-wages-train-1-point">
+<h4>✅  Question 2.2.2: Generating <code class="docutils literal notranslate"><span class="pre">wages_train</span></code> (1 point)<a class="headerlink" href="#question-2-2-2-generating-wages-train-1-point" title="Permalink to this headline">¶</a></h4>
+<p><strong>Use the Pandas function <code class="docutils literal notranslate"><span class="pre">drop</span></code> to create your <code class="docutils literal notranslate"><span class="pre">wages_train</span></code> dataset.</strong></p>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="c1"># Put your code here</span>
+</pre></div>
+</div>
+</div>
+</div>
+</div>
+</div>
+<div class="section" id="question-2-3-polynomial-fitting-3-points">
+<h3>Question 2.3: Polynomial fitting (3 points)<a class="headerlink" href="#question-2-3-polynomial-fitting-3-points" title="Permalink to this headline">¶</a></h3>
+<div class="section" id="question-2-3-1-fitting-the-polynomial-2-points">
+<h4>✅  Question 2.3.1: Fitting the Polynomial (2 points)<a class="headerlink" href="#question-2-3-1-fitting-the-polynomial-2-points" title="Permalink to this headline">¶</a></h4>
+<p><strong>Using the NumPy <code class="docutils literal notranslate"><span class="pre">polyfit</span></code> function, fit a 3rd order polynomial to the <code class="docutils literal notranslate"><span class="pre">wage_train</span></code> data, with age being the predictor and wage being response. Make sure to print out the best fit parameters.</strong></p>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="c1"># Put your code here</span>
+</pre></div>
+</div>
+</div>
+</div>
+</div>
+<div class="section" id="question-2-3-2-plotting-the-fit-1-point">
+<h4>✅  Question 2.3.2: Plotting the Fit (1 point)<a class="headerlink" href="#question-2-3-2-plotting-the-fit-1-point" title="Permalink to this headline">¶</a></h4>
+<p><strong>Use <code class="docutils literal notranslate"><span class="pre">poly1d</span></code> to plot the data together with the fit model. The plot should label all axes and include legends to make clear what information represents the data and what information represents the fits.</strong></p>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="c1"># Put your code here</span>
+</pre></div>
+</div>
+</div>
+</div>
+</div>
+</div>
+<div class="section" id="question-2-4-finding-and-removing-outliers-8-points">
+<h3>✅  Question 2.4: Finding and Removing outliers (8 points)<a class="headerlink" href="#question-2-4-finding-and-removing-outliers-8-points" title="Permalink to this headline">¶</a></h3>
+<img src="https://cdn1.byjus.com/wp-content/uploads/2020/10/Box-Plot-and-Whisker-Plot-1.png" alt="Moore" border="0" width=500px>
+<p>We can determine the quality of the data by computing the <em>residuals</em>, <span class="math notranslate nohighlight">\(r_i\)</span>, as the difference between each known data point <span class="math notranslate nohighlight">\(y_i\)</span> and the <em>expected</em> <span class="math notranslate nohighlight">\(y\)</span> value from the best fit model evaluated at <span class="math notranslate nohighlight">\(x_i\)</span>, i.e., $<span class="math notranslate nohighlight">\(r_i = y_i - f(x_i).\)</span>$</p>
+<div class="section" id="question-2-4-1-calculating-residuals-1-point">
+<h4>✅  Question 2.4.1: Calculating Residuals (1 point)<a class="headerlink" href="#question-2-4-1-calculating-residuals-1-point" title="Permalink to this headline">¶</a></h4>
+<p><strong>Use the equation above to calculate the residuals.</strong></p>
+<p>Use residuals to identify outliers, and remove them to make wage_train2. Using wage_wage2 to perform polyfit with degree 3. Use <code class="docutils literal notranslate"><span class="pre">poly1d</span></code> to **plot the data together with the fit models (blue line for fitted model using all the trained data and green line for fitted model for cleaned training data). Label outliers in red **. The plot should label all axes and include legends to make clear what information represents the data and what information represents the fit.</p>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="c1"># Put your code here</span>
+</pre></div>
+</div>
+</div>
+</div>
+</div>
+<div class="section" id="question-2-4-2-identifying-outliers-2-points">
+<h4>✅  Question 2.4.2: Identifying Outliers (2 points)<a class="headerlink" href="#question-2-4-2-identifying-outliers-2-points" title="Permalink to this headline">¶</a></h4>
+<p>One way to identify outliers is to utilize the same principal as in boxplot above, where data points with:</p>
+<p>\begin{eqnarray}
+r_i &amp;&lt;&amp; Q_1 - 1.5 (Q_3 - Q1) \
+\mathrm{or} \
+r_i &amp;&gt;&amp; Q_3 + 1.5 (Q_3 - Q1)
+\end{eqnarray}</p>
+<p>are treated as outliers, where <strong><span class="math notranslate nohighlight">\(Q_1\)</span> and <span class="math notranslate nohighlight">\(Q_3\)</span> are the 25% and 75 % quantile of all the residuals.</strong></p>
+<p><strong>Determine the 25% and 75 % quantile of the residuals</strong> (<em>Hint: You can use either Pandas <code class="docutils literal notranslate"><span class="pre">describe</span></code> function or Pandas <code class="docutils literal notranslate"><span class="pre">quantile</span></code> function for this</em>). <strong>Use these values to isolate and separate the outliers from the <code class="docutils literal notranslate"><span class="pre">wages_train</span></code> dataset.</strong></p>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="c1"># Put your code here</span>
+</pre></div>
+</div>
+</div>
+</div>
+</div>
+<div class="section" id="question-2-4-3-plotting-outliers-1-point">
+<h4>✅  Question 2.4.3: Plotting Outliers (1 point)<a class="headerlink" href="#question-2-4-3-plotting-outliers-1-point" title="Permalink to this headline">¶</a></h4>
+<p><strong>Make a (scatter) plot showing the data to be kept in one color and the outliers in a different color.</strong></p>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="c1"># Put your code here</span>
+</pre></div>
+</div>
+</div>
+</div>
+</div>
+<div class="section" id="question-2-4-4-refitting-the-data-2-points">
+<h4>✅  Question 2.4.4: Refitting the Data ( 2 points)<a class="headerlink" href="#question-2-4-4-refitting-the-data-2-points" title="Permalink to this headline">¶</a></h4>
+<p><strong>Use your cleaned data set (i.e., the one with the outliers removed) and fit it to a new model (once again, use a 3rd order polynomial). Make sure to print out the best fit parameters</strong></p>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="c1"># Put your code here</span>
+</pre></div>
+</div>
+</div>
+</div>
+</div>
+<div class="section" id="question-2-4-5-plotting-everything-together-1-point">
+<h4>✅  Question 2.4.5: Plotting Everything Together ( 1 point)<a class="headerlink" href="#question-2-4-5-plotting-everything-together-1-point" title="Permalink to this headline">¶</a></h4>
+<p><strong>Finally, make a plot showing the following:</strong></p>
+<ol class="simple">
+<li><p>The cleaned (non-outlier) data points.</p></li>
+<li><p>The outlier data points.</p></li>
+<li><p>Your original best fit line (i.e., the one fit using all of the <code class="docutils literal notranslate"><span class="pre">wage_train</span></code> data points)</p></li>
+<li><p>Your new best fit line (i.e., the one fit using the data set with the outliers removed)</p></li>
+</ol>
+<p><strong>Make sure to have a legend that clearly defines each of these components.</strong></p>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="c1"># Put your code here</span>
+</pre></div>
+</div>
+</div>
+</div>
+</div>
+<div class="section" id="question-2-4-6-reflecting-on-your-best-fits-1-point">
+<h4>✅  Question 2.4.6: Reflecting on your Best Fits ( 1 point)<a class="headerlink" href="#question-2-4-6-reflecting-on-your-best-fits-1-point" title="Permalink to this headline">¶</a></h4>
+<p><strong>In the space below, comment on the differences between your two best lines (I.e., the one fit with outliers and the one fit without outliers). Are they different from one another? Where do they deviate? Where are they the same? Consider the best parameters in your answer, as well as the best fit lines.</strong></p>
+<p><font size=+3>✎</font> <em>Put your observations here.</em></p>
+</div>
+</div>
+<div class="section" id="question-2-5-calculating-the-test-error-5-point">
+<h3>Question 2.5: Calculating the Test Error. (5 point)<a class="headerlink" href="#question-2-5-calculating-the-test-error-5-point" title="Permalink to this headline">¶</a></h3>
+<p>As mentioned previously, the main goal for building a model is to make prediciton for data unseen. We will measure the prediction ability of our model using <code class="docutils literal notranslate"><span class="pre">wages_test</span></code> data set, which has never been seen by our model-fitting procedure.</p>
+<p>First, we would like to quantify how well our models fit the data. To do this, we will use the aggregate of the residuals, in the form of the <strong>Mean Squared Error</strong> $<span class="math notranslate nohighlight">\(MSE=\frac{1}{N}\sum_{i=1}^{N}r_i^2.\)</span>$</p>
+<div class="section" id="question-2-5-1-creating-a-function-to-calculate-mse-2-point">
+<h4>✅  Question 2.5.1: Creating a Function to Calculate MSE (2 point)<a class="headerlink" href="#question-2-5-1-creating-a-function-to-calculate-mse-2-point" title="Permalink to this headline">¶</a></h4>
+<p><strong>Create a function that:</strong></p>
+<ol class="simple">
+<li><p>Takes two numpy arrays; data <span class="math notranslate nohighlight">\(y\)</span> values and best-fit model <span class="math notranslate nohighlight">\(y\)</span> values</p></li>
+<li><p>Returns Mean Squared Error between the data and the best-fit model values.</p></li>
+</ol>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="c1">### Put your code here</span>
+</pre></div>
+</div>
+</div>
+</div>
+</div>
+<div class="section" id="question-2-5-2-calculating-mse-1-point">
+<h4>✅  Question 2.5.2: Calculating MSE (1 point)<a class="headerlink" href="#question-2-5-2-calculating-mse-1-point" title="Permalink to this headline">¶</a></h4>
+<p><strong>Use your function from the previous problem, as well as your two best fit functions from 2.3.1 and 2.4.4, and calculate the MSE for each fit using the data from <code class="docutils literal notranslate"><span class="pre">wage_test</span></code>.</strong></p>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="c1">### Put your code here</span>
+</pre></div>
+</div>
+</div>
+</div>
+</div>
+<div class="section" id="question-2-5-3-reflecting-on-the-best-fit-models-2-points">
+<h4>✅  Question 2.5.3: Reflecting on the Best Fit Models (2 points)<a class="headerlink" href="#question-2-5-3-reflecting-on-the-best-fit-models-2-points" title="Permalink to this headline">¶</a></h4>
+<p><strong>Which model is better? Explain the reason using your own words.</strong></p>
+<p><font size=+3>✎</font> <em>Explain your reasoning here.</em></p>
+</div>
+</div>
+</div>
+<hr class="docutils" />
+<div class="section" id="assignment-wrap-up">
+<h2>Assignment Wrap-up<a class="headerlink" href="#assignment-wrap-up" title="Permalink to this headline">¶</a></h2>
+<p>Please fill out the following Google Form before you submit your assignment. <strong>You must completely fill this out in order to receive credit for the assignment!</strong></p>
+<p><strong>COMPLETE THIS SURVEY through <a class="reference external" href="https://forms.office.com/r/kGDrV361LB">this link</a> or through cell below.</strong></p>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="kn">from</span> <span class="nn">IPython.display</span> <span class="kn">import</span> <span class="n">HTML</span>
+<span class="n">HTML</span><span class="p">(</span>
+<span class="sd">&quot;&quot;&quot;</span>
+<span class="sd">&lt;iframe </span>
+<span class="sd">	src=&quot;https://forms.office.com/r/kGDrV361LB&quot; </span>
+<span class="sd">	width=&quot;80%&quot; </span>
+<span class="sd">	height=&quot;1200px&quot; </span>
+<span class="sd">	frameborder=&quot;0&quot; </span>
+<span class="sd">	marginheight=&quot;0&quot; </span>
+<span class="sd">	marginwidth=&quot;0&quot;&gt;</span>
+<span class="sd">	Loading...</span>
+<span class="sd">&lt;/iframe&gt;</span>
+<span class="sd">&quot;&quot;&quot;</span>
+<span class="p">)</span>
+</pre></div>
+</div>
+</div>
+</div>
+<hr class="docutils" />
+<div class="section" id="congratulations-you-re-done">
+<h3>Congratulations, you’re done!<a class="headerlink" href="#congratulations-you-re-done" title="Permalink to this headline">¶</a></h3>
+<p>Submit this assignment by uploading it to the course Desire2Learn web page.<br />
+Go to the “Homework Assignments” section, find the appropriate submission folder link, and upload it there.</p>
+<p>© Copyright 2020, <a class="reference external" href="https://cmse.msu.edu">Department of Computational Mathematics, Science and Engineering</a> at Michigan State University.</p>
+</div>
+</div>
+</div>
+
+    <script type="text/x-thebe-config">
+    {
+        requestKernel: true,
+        binderOptions: {
+            repo: "binder-examples/jupyter-stacks-datascience",
+            ref: "master",
+        },
+        codeMirrorConfig: {
+            theme: "abcdef",
+            mode: "python"
+        },
+        kernelOptions: {
+            kernelName: "python3",
+            path: "./Homework/Homework-4"
+        },
+        predefinedOutput: true
+    }
+    </script>
+    <script>kernelName = 'python3'</script>
+
+              </div>
+              
+        
+            
+
+
+
+<div class='prev-next-bottom'>
+    
+    <div id="prev">
+        <a class="left-prev" href="../Homework-3/HOMEWORK_3_STUDENT.html" title="previous page">
+            <i class="prevnext-label fas fa-angle-left"></i>
+            <div class="prevnext-info">
+                <p class="prevnext-label">previous</p>
+                <p class="prevnext-title">Homework 3: Data Analysis with Pandas, Numpy, and Matplotlib</p>
+            </div>
+        </a>
+    </div>
+     <div id="next">
+        <a class="right-next" href="../Homework-5/HW_05_F21-STUDENT.html" title="next page">
+            <div class="prevnext-info">
+                <p class="prevnext-label">next</p>
+                <p class="prevnext-title">Homework 5: Modeling Physical Systems and Heating Up the House with ODEs</p>
+            </div>
+            <i class="prevnext-label fas fa-angle-right"></i>
+        </a>
+     </div>
+
+</div>
+        
+        </div>
+    </div>
+    <footer class="footer mt-5 mt-md-0">
+    <div class="container">
+      <p>
+        
+          By MSU CMSE<br/>
+        
+            &copy; Copyright 2021.<br/>
+      </p>
+    </div>
+  </footer>
+</main>
+
+
+      </div>
+    </div>
+  
+  <script src="../../_static/js/index.1c5a1a01449ed65a7b51.js"></script>
+
+  
+  </body>
+</html>

@@ -1,0 +1,834 @@
+
+<!DOCTYPE html>
+
+
+<html lang="en" data-content_root="../" >
+
+  <head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" /><meta name="viewport" content="width=device-width, initial-scale=1" />
+
+    <title>Day 3: Pre-Class Assignment: Lists and Loops &#8212; CMSE 201</title>
+  
+  
+  
+  <script data-cfasync="false">
+    document.documentElement.dataset.mode = localStorage.getItem("mode") || "";
+    document.documentElement.dataset.theme = localStorage.getItem("theme") || "";
+  </script>
+  
+  <!-- Loaded before other Sphinx assets -->
+  <link href="../_static/styles/theme.css?digest=3ee479438cf8b5e0d341" rel="stylesheet" />
+<link href="../_static/styles/bootstrap.css?digest=3ee479438cf8b5e0d341" rel="stylesheet" />
+<link href="../_static/styles/pydata-sphinx-theme.css?digest=3ee479438cf8b5e0d341" rel="stylesheet" />
+
+  
+  <link href="../_static/vendor/fontawesome/6.5.2/css/all.min.css?digest=3ee479438cf8b5e0d341" rel="stylesheet" />
+  <link rel="preload" as="font" type="font/woff2" crossorigin href="../_static/vendor/fontawesome/6.5.2/webfonts/fa-solid-900.woff2" />
+<link rel="preload" as="font" type="font/woff2" crossorigin href="../_static/vendor/fontawesome/6.5.2/webfonts/fa-brands-400.woff2" />
+<link rel="preload" as="font" type="font/woff2" crossorigin href="../_static/vendor/fontawesome/6.5.2/webfonts/fa-regular-400.woff2" />
+
+    <link rel="stylesheet" type="text/css" href="../_static/pygments.css?v=fa44fd50" />
+    <link rel="stylesheet" type="text/css" href="../_static/styles/sphinx-book-theme.css?v=384b581d" />
+    <link rel="stylesheet" type="text/css" href="../_static/togglebutton.css?v=13237357" />
+    <link rel="stylesheet" type="text/css" href="../_static/copybutton.css?v=76b2166b" />
+    <link rel="stylesheet" type="text/css" href="../_static/mystnb.4510f1fc1dee50b3e5859aac5469c37c29e427902b24a333a5f9fcb2f0b3ac41.css?v=be8a1c11" />
+    <link rel="stylesheet" type="text/css" href="../_static/sphinx-thebe.css?v=4fa983c6" />
+    <link rel="stylesheet" type="text/css" href="../_static/sphinx-design.min.css?v=87e54e7c" />
+  
+  <!-- Pre-loaded scripts that we'll load fully later -->
+  <link rel="preload" as="script" href="../_static/scripts/bootstrap.js?digest=3ee479438cf8b5e0d341" />
+<link rel="preload" as="script" href="../_static/scripts/pydata-sphinx-theme.js?digest=3ee479438cf8b5e0d341" />
+  <script src="../_static/vendor/fontawesome/6.5.2/js/all.min.js?digest=3ee479438cf8b5e0d341"></script>
+
+    <script src="../_static/documentation_options.js?v=9eb32ce0"></script>
+    <script src="../_static/doctools.js?v=9a2dae69"></script>
+    <script src="../_static/sphinx_highlight.js?v=dc90522c"></script>
+    <script src="../_static/clipboard.min.js?v=a7894cd8"></script>
+    <script src="../_static/copybutton.js?v=f281be69"></script>
+    <script src="../_static/scripts/sphinx-book-theme.js?v=efea14e4"></script>
+    <script>let toggleHintShow = 'Click to show';</script>
+    <script>let toggleHintHide = 'Click to hide';</script>
+    <script>let toggleOpenOnPrint = 'true';</script>
+    <script src="../_static/togglebutton.js?v=4a39c7ea"></script>
+    <script>var togglebuttonSelector = '.toggle, .admonition.dropdown';</script>
+    <script src="../_static/design-tabs.js?v=36754332"></script>
+    <script>const THEBE_JS_URL = "https://unpkg.com/thebe@0.8.2/lib/index.js"; const thebe_selector = ".thebe,.cell"; const thebe_selector_input = "pre"; const thebe_selector_output = ".output, .cell_output"</script>
+    <script async="async" src="../_static/sphinx-thebe.js?v=c100c467"></script>
+    <script>var togglebuttonSelector = '.toggle, .admonition.dropdown';</script>
+    <script>const THEBE_JS_URL = "https://unpkg.com/thebe@0.8.2/lib/index.js"; const thebe_selector = ".thebe,.cell"; const thebe_selector_input = "pre"; const thebe_selector_output = ".output, .cell_output"</script>
+    <script>window.MathJax = {"options": {"processHtmlClass": "tex2jax_process|mathjax_process|math|output_area"}}</script>
+    <script defer="defer" src="https://cdn.jsdelivr.net/npm/mathjax@3/es5/tex-mml-chtml.js"></script>
+    <script>DOCUMENTATION_OPTIONS.pagename = 'Day-03/Day-03_Pre-Class_ListsAndLoops-STUDENT';</script>
+    <link rel="icon" href="../_static/cmse_fav.ico"/>
+    <link rel="index" title="Index" href="../genindex.html" />
+    <link rel="search" title="Search" href="../search.html" />
+    <link rel="next" title="Day 3 In-class Assignment: The power of compound interest" href="Day-03_In-Class_ListsLoopsAndSaving-STUDENT.html" />
+    <link rel="prev" title="Day 2 In-class Assignment: Order of Magnitude Modeling" href="../Day-02/Day-02_In-Class_OrderOfMagnitudeModeling-STUDENT.html" />
+  <meta name="viewport" content="width=device-width, initial-scale=1"/>
+  <meta name="docsearch:language" content="en"/>
+  </head>
+  
+  
+  <body data-bs-spy="scroll" data-bs-target=".bd-toc-nav" data-offset="180" data-bs-root-margin="0px 0px -60%" data-default-mode="">
+
+  
+  
+  <div id="pst-skip-link" class="skip-link d-print-none"><a href="#main-content">Skip to main content</a></div>
+  
+  <div id="pst-scroll-pixel-helper"></div>
+  
+  <button type="button" class="btn rounded-pill" id="pst-back-to-top">
+    <i class="fa-solid fa-arrow-up"></i>Back to top</button>
+
+  
+  <input type="checkbox"
+          class="sidebar-toggle"
+          id="pst-primary-sidebar-checkbox"/>
+  <label class="overlay overlay-primary" for="pst-primary-sidebar-checkbox"></label>
+  
+  <input type="checkbox"
+          class="sidebar-toggle"
+          id="pst-secondary-sidebar-checkbox"/>
+  <label class="overlay overlay-secondary" for="pst-secondary-sidebar-checkbox"></label>
+  
+  <div class="search-button__wrapper">
+    <div class="search-button__overlay"></div>
+    <div class="search-button__search-container">
+<form class="bd-search d-flex align-items-center"
+      action="../search.html"
+      method="get">
+  <i class="fa-solid fa-magnifying-glass"></i>
+  <input type="search"
+         class="form-control"
+         name="q"
+         id="search-input"
+         placeholder="Search..."
+         aria-label="Search..."
+         autocomplete="off"
+         autocorrect="off"
+         autocapitalize="off"
+         spellcheck="false"/>
+  <span class="search-button__kbd-shortcut"><kbd class="kbd-shortcut__modifier">Ctrl</kbd>+<kbd>K</kbd></span>
+</form></div>
+  </div>
+
+  <div class="pst-async-banner-revealer d-none">
+  <aside id="bd-header-version-warning" class="d-none d-print-none" aria-label="Version warning"></aside>
+</div>
+
+  
+    <header class="bd-header navbar navbar-expand-lg bd-navbar d-print-none">
+    </header>
+  
+
+  <div class="bd-container">
+    <div class="bd-container__inner bd-page-width">
+      
+      
+      
+      <div class="bd-sidebar-primary bd-sidebar">
+        
+
+  
+  <div class="sidebar-header-items sidebar-primary__section">
+    
+    
+    
+    
+  </div>
+  
+    <div class="sidebar-primary-items__start sidebar-primary__section">
+        <div class="sidebar-primary-item">
+
+  
+
+<a class="navbar-brand logo" href="../intro.html">
+  
+  
+  
+  
+  
+    
+    
+      
+    
+    
+    <img src="../_static/logo.png" class="logo__image only-light" alt="CMSE 201 - Home"/>
+    <script>document.write(`<img src="../_static/logo.png" class="logo__image only-dark" alt="CMSE 201 - Home"/>`);</script>
+  
+  
+</a></div>
+        <div class="sidebar-primary-item">
+
+ <script>
+ document.write(`
+   <button class="btn navbar-btn search-button-field search-button__button" title="Search" aria-label="Search" data-bs-placement="bottom" data-bs-toggle="tooltip">
+    <i class="fa-solid fa-magnifying-glass"></i>
+    <span class="search-button__default-text">Search</span>
+    <span class="search-button__kbd-shortcut"><kbd class="kbd-shortcut__modifier">Ctrl</kbd>+<kbd class="kbd-shortcut__modifier">K</kbd></span>
+   </button>
+ `);
+ </script></div>
+        <div class="sidebar-primary-item"><nav class="bd-links bd-docs-nav" aria-label="Main">
+    <div class="bd-toc-item navbar-nav active">
+        <p aria-level="2" class="caption" role="heading"><span class="caption-text">Course Materials</span></p>
+<ul class="nav bd-sidenav">
+<li class="toctree-l1 has-children"><a class="reference internal" href="../Course_Materials-201/CourseDocuments.html">Important Course information</a><details><summary><span class="toctree-toggle" role="presentation"><i class="fa-solid fa-chevron-down"></i></span></summary><ul>
+<li class="toctree-l2"><a class="reference internal" href="../Course_Materials-201/CMSE201-Syllabus.html">Syllabus</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../Course_Materials-201/CMSE201-Schedule.html">Course Schedule</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../Course_Materials-201/SoftwareSetupGuide.html">Software Setup Guide</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../Course_Materials-201/classroom_participation.html">Classroom Participation</a></li>
+</ul>
+</details></li>
+</ul>
+<p aria-level="2" class="caption" role="heading"><span class="caption-text">Day 01</span></p>
+<ul class="nav bd-sidenav">
+<li class="toctree-l1"><a class="reference internal" href="../Day-01/Day-01_In-Class_SortingAlgorithm-STUDENT.html">Day 1 In-Class Assignment: Introductions and Sorting Algorithms</a></li>
+
+
+
+</ul>
+<p aria-level="2" class="caption" role="heading"><span class="caption-text">Day 02</span></p>
+<ul class="nav bd-sidenav">
+<li class="toctree-l1"><a class="reference internal" href="../Day-02/Day-02_Pre-Class_IntroToPython-STUDENT.html">Day 2 Pre-class Assignment: Intro to Python</a></li>
+
+
+
+<li class="toctree-l1"><a class="reference internal" href="../Day-02/Day-02_In-Class_OrderOfMagnitudeModeling-STUDENT.html">Day 2 In-class Assignment: Order of Magnitude Modeling</a></li>
+
+
+</ul>
+<p aria-level="2" class="caption" role="heading"><span class="caption-text">Day 03</span></p>
+<ul class="current nav bd-sidenav">
+<li class="toctree-l1 current active"><a class="current reference internal" href="#">Day 3: Pre-Class Assignment: Lists and Loops</a></li>
+<li class="toctree-l1"><a class="reference internal" href="Day-03_In-Class_ListsLoopsAndSaving-STUDENT.html">Day 3 In-class Assignment: The power of compound interest</a></li>
+</ul>
+<p aria-level="2" class="caption" role="heading"><span class="caption-text">Day 04</span></p>
+<ul class="nav bd-sidenav">
+<li class="toctree-l1"><a class="reference internal" href="../Day-04/Day_04_PreClass_DataAlgorithmicBias-STUDENT.html">Day 4 Pre-class Assignment: Introduction to Data Ethics: Data and Algorithmic Bias</a></li>
+
+
+
+
+
+</ul>
+
+    </div>
+</nav></div>
+    </div>
+  
+  
+  <div class="sidebar-primary-items__end sidebar-primary__section">
+  </div>
+  
+  <div id="rtd-footer-container"></div>
+
+
+      </div>
+      
+      <main id="main-content" class="bd-main" role="main">
+        
+        
+
+<div class="sbt-scroll-pixel-helper"></div>
+
+          <div class="bd-content">
+            <div class="bd-article-container">
+              
+              <div class="bd-header-article d-print-none">
+<div class="header-article-items header-article__inner">
+  
+    <div class="header-article-items__start">
+      
+        <div class="header-article-item"><label class="sidebar-toggle primary-toggle btn btn-sm" for="__primary" title="Toggle primary sidebar" data-bs-placement="bottom" data-bs-toggle="tooltip">
+  <span class="fa-solid fa-bars"></span>
+</label></div>
+      
+    </div>
+  
+  
+    <div class="header-article-items__end">
+      
+        <div class="header-article-item">
+
+<div class="article-header-buttons">
+
+
+
+
+
+<div class="dropdown dropdown-download-buttons">
+  <button class="btn dropdown-toggle" type="button" data-bs-toggle="dropdown" aria-expanded="false" aria-label="Download this page">
+    <i class="fas fa-download"></i>
+  </button>
+  <ul class="dropdown-menu">
+      
+      
+      
+      <li><a href="../_sources/Day-03/Day-03_Pre-Class_ListsAndLoops-STUDENT.ipynb" target="_blank"
+   class="btn btn-sm btn-download-source-button dropdown-item"
+   title="Download source file"
+   data-bs-placement="left" data-bs-toggle="tooltip"
+>
+  
+
+<span class="btn__icon-container">
+  <i class="fas fa-file"></i>
+  </span>
+<span class="btn__text-container">.ipynb</span>
+</a>
+</li>
+      
+      
+      
+      
+      <li>
+<button onclick="window.print()"
+  class="btn btn-sm btn-download-pdf-button dropdown-item"
+  title="Print to PDF"
+  data-bs-placement="left" data-bs-toggle="tooltip"
+>
+  
+
+<span class="btn__icon-container">
+  <i class="fas fa-file-pdf"></i>
+  </span>
+<span class="btn__text-container">.pdf</span>
+</button>
+</li>
+      
+  </ul>
+</div>
+
+
+
+
+<button onclick="toggleFullScreen()"
+  class="btn btn-sm btn-fullscreen-button"
+  title="Fullscreen mode"
+  data-bs-placement="bottom" data-bs-toggle="tooltip"
+>
+  
+
+<span class="btn__icon-container">
+  <i class="fas fa-expand"></i>
+  </span>
+
+</button>
+
+
+
+<script>
+document.write(`
+  <button class="btn btn-sm navbar-btn theme-switch-button" title="light/dark" aria-label="light/dark" data-bs-placement="bottom" data-bs-toggle="tooltip">
+    <span class="theme-switch nav-link" data-mode="light"><i class="fa-solid fa-sun fa-lg"></i></span>
+    <span class="theme-switch nav-link" data-mode="dark"><i class="fa-solid fa-moon fa-lg"></i></span>
+    <span class="theme-switch nav-link" data-mode="auto"><i class="fa-solid fa-circle-half-stroke fa-lg"></i></span>
+  </button>
+`);
+</script>
+
+
+<script>
+document.write(`
+  <button class="btn btn-sm navbar-btn search-button search-button__button" title="Search" aria-label="Search" data-bs-placement="bottom" data-bs-toggle="tooltip">
+    <i class="fa-solid fa-magnifying-glass fa-lg"></i>
+  </button>
+`);
+</script>
+<label class="sidebar-toggle secondary-toggle btn btn-sm" for="__secondary"title="Toggle secondary sidebar" data-bs-placement="bottom" data-bs-toggle="tooltip">
+    <span class="fa-solid fa-list"></span>
+</label>
+</div></div>
+      
+    </div>
+  
+</div>
+</div>
+              
+              
+
+<div id="jb-print-docs-body" class="onlyprint">
+    <h1>Day 3: Pre-Class Assignment: Lists and Loops</h1>
+    <!-- Table of contents -->
+    <div id="print-main-content">
+        <div id="jb-print-toc">
+            
+            <div>
+                <h2> Contents </h2>
+            </div>
+            <nav aria-label="Page">
+                <ul class="visible nav section-nav flex-column">
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#put-your-name-here"><p style="text-align: right;"> ✅ Put your name here</p></a></li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#goals-for-today-s-pre-class-assignment">Goals for Today’s Pre-Class Assignment</a></li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#assignment-instructions">Assignment instructions</a></li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#reminder-on-generative-ai-usage">REMINDER on Generative AI Usage**</a><ul class="nav section-nav flex-column">
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#keyboard-shortcuts">Keyboard shortcuts!</a></li>
+</ul>
+</li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#part-1-lists-in-python">Part 1: Lists in Python</a></li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#part-2-for-loops-and-while-loops">Part 2: For loops and While loops</a><ul class="nav section-nav flex-column">
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#part-2-1-for-loops">Part 2.1: For loops</a></li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#index-vs-value">Index vs Value</a></li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#part-2-2-while-loops">Part 2.2: While loops</a></li>
+</ul>
+</li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#part-3-combining-lists-and-loops">Part 3: Combining lists and loops.</a></li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#part-4-optional-challenge-problem">Part 4: (OPTIONAL) Challenge Problem</a></li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#follow-up-questions">Follow-up Questions</a></li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#assignment-wrap-up">Assignment wrap-up</a><ul class="nav section-nav flex-column">
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#congratulations-you-re-done">Congratulations, you’re done!</a></li>
+</ul>
+</li>
+</ul>
+            </nav>
+        </div>
+    </div>
+</div>
+
+              
+                
+<div id="searchbox"></div>
+                <article class="bd-article">
+                  
+  <section class="tex2jax_ignore mathjax_ignore" id="day-3-pre-class-assignment-lists-and-loops">
+<h1>Day 3: Pre-Class Assignment: Lists and Loops<a class="headerlink" href="#day-3-pre-class-assignment-lists-and-loops" title="Link to this heading">#</a></h1>
+<section id="put-your-name-here">
+<h2><p style="text-align: right;"> ✅ Put your name here</p><a class="headerlink" href="#put-your-name-here" title="Link to this heading">#</a></h2>
+</section>
+<section id="goals-for-today-s-pre-class-assignment">
+<h2>Goals for Today’s Pre-Class Assignment<a class="headerlink" href="#goals-for-today-s-pre-class-assignment" title="Link to this heading">#</a></h2>
+<p>By the end of this assignment, you should be able to:</p>
+<ul class="simple">
+<li><p>Create and manipulate lists in Python</p></li>
+<li><p>Write <code class="docutils literal notranslate"><span class="pre">for</span></code> loops and <code class="docutils literal notranslate"><span class="pre">while</span></code> loops in Python</p></li>
+<li><p>Combine lists and loops to compute new values.</p></li>
+</ul>
+</section>
+<section id="assignment-instructions">
+<h2>Assignment instructions<a class="headerlink" href="#assignment-instructions" title="Link to this heading">#</a></h2>
+<p>Read this notebook, watch the videos below and complete the assigned programming problems.  Please get started early, and come to office hours if you have any questions!</p>
+<p>Recall that to make notebook cells that have Python code in them do something, hold down the ‘shift’ key and then press the ‘enter’ key (you’ll have to do this to get the YouTube videos to run).  To edit a cell (to add answers, for example) you double-click on the cell, add your text, and then enter it by holding down ‘shift’ and pressing ‘enter’.</p>
+<p><strong>This assignment is due by 11:59 p.m. the day before class,</strong> and should be uploaded into the appropriate “Pre-class assignments” submission folder on D2L.  Submission instructions can be found at the end of the notebook.</p>
+</section>
+<section id="reminder-on-generative-ai-usage">
+<h2>REMINDER on Generative AI Usage**<a class="headerlink" href="#reminder-on-generative-ai-usage" title="Link to this heading">#</a></h2>
+<p>To ensure that you are starting to build a strong basis in foundational concepts, please do not use Generative AI (chatGPT, Dall-E, Claude, Co-pilot, etc.) at this time. We will introduce how to use them in support of your learning soon!</p>
+<p>However, feel free to post in Teams, talk with your peers and instructors, and use the resources below:</p>
+<ul class="simple">
+<li><p><a class="reference external" href="https://stackoverflow.com/">Stack Overflow</a></p></li>
+<li><p><a class="reference external" href="https://www.reddit.com/r/learnpython/">r/learnpython</a></p></li>
+<li><p><a class="reference external" href="https://pythontutor.com/python-compiler.html#mode=edit">pythontutor</a></p></li>
+<li><p><a class="reference external" href="https://www.w3schools.com/python/default.asp">W3Schools</a></p></li>
+<li><p><a class="reference external" href="https://www.programiz.com/python-programming">programiz</a></p></li>
+</ul>
+<hr class="docutils" />
+<section id="keyboard-shortcuts">
+<h3>Keyboard shortcuts!<a class="headerlink" href="#keyboard-shortcuts" title="Link to this heading">#</a></h3>
+<p>If you want to start using keyboard shortcuts in Jupyter Notebooks to make your life easier and more efficient, <strong>try pressing <code class="docutils literal notranslate"><span class="pre">ESC</span></code> to enter command mode and then press <code class="docutils literal notranslate"><span class="pre">H</span></code></strong>. This will bring up the list of the keyboard shortcuts. Some of the useful shortcuts include <code class="docutils literal notranslate"><span class="pre">A</span></code> and <code class="docutils literal notranslate"><span class="pre">B</span></code>, which insert cells into the notebook “above” and “below” the current cell, respectively. <code class="docutils literal notranslate"><span class="pre">X</span></code> is also useful for cutting out cells that you don’t need.</p>
+</section>
+</section>
+<section id="part-1-lists-in-python">
+<h2>Part 1: Lists in Python<a class="headerlink" href="#part-1-lists-in-python" title="Link to this heading">#</a></h2>
+<p>One very useful data type/container in Python is the “list”. A list is considered a “mutable” Python data type which means that once you create a list, you are free to change the contents of that list. Lists are also handy because they can store pretty much any other type of python variable within them – including other lists! Creating lists of lists can actually be extremely handy at times. The following table should serve as a simple reference guide for lists. Note that you might have to scroll side to the side to see the whole table.</p>
+<div class="pst-scrollable-table-container"><table class="table">
+<thead>
+<tr class="row-odd"><th class="head text-left"><p>Container Type</p></th>
+<th class="head text-left"><p>Mutable or Immutable</p></th>
+<th class="head text-left"><p>Initialization <em>Without</em> Values</p></th>
+<th class="head text-left"><p>Initializtion <em>With</em> Values</p></th>
+<th class="head text-left"><p>Adding Values to Container</p></th>
+<th class="head text-left"><p>Removing Values from Container</p></th>
+<th class="head text-left"><p>Modifying Values</p></th>
+<th class="head text-left"><p>Access Method</p></th>
+<th class="head text-left"><p>Notable Operations and Additional Information</p></th>
+</tr>
+</thead>
+<tbody>
+<tr class="row-even"><td class="text-left"><p><strong>List</strong> <span class="math notranslate nohighlight">\(\hspace{0.5in}\)</span></p></td>
+<td class="text-left"><p>Mutable <span class="math notranslate nohighlight">\(\hspace{0.5in}\)</span></p></td>
+<td class="text-left"><p><ul><li><code class="docutils literal notranslate"><span class="pre">a=list()</span></code> </li><li> <code class="docutils literal notranslate"><span class="pre">a=[]</span></code> </li></ul> <span class="math notranslate nohighlight">\(\hspace{1.0in}\)</span></p></td>
+<td class="text-left"><p><code class="docutils literal notranslate"><span class="pre">a=['1',</span> <span class="pre">'2',</span> <span class="pre">'3']</span></code> <span class="math notranslate nohighlight">\(\hspace{1.5in}\)</span></p></td>
+<td class="text-left"><p><ul><li><code class="docutils literal notranslate"> <span class="pre">list.append(item)</span> <span class="pre">#Adds</span> <span class="pre">item</span> <span class="pre">to</span> <span class="pre">the</span> <span class="pre">end</span> <span class="pre">of</span> <span class="pre">the</span> <span class="pre">list</span></code> </li><li> <code class="docutils literal notranslate"> <span class="pre">list.insert(index,</span> <span class="pre">item)</span> <span class="pre">#Adds</span> <span class="pre">item</span> <span class="pre">to</span> <span class="pre">the</span> <span class="pre">specified</span> <span class="pre">index</span> <span class="pre">in</span> <span class="pre">the</span> <span class="pre">list</span></code></li></ul> <span class="math notranslate nohighlight">\(\hspace{2.5in}\)</span></p></td>
+<td class="text-left"><p><code class="docutils literal notranslate"><span class="pre">list.remove(item)</span> <span class="pre">#removes</span> <span class="pre">the</span> <span class="pre">first</span> <span class="pre">instance</span> <span class="pre">of</span> <span class="pre">'item'</span> <span class="pre">from</span> <span class="pre">the</span> <span class="pre">list.</span> <span class="pre">If</span> <span class="pre">there</span> <span class="pre">is</span> <span class="pre">not</span> <span class="pre">such</span> <span class="pre">an</span> <span class="pre">element,</span> <span class="pre">this</span> <span class="pre">will</span> <span class="pre">cause</span> <span class="pre">an</span> <span class="pre">error</span></code> <span class="math notranslate nohighlight">\(\hspace{2.0in}\)</span></p></td>
+<td class="text-left"><p><code class="docutils literal notranslate"><span class="pre">&gt;&gt;&gt;</span> <span class="pre">a[0]</span> <span class="pre">=</span> <span class="pre">'cat'</span></code> <br> <code class="docutils literal notranslate"><span class="pre">&gt;&gt;&gt;</span> <span class="pre">a</span></code> <br> <code class="docutils literal notranslate"><span class="pre">['cat',</span> <span class="pre">'2',</span> <span class="pre">'3']</span></code> <span class="math notranslate nohighlight">\(\hspace{1.5in}\)</span></p></td>
+<td class="text-left"><p>Access by index: <br> <code class="docutils literal notranslate"><span class="pre">&gt;&gt;&gt;</span> <span class="pre">a[0]</span></code> <br> <code class="docutils literal notranslate"><span class="pre">1</span></code> <span class="math notranslate nohighlight">\(\hspace{1.2in}\)</span></p></td>
+<td class="text-left"><p>See webpage at <a class="reference external" href="http://www.linuxtopia.org/online_books/programming_books/python_programming/python_ch14s07.html">here</a> for some helpful methods when dealing with lists. <span class="math notranslate nohighlight">\(\hspace{1.5in}\)</span></p></td>
+</tr>
+</tbody>
+</table>
+</div>
+<p><strong>Now</strong>, watch the following video about lists.</p>
+<p><a class="reference external" href="https://mediaspace.msu.edu/media/The+list+data+type+in+Python/0_55bjfjvn">https://mediaspace.msu.edu/media/The+list+data+type+in+Python/0_55bjfjvn</a></p>
+<p>We can think of a list like multiple containers placed side by side in a line. Each container in our list has an <em>index</em> that tells us where that container lies in relation to the other containers in the list. Within each container lies a piece of data that could be any Python variable type. We typically refer to these pieces of data as the <em>values</em> of the list.</p>
+<p>Here’s an example list: <code>[7, 24.5, “class”]</code>. We can think about this list as three containers next to each other with each container containing a single element from this list. So for this list, we have a container at the index 0 with the value of 7, a container at the index 1 with the value 24.5, and a container with the index 2 with the value “class” (remembering Python indexing starts at 0!).</p>
+<p>✅  <strong>Question 1:</strong>  In the cell below, create a list named <code class="docutils literal notranslate"><span class="pre">mylist</span></code> that contains, in this order:</p>
+<ol class="arabic simple">
+<li><p>Your first name as a string</p></li>
+<li><p>Your age as a floating-point number in years. Include one decimal point of precision and a comment about how you calculated the decimal value.</p></li>
+<li><p>Your room, apartment, or house number as an integer</p></li>
+</ol>
+<p><strong>Then</strong>:</p>
+<ul class="simple">
+<li><p>Print this list out.</p></li>
+<li><p>Replace your first name in the list with your last name, and replace your age with the current year as an integer. Use indexing to change these values! That means use something like “<code class="docutils literal notranslate"><span class="pre">mylist[0]</span> <span class="pre">=</span></code>” where <code class="docutils literal notranslate"><span class="pre">mylist</span></code> is whatever you named your list. After the equal sign, put your new value for that item in the list.</p></li>
+<li><p>Append one or more new variables (anything you like), print out the length of the list using the len() function, and then print out the entire list again.</p></li>
+</ul>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="c1"># Write your program here, using multiple cells if necessary. Add extra cells using</span>
+<span class="c1"># the &#39;Cell&#39; menu at the top of this notebook or by using the keyboard shortcut. Don&#39;t forget that you can execute </span>
+<span class="c1"># your program by holding down &#39;shift&#39; and pressing &#39;enter&#39; in each cell!</span>
+</pre></div>
+</div>
+</div>
+</div>
+</section>
+<hr class="docutils" />
+<section id="part-2-for-loops-and-while-loops">
+<h2>Part 2: For loops and While loops<a class="headerlink" href="#part-2-for-loops-and-while-loops" title="Link to this heading">#</a></h2>
+<section id="part-2-1-for-loops">
+<h3>Part 2.1: For loops<a class="headerlink" href="#part-2-1-for-loops" title="Link to this heading">#</a></h3>
+<p>Watch the following video, which introduces the concepts of <code>for</code> loops and how they work in Python. After you watch the video, answer the questions below.</p>
+<p><a class="reference external" href="https://mediaspace.msu.edu/media/Loops+in+python/0_ls7psyq2?ed=629">https://mediaspace.msu.edu/media/Loops+in+python/0_ls7psyq2?ed=629</a></p>
+<p>✅  <strong>Question 2</strong>: Write a <code class="docutils literal notranslate"><span class="pre">for</span></code> loop that prints the numbers 0 through 9 in the cell below.</p>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="c1"># put your code here!</span>
+</pre></div>
+</div>
+</div>
+</div>
+<p>✅  <strong>Question 3</strong>: Write a <code class="docutils literal notranslate"><span class="pre">for</span></code> loop that iterates through the items in the “cmse_grab_bag” list provided in the cell below and prints each item.</p>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">cmse_grab_bag</span> <span class="o">=</span> <span class="p">[</span><span class="s2">&quot;CMSE&quot;</span><span class="p">,</span> <span class="mi">201</span><span class="p">,</span> <span class="s2">&quot;Section 001&quot;</span><span class="p">,</span> <span class="s2">&quot;Room 3201&quot;</span><span class="p">,</span>
+                 <span class="s2">&quot;pre-class&quot;</span><span class="p">,</span> <span class="mi">3</span><span class="p">,</span>  <span class="s2">&quot;in-class&quot;</span><span class="p">,</span> <span class="s2">&quot;TA&quot;</span><span class="p">,</span> <span class="s2">&quot;Section 005&quot;</span><span class="p">,</span> 
+                 <span class="s2">&quot;LA&quot;</span><span class="p">,</span> <span class="s2">&quot;flipped classroom&quot;</span><span class="p">]</span>
+
+<span class="c1"># put your code here!</span>
+</pre></div>
+</div>
+</div>
+</div>
+<p>✅  <strong>Task</strong>: Looking at Questions 2 and 3, answer the following questions:</p>
+<ul class="simple">
+<li><p>What type of information did you loop over? Explain the code that you wrote in plain English.</p></li>
+<li><p>Are there differences between the structure of the loops that you wrote for Questions 2 and 3? If not, how else could you have completed Question 3 such that the structure would be different?</p></li>
+</ul>
+<p><font size="+3">✎</font> <em>Put your answer here</em></p>
+</section>
+<section id="index-vs-value">
+<h3>Index vs Value<a class="headerlink" href="#index-vs-value" title="Link to this heading">#</a></h3>
+<p>Remember the container idea we mentioned above?</p>
+<p>In <code>for</code> loops, we can access the values in a list <em>by the value itself or by the index of the container</em>. For example, if you answered Question 3 with the structure of <code>for value in list:</code>, you accessed the values each container directly. We could also access the values in the container by using the index of where the container lies in list - in some sense, we are saying “find the container at this index and return the value in that container.”</p>
+<p>Looking at the list in Question 3, let’s say we want to know which indices contain a section name. So, now we need to know the index <strong>and</strong> the value of the list at that index. In order to use the index to look through our list, we need to know how many total containers there are in the list. And since indices are numbers, we can easily use the range function from above. Since we want to loop through all the containers in the list, we start at 0 and end at the total number of containers in the list. Then, we print the index and the value of the list at that index.</p>
+<p>Here’s what that looks like:</p>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="k">for</span> <span class="n">i</span> <span class="ow">in</span> <span class="nb">range</span><span class="p">(</span><span class="mi">0</span><span class="p">,</span> <span class="nb">len</span><span class="p">(</span><span class="n">cmse_grab_bag</span><span class="p">)):</span> <span class="c1">#this can also be written for i in range(len(cmse_grab_bag)):</span>
+   <span class="nb">print</span><span class="p">(</span><span class="n">i</span><span class="p">,</span> <span class="n">cmse_grab_bag</span><span class="p">[</span><span class="n">i</span><span class="p">])</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>0 CMSE
+1 201
+2 Section 001
+3 Room 3201
+4 pre-class
+5 3
+6 in-class
+7 TA
+8 Section 005
+9 LA
+10 flipped classroom
+</pre></div>
+</div>
+</div>
+</div>
+<p>We can see that the two section names are located at index 2 and index 8. While this is a simple example, it can easily be expanded to other situations.</p>
+<p>Now you might be asking, when do I loop by index and when do I loop by the value? Here’s some tips:</p>
+<ul class="simple">
+<li><p>If you only need to access the values in a single list, without any of the index information, the <code>for value in list:</code> structure is most likely the way to go.</p></li>
+<li><p>As your code gets more complicated, we often use the <code>for i in range(len(list)): </code> structure. Some examples are:</p>
+<ul>
+<li><p>When you need the index information, like above</p></li>
+<li><p>When you want to access values at the same index in multiple lists</p></li>
+</ul>
+</li>
+</ul>
+<p>The gif below shows the difference between looping over the value versus the index. Notice that the lists and the output for each are the same.</p>
+<img src=https://media.giphy.com/media/RDTzdq71CtvK2TOew9/giphy.gif width="600" height="450" align="center"><p>✅  <strong>Task</strong>: Before moving on to while loops, explain the idea of an index to a someone who has never coded before.</p>
+<p><font size="+3">✎</font> <em>Put your answer here</em></p>
+</section>
+<section id="part-2-2-while-loops">
+<h3>Part 2.2: While loops<a class="headerlink" href="#part-2-2-while-loops" title="Link to this heading">#</a></h3>
+<p>Watch the following video clip, which introduces the concept of <code>while</code> loops in Python. After you watch the video, answer the questions below.</p>
+<p><strong>Note</strong>: Ignore the little bit at the end of the video clip that mentions numpy arrays and the <code>nditer</code> function.</p>
+<p><a class="reference external" href="https://mediaspace.msu.edu/media/Loops+in+python/0_ls7psyq2?st=823">https://mediaspace.msu.edu/media/Loops+in+python/0_ls7psyq2?st=823</a></p>
+<p>✅  <strong>Question 4</strong>: Write a <code class="docutils literal notranslate"><span class="pre">while</span></code> loop that starts with a value of “<code class="docutils literal notranslate"><span class="pre">x</span> <span class="pre">=</span> <span class="pre">2</span></code>”, on each iteration multiples <code class="docutils literal notranslate"><span class="pre">x</span></code> by 2, prints the value of <code class="docutils literal notranslate"><span class="pre">x</span></code>, and keeps running until <code class="docutils literal notranslate"><span class="pre">x</span></code> is greater than 4096.</p>
+<p><strong>Caution: When working with while loops it is easy to accidentally create an “infinite” loop that runs forever.  If you do this the notebook will get stuck on a cell (appearing as <code class="docutils literal notranslate"><span class="pre">In</span> <span class="pre">[*]:</span></code> on the left). The best way to fix this is to select “Interrupt” from the Kernel menu above.</strong></p>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="c1"># put your code here!</span>
+</pre></div>
+</div>
+</div>
+</div>
+<p>✅  <strong>Task</strong>: Now that you have worked with both <code class="docutils literal notranslate"><span class="pre">for</span></code> and <code class="docutils literal notranslate"><span class="pre">while</span></code> loops, what are the main differences between them? How would you explain the difference to a friend who did not get to watch the videos in this lesson?</p>
+<p><font size="+3">✎</font> <em>Put your answer here</em></p>
+</section>
+</section>
+<hr class="docutils" />
+<section id="part-3-combining-lists-and-loops">
+<h2>Part 3: Combining lists and loops.<a class="headerlink" href="#part-3-combining-lists-and-loops" title="Link to this heading">#</a></h2>
+<p>✅  <strong>Question 5</strong>: Now we want you to try to use various components of everything you just learned to calculate some values.</p>
+<p>The cell below includes two lists of values, <code class="docutils literal notranslate"><span class="pre">x</span></code> and <code class="docutils literal notranslate"><span class="pre">y</span></code>. Your task is to:</p>
+<ul class="simple">
+<li><p>initialize one new empty list, <code class="docutils literal notranslate"><span class="pre">addition_squared</span></code>,</p></li>
+<li><p>iterate through the two lists of values, <code class="docutils literal notranslate"><span class="pre">x</span></code> and <code class="docutils literal notranslate"><span class="pre">y</span></code>, using a loop,</p></li>
+<li><p>add each value of <code class="docutils literal notranslate"><span class="pre">x</span></code> to the corresponding value of <code class="docutils literal notranslate"><span class="pre">y</span></code>, and square the result,</p></li>
+<li><p>and store each of these values in your new list.</p></li>
+</ul>
+<p>In other words, the first value of <code class="docutils literal notranslate"><span class="pre">addition_squared</span></code> should be the square of the sum of the first value of <code class="docutils literal notranslate"><span class="pre">x</span></code> and the first value of <code class="docutils literal notranslate"><span class="pre">y</span></code>, the second value of <code class="docutils literal notranslate"><span class="pre">addition_squared</span></code> should be the square of the sum of the second value of <code class="docutils literal notranslate"><span class="pre">x</span></code> and the second value of <code class="docutils literal notranslate"><span class="pre">y</span></code>,and so on:
+$<span class="math notranslate nohighlight">\([(x1+y1)^2, (x2+y2)^2,...]\)</span>$
+<strong>Once you’ve computed all the values, print out the results.</strong></p>
+<p><em>Hint</em>: If you take a look at the table in Part 1 that contains information about lists, you see that it mentions adding values to a list using <code class="docutils literal notranslate"><span class="pre">.append()</span></code>, this is what you’ll want to use to fill your <code class="docutils literal notranslate"><span class="pre">addition_squared</span></code> list. Also, remember that we use <code class="docutils literal notranslate"><span class="pre">**</span></code> to compute powers in Python. So “3 squared” would be <code class="docutils literal notranslate"><span class="pre">3**2</span></code>.</p>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">x</span> <span class="o">=</span> <span class="p">[</span><span class="mi">2</span><span class="p">,</span><span class="mi">4</span><span class="p">,</span><span class="mi">6</span><span class="p">,</span><span class="mi">8</span><span class="p">,</span><span class="mi">10</span><span class="p">,</span><span class="mi">12</span><span class="p">,</span><span class="mi">14</span><span class="p">,</span><span class="mi">16</span><span class="p">,</span><span class="mi">18</span><span class="p">]</span>
+<span class="n">y</span> <span class="o">=</span> <span class="p">[</span><span class="mi">10</span><span class="p">,</span><span class="mf">8.25</span><span class="p">,</span><span class="mf">7.5</span><span class="p">,</span><span class="mi">7</span><span class="p">,</span><span class="mf">6.5</span><span class="p">,</span><span class="mi">7</span><span class="p">,</span><span class="mf">7.5</span><span class="p">,</span><span class="mf">8.25</span><span class="p">,</span><span class="mi">10</span><span class="p">]</span>
+
+<span class="c1"># Put your commands for intializing your new list below this comment</span>
+
+
+<span class="c1"># Put your loop for computing x+y below these comments.</span>
+<span class="c1"># You&#39;ll be using .append() to add new values to the lists you just initialized.</span>
+</pre></div>
+</div>
+</div>
+</div>
+</section>
+<section id="part-4-optional-challenge-problem">
+<h2>Part 4: (OPTIONAL) Challenge Problem<a class="headerlink" href="#part-4-optional-challenge-problem" title="Link to this heading">#</a></h2>
+<p>If you have prior knowledge of Python and felt confident on the concepts in the rest of this assignment, give this challenge a try! We will revisit nested loops in more detail later on in the semester.</p>
+<p>✅  <strong>Question 6</strong>: Nested Loops</p>
+<p>In the cell below is an example of a <a class="reference external" href="https://pynative.com/python-nested-loops/">“nested loop.”</a> In other words, a loop implemented inside another loop.</p>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="c1"># Nested Loop example from https://pynative.com/python-nested-loops/</span>
+<span class="n">lines</span> <span class="o">=</span> <span class="mi">5</span>
+<span class="c1"># outer loop</span>
+<span class="k">for</span> <span class="n">line</span> <span class="ow">in</span> <span class="nb">range</span><span class="p">(</span><span class="mi">1</span><span class="p">,</span> <span class="n">lines</span> <span class="o">+</span> <span class="mi">1</span><span class="p">):</span>
+    <span class="c1"># inner loop</span>
+    <span class="k">for</span> <span class="n">idx</span> <span class="ow">in</span> <span class="nb">range</span><span class="p">(</span><span class="mi">1</span><span class="p">,</span> <span class="n">line</span> <span class="o">+</span> <span class="mi">1</span><span class="p">):</span>
+        <span class="nb">print</span><span class="p">(</span><span class="s2">&quot;#&quot;</span><span class="p">,</span> <span class="n">end</span><span class="o">=</span><span class="s2">&quot; &quot;</span><span class="p">)</span> <span class="c1"># print statement that does not make a new line each time</span>
+    <span class="nb">print</span><span class="p">(</span><span class="s1">&#39;</span><span class="se">\n</span><span class="s1">&#39;</span><span class="p">)</span> <span class="c1"># add a new line between each iteration of the outer loop </span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span># 
+
+# # 
+
+# # # 
+
+# # # # 
+
+# # # # # 
+</pre></div>
+</div>
+</div>
+</div>
+<p>Beginning with your code from Question 5 (and using the nested loop example below as a reference), write a loop inside your loop from Question 5 that calculates <span class="math notranslate nohighlight">\((x1+y)^2\)</span> for every value of <span class="math notranslate nohighlight">\(y\)</span> (i.e. your inner loop should be over the list of y-values) and appends it to a new list <code class="docutils literal notranslate"><span class="pre">xy_squared</span></code>. In your outer loop, print out that list.  You should get something that looks like this:
+$<span class="math notranslate nohighlight">\([(x1+\mathbf{y1})^2, (x1+\mathbf{y2})^2, (x1+\mathbf{y3})^2,...]\)</span><span class="math notranslate nohighlight">\(
+\)</span><span class="math notranslate nohighlight">\([(x2+\mathbf{y1})^2, (x2+\mathbf{y2})^2, (x2+\mathbf{y3})^2,...]\)</span><span class="math notranslate nohighlight">\(
+\)</span><span class="math notranslate nohighlight">\([(x3+\mathbf{y1})^2, (x3+\mathbf{y2})^2, (x3+\mathbf{y3})^2,...]\)</span><span class="math notranslate nohighlight">\(
+\)</span><span class="math notranslate nohighlight">\(...\)</span>$</p>
+<p>If you’ve done this correctly, then the first list you get should look like the following:</p>
+<p><code class="docutils literal notranslate"><span class="pre">[144,</span> <span class="pre">105.0625,</span> <span class="pre">90.25,</span> <span class="pre">81,</span> <span class="pre">72.25,</span> <span class="pre">81,</span> <span class="pre">90.25,</span> <span class="pre">105.0625,</span> <span class="pre">144]</span></code></p>
+<p>which is [(2+10)^2, (2+8.25)^2, (2+7.5)^2, (2+7)^2, (2+6.5)^2, (2+7)^2, (2+7.5)^2, (2+8.25)^2, (2+10)^2].</p>
+<p>The next list should be the result of [(4+10)^2, (4+8.25)^2, (4+7.5)^2, (4+7)^2, (4+6.5)^2, (4+7)^2, (4+7.5)^2, (4+8.25)^2, (4+10)^2] because you should move on to the next value in the <code class="docutils literal notranslate"><span class="pre">x</span></code> list. This will look like:</p>
+<p><code class="docutils literal notranslate"><span class="pre">[196,</span> <span class="pre">150.0625,</span> <span class="pre">132.25,</span> <span class="pre">121,</span> <span class="pre">110.25,</span> <span class="pre">121,</span> <span class="pre">132.25,</span> <span class="pre">150.0625,</span> <span class="pre">196]</span></code></p>
+<p><strong>Yes</strong>, this might seem a bit complicated – that’s totally expected. After all, you’re still learning to write code! If you find yourself spending too much time to figure this out, make use of Teams or try to drop by office hours or help room hours. Making sure that you spend time on your own trying to work through pre-class activities like this one are important for making your time in class as productive as possible.</p>
+<p>Before you write any code for solving the problem, answer these questions:</p>
+<ul class="simple">
+<li><p>What information do you need from each list?</p></li>
+<li><p>How are you going to access that information?</p></li>
+<li><p>Once you have the information, what are you going to do with it?</p></li>
+</ul>
+<p><font size="+3">✎</font> <em>Put your answer here</em></p>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="c1"># put your code here</span>
+</pre></div>
+</div>
+</div>
+</div>
+</section>
+<hr class="docutils" />
+<section id="follow-up-questions">
+<h2>Follow-up Questions<a class="headerlink" href="#follow-up-questions" title="Link to this heading">#</a></h2>
+<p>Copy and paste the following questions into the appropriate box in the assignment survey include below and answer them there. (Note: You’ll have to fill out the section number and the assignment number and go to the “NEXT” section of the survey to paste in these questions.)</p>
+<ol class="arabic simple">
+<li><p>If you had a list variable called <code class="docutils literal notranslate"><span class="pre">directory</span></code>, how you would access the fourth element in this list?</p></li>
+<li><p>Explain when you might use a <code class="docutils literal notranslate"><span class="pre">for</span></code> loop versus a <code class="docutils literal notranslate"><span class="pre">while</span></code> loop.</p></li>
+</ol>
+</section>
+<hr class="docutils" />
+<section id="assignment-wrap-up">
+<h2>Assignment wrap-up<a class="headerlink" href="#assignment-wrap-up" title="Link to this heading">#</a></h2>
+<p>Please fill out the form that appears when you run the code below.  <strong>You must completely fill this out in order to receive credit for the assignment!</strong></p>
+<p><a class="reference external" href="https://cmse.msu.edu/cmse201-pc-survey">Pre-Class Survey</a></p>
+<section id="congratulations-you-re-done">
+<h3>Congratulations, you’re done!<a class="headerlink" href="#congratulations-you-re-done" title="Link to this heading">#</a></h3>
+<p>Submit this assignment by uploading it to the course Desire2Learn web page.  Go to the “Pre-class assignments” folder, find the appropriate submission folder link, and upload it there.</p>
+<p>See you in class!</p>
+<p>© Copyright 2025, Department of Computational Mathematics, Science and Engineering at Michigan State University.</p>
+</section>
+</section>
+</section>
+
+    <script type="text/x-thebe-config">
+    {
+        requestKernel: true,
+        binderOptions: {
+            repo: "binder-examples/jupyter-stacks-datascience",
+            ref: "master",
+        },
+        codeMirrorConfig: {
+            theme: "abcdef",
+            mode: "python"
+        },
+        kernelOptions: {
+            name: "python3",
+            path: "./Day-03"
+        },
+        predefinedOutput: true
+    }
+    </script>
+    <script>kernelName = 'python3'</script>
+
+                </article>
+              
+
+              
+              
+              
+              
+                <footer class="prev-next-footer d-print-none">
+                  
+<div class="prev-next-area">
+    <a class="left-prev"
+       href="../Day-02/Day-02_In-Class_OrderOfMagnitudeModeling-STUDENT.html"
+       title="previous page">
+      <i class="fa-solid fa-angle-left"></i>
+      <div class="prev-next-info">
+        <p class="prev-next-subtitle">previous</p>
+        <p class="prev-next-title">Day 2 In-class Assignment: Order of Magnitude Modeling</p>
+      </div>
+    </a>
+    <a class="right-next"
+       href="Day-03_In-Class_ListsLoopsAndSaving-STUDENT.html"
+       title="next page">
+      <div class="prev-next-info">
+        <p class="prev-next-subtitle">next</p>
+        <p class="prev-next-title">Day 3 In-class Assignment: The power of compound interest</p>
+      </div>
+      <i class="fa-solid fa-angle-right"></i>
+    </a>
+</div>
+                </footer>
+              
+            </div>
+            
+            
+              
+                <div class="bd-sidebar-secondary bd-toc"><div class="sidebar-secondary-items sidebar-secondary__inner">
+
+
+  <div class="sidebar-secondary-item">
+  <div class="page-toc tocsection onthispage">
+    <i class="fa-solid fa-list"></i> Contents
+  </div>
+  <nav class="bd-toc-nav page-toc">
+    <ul class="visible nav section-nav flex-column">
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#put-your-name-here"><p style="text-align: right;"> ✅ Put your name here</p></a></li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#goals-for-today-s-pre-class-assignment">Goals for Today’s Pre-Class Assignment</a></li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#assignment-instructions">Assignment instructions</a></li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#reminder-on-generative-ai-usage">REMINDER on Generative AI Usage**</a><ul class="nav section-nav flex-column">
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#keyboard-shortcuts">Keyboard shortcuts!</a></li>
+</ul>
+</li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#part-1-lists-in-python">Part 1: Lists in Python</a></li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#part-2-for-loops-and-while-loops">Part 2: For loops and While loops</a><ul class="nav section-nav flex-column">
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#part-2-1-for-loops">Part 2.1: For loops</a></li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#index-vs-value">Index vs Value</a></li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#part-2-2-while-loops">Part 2.2: While loops</a></li>
+</ul>
+</li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#part-3-combining-lists-and-loops">Part 3: Combining lists and loops.</a></li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#part-4-optional-challenge-problem">Part 4: (OPTIONAL) Challenge Problem</a></li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#follow-up-questions">Follow-up Questions</a></li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#assignment-wrap-up">Assignment wrap-up</a><ul class="nav section-nav flex-column">
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#congratulations-you-re-done">Congratulations, you’re done!</a></li>
+</ul>
+</li>
+</ul>
+  </nav></div>
+
+</div></div>
+              
+            
+          </div>
+          <footer class="bd-footer-content">
+            
+<div class="bd-footer-content__inner container">
+  
+  <div class="footer-item">
+    
+<p class="component-author">
+By the Department of Computational Mathematics, Science and Engineering at Michigan State University
+</p>
+
+  </div>
+  
+  <div class="footer-item">
+    
+
+  <p class="copyright">
+    
+      © Copyright 2026.
+      <br/>
+    
+  </p>
+
+  </div>
+  
+  <div class="footer-item">
+    
+  </div>
+  
+  <div class="footer-item">
+    
+  </div>
+  
+</div>
+          </footer>
+        
+
+      </main>
+    </div>
+  </div>
+  
+  <!-- Scripts loaded after <body> so the DOM is not blocked -->
+  <script src="../_static/scripts/bootstrap.js?digest=3ee479438cf8b5e0d341"></script>
+<script src="../_static/scripts/pydata-sphinx-theme.js?digest=3ee479438cf8b5e0d341"></script>
+
+  <footer class="bd-footer">
+  </footer>
+  </body>
+</html>

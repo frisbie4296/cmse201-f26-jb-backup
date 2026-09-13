@@ -1,0 +1,1868 @@
+
+<!DOCTYPE html>
+
+<html>
+  <head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" /><meta name="generator" content="Docutils 0.17.1: http://docutils.sourceforge.net/" />
+
+    <title>Homework 2: Dictionaries, If Statements, Functions, and Modules &#8212; CMSE 201</title>
+    
+  <!-- Loaded before other Sphinx assets -->
+  <link href="../../_static/styles/theme.css?digest=1999514e3f237ded88cf" rel="stylesheet">
+<link href="../../_static/styles/pydata-sphinx-theme.css?digest=1999514e3f237ded88cf" rel="stylesheet">
+
+    
+  <link rel="stylesheet"
+    href="../../_static/vendor/fontawesome/5.13.0/css/all.min.css">
+  <link rel="preload" as="font" type="font/woff2" crossorigin
+    href="../../_static/vendor/fontawesome/5.13.0/webfonts/fa-solid-900.woff2">
+  <link rel="preload" as="font" type="font/woff2" crossorigin
+    href="../../_static/vendor/fontawesome/5.13.0/webfonts/fa-brands-400.woff2">
+
+    <link rel="stylesheet" type="text/css" href="../../_static/pygments.css" />
+    <link rel="stylesheet" href="../../_static/styles/sphinx-book-theme.css?digest=5115cc725059bd94278eecd172e13a965bf8f5a9" type="text/css" />
+    <link rel="stylesheet" type="text/css" href="../../_static/togglebutton.css" />
+    <link rel="stylesheet" type="text/css" href="../../_static/copybutton.css" />
+    <link rel="stylesheet" type="text/css" href="../../_static/mystnb.css" />
+    <link rel="stylesheet" type="text/css" href="../../_static/sphinx-thebe.css" />
+    <link rel="stylesheet" type="text/css" href="../../_static/design-style.b7bb847fb20b106c3d81b95245e65545.min.css" />
+    
+  <!-- Pre-loaded scripts that we'll load fully later -->
+  <link rel="preload" as="script" href="../../_static/scripts/pydata-sphinx-theme.js?digest=1999514e3f237ded88cf">
+
+    <script data-url_root="../../" id="documentation_options" src="../../_static/documentation_options.js"></script>
+    <script src="../../_static/jquery.js"></script>
+    <script src="../../_static/underscore.js"></script>
+    <script src="../../_static/doctools.js"></script>
+    <script src="../../_static/clipboard.min.js"></script>
+    <script src="../../_static/copybutton.js"></script>
+    <script src="../../_static/scripts/sphinx-book-theme.js?digest=9c920249402e914e316237a7dbc6769907cce411"></script>
+    <script>let toggleHintShow = 'Click to show';</script>
+    <script>let toggleHintHide = 'Click to hide';</script>
+    <script>let toggleOpenOnPrint = 'true';</script>
+    <script src="../../_static/togglebutton.js"></script>
+    <script>var togglebuttonSelector = '.toggle, .admonition.dropdown, .tag_hide_input div.cell_input, .tag_hide-input div.cell_input, .tag_hide_output div.cell_output, .tag_hide-output div.cell_output, .tag_hide_cell.cell, .tag_hide-cell.cell';</script>
+    <script src="../../_static/design-tabs.js"></script>
+    <script>const THEBE_JS_URL = "https://unpkg.com/thebe@0.8.2/lib/index.js"
+const thebe_selector = ".thebe,.cell"
+const thebe_selector_input = "pre"
+const thebe_selector_output = ".output, .cell_output"
+</script>
+    <script async="async" src="../../_static/sphinx-thebe.js"></script>
+    <script>window.MathJax = {"options": {"processHtmlClass": "tex2jax_process|mathjax_process|math|output_area"}}</script>
+    <script defer="defer" src="https://cdn.jsdelivr.net/npm/mathjax@3/es5/tex-mml-chtml.js"></script>
+    <link rel="shortcut icon" href="../../_static/cmse_fav.ico"/>
+    <link rel="index" title="Index" href="../../genindex.html" />
+    <link rel="search" title="Search" href="../../search.html" />
+    <link rel="next" title="Homework 3: Pandas Data Analysis" href="../Homework_3/HW3_F22-STUDENT.html" />
+    <link rel="prev" title="Homework 1: Introduction to Variables, Lists, and Loops" href="../Homework_1/HW_01_F22_STUDENT.html" />
+    <meta name="viewport" content="width=device-width, initial-scale=1" />
+    <meta name="docsearch:language" content="None">
+    
+
+    <!-- Google Analytics -->
+    
+  </head>
+  <body data-spy="scroll" data-target="#bd-toc-nav" data-offset="60">
+<!-- Checkboxes to toggle the left sidebar -->
+<input type="checkbox" class="sidebar-toggle" name="__navigation" id="__navigation" aria-label="Toggle navigation sidebar">
+<label class="overlay overlay-navbar" for="__navigation">
+    <div class="visually-hidden">Toggle navigation sidebar</div>
+</label>
+<!-- Checkboxes to toggle the in-page toc -->
+<input type="checkbox" class="sidebar-toggle" name="__page-toc" id="__page-toc" aria-label="Toggle in-page Table of Contents">
+<label class="overlay overlay-pagetoc" for="__page-toc">
+    <div class="visually-hidden">Toggle in-page Table of Contents</div>
+</label>
+<!-- Headers at the top -->
+<div class="announcement header-item noprint"></div>
+<div class="header header-item noprint"></div>
+
+    
+    <div class="container-fluid" id="banner"></div>
+
+    
+
+    <div class="container-xl">
+      <div class="row">
+          
+<!-- Sidebar -->
+<div class="bd-sidebar noprint" id="site-navigation">
+    <div class="bd-sidebar__content">
+        <div class="bd-sidebar__top"><div class="navbar-brand-box">
+    <a class="navbar-brand text-wrap" href="../../index.html">
+      
+        <!-- `logo` is deprecated in Sphinx 4.0, so remove this when we stop supporting 3 -->
+        
+      
+      
+      <img src="../../_static/logo.png" class="logo" alt="logo">
+      
+      
+      <h1 class="site-logo" id="site-title">CMSE 201</h1>
+      
+    </a>
+</div><form class="bd-search d-flex align-items-center" action="../../search.html" method="get">
+  <i class="icon fas fa-search"></i>
+  <input type="search" class="form-control" name="q" id="search-input" placeholder="Search this book..." aria-label="Search this book..." autocomplete="off" >
+</form><nav class="bd-links" id="bd-docs-nav" aria-label="Main">
+    <div class="bd-toc-item active">
+        
+        <ul class="nav bd-sidenav bd-sidenav__home-link">
+            <li class="toctree-l1">
+                <a class="reference internal" href="../../intro.html">
+                    Welcome to Computational Modeling and Data Analysis I!
+                </a>
+            </li>
+        </ul>
+        <p aria-level="2" class="caption" role="heading">
+ <span class="caption-text">
+  Course Materials
+ </span>
+</p>
+<ul class="nav bd-sidenav">
+ <li class="toctree-l1 has-children">
+  <a class="reference internal" href="../../Course_Materials-201/CourseDocuments.html">
+   Important Course information
+  </a>
+  <input class="toctree-checkbox" id="toctree-checkbox-1" name="toctree-checkbox-1" type="checkbox"/>
+  <label for="toctree-checkbox-1">
+   <i class="fas fa-chevron-down">
+   </i>
+  </label>
+  <ul>
+   <li class="toctree-l2">
+    <a class="reference internal" href="../../Course_Materials-201/CMSE201-Syllabus.html">
+     Syllabus
+    </a>
+   </li>
+   <li class="toctree-l2">
+    <a class="reference internal" href="../../Course_Materials-201/CMSE201-Schedule.html">
+     Course Schedule
+    </a>
+   </li>
+   <li class="toctree-l2">
+    <a class="reference internal" href="../../Course_Materials-201/SoftwareSetupGuide.html">
+     Software Setup Guide
+    </a>
+   </li>
+   <li class="toctree-l2">
+    <a class="reference internal" href="../../Course_Materials-201/classroom_participation.html">
+     Classroom Participation
+    </a>
+   </li>
+  </ul>
+ </li>
+</ul>
+<p aria-level="2" class="caption" role="heading">
+ <span class="caption-text">
+  Day 01
+ </span>
+</p>
+<ul class="nav bd-sidenav">
+ <li class="toctree-l1">
+  <a class="reference internal" href="../../Day-01/Day-01_In-Class_SortingAlgorithm-STUDENT.html">
+   Day 1 In-Class Assignment: Introductions and Sorting Algorithms
+  </a>
+ </li>
+</ul>
+<p aria-level="2" class="caption" role="heading">
+ <span class="caption-text">
+  Day 02
+ </span>
+</p>
+<ul class="nav bd-sidenav">
+ <li class="toctree-l1">
+  <a class="reference internal" href="../../Day-02/Day-02_Pre-Class_IntroToPython-STUDENT.html">
+   Day 2 Pre-class Assignment: Intro to Python
+  </a>
+ </li>
+ <li class="toctree-l1">
+  <a class="reference internal" href="../../Day-02/Day-02_In-Class_OrderOfMagnitudeModeling-STUDENT.html">
+   Day 2 In-class Assignment: Order of Magnitude Modeling
+  </a>
+ </li>
+</ul>
+<p aria-level="2" class="caption" role="heading">
+ <span class="caption-text">
+  Day 03
+ </span>
+</p>
+<ul class="nav bd-sidenav">
+ <li class="toctree-l1">
+  <a class="reference internal" href="../../Day-03/Day-03_Pre-Class_ListsAndLoops-STUDENT.html">
+   Day 3: Pre-Class Assignment: Lists and Loops
+  </a>
+ </li>
+ <li class="toctree-l1">
+  <a class="reference internal" href="../../Day-03/Day-03_In-Class_ListsLoopsAndSaving-STUDENT.html">
+   Day 3 In-class Assignment: The power of compound interest
+  </a>
+ </li>
+</ul>
+<p aria-level="2" class="caption" role="heading">
+ <span class="caption-text">
+  Day 04
+ </span>
+</p>
+<ul class="nav bd-sidenav">
+ <li class="toctree-l1">
+  <a class="reference internal" href="../../Day-04/Day_04_PreClass_DataAlgorithmicBias-STUDENT.html">
+   Day 4 Pre-class Assignment: Introduction to Data Ethics: Data and Algorithmic Bias
+  </a>
+ </li>
+ <li class="toctree-l1">
+  <a class="reference internal" href="../../Day-04/Day_04_In_Class_DataAlgorithmicBias-STUDENT.html">
+   Day 4 In-class Assignment: Data and Algorithmic Bias, Academic Integrity, and Coding Best Practices
+  </a>
+ </li>
+</ul>
+<p aria-level="2" class="caption" role="heading">
+ <span class="caption-text">
+  Day 05
+ </span>
+</p>
+<ul class="nav bd-sidenav">
+ <li class="toctree-l1">
+  <a class="reference internal" href="../../Day-05/Day-05_Pre-Class_IfStatementsAndFunctions-STUDENT.html">
+   Day 5 Pre-class Assignment: Boolean logic, if statements, and an introduction to functions
+  </a>
+ </li>
+ <li class="toctree-l1">
+  <a class="reference internal" href="../../Day-05/Day-05_In-Class_IfStatementsAndFunctions-STUDENT.html">
+   Day 5 In-class Assignment: Savings for Everyone
+  </a>
+ </li>
+</ul>
+<p aria-level="2" class="caption" role="heading">
+ <span class="caption-text">
+  Day 06
+ </span>
+</p>
+<ul class="nav bd-sidenav">
+ <li class="toctree-l1">
+  <a class="reference internal" href="../../Day-06/Day-06_Pre-Class_MoreFunctions-STUDENT.html">
+   Day 6 Pre-class Assignment: Thinking more about functions
+  </a>
+ </li>
+ <li class="toctree-l1">
+  <a class="reference internal" href="../../Day-06/Day-06_In-Class_FunctionsAndSquirrels-STUDENT.html">
+   Day 6 In Class Assignment: A Scurry of Squirrels in Central Park
+  </a>
+ </li>
+ <li class="toctree-l1">
+  <a class="reference internal" href="../../Day-06/Day-06_In-Class_FunctionsAndSquirrels-INSTRUCTOR.html">
+   Day 6 In Class Assignment: A Scurry of Squirrels in Central Park
+  </a>
+ </li>
+</ul>
+<p aria-level="2" class="caption" role="heading">
+ <span class="caption-text">
+  Day 07
+ </span>
+</p>
+<ul class="nav bd-sidenav">
+ <li class="toctree-l1">
+  <a class="reference internal" href="../../Day-07/Day-07_Pre-Class_ModulesMathAndPlots-STUDENT.html">
+   Day 7 Pre-Class Assignment: Python Modules: Numpy and Plots
+  </a>
+ </li>
+ <li class="toctree-l1">
+  <a class="reference internal" href="../../Day-07/Day-07_In-Class_MathAndPlotting-STUDENT.html">
+   Day 7 In-class Assignment: Visualizing population growth
+  </a>
+ </li>
+</ul>
+<p aria-level="2" class="caption" role="heading">
+ <span class="caption-text">
+  Day 08
+ </span>
+</p>
+<ul class="nav bd-sidenav">
+ <li class="toctree-l1">
+  <a class="reference internal" href="../../Day-08/Day-08_Pre-Class_IntroToNumPy-STUDENT.html">
+   Day 8 Pre-Class: Introduction to NumPy
+  </a>
+ </li>
+ <li class="toctree-l1">
+  <a class="reference external" href="https://raw.githubusercontent.com/msu-cmse-courses/cmse201-F21-data/main/Day-08/michigan_pop.csv">
+   michigan_pop.csv
+  </a>
+ </li>
+ <li class="toctree-l1">
+  <a class="reference internal" href="../../Day-08/Day-08_In-Class_NumPyWithTheGreatLakes-STUDENT.html">
+   Day 8 In-class Assignment: Exploring Great Lakes Water Levels using NumPy
+  </a>
+ </li>
+ <li class="toctree-l1">
+  <a class="reference external" href="https://raw.githubusercontent.com/msu-cmse-courses/cmse201-F21-data/main/Day-08/lake_erie.csv">
+   lake_erie.csv
+  </a>
+ </li>
+ <li class="toctree-l1">
+  <a class="reference external" href="https://raw.githubusercontent.com/msu-cmse-courses/cmse201-F21-data/main/Day-08/lake_michigan_huron.csv">
+   lake_michigan_huron.csv
+  </a>
+ </li>
+ <li class="toctree-l1">
+  <a class="reference external" href="https://raw.githubusercontent.com/msu-cmse-courses/cmse201-F21-data/main/Day-08/lake_ontario.csv">
+   lake_ontario.csv
+  </a>
+ </li>
+ <li class="toctree-l1">
+  <a class="reference external" href="https://raw.githubusercontent.com/msu-cmse-courses/cmse201-F21-data/main/Day-08/lake_superior.csv">
+   lake_superior.csv
+  </a>
+ </li>
+</ul>
+<p aria-level="2" class="caption" role="heading">
+ <span class="caption-text">
+  Day 09
+ </span>
+</p>
+<ul class="nav bd-sidenav">
+ <li class="toctree-l1">
+  <a class="reference internal" href="../../Day-09/Day-09_Pre-Class_Pandas-STUDENT.html">
+   Day 9 Pre-class Assignment: Computational Models Overview and The Pandas Data Analysis Library
+  </a>
+ </li>
+ <li class="toctree-l1">
+  <a class="reference internal" href="../../Day-09/Day-09_In-Class_GDP-STUDENT.html">
+   Day 9 In-Class: Cleaning and Analyzing Economic Data
+  </a>
+ </li>
+ <li class="toctree-l1">
+  <a class="reference external" href="https://raw.githubusercontent.com/msu-cmse-courses/cmse201-S22-data/main/Day-10/API_NY.GDP.MKTP.CD_DS2_en_csv_v2_3011433.csv">
+   API_NY.GDP.MKTP.CD_DS2_en_csv_v2_3011433.csv
+  </a>
+ </li>
+</ul>
+<p aria-level="2" class="caption" role="heading">
+ <span class="caption-text">
+  Day 10
+ </span>
+</p>
+<ul class="nav bd-sidenav">
+ <li class="toctree-l1">
+  <a class="reference internal" href="../../Day-10/Day-10_Pre-Class_Masking-STUDENT.html">
+   Day 10 Pre-class Assignment: Normal Distributions, Masking, and Log Plots
+  </a>
+ </li>
+ <li class="toctree-l1">
+  <a class="reference external" href="https://raw.githubusercontent.com/msu-cmse-courses/cmse201-S22-data/main/Day-11/GDP_Cleaned.csv">
+   GDP_Cleaned.csv
+  </a>
+ </li>
+ <li class="toctree-l1">
+  <a class="reference internal" href="../../Day-10/Day-10_In-Class_Flint-STUDENT.html">
+   Day 10 In-class Assignment: Get the Lead Out: Understanding The Water Crisis in Flint, MI
+  </a>
+ </li>
+ <li class="toctree-l1">
+  <a class="reference external" href="https://raw.githubusercontent.com/msu-cmse-courses/cmse201-S22-data/main/Day-11/flint_water_data.csv">
+   flint_water_data.csv
+  </a>
+ </li>
+</ul>
+<p aria-level="2" class="caption" role="heading">
+ <span class="caption-text">
+  Day 11
+ </span>
+</p>
+<ul class="nav bd-sidenav">
+ <li class="toctree-l1">
+  <a class="reference internal" href="../../Day-11/Day-11_Pre-Class_Data_File_Formats_Manipulation-STUDENT.html">
+   Day 11 Pre-Class Assignment: Overview of data and file formats
+  </a>
+ </li>
+ <li class="toctree-l1">
+  <a class="reference external" href="https://raw.githubusercontent.com/msu-cmse-courses/cmse201-S22-data/main/Day-12/us_pop_by_state_2010_2011.csv">
+   us_pop_by_state_2010_2011.csv
+  </a>
+ </li>
+ <li class="toctree-l1">
+  <a class="reference external" href="https://github.com/msu-cmse-courses/cmse201-S22-data/raw/main/Day-12/us_pop_by_state_2012_2013_encoding_utf-16be.csv">
+   us_pop_by_state_2012_2013_encoding_utf-16be.csv
+  </a>
+ </li>
+ <li class="toctree-l1">
+  <a class="reference external" href="https://raw.githubusercontent.com/msu-cmse-courses/cmse201-S22-data/main/Day-12/us_pop_by_state_2014_2015_windows_linefeed.csv">
+   us_pop_by_state_2014_2015_windows_linefeed.csv
+  </a>
+ </li>
+ <li class="toctree-l1">
+  <a class="reference external" href="https://github.com/msu-cmse-courses/cmse201-S22-data/blob/main/Day-12/us_pop_by_state_2016a.csv?raw=true">
+   us_pop_by_state_2016a.csv
+  </a>
+ </li>
+ <li class="toctree-l1">
+  <a class="reference external" href="https://github.com/msu-cmse-courses/cmse201-S22-data/blob/main/Day-12/us_pop_by_state_2017a.yaff?raw=true">
+   us_pop_by_state2017a.yaff
+  </a>
+ </li>
+ <li class="toctree-l1">
+  <a class="reference external" href="https://github.com/msu-cmse-courses/cmse201-S22-data/blob/main/Day-12/us_pop_by_state_2018_2019.bin?raw=true">
+   us_pop_by_state_2018_2019.bin
+  </a>
+ </li>
+ <li class="toctree-l1">
+  <a class="reference internal" href="../../Day-11/Day-11_In-Class_Data_File_Formats_Manipulation-STUDENT.html">
+   Day 11 In-Class: Overview of data and file formats; US Population and Representation
+  </a>
+ </li>
+</ul>
+<p aria-level="2" class="caption" role="heading">
+ <span class="caption-text">
+  Day 12
+ </span>
+</p>
+<ul class="nav bd-sidenav">
+ <li class="toctree-l1">
+  <a class="reference internal" href="../../Day-12/Day-12_Pre-Class_Online_Resources_STUDENT.html">
+   Day 12 Pre-class Assignment: Finding Resources Online
+  </a>
+ </li>
+ <li class="toctree-l1">
+  <a class="reference internal" href="../../Day-12/Day-12_In-Class_Online_Resources_STUDENT.html">
+   Day 12 In-Class: Using Resources from Online
+  </a>
+ </li>
+</ul>
+<p aria-level="2" class="caption" role="heading">
+ <span class="caption-text">
+  Day 13
+ </span>
+</p>
+<ul class="nav bd-sidenav">
+ <li class="toctree-l1">
+  <a class="reference internal" href="../../Day-13/Day-13_Pre-Class_CurveFitting-STUDENT.html">
+   Day 13 Pre-Class Assignment: Fitting functions to data (curve-fitting) and thinking more about models
+  </a>
+ </li>
+ <li class="toctree-l1">
+  <a class="reference internal" href="../../Day-13/Day-13_In-Class_FittingCurves-STUDENT.html">
+   Day 13 In-Class Assignment: (Thoughtfully) fitting models to data
+  </a>
+ </li>
+ <li class="toctree-l1">
+  <a class="reference external" href="https://raw.githubusercontent.com/msu-cmse-courses/cmse201-S22-data/main/Day-14/pop200.csv">
+   pop200.csv
+  </a>
+ </li>
+ <li class="toctree-l1">
+  <a class="reference external" href="https://raw.githubusercontent.com/msu-cmse-courses/cmse201-S22-data/main/Day-14/pop300.csv">
+   pop300.csv
+  </a>
+ </li>
+</ul>
+<p aria-level="2" class="caption" role="heading">
+ <span class="caption-text">
+  Day 14
+ </span>
+</p>
+<ul class="nav bd-sidenav">
+ <li class="toctree-l1">
+  <a class="reference internal" href="../../Day-14/Day-14_Pre-Class_Evaluating_Fits-STUDENT.html">
+   Day 14 Pre-Class Assignment: Making Predictions Using Data
+  </a>
+ </li>
+ <li class="toctree-l1">
+  <a class="reference internal" href="../../Day-14/Day-14_In-Class_Evaluating_Fits-STUDENT.html">
+   Day 14 In-Class Assignment: Evaluating Models
+  </a>
+ </li>
+</ul>
+<p aria-level="2" class="caption" role="heading">
+ <span class="caption-text">
+  Day 15
+ </span>
+</p>
+<ul class="nav bd-sidenav">
+ <li class="toctree-l1">
+  <a class="reference internal" href="../../Day-15/Day-15-Pre-Class_IntroToDataVisualization-STUDENT.html">
+   Day 15 Pre-class Assignment: Introduction to Data Visualization
+  </a>
+ </li>
+ <li class="toctree-l1">
+  <a class="reference internal" href="../../Day-15/Day-15-In-Class_IntroToDataVisualization-STUDENT.html">
+   Day 15 In-Class: Introduction to Data Visualization
+  </a>
+ </li>
+</ul>
+<p aria-level="2" class="caption" role="heading">
+ <span class="caption-text">
+  Day 16
+ </span>
+</p>
+<ul class="nav bd-sidenav">
+ <li class="toctree-l1">
+  <a class="reference internal" href="../../Day-16/Day-16-Intro_to_ODEs_Pre-Class_STUDENT.html">
+   Day 16: Pre-class Assignment: Introduction to Modeling with Ordinary Differential Equations
+  </a>
+ </li>
+ <li class="toctree-l1">
+  <a class="reference internal" href="../../Day-16/Day-16-Intro_to_ODEs_In-Class_STUDENT.html">
+   Day 16: In-class Assignment: Introduction to Modeling with ODEs
+  </a>
+ </li>
+</ul>
+<p aria-level="2" class="caption" role="heading">
+ <span class="caption-text">
+  Day 17
+ </span>
+</p>
+<ul class="nav bd-sidenav">
+ <li class="toctree-l1">
+  <a class="reference internal" href="../../Day-17/Day-17_Pre-Class_ModelingWithODEs-STUDENT.html">
+   Day 17: Pre-class Assignment: Modeling with Ordinary Differential Equations
+  </a>
+ </li>
+ <li class="toctree-l1">
+  <a class="reference internal" href="../../Day-17/Day-17_In-Class_ModelingWithODEs-STUDENT.html">
+   Day 17: In-class Assignment: Modeling with ODEs
+  </a>
+ </li>
+ <li class="toctree-l1">
+  <a class="reference internal" href="../../Day-17/Day-17_In-Class_ModelingWithODEs-INSTRUCTOR.html">
+   Day 17: In-class Assignment: Modeling with ODEs
+  </a>
+ </li>
+</ul>
+<p aria-level="2" class="caption" role="heading">
+ <span class="caption-text">
+  Day 18
+ </span>
+</p>
+<ul class="nav bd-sidenav">
+ <li class="toctree-l1">
+  <a class="reference internal" href="../../Day-18/Day-18_Pre-Class_ViralKinetics-STUDENT.html">
+   Day 18 Pre-Class: Viral Kinetics
+  </a>
+ </li>
+ <li class="toctree-l1">
+  <a class="reference internal" href="../../Day-18/Day-18_In-Class_CompartmentalModeling-STUDENT.html">
+   Day 18 In-class: Building Compartmental Models
+  </a>
+ </li>
+</ul>
+<p aria-level="2" class="caption" role="heading">
+ <span class="caption-text">
+  Day 19
+ </span>
+</p>
+<ul class="nav bd-sidenav">
+ <li class="toctree-l1">
+  <a class="reference internal" href="../../Day-19/Day-19_Pre-Class_Zombies-STUDENT.html">
+   Day 19 Pre-class Assignment: ZOMBIES!!
+  </a>
+ </li>
+ <li class="toctree-l1">
+  <a class="reference internal" href="../../Day-19/Day-19_In-Class_CompartmentsWithSolveIVP-STUDENT.html">
+   Day 19 In-Class Assignment: Compartmental Modeling, moving from the model to the Code
+  </a>
+ </li>
+ <li class="toctree-l1">
+  <a class="reference external" href="https://github.com/msu-cmse-courses/cmse201-F21-data/blob/main/Day-16/latent.png">
+   latent.png
+  </a>
+ </li>
+</ul>
+<p aria-level="2" class="caption" role="heading">
+ <span class="caption-text">
+  Day 20
+ </span>
+</p>
+<ul class="nav bd-sidenav">
+ <li class="toctree-l1">
+  <a class="reference internal" href="../../Day-20/Day-20_Pre-Class_2DNumPyArrays-STUDENT.html">
+   Day 20 Pre-Class: 2D NumPy Arrays
+  </a>
+ </li>
+ <li class="toctree-l1">
+  <a class="reference external" href="https://raw.githubusercontent.com/msu-cmse-courses/cmse201-F21-data/main/Day-17/PCA_files/cars.csv">
+   cars.csv
+  </a>
+ </li>
+ <li class="toctree-l1">
+  <a class="reference external" href="https://github.com/msu-cmse-courses/cmse201-F21-data/raw/main/Day-17/PCA_files/example.jpeg">
+   example.jpeg
+  </a>
+ </li>
+ <li class="toctree-l1">
+  <a class="reference internal" href="../../Day-20/Day-20_In-Class_2DImageAnalysis-STUDENT.html">
+   Day 20 In-Class Assignment: Image Analysis
+  </a>
+ </li>
+ <li class="toctree-l1">
+  <a class="reference external" href="https://github.com/msu-cmse-courses/cmse201-F21-data/blob/main/Day-17/ICA_files/beach.jpeg">
+   beach.jpeg
+  </a>
+ </li>
+ <li class="toctree-l1">
+  <a class="reference external" href="https://github.com/msu-cmse-courses/cmse201-F21-data/blob/main/Day-17/ICA_files/landscape.jpeg">
+   landscape.jpeg
+  </a>
+ </li>
+ <li class="toctree-l1">
+  <a class="reference external" href="https://github.com/msu-cmse-courses/cmse201-F21-data/blob/main/Day-17/ICA_files/zebra.png">
+   zebra.png
+  </a>
+ </li>
+</ul>
+<p aria-level="2" class="caption" role="heading">
+ <span class="caption-text">
+  Day 21
+ </span>
+</p>
+<ul class="nav bd-sidenav">
+ <li class="toctree-l1">
+  <a class="reference internal" href="../../Day-21/Day-21_Pre-Class_ABMForestFire-STUDENT.html">
+   Day 21 Pre-class: Agent-based models and forest fires
+  </a>
+ </li>
+ <li class="toctree-l1">
+  <a class="reference internal" href="../../Day-21/Day-21_In-Class_ForestFiresPartI-STUDENT.html">
+   Day 21 Part 1 In-class Assignment: Modeling forest fires with an Agent-based Model
+  </a>
+ </li>
+</ul>
+<p aria-level="2" class="caption" role="heading">
+ <span class="caption-text">
+  Day 22
+ </span>
+</p>
+<ul class="nav bd-sidenav">
+ <li class="toctree-l1">
+  <a class="reference internal" href="../../Day-22/Day-22_Pre-Class_ABMForestFire_Part2-STUDENT.html">
+   Day 22 Pre-class: Reviewing 2D Numpy Arrays
+  </a>
+ </li>
+ <li class="toctree-l1">
+  <a class="reference internal" href="../../Day-22/Day-22_In-Class_ForestFiresPartII-STUDENT.html">
+   Day 22 In-class Assignment: Modeling forest fires with an Agent-based Model (Part II)
+  </a>
+ </li>
+</ul>
+<p aria-level="2" class="caption" role="heading">
+ <span class="caption-text">
+  Day 23
+ </span>
+</p>
+<ul class="nav bd-sidenav">
+ <li class="toctree-l1">
+  <a class="reference internal" href="../../Day-23/Day-23_Pre-Class_ProjectWorkDay-STUDENT.html">
+   Day 23 Pre-class: Project Update Preparation
+  </a>
+ </li>
+ <li class="toctree-l1">
+  <a class="reference internal" href="../../Day-23/Day-23_In-Class_ProjectWorkDay-STUDENT.html">
+   Day 23 In-class Assignment: Project Work Day
+  </a>
+ </li>
+</ul>
+<p aria-level="2" class="caption" role="heading">
+ <span class="caption-text">
+  Day 24
+ </span>
+</p>
+<ul class="nav bd-sidenav">
+ <li class="toctree-l1">
+  <a class="reference internal" href="../../Day-24/Day-24_Pre-Class_Climate-STUDENT.html">
+   Day 24 Pre-class:  Global warming and climate modeling
+  </a>
+ </li>
+ <li class="toctree-l1">
+  <a class="reference internal" href="../../Day-24/Day-24_In-Class_Climate-STUDENT.html">
+   Day 24 In-class Assignment: Analyzing climate data
+  </a>
+ </li>
+ <li class="toctree-l1">
+  <a class="reference external" href="https://raw.githubusercontent.com/msu-cmse-courses/cmse201-F21-data/main/Day-22/GLB.Ts.csv">
+   GLB.Ts.csv
+  </a>
+ </li>
+ <li class="toctree-l1">
+  <a class="reference external" href="https://raw.githubusercontent.com/msu-cmse-courses/cmse201-F21-data/main/Day-22/bintanja2008.txt">
+   bintanja2008.txt
+  </a>
+ </li>
+ <li class="toctree-l1">
+  <a class="reference external" href="https://raw.githubusercontent.com/msu-cmse-courses/cmse201-F21-data/main/Day-22/ch4_annmean_gl.txt">
+   ch4_annmean_gl.txt
+  </a>
+ </li>
+ <li class="toctree-l1">
+  <a class="reference external" href="https://raw.githubusercontent.com/msu-cmse-courses/cmse201-F21-data/main/Day-22/co2_mm_mlo.txt">
+   co2_mm_mlo.txt
+  </a>
+ </li>
+ <li class="toctree-l1">
+  <a class="reference external" href="https://raw.githubusercontent.com/msu-cmse-courses/cmse201-F21-data/main/Day-22/vostok-ch4nat.txt">
+   vostok-ch4nat.txt
+  </a>
+ </li>
+ <li class="toctree-l1">
+  <a class="reference external" href="https://raw.githubusercontent.com/msu-cmse-courses/cmse201-F21-data/main/Day-22/vostok-co2nat.txt">
+   vostok-co2nat.txt
+  </a>
+ </li>
+ <li class="toctree-l1">
+  <a class="reference external" href="https://raw.githubusercontent.com/msu-cmse-courses/cmse201-F21-data/main/Day-22/vostok-deutnat.txt">
+   vostok-deutnat.txt
+  </a>
+ </li>
+</ul>
+<p aria-level="2" class="caption" role="heading">
+ <span class="caption-text">
+  Day 25
+ </span>
+</p>
+<ul class="nav bd-sidenav">
+ <li class="toctree-l1">
+  <a class="reference internal" href="../../Day-25/Day-25_Pre-Class_Climate-STUDENT.html">
+   Day 25 pre-class assignment: climate modeling
+  </a>
+ </li>
+ <li class="toctree-l1">
+  <a class="reference internal" href="../../Day-25/Day-25_In-Class_Climate-STUDENT.html">
+   Day 25 In-class Assignment: A simple model for global temperature
+  </a>
+ </li>
+ <li class="toctree-l1">
+  <a class="reference external" href="https://github.com/msu-cmse-courses/cmse201-F21-data/blob/main/Day-23/listentothee.png">
+   listentothee.png
+  </a>
+ </li>
+ <li class="toctree-l1">
+  <a class="reference external" href="https://github.com/msu-cmse-courses/cmse201-F21-data/blob/main/Day-23/simple_model.png">
+   simple_model.png
+  </a>
+ </li>
+</ul>
+<p aria-level="2" class="caption" role="heading">
+ <span class="caption-text">
+  Homework
+ </span>
+</p>
+<ul class="current nav bd-sidenav">
+ <li class="toctree-l1">
+  <a class="reference internal" href="../Homework_1/HW_01_F22_STUDENT.html">
+   Homework 1: Introduction to Variables, Lists, and Loops
+  </a>
+ </li>
+ <li class="toctree-l1 current active">
+  <a class="current reference internal" href="#">
+   Homework 2: Dictionaries, If Statements, Functions, and Modules
+  </a>
+ </li>
+ <li class="toctree-l1">
+  <a class="reference external" href="https://raw.githubusercontent.com/msu-cmse-courses/cmse201-S22-data/main/Homework/state_data.csv">
+   state_data.csv
+  </a>
+ </li>
+ <li class="toctree-l1">
+  <a class="reference internal" href="../Homework_3/HW3_F22-STUDENT.html">
+   Homework 3: Pandas Data Analysis
+  </a>
+ </li>
+ <li class="toctree-l1">
+  <a class="reference external" href="https://raw.githubusercontent.com/msu-cmse-courses/cmse201-S22-data/main/Homework/EV_Sale.csv">
+   EV_Sale.csv
+  </a>
+ </li>
+ <li class="toctree-l1">
+  <a class="reference internal" href="../Homework_4/HW-04_STUDENT.html">
+   Homework 4: Modeling Bacterial Growth
+  </a>
+ </li>
+ <li class="toctree-l1">
+  <a class="reference external" href="https://raw.githubusercontent.com/msu-cmse-courses/cmse201-S22-data/main/OD600.csv">
+   OD600.csv
+  </a>
+ </li>
+ <li class="toctree-l1">
+  <a class="reference internal" href="../Homework_5/HW-05_STUDENT.html">
+   Homework 5: 2D Arrays and Agent-based Modeling (EXTRA CREDIT)
+  </a>
+ </li>
+ <li class="toctree-l1">
+  <a class="reference external" href="https://raw.githubusercontent.com/msu-cmse-courses/cmse201-F21-data/main/blurred-math.png">
+   blurred-math.png
+  </a>
+ </li>
+ <li class="toctree-l1">
+  <a class="reference external" href="https://raw.githubusercontent.com/msu-cmse-courses/cmse201-F21-data/main/blurred-scream.png">
+   blurred-scream.png
+  </a>
+ </li>
+ <li class="toctree-l1">
+  <a class="reference external" href="https://raw.githubusercontent.com/msu-cmse-courses/cmse201-F21-data/main/scream.png">
+   scream.png
+  </a>
+ </li>
+ <li class="toctree-l1">
+  <a class="reference internal" href="../Code_Portfolio/Code_Portfolio_Assignment.html">
+   Code Portfolio Assignment
+  </a>
+ </li>
+ <li class="toctree-l1">
+  <a class="reference internal" href="../Code_Portfolio/Code_Portfolio_Example.html">
+   Code Portfolio Example
+  </a>
+ </li>
+</ul>
+<p aria-level="2" class="caption" role="heading">
+ <span class="caption-text">
+  Bootcamps
+ </span>
+</p>
+<ul class="nav bd-sidenav">
+ <li class="toctree-l1">
+  <a class="reference internal" href="../../Bootcamp_Notebooks/Bootcamp1-Python_Fundamentals_STUDENT.html">
+   Bootcamp 1: Python Fundamentals
+  </a>
+ </li>
+ <li class="toctree-l1">
+  <a class="reference internal" href="../../Bootcamp_Notebooks/Bootcamp2-InitialConceptsReview.html">
+   Bootcamp 2: Initial Concepts Review Cheatsheet
+  </a>
+ </li>
+ <li class="toctree-l1">
+  <a class="reference internal" href="../../Bootcamp_Notebooks/Bootcamp3-Debugging_STUDENT.html">
+   Bootcamp 3: Debugging
+  </a>
+ </li>
+ <li class="toctree-l1">
+  <a class="reference internal" href="../../Bootcamp_Notebooks/Bootcamp4-IfStatements_STUDENT.html">
+   Bootcamp 4: If Statements
+  </a>
+ </li>
+ <li class="toctree-l1">
+  <a class="reference internal" href="../../Bootcamp_Notebooks/Bootcamp5-Functions_STUDENT.html">
+   Bootcamp 5: Functions
+  </a>
+ </li>
+ <li class="toctree-l1">
+  <a class="reference internal" href="../../Bootcamp_Notebooks/Bootcamp6-Matplotlib_STUDENT.html">
+   Bootcamp 6: Matplotlib
+  </a>
+ </li>
+ <li class="toctree-l1">
+  <a class="reference internal" href="../../Bootcamp_Notebooks/Bootcamp8_Pandas_STUDENT.html">
+   Bootcamp 8: Practice with Pandas
+  </a>
+ </li>
+ <li class="toctree-l1">
+  <a class="reference internal" href="../../Bootcamp_Notebooks/Bootcamp8_Pandas_INSTRUCTOR.html">
+   Bootcamp 8: Practice with Pandas (Solution)
+  </a>
+ </li>
+ <li class="toctree-l1">
+  <a class="reference external" href="https://raw.githubusercontent.com/msu-cmse-courses/cmse201-S22-data/main/weather.csv">
+   weather.csv
+  </a>
+ </li>
+ <li class="toctree-l1">
+  <a class="reference internal" href="../../Bootcamp_Notebooks/Bootcamp9-ScipyCurveFit_STUDENT.html">
+   Bootcamp 9:  Scipy curve_fit
+  </a>
+ </li>
+ <li class="toctree-l1">
+  <a class="reference internal" href="../../Bootcamp_Notebooks/Bootcamp9-ScipyCurveFit_INSTRUCTOR.html">
+   Bootcamp 9:  Scipy curve_fit
+  </a>
+ </li>
+ <li class="toctree-l1">
+  <a class="reference internal" href="../../Bootcamp_Notebooks/Bootcamp10-CompartmentalModels_STUDENT.html">
+   Bootcamp 10: Compartmental Models
+  </a>
+ </li>
+ <li class="toctree-l1">
+  <a class="reference internal" href="../../Bootcamp_Notebooks/Bootcamp10-CompartmentalModels_INSTRUCTOR.html">
+   Bootcamp 10: Compartmental Models
+  </a>
+ </li>
+ <li class="toctree-l1">
+  <a class="reference internal" href="../../Bootcamp_Notebooks/Bootcamp11_Solve_IVP_STUDENT.html">
+   Bootcamp 11: Practice with
+   <code class="docutils literal notranslate">
+    <span class="pre">
+     solve_ivp
+    </span>
+   </code>
+  </a>
+ </li>
+ <li class="toctree-l1">
+  <a class="reference internal" href="../../Bootcamp_Notebooks/Bootcamp11_Solve_IVP_INSTRUCTOR.html">
+   Bootcamp 11: Practice with
+   <code class="docutils literal notranslate">
+    <span class="pre">
+     solve_ivp
+    </span>
+   </code>
+  </a>
+ </li>
+</ul>
+<p aria-level="2" class="caption" role="heading">
+ <span class="caption-text">
+  Semester Project
+ </span>
+</p>
+<ul class="nav bd-sidenav">
+ <li class="toctree-l1">
+  <a class="reference internal" href="../../Project_Materials/CMSE201_SemesterProjectDetails.html">
+   Semester Project Details
+  </a>
+ </li>
+ <li class="toctree-l1">
+  <a class="reference internal" href="../../Project_Materials/First_Project_Checkpoint.html">
+   First Project Checkpoint
+  </a>
+ </li>
+ <li class="toctree-l1">
+  <a class="reference internal" href="../../Project_Materials/CMSE201_FinalProjectTemplate.html">
+   CMSE 201 Final Project Template
+  </a>
+ </li>
+ <li class="toctree-l1">
+  <a class="reference external" href="https://raw.githubusercontent.com/msu-cmse-courses/cmse201-S22-data/main/Projects/CMSE201_ExampleProject_A.pdf">
+   CMSE201_ExampleProject_A.pdf
+  </a>
+ </li>
+ <li class="toctree-l1">
+  <a class="reference external" href="https://raw.githubusercontent.com/msu-cmse-courses/cmse201-S22-data/main/Projects/CMSE201_ExampleProject_B.pdf">
+   CMSE201_ExampleProject_B.pdf
+  </a>
+ </li>
+ <li class="toctree-l1">
+  <a class="reference external" href="https://raw.githubusercontent.com/msu-cmse-courses/cmse201-S22-data/main/Projects/CMSE201_ExampleProject_C.pdf">
+   CMSE201_ExampleProject_C.pdf
+  </a>
+ </li>
+ <li class="toctree-l1">
+  <a class="reference external" href="https://raw.githubusercontent.com/msu-cmse-courses/cmse201-S22-data/main/Projects/CMSE201_ExampleProject_D.pdf">
+   CMSE201_ExampleProject_D.pdf
+  </a>
+ </li>
+ <li class="toctree-l1">
+  <a class="reference external" href="https://raw.githubusercontent.com/msu-cmse-courses/cmse201-S22-data/main/Projects/CMSE201_ExampleProject_E.pdf">
+   CMSE201_ExampleProject_E.pdf
+  </a>
+ </li>
+ <li class="toctree-l1">
+  <a class="reference external" href="https://raw.githubusercontent.com/msu-cmse-courses/cmse201-S22-data/main/Projects/CMSE201_final_project_example_1.pdf">
+   CMSE201_final_project_example_1.pdf
+  </a>
+ </li>
+ <li class="toctree-l1">
+  <a class="reference external" href="https://raw.githubusercontent.com/msu-cmse-courses/cmse201-S22-data/main/Projects/CMSE201_final_project_example_2.pdf">
+   CMSE201_final_project_example_2.pdf
+  </a>
+ </li>
+ <li class="toctree-l1">
+  <a class="reference external" href="https://raw.githubusercontent.com/msu-cmse-courses/cmse201-S22-data/main/Projects/CMSE201_final_project_example_3.pdf">
+   CMSE201_final_project_example_3.pdf
+  </a>
+ </li>
+ <li class="toctree-l1">
+  <a class="reference external" href="https://raw.githubusercontent.com/msu-cmse-courses/cmse201-S22-data/main/Projects/CMSE201_final_project_example_4.pdf">
+   CMSE201_final_project_example_4.pdf
+  </a>
+ </li>
+ <li class="toctree-l1">
+  <a class="reference internal" href="../../Project_Materials/CMSE201FinalProject_RequirementsAndGradingRubric.html">
+   Requirements and Grading Rubric
+  </a>
+ </li>
+</ul>
+
+    </div>
+</nav></div>
+        <div class="bd-sidebar__bottom">
+             <!-- To handle the deprecated key -->
+            
+            <div class="navbar_extra_footer">
+            Powered by <a href="https://jupyterbook.org">Jupyter Book</a>
+            </div>
+            
+        </div>
+    </div>
+    <div id="rtd-footer-container"></div>
+</div>
+
+
+          
+
+
+          
+<!-- A tiny helper pixel to detect if we've scrolled -->
+<div class="sbt-scroll-pixel-helper"></div>
+<!-- Main content -->
+<div class="col py-0 content-container">
+    
+    <div class="header-article row sticky-top noprint">
+        
+
+
+
+<div class="col py-1 d-flex header-article-main">
+    <div class="header-article__left">
+        
+        <label for="__navigation"
+  class="headerbtn"
+  data-toggle="tooltip"
+data-placement="right"
+title="Toggle navigation"
+>
+  
+
+<span class="headerbtn__icon-container">
+  <i class="fas fa-bars"></i>
+  </span>
+
+</label>
+
+        
+    </div>
+    <div class="header-article__right">
+<div class="menu-dropdown menu-dropdown-launch-buttons">
+  <button class="headerbtn menu-dropdown__trigger"
+      aria-label="Launch interactive content">
+      <i class="fas fa-rocket"></i>
+  </button>
+  <div class="menu-dropdown__content">
+    <ul>
+      <li>
+        <a href="https://mybinder.org/v2/gh/msu-cmse-courses/cmse201-F22-jb/main?urlpath=tree/Homework/Homework_2/HW_02_F22-STUDENT.ipynb"
+   class="headerbtn"
+   data-toggle="tooltip"
+data-placement="left"
+title="Launch on Binder"
+>
+  
+
+<span class="headerbtn__icon-container">
+  
+    <img src="../../_static/images/logo_binder.svg">
+  </span>
+<span class="headerbtn__text-container">Binder</span>
+</a>
+
+      </li>
+      
+    </ul>
+  </div>
+</div>
+
+<button onclick="toggleFullScreen()"
+  class="headerbtn"
+  data-toggle="tooltip"
+data-placement="bottom"
+title="Fullscreen mode"
+>
+  
+
+<span class="headerbtn__icon-container">
+  <i class="fas fa-expand"></i>
+  </span>
+
+</button>
+
+<div class="menu-dropdown menu-dropdown-repository-buttons">
+  <button class="headerbtn menu-dropdown__trigger"
+      aria-label="Source repositories">
+      <i class="fab fa-github"></i>
+  </button>
+  <div class="menu-dropdown__content">
+    <ul>
+      <li>
+        <a href="https://github.com/msu-cmse-courses/cmse201-F22-jb"
+   class="headerbtn"
+   data-toggle="tooltip"
+data-placement="left"
+title="Source repository"
+>
+  
+
+<span class="headerbtn__icon-container">
+  <i class="fab fa-github"></i>
+  </span>
+<span class="headerbtn__text-container">repository</span>
+</a>
+
+      </li>
+      
+      <li>
+        <a href="https://github.com/msu-cmse-courses/cmse201-F22-jb/issues/new?title=Issue%20on%20page%20%2FHomework/Homework_2/HW_02_F22-STUDENT.html&body=Your%20issue%20content%20here."
+   class="headerbtn"
+   data-toggle="tooltip"
+data-placement="left"
+title="Open an issue"
+>
+  
+
+<span class="headerbtn__icon-container">
+  <i class="fas fa-lightbulb"></i>
+  </span>
+<span class="headerbtn__text-container">open issue</span>
+</a>
+
+      </li>
+      
+    </ul>
+  </div>
+</div>
+
+<div class="menu-dropdown menu-dropdown-download-buttons">
+  <button class="headerbtn menu-dropdown__trigger"
+      aria-label="Download this page">
+      <i class="fas fa-download"></i>
+  </button>
+  <div class="menu-dropdown__content">
+    <ul>
+      <li>
+        <a href="../../_sources/Homework/Homework_2/HW_02_F22-STUDENT.ipynb"
+   class="headerbtn"
+   data-toggle="tooltip"
+data-placement="left"
+title="Download source file"
+>
+  
+
+<span class="headerbtn__icon-container">
+  <i class="fas fa-file"></i>
+  </span>
+<span class="headerbtn__text-container">.ipynb</span>
+</a>
+
+      </li>
+      
+      <li>
+        
+<button onclick="printPdf(this)"
+  class="headerbtn"
+  data-toggle="tooltip"
+data-placement="left"
+title="Print to PDF"
+>
+  
+
+<span class="headerbtn__icon-container">
+  <i class="fas fa-file-pdf"></i>
+  </span>
+<span class="headerbtn__text-container">.pdf</span>
+</button>
+
+      </li>
+      
+    </ul>
+  </div>
+</div>
+<label for="__page-toc"
+  class="headerbtn headerbtn-page-toc"
+  
+>
+  
+
+<span class="headerbtn__icon-container">
+  <i class="fas fa-list"></i>
+  </span>
+
+</label>
+
+    </div>
+</div>
+
+<!-- Table of contents -->
+<div class="col-md-3 bd-toc show noprint">
+    <div class="tocsection onthispage pt-5 pb-3">
+        <i class="fas fa-list"></i> Contents
+    </div>
+    <nav id="bd-toc-nav" aria-label="Page">
+        <ul class="visible nav section-nav flex-column">
+ <li class="toc-h1 nav-item toc-entry">
+  <a class="reference internal nav-link" href="#">
+   Homework 2: Dictionaries, If Statements, Functions, and Modules
+  </a>
+  <ul class="visible nav section-nav flex-column">
+   <li class="toc-h2 nav-item toc-entry">
+    <a class="reference internal nav-link" href="#p-style-text-align-right-put-your-name-here-p">
+     <p style="text-align: right;">
+      ✅ Put your name here
+     </p>
+    </a>
+   </li>
+  </ul>
+ </li>
+ <li class="toc-h1 nav-item toc-entry">
+  <a class="reference internal nav-link" href="#cmse-201-fall-2022">
+   <strong>
+    CMSE  201 – Fall 2022
+   </strong>
+  </a>
+  <ul class="visible nav section-nav flex-column">
+   <li class="toc-h2 nav-item toc-entry">
+    <a class="reference internal nav-link" href="#learning-goals">
+     Learning Goals
+    </a>
+    <ul class="nav section-nav flex-column">
+     <li class="toc-h3 nav-item toc-entry">
+      <a class="reference internal nav-link" href="#content-goals">
+       Content Goals
+      </a>
+     </li>
+     <li class="toc-h3 nav-item toc-entry">
+      <a class="reference internal nav-link" href="#practice-goals">
+       Practice Goals
+      </a>
+     </li>
+    </ul>
+   </li>
+   <li class="toc-h2 nav-item toc-entry">
+    <a class="reference internal nav-link" href="#assignment-instructions">
+     Assignment instructions
+    </a>
+   </li>
+   <li class="toc-h2 nav-item toc-entry">
+    <a class="reference internal nav-link" href="#academic-integrity-statement-2-points">
+     Academic integrity statement (2 Points)
+    </a>
+   </li>
+   <li class="toc-h2 nav-item toc-entry">
+    <a class="reference internal nav-link" href="#dictionaries-10-points">
+     1. Dictionaries (10 Points)
+    </a>
+    <ul class="nav section-nav flex-column">
+     <li class="toc-h3 nav-item toc-entry">
+      <a class="reference internal nav-link" href="#task-5-points">
+       ✅  1.1 Task (5 Points)
+      </a>
+     </li>
+     <li class="toc-h3 nav-item toc-entry">
+      <a class="reference internal nav-link" href="#id1">
+       ✅  1.2 Task (5 Points)
+      </a>
+     </li>
+    </ul>
+   </li>
+   <li class="toc-h2 nav-item toc-entry">
+    <a class="reference internal nav-link" href="#debugging-functions-10-points">
+     2. Debugging Functions (10 Points)
+    </a>
+    <ul class="nav section-nav flex-column">
+     <li class="toc-h3 nav-item toc-entry">
+      <a class="reference internal nav-link" href="#id2">
+       ✅  2.1 Task (5 Points)
+      </a>
+     </li>
+     <li class="toc-h3 nav-item toc-entry">
+      <a class="reference internal nav-link" href="#id3">
+       ✅  2.2 Task (5 Points)
+      </a>
+     </li>
+    </ul>
+   </li>
+   <li class="toc-h2 nav-item toc-entry">
+    <a class="reference internal nav-link" href="#functions-if-else-and-exoplanets-10-points">
+     3. Functions, if/else, and Exoplanets! (10 Points)
+    </a>
+    <ul class="nav section-nav flex-column">
+     <li class="toc-h3 nav-item toc-entry">
+      <a class="reference internal nav-link" href="#task-sorting-planetary-masses-3-points">
+       ✅  3.1 Task: Sorting Planetary Masses (3 points)
+      </a>
+     </li>
+     <li class="toc-h3 nav-item toc-entry">
+      <a class="reference internal nav-link" href="#task-extending-to-the-full-data-set-2-points">
+       ✅  3.2 Task: Extending to the full Data Set (2 points)
+      </a>
+     </li>
+     <li class="toc-h3 nav-item toc-entry">
+      <a class="reference internal nav-link" href="#task-adding-complexity-3-points">
+       ✅  3.3 Task: Adding Complexity (3 points)
+      </a>
+     </li>
+     <li class="toc-h3 nav-item toc-entry">
+      <a class="reference internal nav-link" href="#task-reflections-2-points">
+       ✅  3.4 Task: Reflections (2 points)
+      </a>
+     </li>
+    </ul>
+   </li>
+   <li class="toc-h2 nav-item toc-entry">
+    <a class="reference internal nav-link" href="#numpy-matplotlib-and-functions-18-points">
+     4. Numpy, matplotlib, and functions (18 Points)
+    </a>
+    <ul class="nav section-nav flex-column">
+     <li class="toc-h3 nav-item toc-entry">
+      <a class="reference internal nav-link" href="#task-making-a-plotting-function-6-points">
+       ✅  4.1 Task: Making a plotting function  (6 points)
+      </a>
+     </li>
+     <li class="toc-h3 nav-item toc-entry">
+      <a class="reference internal nav-link" href="#task-using-numpy-arrays-and-functions-for-calculations-6-points">
+       ✅  4.2 Task: Using
+       <code class="docutils literal notranslate">
+        <span class="pre">
+         numpy
+        </span>
+       </code>
+       arrays and functions for calculations (6 points)
+      </a>
+     </li>
+     <li class="toc-h3 nav-item toc-entry">
+      <a class="reference internal nav-link" href="#task-putting-it-all-together-6-points">
+       ✅  4.3 Task: Putting it all together (6 points)
+      </a>
+     </li>
+     <li class="toc-h3 nav-item toc-entry">
+      <a class="reference internal nav-link" href="#congratulations-you-re-done">
+       Congratulations, you’re done!
+      </a>
+     </li>
+    </ul>
+   </li>
+  </ul>
+ </li>
+</ul>
+
+    </nav>
+</div>
+    </div>
+    <div class="article row">
+        <div class="col pl-md-3 pl-lg-5 content-container">
+            <!-- Table of contents that is only displayed when printing the page -->
+            <div id="jb-print-docs-body" class="onlyprint">
+                <h1>Homework 2: Dictionaries, If Statements, Functions, and Modules</h1>
+                <!-- Table of contents -->
+                <div id="print-main-content">
+                    <div id="jb-print-toc">
+                        
+                        <div>
+                            <h2> Contents </h2>
+                        </div>
+                        <nav aria-label="Page">
+                            <ul class="visible nav section-nav flex-column">
+ <li class="toc-h1 nav-item toc-entry">
+  <a class="reference internal nav-link" href="#">
+   Homework 2: Dictionaries, If Statements, Functions, and Modules
+  </a>
+  <ul class="visible nav section-nav flex-column">
+   <li class="toc-h2 nav-item toc-entry">
+    <a class="reference internal nav-link" href="#p-style-text-align-right-put-your-name-here-p">
+     <p style="text-align: right;">
+      ✅ Put your name here
+     </p>
+    </a>
+   </li>
+  </ul>
+ </li>
+ <li class="toc-h1 nav-item toc-entry">
+  <a class="reference internal nav-link" href="#cmse-201-fall-2022">
+   <strong>
+    CMSE  201 – Fall 2022
+   </strong>
+  </a>
+  <ul class="visible nav section-nav flex-column">
+   <li class="toc-h2 nav-item toc-entry">
+    <a class="reference internal nav-link" href="#learning-goals">
+     Learning Goals
+    </a>
+    <ul class="nav section-nav flex-column">
+     <li class="toc-h3 nav-item toc-entry">
+      <a class="reference internal nav-link" href="#content-goals">
+       Content Goals
+      </a>
+     </li>
+     <li class="toc-h3 nav-item toc-entry">
+      <a class="reference internal nav-link" href="#practice-goals">
+       Practice Goals
+      </a>
+     </li>
+    </ul>
+   </li>
+   <li class="toc-h2 nav-item toc-entry">
+    <a class="reference internal nav-link" href="#assignment-instructions">
+     Assignment instructions
+    </a>
+   </li>
+   <li class="toc-h2 nav-item toc-entry">
+    <a class="reference internal nav-link" href="#academic-integrity-statement-2-points">
+     Academic integrity statement (2 Points)
+    </a>
+   </li>
+   <li class="toc-h2 nav-item toc-entry">
+    <a class="reference internal nav-link" href="#dictionaries-10-points">
+     1. Dictionaries (10 Points)
+    </a>
+    <ul class="nav section-nav flex-column">
+     <li class="toc-h3 nav-item toc-entry">
+      <a class="reference internal nav-link" href="#task-5-points">
+       ✅  1.1 Task (5 Points)
+      </a>
+     </li>
+     <li class="toc-h3 nav-item toc-entry">
+      <a class="reference internal nav-link" href="#id1">
+       ✅  1.2 Task (5 Points)
+      </a>
+     </li>
+    </ul>
+   </li>
+   <li class="toc-h2 nav-item toc-entry">
+    <a class="reference internal nav-link" href="#debugging-functions-10-points">
+     2. Debugging Functions (10 Points)
+    </a>
+    <ul class="nav section-nav flex-column">
+     <li class="toc-h3 nav-item toc-entry">
+      <a class="reference internal nav-link" href="#id2">
+       ✅  2.1 Task (5 Points)
+      </a>
+     </li>
+     <li class="toc-h3 nav-item toc-entry">
+      <a class="reference internal nav-link" href="#id3">
+       ✅  2.2 Task (5 Points)
+      </a>
+     </li>
+    </ul>
+   </li>
+   <li class="toc-h2 nav-item toc-entry">
+    <a class="reference internal nav-link" href="#functions-if-else-and-exoplanets-10-points">
+     3. Functions, if/else, and Exoplanets! (10 Points)
+    </a>
+    <ul class="nav section-nav flex-column">
+     <li class="toc-h3 nav-item toc-entry">
+      <a class="reference internal nav-link" href="#task-sorting-planetary-masses-3-points">
+       ✅  3.1 Task: Sorting Planetary Masses (3 points)
+      </a>
+     </li>
+     <li class="toc-h3 nav-item toc-entry">
+      <a class="reference internal nav-link" href="#task-extending-to-the-full-data-set-2-points">
+       ✅  3.2 Task: Extending to the full Data Set (2 points)
+      </a>
+     </li>
+     <li class="toc-h3 nav-item toc-entry">
+      <a class="reference internal nav-link" href="#task-adding-complexity-3-points">
+       ✅  3.3 Task: Adding Complexity (3 points)
+      </a>
+     </li>
+     <li class="toc-h3 nav-item toc-entry">
+      <a class="reference internal nav-link" href="#task-reflections-2-points">
+       ✅  3.4 Task: Reflections (2 points)
+      </a>
+     </li>
+    </ul>
+   </li>
+   <li class="toc-h2 nav-item toc-entry">
+    <a class="reference internal nav-link" href="#numpy-matplotlib-and-functions-18-points">
+     4. Numpy, matplotlib, and functions (18 Points)
+    </a>
+    <ul class="nav section-nav flex-column">
+     <li class="toc-h3 nav-item toc-entry">
+      <a class="reference internal nav-link" href="#task-making-a-plotting-function-6-points">
+       ✅  4.1 Task: Making a plotting function  (6 points)
+      </a>
+     </li>
+     <li class="toc-h3 nav-item toc-entry">
+      <a class="reference internal nav-link" href="#task-using-numpy-arrays-and-functions-for-calculations-6-points">
+       ✅  4.2 Task: Using
+       <code class="docutils literal notranslate">
+        <span class="pre">
+         numpy
+        </span>
+       </code>
+       arrays and functions for calculations (6 points)
+      </a>
+     </li>
+     <li class="toc-h3 nav-item toc-entry">
+      <a class="reference internal nav-link" href="#task-putting-it-all-together-6-points">
+       ✅  4.3 Task: Putting it all together (6 points)
+      </a>
+     </li>
+     <li class="toc-h3 nav-item toc-entry">
+      <a class="reference internal nav-link" href="#congratulations-you-re-done">
+       Congratulations, you’re done!
+      </a>
+     </li>
+    </ul>
+   </li>
+  </ul>
+ </li>
+</ul>
+
+                        </nav>
+                    </div>
+                </div>
+            </div>
+            <main id="main-content" role="main">
+                
+              <div>
+                
+  <section class="tex2jax_ignore mathjax_ignore" id="homework-2-dictionaries-if-statements-functions-and-modules">
+<h1>Homework 2: Dictionaries, If Statements, Functions, and Modules<a class="headerlink" href="#homework-2-dictionaries-if-statements-functions-and-modules" title="Permalink to this headline">#</a></h1>
+<section id="p-style-text-align-right-put-your-name-here-p">
+<h2><p style="text-align: right;"> ✅ Put your name here</p><a class="headerlink" href="#p-style-text-align-right-put-your-name-here-p" title="Permalink to this headline">#</a></h2>
+</section>
+</section>
+<section class="tex2jax_ignore mathjax_ignore" id="cmse-201-fall-2022">
+<h1><strong>CMSE  201 – Fall 2022</strong><a class="headerlink" href="#cmse-201-fall-2022" title="Permalink to this headline">#</a></h1>
+<p><img src="https://cmse.msu.edu/sites/_cmse/assets/Image/image002.jpg"
+     alt="CMSE Logo"
+     align="right" 
+     height="100" 
+     width="100" /></p>
+<section id="learning-goals">
+<h2>Learning Goals<a class="headerlink" href="#learning-goals" title="Permalink to this headline">#</a></h2>
+<section id="content-goals">
+<h3>Content Goals<a class="headerlink" href="#content-goals" title="Permalink to this headline">#</a></h3>
+<ul class="simple">
+<li><p>Use if/elif/else statements to implement a logical flow</p></li>
+<li><p>Write and execute functions</p></li>
+<li><p>Use the numpy module for math and data</p></li>
+<li><p>Display data on plots using matplotlib</p></li>
+<li><p>Utilize dictionaries to store data</p></li>
+</ul>
+</section>
+<section id="practice-goals">
+<h3>Practice Goals<a class="headerlink" href="#practice-goals" title="Permalink to this headline">#</a></h3>
+<ul class="simple">
+<li><p>Coding conventions</p></li>
+<li><p>More advanced debugging</p></li>
+<li><p>Using functions to build reusable/transferable code</p></li>
+<li><p>Use visualization best practices to make informative plots</p></li>
+</ul>
+</section>
+</section>
+<section id="assignment-instructions">
+<h2>Assignment instructions<a class="headerlink" href="#assignment-instructions" title="Permalink to this headline">#</a></h2>
+<p>Work through the following assignment, making sure to follow all the directions and answer all the questions.</p>
+<p><strong>This assignment is due at 11:59 pm on Friday, October 7th.</strong> It should be uploaded into the “Homework Assignments” submission folder for Homework #2.  Submission instructions can be found at the end of the notebook.</p>
+</section>
+<section id="academic-integrity-statement-2-points">
+<h2>Academic integrity statement (2 Points)<a class="headerlink" href="#academic-integrity-statement-2-points" title="Permalink to this headline">#</a></h2>
+<p>In the markdown cell below, paste your personal academic integrity statement. By including this statement, you are confirming that you are submitting this as your own work and not that of someone else.</p>
+<p><font size=6 color="#009600">✎</font> <em>Put your personal academic integrity statement here.</em></p>
+</section>
+<hr class="docutils" />
+<section id="dictionaries-10-points">
+<h2>1. Dictionaries (10 Points)<a class="headerlink" href="#dictionaries-10-points" title="Permalink to this headline">#</a></h2>
+<p>Python dictionaries are particularly useful for keeping track of pieces of information of different types.</p>
+<p><strong>Scenario:</strong> You are taking an Intro to Composition class and you want to create a resource for yourself to use while you are writing essays that keeps track of words and their definitions as well as synonyms for words you use alot.</p>
+<section id="task-5-points">
+<h3>✅  1.1 Task (5 Points)<a class="headerlink" href="#task-5-points" title="Permalink to this headline">#</a></h3>
+<p>In the cell below, create a Python dictionary that includes entries for the definitions of at least 5 words and entries for 5 common words associated with a list of some of their synonyms (10 total entries).</p>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="c1"># Put your answer here</span>
+</pre></div>
+</div>
+</div>
+</div>
+</section>
+<section id="id1">
+<h3>✅  1.2 Task (5 Points)<a class="headerlink" href="#id1" title="Permalink to this headline">#</a></h3>
+<p>You have made your dictionary/thesaurus, now it’s time to use it!</p>
+<p>In the cell below, construct <strong>two</strong> print statements using entries in your dictionary/thesaurus: (1) Prints a sentence that contains one of your words, followed by its definition and (2) Prints a sentence with one of your thesaurus entries and a sentence with one of the synonyms.</p>
+<p>For example, if your word entry is <code class="docutils literal notranslate"><span class="pre">&quot;penumbra&quot;:&quot;the</span> <span class="pre">partially</span> <span class="pre">shaded</span> <span class="pre">outer</span> <span class="pre">region</span> <span class="pre">of</span> <span class="pre">the</span> <span class="pre">shadow</span> <span class="pre">cast</span> <span class="pre">by</span> <span class="pre">an</span> <span class="pre">opaque</span> <span class="pre">object.&quot;</span></code>, your output could be:</p>
+<p><code class="docutils literal notranslate"><span class="pre">'The</span> <span class="pre">penumbra</span> <span class="pre">of</span> <span class="pre">a</span> <span class="pre">solar</span> <span class="pre">eclipse</span> <span class="pre">is</span> <span class="pre">beautiful.</span> <span class="pre">Penumbra</span> <span class="pre">is</span> <span class="pre">the</span> <span class="pre">partially</span> <span class="pre">shaded</span> <span class="pre">outer</span> <span class="pre">region</span> <span class="pre">of</span> <span class="pre">the</span> <span class="pre">shadow</span> <span class="pre">cast</span> <span class="pre">by</span> <span class="pre">an</span> <span class="pre">opaque</span> <span class="pre">object.'</span></code></p>
+<p>If your thesaurus entry is <code class="docutils literal notranslate"><span class="pre">&quot;sleep&quot;:[&quot;coma&quot;,</span> <span class="pre">&quot;dream&quot;,</span> <span class="pre">&quot;hibernation&quot;,</span> <span class="pre">&quot;slumber&quot;,</span> <span class="pre">&quot;trance&quot;]</span></code>, your output could be:</p>
+<p><code class="docutils literal notranslate"><span class="pre">Bears</span> <span class="pre">sleep</span> <span class="pre">through</span> <span class="pre">the</span> <span class="pre">winter.</span> <span class="pre">Bears</span> <span class="pre">hibernate.</span></code></p>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="c1"># put your answer here</span>
+</pre></div>
+</div>
+</div>
+</div>
+</section>
+</section>
+<section id="debugging-functions-10-points">
+<h2>2. Debugging Functions (10 Points)<a class="headerlink" href="#debugging-functions-10-points" title="Permalink to this headline">#</a></h2>
+<p>In the Tasks below, you will be asked to find, describe, and fix the bugs in each example.</p>
+<section id="id2">
+<h3>✅  2.1 Task (5 Points)<a class="headerlink" href="#id2" title="Permalink to this headline">#</a></h3>
+<p>In the cell below, you will find a function that takes in a percent grade and returns the corresponding GPA points grade, based on the scale we use for <a class="reference external" href="https://msu-cmse-courses.github.io/cmse201-F22-jb/Course_Materials-201/CMSE201-Syllabus.html">CMSE 201</a>. However, when you look at the test list of data, the output doesn’t look quite right. In the cell below, state where the bug is occurring, how you figured it out, and then fix the bug.</p>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="c1"># function to calculate GPA grade from percentage for CMSE 201</span>
+<span class="k">def</span> <span class="nf">homework_calculator</span><span class="p">(</span><span class="n">pct_grade</span><span class="p">):</span>
+    <span class="k">if</span> <span class="n">pct_grade</span> <span class="o">&lt;</span> <span class="mi">60</span><span class="p">:</span>
+        <span class="n">gp_grade</span> <span class="o">=</span> <span class="mf">0.0</span>
+    <span class="k">elif</span> <span class="n">pct_grade</span> <span class="o">&lt;=</span> <span class="mi">65</span><span class="p">:</span>
+        <span class="n">gp_grade</span> <span class="o">=</span> <span class="mf">1.5</span>
+    <span class="k">elif</span> <span class="n">pct_grade</span> <span class="o">&lt;=</span> <span class="mi">70</span><span class="p">:</span>
+        <span class="n">gp_grade</span> <span class="o">=</span> <span class="mf">2.0</span>
+    <span class="k">elif</span> <span class="n">pct_grade</span> <span class="o">&lt;=</span> <span class="mi">75</span><span class="p">:</span>
+        <span class="n">gp_grade</span> <span class="o">=</span> <span class="mf">2.5</span>
+    <span class="k">elif</span> <span class="n">pct_grade</span> <span class="o">&lt;=</span><span class="mi">80</span><span class="p">:</span>
+        <span class="n">gp_grade</span> <span class="o">=</span> <span class="mf">3.0</span>
+    <span class="k">elif</span> <span class="n">pct_grade</span> <span class="o">==</span> <span class="mi">85</span><span class="p">:</span>
+        <span class="n">gp_grade</span> <span class="o">=</span> <span class="mf">3.5</span>
+    <span class="k">else</span><span class="p">:</span>
+        <span class="n">gp_grade</span> <span class="o">=</span> <span class="mf">4.0</span>
+    <span class="k">return</span> <span class="n">gp_grade</span>
+</pre></div>
+</div>
+</div>
+</div>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">test_data</span> <span class="o">=</span> <span class="p">[</span><span class="mi">78</span><span class="p">,</span><span class="mi">97</span><span class="p">,</span><span class="mi">85</span><span class="p">,</span><span class="mi">93</span><span class="p">,</span><span class="mi">90</span><span class="p">,</span><span class="mi">54</span><span class="p">,</span><span class="mi">83</span><span class="p">]</span> <span class="c1"># test percent grade data</span>
+
+<span class="k">for</span> <span class="n">grade</span> <span class="ow">in</span> <span class="n">test_data</span><span class="p">:</span>
+    <span class="nb">print</span><span class="p">(</span><span class="n">homework_calculator</span><span class="p">(</span><span class="n">grade</span><span class="p">))</span> <span class="c1"># call the function and print the GPA grade for each percent</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>3.0
+4.0
+3.5
+4.0
+4.0
+0.0
+4.0
+</pre></div>
+</div>
+</div>
+</div>
+<p><font size=6 color="#009600">✎</font> Put your answer here</p>
+</section>
+<section id="id3">
+<h3>✅  2.2 Task (5 Points)<a class="headerlink" href="#id3" title="Permalink to this headline">#</a></h3>
+<p>In the cell below, you have a function and a function call written for you, but not quite correctly. You should do/answer the following:</p>
+<ol class="simple">
+<li><p>What should the output of the function call be?</p></li>
+<li><p>What line(s) are causing the bug?</p></li>
+<li><p>Write a plain English description of the bug.</p></li>
+<li><p>Fix the bug!</p></li>
+</ol>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">favorite_animal</span> <span class="o">=</span> <span class="s1">&#39;elephant&#39;</span>
+<span class="n">favorite_food</span> <span class="o">=</span> <span class="s1">&#39;Chicken Parmesan&#39;</span>
+<span class="n">favorite_season</span> <span class="o">=</span> <span class="s1">&#39;Spring&#39;</span>
+</pre></div>
+</div>
+</div>
+</div>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="c1"># Correct this code!</span>
+
+<span class="c1"># A function to print my favorite things</span>
+
+<span class="k">def</span> <span class="nf">my_favorite_things</span><span class="p">(</span><span class="n">thing1</span> <span class="o">=</span> <span class="s2">&quot;penguins&quot;</span><span class="p">,</span><span class="n">thing2</span> <span class="o">=</span> <span class="s2">&quot;Spaghetti and Meatballs&quot;</span><span class="p">,</span><span class="n">thing3</span> <span class="o">=</span> <span class="s2">&quot;Winter&quot;</span><span class="p">):</span>
+    <span class="n">string_of_favorites</span> <span class="o">=</span> <span class="s2">&quot;My favorite things are: &quot;</span> <span class="o">+</span> <span class="n">favorite_animal</span> <span class="o">+</span> <span class="s1">&#39;, &#39;</span> <span class="o">+</span> <span class="n">favorite_season</span> <span class="o">+</span> <span class="s1">&#39;, and &#39;</span> <span class="o">+</span> <span class="n">favorite_food</span> <span class="o">+</span> <span class="s2">&quot;.&quot;</span>
+    <span class="k">return</span> <span class="n">string_of_favorites</span>
+
+<span class="n">my_favorite_things</span><span class="p">()</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<div class="output text_plain highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>&#39;My favorite things are: elephant, Spring, and Chicken Parmesan.&#39;
+</pre></div>
+</div>
+</div>
+</div>
+<p><font size=6 color="#009600">✎</font> <em>Put your answer here</em></p>
+</section>
+</section>
+<section id="functions-if-else-and-exoplanets-10-points">
+<h2>3. Functions, if/else, and Exoplanets! (10 Points)<a class="headerlink" href="#functions-if-else-and-exoplanets-10-points" title="Permalink to this headline">#</a></h2>
+<p>When astronomers classify planets as having an “Earth-like” mass or “Jupiter-like” mass, they mean that the planet is near the mass of the Earth or near the mass of Jupiter. The specific ranges are:</p>
+<ul class="simple">
+<li><p>Earth-like: 0.0025<span class="math notranslate nohighlight">\(-\)</span>0.006 Jupiter masses (0.8<span class="math notranslate nohighlight">\(-\)</span>1.9 Earth masses)</p></li>
+<li><p>Jupiter-like: 0.36<span class="math notranslate nohighlight">\(-\)</span>11.84 Jupiter masses</p></li>
+</ul>
+<section id="task-sorting-planetary-masses-3-points">
+<h3>✅  3.1 Task: Sorting Planetary Masses (3 points)<a class="headerlink" href="#task-sorting-planetary-masses-3-points" title="Permalink to this headline">#</a></h3>
+<p>First, choose if you want to check for Jupiter-like or Earth-like planets in the data set.</p>
+<p>Then, write a function that takes in the mass of a planet (in units of Jupiter masses) and returns the Boolean “True” if it falls within the mass range of that definition and “False” if it is outside that definition.</p>
+<p>Write your function in the cell below. Demonstrate that your function works using the test data given (<code class="docutils literal notranslate"><span class="pre">planetary_mass_mj_test_data</span></code>).</p>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="c1"># test planetary mass data (in Jupiter masses)</span>
+<span class="n">planetary_mass_mj_test_data</span> <span class="o">=</span> <span class="p">[</span><span class="mf">19.4</span><span class="p">,</span> <span class="mf">0.00522</span><span class="p">,</span> <span class="mf">4.8</span><span class="p">,</span> <span class="mf">0.00264</span><span class="p">,</span> <span class="mf">1.78</span><span class="p">,</span> <span class="mf">10.3</span><span class="p">,</span> <span class="mf">8.0</span><span class="p">,</span> <span class="mf">0.91</span><span class="p">,</span> <span class="mf">1.99</span><span class="p">,</span> <span class="mf">0.86</span><span class="p">,</span> <span class="mf">24.5</span><span class="p">,</span> <span class="mf">0.00091</span><span class="p">,</span> <span class="mf">7.5</span><span class="p">,</span> <span class="mf">4.0</span><span class="p">]</span>
+</pre></div>
+</div>
+</div>
+</div>
+</section>
+<section id="task-extending-to-the-full-data-set-2-points">
+<h3>✅  3.2 Task: Extending to the full Data Set (2 points)<a class="headerlink" href="#task-extending-to-the-full-data-set-2-points" title="Permalink to this headline">#</a></h3>
+<p>In the cell below, you will find a data set of planetary masses (in units of Jupiter masses as above). <strong>Use your function</strong> on the list to count the number of planets that fall into the category you wrote your function to find (i.e. Earth-like or Jupiter-like).</p>
+<p>Citation: <a class="reference external" href="https://dataherb.github.io/flora/nasa_exoplanet_archive/">NASA Exoplanet Archive</a></p>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="c1"># full planetary data set (in Jupiter masses)</span>
+
+<span class="n">planetary_mass_mj</span> <span class="o">=</span> <span class="p">[</span><span class="mf">19.4</span><span class="p">,</span> <span class="mf">14.74</span><span class="p">,</span> <span class="mf">4.8</span><span class="p">,</span> <span class="mf">4.66</span><span class="p">,</span> <span class="mf">1.78</span><span class="p">,</span> <span class="mf">10.3</span><span class="p">,</span> <span class="mf">8.0</span><span class="p">,</span> <span class="mf">0.91</span><span class="p">,</span> <span class="mf">1.99</span><span class="p">,</span> <span class="mf">0.86</span><span class="p">,</span> <span class="mf">24.5</span><span class="p">,</span> <span class="mf">13.9</span><span class="p">,</span> <span class="mf">7.5</span><span class="p">,</span> <span class="mf">4.0</span><span class="p">,</span> <span class="mf">1.9</span><span class="p">,</span> <span class="mf">20.95</span><span class="p">,</span> <span class="mf">12.5</span><span class="p">,</span> <span class="mf">13.82</span><span class="p">,</span> <span class="mf">7.1</span><span class="p">,</span> <span class="mf">3.88</span><span class="p">,</span> <span class="mf">2.53</span><span class="p">,</span> <span class="mf">0.54</span><span class="p">,</span> <span class="mf">1.64</span><span class="p">,</span> <span class="mf">0.472</span><span class="p">,</span> <span class="mf">0.8306</span><span class="p">,</span> <span class="mf">0.1714</span><span class="p">,</span> <span class="mf">3.878</span><span class="p">,</span> <span class="mf">0.02542</span><span class="p">,</span> <span class="mf">0.141</span><span class="p">,</span> <span class="mf">2.01</span><span class="p">,</span> <span class="mf">0.016</span><span class="p">,</span> <span class="mf">0.057</span><span class="p">,</span> <span class="mf">0.072</span><span class="p">,</span> <span class="mf">1.85</span><span class="p">,</span> <span class="mf">0.87</span><span class="p">,</span> <span class="mf">7.416</span><span class="p">,</span> <span class="mf">3.0</span><span class="p">,</span> <span class="mf">1.31</span><span class="p">,</span> <span class="mf">5.3</span><span class="p">,</span> <span class="mf">3.2</span><span class="p">,</span> <span class="mf">13.5</span><span class="p">,</span> <span class="mf">6.4</span><span class="p">,</span> <span class="mf">1.04</span><span class="p">,</span> <span class="mf">1.061</span><span class="p">,</span> <span class="mf">1.11</span><span class="p">,</span> <span class="mf">55.59</span><span class="p">,</span> <span class="mf">12.47</span><span class="p">,</span> <span class="mf">4.2</span><span class="p">,</span> <span class="mf">0.07</span><span class="p">,</span> <span class="mf">0.91</span><span class="p">,</span> <span class="mf">1.7</span><span class="p">,</span> <span class="mf">1.6</span><span class="p">,</span> <span class="mf">0.027</span><span class="p">,</span> <span class="mf">0.17</span><span class="p">,</span> <span class="mf">0.04</span><span class="p">,</span> <span class="mf">0.33</span><span class="p">,</span> <span class="mf">0.59</span><span class="p">,</span> <span class="mf">0.53</span><span class="p">,</span> <span class="mf">9.78</span><span class="p">,</span> <span class="mf">5.1</span><span class="p">,</span> <span class="mf">10.5</span><span class="p">,</span> <span class="mf">12.569</span><span class="p">,</span> <span class="mf">11.6</span><span class="p">,</span> <span class="mf">17.0</span><span class="p">,</span> <span class="mf">1.03</span><span class="p">,</span> <span class="mf">2.75</span><span class="p">,</span> <span class="mf">2.33</span><span class="p">,</span> <span class="mf">0.917</span><span class="p">,</span> <span class="mf">1.308</span><span class="p">,</span> <span class="mf">7.6</span><span class="p">,</span> <span class="mf">0.535</span><span class="p">,</span> <span class="mf">2.43</span><span class="p">,</span> <span class="mf">3.47</span><span class="p">,</span> <span class="mf">1.11</span><span class="p">,</span> <span class="mf">3.47</span><span class="p">,</span> <span class="mf">4.3</span><span class="p">,</span> <span class="mf">17.0</span><span class="p">,</span> <span class="mf">2.26</span><span class="p">,</span> <span class="mf">0.038</span><span class="p">,</span> <span class="mf">2.8</span><span class="p">,</span> <span class="mf">0.018</span><span class="p">,</span> <span class="mf">0.088</span><span class="p">,</span> <span class="mf">0.27</span><span class="p">,</span> <span class="mf">0.52</span><span class="p">,</span> <span class="mf">10.39</span><span class="p">,</span> <span class="mf">0.484</span><span class="p">,</span> <span class="mf">0.85</span><span class="p">,</span> <span class="mf">21.66</span><span class="p">,</span> <span class="mf">0.72</span><span class="p">,</span> <span class="mf">0.467</span><span class="p">,</span> <span class="mf">2.96</span><span class="p">,</span> <span class="mf">0.01</span><span class="p">,</span> <span class="mf">0.02643</span><span class="p">,</span> <span class="mf">0.22</span><span class="p">,</span> <span class="mf">0.84</span><span class="p">,</span> <span class="mf">0.15</span><span class="p">,</span> <span class="mf">12.0293</span><span class="p">,</span> <span class="mf">28.5</span><span class="p">,</span> <span class="mf">11.0</span><span class="p">,</span> <span class="mf">0.07636</span><span class="p">,</span> <span class="mf">0.0302</span><span class="p">,</span> <span class="mf">0.01054</span><span class="p">,</span> <span class="mf">0.01299</span><span class="p">,</span> <span class="mf">0.437</span><span class="p">,</span> <span class="mf">0.00812</span><span class="p">,</span> <span class="mf">6.05</span><span class="p">,</span> <span class="mf">3.0</span><span class="p">,</span> <span class="mf">13.0</span><span class="p">,</span> <span class="mf">0.02753</span><span class="p">,</span> <span class="mf">0.04616</span><span class="p">,</span> <span class="mf">0.03203</span><span class="p">,</span> <span class="mf">16.0</span><span class="p">,</span> <span class="mf">0.00522</span><span class="p">,</span> <span class="mf">0.00831</span><span class="p">,</span> <span class="mf">0.30425</span><span class="p">,</span> <span class="mf">0.21414</span><span class="p">,</span> <span class="mf">0.0197</span><span class="p">,</span> <span class="mf">0.00658</span><span class="p">,</span> <span class="mf">0.02328</span><span class="p">,</span> <span class="mf">0.07142</span><span class="p">,</span> <span class="mf">0.00953</span><span class="p">,</span> <span class="mf">0.11327</span><span class="p">,</span> <span class="mf">0.03209</span><span class="p">,</span> <span class="mf">0.03335</span><span class="p">,</span> <span class="mf">0.0214</span><span class="p">,</span> <span class="mf">0.0925</span><span class="p">,</span> <span class="mf">0.82</span><span class="p">,</span> <span class="mf">0.02042</span><span class="p">,</span> <span class="mf">0.02014</span><span class="p">,</span> <span class="mf">0.02379</span><span class="p">,</span> <span class="mf">0.02287</span><span class="p">,</span> <span class="mf">0.02667</span><span class="p">,</span> <span class="mf">0.0409</span><span class="p">,</span> <span class="mf">0.00909</span><span class="p">,</span> <span class="mf">0.00371</span><span class="p">,</span> <span class="mf">3.37</span><span class="p">,</span> <span class="mf">0.0258</span><span class="p">,</span> <span class="mf">0.0056</span><span class="p">,</span> <span class="mf">0.01315</span><span class="p">,</span> <span class="mf">0.03304</span><span class="p">,</span> <span class="mf">2.5</span><span class="p">,</span> <span class="mf">1.54</span><span class="p">,</span> <span class="mf">2.3</span><span class="p">,</span> <span class="mf">0.07406</span><span class="p">,</span> <span class="mf">0.06636</span><span class="p">,</span> <span class="mf">0.02391</span><span class="p">,</span> <span class="mf">0.01032</span><span class="p">,</span> <span class="mf">0.00636</span><span class="p">,</span> <span class="mf">0.00727</span><span class="p">,</span> <span class="mf">0.0208</span><span class="p">,</span> <span class="mf">0.04373</span><span class="p">,</span> <span class="mf">0.463</span><span class="p">,</span> <span class="mf">0.00579</span><span class="p">,</span> <span class="mf">0.0107</span><span class="p">,</span> <span class="mf">0.01919</span><span class="p">,</span> <span class="mf">0.026</span><span class="p">,</span> <span class="mf">0.02517</span><span class="p">,</span> <span class="mf">0.02246</span><span class="p">,</span> <span class="mf">0.00777</span><span class="p">,</span> <span class="mf">0.0197</span><span class="p">,</span> <span class="mf">0.00941</span><span class="p">,</span> <span class="mf">0.03483</span><span class="p">,</span> <span class="mf">0.05213</span><span class="p">,</span> <span class="mf">0.01901</span><span class="p">,</span> <span class="mf">0.10201</span><span class="p">,</span> <span class="mf">0.01643</span><span class="p">,</span> <span class="mf">0.07</span><span class="p">,</span> <span class="mf">4.0</span><span class="p">,</span> <span class="mf">0.01686</span><span class="p">,</span> <span class="mf">0.0497</span><span class="p">,</span> <span class="mf">0.0173</span><span class="p">,</span> <span class="mf">0.0053</span><span class="p">,</span> <span class="mf">0.00887</span><span class="p">,</span> <span class="mf">0.328</span><span class="p">,</span> <span class="mf">0.018</span><span class="p">,</span> <span class="mf">0.012</span><span class="p">,</span> <span class="mf">0.008</span><span class="p">,</span> <span class="mf">0.008</span><span class="p">,</span> <span class="mf">0.014</span><span class="p">,</span> <span class="mf">0.035</span><span class="p">,</span> <span class="mf">4.96</span><span class="p">,</span> <span class="mf">6.8</span><span class="p">,</span> <span class="mf">0.014</span><span class="p">,</span> <span class="mf">0.025</span><span class="p">,</span> <span class="mf">0.01384</span><span class="p">,</span> <span class="mf">0.02737</span><span class="p">,</span> <span class="mf">0.02832</span><span class="p">,</span> <span class="mf">0.06</span><span class="p">,</span> <span class="mf">0.68</span><span class="p">,</span> <span class="mf">0.017</span><span class="p">,</span> <span class="mf">1.0</span><span class="p">,</span> <span class="mf">4.42</span><span class="p">,</span> <span class="mf">2.2756</span><span class="p">,</span> <span class="mf">0.7142</span><span class="p">,</span> <span class="mf">0.021</span><span class="p">,</span> <span class="mf">0.046</span><span class="p">,</span> <span class="mf">0.06186</span><span class="p">,</span> <span class="mf">0.01545</span><span class="p">,</span> <span class="mf">0.00264</span><span class="p">,</span> <span class="mf">0.01271</span><span class="p">,</span> <span class="mf">20.0</span><span class="p">,</span> <span class="mf">16.0</span><span class="p">,</span> <span class="mf">11.3</span><span class="p">,</span> <span class="mf">0.04097</span><span class="p">,</span> <span class="mf">0.01771</span><span class="p">,</span> <span class="mf">0.02089</span><span class="p">,</span> <span class="mf">0.525</span><span class="p">,</span> <span class="mf">0.07362</span><span class="p">,</span> <span class="mf">1.59519</span><span class="p">,</span> <span class="mf">0.211</span><span class="p">,</span> <span class="mf">0.851</span><span class="p">,</span> <span class="mf">14.28</span><span class="p">,</span> <span class="mf">3.44</span><span class="p">,</span> <span class="mf">1.94</span><span class="p">,</span> <span class="mf">4.193</span><span class="p">,</span> <span class="mf">0.58</span><span class="p">,</span> <span class="mf">3.4</span><span class="p">,</span> <span class="mf">0.197</span><span class="p">,</span> <span class="mf">0.292</span><span class="p">,</span> <span class="mf">8.62</span><span class="p">,</span> <span class="mf">7.246</span><span class="p">,</span> <span class="mf">4.87</span><span class="p">,</span> <span class="mf">2.47</span><span class="p">,</span> <span class="mf">1.34</span><span class="p">,</span> <span class="mf">0.75</span><span class="p">,</span> <span class="mf">0.569</span><span class="p">,</span> <span class="mf">0.07</span><span class="p">,</span> <span class="mf">0.62</span><span class="p">,</span> <span class="mf">0.626</span><span class="p">,</span> <span class="mf">0.88</span><span class="p">,</span> <span class="mf">0.65</span><span class="p">,</span> <span class="mf">0.83</span><span class="p">,</span> <span class="mf">2.27</span><span class="p">,</span> <span class="mf">0.68</span><span class="p">,</span> <span class="mf">0.92</span><span class="p">,</span> <span class="mf">7.01</span><span class="p">,</span> <span class="mf">7.52</span><span class="p">,</span> <span class="mf">1.8482</span><span class="p">,</span> <span class="mf">1.169</span><span class="p">,</span> <span class="mf">0.267</span><span class="p">,</span> <span class="mf">0.599</span><span class="p">,</span> <span class="mf">0.671</span><span class="p">,</span> <span class="mf">0.48</span><span class="p">,</span> <span class="mf">1.19</span><span class="p">,</span> <span class="mf">1.044</span><span class="p">,</span> <span class="mf">0.662</span><span class="p">,</span> <span class="mf">0.352</span><span class="p">,</span> <span class="mf">4.0</span><span class="p">,</span> <span class="mf">0.892</span><span class="p">,</span> <span class="mf">0.493</span><span class="p">,</span> <span class="mf">2.2</span><span class="p">,</span> <span class="mf">0.98</span><span class="p">,</span> <span class="mf">1.35</span><span class="p">,</span> <span class="mf">0.309</span><span class="p">,</span> <span class="mf">0.818</span><span class="p">,</span> <span class="mf">1.484</span><span class="p">,</span> <span class="mf">0.76</span><span class="p">,</span> <span class="mf">0.582</span><span class="p">,</span> <span class="mf">2.31</span><span class="p">,</span> <span class="mf">1.41</span><span class="p">,</span> <span class="mf">1.32</span><span class="p">,</span> <span class="mf">0.527</span><span class="p">,</span> <span class="mf">0.783</span><span class="p">,</span> <span class="mf">0.34</span><span class="p">,</span> <span class="mf">3.58</span><span class="p">,</span> <span class="mf">1.84</span><span class="p">,</span> <span class="mf">6.78</span><span class="p">,</span> <span class="mf">1.28</span><span class="p">,</span> <span class="mf">0.749</span><span class="p">,</span> <span class="mf">1.855</span><span class="p">,</span> <span class="mf">0.526</span><span class="p">,</span> <span class="mf">0.543</span><span class="p">,</span> <span class="mf">1.071</span><span class="p">,</span> <span class="mf">2.17</span><span class="p">,</span> <span class="mf">3.27</span><span class="p">,</span> <span class="mf">1.338</span><span class="p">,</span> <span class="mf">1.9795</span><span class="p">,</span> <span class="mf">1.345</span><span class="p">,</span> <span class="mf">2.74</span><span class="p">,</span> <span class="mf">1.47</span><span class="p">,</span> <span class="mf">2.26</span><span class="p">,</span> <span class="mf">0.613</span><span class="p">,</span> <span class="mf">0.65</span><span class="p">,</span> <span class="mf">0.53</span><span class="p">,</span> <span class="mf">0.672</span><span class="p">,</span> <span class="mf">0.653</span><span class="p">,</span> <span class="mf">1.071</span><span class="p">,</span> <span class="mf">0.706</span><span class="p">,</span> <span class="mf">0.88</span><span class="p">,</span> <span class="mf">0.92</span><span class="p">,</span> <span class="mf">1.192</span><span class="p">,</span> <span class="mf">0.941</span><span class="p">,</span> <span class="mf">1.222</span><span class="p">,</span> <span class="mf">0.63</span><span class="p">,</span> <span class="mf">1.323</span><span class="p">,</span> <span class="mf">1.59</span><span class="p">,</span> <span class="mf">9.7</span><span class="p">,</span> <span class="mf">1.88</span><span class="p">,</span> <span class="mf">0.261</span><span class="p">,</span> <span class="mf">0.56</span><span class="p">,</span> <span class="mf">0.7</span><span class="p">,</span> <span class="mf">0.173</span><span class="p">,</span> <span class="mf">0.237</span><span class="p">,</span> <span class="mf">0.39</span><span class="p">,</span> <span class="mf">0.768</span><span class="p">,</span> <span class="mf">2.24</span><span class="p">,</span> <span class="mf">0.595</span><span class="p">,</span> <span class="mf">0.76</span><span class="p">,</span> <span class="mf">0.921</span><span class="p">,</span> <span class="mf">0.602</span><span class="p">,</span> <span class="mf">3.147</span><span class="p">,</span> <span class="mf">1.03</span><span class="p">,</span> <span class="mf">0.806</span><span class="p">,</span> <span class="mf">12.7</span><span class="p">,</span> <span class="mf">0.319</span><span class="p">,</span> <span class="mf">0.662</span><span class="p">,</span> <span class="mf">3.4</span><span class="p">,</span> <span class="mf">0.179</span><span class="p">,</span> <span class="mf">0.96</span><span class="p">,</span> <span class="mf">0.96</span><span class="p">,</span> <span class="mf">0.821</span><span class="p">,</span> <span class="mf">5.33</span><span class="p">,</span> <span class="mf">1.45</span><span class="p">,</span> <span class="mf">1.29</span><span class="p">,</span> <span class="mf">0.577</span><span class="p">,</span> <span class="mf">0.12</span><span class="p">,</span> <span class="mf">12.9</span><span class="p">,</span> <span class="mf">0.138</span><span class="p">,</span> <span class="mf">1.61</span><span class="p">,</span> <span class="mf">1.03</span><span class="p">,</span> <span class="mf">0.0416</span><span class="p">,</span> <span class="mf">0.0378</span><span class="p">,</span> <span class="mf">0.0805</span><span class="p">,</span> <span class="mf">0.0722</span><span class="p">,</span> <span class="mf">0.0732</span><span class="p">,</span> <span class="mf">0.2066</span><span class="p">,</span> <span class="mf">0.25</span><span class="p">,</span> <span class="mf">0.17</span><span class="p">,</span> <span class="mf">0.41</span><span class="p">,</span> <span class="mf">4.94</span><span class="p">,</span> <span class="mf">8.16</span><span class="p">,</span> <span class="mf">1.52</span><span class="p">,</span> <span class="mf">0.05</span><span class="p">,</span> <span class="mf">0.35837</span><span class="p">,</span> <span class="mf">0.96</span><span class="p">,</span> <span class="mf">0.09</span><span class="p">,</span> <span class="mf">0.62</span><span class="p">,</span> <span class="mf">0.367</span><span class="p">,</span> <span class="mf">0.03524</span><span class="p">,</span> <span class="mf">0.16</span><span class="p">,</span> <span class="mf">1.487</span><span class="p">,</span> <span class="mf">8.3</span><span class="p">,</span> <span class="mf">6.93</span><span class="p">,</span> <span class="mf">10.13</span><span class="p">,</span> <span class="mf">0.03964</span><span class="p">,</span> <span class="mf">0.04782</span><span class="p">,</span> <span class="mf">0.94</span><span class="p">,</span> <span class="mf">9.61</span><span class="p">,</span> <span class="mf">11.0</span><span class="p">,</span> <span class="mf">6.383</span><span class="p">,</span> <span class="mf">0.21</span><span class="p">,</span> <span class="mf">0.261</span><span class="p">,</span> <span class="mf">3.5</span><span class="p">,</span> <span class="mf">2.414</span><span class="p">,</span> <span class="mf">1.42</span><span class="p">,</span> <span class="mf">0.99</span><span class="p">,</span> <span class="mf">0.86</span><span class="p">,</span> <span class="mf">0.054</span><span class="p">,</span> <span class="mf">0.076</span><span class="p">,</span> <span class="mf">0.27</span><span class="p">,</span> <span class="mf">11.09</span><span class="p">,</span> <span class="mf">7.14</span><span class="p">,</span> <span class="mf">4.4</span><span class="p">,</span> <span class="mf">4.51</span><span class="p">,</span> <span class="mf">2.83</span><span class="p">,</span> <span class="mf">0.36</span><span class="p">,</span> <span class="mf">0.93</span><span class="p">,</span> <span class="mf">6.3</span><span class="p">,</span> <span class="mf">1.14</span><span class="p">,</span> <span class="mf">0.357</span><span class="p">,</span> <span class="mf">0.825</span><span class="p">,</span> <span class="mf">10.69</span><span class="p">,</span> <span class="mf">1.1</span><span class="p">,</span> <span class="mf">0.611</span><span class="p">,</span> <span class="mf">4.83</span><span class="p">,</span> <span class="mf">0.408</span><span class="p">,</span> <span class="mf">1.4</span><span class="p">,</span> <span class="mf">1.27</span><span class="p">,</span> <span class="mf">1.926</span><span class="p">,</span> <span class="mf">5.63</span><span class="p">,</span> <span class="mf">0.174</span><span class="p">,</span> <span class="mf">2.79</span><span class="p">,</span> <span class="mf">0.07709</span><span class="p">,</span> <span class="mf">0.622</span><span class="p">,</span> <span class="mf">0.0788</span><span class="p">,</span> <span class="mf">6.54</span><span class="p">,</span> <span class="mf">4.5</span><span class="p">,</span> <span class="mf">1.51</span><span class="p">,</span> <span class="mf">2.98</span><span class="p">,</span> <span class="mf">22.16</span><span class="p">,</span> <span class="mf">0.02</span><span class="p">,</span> <span class="mf">3.1</span><span class="p">,</span> <span class="mf">0.055</span><span class="p">,</span> <span class="mf">7.28</span><span class="p">,</span> <span class="mf">1.96</span><span class="p">,</span> <span class="mf">0.237</span><span class="p">,</span> <span class="mf">2.43</span><span class="p">,</span> <span class="mf">1.812</span><span class="p">,</span> <span class="mf">0.41</span><span class="p">,</span> <span class="mf">1.769</span><span class="p">,</span> <span class="mf">3.789</span><span class="p">,</span> <span class="mf">0.89</span><span class="p">,</span> <span class="mf">1.6</span><span class="p">,</span> <span class="mf">1.15</span><span class="p">,</span> <span class="mf">1.8</span><span class="p">,</span> <span class="mf">19.12</span><span class="p">,</span> <span class="mf">3.31</span><span class="p">,</span> <span class="mf">10.95</span><span class="p">,</span> <span class="mf">5.38</span><span class="p">,</span> <span class="mf">1.49</span><span class="p">,</span> <span class="mf">1.42</span><span class="p">,</span> <span class="mf">0.42</span><span class="p">,</span> <span class="mf">2.5</span><span class="p">,</span> <span class="mf">0.0318</span><span class="p">,</span> <span class="mf">0.0922</span><span class="p">,</span> <span class="mf">1.61</span><span class="p">,</span> <span class="mf">0.82</span><span class="p">,</span> <span class="mf">0.0151</span><span class="p">,</span> <span class="mf">0.034</span><span class="p">,</span> <span class="mf">0.027</span><span class="p">,</span> <span class="mf">2.14</span><span class="p">,</span> <span class="mf">26.77</span><span class="p">,</span> <span class="mf">0.2</span><span class="p">,</span> <span class="mf">0.865</span><span class="p">,</span> <span class="mf">5.13</span><span class="p">,</span> <span class="mf">2.2</span><span class="p">,</span> <span class="mf">9.76</span><span class="p">,</span> <span class="mf">0.415</span><span class="p">,</span> <span class="mf">7.8</span><span class="p">,</span> <span class="mf">0.451</span><span class="p">,</span> <span class="mf">1.33</span><span class="p">,</span> <span class="mf">1.18</span><span class="p">,</span> <span class="mf">0.66</span><span class="p">,</span> <span class="mf">9.69</span><span class="p">,</span> <span class="mf">1.25</span><span class="p">,</span> <span class="mf">5.3</span><span class="p">,</span> <span class="mf">4.44</span><span class="p">,</span> <span class="mf">3.07</span><span class="p">,</span> <span class="mf">1.67</span><span class="p">,</span> <span class="mf">1.21</span><span class="p">,</span> <span class="mf">3.532</span><span class="p">,</span> <span class="mf">6.02</span><span class="p">,</span> <span class="mf">2.23</span><span class="p">,</span> <span class="mf">2.28</span><span class="p">,</span> <span class="mf">0.02026</span><span class="p">,</span> <span class="mf">0.01759</span><span class="p">,</span> <span class="mf">2.12</span><span class="p">,</span> <span class="mf">6.56</span><span class="p">,</span> <span class="mf">0.08983</span><span class="p">,</span> <span class="mf">1.21</span><span class="p">,</span> <span class="mf">1.121</span><span class="p">,</span> <span class="mf">5.14</span><span class="p">,</span> <span class="mf">2.3</span><span class="p">,</span> <span class="mf">0.85</span><span class="p">,</span> <span class="mf">1.23</span><span class="p">,</span> <span class="mf">5.16</span><span class="p">,</span> <span class="mf">33.7</span><span class="p">,</span> <span class="mf">1.3</span><span class="p">,</span> <span class="mf">0.38</span><span class="p">,</span> <span class="mf">1.33</span><span class="p">,</span> <span class="mf">2.75</span><span class="p">,</span> <span class="mf">2.71</span><span class="p">,</span> <span class="mf">2.661</span><span class="p">,</span> <span class="mf">1.869</span><span class="p">,</span> <span class="mf">0.02363</span><span class="p">,</span> <span class="mf">0.02552</span><span class="p">,</span> <span class="mf">2.95</span><span class="p">,</span> <span class="mf">0.82</span><span class="p">,</span> <span class="mf">5.37</span><span class="p">,</span> <span class="mf">2.45</span><span class="p">,</span> <span class="mf">2.58</span><span class="p">,</span> <span class="mf">2.6</span><span class="p">,</span> <span class="mf">0.99</span><span class="p">,</span> <span class="mf">0.82</span><span class="p">,</span> <span class="mf">9.88</span><span class="p">,</span> <span class="mf">8.6</span><span class="p">,</span> <span class="mf">0.74</span><span class="p">,</span> <span class="mf">0.013</span><span class="p">,</span> <span class="mf">10.67</span><span class="p">,</span> <span class="mf">1.53</span><span class="p">,</span> <span class="mf">14.0</span><span class="p">,</span> <span class="mf">1.13</span><span class="p">,</span> <span class="mf">1.9</span><span class="p">,</span> <span class="mf">2.218</span><span class="p">,</span> <span class="mf">0.768</span><span class="p">,</span> <span class="mf">0.934</span><span class="p">,</span> <span class="mf">3.62</span><span class="p">,</span> <span class="mf">1.676</span><span class="p">,</span> <span class="mf">1.814</span><span class="p">,</span> <span class="mf">0.03321</span><span class="p">,</span> <span class="mf">0.5219</span><span class="p">,</span> <span class="mf">0.26</span><span class="p">,</span> <span class="mf">5.1</span><span class="p">,</span> <span class="mf">9.84</span><span class="p">,</span> <span class="mf">0.7836</span><span class="p">,</span> <span class="mf">2.201</span><span class="p">,</span> <span class="mf">0.0696</span><span class="p">,</span> <span class="mf">0.443</span><span class="p">,</span> <span class="mf">0.05078</span><span class="p">,</span> <span class="mf">1.99792</span><span class="p">,</span> <span class="mf">0.31</span><span class="p">,</span> <span class="mf">0.04059</span><span class="p">,</span> <span class="mf">2.89</span><span class="p">,</span> <span class="mf">6.43</span><span class="p">,</span> <span class="mf">3.53</span><span class="p">,</span> <span class="mf">1.7</span><span class="p">,</span> <span class="mf">7.659</span><span class="p">,</span> <span class="mf">17.193</span><span class="p">,</span> <span class="mf">0.27</span><span class="p">,</span> <span class="mf">8.79</span><span class="p">,</span> <span class="mf">2.88</span><span class="p">,</span> <span class="mf">4.04</span><span class="p">,</span> <span class="mf">0.66</span><span class="p">,</span> <span class="mf">10.13</span><span class="p">,</span> <span class="mf">2.62</span><span class="p">,</span> <span class="mf">2.72</span><span class="p">,</span> <span class="mf">3.51</span><span class="p">,</span> <span class="mf">2.7</span><span class="p">,</span> <span class="mf">8.97</span><span class="p">,</span> <span class="mf">0.598</span><span class="p">,</span> <span class="mf">0.02825</span><span class="p">,</span> <span class="mf">0.87</span><span class="p">,</span> <span class="mf">0.01806</span><span class="p">,</span> <span class="mf">0.02888</span><span class="p">,</span> <span class="mf">0.04751</span><span class="p">,</span> <span class="mf">1.69</span><span class="p">,</span> <span class="mf">0.15</span><span class="p">,</span> <span class="mf">8.03</span><span class="p">,</span> <span class="mf">0.081</span><span class="p">,</span> <span class="mf">0.916</span><span class="p">,</span> <span class="mf">2.194</span><span class="p">,</span> <span class="mf">3.18</span><span class="p">,</span> <span class="mf">20.13</span><span class="p">,</span> <span class="mf">0.03839</span><span class="p">,</span> <span class="mf">1.685</span><span class="p">,</span> <span class="mf">8.37</span><span class="p">,</span> <span class="mf">2.54</span><span class="p">,</span> <span class="mf">0.02</span><span class="p">,</span> <span class="mf">0.64</span><span class="p">,</span> <span class="mf">0.54</span><span class="p">,</span> <span class="mf">0.4</span><span class="p">,</span> <span class="mf">3.95</span><span class="p">,</span> <span class="mf">3.57</span><span class="p">,</span> <span class="mf">1.01</span><span class="p">,</span> <span class="mf">0.836</span><span class="p">,</span> <span class="mf">0.523</span><span class="p">,</span> <span class="mf">1.99</span><span class="p">,</span> <span class="mf">3.4</span><span class="p">,</span> <span class="mf">1.5</span><span class="p">,</span> <span class="mf">1.13</span><span class="p">,</span> <span class="mf">1.54</span><span class="p">,</span> <span class="mf">0.06</span><span class="p">,</span> <span class="mf">1.985</span><span class="p">,</span> <span class="mf">3.1</span><span class="p">,</span> <span class="mf">8.52</span><span class="p">,</span> <span class="mf">0.56</span><span class="p">,</span> <span class="mf">0.0532</span><span class="p">,</span> <span class="mf">0.076</span><span class="p">,</span> <span class="mf">2.096</span><span class="p">,</span> <span class="mf">3.98</span><span class="p">,</span> <span class="mf">3.18</span><span class="p">,</span> <span class="mf">6.9</span><span class="p">,</span> <span class="mf">2.58</span><span class="p">,</span> <span class="mf">0.79</span><span class="p">,</span> <span class="mf">1.37</span><span class="p">,</span> <span class="mf">0.0367</span><span class="p">,</span> <span class="mf">0.0454</span><span class="p">,</span> <span class="mf">1.599</span><span class="p">,</span> <span class="mf">1.214</span><span class="p">,</span> <span class="mf">17.9</span><span class="p">,</span> <span class="mf">1.996</span><span class="p">,</span> <span class="mf">1.864</span><span class="p">,</span> <span class="mf">1.017</span><span class="p">,</span> <span class="mf">24.09</span><span class="p">,</span> <span class="mf">7.8</span><span class="p">,</span> <span class="mf">6.29</span><span class="p">,</span> <span class="mf">3.46</span><span class="p">,</span> <span class="mf">0.0553</span><span class="p">,</span> <span class="mf">0.23</span><span class="p">,</span> <span class="mf">1.37</span><span class="p">,</span> <span class="mf">0.1076</span><span class="p">,</span> <span class="mf">2.036</span><span class="p">,</span> <span class="mf">0.0061</span><span class="p">,</span> <span class="mf">0.0168</span><span class="p">,</span> <span class="mf">0.0334</span><span class="p">,</span> <span class="mf">0.0442</span><span class="p">,</span> <span class="mf">1.4878</span><span class="p">,</span> <span class="mf">0.56</span><span class="p">,</span> <span class="mf">0.73</span><span class="p">,</span> <span class="mf">0.0085</span><span class="p">,</span> <span class="mf">0.0076</span><span class="p">,</span> <span class="mf">0.015</span><span class="p">,</span> <span class="mf">0.01501</span><span class="p">,</span> <span class="mf">0.52</span><span class="p">,</span> <span class="mf">9.9</span><span class="p">,</span> <span class="mf">1.25</span><span class="p">,</span> <span class="mf">1.4</span><span class="p">,</span> <span class="mf">0.73</span><span class="p">,</span> <span class="mf">0.4817</span><span class="p">,</span> <span class="mf">1.29</span><span class="p">,</span> <span class="mf">1.808</span><span class="p">,</span> <span class="mf">0.67</span><span class="p">,</span> <span class="mf">0.0409</span><span class="p">,</span> <span class="mf">0.51</span><span class="p">,</span> <span class="mf">2.39</span><span class="p">,</span> <span class="mf">5.58</span><span class="p">,</span> <span class="mf">0.02778</span><span class="p">,</span> <span class="mf">0.06277</span><span class="p">,</span> <span class="mf">0.20734</span><span class="p">,</span> <span class="mf">20.3</span><span class="p">,</span> <span class="mf">0.00572</span><span class="p">,</span> <span class="mf">0.00541</span><span class="p">,</span> <span class="mf">0.00881</span><span class="p">,</span> <span class="mf">0.00905</span><span class="p">,</span> <span class="mf">0.02</span><span class="p">,</span> <span class="mf">0.33</span><span class="p">,</span> <span class="mf">1.26</span><span class="p">,</span> <span class="mf">2.223</span><span class="p">,</span> <span class="mf">1.05</span><span class="p">,</span> <span class="mf">0.57</span><span class="p">,</span> <span class="mf">0.0259</span><span class="p">,</span> <span class="mf">0.0547</span><span class="p">,</span> <span class="mf">1.3</span><span class="p">,</span> <span class="mf">2.6</span><span class="p">,</span> <span class="mf">0.01164</span><span class="p">,</span> <span class="mf">13.0</span><span class="p">,</span> <span class="mf">21.6</span><span class="p">,</span> <span class="mf">0.2</span><span class="p">,</span> <span class="mf">10.39</span><span class="p">,</span> <span class="mf">0.01491</span><span class="p">,</span> <span class="mf">0.01372</span><span class="p">,</span> <span class="mf">0.05088</span><span class="p">,</span> <span class="mf">0.02297</span><span class="p">,</span> <span class="mf">0.034</span><span class="p">,</span> <span class="mf">0.34</span><span class="p">,</span> <span class="mf">1.0</span><span class="p">,</span> <span class="mf">0.05223</span><span class="p">,</span> <span class="mf">0.066</span><span class="p">,</span> <span class="mf">14.6</span><span class="p">,</span> <span class="mf">16.64</span><span class="p">,</span> <span class="mf">0.2</span><span class="p">,</span> <span class="mf">1.118</span><span class="p">,</span> <span class="mf">1.45</span><span class="p">,</span> <span class="mf">3.18</span><span class="p">,</span> <span class="mf">3.09</span><span class="p">,</span> <span class="mf">0.19</span><span class="p">,</span> <span class="mf">9.7</span><span class="p">,</span> <span class="mf">1.61</span><span class="p">,</span> <span class="mf">1.56</span><span class="p">,</span> <span class="mf">2.12</span><span class="p">,</span> <span class="mf">8.37</span><span class="p">,</span> <span class="mf">5.97</span><span class="p">,</span> <span class="mf">0.7</span><span class="p">,</span> <span class="mf">13.65</span><span class="p">,</span> <span class="mf">2.61</span><span class="p">,</span> <span class="mf">1.527</span><span class="p">,</span> <span class="mf">1.13</span><span class="p">,</span> <span class="mf">6.575</span><span class="p">,</span> <span class="mf">1.78</span><span class="p">,</span> <span class="mf">0.05638</span><span class="p">,</span> <span class="mf">0.05405</span><span class="p">,</span> <span class="mf">9.03</span><span class="p">,</span> <span class="mf">6.0</span><span class="p">,</span> <span class="mf">5.21</span><span class="p">,</span> <span class="mf">15.89</span><span class="p">,</span> <span class="mf">3.86</span><span class="p">,</span> <span class="mf">12.89</span><span class="p">,</span> <span class="mf">0.03713</span><span class="p">,</span> <span class="mf">4.48</span><span class="p">,</span> <span class="mf">0.915</span><span class="p">,</span> <span class="mf">0.42</span><span class="p">,</span> <span class="mf">1.17</span><span class="p">,</span> <span class="mf">0.02665</span><span class="p">,</span> <span class="mf">1.56</span><span class="p">,</span> <span class="mf">1.494</span><span class="p">,</span> <span class="mf">0.665</span><span class="p">,</span> <span class="mf">0.162</span><span class="p">,</span> <span class="mf">5.415</span><span class="p">,</span> <span class="mf">5.9</span><span class="p">,</span> <span class="mf">1.16</span><span class="p">,</span> <span class="mf">0.98</span><span class="p">,</span> <span class="mf">0.026</span><span class="p">,</span> <span class="mf">1.542</span><span class="p">,</span> <span class="mf">2.4</span><span class="p">,</span> <span class="mf">2.43</span><span class="p">,</span> <span class="mf">1.37</span><span class="p">,</span> <span class="mf">8.622</span><span class="p">,</span> <span class="mf">7.6</span><span class="p">,</span> <span class="mf">1.22</span><span class="p">,</span> <span class="mf">0.47</span><span class="p">,</span> <span class="mf">1.547</span><span class="p">,</span> <span class="mf">0.62</span><span class="p">,</span> <span class="mf">0.0329</span><span class="p">,</span> <span class="mf">0.0445</span><span class="p">,</span> <span class="mf">0.0372</span><span class="p">,</span> <span class="mf">0.02171</span><span class="p">,</span> <span class="mf">3.04</span><span class="p">,</span> <span class="mf">0.7</span><span class="p">,</span> <span class="mf">0.48</span><span class="p">,</span> <span class="mf">1.385</span><span class="p">,</span> <span class="mf">5.97</span><span class="p">,</span> <span class="mf">0.329</span><span class="p">,</span> <span class="mf">9.1</span><span class="p">,</span> <span class="mf">2.01</span><span class="p">,</span> <span class="mf">1.75</span><span class="p">,</span> <span class="mf">0.82</span><span class="p">,</span> <span class="mf">0.168</span><span class="p">,</span> <span class="mf">0.097</span><span class="p">,</span> <span class="mf">0.0529</span><span class="p">,</span> <span class="mf">0.119</span><span class="p">,</span> <span class="mf">0.38</span><span class="p">,</span> <span class="mf">3.76</span><span class="p">,</span> <span class="mf">0.228</span><span class="p">,</span> <span class="mf">0.675</span><span class="p">,</span> <span class="mf">0.652</span><span class="p">,</span> <span class="mf">0.696</span><span class="p">,</span> <span class="mf">2.69</span><span class="p">,</span> <span class="mf">3.19</span><span class="p">,</span> <span class="mf">0.4</span><span class="p">,</span> <span class="mf">0.797</span><span class="p">,</span> <span class="mf">12.99</span><span class="p">,</span> <span class="mf">9.698</span><span class="p">,</span> <span class="mf">10.02</span><span class="p">,</span> <span class="mf">0.02674</span><span class="p">,</span> <span class="mf">0.0126</span><span class="p">,</span> <span class="mf">0.0208</span><span class="p">,</span> <span class="mf">0.0299</span><span class="p">,</span> <span class="mf">0.0164</span><span class="p">,</span> <span class="mf">0.0223</span><span class="p">,</span> <span class="mf">2.7</span><span class="p">,</span> <span class="mf">4.67</span><span class="p">,</span> <span class="mf">2.54</span><span class="p">,</span> <span class="mf">18.37</span><span class="p">,</span> <span class="mf">1.56</span><span class="p">,</span> <span class="mf">1.6</span><span class="p">,</span> <span class="mf">2.23</span><span class="p">,</span> <span class="mf">2.17</span><span class="p">,</span> <span class="mf">0.81</span><span class="p">,</span> <span class="mf">0.04531</span><span class="p">,</span> <span class="mf">0.05</span><span class="p">,</span> <span class="mf">1.927</span><span class="p">,</span> <span class="mf">0.6</span><span class="p">,</span> <span class="mf">2.55</span><span class="p">,</span> <span class="mf">0.58</span><span class="p">,</span> <span class="mf">0.0384</span><span class="p">,</span> <span class="mf">0.0277</span><span class="p">,</span> <span class="mf">1.79</span><span class="p">,</span> <span class="mf">0.1872</span><span class="p">,</span> <span class="mf">0.6579</span><span class="p">,</span> <span class="mf">0.433</span><span class="p">,</span> <span class="mf">0.226</span><span class="p">,</span> <span class="mf">0.07</span><span class="p">,</span> <span class="mf">0.35061</span><span class="p">,</span> <span class="mf">2.37</span><span class="p">,</span> <span class="mf">2.37</span><span class="p">,</span> <span class="mf">2.3</span><span class="p">,</span> <span class="mf">1.88</span><span class="p">,</span> <span class="mf">7.32</span><span class="p">,</span> <span class="mf">1.525</span><span class="p">,</span> <span class="mf">1.615</span><span class="p">,</span> <span class="mf">0.1</span><span class="p">,</span> <span class="mf">1.636</span><span class="p">,</span> <span class="mf">2.93</span><span class="p">,</span> <span class="mf">4.954</span><span class="p">,</span> <span class="mf">0.0402</span><span class="p">,</span> <span class="mf">0.045</span><span class="p">,</span> <span class="mf">1.21</span><span class="p">,</span> <span class="mf">1.556</span><span class="p">,</span> <span class="mf">1.053</span><span class="p">,</span> <span class="mf">3.87</span><span class="p">,</span> <span class="mf">5.78</span><span class="p">,</span> <span class="mf">1.681</span><span class="p">,</span> <span class="mf">0.33</span><span class="p">,</span> <span class="mf">7.63</span><span class="p">,</span> <span class="mf">6.92</span><span class="p">,</span> <span class="mf">1.06</span><span class="p">,</span> <span class="mf">2.51</span><span class="p">,</span> <span class="mf">2.3</span><span class="p">,</span> <span class="mf">0.25</span><span class="p">,</span> <span class="mf">0.53</span><span class="p">,</span> <span class="mf">0.056</span><span class="p">,</span> <span class="mf">0.49</span><span class="p">,</span> <span class="mf">1.295</span><span class="p">,</span> <span class="mf">2.03</span><span class="p">,</span> <span class="mf">6.0</span><span class="p">,</span> <span class="mf">3.204</span><span class="p">,</span> <span class="mf">3.06</span><span class="p">,</span> <span class="mf">4.85</span><span class="p">,</span> <span class="mf">1.68</span><span class="p">,</span> <span class="mf">3.07</span><span class="p">,</span> <span class="mf">1.97</span><span class="p">,</span> <span class="mf">0.0321</span><span class="p">,</span> <span class="mf">0.0371</span><span class="p">,</span> <span class="mf">0.057</span><span class="p">,</span> <span class="mf">6.1</span><span class="p">,</span> <span class="mf">1.993</span><span class="p">,</span> <span class="mf">0.27</span><span class="p">,</span> <span class="mf">1.768</span><span class="p">,</span> <span class="mf">3.85</span><span class="p">,</span> <span class="mf">5.45</span><span class="p">,</span> <span class="mf">3.097</span><span class="p">,</span> <span class="mf">3.08</span><span class="p">,</span> <span class="mf">2.25</span><span class="p">,</span> <span class="mf">1.112</span><span class="p">,</span> <span class="mf">1.8</span><span class="p">,</span> <span class="mf">8.06</span><span class="p">,</span> <span class="mf">0.508</span><span class="p">,</span> <span class="mf">0.49</span><span class="p">,</span> <span class="mf">1.0</span><span class="p">,</span> <span class="mf">5.64</span><span class="p">,</span> <span class="mf">2.71</span><span class="p">,</span> <span class="mf">0.21</span><span class="p">,</span> <span class="mf">3.93</span><span class="p">,</span> <span class="mf">0.06</span><span class="p">,</span> <span class="mf">0.02</span><span class="p">,</span> <span class="mf">0.02473</span><span class="p">,</span> <span class="mf">0.02026</span><span class="p">,</span> <span class="mf">1.34</span><span class="p">,</span> <span class="mf">4.38</span><span class="p">,</span> <span class="mf">0.01762</span><span class="p">,</span> <span class="mf">7.27</span><span class="p">,</span> <span class="mf">2.7</span><span class="p">,</span> <span class="mf">2.33</span><span class="p">,</span> <span class="mf">1.681</span><span class="p">,</span> <span class="mf">1.959</span><span class="p">,</span> <span class="mf">0.20955</span><span class="p">,</span> <span class="mf">0.34</span><span class="p">,</span> <span class="mf">0.68</span><span class="p">,</span> <span class="mf">0.099</span><span class="p">,</span> <span class="mf">0.01</span><span class="p">,</span> <span class="mf">2.03</span><span class="p">,</span> <span class="mf">1.48</span><span class="p">,</span> <span class="mf">0.92</span><span class="p">,</span> <span class="mf">7.0</span><span class="p">,</span> <span class="mf">14.2</span><span class="p">,</span> <span class="mf">3.6</span><span class="p">,</span> <span class="mf">12.4</span><span class="p">,</span> <span class="mf">1.54</span><span class="p">,</span> <span class="mf">0.2845</span><span class="p">,</span> <span class="mf">2.11</span><span class="p">,</span> <span class="mf">0.11</span><span class="p">,</span> <span class="mf">8.35</span><span class="p">,</span> <span class="mf">0.057</span><span class="p">,</span> <span class="mf">1.11</span><span class="p">,</span> <span class="mf">3.76</span><span class="p">,</span> <span class="mf">3.67</span><span class="p">,</span> <span class="mf">16.88</span><span class="p">,</span> <span class="mf">0.37</span><span class="p">,</span> <span class="mf">0.7</span><span class="p">,</span> <span class="mf">1.82</span><span class="p">,</span> <span class="mf">1.26</span><span class="p">,</span> <span class="mf">5.0</span><span class="p">,</span> <span class="mf">1.26</span><span class="p">,</span> <span class="mf">3.45</span><span class="p">,</span> <span class="mf">10.63</span><span class="p">,</span> <span class="mf">3.74</span><span class="p">,</span> <span class="mf">1.27</span><span class="p">,</span> <span class="mf">20.96</span><span class="p">,</span> <span class="mf">0.717</span><span class="p">,</span> <span class="mf">2.5</span><span class="p">,</span> <span class="mf">0.03</span><span class="p">,</span> <span class="mf">1.964</span><span class="p">,</span> <span class="mf">6.79</span><span class="p">,</span> <span class="mf">2.33</span><span class="p">,</span> <span class="mf">0.44</span><span class="p">,</span> <span class="mf">0.07</span><span class="p">,</span> <span class="mf">1.23</span><span class="p">,</span> <span class="mf">5.69</span><span class="p">,</span> <span class="mf">8.2</span><span class="p">,</span> <span class="mf">1.98</span><span class="p">,</span> <span class="mf">1.56</span><span class="p">,</span> <span class="mf">2.68</span><span class="p">,</span> <span class="mf">0.04</span><span class="p">,</span> <span class="mf">0.36</span><span class="p">,</span> <span class="mf">3.9</span><span class="p">,</span> <span class="mf">1.31</span><span class="p">,</span> <span class="mf">0.59</span><span class="p">,</span> <span class="mf">0.03996</span><span class="p">,</span> <span class="mf">1.42</span><span class="p">,</span> <span class="mf">15.04</span><span class="p">,</span> <span class="mf">0.02712</span><span class="p">,</span> <span class="mf">0.03914</span><span class="p">,</span> <span class="mf">0.02</span><span class="p">,</span> <span class="mf">0.40902</span><span class="p">,</span> <span class="mf">0.5267</span><span class="p">,</span> <span class="mf">9.18</span><span class="p">,</span> <span class="mf">0.428</span><span class="p">,</span> <span class="mf">0.784</span><span class="p">,</span> <span class="mf">9.0</span><span class="p">,</span> <span class="mf">6.0</span><span class="p">,</span> <span class="mf">11.1</span><span class="p">,</span> <span class="mf">1.38</span><span class="p">,</span> <span class="mf">5.98</span><span class="p">,</span> <span class="mf">9.0</span><span class="p">,</span> <span class="mf">0.05915</span><span class="p">,</span> <span class="mf">2.4</span><span class="p">,</span> <span class="mf">23.0</span><span class="p">,</span> <span class="mf">20.5</span><span class="p">,</span> <span class="mf">2.1</span><span class="p">,</span> <span class="mf">5.5</span><span class="p">,</span> <span class="mf">1.09</span><span class="p">,</span> <span class="mf">20.0</span><span class="p">,</span> <span class="mf">21.9987</span><span class="p">,</span> <span class="mf">30.0</span><span class="p">,</span> <span class="mf">3.23</span><span class="p">,</span> <span class="mf">2.27</span><span class="p">,</span> <span class="mf">7.0</span><span class="p">,</span> <span class="mf">10.0</span><span class="p">,</span> <span class="mf">10.0</span><span class="p">,</span> <span class="mf">10.0</span><span class="p">,</span> <span class="mf">5.9</span><span class="p">,</span> <span class="mf">4.5</span><span class="p">,</span> <span class="mf">14.48228</span><span class="p">,</span> <span class="mf">6.3</span><span class="p">,</span> <span class="mf">0.08495</span><span class="p">,</span> <span class="mf">0.02706</span><span class="p">,</span> <span class="mf">0.49</span><span class="p">,</span> <span class="mf">0.5</span><span class="p">,</span> <span class="mf">0.01598</span><span class="p">,</span> <span class="mf">0.02328</span><span class="p">,</span> <span class="mf">0.01816</span><span class="p">,</span> <span class="mf">0.02358</span><span class="p">,</span> <span class="mf">0.02807</span><span class="p">,</span> <span class="mf">0.02363</span><span class="p">,</span> <span class="mf">0.02517</span><span class="p">,</span> <span class="mf">1.4</span><span class="p">,</span> <span class="mf">0.398</span><span class="p">,</span> <span class="mf">1.236</span><span class="p">,</span> <span class="mf">0.86</span><span class="p">,</span> <span class="mf">0.05978</span><span class="p">,</span> <span class="mf">0.04845</span><span class="p">,</span> <span class="mf">1.42</span><span class="p">,</span> <span class="mf">0.223</span><span class="p">,</span> <span class="mf">0.04657</span><span class="p">,</span> <span class="mf">0.02058</span><span class="p">,</span> <span class="mf">0.03545</span><span class="p">,</span> <span class="mf">0.00091</span><span class="p">,</span> <span class="mf">0.028</span><span class="p">,</span> <span class="mf">0.04499</span><span class="p">,</span> <span class="mf">0.09722</span><span class="p">,</span> <span class="mf">0.03046</span><span class="p">,</span> <span class="mf">0.04933</span><span class="p">,</span> <span class="mf">0.02045</span><span class="p">,</span> <span class="mf">0.03367</span><span class="p">,</span> <span class="mf">0.315</span><span class="p">,</span> <span class="mf">0.73</span><span class="p">,</span> <span class="mf">0.0343</span><span class="p">,</span> <span class="mf">0.774</span><span class="p">,</span> <span class="mf">0.02042</span><span class="p">,</span> <span class="mf">0.335</span><span class="p">,</span> <span class="mf">0.579</span><span class="p">,</span> <span class="mf">1.774</span><span class="p">,</span> <span class="mf">3.7</span><span class="p">,</span> <span class="mf">0.01227</span><span class="p">,</span> <span class="mf">0.02454</span><span class="p">,</span> <span class="mf">0.06</span><span class="p">,</span> <span class="mf">0.03115</span><span class="p">,</span> <span class="mf">0.09</span><span class="p">,</span> <span class="mf">0.426</span><span class="p">,</span> <span class="mf">0.06702</span><span class="p">,</span> <span class="mf">1.9</span><span class="p">,</span> <span class="mf">27.23</span><span class="p">,</span> <span class="mf">0.679</span><span class="p">,</span> <span class="mf">0.171</span><span class="p">,</span> <span class="mf">0.95</span><span class="p">,</span> <span class="mf">1.284</span><span class="p">,</span> <span class="mf">1.31</span><span class="p">,</span> <span class="mf">2.75</span><span class="p">,</span> <span class="mf">1.31</span><span class="p">,</span> <span class="mf">1.18</span><span class="p">,</span> <span class="mf">4.07</span><span class="p">,</span> <span class="mf">1.7</span><span class="p">,</span> <span class="mf">3.382</span><span class="p">,</span> <span class="mf">3.91</span><span class="p">,</span> <span class="mf">0.938</span><span class="p">,</span> <span class="mf">5.18</span><span class="p">,</span> <span class="mf">1.94</span><span class="p">,</span> <span class="mf">0.902</span><span class="p">,</span> <span class="mf">0.52</span><span class="p">,</span> <span class="mf">3.71</span><span class="p">,</span> <span class="mf">1.39</span><span class="p">,</span> <span class="mf">0.66</span><span class="p">,</span> <span class="mf">2.88</span><span class="p">,</span> <span class="mf">7.693</span><span class="p">,</span> <span class="mf">11.8</span><span class="p">,</span> <span class="mf">18.0</span><span class="p">,</span> <span class="mf">3.283</span><span class="p">,</span> <span class="mf">7.0</span><span class="p">,</span> <span class="mf">4.57</span><span class="p">,</span> <span class="mf">15.49</span><span class="p">,</span> <span class="mf">0.10698</span><span class="p">,</span> <span class="mf">2.0</span><span class="p">,</span> <span class="mf">0.71</span><span class="p">,</span> <span class="mf">0.348</span><span class="p">,</span> <span class="mf">1.1</span><span class="p">,</span> <span class="mf">1.45</span><span class="p">,</span> <span class="mf">9.28</span><span class="p">,</span> <span class="mf">0.027</span><span class="p">,</span> <span class="mf">0.626</span><span class="p">,</span> <span class="mf">0.01447</span><span class="p">,</span> <span class="mf">0.02832</span><span class="p">,</span> <span class="mf">1.93</span><span class="p">,</span> <span class="mf">0.0014</span><span class="p">,</span> <span class="mf">0.0021</span><span class="p">,</span> <span class="mf">0.033</span><span class="p">,</span> <span class="mf">0.049</span><span class="p">,</span> <span class="mf">0.334</span><span class="p">,</span> <span class="mf">0.11</span><span class="p">,</span> <span class="mf">1.09</span><span class="p">,</span> <span class="mf">0.022</span><span class="p">,</span> <span class="mf">0.0145</span><span class="p">,</span> <span class="mf">0.054</span><span class="p">,</span> <span class="mf">0.023</span><span class="p">,</span> <span class="mf">0.02218</span><span class="p">,</span> <span class="mf">0.00944</span><span class="p">,</span> <span class="mf">0.16</span><span class="p">,</span> <span class="mf">0.01</span><span class="p">,</span> <span class="mf">0.01353</span><span class="p">,</span> <span class="mf">0.00944</span><span class="p">,</span> <span class="mf">0.012</span><span class="p">,</span> <span class="mf">0.028</span><span class="p">,</span> <span class="mf">0.01636</span><span class="p">,</span> <span class="mf">0.031</span><span class="p">,</span> <span class="mf">0.114</span><span class="p">,</span> <span class="mf">0.01447</span><span class="p">,</span> <span class="mf">0.01668</span><span class="p">,</span> <span class="mf">0.033</span><span class="p">,</span> <span class="mf">0.02549</span><span class="p">,</span> <span class="mf">0.035</span><span class="p">,</span> <span class="mf">0.01104</span><span class="p">,</span> <span class="mf">0.02954</span><span class="p">,</span> <span class="mf">0.01196</span><span class="p">,</span> <span class="mf">0.02706</span><span class="p">,</span> <span class="mf">0.02297</span><span class="p">,</span> <span class="mf">0.06859</span><span class="p">,</span> <span class="mf">0.006</span><span class="p">,</span> <span class="mf">0.009</span><span class="p">,</span> <span class="mf">0.023</span><span class="p">,</span> <span class="mf">0.025</span><span class="p">,</span> <span class="mf">0.006</span><span class="p">,</span> <span class="mf">0.079</span><span class="p">,</span> <span class="mf">0.037</span><span class="p">,</span> <span class="mf">0.02737</span><span class="p">,</span> <span class="mf">0.009</span><span class="p">,</span> <span class="mf">0.012</span><span class="p">,</span> <span class="mf">0.094</span><span class="p">,</span> <span class="mf">1.84</span><span class="p">,</span> <span class="mf">0.432</span><span class="p">,</span> <span class="mf">0.113</span><span class="p">,</span> <span class="mf">0.00242</span><span class="p">,</span> <span class="mf">0.00283</span><span class="p">,</span> <span class="mf">0.051</span><span class="p">,</span> <span class="mf">0.026</span><span class="p">,</span> <span class="mf">0.00021</span><span class="p">,</span> <span class="mf">0.0062</span><span class="p">,</span> <span class="mf">0.00201</span><span class="p">,</span> <span class="mf">8.4</span><span class="p">,</span> <span class="mf">0.117</span><span class="p">,</span> <span class="mf">0.25</span><span class="p">,</span> <span class="mf">0.66</span><span class="p">,</span> <span class="mf">0.333</span><span class="p">,</span> <span class="mf">1.51968</span><span class="p">,</span> <span class="mf">0.5</span><span class="p">,</span> <span class="mf">0.01573</span><span class="p">,</span> <span class="mf">0.15291</span><span class="p">,</span> <span class="mf">5.88</span><span class="p">,</span> <span class="mf">2.45</span><span class="p">,</span> <span class="mf">0.006</span><span class="p">,</span> <span class="mf">0.024</span><span class="p">,</span> <span class="mf">0.022</span><span class="p">,</span> <span class="mf">0.054</span><span class="p">,</span> <span class="mf">0.052</span><span class="p">,</span> <span class="mf">0.02643</span><span class="p">,</span> <span class="mf">0.04122</span><span class="p">,</span> <span class="mf">0.07079</span><span class="p">,</span> <span class="mf">0.03052</span><span class="p">,</span> <span class="mf">0.04012</span><span class="p">,</span> <span class="mf">0.03168</span><span class="p">,</span> <span class="mf">0.0628</span><span class="p">,</span> <span class="mf">0.01598</span><span class="p">,</span> <span class="mf">0.113</span><span class="p">,</span> <span class="mf">0.02328</span><span class="p">,</span> <span class="mf">0.01605</span><span class="p">,</span> <span class="mf">0.02517</span><span class="p">,</span> <span class="mf">0.0151</span><span class="p">,</span> <span class="mf">0.8</span><span class="p">,</span> <span class="mf">2.7</span><span class="p">,</span> <span class="mf">0.534</span><span class="p">,</span> <span class="mf">0.042</span><span class="p">,</span> <span class="mf">1.6</span><span class="p">,</span> <span class="mf">1.6</span><span class="p">,</span> <span class="mf">0.0275</span><span class="p">,</span> <span class="mf">0.0479</span><span class="p">,</span> <span class="mf">0.226</span><span class="p">,</span> <span class="mf">0.01611</span><span class="p">,</span> <span class="mf">0.01951</span><span class="p">,</span> <span class="mf">9.11</span><span class="p">,</span> <span class="mf">13.8</span><span class="p">,</span> <span class="mf">0.052</span><span class="p">,</span> <span class="mf">0.051</span><span class="p">,</span> <span class="mf">0.275</span><span class="p">,</span> <span class="mf">0.202</span><span class="p">,</span> <span class="mf">0.155</span><span class="p">,</span> <span class="mf">0.118</span><span class="p">,</span> <span class="mf">1.51</span><span class="p">,</span> <span class="mf">1.36</span><span class="p">,</span> <span class="mf">0.192</span><span class="p">,</span> <span class="mf">0.177</span><span class="p">,</span> <span class="mf">0.023</span><span class="p">,</span> <span class="mf">0.42</span><span class="p">,</span> <span class="mf">0.013</span><span class="p">,</span> <span class="mf">0.01419</span><span class="p">,</span> <span class="mf">0.01259</span><span class="p">,</span> <span class="mf">0.036</span><span class="p">,</span> <span class="mf">2.01</span><span class="p">,</span> <span class="mf">0.073</span><span class="p">,</span> <span class="mf">0.033</span><span class="p">,</span> <span class="mf">0.019</span><span class="p">,</span> <span class="mf">0.02341</span><span class="p">,</span> <span class="mf">0.01145</span><span class="p">,</span> <span class="mf">4.7</span><span class="p">,</span> <span class="mf">6.8</span><span class="p">,</span> <span class="mf">4.1</span><span class="p">,</span> <span class="mf">0.5</span><span class="p">,</span> <span class="mf">0.09</span><span class="p">,</span> <span class="mf">0.124</span><span class="p">,</span> <span class="mf">0.027</span><span class="p">,</span> <span class="mf">0.22</span><span class="p">,</span> <span class="mf">0.127</span><span class="p">,</span> <span class="mf">0.019</span><span class="p">,</span> <span class="mf">0.047</span><span class="p">,</span> <span class="mf">0.014</span><span class="p">,</span> <span class="mf">0.025</span><span class="p">,</span> <span class="mf">0.01</span><span class="p">,</span> <span class="mf">0.03776</span><span class="p">,</span> <span class="mf">0.03839</span><span class="p">,</span> <span class="mf">0.384</span><span class="p">,</span> <span class="mf">20.1</span><span class="p">,</span> <span class="mf">0.238</span><span class="p">,</span> <span class="mf">0.056</span><span class="p">,</span> <span class="mf">0.077</span><span class="p">,</span> <span class="mf">2.2</span><span class="p">,</span> <span class="mf">0.02</span><span class="p">,</span> <span class="mf">0.009</span><span class="p">,</span> <span class="mf">0.01007</span><span class="p">,</span> <span class="mf">12.6</span><span class="p">,</span> <span class="mf">0.01573</span><span class="p">,</span> <span class="mf">0.06922</span><span class="p">,</span> <span class="mf">0.56</span><span class="p">,</span> <span class="mf">0.08055</span><span class="p">,</span> <span class="mf">0.08306</span><span class="p">,</span> <span class="mf">0.04782</span><span class="p">,</span> <span class="mf">0.03398</span><span class="p">,</span> <span class="mf">0.941</span><span class="p">,</span> <span class="mf">0.211</span><span class="p">,</span> <span class="mf">0.011</span><span class="p">,</span> <span class="mf">0.094</span><span class="p">,</span> <span class="mf">0.377</span><span class="p">,</span> <span class="mf">0.183</span><span class="p">,</span> <span class="mf">0.035</span><span class="p">,</span> <span class="mf">1.1</span><span class="p">,</span> <span class="mf">2.5</span><span class="p">,</span> <span class="mf">7.3</span><span class="p">,</span> <span class="mf">0.43</span><span class="p">,</span> <span class="mf">0.595</span><span class="p">,</span> <span class="mf">1.03</span><span class="p">,</span> <span class="mf">6.97</span><span class="p">,</span> <span class="mf">0.25</span><span class="p">,</span> <span class="mf">0.34</span><span class="p">,</span> <span class="mf">0.29</span><span class="p">,</span> <span class="mf">1.27</span><span class="p">,</span> <span class="mf">3.23</span><span class="p">,</span> <span class="mf">5.41</span><span class="p">,</span> <span class="mf">2.43</span><span class="p">,</span> <span class="mf">2.82</span><span class="p">,</span> <span class="mf">2.86</span><span class="p">,</span> <span class="mf">0.84</span><span class="p">,</span> <span class="mf">1.0</span><span class="p">,</span> <span class="mf">1.37</span><span class="p">,</span> <span class="mf">22.0</span><span class="p">,</span> <span class="mf">0.505</span><span class="p">,</span> <span class="mf">0.05034</span><span class="p">,</span> <span class="mf">0.02</span><span class="p">,</span> <span class="mf">4.46</span><span class="p">,</span> <span class="mf">6.0</span><span class="p">,</span> <span class="mf">0.376</span><span class="p">,</span> <span class="mf">0.00651</span><span class="p">,</span> <span class="mf">0.00997</span><span class="p">,</span> <span class="mf">0.05984</span><span class="p">,</span> <span class="mf">0.0124</span><span class="p">,</span> <span class="mf">0.04597</span><span class="p">,</span> <span class="mf">0.025</span><span class="p">,</span> <span class="mf">2.067</span><span class="p">,</span> <span class="mf">0.98</span><span class="p">,</span> <span class="mf">0.72</span><span class="p">,</span> <span class="mf">2.111</span><span class="p">,</span> <span class="mf">0.007</span><span class="p">,</span> <span class="mf">0.013</span><span class="p">,</span> <span class="mf">0.024</span><span class="p">,</span> <span class="mf">8.7</span><span class="p">,</span> <span class="mf">10.41</span><span class="p">,</span> <span class="mf">18.41</span><span class="p">,</span> <span class="mf">15.74</span><span class="p">,</span> <span class="mf">0.03335</span><span class="p">,</span> <span class="mf">0.97</span><span class="p">,</span> <span class="mf">2.4</span><span class="p">,</span> <span class="mf">0.92</span><span class="p">,</span> <span class="mf">0.37</span><span class="p">,</span> <span class="mf">1.49</span><span class="p">,</span> <span class="mf">1.11</span><span class="p">,</span> <span class="mf">0.07</span><span class="p">,</span> <span class="mf">0.57</span><span class="p">,</span> <span class="mf">5.61</span><span class="p">,</span> <span class="mf">18.86</span><span class="p">,</span> <span class="mf">6.95</span><span class="p">,</span> <span class="mf">1.39</span><span class="p">,</span> <span class="mf">2.19</span><span class="p">,</span> <span class="mf">2.05</span><span class="p">,</span> <span class="mf">1.37</span><span class="p">,</span> <span class="mf">0.668</span><span class="p">,</span> <span class="mf">0.01318</span><span class="p">,</span> <span class="mf">0.01211</span><span class="p">,</span> <span class="mf">0.01309</span><span class="p">,</span> <span class="mf">0.03</span><span class="p">,</span> <span class="mf">0.013</span><span class="p">,</span> <span class="mf">0.044</span><span class="p">,</span> <span class="mf">0.113</span><span class="p">,</span> <span class="mf">0.11</span><span class="p">,</span> <span class="mf">0.378</span><span class="p">,</span> <span class="mf">0.82</span><span class="p">,</span> <span class="mf">0.02407</span><span class="p">,</span> <span class="mf">0.00642</span><span class="p">,</span> <span class="mf">0.77</span><span class="p">,</span> <span class="mf">0.441</span><span class="p">,</span> <span class="mf">0.63</span><span class="p">,</span> <span class="mf">10.1</span><span class="p">,</span> <span class="mf">2.01</span><span class="p">,</span> <span class="mf">0.43</span><span class="p">,</span> <span class="mf">0.01</span><span class="p">,</span> <span class="mf">0.0343</span><span class="p">,</span> <span class="mf">0.019</span><span class="p">,</span> <span class="mf">0.019</span><span class="p">,</span> <span class="mf">0.013</span><span class="p">,</span> <span class="mf">0.59</span><span class="p">,</span> <span class="mf">0.0218</span><span class="p">,</span> <span class="mf">0.02121</span><span class="p">,</span> <span class="mf">0.02124</span><span class="p">,</span> <span class="mf">0.01299</span><span class="p">,</span> <span class="mf">0.03823</span><span class="p">,</span> <span class="mf">0.04373</span><span class="p">,</span> <span class="mf">0.06576</span><span class="p">,</span> <span class="mf">1.02</span><span class="p">,</span> <span class="mf">0.02</span><span class="p">,</span> <span class="mf">0.13655</span><span class="p">,</span> <span class="mf">0.09408</span><span class="p">,</span> <span class="mf">0.81</span><span class="p">,</span> <span class="mf">0.202</span><span class="p">,</span> <span class="mf">0.019</span><span class="p">,</span> <span class="mf">0.01</span><span class="p">,</span> <span class="mf">3.0</span><span class="p">,</span> <span class="mf">0.034</span><span class="p">,</span> <span class="mf">9.836</span><span class="p">,</span> <span class="mf">0.041</span><span class="p">,</span> <span class="mf">0.027</span><span class="p">,</span> <span class="mf">0.011</span><span class="p">,</span> <span class="mf">1.08</span><span class="p">,</span> <span class="mf">0.011</span><span class="p">,</span> <span class="mf">0.019</span><span class="p">,</span> <span class="mf">0.01447</span><span class="p">,</span> <span class="mf">0.02196</span><span class="p">,</span> <span class="mf">0.00569</span><span class="p">,</span> <span class="mf">0.04185</span><span class="p">,</span> <span class="mf">0.00692</span><span class="p">,</span> <span class="mf">0.81</span><span class="p">,</span> <span class="mf">3.7</span><span class="p">,</span> <span class="mf">0.01</span><span class="p">,</span> <span class="mf">0.83</span><span class="p">,</span> <span class="mf">0.07362</span><span class="p">,</span> <span class="mf">4.1</span><span class="p">,</span> <span class="mf">0.033</span><span class="p">,</span> <span class="mf">0.16</span><span class="p">,</span> <span class="mf">2.56</span><span class="p">,</span> <span class="mf">11.0</span><span class="p">,</span> <span class="mf">0.54</span><span class="p">,</span> <span class="mf">0.02895</span><span class="p">,</span> <span class="mf">0.27</span><span class="p">,</span> <span class="mf">1.5</span><span class="p">,</span> <span class="mf">0.09439</span><span class="p">,</span> <span class="mf">0.05663</span><span class="p">,</span> <span class="mf">0.05663</span><span class="p">,</span> <span class="mf">4.8</span><span class="p">,</span> <span class="mf">11.6</span><span class="p">,</span> <span class="mf">8.4</span><span class="p">,</span> <span class="mf">0.02108</span><span class="p">,</span> <span class="mf">0.01007</span><span class="p">,</span> <span class="mf">0.10603</span><span class="p">,</span> <span class="mf">2.8</span><span class="p">,</span> <span class="mf">0.62</span><span class="p">,</span> <span class="mf">3.7</span><span class="p">,</span> <span class="mf">0.6</span><span class="p">,</span> <span class="mf">23.7</span><span class="p">,</span> <span class="mf">6.69</span><span class="p">,</span> <span class="mf">2.18</span><span class="p">,</span> <span class="mf">0.32</span><span class="p">,</span> <span class="mf">0.4</span><span class="p">,</span> <span class="mf">0.46</span><span class="p">,</span> <span class="mf">0.812</span><span class="p">,</span> <span class="mf">0.74</span><span class="p">,</span> <span class="mf">2.38</span><span class="p">,</span> <span class="mf">0.06481</span><span class="p">,</span> <span class="mf">0.229</span><span class="p">,</span> <span class="mf">1.339</span><span class="p">,</span> <span class="mf">0.93</span><span class="p">,</span> <span class="mf">2.9</span><span class="p">,</span> <span class="mf">7.33</span><span class="p">,</span> <span class="mf">2.3</span><span class="p">,</span> <span class="mf">14.15</span><span class="p">,</span> <span class="mf">2.66</span><span class="p">,</span> <span class="mf">5.54</span><span class="p">,</span> <span class="mf">2.6</span><span class="p">,</span> <span class="mf">3.8</span><span class="p">,</span> <span class="mf">0.04436</span><span class="p">,</span> <span class="mf">0.017</span><span class="p">,</span> <span class="mf">0.73</span><span class="p">,</span> <span class="mf">0.27</span><span class="p">,</span> <span class="mf">0.25171</span><span class="p">,</span> <span class="mf">0.06</span><span class="p">,</span> <span class="mf">0.18</span><span class="p">,</span> <span class="mf">4.6</span><span class="p">,</span> <span class="mf">0.19</span><span class="p">,</span> <span class="mf">0.53</span><span class="p">,</span> <span class="mf">0.88</span><span class="p">,</span> <span class="mf">0.145</span><span class="p">,</span> <span class="mf">0.86</span><span class="p">,</span> <span class="mf">1.85</span><span class="p">,</span> <span class="mf">2.73</span><span class="p">,</span> <span class="mf">0.39</span><span class="p">,</span> <span class="mf">0.47</span><span class="p">,</span> <span class="mf">0.11012</span><span class="p">,</span> <span class="mf">12.569</span><span class="p">,</span> <span class="mf">0.29</span><span class="p">,</span> <span class="mf">0.0073</span><span class="p">,</span> <span class="mf">0.64</span><span class="p">,</span> <span class="mf">2.7</span><span class="p">,</span> <span class="mf">0.51</span><span class="p">,</span> <span class="mf">3.09</span><span class="p">,</span> <span class="mf">0.17399</span><span class="p">,</span> <span class="mf">0.26335</span><span class="p">,</span> <span class="mf">0.56</span><span class="p">,</span> <span class="mf">0.72</span><span class="p">,</span> <span class="mf">3.4</span><span class="p">,</span> <span class="mf">0.06607</span><span class="p">,</span> <span class="mf">2.54</span><span class="p">,</span> <span class="mf">0.05632</span><span class="p">,</span> <span class="mf">4.1</span><span class="p">,</span> <span class="mf">4.18</span><span class="p">,</span> <span class="mf">0.43</span><span class="p">,</span> <span class="mf">13.38</span><span class="p">,</span> <span class="mf">0.0045</span><span class="p">,</span> <span class="mf">0.01029</span><span class="p">,</span> <span class="mf">0.401</span><span class="p">,</span> <span class="mf">0.02832</span><span class="p">,</span> <span class="mf">1.59</span><span class="p">,</span> <span class="mf">0.014</span><span class="p">,</span> <span class="mf">0.75</span><span class="p">,</span> <span class="mf">0.04383</span><span class="p">,</span> <span class="mf">4.8</span><span class="p">,</span> <span class="mf">1.8</span><span class="p">,</span> <span class="mf">2.8</span><span class="p">,</span> <span class="mf">1.39</span><span class="p">,</span> <span class="mf">0.62</span><span class="p">,</span> <span class="mf">1.26</span><span class="p">,</span> <span class="mf">1.18</span><span class="p">,</span> <span class="mf">1.01</span><span class="p">,</span> <span class="mf">1.03</span><span class="p">,</span> <span class="mf">4.5</span><span class="p">,</span> <span class="mf">14.0</span><span class="p">,</span> <span class="mf">8.0</span><span class="p">,</span> <span class="mf">10.48949</span><span class="p">,</span> <span class="mf">0.531</span><span class="p">,</span> <span class="mf">2.31</span><span class="p">,</span> <span class="mf">0.0062</span><span class="p">,</span> <span class="mf">6e-05</span><span class="p">,</span> <span class="mf">0.01353</span><span class="p">,</span> <span class="mf">0.01227</span><span class="p">,</span> <span class="mf">2.5</span><span class="p">,</span> <span class="mf">1.2</span><span class="p">,</span> <span class="mf">0.7949</span><span class="p">,</span> <span class="mf">0.54</span><span class="p">,</span> <span class="mf">1.88</span><span class="p">,</span> <span class="mf">7.79</span><span class="p">,</span> <span class="mf">0.004</span><span class="p">,</span> <span class="mf">1.294</span><span class="p">,</span> <span class="mf">0.736</span><span class="p">,</span> <span class="mf">2.494</span><span class="p">,</span> <span class="mf">4.31</span><span class="p">,</span> <span class="mf">6.1</span><span class="p">,</span> <span class="mf">4.32</span><span class="p">,</span> <span class="mf">0.668</span><span class="p">,</span> <span class="mf">1.88</span><span class="p">,</span> <span class="mf">0.371</span><span class="p">,</span> <span class="mf">1.19</span><span class="p">,</span> <span class="mf">16.0</span><span class="p">,</span> <span class="mf">9.0</span><span class="p">,</span> <span class="mf">4.2</span><span class="p">,</span> <span class="mf">0.0044</span><span class="p">,</span> <span class="mf">6.28536</span><span class="p">,</span> <span class="mf">13.0</span><span class="p">,</span> <span class="mf">9.7</span><span class="p">,</span> <span class="mf">3.8</span><span class="p">,</span> <span class="mf">1.66</span><span class="p">,</span> <span class="mf">0.02895</span><span class="p">,</span> <span class="mf">0.02989</span><span class="p">,</span> <span class="mf">0.02086</span><span class="p">,</span> <span class="mf">0.04279</span><span class="p">,</span> <span class="mf">2.51</span><span class="p">,</span> <span class="mf">1.22</span><span class="p">,</span> <span class="mf">5.42</span><span class="p">,</span> <span class="mf">0.62927</span><span class="p">,</span> <span class="mf">0.09439</span><span class="p">,</span> <span class="mf">0.00267</span><span class="p">,</span> <span class="mf">0.00434</span><span class="p">,</span> <span class="mf">0.00129</span><span class="p">,</span> <span class="mf">0.00195</span><span class="p">,</span> <span class="mf">0.00214</span><span class="p">,</span> <span class="mf">0.00422</span><span class="p">,</span> <span class="mf">2.5</span><span class="p">,</span> <span class="mf">10.0</span><span class="p">,</span> <span class="mf">3.42</span><span class="p">,</span> <span class="mf">5.4</span><span class="p">,</span> <span class="mf">10.78</span><span class="p">,</span> <span class="mf">0.0033</span><span class="p">,</span> <span class="mf">0.00349</span><span class="p">,</span> <span class="mf">0.84</span><span class="p">,</span> <span class="mf">1.49</span><span class="p">,</span> <span class="mf">1.91</span><span class="p">,</span> <span class="mf">0.78</span><span class="p">,</span> <span class="mf">1.79</span><span class="p">,</span> <span class="mf">1.28</span><span class="p">,</span> <span class="mf">14.0</span><span class="p">,</span> <span class="mf">15.0</span><span class="p">,</span> <span class="mf">16.0</span><span class="p">,</span> <span class="mf">6.3</span><span class="p">,</span> <span class="mf">7.7</span><span class="p">,</span> <span class="mf">3.2</span><span class="p">,</span> <span class="mf">0.7</span><span class="p">,</span> <span class="mf">11.2</span><span class="p">,</span> <span class="mf">0.854</span><span class="p">,</span> <span class="mf">3.15</span><span class="p">,</span> <span class="mf">1.26</span><span class="p">,</span> <span class="mf">0.51</span><span class="p">,</span> <span class="mf">1.49</span><span class="p">,</span> <span class="mf">1.272</span><span class="p">,</span> <span class="mf">1.8</span><span class="p">,</span> <span class="mf">1.62</span><span class="p">,</span> <span class="mf">0.12</span><span class="p">,</span> <span class="mf">0.79</span><span class="p">,</span> <span class="mf">0.475</span><span class="p">,</span> <span class="mf">1.769</span><span class="p">,</span> <span class="mf">0.3</span><span class="p">,</span> <span class="mf">0.514</span><span class="p">,</span> <span class="mf">1.23</span><span class="p">,</span> <span class="mf">1.465</span><span class="p">,</span> <span class="mf">4.85</span><span class="p">,</span> <span class="mf">1.183</span><span class="p">,</span> <span class="mf">0.899</span><span class="p">,</span> <span class="mf">0.6</span><span class="p">,</span> <span class="mf">0.28411</span><span class="p">,</span> <span class="mf">0.20199</span><span class="p">,</span> <span class="mf">0.18</span><span class="p">,</span> <span class="mf">1.0</span><span class="p">,</span> <span class="mf">0.36</span><span class="p">,</span> <span class="mf">1.23</span><span class="p">,</span> <span class="mf">0.27</span><span class="p">,</span> <span class="mf">0.41</span><span class="p">,</span> <span class="mf">1.16</span><span class="p">,</span> <span class="mf">1.9</span><span class="p">,</span> <span class="mf">1.51</span><span class="p">,</span> <span class="mf">1.22</span><span class="p">,</span> <span class="mf">0.117</span><span class="p">,</span> <span class="mf">8.84</span><span class="p">,</span> <span class="mf">2.44</span><span class="p">,</span> <span class="mf">2.69</span><span class="p">,</span> <span class="mf">0.84</span><span class="p">,</span> <span class="mf">0.44</span><span class="p">,</span> <span class="mf">0.89</span><span class="p">,</span> <span class="mf">0.275</span><span class="p">,</span> <span class="mf">0.54</span><span class="p">,</span> <span class="mf">0.31</span><span class="p">,</span> <span class="mf">0.39</span><span class="p">,</span> <span class="mf">0.128</span><span class="p">,</span> <span class="mf">2.79</span><span class="p">,</span> <span class="mf">0.55</span><span class="p">,</span> <span class="mf">1.24</span><span class="p">,</span> <span class="mf">0.278</span><span class="p">,</span> <span class="mf">2.49</span><span class="p">,</span> <span class="mf">5.2</span><span class="p">,</span> <span class="mf">1.87</span><span class="p">,</span> <span class="mf">2.13</span><span class="p">,</span> <span class="mf">0.658</span><span class="p">,</span> <span class="mf">0.101</span><span class="p">,</span> <span class="mf">8.0</span><span class="p">,</span> <span class="mf">0.42</span><span class="p">,</span> <span class="mf">0.561</span><span class="p">,</span> <span class="mf">0.78</span><span class="p">,</span> <span class="mf">1.6</span><span class="p">,</span> <span class="mf">1.084</span><span class="p">,</span> <span class="mf">0.47</span><span class="p">,</span> <span class="mf">3.69</span><span class="p">,</span> <span class="mf">1.3</span><span class="p">,</span> <span class="mf">0.99</span><span class="p">,</span> <span class="mf">0.508</span><span class="p">,</span> <span class="mf">1.66</span><span class="p">,</span> <span class="mf">10.42954</span><span class="p">,</span> <span class="mf">0.17368</span><span class="p">,</span> <span class="mf">0.9</span><span class="p">,</span> <span class="mf">0.299</span><span class="p">,</span> <span class="mf">0.148</span><span class="p">,</span> <span class="mf">0.502</span><span class="p">,</span> <span class="mf">0.57</span><span class="p">,</span> <span class="mf">0.98</span><span class="p">,</span> <span class="mf">1.069</span><span class="p">,</span> <span class="mf">1.0</span><span class="p">,</span> <span class="mf">2.3</span><span class="p">,</span> <span class="mf">0.931</span><span class="p">,</span> <span class="mf">0.311</span><span class="p">,</span> <span class="mf">0.3</span><span class="p">,</span> <span class="mf">0.67</span><span class="p">,</span> <span class="mf">0.884</span><span class="p">,</span> <span class="mf">1.24</span><span class="p">,</span> <span class="mf">0.44</span><span class="p">,</span> <span class="mf">0.85</span><span class="p">,</span> <span class="mf">0.907</span><span class="p">,</span> <span class="mf">0.23</span><span class="p">,</span> <span class="mf">2.43</span><span class="p">,</span> <span class="mf">0.478</span><span class="p">,</span> <span class="mf">2.63</span><span class="p">,</span> <span class="mf">2.093</span><span class="p">,</span> <span class="mf">0.56</span><span class="p">,</span> <span class="mf">0.71</span><span class="p">,</span> <span class="mf">2.361</span><span class="p">,</span> <span class="mf">1.8</span><span class="p">,</span> <span class="mf">3.44</span><span class="p">,</span> <span class="mf">0.28</span><span class="p">,</span> <span class="mf">1.186</span><span class="p">,</span> <span class="mf">0.85</span><span class="p">,</span> <span class="mf">3.18</span><span class="p">,</span> <span class="mf">0.527</span><span class="p">,</span> <span class="mf">1.78</span><span class="p">,</span> <span class="mf">0.87</span><span class="p">,</span> <span class="mf">0.964</span><span class="p">,</span> <span class="mf">1.91</span><span class="p">,</span> <span class="mf">1.14243</span><span class="p">,</span> <span class="mf">1.25287</span><span class="p">,</span> <span class="mf">0.04122</span><span class="p">,</span> <span class="mf">0.02149</span><span class="p">,</span> <span class="mf">0.8</span><span class="p">,</span> <span class="mf">0.37</span><span class="p">,</span> <span class="mf">1.58</span><span class="p">,</span> <span class="mf">1.4688</span><span class="p">,</span> <span class="mf">0.46</span><span class="p">,</span> <span class="mf">2.132</span><span class="p">,</span> <span class="mf">16.35</span><span class="p">,</span> <span class="mf">0.59</span><span class="p">,</span> <span class="mf">0.61</span><span class="p">,</span> <span class="mf">0.45</span><span class="p">,</span> <span class="mf">0.644</span><span class="p">,</span> <span class="mf">0.97</span><span class="p">,</span> <span class="mf">0.863</span><span class="p">,</span> <span class="mf">0.37</span><span class="p">,</span> <span class="mf">0.55</span><span class="p">,</span> <span class="mf">2.68</span><span class="p">,</span> <span class="mf">0.52</span><span class="p">,</span> <span class="mf">0.37</span><span class="p">,</span> <span class="mf">1.271</span><span class="p">,</span> <span class="mf">1.55</span><span class="p">,</span> <span class="mf">2.35</span><span class="p">,</span> <span class="mf">0.43</span><span class="p">,</span> <span class="mf">1.08</span><span class="p">,</span> <span class="mf">0.29</span><span class="p">,</span> <span class="mf">0.96</span><span class="p">,</span> <span class="mf">0.59</span><span class="p">,</span> <span class="mf">1.39</span><span class="p">,</span> <span class="mf">2.3</span><span class="p">,</span> <span class="mf">2.86</span><span class="p">,</span> <span class="mf">0.72</span><span class="p">,</span> <span class="mf">1.07</span><span class="p">,</span> <span class="mf">0.92</span><span class="p">,</span> <span class="mf">2.29</span><span class="p">,</span> <span class="mf">1.11</span><span class="p">,</span> <span class="mf">0.85</span><span class="p">,</span> <span class="mf">2.54</span><span class="p">,</span> <span class="mf">9.45</span><span class="p">,</span> <span class="mf">0.538</span><span class="p">,</span> <span class="mf">0.729</span><span class="p">,</span> <span class="mf">1.17</span><span class="p">,</span> <span class="mf">0.3</span><span class="p">,</span> <span class="mf">0.694</span><span class="p">,</span> <span class="mf">1.265</span><span class="p">,</span> <span class="mf">2.18</span><span class="p">,</span> <span class="mf">0.42</span><span class="p">,</span> <span class="mf">5.9</span><span class="p">,</span> <span class="mf">0.63</span><span class="p">,</span> <span class="mf">1.34</span><span class="p">,</span> <span class="mf">0.805</span><span class="p">,</span> <span class="mf">1.47</span><span class="p">,</span> <span class="mf">0.5</span><span class="p">,</span> <span class="mf">0.618</span><span class="p">,</span> <span class="mf">1.44</span><span class="p">,</span> <span class="mf">0.48</span><span class="p">,</span> <span class="mf">1.36</span><span class="p">,</span> <span class="mf">0.922</span><span class="p">,</span> <span class="mf">2.43</span><span class="p">,</span> <span class="mf">7.5</span><span class="p">,</span> <span class="mf">22.0</span><span class="p">,</span> <span class="mf">4.01</span><span class="p">,</span> <span class="mf">1.12</span><span class="p">,</span> <span class="mf">0.00601</span><span class="p">,</span> <span class="mf">0.01073</span><span class="p">,</span> <span class="mf">0.02423</span><span class="p">,</span> <span class="mf">0.83</span><span class="p">,</span> <span class="mf">0.566</span><span class="p">,</span> <span class="mf">0.26</span><span class="p">,</span> <span class="mf">1.37</span><span class="p">,</span> <span class="mf">7.29</span><span class="p">,</span> <span class="mf">1.42</span><span class="p">,</span> <span class="mf">1.19</span><span class="p">,</span> <span class="mf">4.4</span><span class="p">,</span> <span class="mf">0.709</span><span class="p">,</span> <span class="mf">0.00236</span><span class="p">,</span> <span class="mf">0.00308</span><span class="p">,</span> <span class="mf">0.00359</span><span class="p">,</span> <span class="mf">1.8</span><span class="p">,</span> <span class="mf">6.47</span><span class="p">,</span> <span class="mf">7.8</span><span class="p">,</span> <span class="mf">9.0</span><span class="p">,</span> <span class="mf">6.1</span><span class="p">,</span> <span class="mf">6.7</span><span class="p">,</span> <span class="mf">1.55</span><span class="p">,</span> <span class="mf">3.25</span><span class="p">,</span> <span class="mf">7.6</span><span class="p">,</span> <span class="mf">8.78</span><span class="p">,</span> <span class="mf">1.85</span><span class="p">,</span> <span class="mf">1.02</span><span class="p">,</span> <span class="mf">4.58</span><span class="p">,</span> <span class="mf">8.82</span><span class="p">,</span> <span class="mf">13.616</span><span class="p">,</span> <span class="mf">1.811</span><span class="p">,</span> <span class="mf">2.4</span><span class="p">,</span> <span class="mf">22.206</span><span class="p">,</span> <span class="mf">24.662</span><span class="p">,</span> <span class="mf">1.7</span><span class="p">,</span> <span class="mf">1.5</span><span class="p">,</span> <span class="mf">4.1</span><span class="p">,</span> <span class="mf">0.01517</span><span class="p">,</span> <span class="mf">1.53</span><span class="p">,</span> <span class="mf">1.0449</span><span class="p">,</span> <span class="mf">0.07866</span><span class="p">,</span> <span class="mf">4.32</span><span class="p">,</span> <span class="mf">0.01237</span><span class="p">,</span> <span class="mf">0.01237</span><span class="p">,</span> <span class="mf">0.00551</span><span class="p">,</span> <span class="mf">0.00576</span><span class="p">,</span> <span class="mf">20.6</span><span class="p">,</span> <span class="mf">0.6876</span><span class="p">,</span> <span class="mf">1.981</span><span class="p">,</span> <span class="mf">4.132</span><span class="p">,</span> <span class="mf">2.8</span><span class="p">]</span>
+</pre></div>
+</div>
+</div>
+</div>
+</section>
+<section id="task-adding-complexity-3-points">
+<h3>✅  3.3 Task: Adding Complexity (3 points)<a class="headerlink" href="#task-adding-complexity-3-points" title="Permalink to this headline">#</a></h3>
+<p>What if you wanted to categorize multiple planets? In the cell below, write a new function that takes in a planetary mass (in Jupiter masses) and determines if the planet is a Jupiter-like planet or an Earth-like planet. You can choose to build from your previous code or start from scratch. You may find it helpful to make use of the test data again!</p>
+<p>Demonstrate that your code works by writing code that runs your function and determines the number of Jupiter-like and Earth-like planets in the full data set.</p>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="c1"># put your work here</span>
+</pre></div>
+</div>
+</div>
+</div>
+</section>
+<section id="task-reflections-2-points">
+<h3>✅  3.4 Task: Reflections (2 points)<a class="headerlink" href="#task-reflections-2-points" title="Permalink to this headline">#</a></h3>
+<p>In the cell below, answer the following reflection questions:</p>
+<ul class="simple">
+<li><p>In Part 3.3, did you use your function from 3.1 at all?</p></li>
+<li><p>In what way? (Or if you didn’t, why not?)</p></li>
+<li><p>If writing a function was the most efficient way to solve this problem, why? If not, what other way(s) could you solve it?</p></li>
+</ul>
+<p><font size=6 color="#009600">✎</font> <em>Put your answers here.</em></p>
+</section>
+</section>
+<section id="numpy-matplotlib-and-functions-18-points">
+<h2>4. Numpy, matplotlib, and functions (18 Points)<a class="headerlink" href="#numpy-matplotlib-and-functions-18-points" title="Permalink to this headline">#</a></h2>
+<section id="task-making-a-plotting-function-6-points">
+<h3>✅  4.1 Task: Making a plotting function  (6 points)<a class="headerlink" href="#task-making-a-plotting-function-6-points" title="Permalink to this headline">#</a></h3>
+<p>In CMSE 201, you will be making plots often. To help future you save time, you are going to write a function to use when you make plots!</p>
+<p>In the cells below, write a function that takes in arrays of x and y values and displays a plot containing 4 subplots. You should use plt.subplot() and make use of labels, line shapes, and colors to make your plots clear.</p>
+<p><strong>You must also test your function with the test data to receive full credit</strong></p>
+<p>Citation: <a class="reference external" href="https://www.census.gov/data/tables/time-series/dec/popchange-data-text.html">US Census Bureau Historical Population Change data</a></p>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="c1"># test data here</span>
+<span class="kn">import</span> <span class="nn">numpy</span> <span class="k">as</span> <span class="nn">np</span>
+
+<span class="n">years</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">array</span><span class="p">([</span><span class="mi">1910</span><span class="p">,</span><span class="mi">1920</span><span class="p">,</span><span class="mi">1930</span><span class="p">,</span><span class="mi">1940</span><span class="p">,</span><span class="mi">1950</span><span class="p">,</span><span class="mi">1960</span><span class="p">,</span><span class="mi">1970</span><span class="p">,</span><span class="mi">1980</span><span class="p">,</span><span class="mi">1990</span><span class="p">,</span><span class="mi">2000</span><span class="p">,</span><span class="mi">2010</span><span class="p">,</span><span class="mi">2020</span><span class="p">])</span>
+<span class="n">US_population</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">array</span><span class="p">([</span><span class="mi">92228531</span><span class="p">,</span> <span class="mi">106021568</span><span class="p">,</span> <span class="mi">123202660</span><span class="p">,</span> <span class="mi">132165129</span><span class="p">,</span>
+       <span class="mi">151325798</span><span class="p">,</span> <span class="mi">179323175</span><span class="p">,</span> <span class="mi">203211926</span><span class="p">,</span> <span class="mi">226545805</span><span class="p">,</span>
+       <span class="mi">248709873</span><span class="p">,</span> <span class="mi">281421906</span><span class="p">,</span> <span class="mi">308745538</span><span class="p">,</span> <span class="mi">331449281</span><span class="p">])</span>
+<span class="n">MI_population</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">array</span><span class="p">([</span><span class="mi">2810173</span><span class="p">,</span> <span class="mi">3668412</span><span class="p">,</span> <span class="mi">4842325</span><span class="p">,</span> <span class="mi">5256106</span><span class="p">,</span> <span class="mi">6371766</span><span class="p">,</span>
+       <span class="mi">7823194</span><span class="p">,</span> <span class="mi">8875083</span><span class="p">,</span> <span class="mi">9262078</span><span class="p">,</span> <span class="mi">9295297</span><span class="p">,</span> <span class="mi">9938444</span><span class="p">,</span>
+    <span class="mi">9883640</span><span class="p">,</span> <span class="mi">10077331</span><span class="p">])</span>
+<span class="n">VT_population</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">array</span><span class="p">([</span><span class="mi">355956</span><span class="p">,</span> <span class="mi">352428</span><span class="p">,</span> <span class="mi">359611</span><span class="p">,</span> <span class="mi">359231</span><span class="p">,</span> <span class="mi">377747</span><span class="p">,</span> <span class="mi">389881</span><span class="p">,</span>
+       <span class="mi">444330</span><span class="p">,</span> <span class="mi">511456</span><span class="p">,</span> <span class="mi">562758</span><span class="p">,</span> <span class="mi">608827</span><span class="p">,</span> <span class="mi">625741</span><span class="p">,</span> <span class="mi">643077</span><span class="p">])</span>
+<span class="n">PA_population</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">array</span><span class="p">([</span><span class="mi">7665111</span><span class="p">,</span> <span class="mi">8720017</span><span class="p">,</span> <span class="mi">9631350</span><span class="p">,</span> <span class="mi">9900180</span><span class="p">,</span> <span class="mi">10498012</span><span class="p">,</span>
+       <span class="mi">11319366</span><span class="p">,</span> <span class="mi">11793909</span><span class="p">,</span> <span class="mi">11863895</span><span class="p">,</span> <span class="mi">11881643</span><span class="p">,</span>
+       <span class="mi">12281054</span><span class="p">,</span> <span class="mi">12702379</span><span class="p">,</span> <span class="mi">13002700</span><span class="p">])</span>
+</pre></div>
+</div>
+</div>
+</div>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="c1"># put your answer here</span>
+</pre></div>
+</div>
+</div>
+</div>
+</section>
+<section id="task-using-numpy-arrays-and-functions-for-calculations-6-points">
+<h3>✅  4.2 Task: Using <code class="docutils literal notranslate"><span class="pre">numpy</span></code> arrays and functions for calculations (6 points)<a class="headerlink" href="#task-using-numpy-arrays-and-functions-for-calculations-6-points" title="Permalink to this headline">#</a></h3>
+<p>The populations of different states can vary alot from state to state, so how can we explore population growth in a way that lets us compare between states? We’ll use the <strong>percent difference</strong> in population.</p>
+<p>We can calculate the percent difference like this:</p>
+<p><span class="math notranslate nohighlight">\(\% \ difference = \frac{(final-initial)}{initial} \times 100\)</span></p>
+<p>In the cell below, write a function that takes in an array of y values and calculates the percent difference between each value. Demonstrate that your code works using one of the population arrays from 4.1.</p>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="c1"># put your code here</span>
+</pre></div>
+</div>
+</div>
+</div>
+</section>
+<section id="task-putting-it-all-together-6-points">
+<h3>✅  4.3 Task: Putting it all together (6 points)<a class="headerlink" href="#task-putting-it-all-together-6-points" title="Permalink to this headline">#</a></h3>
+<p>Along with this homework assignment, you will find a .csv file with some additional state population data (<code class="docutils literal notranslate"><span class="pre">state_data.csv</span></code>).</p>
+<p>In the cell(s) below, use the data from the file (and the functions you wrote) to calculate the percent difference and generate plots for <strong>four new states</strong> of your choice.</p>
+<p>Remember that you can open up data files in Jupyter to see what the data looks like!</p>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="c1"># put your work here</span>
+</pre></div>
+</div>
+</div>
+</div>
+</section>
+<hr class="docutils" />
+<section id="congratulations-you-re-done">
+<h3>Congratulations, you’re done!<a class="headerlink" href="#congratulations-you-re-done" title="Permalink to this headline">#</a></h3>
+<p>Submit this assignment by uploading it to the course Desire2Learn web page. Go to the “Homework Assignments” section, find the submission folder link for Homework #2, and upload it there.</p>
+</section>
+</section>
+</section>
+
+    <script type="text/x-thebe-config">
+    {
+        requestKernel: true,
+        binderOptions: {
+            repo: "binder-examples/jupyter-stacks-datascience",
+            ref: "master",
+        },
+        codeMirrorConfig: {
+            theme: "abcdef",
+            mode: "python"
+        },
+        kernelOptions: {
+            kernelName: "python3",
+            path: "./Homework\Homework_2"
+        },
+        predefinedOutput: true
+    }
+    </script>
+    <script>kernelName = 'python3'</script>
+
+              </div>
+              
+            </main>
+            <footer class="footer-article noprint">
+                
+    <!-- Previous / next buttons -->
+<div class='prev-next-area'>
+    <a class='left-prev' id="prev-link" href="../Homework_1/HW_01_F22_STUDENT.html" title="previous page">
+        <i class="fas fa-angle-left"></i>
+        <div class="prev-next-info">
+            <p class="prev-next-subtitle">previous</p>
+            <p class="prev-next-title">Homework 1: Introduction to Variables, Lists, and Loops</p>
+        </div>
+    </a>
+    <a class='right-next' id="next-link" href="../Homework_3/HW3_F22-STUDENT.html" title="next page">
+    <div class="prev-next-info">
+        <p class="prev-next-subtitle">next</p>
+        <p class="prev-next-title">Homework 3: Pandas Data Analysis</p>
+    </div>
+    <i class="fas fa-angle-right"></i>
+    </a>
+</div>
+            </footer>
+        </div>
+    </div>
+    <div class="footer-content row">
+        <footer class="col footer"><p>
+  
+    By MSU CMSE<br/>
+  
+      &copy; Copyright 2022.<br/>
+</p>
+        </footer>
+    </div>
+    
+</div>
+
+
+      </div>
+    </div>
+  
+  <!-- Scripts loaded after <body> so the DOM is not blocked -->
+  <script src="../../_static/scripts/pydata-sphinx-theme.js?digest=1999514e3f237ded88cf"></script>
+
+
+  </body>
+</html>

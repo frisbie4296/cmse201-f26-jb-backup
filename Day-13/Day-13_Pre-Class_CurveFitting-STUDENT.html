@@ -1,0 +1,2209 @@
+
+<!DOCTYPE html>
+
+<html>
+  <head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" /><meta name="generator" content="Docutils 0.17.1: http://docutils.sourceforge.net/" />
+
+    <title>Day 13 Pre-Class Assignment: Fitting functions to data (curve-fitting) and thinking more about models &#8212; CMSE 201</title>
+    
+  <!-- Loaded before other Sphinx assets -->
+  <link href="../_static/styles/theme.css?digest=1999514e3f237ded88cf" rel="stylesheet">
+<link href="../_static/styles/pydata-sphinx-theme.css?digest=1999514e3f237ded88cf" rel="stylesheet">
+
+    
+  <link rel="stylesheet"
+    href="../_static/vendor/fontawesome/5.13.0/css/all.min.css">
+  <link rel="preload" as="font" type="font/woff2" crossorigin
+    href="../_static/vendor/fontawesome/5.13.0/webfonts/fa-solid-900.woff2">
+  <link rel="preload" as="font" type="font/woff2" crossorigin
+    href="../_static/vendor/fontawesome/5.13.0/webfonts/fa-brands-400.woff2">
+
+    <link rel="stylesheet" type="text/css" href="../_static/pygments.css" />
+    <link rel="stylesheet" href="../_static/styles/sphinx-book-theme.css?digest=5115cc725059bd94278eecd172e13a965bf8f5a9" type="text/css" />
+    <link rel="stylesheet" type="text/css" href="../_static/togglebutton.css" />
+    <link rel="stylesheet" type="text/css" href="../_static/copybutton.css" />
+    <link rel="stylesheet" type="text/css" href="../_static/mystnb.css" />
+    <link rel="stylesheet" type="text/css" href="../_static/sphinx-thebe.css" />
+    <link rel="stylesheet" type="text/css" href="../_static/design-style.b7bb847fb20b106c3d81b95245e65545.min.css" />
+    
+  <!-- Pre-loaded scripts that we'll load fully later -->
+  <link rel="preload" as="script" href="../_static/scripts/pydata-sphinx-theme.js?digest=1999514e3f237ded88cf">
+
+    <script data-url_root="../" id="documentation_options" src="../_static/documentation_options.js"></script>
+    <script src="../_static/jquery.js"></script>
+    <script src="../_static/underscore.js"></script>
+    <script src="../_static/doctools.js"></script>
+    <script src="../_static/clipboard.min.js"></script>
+    <script src="../_static/copybutton.js"></script>
+    <script src="../_static/scripts/sphinx-book-theme.js?digest=9c920249402e914e316237a7dbc6769907cce411"></script>
+    <script>let toggleHintShow = 'Click to show';</script>
+    <script>let toggleHintHide = 'Click to hide';</script>
+    <script>let toggleOpenOnPrint = 'true';</script>
+    <script src="../_static/togglebutton.js"></script>
+    <script>var togglebuttonSelector = '.toggle, .admonition.dropdown, .tag_hide_input div.cell_input, .tag_hide-input div.cell_input, .tag_hide_output div.cell_output, .tag_hide-output div.cell_output, .tag_hide_cell.cell, .tag_hide-cell.cell';</script>
+    <script src="../_static/design-tabs.js"></script>
+    <script>const THEBE_JS_URL = "https://unpkg.com/thebe@0.8.2/lib/index.js"
+const thebe_selector = ".thebe,.cell"
+const thebe_selector_input = "pre"
+const thebe_selector_output = ".output, .cell_output"
+</script>
+    <script async="async" src="../_static/sphinx-thebe.js"></script>
+    <script>window.MathJax = {"options": {"processHtmlClass": "tex2jax_process|mathjax_process|math|output_area"}}</script>
+    <script defer="defer" src="https://cdn.jsdelivr.net/npm/mathjax@3/es5/tex-mml-chtml.js"></script>
+    <link rel="shortcut icon" href="../_static/cmse_fav.ico"/>
+    <link rel="index" title="Index" href="../genindex.html" />
+    <link rel="search" title="Search" href="../search.html" />
+    <link rel="next" title="Day 13 In-Class Assignment: (Thoughtfully) fitting models to data" href="Day-13_In-Class_FittingCurves-STUDENT.html" />
+    <link rel="prev" title="Day 12 In-Class: Using Resources from Online" href="../Day-12/Day-12_In-Class_Online_Resources_STUDENT.html" />
+    <meta name="viewport" content="width=device-width, initial-scale=1" />
+    <meta name="docsearch:language" content="None">
+    
+
+    <!-- Google Analytics -->
+    
+  </head>
+  <body data-spy="scroll" data-target="#bd-toc-nav" data-offset="60">
+<!-- Checkboxes to toggle the left sidebar -->
+<input type="checkbox" class="sidebar-toggle" name="__navigation" id="__navigation" aria-label="Toggle navigation sidebar">
+<label class="overlay overlay-navbar" for="__navigation">
+    <div class="visually-hidden">Toggle navigation sidebar</div>
+</label>
+<!-- Checkboxes to toggle the in-page toc -->
+<input type="checkbox" class="sidebar-toggle" name="__page-toc" id="__page-toc" aria-label="Toggle in-page Table of Contents">
+<label class="overlay overlay-pagetoc" for="__page-toc">
+    <div class="visually-hidden">Toggle in-page Table of Contents</div>
+</label>
+<!-- Headers at the top -->
+<div class="announcement header-item noprint"></div>
+<div class="header header-item noprint"></div>
+
+    
+    <div class="container-fluid" id="banner"></div>
+
+    
+
+    <div class="container-xl">
+      <div class="row">
+          
+<!-- Sidebar -->
+<div class="bd-sidebar noprint" id="site-navigation">
+    <div class="bd-sidebar__content">
+        <div class="bd-sidebar__top"><div class="navbar-brand-box">
+    <a class="navbar-brand text-wrap" href="../index.html">
+      
+        <!-- `logo` is deprecated in Sphinx 4.0, so remove this when we stop supporting 3 -->
+        
+      
+      
+      <img src="../_static/logo.png" class="logo" alt="logo">
+      
+      
+      <h1 class="site-logo" id="site-title">CMSE 201</h1>
+      
+    </a>
+</div><form class="bd-search d-flex align-items-center" action="../search.html" method="get">
+  <i class="icon fas fa-search"></i>
+  <input type="search" class="form-control" name="q" id="search-input" placeholder="Search this book..." aria-label="Search this book..." autocomplete="off" >
+</form><nav class="bd-links" id="bd-docs-nav" aria-label="Main">
+    <div class="bd-toc-item active">
+        
+        <ul class="nav bd-sidenav bd-sidenav__home-link">
+            <li class="toctree-l1">
+                <a class="reference internal" href="../intro.html">
+                    Welcome to Computational Modeling and Data Analysis I!
+                </a>
+            </li>
+        </ul>
+        <p aria-level="2" class="caption" role="heading">
+ <span class="caption-text">
+  Course Materials
+ </span>
+</p>
+<ul class="nav bd-sidenav">
+ <li class="toctree-l1 has-children">
+  <a class="reference internal" href="../Course_Materials-201/CourseDocuments.html">
+   Important Course information
+  </a>
+  <input class="toctree-checkbox" id="toctree-checkbox-1" name="toctree-checkbox-1" type="checkbox"/>
+  <label for="toctree-checkbox-1">
+   <i class="fas fa-chevron-down">
+   </i>
+  </label>
+  <ul>
+   <li class="toctree-l2">
+    <a class="reference internal" href="../Course_Materials-201/CMSE201-Syllabus.html">
+     Syllabus
+    </a>
+   </li>
+   <li class="toctree-l2">
+    <a class="reference internal" href="../Course_Materials-201/CMSE201-Schedule.html">
+     Course Schedule
+    </a>
+   </li>
+   <li class="toctree-l2">
+    <a class="reference internal" href="../Course_Materials-201/SoftwareSetupGuide.html">
+     Software Setup Guide
+    </a>
+   </li>
+   <li class="toctree-l2">
+    <a class="reference internal" href="../Course_Materials-201/classroom_participation.html">
+     Classroom Participation
+    </a>
+   </li>
+  </ul>
+ </li>
+</ul>
+<p aria-level="2" class="caption" role="heading">
+ <span class="caption-text">
+  Day 01
+ </span>
+</p>
+<ul class="nav bd-sidenav">
+ <li class="toctree-l1">
+  <a class="reference internal" href="../Day-01/Day-01_In-Class_SortingAlgorithm-STUDENT.html">
+   Day 1 In-Class Assignment: Introductions and Sorting Algorithms
+  </a>
+ </li>
+</ul>
+<p aria-level="2" class="caption" role="heading">
+ <span class="caption-text">
+  Day 02
+ </span>
+</p>
+<ul class="nav bd-sidenav">
+ <li class="toctree-l1">
+  <a class="reference internal" href="../Day-02/Day-02_Pre-Class_IntroToPython-STUDENT.html">
+   Day 2 Pre-class Assignment: Intro to Python
+  </a>
+ </li>
+ <li class="toctree-l1">
+  <a class="reference internal" href="../Day-02/Day-02_In-Class_OrderOfMagnitudeModeling-STUDENT.html">
+   Day 2 In-class Assignment: Order of Magnitude Modeling
+  </a>
+ </li>
+</ul>
+<p aria-level="2" class="caption" role="heading">
+ <span class="caption-text">
+  Day 03
+ </span>
+</p>
+<ul class="nav bd-sidenav">
+ <li class="toctree-l1">
+  <a class="reference internal" href="../Day-03/Day-03_Pre-Class_ListsAndLoops-STUDENT.html">
+   Day 3: Pre-Class Assignment: Lists and Loops
+  </a>
+ </li>
+ <li class="toctree-l1">
+  <a class="reference internal" href="../Day-03/Day-03_In-Class_ListsLoopsAndSaving-STUDENT.html">
+   Day 3 In-class Assignment: The power of compound interest
+  </a>
+ </li>
+</ul>
+<p aria-level="2" class="caption" role="heading">
+ <span class="caption-text">
+  Day 04
+ </span>
+</p>
+<ul class="nav bd-sidenav">
+ <li class="toctree-l1">
+  <a class="reference internal" href="../Day-04/Day_04_PreClass_DataAlgorithmicBias-STUDENT.html">
+   Day 4 Pre-class Assignment: Introduction to Data Ethics: Data and Algorithmic Bias
+  </a>
+ </li>
+ <li class="toctree-l1">
+  <a class="reference internal" href="../Day-04/Day_04_In_Class_DataAlgorithmicBias-STUDENT.html">
+   Day 4 In-class Assignment: Data and Algorithmic Bias, Academic Integrity, and Coding Best Practices
+  </a>
+ </li>
+</ul>
+<p aria-level="2" class="caption" role="heading">
+ <span class="caption-text">
+  Day 05
+ </span>
+</p>
+<ul class="nav bd-sidenav">
+ <li class="toctree-l1">
+  <a class="reference internal" href="../Day-05/Day-05_Pre-Class_IfStatementsAndFunctions-STUDENT.html">
+   Day 5 Pre-class Assignment: Boolean logic, if statements, and an introduction to functions
+  </a>
+ </li>
+ <li class="toctree-l1">
+  <a class="reference internal" href="../Day-05/Day-05_In-Class_IfStatementsAndFunctions-STUDENT.html">
+   Day 5 In-class Assignment: Savings for Everyone
+  </a>
+ </li>
+</ul>
+<p aria-level="2" class="caption" role="heading">
+ <span class="caption-text">
+  Day 06
+ </span>
+</p>
+<ul class="nav bd-sidenav">
+ <li class="toctree-l1">
+  <a class="reference internal" href="../Day-06/Day-06_Pre-Class_MoreFunctions-STUDENT.html">
+   Day 6 Pre-class Assignment: Thinking more about functions
+  </a>
+ </li>
+ <li class="toctree-l1">
+  <a class="reference internal" href="../Day-06/Day-06_In-Class_FunctionsAndSquirrels-STUDENT.html">
+   Day 6 In Class Assignment: A Scurry of Squirrels in Central Park
+  </a>
+ </li>
+ <li class="toctree-l1">
+  <a class="reference internal" href="../Day-06/Day-06_In-Class_FunctionsAndSquirrels-INSTRUCTOR.html">
+   Day 6 In Class Assignment: A Scurry of Squirrels in Central Park
+  </a>
+ </li>
+</ul>
+<p aria-level="2" class="caption" role="heading">
+ <span class="caption-text">
+  Day 07
+ </span>
+</p>
+<ul class="nav bd-sidenav">
+ <li class="toctree-l1">
+  <a class="reference internal" href="../Day-07/Day-07_Pre-Class_ModulesMathAndPlots-STUDENT.html">
+   Day 7 Pre-Class Assignment: Python Modules: Numpy and Plots
+  </a>
+ </li>
+ <li class="toctree-l1">
+  <a class="reference internal" href="../Day-07/Day-07_In-Class_MathAndPlotting-STUDENT.html">
+   Day 7 In-class Assignment: Visualizing population growth
+  </a>
+ </li>
+</ul>
+<p aria-level="2" class="caption" role="heading">
+ <span class="caption-text">
+  Day 08
+ </span>
+</p>
+<ul class="nav bd-sidenav">
+ <li class="toctree-l1">
+  <a class="reference internal" href="../Day-08/Day-08_Pre-Class_IntroToNumPy-STUDENT.html">
+   Day 8 Pre-Class: Introduction to NumPy
+  </a>
+ </li>
+ <li class="toctree-l1">
+  <a class="reference external" href="https://raw.githubusercontent.com/msu-cmse-courses/cmse201-F21-data/main/Day-08/michigan_pop.csv">
+   michigan_pop.csv
+  </a>
+ </li>
+ <li class="toctree-l1">
+  <a class="reference internal" href="../Day-08/Day-08_In-Class_NumPyWithTheGreatLakes-STUDENT.html">
+   Day 8 In-class Assignment: Exploring Great Lakes Water Levels using NumPy
+  </a>
+ </li>
+ <li class="toctree-l1">
+  <a class="reference external" href="https://raw.githubusercontent.com/msu-cmse-courses/cmse201-F21-data/main/Day-08/lake_erie.csv">
+   lake_erie.csv
+  </a>
+ </li>
+ <li class="toctree-l1">
+  <a class="reference external" href="https://raw.githubusercontent.com/msu-cmse-courses/cmse201-F21-data/main/Day-08/lake_michigan_huron.csv">
+   lake_michigan_huron.csv
+  </a>
+ </li>
+ <li class="toctree-l1">
+  <a class="reference external" href="https://raw.githubusercontent.com/msu-cmse-courses/cmse201-F21-data/main/Day-08/lake_ontario.csv">
+   lake_ontario.csv
+  </a>
+ </li>
+ <li class="toctree-l1">
+  <a class="reference external" href="https://raw.githubusercontent.com/msu-cmse-courses/cmse201-F21-data/main/Day-08/lake_superior.csv">
+   lake_superior.csv
+  </a>
+ </li>
+</ul>
+<p aria-level="2" class="caption" role="heading">
+ <span class="caption-text">
+  Day 09
+ </span>
+</p>
+<ul class="nav bd-sidenav">
+ <li class="toctree-l1">
+  <a class="reference internal" href="../Day-09/Day-09_Pre-Class_Pandas-STUDENT.html">
+   Day 9 Pre-class Assignment: Computational Models Overview and The Pandas Data Analysis Library
+  </a>
+ </li>
+ <li class="toctree-l1">
+  <a class="reference internal" href="../Day-09/Day-09_In-Class_GDP-STUDENT.html">
+   Day 9 In-Class: Cleaning and Analyzing Economic Data
+  </a>
+ </li>
+ <li class="toctree-l1">
+  <a class="reference external" href="https://raw.githubusercontent.com/msu-cmse-courses/cmse201-S22-data/main/Day-10/API_NY.GDP.MKTP.CD_DS2_en_csv_v2_3011433.csv">
+   API_NY.GDP.MKTP.CD_DS2_en_csv_v2_3011433.csv
+  </a>
+ </li>
+</ul>
+<p aria-level="2" class="caption" role="heading">
+ <span class="caption-text">
+  Day 10
+ </span>
+</p>
+<ul class="nav bd-sidenav">
+ <li class="toctree-l1">
+  <a class="reference internal" href="../Day-10/Day-10_Pre-Class_Masking-STUDENT.html">
+   Day 10 Pre-class Assignment: Normal Distributions, Masking, and Log Plots
+  </a>
+ </li>
+ <li class="toctree-l1">
+  <a class="reference external" href="https://raw.githubusercontent.com/msu-cmse-courses/cmse201-S22-data/main/Day-11/GDP_Cleaned.csv">
+   GDP_Cleaned.csv
+  </a>
+ </li>
+ <li class="toctree-l1">
+  <a class="reference internal" href="../Day-10/Day-10_In-Class_Flint-STUDENT.html">
+   Day 10 In-class Assignment: Get the Lead Out: Understanding The Water Crisis in Flint, MI
+  </a>
+ </li>
+ <li class="toctree-l1">
+  <a class="reference external" href="https://raw.githubusercontent.com/msu-cmse-courses/cmse201-S22-data/main/Day-11/flint_water_data.csv">
+   flint_water_data.csv
+  </a>
+ </li>
+</ul>
+<p aria-level="2" class="caption" role="heading">
+ <span class="caption-text">
+  Day 11
+ </span>
+</p>
+<ul class="nav bd-sidenav">
+ <li class="toctree-l1">
+  <a class="reference internal" href="../Day-11/Day-11_Pre-Class_Data_File_Formats_Manipulation-STUDENT.html">
+   Day 11 Pre-Class Assignment: Overview of data and file formats
+  </a>
+ </li>
+ <li class="toctree-l1">
+  <a class="reference external" href="https://raw.githubusercontent.com/msu-cmse-courses/cmse201-S22-data/main/Day-12/us_pop_by_state_2010_2011.csv">
+   us_pop_by_state_2010_2011.csv
+  </a>
+ </li>
+ <li class="toctree-l1">
+  <a class="reference external" href="https://github.com/msu-cmse-courses/cmse201-S22-data/raw/main/Day-12/us_pop_by_state_2012_2013_encoding_utf-16be.csv">
+   us_pop_by_state_2012_2013_encoding_utf-16be.csv
+  </a>
+ </li>
+ <li class="toctree-l1">
+  <a class="reference external" href="https://raw.githubusercontent.com/msu-cmse-courses/cmse201-S22-data/main/Day-12/us_pop_by_state_2014_2015_windows_linefeed.csv">
+   us_pop_by_state_2014_2015_windows_linefeed.csv
+  </a>
+ </li>
+ <li class="toctree-l1">
+  <a class="reference external" href="https://github.com/msu-cmse-courses/cmse201-S22-data/blob/main/Day-12/us_pop_by_state_2016a.csv?raw=true">
+   us_pop_by_state_2016a.csv
+  </a>
+ </li>
+ <li class="toctree-l1">
+  <a class="reference external" href="https://github.com/msu-cmse-courses/cmse201-S22-data/blob/main/Day-12/us_pop_by_state_2017a.yaff?raw=true">
+   us_pop_by_state2017a.yaff
+  </a>
+ </li>
+ <li class="toctree-l1">
+  <a class="reference external" href="https://github.com/msu-cmse-courses/cmse201-S22-data/blob/main/Day-12/us_pop_by_state_2018_2019.bin?raw=true">
+   us_pop_by_state_2018_2019.bin
+  </a>
+ </li>
+ <li class="toctree-l1">
+  <a class="reference internal" href="../Day-11/Day-11_In-Class_Data_File_Formats_Manipulation-STUDENT.html">
+   Day 11 In-Class: Overview of data and file formats; US Population and Representation
+  </a>
+ </li>
+</ul>
+<p aria-level="2" class="caption" role="heading">
+ <span class="caption-text">
+  Day 12
+ </span>
+</p>
+<ul class="nav bd-sidenav">
+ <li class="toctree-l1">
+  <a class="reference internal" href="../Day-12/Day-12_Pre-Class_Online_Resources_STUDENT.html">
+   Day 12 Pre-class Assignment: Finding Resources Online
+  </a>
+ </li>
+ <li class="toctree-l1">
+  <a class="reference internal" href="../Day-12/Day-12_In-Class_Online_Resources_STUDENT.html">
+   Day 12 In-Class: Using Resources from Online
+  </a>
+ </li>
+</ul>
+<p aria-level="2" class="caption" role="heading">
+ <span class="caption-text">
+  Day 13
+ </span>
+</p>
+<ul class="current nav bd-sidenav">
+ <li class="toctree-l1 current active">
+  <a class="current reference internal" href="#">
+   Day 13 Pre-Class Assignment: Fitting functions to data (curve-fitting) and thinking more about models
+  </a>
+ </li>
+ <li class="toctree-l1">
+  <a class="reference internal" href="Day-13_In-Class_FittingCurves-STUDENT.html">
+   Day 13 In-Class Assignment: (Thoughtfully) fitting models to data
+  </a>
+ </li>
+ <li class="toctree-l1">
+  <a class="reference external" href="https://raw.githubusercontent.com/msu-cmse-courses/cmse201-S22-data/main/Day-14/pop200.csv">
+   pop200.csv
+  </a>
+ </li>
+ <li class="toctree-l1">
+  <a class="reference external" href="https://raw.githubusercontent.com/msu-cmse-courses/cmse201-S22-data/main/Day-14/pop300.csv">
+   pop300.csv
+  </a>
+ </li>
+</ul>
+<p aria-level="2" class="caption" role="heading">
+ <span class="caption-text">
+  Day 14
+ </span>
+</p>
+<ul class="nav bd-sidenav">
+ <li class="toctree-l1">
+  <a class="reference internal" href="../Day-14/Day-14_Pre-Class_Evaluating_Fits-STUDENT.html">
+   Day 14 Pre-Class Assignment: Making Predictions Using Data
+  </a>
+ </li>
+ <li class="toctree-l1">
+  <a class="reference internal" href="../Day-14/Day-14_In-Class_Evaluating_Fits-STUDENT.html">
+   Day 14 In-Class Assignment: Evaluating Models
+  </a>
+ </li>
+</ul>
+<p aria-level="2" class="caption" role="heading">
+ <span class="caption-text">
+  Day 15
+ </span>
+</p>
+<ul class="nav bd-sidenav">
+ <li class="toctree-l1">
+  <a class="reference internal" href="../Day-15/Day-15-Pre-Class_IntroToDataVisualization-STUDENT.html">
+   Day 15 Pre-class Assignment: Introduction to Data Visualization
+  </a>
+ </li>
+ <li class="toctree-l1">
+  <a class="reference internal" href="../Day-15/Day-15-In-Class_IntroToDataVisualization-STUDENT.html">
+   Day 15 In-Class: Introduction to Data Visualization
+  </a>
+ </li>
+</ul>
+<p aria-level="2" class="caption" role="heading">
+ <span class="caption-text">
+  Day 16
+ </span>
+</p>
+<ul class="nav bd-sidenav">
+ <li class="toctree-l1">
+  <a class="reference internal" href="../Day-16/Day-16-Intro_to_ODEs_Pre-Class_STUDENT.html">
+   Day 16: Pre-class Assignment: Introduction to Modeling with Ordinary Differential Equations
+  </a>
+ </li>
+ <li class="toctree-l1">
+  <a class="reference internal" href="../Day-16/Day-16-Intro_to_ODEs_In-Class_STUDENT.html">
+   Day 16: In-class Assignment: Introduction to Modeling with ODEs
+  </a>
+ </li>
+</ul>
+<p aria-level="2" class="caption" role="heading">
+ <span class="caption-text">
+  Day 17
+ </span>
+</p>
+<ul class="nav bd-sidenav">
+ <li class="toctree-l1">
+  <a class="reference internal" href="../Day-17/Day-17_Pre-Class_ModelingWithODEs-STUDENT.html">
+   Day 17: Pre-class Assignment: Modeling with Ordinary Differential Equations
+  </a>
+ </li>
+ <li class="toctree-l1">
+  <a class="reference internal" href="../Day-17/Day-17_In-Class_ModelingWithODEs-STUDENT.html">
+   Day 17: In-class Assignment: Modeling with ODEs
+  </a>
+ </li>
+ <li class="toctree-l1">
+  <a class="reference internal" href="../Day-17/Day-17_In-Class_ModelingWithODEs-INSTRUCTOR.html">
+   Day 17: In-class Assignment: Modeling with ODEs
+  </a>
+ </li>
+</ul>
+<p aria-level="2" class="caption" role="heading">
+ <span class="caption-text">
+  Day 18
+ </span>
+</p>
+<ul class="nav bd-sidenav">
+ <li class="toctree-l1">
+  <a class="reference internal" href="../Day-18/Day-18_Pre-Class_ViralKinetics-STUDENT.html">
+   Day 18 Pre-Class: Viral Kinetics
+  </a>
+ </li>
+ <li class="toctree-l1">
+  <a class="reference internal" href="../Day-18/Day-18_In-Class_CompartmentalModeling-STUDENT.html">
+   Day 18 In-class: Building Compartmental Models
+  </a>
+ </li>
+</ul>
+<p aria-level="2" class="caption" role="heading">
+ <span class="caption-text">
+  Day 19
+ </span>
+</p>
+<ul class="nav bd-sidenav">
+ <li class="toctree-l1">
+  <a class="reference internal" href="../Day-19/Day-19_Pre-Class_Zombies-STUDENT.html">
+   Day 19 Pre-class Assignment: ZOMBIES!!
+  </a>
+ </li>
+ <li class="toctree-l1">
+  <a class="reference internal" href="../Day-19/Day-19_In-Class_CompartmentsWithSolveIVP-STUDENT.html">
+   Day 19 In-Class Assignment: Compartmental Modeling, moving from the model to the Code
+  </a>
+ </li>
+ <li class="toctree-l1">
+  <a class="reference external" href="https://github.com/msu-cmse-courses/cmse201-F21-data/blob/main/Day-16/latent.png">
+   latent.png
+  </a>
+ </li>
+</ul>
+<p aria-level="2" class="caption" role="heading">
+ <span class="caption-text">
+  Day 20
+ </span>
+</p>
+<ul class="nav bd-sidenav">
+ <li class="toctree-l1">
+  <a class="reference internal" href="../Day-20/Day-20_Pre-Class_2DNumPyArrays-STUDENT.html">
+   Day 20 Pre-Class: 2D NumPy Arrays
+  </a>
+ </li>
+ <li class="toctree-l1">
+  <a class="reference external" href="https://raw.githubusercontent.com/msu-cmse-courses/cmse201-F21-data/main/Day-17/PCA_files/cars.csv">
+   cars.csv
+  </a>
+ </li>
+ <li class="toctree-l1">
+  <a class="reference external" href="https://github.com/msu-cmse-courses/cmse201-F21-data/raw/main/Day-17/PCA_files/example.jpeg">
+   example.jpeg
+  </a>
+ </li>
+ <li class="toctree-l1">
+  <a class="reference internal" href="../Day-20/Day-20_In-Class_2DImageAnalysis-STUDENT.html">
+   Day 20 In-Class Assignment: Image Analysis
+  </a>
+ </li>
+ <li class="toctree-l1">
+  <a class="reference external" href="https://github.com/msu-cmse-courses/cmse201-F21-data/blob/main/Day-17/ICA_files/beach.jpeg">
+   beach.jpeg
+  </a>
+ </li>
+ <li class="toctree-l1">
+  <a class="reference external" href="https://github.com/msu-cmse-courses/cmse201-F21-data/blob/main/Day-17/ICA_files/landscape.jpeg">
+   landscape.jpeg
+  </a>
+ </li>
+ <li class="toctree-l1">
+  <a class="reference external" href="https://github.com/msu-cmse-courses/cmse201-F21-data/blob/main/Day-17/ICA_files/zebra.png">
+   zebra.png
+  </a>
+ </li>
+</ul>
+<p aria-level="2" class="caption" role="heading">
+ <span class="caption-text">
+  Day 21
+ </span>
+</p>
+<ul class="nav bd-sidenav">
+ <li class="toctree-l1">
+  <a class="reference internal" href="../Day-21/Day-21_Pre-Class_ABMForestFire-STUDENT.html">
+   Day 21 Pre-class: Agent-based models and forest fires
+  </a>
+ </li>
+ <li class="toctree-l1">
+  <a class="reference internal" href="../Day-21/Day-21_In-Class_ForestFiresPartI-STUDENT.html">
+   Day 21 Part 1 In-class Assignment: Modeling forest fires with an Agent-based Model
+  </a>
+ </li>
+</ul>
+<p aria-level="2" class="caption" role="heading">
+ <span class="caption-text">
+  Day 22
+ </span>
+</p>
+<ul class="nav bd-sidenav">
+ <li class="toctree-l1">
+  <a class="reference internal" href="../Day-22/Day-22_Pre-Class_ABMForestFire_Part2-STUDENT.html">
+   Day 22 Pre-class: Reviewing 2D Numpy Arrays
+  </a>
+ </li>
+ <li class="toctree-l1">
+  <a class="reference internal" href="../Day-22/Day-22_In-Class_ForestFiresPartII-STUDENT.html">
+   Day 22 In-class Assignment: Modeling forest fires with an Agent-based Model (Part II)
+  </a>
+ </li>
+</ul>
+<p aria-level="2" class="caption" role="heading">
+ <span class="caption-text">
+  Day 23
+ </span>
+</p>
+<ul class="nav bd-sidenav">
+ <li class="toctree-l1">
+  <a class="reference internal" href="../Day-23/Day-23_Pre-Class_ProjectWorkDay-STUDENT.html">
+   Day 23 Pre-class: Project Update Preparation
+  </a>
+ </li>
+ <li class="toctree-l1">
+  <a class="reference internal" href="../Day-23/Day-23_In-Class_ProjectWorkDay-STUDENT.html">
+   Day 23 In-class Assignment: Project Work Day
+  </a>
+ </li>
+</ul>
+<p aria-level="2" class="caption" role="heading">
+ <span class="caption-text">
+  Day 24
+ </span>
+</p>
+<ul class="nav bd-sidenav">
+ <li class="toctree-l1">
+  <a class="reference internal" href="../Day-24/Day-24_Pre-Class_Climate-STUDENT.html">
+   Day 24 Pre-class:  Global warming and climate modeling
+  </a>
+ </li>
+ <li class="toctree-l1">
+  <a class="reference internal" href="../Day-24/Day-24_In-Class_Climate-STUDENT.html">
+   Day 24 In-class Assignment: Analyzing climate data
+  </a>
+ </li>
+ <li class="toctree-l1">
+  <a class="reference external" href="https://raw.githubusercontent.com/msu-cmse-courses/cmse201-F21-data/main/Day-22/GLB.Ts.csv">
+   GLB.Ts.csv
+  </a>
+ </li>
+ <li class="toctree-l1">
+  <a class="reference external" href="https://raw.githubusercontent.com/msu-cmse-courses/cmse201-F21-data/main/Day-22/bintanja2008.txt">
+   bintanja2008.txt
+  </a>
+ </li>
+ <li class="toctree-l1">
+  <a class="reference external" href="https://raw.githubusercontent.com/msu-cmse-courses/cmse201-F21-data/main/Day-22/ch4_annmean_gl.txt">
+   ch4_annmean_gl.txt
+  </a>
+ </li>
+ <li class="toctree-l1">
+  <a class="reference external" href="https://raw.githubusercontent.com/msu-cmse-courses/cmse201-F21-data/main/Day-22/co2_mm_mlo.txt">
+   co2_mm_mlo.txt
+  </a>
+ </li>
+ <li class="toctree-l1">
+  <a class="reference external" href="https://raw.githubusercontent.com/msu-cmse-courses/cmse201-F21-data/main/Day-22/vostok-ch4nat.txt">
+   vostok-ch4nat.txt
+  </a>
+ </li>
+ <li class="toctree-l1">
+  <a class="reference external" href="https://raw.githubusercontent.com/msu-cmse-courses/cmse201-F21-data/main/Day-22/vostok-co2nat.txt">
+   vostok-co2nat.txt
+  </a>
+ </li>
+ <li class="toctree-l1">
+  <a class="reference external" href="https://raw.githubusercontent.com/msu-cmse-courses/cmse201-F21-data/main/Day-22/vostok-deutnat.txt">
+   vostok-deutnat.txt
+  </a>
+ </li>
+</ul>
+<p aria-level="2" class="caption" role="heading">
+ <span class="caption-text">
+  Day 25
+ </span>
+</p>
+<ul class="nav bd-sidenav">
+ <li class="toctree-l1">
+  <a class="reference internal" href="../Day-25/Day-25_Pre-Class_Climate-STUDENT.html">
+   Day 25 pre-class assignment: climate modeling
+  </a>
+ </li>
+ <li class="toctree-l1">
+  <a class="reference internal" href="../Day-25/Day-25_In-Class_Climate-STUDENT.html">
+   Day 25 In-class Assignment: A simple model for global temperature
+  </a>
+ </li>
+ <li class="toctree-l1">
+  <a class="reference external" href="https://github.com/msu-cmse-courses/cmse201-F21-data/blob/main/Day-23/listentothee.png">
+   listentothee.png
+  </a>
+ </li>
+ <li class="toctree-l1">
+  <a class="reference external" href="https://github.com/msu-cmse-courses/cmse201-F21-data/blob/main/Day-23/simple_model.png">
+   simple_model.png
+  </a>
+ </li>
+</ul>
+<p aria-level="2" class="caption" role="heading">
+ <span class="caption-text">
+  Homework
+ </span>
+</p>
+<ul class="nav bd-sidenav">
+ <li class="toctree-l1">
+  <a class="reference internal" href="../Homework/Homework_1/HW_01_F22_STUDENT.html">
+   Homework 1: Introduction to Variables, Lists, and Loops
+  </a>
+ </li>
+ <li class="toctree-l1">
+  <a class="reference internal" href="../Homework/Homework_2/HW_02_F22-STUDENT.html">
+   Homework 2: Dictionaries, If Statements, Functions, and Modules
+  </a>
+ </li>
+ <li class="toctree-l1">
+  <a class="reference external" href="https://raw.githubusercontent.com/msu-cmse-courses/cmse201-S22-data/main/Homework/state_data.csv">
+   state_data.csv
+  </a>
+ </li>
+ <li class="toctree-l1">
+  <a class="reference internal" href="../Homework/Homework_3/HW3_F22-STUDENT.html">
+   Homework 3: Pandas Data Analysis
+  </a>
+ </li>
+ <li class="toctree-l1">
+  <a class="reference external" href="https://raw.githubusercontent.com/msu-cmse-courses/cmse201-S22-data/main/Homework/EV_Sale.csv">
+   EV_Sale.csv
+  </a>
+ </li>
+ <li class="toctree-l1">
+  <a class="reference internal" href="../Homework/Homework_4/HW-04_STUDENT.html">
+   Homework 4: Modeling Bacterial Growth
+  </a>
+ </li>
+ <li class="toctree-l1">
+  <a class="reference external" href="https://raw.githubusercontent.com/msu-cmse-courses/cmse201-S22-data/main/OD600.csv">
+   OD600.csv
+  </a>
+ </li>
+ <li class="toctree-l1">
+  <a class="reference internal" href="../Homework/Homework_5/HW-05_STUDENT.html">
+   Homework 5: 2D Arrays and Agent-based Modeling (EXTRA CREDIT)
+  </a>
+ </li>
+ <li class="toctree-l1">
+  <a class="reference external" href="https://raw.githubusercontent.com/msu-cmse-courses/cmse201-F21-data/main/blurred-math.png">
+   blurred-math.png
+  </a>
+ </li>
+ <li class="toctree-l1">
+  <a class="reference external" href="https://raw.githubusercontent.com/msu-cmse-courses/cmse201-F21-data/main/blurred-scream.png">
+   blurred-scream.png
+  </a>
+ </li>
+ <li class="toctree-l1">
+  <a class="reference external" href="https://raw.githubusercontent.com/msu-cmse-courses/cmse201-F21-data/main/scream.png">
+   scream.png
+  </a>
+ </li>
+ <li class="toctree-l1">
+  <a class="reference internal" href="../Homework/Code_Portfolio/Code_Portfolio_Assignment.html">
+   Code Portfolio Assignment
+  </a>
+ </li>
+ <li class="toctree-l1">
+  <a class="reference internal" href="../Homework/Code_Portfolio/Code_Portfolio_Example.html">
+   Code Portfolio Example
+  </a>
+ </li>
+</ul>
+<p aria-level="2" class="caption" role="heading">
+ <span class="caption-text">
+  Bootcamps
+ </span>
+</p>
+<ul class="nav bd-sidenav">
+ <li class="toctree-l1">
+  <a class="reference internal" href="../Bootcamp_Notebooks/Bootcamp1-Python_Fundamentals_STUDENT.html">
+   Bootcamp 1: Python Fundamentals
+  </a>
+ </li>
+ <li class="toctree-l1">
+  <a class="reference internal" href="../Bootcamp_Notebooks/Bootcamp2-InitialConceptsReview.html">
+   Bootcamp 2: Initial Concepts Review Cheatsheet
+  </a>
+ </li>
+ <li class="toctree-l1">
+  <a class="reference internal" href="../Bootcamp_Notebooks/Bootcamp3-Debugging_STUDENT.html">
+   Bootcamp 3: Debugging
+  </a>
+ </li>
+ <li class="toctree-l1">
+  <a class="reference internal" href="../Bootcamp_Notebooks/Bootcamp4-IfStatements_STUDENT.html">
+   Bootcamp 4: If Statements
+  </a>
+ </li>
+ <li class="toctree-l1">
+  <a class="reference internal" href="../Bootcamp_Notebooks/Bootcamp5-Functions_STUDENT.html">
+   Bootcamp 5: Functions
+  </a>
+ </li>
+ <li class="toctree-l1">
+  <a class="reference internal" href="../Bootcamp_Notebooks/Bootcamp6-Matplotlib_STUDENT.html">
+   Bootcamp 6: Matplotlib
+  </a>
+ </li>
+ <li class="toctree-l1">
+  <a class="reference internal" href="../Bootcamp_Notebooks/Bootcamp8_Pandas_STUDENT.html">
+   Bootcamp 8: Practice with Pandas
+  </a>
+ </li>
+ <li class="toctree-l1">
+  <a class="reference internal" href="../Bootcamp_Notebooks/Bootcamp8_Pandas_INSTRUCTOR.html">
+   Bootcamp 8: Practice with Pandas (Solution)
+  </a>
+ </li>
+ <li class="toctree-l1">
+  <a class="reference external" href="https://raw.githubusercontent.com/msu-cmse-courses/cmse201-S22-data/main/weather.csv">
+   weather.csv
+  </a>
+ </li>
+ <li class="toctree-l1">
+  <a class="reference internal" href="../Bootcamp_Notebooks/Bootcamp9-ScipyCurveFit_STUDENT.html">
+   Bootcamp 9:  Scipy curve_fit
+  </a>
+ </li>
+ <li class="toctree-l1">
+  <a class="reference internal" href="../Bootcamp_Notebooks/Bootcamp9-ScipyCurveFit_INSTRUCTOR.html">
+   Bootcamp 9:  Scipy curve_fit
+  </a>
+ </li>
+ <li class="toctree-l1">
+  <a class="reference internal" href="../Bootcamp_Notebooks/Bootcamp10-CompartmentalModels_STUDENT.html">
+   Bootcamp 10: Compartmental Models
+  </a>
+ </li>
+ <li class="toctree-l1">
+  <a class="reference internal" href="../Bootcamp_Notebooks/Bootcamp10-CompartmentalModels_INSTRUCTOR.html">
+   Bootcamp 10: Compartmental Models
+  </a>
+ </li>
+ <li class="toctree-l1">
+  <a class="reference internal" href="../Bootcamp_Notebooks/Bootcamp11_Solve_IVP_STUDENT.html">
+   Bootcamp 11: Practice with
+   <code class="docutils literal notranslate">
+    <span class="pre">
+     solve_ivp
+    </span>
+   </code>
+  </a>
+ </li>
+ <li class="toctree-l1">
+  <a class="reference internal" href="../Bootcamp_Notebooks/Bootcamp11_Solve_IVP_INSTRUCTOR.html">
+   Bootcamp 11: Practice with
+   <code class="docutils literal notranslate">
+    <span class="pre">
+     solve_ivp
+    </span>
+   </code>
+  </a>
+ </li>
+</ul>
+<p aria-level="2" class="caption" role="heading">
+ <span class="caption-text">
+  Semester Project
+ </span>
+</p>
+<ul class="nav bd-sidenav">
+ <li class="toctree-l1">
+  <a class="reference internal" href="../Project_Materials/CMSE201_SemesterProjectDetails.html">
+   Semester Project Details
+  </a>
+ </li>
+ <li class="toctree-l1">
+  <a class="reference internal" href="../Project_Materials/First_Project_Checkpoint.html">
+   First Project Checkpoint
+  </a>
+ </li>
+ <li class="toctree-l1">
+  <a class="reference internal" href="../Project_Materials/CMSE201_FinalProjectTemplate.html">
+   CMSE 201 Final Project Template
+  </a>
+ </li>
+ <li class="toctree-l1">
+  <a class="reference external" href="https://raw.githubusercontent.com/msu-cmse-courses/cmse201-S22-data/main/Projects/CMSE201_ExampleProject_A.pdf">
+   CMSE201_ExampleProject_A.pdf
+  </a>
+ </li>
+ <li class="toctree-l1">
+  <a class="reference external" href="https://raw.githubusercontent.com/msu-cmse-courses/cmse201-S22-data/main/Projects/CMSE201_ExampleProject_B.pdf">
+   CMSE201_ExampleProject_B.pdf
+  </a>
+ </li>
+ <li class="toctree-l1">
+  <a class="reference external" href="https://raw.githubusercontent.com/msu-cmse-courses/cmse201-S22-data/main/Projects/CMSE201_ExampleProject_C.pdf">
+   CMSE201_ExampleProject_C.pdf
+  </a>
+ </li>
+ <li class="toctree-l1">
+  <a class="reference external" href="https://raw.githubusercontent.com/msu-cmse-courses/cmse201-S22-data/main/Projects/CMSE201_ExampleProject_D.pdf">
+   CMSE201_ExampleProject_D.pdf
+  </a>
+ </li>
+ <li class="toctree-l1">
+  <a class="reference external" href="https://raw.githubusercontent.com/msu-cmse-courses/cmse201-S22-data/main/Projects/CMSE201_ExampleProject_E.pdf">
+   CMSE201_ExampleProject_E.pdf
+  </a>
+ </li>
+ <li class="toctree-l1">
+  <a class="reference external" href="https://raw.githubusercontent.com/msu-cmse-courses/cmse201-S22-data/main/Projects/CMSE201_final_project_example_1.pdf">
+   CMSE201_final_project_example_1.pdf
+  </a>
+ </li>
+ <li class="toctree-l1">
+  <a class="reference external" href="https://raw.githubusercontent.com/msu-cmse-courses/cmse201-S22-data/main/Projects/CMSE201_final_project_example_2.pdf">
+   CMSE201_final_project_example_2.pdf
+  </a>
+ </li>
+ <li class="toctree-l1">
+  <a class="reference external" href="https://raw.githubusercontent.com/msu-cmse-courses/cmse201-S22-data/main/Projects/CMSE201_final_project_example_3.pdf">
+   CMSE201_final_project_example_3.pdf
+  </a>
+ </li>
+ <li class="toctree-l1">
+  <a class="reference external" href="https://raw.githubusercontent.com/msu-cmse-courses/cmse201-S22-data/main/Projects/CMSE201_final_project_example_4.pdf">
+   CMSE201_final_project_example_4.pdf
+  </a>
+ </li>
+ <li class="toctree-l1">
+  <a class="reference internal" href="../Project_Materials/CMSE201FinalProject_RequirementsAndGradingRubric.html">
+   Requirements and Grading Rubric
+  </a>
+ </li>
+</ul>
+
+    </div>
+</nav></div>
+        <div class="bd-sidebar__bottom">
+             <!-- To handle the deprecated key -->
+            
+            <div class="navbar_extra_footer">
+            Powered by <a href="https://jupyterbook.org">Jupyter Book</a>
+            </div>
+            
+        </div>
+    </div>
+    <div id="rtd-footer-container"></div>
+</div>
+
+
+          
+
+
+          
+<!-- A tiny helper pixel to detect if we've scrolled -->
+<div class="sbt-scroll-pixel-helper"></div>
+<!-- Main content -->
+<div class="col py-0 content-container">
+    
+    <div class="header-article row sticky-top noprint">
+        
+
+
+
+<div class="col py-1 d-flex header-article-main">
+    <div class="header-article__left">
+        
+        <label for="__navigation"
+  class="headerbtn"
+  data-toggle="tooltip"
+data-placement="right"
+title="Toggle navigation"
+>
+  
+
+<span class="headerbtn__icon-container">
+  <i class="fas fa-bars"></i>
+  </span>
+
+</label>
+
+        
+    </div>
+    <div class="header-article__right">
+<div class="menu-dropdown menu-dropdown-launch-buttons">
+  <button class="headerbtn menu-dropdown__trigger"
+      aria-label="Launch interactive content">
+      <i class="fas fa-rocket"></i>
+  </button>
+  <div class="menu-dropdown__content">
+    <ul>
+      <li>
+        <a href="https://mybinder.org/v2/gh/msu-cmse-courses/cmse201-F22-jb/main?urlpath=tree/Day-13/Day-13_Pre-Class_CurveFitting-STUDENT.ipynb"
+   class="headerbtn"
+   data-toggle="tooltip"
+data-placement="left"
+title="Launch on Binder"
+>
+  
+
+<span class="headerbtn__icon-container">
+  
+    <img src="../_static/images/logo_binder.svg">
+  </span>
+<span class="headerbtn__text-container">Binder</span>
+</a>
+
+      </li>
+      
+    </ul>
+  </div>
+</div>
+
+<button onclick="toggleFullScreen()"
+  class="headerbtn"
+  data-toggle="tooltip"
+data-placement="bottom"
+title="Fullscreen mode"
+>
+  
+
+<span class="headerbtn__icon-container">
+  <i class="fas fa-expand"></i>
+  </span>
+
+</button>
+
+<div class="menu-dropdown menu-dropdown-repository-buttons">
+  <button class="headerbtn menu-dropdown__trigger"
+      aria-label="Source repositories">
+      <i class="fab fa-github"></i>
+  </button>
+  <div class="menu-dropdown__content">
+    <ul>
+      <li>
+        <a href="https://github.com/msu-cmse-courses/cmse201-F22-jb"
+   class="headerbtn"
+   data-toggle="tooltip"
+data-placement="left"
+title="Source repository"
+>
+  
+
+<span class="headerbtn__icon-container">
+  <i class="fab fa-github"></i>
+  </span>
+<span class="headerbtn__text-container">repository</span>
+</a>
+
+      </li>
+      
+      <li>
+        <a href="https://github.com/msu-cmse-courses/cmse201-F22-jb/issues/new?title=Issue%20on%20page%20%2FDay-13/Day-13_Pre-Class_CurveFitting-STUDENT.html&body=Your%20issue%20content%20here."
+   class="headerbtn"
+   data-toggle="tooltip"
+data-placement="left"
+title="Open an issue"
+>
+  
+
+<span class="headerbtn__icon-container">
+  <i class="fas fa-lightbulb"></i>
+  </span>
+<span class="headerbtn__text-container">open issue</span>
+</a>
+
+      </li>
+      
+    </ul>
+  </div>
+</div>
+
+<div class="menu-dropdown menu-dropdown-download-buttons">
+  <button class="headerbtn menu-dropdown__trigger"
+      aria-label="Download this page">
+      <i class="fas fa-download"></i>
+  </button>
+  <div class="menu-dropdown__content">
+    <ul>
+      <li>
+        <a href="../_sources/Day-13/Day-13_Pre-Class_CurveFitting-STUDENT.ipynb"
+   class="headerbtn"
+   data-toggle="tooltip"
+data-placement="left"
+title="Download source file"
+>
+  
+
+<span class="headerbtn__icon-container">
+  <i class="fas fa-file"></i>
+  </span>
+<span class="headerbtn__text-container">.ipynb</span>
+</a>
+
+      </li>
+      
+      <li>
+        
+<button onclick="printPdf(this)"
+  class="headerbtn"
+  data-toggle="tooltip"
+data-placement="left"
+title="Print to PDF"
+>
+  
+
+<span class="headerbtn__icon-container">
+  <i class="fas fa-file-pdf"></i>
+  </span>
+<span class="headerbtn__text-container">.pdf</span>
+</button>
+
+      </li>
+      
+    </ul>
+  </div>
+</div>
+<label for="__page-toc"
+  class="headerbtn headerbtn-page-toc"
+  
+>
+  
+
+<span class="headerbtn__icon-container">
+  <i class="fas fa-list"></i>
+  </span>
+
+</label>
+
+    </div>
+</div>
+
+<!-- Table of contents -->
+<div class="col-md-3 bd-toc show noprint">
+    <div class="tocsection onthispage pt-5 pb-3">
+        <i class="fas fa-list"></i> Contents
+    </div>
+    <nav id="bd-toc-nav" aria-label="Page">
+        <ul class="visible nav section-nav flex-column">
+ <li class="toc-h2 nav-item toc-entry">
+  <a class="reference internal nav-link" href="#p-style-text-align-right-put-your-name-here-p">
+   <p style="text-align: right;">
+    ✅ Put your name here
+   </p>
+  </a>
+ </li>
+ <li class="toc-h2 nav-item toc-entry">
+  <a class="reference internal nav-link" href="#goals-for-today-s-pre-class-assignment">
+   Goals for today’s pre-class assignment
+  </a>
+ </li>
+ <li class="toc-h2 nav-item toc-entry">
+  <a class="reference internal nav-link" href="#assignment-instructions">
+   Assignment instructions
+  </a>
+ </li>
+ <li class="toc-h2 nav-item toc-entry">
+  <a class="reference internal nav-link" href="#part-1-what-is-regression">
+   Part 1: What is Regression?
+  </a>
+ </li>
+ <li class="toc-h2 nav-item toc-entry">
+  <a class="reference internal nav-link" href="#part-2-doing-regression-by-hand">
+   Part 2: Doing Regression “By Hand”
+  </a>
+  <ul class="nav section-nav flex-column">
+   <li class="toc-h3 nav-item toc-entry">
+    <a class="reference internal nav-link" href="#watch-this-video">
+     Watch this video
+    </a>
+   </li>
+   <li class="toc-h3 nav-item toc-entry">
+    <a class="reference internal nav-link" href="#in-the-function-below-comment-the-code-where-specified-and-fill-in-the-equation-for-calculating-b-the-intercept">
+     ✅
+     <strong>
+      2.1
+     </strong>
+     In the function below, comment the code where specified and fill in the equation for calculating
+     <span class="math notranslate nohighlight">
+      \(b\)
+     </span>
+     , the intercept!
+    </a>
+   </li>
+   <li class="toc-h3 nav-item toc-entry">
+    <a class="reference internal nav-link" href="#comment-the-code-below-where-specified">
+     ✅
+     <strong>
+      2.2
+     </strong>
+     Comment the code below where specified!
+    </a>
+   </li>
+   <li class="toc-h3 nav-item toc-entry">
+    <a class="reference internal nav-link" href="#print-out-your-calculated-slope-and-intercept-below-what-do-these-values-mean-in-terms-of-x-and-y-that-is-what-does-the-slope-tell-you-about-how-y-changes-when-x-changes-what-information-does-the-intercept-provide">
+     ✅
+     <strong>
+      2.3
+     </strong>
+     Print out your calculated slope and intercept below. What do these values mean in terms of
+     <span class="math notranslate nohighlight">
+      \(x\)
+     </span>
+     and
+     <span class="math notranslate nohighlight">
+      \(y\)
+     </span>
+     ? That is, what does the slope tell you about how
+     <span class="math notranslate nohighlight">
+      \(y\)
+     </span>
+     changes when
+     <span class="math notranslate nohighlight">
+      \(x\)
+     </span>
+     changes? What information does the intercept provide?
+    </a>
+   </li>
+  </ul>
+ </li>
+ <li class="toc-h2 nav-item toc-entry">
+  <a class="reference internal nav-link" href="#part-3-fitting-a-function-using-curve-fit">
+   Part 3. Fitting a function using
+   <code class="docutils literal notranslate">
+    <span class="pre">
+     curve_fit
+    </span>
+   </code>
+  </a>
+  <ul class="nav section-nav flex-column">
+   <li class="toc-h3 nav-item toc-entry">
+    <a class="reference internal nav-link" href="#scipy-s-curve-fit-function-takes-in-three-arguments">
+     SciPy’s
+     <code class="docutils literal notranslate">
+      <span class="pre">
+       curve_fit
+      </span>
+     </code>
+     function takes in three arguments:
+    </a>
+   </li>
+   <li class="toc-h3 nav-item toc-entry">
+    <a class="reference internal nav-link" href="#print-out-the-expected-parameter-values-that-from-curve-fit-these-parameters-are-stored-in-the-popt-variable">
+     ✅
+     <strong>
+      3.1
+     </strong>
+     Print out the expected parameter values that from
+     <code class="docutils literal notranslate">
+      <span class="pre">
+       curve_fit
+      </span>
+     </code>
+     (these parameters are stored in the
+     <code class="docutils literal notranslate">
+      <span class="pre">
+       popt
+      </span>
+     </code>
+     variable)
+    </a>
+   </li>
+   <li class="toc-h3 nav-item toc-entry">
+    <a class="reference internal nav-link" href="#carefully-read-this-code-and-make-sure-you-understand-it-you-ll-be-using-the-same-procedure-in-the-next-section">
+     ✅
+     <strong>
+      3.2
+     </strong>
+     Carefully read this code and make sure you understand it. You’ll be using the same procedure in the next section!
+    </a>
+   </li>
+   <li class="toc-h3 nav-item toc-entry">
+    <a class="reference internal nav-link" href="#is-the-fitted-sine-function-from-curve-fit-a-good-fit-for-our-data">
+     ✅
+     <strong>
+      3.3
+     </strong>
+     Is the fitted sine function from
+     <code class="docutils literal notranslate">
+      <span class="pre">
+       curve_fit
+      </span>
+     </code>
+     a “good fit” for our data?
+    </a>
+   </li>
+  </ul>
+ </li>
+ <li class="toc-h2 nav-item toc-entry">
+  <a class="reference internal nav-link" href="#part-4-practice-using-curve-fit">
+   Part 4. Practice Using
+   <code class="docutils literal notranslate">
+    <span class="pre">
+     curve_fit
+    </span>
+   </code>
+  </a>
+  <ul class="nav section-nav flex-column">
+   <li class="toc-h3 nav-item toc-entry">
+    <a class="reference internal nav-link" href="#first-make-a-plot-showing-x-vs-y-so-we-can-get-a-sense-of-what-the-data-looks-like">
+     ✅
+     <strong>
+      4.1
+     </strong>
+     First, make a plot showing
+     <span class="math notranslate nohighlight">
+      \(x\)
+     </span>
+     vs.
+     <span class="math notranslate nohighlight">
+      \(y\)
+     </span>
+     so we can get a sense of what the data looks like.
+    </a>
+   </li>
+   <li class="toc-h3 nav-item toc-entry">
+    <a class="reference internal nav-link" href="#turn-the-above-equation-into-a-function-that-we-can-use-to-fit-the-data">
+     ✅
+     <strong>
+      4.2
+     </strong>
+     Turn the above equation into a function that we can use to fit the data.
+    </a>
+   </li>
+   <li class="toc-h3 nav-item toc-entry">
+    <a class="reference internal nav-link" href="#use-the-fitting-procedure-laid-out-in-the-previous-section-to-find-the-best-fit-parameters-i-e-values-for-g-d-and-l-0">
+     ✅
+     <strong>
+      4.3
+     </strong>
+     Use the fitting procedure laid out in the previous section to find the best fit parameters (I.e., values for
+     <span class="math notranslate nohighlight">
+      \(G\)
+     </span>
+     ,
+     <span class="math notranslate nohighlight">
+      \(d\)
+     </span>
+     , and
+     <span class="math notranslate nohighlight">
+      \(L_0\)
+     </span>
+     ).
+    </a>
+   </li>
+   <li class="toc-h3 nav-item toc-entry">
+    <a class="reference internal nav-link" href="#what-values-did-you-get-for-your-best-fit-parameters">
+     ✅
+     <strong>
+      4.4
+     </strong>
+     What values did you get for your best fit parameters?
+    </a>
+   </li>
+   <li class="toc-h3 nav-item toc-entry">
+    <a class="reference internal nav-link" href="#use-your-best-fit-parameters-as-well-as-your-function-from-4-2-to-make-a-best-fit-line-if-you-get-stuck-you-should-refer-to-the-code-from-3-2">
+     ✅
+     <strong>
+      4.5
+     </strong>
+     Use your best fit parameters, as well as your function from 4.2, to make a best-fit line. If you get stuck you should refer to the code from 3.2.
+    </a>
+   </li>
+   <li class="toc-h3 nav-item toc-entry">
+    <a class="reference internal nav-link" href="#is-your-function-a-good-fit-for-this-dataset">
+     ✅
+     <strong>
+      4.6
+     </strong>
+     Is your function a good fit for this dataset?
+    </a>
+   </li>
+  </ul>
+ </li>
+ <li class="toc-h2 nav-item toc-entry">
+  <a class="reference internal nav-link" href="#part-5-thinking-about-models-and-fitting-models-to-data">
+   Part 5. Thinking about models and fitting models to data
+  </a>
+ </li>
+ <li class="toc-h2 nav-item toc-entry">
+  <a class="reference internal nav-link" href="#assignment-wrap-up">
+   Assignment wrap-up
+  </a>
+  <ul class="nav section-nav flex-column">
+   <li class="toc-h3 nav-item toc-entry">
+    <a class="reference internal nav-link" href="#congratulations-you-re-done">
+     Congratulations, you’re done!
+    </a>
+   </li>
+  </ul>
+ </li>
+</ul>
+
+    </nav>
+</div>
+    </div>
+    <div class="article row">
+        <div class="col pl-md-3 pl-lg-5 content-container">
+            <!-- Table of contents that is only displayed when printing the page -->
+            <div id="jb-print-docs-body" class="onlyprint">
+                <h1>Day 13 Pre-Class Assignment: Fitting functions to data (curve-fitting) and thinking more about models</h1>
+                <!-- Table of contents -->
+                <div id="print-main-content">
+                    <div id="jb-print-toc">
+                        
+                        <div>
+                            <h2> Contents </h2>
+                        </div>
+                        <nav aria-label="Page">
+                            <ul class="visible nav section-nav flex-column">
+ <li class="toc-h2 nav-item toc-entry">
+  <a class="reference internal nav-link" href="#p-style-text-align-right-put-your-name-here-p">
+   <p style="text-align: right;">
+    ✅ Put your name here
+   </p>
+  </a>
+ </li>
+ <li class="toc-h2 nav-item toc-entry">
+  <a class="reference internal nav-link" href="#goals-for-today-s-pre-class-assignment">
+   Goals for today’s pre-class assignment
+  </a>
+ </li>
+ <li class="toc-h2 nav-item toc-entry">
+  <a class="reference internal nav-link" href="#assignment-instructions">
+   Assignment instructions
+  </a>
+ </li>
+ <li class="toc-h2 nav-item toc-entry">
+  <a class="reference internal nav-link" href="#part-1-what-is-regression">
+   Part 1: What is Regression?
+  </a>
+ </li>
+ <li class="toc-h2 nav-item toc-entry">
+  <a class="reference internal nav-link" href="#part-2-doing-regression-by-hand">
+   Part 2: Doing Regression “By Hand”
+  </a>
+  <ul class="nav section-nav flex-column">
+   <li class="toc-h3 nav-item toc-entry">
+    <a class="reference internal nav-link" href="#watch-this-video">
+     Watch this video
+    </a>
+   </li>
+   <li class="toc-h3 nav-item toc-entry">
+    <a class="reference internal nav-link" href="#in-the-function-below-comment-the-code-where-specified-and-fill-in-the-equation-for-calculating-b-the-intercept">
+     ✅
+     <strong>
+      2.1
+     </strong>
+     In the function below, comment the code where specified and fill in the equation for calculating
+     <span class="math notranslate nohighlight">
+      \(b\)
+     </span>
+     , the intercept!
+    </a>
+   </li>
+   <li class="toc-h3 nav-item toc-entry">
+    <a class="reference internal nav-link" href="#comment-the-code-below-where-specified">
+     ✅
+     <strong>
+      2.2
+     </strong>
+     Comment the code below where specified!
+    </a>
+   </li>
+   <li class="toc-h3 nav-item toc-entry">
+    <a class="reference internal nav-link" href="#print-out-your-calculated-slope-and-intercept-below-what-do-these-values-mean-in-terms-of-x-and-y-that-is-what-does-the-slope-tell-you-about-how-y-changes-when-x-changes-what-information-does-the-intercept-provide">
+     ✅
+     <strong>
+      2.3
+     </strong>
+     Print out your calculated slope and intercept below. What do these values mean in terms of
+     <span class="math notranslate nohighlight">
+      \(x\)
+     </span>
+     and
+     <span class="math notranslate nohighlight">
+      \(y\)
+     </span>
+     ? That is, what does the slope tell you about how
+     <span class="math notranslate nohighlight">
+      \(y\)
+     </span>
+     changes when
+     <span class="math notranslate nohighlight">
+      \(x\)
+     </span>
+     changes? What information does the intercept provide?
+    </a>
+   </li>
+  </ul>
+ </li>
+ <li class="toc-h2 nav-item toc-entry">
+  <a class="reference internal nav-link" href="#part-3-fitting-a-function-using-curve-fit">
+   Part 3. Fitting a function using
+   <code class="docutils literal notranslate">
+    <span class="pre">
+     curve_fit
+    </span>
+   </code>
+  </a>
+  <ul class="nav section-nav flex-column">
+   <li class="toc-h3 nav-item toc-entry">
+    <a class="reference internal nav-link" href="#scipy-s-curve-fit-function-takes-in-three-arguments">
+     SciPy’s
+     <code class="docutils literal notranslate">
+      <span class="pre">
+       curve_fit
+      </span>
+     </code>
+     function takes in three arguments:
+    </a>
+   </li>
+   <li class="toc-h3 nav-item toc-entry">
+    <a class="reference internal nav-link" href="#print-out-the-expected-parameter-values-that-from-curve-fit-these-parameters-are-stored-in-the-popt-variable">
+     ✅
+     <strong>
+      3.1
+     </strong>
+     Print out the expected parameter values that from
+     <code class="docutils literal notranslate">
+      <span class="pre">
+       curve_fit
+      </span>
+     </code>
+     (these parameters are stored in the
+     <code class="docutils literal notranslate">
+      <span class="pre">
+       popt
+      </span>
+     </code>
+     variable)
+    </a>
+   </li>
+   <li class="toc-h3 nav-item toc-entry">
+    <a class="reference internal nav-link" href="#carefully-read-this-code-and-make-sure-you-understand-it-you-ll-be-using-the-same-procedure-in-the-next-section">
+     ✅
+     <strong>
+      3.2
+     </strong>
+     Carefully read this code and make sure you understand it. You’ll be using the same procedure in the next section!
+    </a>
+   </li>
+   <li class="toc-h3 nav-item toc-entry">
+    <a class="reference internal nav-link" href="#is-the-fitted-sine-function-from-curve-fit-a-good-fit-for-our-data">
+     ✅
+     <strong>
+      3.3
+     </strong>
+     Is the fitted sine function from
+     <code class="docutils literal notranslate">
+      <span class="pre">
+       curve_fit
+      </span>
+     </code>
+     a “good fit” for our data?
+    </a>
+   </li>
+  </ul>
+ </li>
+ <li class="toc-h2 nav-item toc-entry">
+  <a class="reference internal nav-link" href="#part-4-practice-using-curve-fit">
+   Part 4. Practice Using
+   <code class="docutils literal notranslate">
+    <span class="pre">
+     curve_fit
+    </span>
+   </code>
+  </a>
+  <ul class="nav section-nav flex-column">
+   <li class="toc-h3 nav-item toc-entry">
+    <a class="reference internal nav-link" href="#first-make-a-plot-showing-x-vs-y-so-we-can-get-a-sense-of-what-the-data-looks-like">
+     ✅
+     <strong>
+      4.1
+     </strong>
+     First, make a plot showing
+     <span class="math notranslate nohighlight">
+      \(x\)
+     </span>
+     vs.
+     <span class="math notranslate nohighlight">
+      \(y\)
+     </span>
+     so we can get a sense of what the data looks like.
+    </a>
+   </li>
+   <li class="toc-h3 nav-item toc-entry">
+    <a class="reference internal nav-link" href="#turn-the-above-equation-into-a-function-that-we-can-use-to-fit-the-data">
+     ✅
+     <strong>
+      4.2
+     </strong>
+     Turn the above equation into a function that we can use to fit the data.
+    </a>
+   </li>
+   <li class="toc-h3 nav-item toc-entry">
+    <a class="reference internal nav-link" href="#use-the-fitting-procedure-laid-out-in-the-previous-section-to-find-the-best-fit-parameters-i-e-values-for-g-d-and-l-0">
+     ✅
+     <strong>
+      4.3
+     </strong>
+     Use the fitting procedure laid out in the previous section to find the best fit parameters (I.e., values for
+     <span class="math notranslate nohighlight">
+      \(G\)
+     </span>
+     ,
+     <span class="math notranslate nohighlight">
+      \(d\)
+     </span>
+     , and
+     <span class="math notranslate nohighlight">
+      \(L_0\)
+     </span>
+     ).
+    </a>
+   </li>
+   <li class="toc-h3 nav-item toc-entry">
+    <a class="reference internal nav-link" href="#what-values-did-you-get-for-your-best-fit-parameters">
+     ✅
+     <strong>
+      4.4
+     </strong>
+     What values did you get for your best fit parameters?
+    </a>
+   </li>
+   <li class="toc-h3 nav-item toc-entry">
+    <a class="reference internal nav-link" href="#use-your-best-fit-parameters-as-well-as-your-function-from-4-2-to-make-a-best-fit-line-if-you-get-stuck-you-should-refer-to-the-code-from-3-2">
+     ✅
+     <strong>
+      4.5
+     </strong>
+     Use your best fit parameters, as well as your function from 4.2, to make a best-fit line. If you get stuck you should refer to the code from 3.2.
+    </a>
+   </li>
+   <li class="toc-h3 nav-item toc-entry">
+    <a class="reference internal nav-link" href="#is-your-function-a-good-fit-for-this-dataset">
+     ✅
+     <strong>
+      4.6
+     </strong>
+     Is your function a good fit for this dataset?
+    </a>
+   </li>
+  </ul>
+ </li>
+ <li class="toc-h2 nav-item toc-entry">
+  <a class="reference internal nav-link" href="#part-5-thinking-about-models-and-fitting-models-to-data">
+   Part 5. Thinking about models and fitting models to data
+  </a>
+ </li>
+ <li class="toc-h2 nav-item toc-entry">
+  <a class="reference internal nav-link" href="#assignment-wrap-up">
+   Assignment wrap-up
+  </a>
+  <ul class="nav section-nav flex-column">
+   <li class="toc-h3 nav-item toc-entry">
+    <a class="reference internal nav-link" href="#congratulations-you-re-done">
+     Congratulations, you’re done!
+    </a>
+   </li>
+  </ul>
+ </li>
+</ul>
+
+                        </nav>
+                    </div>
+                </div>
+            </div>
+            <main id="main-content" role="main">
+                
+              <div>
+                
+  <section class="tex2jax_ignore mathjax_ignore" id="day-13-pre-class-assignment-fitting-functions-to-data-curve-fitting-and-thinking-more-about-models">
+<h1>Day 13 Pre-Class Assignment: Fitting functions to data (curve-fitting) and thinking more about models<a class="headerlink" href="#day-13-pre-class-assignment-fitting-functions-to-data-curve-fitting-and-thinking-more-about-models" title="Permalink to this headline">#</a></h1>
+<section id="p-style-text-align-right-put-your-name-here-p">
+<h2><p style="text-align: right;"> ✅ Put your name here</p><a class="headerlink" href="#p-style-text-align-right-put-your-name-here-p" title="Permalink to this headline">#</a></h2>
+<br/>
+<img src="https://www.mathworks.com/help/examples/matlab/win64/CurveFittingViaOptimizationExample_01.png" alt="Curve-fitting" width=500px/>
+</section>
+<section id="goals-for-today-s-pre-class-assignment">
+<h2>Goals for today’s pre-class assignment<a class="headerlink" href="#goals-for-today-s-pre-class-assignment" title="Permalink to this headline">#</a></h2>
+<ul class="simple">
+<li><p>Be able to articulate what regression is and why we use it</p></li>
+<li><p>Complete an Ordinary Least Squares function and use it to fit a linear model</p></li>
+<li><p>Use SciPy to fit a specific function to data</p></li>
+<li><p>Describe the nature of building and using models to understand the world</p></li>
+</ul>
+</section>
+<section id="assignment-instructions">
+<h2>Assignment instructions<a class="headerlink" href="#assignment-instructions" title="Permalink to this headline">#</a></h2>
+<p><strong>This assignment is due by 11:59 p.m. the day before class,</strong> and should be uploaded into the appropriate “Pre-class assignments” submission folder.  If you run into issues with your code, make sure to use Slack to help each other out and receive some assistance from the instructors. Submission instructions can be found at the end of the notebook.</p>
+</section>
+<hr class="docutils" />
+<section id="part-1-what-is-regression">
+<h2>Part 1: What is Regression?<a class="headerlink" href="#part-1-what-is-regression" title="Permalink to this headline">#</a></h2>
+<p>In many applications, data depends on other data.  This is expressed with dependent variables that depend on independent variables.  For example, we know that sunlight (<span class="math notranslate nohighlight">\(s\)</span>, dependent variable) depends on the time of day (<span class="math notranslate nohighlight">\(t\)</span>, independent variable) and this can be expressed with saying <span class="math notranslate nohighlight">\(s\)</span> is some function, <span class="math notranslate nohighlight">\(f\)</span>, of <span class="math notranslate nohighlight">\(t\)</span> with <span class="math notranslate nohighlight">\(s = f(t)\)</span>.  If brigtness is linearly related to the time of day, we can fit a line through the relationship of these variables.</p>
+<p>One of the problems that arises in data science is that the data is invariably imperfect. We often say that the data has “noise” or “fluctuations”. The problem is that we know that some of these fluctuations are not real: they are caused by errors in our measurements or any other factor that is not in our control. We do not want to take those fluctuations literally. In other cases the fluctuations might actually be real, but we don’t want to focus our attention on those details because we simply want the trend. Regression solves this problem by providing a methodology to find a smoother function that is consistent with your data but doesn’t attempt to match every detail, which may or may not be a real signal.</p>
+<p>A common form of regression is called <strong>simple linear regression</strong>. Simple linear regression finds the best line that goes through noisy data. But, there are other forms of regression that we will be interested in. Here are some of the methods we will explore in this class:</p>
+<ul class="simple">
+<li><p>Simple linear regression: fitting a best-fit line through a data set</p></li>
+<li><p>Curve fitting: we might want to fit to some other curve, which you need to supply based on some insight into the data, of arbitrary form; for example, the exponential <span class="math notranslate nohighlight">\(ae^{-t}+ b\)</span></p></li>
+</ul>
+</section>
+<hr class="docutils" />
+<section id="part-2-doing-regression-by-hand">
+<h2>Part 2: Doing Regression “By Hand”<a class="headerlink" href="#part-2-doing-regression-by-hand" title="Permalink to this headline">#</a></h2>
+<p>Time to practice using regression to fit a function to some data. The following video covers an example of fitting a simple linear regression model “by hand” - calculating the slope and intercept values given some data.</p>
+<section id="watch-this-video">
+<h3>Watch this video<a class="headerlink" href="#watch-this-video" title="Permalink to this headline">#</a></h3>
+<p>If the YouTube video doesn’t work, try this <a class="reference external" href="https://mediaspace.msu.edu/media/RegressionA+Methods+and+Examples/1_gtg70ib1">MediaSpace link</a>.</p>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="kn">from</span> <span class="nn">IPython.display</span> <span class="kn">import</span> <span class="n">YouTubeVideo</span>  
+<span class="n">YouTubeVideo</span><span class="p">(</span><span class="s2">&quot;1YUHyBTztOc&quot;</span><span class="p">,</span><span class="n">width</span><span class="o">=</span><span class="mi">640</span><span class="p">,</span><span class="n">height</span><span class="o">=</span><span class="mi">360</span><span class="p">)</span>
+</pre></div>
+</div>
+</div>
+</div>
+<hr class="docutils" />
+<p>Using what was covered in the previous video, follow along with the code below where we will use ordinary least squares (OLS) solutions to fitting a simple linear regression model.</p>
+<p>First we can make our necessary imports and then generate some data to work with!</p>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="c1"># Import our necessary packages</span>
+<span class="kn">import</span> <span class="nn">numpy</span> <span class="k">as</span> <span class="nn">np</span>
+<span class="kn">import</span> <span class="nn">matplotlib.pyplot</span> <span class="k">as</span> <span class="nn">plt</span>
+</pre></div>
+</div>
+</div>
+</div>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="c1"># here is some x and y data of cricket chirps vs. temperature</span>
+<span class="n">chirps</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">array</span><span class="p">([</span><span class="mi">20</span><span class="p">,</span><span class="mi">16</span><span class="p">,</span><span class="mf">19.8</span><span class="p">,</span><span class="mf">18.4</span><span class="p">,</span><span class="mf">17.1</span><span class="p">,</span><span class="mf">15.5</span><span class="p">,</span><span class="mf">14.7</span><span class="p">,</span><span class="mf">17.1</span><span class="p">,</span><span class="mf">15.4</span><span class="p">,</span><span class="mf">16.2</span><span class="p">,</span><span class="mi">15</span><span class="p">,</span><span class="mf">17.2</span><span class="p">,</span><span class="mi">16</span><span class="p">,</span><span class="mi">17</span><span class="p">,</span><span class="mf">14.4</span><span class="p">])</span>
+<span class="n">temperature</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">array</span><span class="p">([</span><span class="mf">88.6</span><span class="p">,</span><span class="mf">71.6</span><span class="p">,</span><span class="mf">93.3</span><span class="p">,</span><span class="mf">84.3</span><span class="p">,</span><span class="mf">80.6</span><span class="p">,</span><span class="mf">75.2</span><span class="p">,</span><span class="mf">69.7</span><span class="p">,</span><span class="mi">82</span><span class="p">,</span><span class="mf">69.4</span><span class="p">,</span><span class="mf">83.3</span><span class="p">,</span><span class="mf">79.6</span><span class="p">,</span><span class="mf">82.6</span><span class="p">,</span><span class="mf">80.6</span><span class="p">,</span><span class="mf">83.5</span><span class="p">,</span><span class="mf">76.3</span><span class="p">])</span>
+<span class="c1">#plot our data</span>
+<span class="n">plt</span><span class="o">.</span><span class="n">scatter</span><span class="p">(</span><span class="n">chirps</span><span class="p">,</span> <span class="n">temperature</span><span class="p">,</span> <span class="n">label</span> <span class="o">=</span> <span class="s2">&quot;data&quot;</span><span class="p">)</span>
+<span class="n">plt</span><span class="o">.</span><span class="n">legend</span><span class="p">()</span>
+<span class="n">plt</span><span class="o">.</span><span class="n">show</span><span class="p">()</span>
+</pre></div>
+</div>
+</div>
+</div>
+<p>Look at the plot above. Notice that the relationship between <span class="math notranslate nohighlight">\(y\)</span> and <span class="math notranslate nohighlight">\(x\)</span> is roughly linear. This means we can use the ordinary least squares (OLS) approach to fit a line to the data. Below is a function that performs OLS.</p>
+<p>The equations for linear regression are at in the video, but are repeated here as a reference:</p>
+<div class="math notranslate nohighlight">
+\[\bar{x} = \frac{1}{N}\sum_i x_i\]</div>
+<div class="math notranslate nohighlight">
+\[\bar{y} = \frac{1}{N}\sum_i y_i\]</div>
+<div class="math notranslate nohighlight">
+\[ m = \frac{\sum_i x_i y_i - N\bar{x}\bar{y}}{\sum_i x_i^2 - N\bar{x}^2}\]</div>
+<div class="math notranslate nohighlight">
+\[ b = \bar{y} - m\bar{x}\]</div>
+<p>Recall that:</p>
+<ul class="simple">
+<li><p><span class="math notranslate nohighlight">\(x_i\)</span> are the <span class="math notranslate nohighlight">\(x\)</span> coordinates, and there are <span class="math notranslate nohighlight">\(N\)</span> of them</p></li>
+<li><p><span class="math notranslate nohighlight">\(y_i\)</span> are the <span class="math notranslate nohighlight">\(y\)</span> values of the data, and there are also <span class="math notranslate nohighlight">\(N\)</span> of them</p></li>
+<li><p>the sums, <span class="math notranslate nohighlight">\(\sum_i\)</span>, means that you sum up all of the values that follow; for example, <span class="math notranslate nohighlight">\(\sum_ix_i = x_0 + x_1 + \cdots x_{N-1}\)</span></p></li>
+</ul>
+</section>
+<section id="in-the-function-below-comment-the-code-where-specified-and-fill-in-the-equation-for-calculating-b-the-intercept">
+<h3>✅  <strong>2.1</strong> In the function below, comment the code where specified and fill in the equation for calculating <span class="math notranslate nohighlight">\(b\)</span>, the intercept!<a class="headerlink" href="#in-the-function-below-comment-the-code-where-specified-and-fill-in-the-equation-for-calculating-b-the-intercept" title="Permalink to this headline">#</a></h3>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="c1"># This function is used to calculate ordinary least squares regression parameters given some data</span>
+
+<span class="k">def</span> <span class="nf">my_ols_parameters</span><span class="p">(</span><span class="n">x</span><span class="p">,</span> <span class="n">y</span><span class="p">):</span>
+    
+    <span class="c1"># average of x data</span>
+    <span class="n">mean_x</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">mean</span><span class="p">(</span><span class="n">x</span><span class="p">)</span>
+    
+    <span class="c1"># average of y data</span>
+    <span class="n">mean_y</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">mean</span><span class="p">(</span><span class="n">y</span><span class="p">)</span>
+    
+    <span class="c1"># number of data points we have -- len(y) would work too</span>
+    <span class="n">N</span> <span class="o">=</span> <span class="nb">len</span><span class="p">(</span><span class="n">x</span><span class="p">)</span>
+    
+    <span class="c1"># the sum of all the x multiplied by all the y</span>
+    <span class="n">xy_product_sum</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">sum</span><span class="p">(</span><span class="n">x</span><span class="o">*</span><span class="n">y</span><span class="p">)</span>
+    
+    <span class="c1"># the sum of all the x squared</span>
+    <span class="n">xx_product_sum</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">sum</span><span class="p">(</span><span class="n">x</span><span class="o">**</span><span class="mi">2</span><span class="p">)</span>
+    
+    
+    <span class="c1"># what is this line doing?</span>
+    <span class="c1"># comment here</span>
+    <span class="n">m</span> <span class="o">=</span> <span class="p">(</span><span class="n">xy_product_sum</span> <span class="o">-</span> <span class="n">N</span> <span class="o">*</span> <span class="n">mean_x</span> <span class="o">*</span> <span class="n">mean_y</span><span class="p">)</span><span class="o">/</span><span class="p">(</span><span class="n">xx_product_sum</span> <span class="o">-</span> <span class="n">N</span><span class="o">*</span><span class="n">mean_x</span><span class="o">**</span><span class="mi">2</span><span class="p">)</span>
+
+    <span class="c1"># UNCOMMENT AND FILL IN THIS CODE</span>
+    <span class="c1"># calculate the intercept using the equation above</span>
+    <span class="c1">#b = ?</span>
+    
+    <span class="c1"># what does this function return?</span>
+    <span class="c1"># comment here</span>
+    <span class="k">return</span> <span class="n">m</span><span class="p">,</span> <span class="n">b</span>
+</pre></div>
+</div>
+</div>
+</div>
+<p>The function provided below (no changes to this function are needed) takes in our <span class="math notranslate nohighlight">\(x\)</span> data and our estimated slope and intercept values to predict expected <span class="math notranslate nohighlight">\(y\)</span> values. We will use this function below when we plot our fitted linear regression model!</p>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="c1"># THIS FUNCTION IS PROVIDED, NO CHANGES NECESSARY</span>
+<span class="c1"># This function uses a regression equation to predict y given x</span>
+<span class="c1"># It takes in b (the intercept), m (the coefficient), and</span>
+<span class="c1"># x (the independent data)</span>
+
+<span class="k">def</span> <span class="nf">my_ols_regression</span><span class="p">(</span><span class="n">x</span><span class="p">,</span> <span class="n">m</span><span class="p">,</span> <span class="n">b</span><span class="p">):</span>
+    
+    <span class="n">expected_y</span> <span class="o">=</span> <span class="n">m</span><span class="o">*</span><span class="n">x</span> <span class="o">+</span> <span class="n">b</span>
+    
+    <span class="k">return</span> <span class="n">expected_y</span>
+</pre></div>
+</div>
+</div>
+</div>
+<p>In the cell below, we call our finished <code class="docutils literal notranslate"><span class="pre">my_ols_parameters</span></code> function to calculate our parameters and then feed these into our <code class="docutils literal notranslate"><span class="pre">my_ols_regression</span></code> function to calculate our expected <span class="math notranslate nohighlight">\(y\)</span> values.</p>
+</section>
+<section id="comment-the-code-below-where-specified">
+<h3>✅  <strong>2.2</strong> Comment the code below where specified!<a class="headerlink" href="#comment-the-code-below-where-specified" title="Permalink to this headline">#</a></h3>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="c1"># comment here - what is m &amp; b?</span>
+<span class="n">m_expected</span><span class="p">,</span> <span class="n">b_expected</span> <span class="o">=</span> <span class="n">my_ols_parameters</span><span class="p">(</span><span class="n">chirps</span><span class="p">,</span> <span class="n">temperature</span><span class="p">)</span>
+
+<span class="c1"># comment here - what are these values?</span>
+<span class="n">expected_y</span> <span class="o">=</span> <span class="n">my_ols_regression</span><span class="p">(</span><span class="n">chirps</span><span class="p">,</span> <span class="n">m_expected</span><span class="p">,</span> <span class="n">b_expected</span><span class="p">)</span>
+
+<span class="c1"># plot our data against our fitted linear regression</span>
+<span class="n">plt</span><span class="o">.</span><span class="n">scatter</span><span class="p">(</span><span class="n">chirps</span><span class="p">,</span> <span class="n">temperature</span><span class="p">,</span> <span class="n">label</span> <span class="o">=</span> <span class="s2">&quot;data&quot;</span><span class="p">)</span>
+<span class="n">plt</span><span class="o">.</span><span class="n">plot</span><span class="p">(</span><span class="n">chirps</span><span class="p">,</span> <span class="n">expected_y</span><span class="p">,</span> <span class="n">color</span> <span class="o">=</span> <span class="s2">&quot;orange&quot;</span><span class="p">,</span> <span class="n">label</span> <span class="o">=</span> <span class="s2">&quot;fit&quot;</span><span class="p">)</span>
+
+<span class="n">plt</span><span class="o">.</span><span class="n">legend</span><span class="p">()</span>
+<span class="n">plt</span><span class="o">.</span><span class="n">xlabel</span><span class="p">(</span><span class="s1">&#39;chirps&#39;</span><span class="p">)</span>
+<span class="n">plt</span><span class="o">.</span><span class="n">ylabel</span><span class="p">(</span><span class="s1">&#39;temperature&#39;</span><span class="p">)</span>
+<span class="n">plt</span><span class="o">.</span><span class="n">show</span><span class="p">()</span>
+</pre></div>
+</div>
+</div>
+</div>
+</section>
+<section id="print-out-your-calculated-slope-and-intercept-below-what-do-these-values-mean-in-terms-of-x-and-y-that-is-what-does-the-slope-tell-you-about-how-y-changes-when-x-changes-what-information-does-the-intercept-provide">
+<h3>✅  <strong>2.3</strong> Print out your calculated slope and intercept below. What do these values mean in terms of <span class="math notranslate nohighlight">\(x\)</span> and <span class="math notranslate nohighlight">\(y\)</span>? That is, what does the slope tell you about how <span class="math notranslate nohighlight">\(y\)</span> changes when <span class="math notranslate nohighlight">\(x\)</span> changes? What information does the intercept provide?<a class="headerlink" href="#print-out-your-calculated-slope-and-intercept-below-what-do-these-values-mean-in-terms-of-x-and-y-that-is-what-does-the-slope-tell-you-about-how-y-changes-when-x-changes-what-information-does-the-intercept-provide" title="Permalink to this headline">#</a></h3>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="c1"># Put your code here</span>
+</pre></div>
+</div>
+</div>
+</div>
+<p><font size=+3>✎</font> <em>Put your answer here.</em></p>
+</section>
+</section>
+<hr class="docutils" />
+<section id="part-3-fitting-a-function-using-curve-fit">
+<h2>Part 3. Fitting a function using <code class="docutils literal notranslate"><span class="pre">curve_fit</span></code><a class="headerlink" href="#part-3-fitting-a-function-using-curve-fit" title="Permalink to this headline">#</a></h2>
+<p>Although we used our OLS function in the previous problem to fit a simple straight line, the SciPy library provides us with a tool that can be used to fit all manner of functions: <a class="reference external" href="https://docs.scipy.org/doc/scipy/reference/generated/scipy.optimize.curve_fit.html"><code class="docutils literal notranslate"><span class="pre">curve_fit</span></code> (you can click this link to read the documentation)</a>.</p>
+<p>As with many Python packages, we need to import <code class="docutils literal notranslate"><span class="pre">curve_fit</span></code> first!</p>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="c1"># import curve_fit function</span>
+<span class="kn">from</span> <span class="nn">scipy.optimize</span> <span class="kn">import</span> <span class="n">curve_fit</span>
+
+<span class="c1"># import numpy and matplotlib as well while we&#39;re at it</span>
+<span class="kn">import</span> <span class="nn">numpy</span> <span class="k">as</span> <span class="nn">np</span>
+<span class="kn">import</span> <span class="nn">matplotlib.pyplot</span> <span class="k">as</span> <span class="nn">plt</span>
+<span class="o">%</span><span class="k">matplotlib</span> inline
+</pre></div>
+</div>
+</div>
+</div>
+<section id="scipy-s-curve-fit-function-takes-in-three-arguments">
+<h3>SciPy’s <code class="docutils literal notranslate"><span class="pre">curve_fit</span></code> function takes in three arguments:<a class="headerlink" href="#scipy-s-curve-fit-function-takes-in-three-arguments" title="Permalink to this headline">#</a></h3>
+<ul class="simple">
+<li><p><strong>A function that we define in Python</strong></p></li>
+<li><p><strong><span class="math notranslate nohighlight">\(x\)</span> data</strong></p></li>
+<li><p><strong><span class="math notranslate nohighlight">\(y\)</span> data</strong></p></li>
+</ul>
+<p><strong>It then returns an array of parameters that our newly-defined function uses.</strong></p>
+<p>Let’s take a look at the example in the cell below. Run the cell and see that our data follows a sinusoidal relationship.</p>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="c1"># generate some x data: sixty data points from 0 to 4π</span>
+<span class="n">x_sin</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">linspace</span><span class="p">(</span><span class="mi">0</span><span class="p">,</span><span class="mi">4</span><span class="o">*</span><span class="n">np</span><span class="o">.</span><span class="n">pi</span><span class="p">,</span><span class="mi">60</span><span class="p">)</span>
+
+<span class="c1"># generate some y data: 1.5 * sin(1.2x + 0.5)</span>
+<span class="c1"># we add the np.random.normal(0.25,.25,60) at the end to add some randomness to the data</span>
+<span class="n">y_sin</span> <span class="o">=</span> <span class="mf">1.5</span> <span class="o">*</span> <span class="n">np</span><span class="o">.</span><span class="n">sin</span><span class="p">(</span><span class="mf">1.2</span> <span class="o">*</span> <span class="n">x_sin</span><span class="p">)</span> <span class="o">+</span> <span class="n">np</span><span class="o">.</span><span class="n">random</span><span class="o">.</span><span class="n">normal</span><span class="p">(</span><span class="mf">.25</span><span class="p">,</span><span class="mf">.25</span><span class="p">,</span><span class="mi">60</span><span class="p">)</span>
+
+<span class="c1"># plot our data</span>
+<span class="n">plt</span><span class="o">.</span><span class="n">scatter</span><span class="p">(</span><span class="n">x_sin</span><span class="p">,</span> <span class="n">y_sin</span><span class="p">,</span> <span class="n">label</span> <span class="o">=</span> <span class="s2">&quot;data&quot;</span><span class="p">)</span>
+
+<span class="n">plt</span><span class="o">.</span><span class="n">legend</span><span class="p">()</span>
+<span class="n">plt</span><span class="o">.</span><span class="n">xlabel</span><span class="p">(</span><span class="s1">&#39;x&#39;</span><span class="p">)</span>
+<span class="n">plt</span><span class="o">.</span><span class="n">ylabel</span><span class="p">(</span><span class="s1">&#39;y&#39;</span><span class="p">)</span>
+<span class="n">plt</span><span class="o">.</span><span class="n">show</span><span class="p">()</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<img alt="../_images/Day-13_Pre-Class_CurveFitting-STUDENT_25_0.png" src="../_images/Day-13_Pre-Class_CurveFitting-STUDENT_25_0.png" />
+</div>
+</div>
+<p>Because this is just simulated data, we know that our “signal” is a sinusoid that has the relationship <span class="math notranslate nohighlight">\(y = 1.5 * \sin(1.2x)\)</span>.</p>
+<p>The generic form of a typical sine curve model is:
+$<span class="math notranslate nohighlight">\(y = A * \sin(Bx + C)\)</span>$</p>
+<p>This means our true parameter values for this specific example are:</p>
+<ul class="simple">
+<li><p><span class="math notranslate nohighlight">\(A = 1.5\)</span></p></li>
+<li><p><span class="math notranslate nohighlight">\(B = 1.2\)</span></p></li>
+<li><p><span class="math notranslate nohighlight">\(C = 0\)</span></p></li>
+</ul>
+<p>However, we usually don’t know the values of these parameters in advance - that’s why we use regression &amp; curve fitting!</p>
+<p>The first step in using <code class="docutils literal notranslate"><span class="pre">curve_fit</span></code> is that we define the sine function that we want to try to fit to our data. Look at how we’ve turned the mathematical model into a Python function in the cell below.</p>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="k">def</span> <span class="nf">my_sin_function</span><span class="p">(</span><span class="n">x</span><span class="p">,</span> <span class="n">A</span><span class="p">,</span> <span class="n">B</span><span class="p">,</span> <span class="n">C</span><span class="p">):</span>
+    <span class="c1"># Confirm that information returned by this function matches the mathematical formula from above!</span>
+    <span class="k">return</span> <span class="n">A</span> <span class="o">*</span> <span class="n">np</span><span class="o">.</span><span class="n">sin</span><span class="p">(</span><span class="n">B</span> <span class="o">*</span> <span class="n">x</span> <span class="o">+</span> <span class="n">C</span><span class="p">)</span>
+</pre></div>
+</div>
+</div>
+</div>
+<p>Next we can run <code class="docutils literal notranslate"><span class="pre">curve_fit</span></code> in the cell below now that we have our function defined and the data we want to fit.</p>
+<p><code class="docutils literal notranslate"><span class="pre">curve_fit</span></code> returns two values: the first is an array of our parameter values. In this example, the array will be <span class="math notranslate nohighlight">\([A, B, C]\)</span>.</p>
+</section>
+<section id="print-out-the-expected-parameter-values-that-from-curve-fit-these-parameters-are-stored-in-the-popt-variable">
+<h3>✅  <strong>3.1</strong> Print out the expected parameter values that from <code class="docutils literal notranslate"><span class="pre">curve_fit</span></code> (these parameters are stored in the <code class="docutils literal notranslate"><span class="pre">popt</span></code> variable)<a class="headerlink" href="#print-out-the-expected-parameter-values-that-from-curve-fit-these-parameters-are-stored-in-the-popt-variable" title="Permalink to this headline">#</a></h3>
+<p>Are they close to our true values from above?</p>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="c1"># Use curve_fit by passing in the sin function, x data, and y data</span>
+<span class="n">best_fit_parameters</span><span class="p">,</span> <span class="n">just_ignore_this</span> <span class="o">=</span> <span class="n">curve_fit</span><span class="p">(</span><span class="n">my_sin_function</span><span class="p">,</span> <span class="n">x_sin</span><span class="p">,</span> <span class="n">y_sin</span><span class="p">)</span>
+
+<span class="c1"># Print the array of fitted parameter values</span>
+</pre></div>
+</div>
+</div>
+</div>
+<p><font size=+3>✎</font> <em>Put your answer here.</em></p>
+<p>We can now “unpack” our parameter values and use them in our sine function to get our expected <span class="math notranslate nohighlight">\(y\)</span> values based on our model.</p>
+</section>
+<section id="carefully-read-this-code-and-make-sure-you-understand-it-you-ll-be-using-the-same-procedure-in-the-next-section">
+<h3>✅  <strong>3.2</strong> Carefully read this code and make sure you understand it. You’ll be using the same procedure in the next section!<a class="headerlink" href="#carefully-read-this-code-and-make-sure-you-understand-it-you-ll-be-using-the-same-procedure-in-the-next-section" title="Permalink to this headline">#</a></h3>
+<p>Once we have our fitted curve, we can plot it against the data below!</p>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="c1"># Unpack the parameter results into separate variables so that we can feed them to our sine function</span>
+<span class="n">a_fit</span> <span class="o">=</span> <span class="n">best_fit_parameters</span><span class="p">[</span><span class="mi">0</span><span class="p">]</span>  <span class="c1"># get fitted A value</span>
+<span class="n">b_fit</span> <span class="o">=</span> <span class="n">best_fit_parameters</span><span class="p">[</span><span class="mi">1</span><span class="p">]</span>  <span class="c1"># get fitted B value</span>
+<span class="n">c_fit</span> <span class="o">=</span> <span class="n">best_fit_parameters</span><span class="p">[</span><span class="mi">2</span><span class="p">]</span>  <span class="c1"># get fitted C value</span>
+
+<span class="c1"># use my_sin_function with new parameters to get fitted y values</span>
+<span class="n">y_sin_fit</span> <span class="o">=</span> <span class="n">my_sin_function</span><span class="p">(</span><span class="n">x_sin</span><span class="p">,</span> <span class="n">a_fit</span><span class="p">,</span> <span class="n">b_fit</span><span class="p">,</span> <span class="n">c_fit</span><span class="p">)</span>
+
+
+<span class="c1"># plot our actual data</span>
+<span class="n">plt</span><span class="o">.</span><span class="n">scatter</span><span class="p">(</span><span class="n">x_sin</span><span class="p">,</span> <span class="n">y_sin</span><span class="p">,</span> <span class="n">label</span> <span class="o">=</span> <span class="s2">&quot;data&quot;</span><span class="p">)</span>
+
+<span class="c1"># plot our fitted curve</span>
+<span class="n">plt</span><span class="o">.</span><span class="n">plot</span><span class="p">(</span><span class="n">x_sin</span><span class="p">,</span> <span class="n">y_sin_fit</span><span class="p">,</span> <span class="n">color</span> <span class="o">=</span> <span class="s2">&quot;orange&quot;</span><span class="p">,</span> <span class="n">label</span> <span class="o">=</span> <span class="s2">&quot;fit&quot;</span><span class="p">)</span>
+
+<span class="n">plt</span><span class="o">.</span><span class="n">legend</span><span class="p">()</span>
+<span class="n">plt</span><span class="o">.</span><span class="n">xlabel</span><span class="p">(</span><span class="s1">&#39;x&#39;</span><span class="p">)</span>
+<span class="n">plt</span><span class="o">.</span><span class="n">ylabel</span><span class="p">(</span><span class="s1">&#39;y&#39;</span><span class="p">)</span>
+<span class="n">plt</span><span class="o">.</span><span class="n">show</span><span class="p">()</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<img alt="../_images/Day-13_Pre-Class_CurveFitting-STUDENT_32_0.png" src="../_images/Day-13_Pre-Class_CurveFitting-STUDENT_32_0.png" />
+</div>
+</div>
+</section>
+<section id="is-the-fitted-sine-function-from-curve-fit-a-good-fit-for-our-data">
+<h3>✅  <strong>3.3</strong> Is the fitted sine function from <code class="docutils literal notranslate"><span class="pre">curve_fit</span></code> a “good fit” for our data?<a class="headerlink" href="#is-the-fitted-sine-function-from-curve-fit-a-good-fit-for-our-data" title="Permalink to this headline">#</a></h3>
+<p><font size=+3>✎</font> <em>Record your thoughts here</em></p>
+</section>
+</section>
+<hr class="docutils" />
+<section id="part-4-practice-using-curve-fit">
+<h2>Part 4. Practice Using <code class="docutils literal notranslate"><span class="pre">curve_fit</span></code><a class="headerlink" href="#part-4-practice-using-curve-fit" title="Permalink to this headline">#</a></h2>
+<p>Let’s put our new curve fitting tools to the test. We’ve provided you with a dataset in the cell below which can be modeled with a mathematical function. Let’s walk through the steps involved in fitting the dataset.</p>
+<section id="first-make-a-plot-showing-x-vs-y-so-we-can-get-a-sense-of-what-the-data-looks-like">
+<h3>✅  <strong>4.1</strong> First, make a plot showing <span class="math notranslate nohighlight">\(x\)</span> vs. <span class="math notranslate nohighlight">\(y\)</span> so we can get a sense of what the data looks like.<a class="headerlink" href="#first-make-a-plot-showing-x-vs-y-so-we-can-get-a-sense-of-what-the-data-looks-like" title="Permalink to this headline">#</a></h3>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">x</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">array</span><span class="p">([</span><span class="mf">0.0</span><span class="p">,</span><span class="mf">0.45</span><span class="p">,</span><span class="mf">0.9</span><span class="p">,</span><span class="mf">1.34</span><span class="p">,</span><span class="mf">1.79</span><span class="p">,</span><span class="mf">2.24</span><span class="p">,</span><span class="mf">2.69</span><span class="p">,</span><span class="mf">3.14</span><span class="p">,</span><span class="mf">3.59</span><span class="p">,</span><span class="mf">4.03</span><span class="p">,</span><span class="mf">4.48</span><span class="p">,</span><span class="mf">4.93</span><span class="p">,</span><span class="mf">5.38</span><span class="p">,</span><span class="mf">5.83</span><span class="p">,</span><span class="mf">6.28</span><span class="p">,</span><span class="mf">6.72</span><span class="p">,</span><span class="mf">7.17</span><span class="p">,</span><span class="mf">7.62</span><span class="p">,</span><span class="mf">8.07</span><span class="p">,</span><span class="mf">8.52</span><span class="p">,</span><span class="mf">8.97</span><span class="p">,</span><span class="mf">9.41</span><span class="p">,</span><span class="mf">9.86</span><span class="p">,</span><span class="mf">10.31</span><span class="p">,</span><span class="mf">10.76</span><span class="p">,</span><span class="mf">11.21</span><span class="p">,</span><span class="mf">11.66</span><span class="p">,</span><span class="mf">12.1</span><span class="p">,</span><span class="mf">12.55</span><span class="p">,</span><span class="mf">13.0</span><span class="p">])</span>
+<span class="n">y</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">array</span><span class="p">([</span><span class="mf">0.74</span><span class="p">,</span><span class="mf">0.92</span><span class="p">,</span><span class="mf">1.16</span><span class="p">,</span><span class="mf">1.65</span><span class="p">,</span><span class="mf">2.23</span><span class="p">,</span><span class="mf">2.56</span><span class="p">,</span><span class="mf">2.92</span><span class="p">,</span><span class="mf">2.9</span><span class="p">,</span><span class="mf">2.97</span><span class="p">,</span><span class="mf">2.98</span><span class="p">,</span><span class="mf">2.54</span><span class="p">,</span><span class="mf">2.48</span><span class="p">,</span><span class="mf">2.31</span><span class="p">,</span><span class="mf">2.3</span><span class="p">,</span><span class="mf">2.34</span><span class="p">,</span><span class="mf">2.39</span><span class="p">,</span><span class="mf">2.94</span><span class="p">,</span><span class="mf">3.36</span><span class="p">,</span><span class="mf">3.61</span><span class="p">,</span><span class="mf">4.1</span><span class="p">,</span><span class="mf">4.33</span><span class="p">,</span><span class="mf">4.61</span><span class="p">,</span><span class="mf">4.78</span><span class="p">,</span><span class="mf">4.62</span><span class="p">,</span><span class="mf">4.29</span><span class="p">,</span><span class="mf">4.17</span><span class="p">,</span><span class="mf">4.22</span><span class="p">,</span><span class="mf">3.9</span><span class="p">,</span><span class="mf">3.98</span><span class="p">,</span><span class="mf">4.29</span><span class="p">])</span>
+</pre></div>
+</div>
+</div>
+</div>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="c1">#Make a plot of x vs. y here</span>
+</pre></div>
+</div>
+</div>
+</div>
+<p>We happen to know that this data can be modeled using the following equation:</p>
+<p>\begin{equation}
+y = G*\cos(x) + d*x +  L_0
+\end{equation}</p>
+</section>
+<section id="turn-the-above-equation-into-a-function-that-we-can-use-to-fit-the-data">
+<h3>✅  <strong>4.2</strong> Turn the above equation into a function that we can use to fit the data.<a class="headerlink" href="#turn-the-above-equation-into-a-function-that-we-can-use-to-fit-the-data" title="Permalink to this headline">#</a></h3>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="c1">#Write your function here</span>
+</pre></div>
+</div>
+</div>
+</div>
+</section>
+<section id="use-the-fitting-procedure-laid-out-in-the-previous-section-to-find-the-best-fit-parameters-i-e-values-for-g-d-and-l-0">
+<h3>✅  <strong>4.3</strong> Use the fitting procedure laid out in the previous section to find the best fit parameters (I.e., values for <span class="math notranslate nohighlight">\(G\)</span>, <span class="math notranslate nohighlight">\(d\)</span>, and <span class="math notranslate nohighlight">\(L_0\)</span>).<a class="headerlink" href="#use-the-fitting-procedure-laid-out-in-the-previous-section-to-find-the-best-fit-parameters-i-e-values-for-g-d-and-l-0" title="Permalink to this headline">#</a></h3>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="c1">#Write your code for fitting your data here</span>
+</pre></div>
+</div>
+</div>
+</div>
+</section>
+<section id="what-values-did-you-get-for-your-best-fit-parameters">
+<h3>✅  <strong>4.4</strong> What values did you get for your best fit parameters?<a class="headerlink" href="#what-values-did-you-get-for-your-best-fit-parameters" title="Permalink to this headline">#</a></h3>
+<p><font size=+3>✎</font> <em>Write your best fit parameters here</em></p>
+</section>
+<section id="use-your-best-fit-parameters-as-well-as-your-function-from-4-2-to-make-a-best-fit-line-if-you-get-stuck-you-should-refer-to-the-code-from-3-2">
+<h3>✅  <strong>4.5</strong> Use your best fit parameters, as well as your function from 4.2, to make a best-fit line. If you get stuck you should refer to the code from 3.2.<a class="headerlink" href="#use-your-best-fit-parameters-as-well-as-your-function-from-4-2-to-make-a-best-fit-line-if-you-get-stuck-you-should-refer-to-the-code-from-3-2" title="Permalink to this headline">#</a></h3>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="c1">#Write your code for finding a line of best fit here</span>
+</pre></div>
+</div>
+</div>
+</div>
+</section>
+<section id="is-your-function-a-good-fit-for-this-dataset">
+<h3>✅  <strong>4.6</strong> Is your function a good fit for this dataset?<a class="headerlink" href="#is-your-function-a-good-fit-for-this-dataset" title="Permalink to this headline">#</a></h3>
+<p><font size=+3>✎</font> <em>Record your thoughts here</em></p>
+</section>
+</section>
+<hr class="docutils" />
+<section id="part-5-thinking-about-models-and-fitting-models-to-data">
+<h2>Part 5. Thinking about models and fitting models to data<a class="headerlink" href="#part-5-thinking-about-models-and-fitting-models-to-data" title="Permalink to this headline">#</a></h2>
+<p>So far in this course we’ve been learning a lot of Python basics and exploring data use some special Python tools. But, of course, an important aspect of this course is <strong>computational modeling</strong>, as the title of the course suggests!</p>
+<p>That said, before we start heavily thinking about working with computational models, we should really pause to think about what exactly a model <em>is</em> and how we might use it.</p>
+<p>Watch the following video for an overview of how we can use models to understand the world around us, infer what the models tell us about the underlying data, and predict future events. If the the YouTube video doesn’t work, try this <a class="reference external" href="https://mediaspace.msu.edu/media/Introduction+to+Computational+Models/1_rcr6iiyk">MediaSpace link</a>.</p>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="kn">from</span> <span class="nn">IPython.display</span> <span class="kn">import</span> <span class="n">YouTubeVideo</span>  
+<span class="n">YouTubeVideo</span><span class="p">(</span><span class="s2">&quot;7qAunwHsuj8&quot;</span><span class="p">,</span><span class="n">width</span><span class="o">=</span><span class="mi">640</span><span class="p">,</span><span class="n">height</span><span class="o">=</span><span class="mi">360</span><span class="p">)</span>
+</pre></div>
+</div>
+</div>
+</div>
+<p>✅  After watching the video, answer the following:</p>
+<ol class="simple">
+<li><p>In your own words, explain what a model is and why models can be useful.</p></li>
+<li><p>Provide 2-3 examples of different type of models and what type of model that example represents.</p></li>
+</ol>
+<p><font size=+3>✎</font> <em>Put your answers here.</em></p>
+</section>
+<hr class="docutils" />
+<section id="assignment-wrap-up">
+<h2>Assignment wrap-up<a class="headerlink" href="#assignment-wrap-up" title="Permalink to this headline">#</a></h2>
+<p>Please fill out the form that appears when you run the code below.  <strong>You must completely fill this out in order to receive credit for the assignment!</strong></p>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="kn">from</span> <span class="nn">IPython.display</span> <span class="kn">import</span> <span class="n">HTML</span>
+<span class="n">HTML</span><span class="p">(</span>
+<span class="sd">&quot;&quot;&quot;</span>
+<span class="sd">&lt;iframe </span>
+<span class="sd">	src=&quot;https://cmse.msu.edu/cmse201-pc-survey&quot; </span>
+<span class="sd">	width=&quot;800px&quot; </span>
+<span class="sd">	height=&quot;600px&quot; </span>
+<span class="sd">	frameborder=&quot;0&quot; </span>
+<span class="sd">	marginheight=&quot;0&quot; </span>
+<span class="sd">	marginwidth=&quot;0&quot;&gt;</span>
+<span class="sd">	Loading...</span>
+<span class="sd">&lt;/iframe&gt;</span>
+<span class="sd">&quot;&quot;&quot;</span>
+<span class="p">)</span>
+</pre></div>
+</div>
+</div>
+</div>
+<section id="congratulations-you-re-done">
+<h3>Congratulations, you’re done!<a class="headerlink" href="#congratulations-you-re-done" title="Permalink to this headline">#</a></h3>
+<p>Submit this assignment by uploading it to the course Desire2Learn web page.  Go to the “Pre-class assignments” folder, find the appropriate submission link, and upload it there.</p>
+<p>See you in class!</p>
+<p>© Copyright 2021,  <a class="reference external" href="https://cmse.msu.edu">Department of Computational Mathematics, Science and Engineering</a> at Michigan State University.</p>
+</section>
+</section>
+</section>
+
+    <script type="text/x-thebe-config">
+    {
+        requestKernel: true,
+        binderOptions: {
+            repo: "binder-examples/jupyter-stacks-datascience",
+            ref: "master",
+        },
+        codeMirrorConfig: {
+            theme: "abcdef",
+            mode: "python"
+        },
+        kernelOptions: {
+            kernelName: "python3",
+            path: "./Day-13"
+        },
+        predefinedOutput: true
+    }
+    </script>
+    <script>kernelName = 'python3'</script>
+
+              </div>
+              
+            </main>
+            <footer class="footer-article noprint">
+                
+    <!-- Previous / next buttons -->
+<div class='prev-next-area'>
+    <a class='left-prev' id="prev-link" href="../Day-12/Day-12_In-Class_Online_Resources_STUDENT.html" title="previous page">
+        <i class="fas fa-angle-left"></i>
+        <div class="prev-next-info">
+            <p class="prev-next-subtitle">previous</p>
+            <p class="prev-next-title">Day 12 In-Class: Using Resources from Online</p>
+        </div>
+    </a>
+    <a class='right-next' id="next-link" href="Day-13_In-Class_FittingCurves-STUDENT.html" title="next page">
+    <div class="prev-next-info">
+        <p class="prev-next-subtitle">next</p>
+        <p class="prev-next-title">Day 13 In-Class Assignment: (Thoughtfully) fitting models to data</p>
+    </div>
+    <i class="fas fa-angle-right"></i>
+    </a>
+</div>
+            </footer>
+        </div>
+    </div>
+    <div class="footer-content row">
+        <footer class="col footer"><p>
+  
+    By MSU CMSE<br/>
+  
+      &copy; Copyright 2022.<br/>
+</p>
+        </footer>
+    </div>
+    
+</div>
+
+
+      </div>
+    </div>
+  
+  <!-- Scripts loaded after <body> so the DOM is not blocked -->
+  <script src="../_static/scripts/pydata-sphinx-theme.js?digest=1999514e3f237ded88cf"></script>
+
+
+  </body>
+</html>

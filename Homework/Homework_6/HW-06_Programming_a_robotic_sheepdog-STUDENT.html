@@ -1,0 +1,1695 @@
+
+<!DOCTYPE html>
+
+<html>
+  <head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" /><meta name="generator" content="Docutils 0.17.1: http://docutils.sourceforge.net/" />
+
+    <title>Homework 6: Programming a Robotic Sheepdog (Extra Credit) &#8212; CMSE 201</title>
+    
+  <!-- Loaded before other Sphinx assets -->
+  <link href="../../_static/styles/theme.css?digest=1999514e3f237ded88cf" rel="stylesheet">
+<link href="../../_static/styles/pydata-sphinx-theme.css?digest=1999514e3f237ded88cf" rel="stylesheet">
+
+    
+  <link rel="stylesheet"
+    href="../../_static/vendor/fontawesome/5.13.0/css/all.min.css">
+  <link rel="preload" as="font" type="font/woff2" crossorigin
+    href="../../_static/vendor/fontawesome/5.13.0/webfonts/fa-solid-900.woff2">
+  <link rel="preload" as="font" type="font/woff2" crossorigin
+    href="../../_static/vendor/fontawesome/5.13.0/webfonts/fa-brands-400.woff2">
+
+    <link rel="stylesheet" type="text/css" href="../../_static/pygments.css" />
+    <link rel="stylesheet" href="../../_static/styles/sphinx-book-theme.css?digest=5115cc725059bd94278eecd172e13a965bf8f5a9" type="text/css" />
+    <link rel="stylesheet" type="text/css" href="../../_static/togglebutton.css" />
+    <link rel="stylesheet" type="text/css" href="../../_static/copybutton.css" />
+    <link rel="stylesheet" type="text/css" href="../../_static/mystnb.css" />
+    <link rel="stylesheet" type="text/css" href="../../_static/sphinx-thebe.css" />
+    <link rel="stylesheet" type="text/css" href="../../_static/design-style.b7bb847fb20b106c3d81b95245e65545.min.css" />
+    
+  <!-- Pre-loaded scripts that we'll load fully later -->
+  <link rel="preload" as="script" href="../../_static/scripts/pydata-sphinx-theme.js?digest=1999514e3f237ded88cf">
+
+    <script data-url_root="../../" id="documentation_options" src="../../_static/documentation_options.js"></script>
+    <script src="../../_static/jquery.js"></script>
+    <script src="../../_static/underscore.js"></script>
+    <script src="../../_static/doctools.js"></script>
+    <script src="../../_static/clipboard.min.js"></script>
+    <script src="../../_static/copybutton.js"></script>
+    <script src="../../_static/scripts/sphinx-book-theme.js?digest=9c920249402e914e316237a7dbc6769907cce411"></script>
+    <script>let toggleHintShow = 'Click to show';</script>
+    <script>let toggleHintHide = 'Click to hide';</script>
+    <script>let toggleOpenOnPrint = 'true';</script>
+    <script src="../../_static/togglebutton.js"></script>
+    <script>var togglebuttonSelector = '.toggle, .admonition.dropdown, .tag_hide_input div.cell_input, .tag_hide-input div.cell_input, .tag_hide_output div.cell_output, .tag_hide-output div.cell_output, .tag_hide_cell.cell, .tag_hide-cell.cell';</script>
+    <script src="../../_static/design-tabs.js"></script>
+    <script>const THEBE_JS_URL = "https://unpkg.com/thebe@0.8.2/lib/index.js"
+const thebe_selector = ".thebe,.cell"
+const thebe_selector_input = "pre"
+const thebe_selector_output = ".output, .cell_output"
+</script>
+    <script async="async" src="../../_static/sphinx-thebe.js"></script>
+    <script>window.MathJax = {"options": {"processHtmlClass": "tex2jax_process|mathjax_process|math|output_area"}}</script>
+    <script defer="defer" src="https://cdn.jsdelivr.net/npm/mathjax@3/es5/tex-mml-chtml.js"></script>
+    <link rel="shortcut icon" href="../../_static/cmse_fav.ico"/>
+    <link rel="index" title="Index" href="../../genindex.html" />
+    <link rel="search" title="Search" href="../../search.html" />
+    <link rel="next" title="Code Portfolio Assignment" href="../Code_Portfolio/Code_Portfolio_Assignment.html" />
+    <link rel="prev" title="Homework 5: Modeling Bacterial Growth" href="../Homework_5/HW-05.html" />
+    <meta name="viewport" content="width=device-width, initial-scale=1" />
+    <meta name="docsearch:language" content="None">
+    
+
+    <!-- Google Analytics -->
+    
+  </head>
+  <body data-spy="scroll" data-target="#bd-toc-nav" data-offset="60">
+<!-- Checkboxes to toggle the left sidebar -->
+<input type="checkbox" class="sidebar-toggle" name="__navigation" id="__navigation" aria-label="Toggle navigation sidebar">
+<label class="overlay overlay-navbar" for="__navigation">
+    <div class="visually-hidden">Toggle navigation sidebar</div>
+</label>
+<!-- Checkboxes to toggle the in-page toc -->
+<input type="checkbox" class="sidebar-toggle" name="__page-toc" id="__page-toc" aria-label="Toggle in-page Table of Contents">
+<label class="overlay overlay-pagetoc" for="__page-toc">
+    <div class="visually-hidden">Toggle in-page Table of Contents</div>
+</label>
+<!-- Headers at the top -->
+<div class="announcement header-item noprint"></div>
+<div class="header header-item noprint"></div>
+
+    
+    <div class="container-fluid" id="banner"></div>
+
+    
+
+    <div class="container-xl">
+      <div class="row">
+          
+<!-- Sidebar -->
+<div class="bd-sidebar noprint" id="site-navigation">
+    <div class="bd-sidebar__content">
+        <div class="bd-sidebar__top"><div class="navbar-brand-box">
+    <a class="navbar-brand text-wrap" href="../../index.html">
+      
+        <!-- `logo` is deprecated in Sphinx 4.0, so remove this when we stop supporting 3 -->
+        
+      
+      
+      <img src="../../_static/logo.png" class="logo" alt="logo">
+      
+      
+      <h1 class="site-logo" id="site-title">CMSE 201</h1>
+      
+    </a>
+</div><form class="bd-search d-flex align-items-center" action="../../search.html" method="get">
+  <i class="icon fas fa-search"></i>
+  <input type="search" class="form-control" name="q" id="search-input" placeholder="Search this book..." aria-label="Search this book..." autocomplete="off" >
+</form><nav class="bd-links" id="bd-docs-nav" aria-label="Main">
+    <div class="bd-toc-item active">
+        
+        <ul class="nav bd-sidenav bd-sidenav__home-link">
+            <li class="toctree-l1">
+                <a class="reference internal" href="../../intro.html">
+                    Welcome to Computational Modeling and Data Analysis I!
+                </a>
+            </li>
+        </ul>
+        <p aria-level="2" class="caption" role="heading">
+ <span class="caption-text">
+  Course Materials
+ </span>
+</p>
+<ul class="nav bd-sidenav">
+ <li class="toctree-l1 has-children">
+  <a class="reference internal" href="../../Course_Materials-201/CourseDocuments.html">
+   Important Course information
+  </a>
+  <input class="toctree-checkbox" id="toctree-checkbox-1" name="toctree-checkbox-1" type="checkbox"/>
+  <label for="toctree-checkbox-1">
+   <i class="fas fa-chevron-down">
+   </i>
+  </label>
+  <ul>
+   <li class="toctree-l2">
+    <a class="reference internal" href="../../Course_Materials-201/CMSE201-Syllabus.html">
+     Syllabus
+    </a>
+   </li>
+   <li class="toctree-l2">
+    <a class="reference internal" href="../../Course_Materials-201/classroom_participation.html">
+     Classroom Participation
+    </a>
+   </li>
+  </ul>
+ </li>
+</ul>
+<p aria-level="2" class="caption" role="heading">
+ <span class="caption-text">
+  Homework
+ </span>
+</p>
+<ul class="current nav bd-sidenav">
+ <li class="toctree-l1">
+  <a class="reference internal" href="../Homework_1/HW_01_S22_STUDENT.html">
+   Homework 1: Introduction to Loops, Lists, and Dictionaries
+  </a>
+ </li>
+ <li class="toctree-l1">
+  <a class="reference internal" href="../Homework_2/HW2_S22-STUDENT.html">
+   Homework 2: If Statements, Functions, and Modules
+  </a>
+ </li>
+ <li class="toctree-l1">
+  <a class="reference external" href="https://raw.githubusercontent.com/msu-cmse-courses/cmse201-F21-data/main/Homework/S22/game.txt">
+   game.txt
+  </a>
+ </li>
+ <li class="toctree-l1">
+  <a class="reference internal" href="../Homework_3/HW3_S22-STUDENT.html">
+   Homework 3: Pandas data analysis
+  </a>
+ </li>
+ <li class="toctree-l1">
+  <a class="reference external" href="https://raw.githubusercontent.com/msu-cmse-courses/cmse201-S22-data/main/Homework/HW_3/happiness_index.csv">
+   happiness_index.csv
+  </a>
+ </li>
+ <li class="toctree-l1">
+  <a class="reference internal" href="../Homework_4/HW4_S22-STUDENT.html">
+   Homework 4: Fitting data using SciPy
+  </a>
+ </li>
+ <li class="toctree-l1">
+  <a class="reference internal" href="../Homework_5/HW-05.html">
+   Homework 5: Modeling Bacterial Growth
+  </a>
+ </li>
+ <li class="toctree-l1 current active">
+  <a class="current reference internal" href="#">
+   Homework 6: Programming a Robotic Sheepdog (Extra Credit)
+  </a>
+ </li>
+ <li class="toctree-l1">
+  <a class="reference internal" href="../Code_Portfolio/Code_Portfolio_Assignment.html">
+   Code Portfolio Assignment
+  </a>
+ </li>
+ <li class="toctree-l1">
+  <a class="reference internal" href="../Code_Portfolio/Code_Portfolio_Example.html">
+   Code Portfolio Example
+  </a>
+ </li>
+</ul>
+<p aria-level="2" class="caption" role="heading">
+ <span class="caption-text">
+  Bootcamps
+ </span>
+</p>
+<ul class="nav bd-sidenav">
+ <li class="toctree-l1">
+  <a class="reference internal" href="../../Bootcamp_Notebooks/Bootcamp1-Python_Fundamentals_STUDENT.html">
+   Bootcamp 1: Python Fundamentals
+  </a>
+ </li>
+ <li class="toctree-l1">
+  <a class="reference internal" href="../../Bootcamp_Notebooks/Bootcamp2-InitialConceptsReview.html">
+   Bootcamp 2: Initial Concepts Review Cheatsheet
+  </a>
+ </li>
+ <li class="toctree-l1">
+  <a class="reference internal" href="../../Bootcamp_Notebooks/Bootcamp3-Debugging_STUDENT.html">
+   Bootcamp 3: Debugging
+  </a>
+ </li>
+ <li class="toctree-l1">
+  <a class="reference internal" href="../../Bootcamp_Notebooks/Bootcamp4-IfStatements_STUDENT.html">
+   Bootcamp 4: If Statements
+  </a>
+ </li>
+ <li class="toctree-l1">
+  <a class="reference internal" href="../../Bootcamp_Notebooks/Bootcamp5-Functions_STUDENT.html">
+   Bootcamp 5: Functions
+  </a>
+ </li>
+ <li class="toctree-l1">
+  <a class="reference internal" href="../../Bootcamp_Notebooks/Bootcamp6-Matplotlib_STUDENT.html">
+   Bootcamp 6: Matplotlib
+  </a>
+ </li>
+ <li class="toctree-l1">
+  <a class="reference internal" href="../../Bootcamp_Notebooks/Bootcamp7-Arrays_STUDENT.html">
+   Bootcamp 7: Practice with Indexing and Masking 2D Arrays
+  </a>
+ </li>
+ <li class="toctree-l1">
+  <a class="reference internal" href="../../Bootcamp_Notebooks/Bootcamp8_Pandas_STUDENT.html">
+   Bootcamp 8: Practice with Pandas
+  </a>
+ </li>
+ <li class="toctree-l1">
+  <a class="reference external" href="https://raw.githubusercontent.com/msu-cmse-courses/cmse201-F21-data/main/Homework/americas_gpin_2014_16.csv?raw=true">
+   americas_gpin_2014_16.csv
+  </a>
+ </li>
+ <li class="toctree-l1">
+  <a class="reference internal" href="../../Bootcamp_Notebooks/Bootcamp9-ScipyCurveFit_STUDENT.html">
+   Bootcamp 9:  Scipy curve_fit
+  </a>
+ </li>
+ <li class="toctree-l1">
+  <a class="reference internal" href="../../Bootcamp_Notebooks/Bootcamp10-CompartmentalModels_STUDENT.html">
+   Bootcamp 10: Compartmental Models
+  </a>
+ </li>
+ <li class="toctree-l1">
+  <a class="reference internal" href="../../Bootcamp_Notebooks/Bootcamp11_Solve_IVP_STUDENT.html">
+   Bootcamp 11: Practice with
+   <code class="docutils literal notranslate">
+    <span class="pre">
+     solve_ivp
+    </span>
+   </code>
+  </a>
+ </li>
+</ul>
+<p aria-level="2" class="caption" role="heading">
+ <span class="caption-text">
+  Semester Projects
+ </span>
+</p>
+<ul class="nav bd-sidenav">
+ <li class="toctree-l1">
+  <a class="reference internal" href="../../Project_Materials/CMSE201_SemesterProjectDetails.html">
+   Semester Project Details
+  </a>
+ </li>
+ <li class="toctree-l1">
+  <a class="reference internal" href="../../Project_Materials/Project_Work_Week_Summary.html">
+   Project Work Week Summary
+  </a>
+ </li>
+ <li class="toctree-l1">
+  <a class="reference internal" href="../../Project_Materials/Project_Rough_Draft_Guidelines_Feedback.html">
+   Rough Draft Guidelines/Feedback
+  </a>
+ </li>
+ <li class="toctree-l1">
+  <a class="reference internal" href="../../Project_Materials/Lightning_Presentation_Details.html">
+   Lightning Presentation Details
+  </a>
+ </li>
+ <li class="toctree-l1">
+  <a class="reference internal" href="../../Project_Materials/Second_Project_Checkpoint.html">
+   Second Project Checkpoint
+  </a>
+ </li>
+ <li class="toctree-l1">
+  <a class="reference internal" href="../../Project_Materials/First_Project_Checkpoint.html">
+   First Project Checkpoint
+  </a>
+ </li>
+ <li class="toctree-l1">
+  <a class="reference external" href="https://github.com/msu-cmse-courses/cmse201-S22-data/raw/main/Projects/Example_Football_Dataset.csv">
+   Example_Football_Dataset.csv
+  </a>
+ </li>
+ <li class="toctree-l1">
+  <a class="reference internal" href="../../Project_Materials/CMSE201_FinalProjectTemplate.html">
+   CMSE 201 Final Project Template
+  </a>
+ </li>
+ <li class="toctree-l1">
+  <a class="reference external" href="https://raw.githubusercontent.com/msu-cmse-courses/cmse201-S22-data/main/Projects/CMSE201_ExampleProject_A.pdf">
+   CMSE201_ExampleProject_A.pdf
+  </a>
+ </li>
+ <li class="toctree-l1">
+  <a class="reference external" href="https://raw.githubusercontent.com/msu-cmse-courses/cmse201-S22-data/main/Projects/CMSE201_ExampleProject_B.pdf">
+   CMSE201_ExampleProject_B.pdf
+  </a>
+ </li>
+ <li class="toctree-l1">
+  <a class="reference external" href="https://raw.githubusercontent.com/msu-cmse-courses/cmse201-S22-data/main/Projects/CMSE201_ExampleProject_C.pdf">
+   CMSE201_ExampleProject_C.pdf
+  </a>
+ </li>
+ <li class="toctree-l1">
+  <a class="reference external" href="https://raw.githubusercontent.com/msu-cmse-courses/cmse201-S22-data/main/Projects/CMSE201_ExampleProject_D.pdf">
+   CMSE201_ExampleProject_D.pdf
+  </a>
+ </li>
+ <li class="toctree-l1">
+  <a class="reference external" href="https://raw.githubusercontent.com/msu-cmse-courses/cmse201-S22-data/main/Projects/CMSE201_ExampleProject_E.pdf">
+   CMSE201_ExampleProject_E.pdf
+  </a>
+ </li>
+</ul>
+
+    </div>
+</nav></div>
+        <div class="bd-sidebar__bottom">
+             <!-- To handle the deprecated key -->
+            
+            <div class="navbar_extra_footer">
+            Powered by <a href="https://jupyterbook.org">Jupyter Book</a>
+            </div>
+            
+        </div>
+    </div>
+    <div id="rtd-footer-container"></div>
+</div>
+
+
+          
+
+
+          
+<!-- A tiny helper pixel to detect if we've scrolled -->
+<div class="sbt-scroll-pixel-helper"></div>
+<!-- Main content -->
+<div class="col py-0 content-container">
+    
+    <div class="header-article row sticky-top noprint">
+        
+
+
+
+<div class="col py-1 d-flex header-article-main">
+    <div class="header-article__left">
+        
+        <label for="__navigation"
+  class="headerbtn"
+  data-toggle="tooltip"
+data-placement="right"
+title="Toggle navigation"
+>
+  
+
+<span class="headerbtn__icon-container">
+  <i class="fas fa-bars"></i>
+  </span>
+
+</label>
+
+        
+    </div>
+    <div class="header-article__right">
+<div class="menu-dropdown menu-dropdown-launch-buttons">
+  <button class="headerbtn menu-dropdown__trigger"
+      aria-label="Launch interactive content">
+      <i class="fas fa-rocket"></i>
+  </button>
+  <div class="menu-dropdown__content">
+    <ul>
+      <li>
+        <a href="https://mybinder.org/v2/gh/msu-cmse-courses/cmse201-S22-jb/main?urlpath=tree/Homework/Homework_6/HW-06_Programming_a_robotic_sheepdog-STUDENT.ipynb"
+   class="headerbtn"
+   data-toggle="tooltip"
+data-placement="left"
+title="Launch on Binder"
+>
+  
+
+<span class="headerbtn__icon-container">
+  
+    <img src="../../_static/images/logo_binder.svg">
+  </span>
+<span class="headerbtn__text-container">Binder</span>
+</a>
+
+      </li>
+      
+    </ul>
+  </div>
+</div>
+
+<button onclick="toggleFullScreen()"
+  class="headerbtn"
+  data-toggle="tooltip"
+data-placement="bottom"
+title="Fullscreen mode"
+>
+  
+
+<span class="headerbtn__icon-container">
+  <i class="fas fa-expand"></i>
+  </span>
+
+</button>
+
+<div class="menu-dropdown menu-dropdown-repository-buttons">
+  <button class="headerbtn menu-dropdown__trigger"
+      aria-label="Source repositories">
+      <i class="fab fa-github"></i>
+  </button>
+  <div class="menu-dropdown__content">
+    <ul>
+      <li>
+        <a href="https://github.com/msu-cmse-courses/cmse201-S22-jb"
+   class="headerbtn"
+   data-toggle="tooltip"
+data-placement="left"
+title="Source repository"
+>
+  
+
+<span class="headerbtn__icon-container">
+  <i class="fab fa-github"></i>
+  </span>
+<span class="headerbtn__text-container">repository</span>
+</a>
+
+      </li>
+      
+      <li>
+        <a href="https://github.com/msu-cmse-courses/cmse201-S22-jb/issues/new?title=Issue%20on%20page%20%2FHomework/Homework_6/HW-06_Programming_a_robotic_sheepdog-STUDENT.html&body=Your%20issue%20content%20here."
+   class="headerbtn"
+   data-toggle="tooltip"
+data-placement="left"
+title="Open an issue"
+>
+  
+
+<span class="headerbtn__icon-container">
+  <i class="fas fa-lightbulb"></i>
+  </span>
+<span class="headerbtn__text-container">open issue</span>
+</a>
+
+      </li>
+      
+    </ul>
+  </div>
+</div>
+
+<div class="menu-dropdown menu-dropdown-download-buttons">
+  <button class="headerbtn menu-dropdown__trigger"
+      aria-label="Download this page">
+      <i class="fas fa-download"></i>
+  </button>
+  <div class="menu-dropdown__content">
+    <ul>
+      <li>
+        <a href="../../_sources/Homework/Homework_6/HW-06_Programming_a_robotic_sheepdog-STUDENT.ipynb"
+   class="headerbtn"
+   data-toggle="tooltip"
+data-placement="left"
+title="Download source file"
+>
+  
+
+<span class="headerbtn__icon-container">
+  <i class="fas fa-file"></i>
+  </span>
+<span class="headerbtn__text-container">.ipynb</span>
+</a>
+
+      </li>
+      
+      <li>
+        
+<button onclick="printPdf(this)"
+  class="headerbtn"
+  data-toggle="tooltip"
+data-placement="left"
+title="Print to PDF"
+>
+  
+
+<span class="headerbtn__icon-container">
+  <i class="fas fa-file-pdf"></i>
+  </span>
+<span class="headerbtn__text-container">.pdf</span>
+</button>
+
+      </li>
+      
+    </ul>
+  </div>
+</div>
+<label for="__page-toc"
+  class="headerbtn headerbtn-page-toc"
+  
+>
+  
+
+<span class="headerbtn__icon-container">
+  <i class="fas fa-list"></i>
+  </span>
+
+</label>
+
+    </div>
+</div>
+
+<!-- Table of contents -->
+<div class="col-md-3 bd-toc show noprint">
+    <div class="tocsection onthispage pt-5 pb-3">
+        <i class="fas fa-list"></i> Contents
+    </div>
+    <nav id="bd-toc-nav" aria-label="Page">
+        <ul class="visible nav section-nav flex-column">
+ <li class="toc-h1 nav-item toc-entry">
+  <a class="reference internal nav-link" href="#">
+   Homework 6: Programming a Robotic Sheepdog (Extra Credit)
+  </a>
+  <ul class="visible nav section-nav flex-column">
+   <li class="toc-h2 nav-item toc-entry">
+    <a class="reference internal nav-link" href="#goals">
+     Goals
+    </a>
+    <ul class="nav section-nav flex-column">
+     <li class="toc-h3 nav-item toc-entry">
+      <a class="reference internal nav-link" href="#by-the-end-of-the-homework-assignment-you-will-have-practiced">
+       By the end of the homework assignment you will have practiced:
+      </a>
+     </li>
+    </ul>
+   </li>
+   <li class="toc-h2 nav-item toc-entry">
+    <a class="reference internal nav-link" href="#assignment-instructions">
+     Assignment instructions
+    </a>
+   </li>
+   <li class="toc-h2 nav-item toc-entry">
+    <a class="reference internal nav-link" href="#grading">
+     Grading
+    </a>
+   </li>
+  </ul>
+ </li>
+ <li class="toc-h1 nav-item toc-entry">
+  <a class="reference internal nav-link" href="#academic-integrity-statement-1-point">
+   Academic integrity statement (1 point)
+  </a>
+ </li>
+ <li class="toc-h1 nav-item toc-entry">
+  <a class="reference internal nav-link" href="#introduction">
+   Introduction
+  </a>
+  <ul class="visible nav section-nav flex-column">
+   <li class="toc-h2 nav-item toc-entry">
+    <a class="reference internal nav-link" href="#question-1-scattering-sheep-3-points">
+     Question 1:  Scattering sheep (3 points)
+    </a>
+   </li>
+   <li class="toc-h2 nav-item toc-entry">
+    <a class="reference internal nav-link" href="#question-2-these-sheep-were-made-for-walkin-10-points">
+     Question 2:  These sheep were made for walkin’ (10 points)
+    </a>
+    <ul class="nav section-nav flex-column">
+     <li class="toc-h3 nav-item toc-entry">
+      <a class="reference internal nav-link" href="#task-4-points">
+       2.1 Task (4 points)
+      </a>
+     </li>
+     <li class="toc-h3 nav-item toc-entry">
+      <a class="reference internal nav-link" href="#task-2-points">
+       2.2 Task (2 points)
+      </a>
+     </li>
+     <li class="toc-h3 nav-item toc-entry">
+      <a class="reference internal nav-link" href="#id1">
+       2.3 Task (2 points)
+      </a>
+     </li>
+     <li class="toc-h3 nav-item toc-entry">
+      <a class="reference internal nav-link" href="#id2">
+       2.4 Task (2 points)
+      </a>
+     </li>
+    </ul>
+   </li>
+   <li class="toc-h2 nav-item toc-entry">
+    <a class="reference internal nav-link" href="#question-3-all-bark-and-no-bite-12-points">
+     Question 3:  All bark and no bite (12 points)
+    </a>
+    <ul class="nav section-nav flex-column">
+     <li class="toc-h3 nav-item toc-entry">
+      <a class="reference internal nav-link" href="#id3">
+       3.1 Task (4 points)
+      </a>
+     </li>
+     <li class="toc-h3 nav-item toc-entry">
+      <a class="reference internal nav-link" href="#id4">
+       3.2 Task (4 points)
+      </a>
+     </li>
+     <li class="toc-h3 nav-item toc-entry">
+      <a class="reference internal nav-link" href="#id5">
+       3.3 Task (4 points)
+      </a>
+     </li>
+    </ul>
+   </li>
+   <li class="toc-h2 nav-item toc-entry">
+    <a class="reference internal nav-link" href="#question-4-go-dog-go-11-points">
+     Question 4:  Go dog go (11 points)
+    </a>
+    <ul class="nav section-nav flex-column">
+     <li class="toc-h3 nav-item toc-entry">
+      <a class="reference internal nav-link" href="#task-1-points">
+       4.1 Task (1 points)
+      </a>
+     </li>
+     <li class="toc-h3 nav-item toc-entry">
+      <a class="reference internal nav-link" href="#id6">
+       4.2 Task (4 points)
+      </a>
+     </li>
+     <li class="toc-h3 nav-item toc-entry">
+      <a class="reference internal nav-link" href="#task-3-points">
+       4.3 Task (3 points)
+      </a>
+     </li>
+     <li class="toc-h3 nav-item toc-entry">
+      <a class="reference internal nav-link" href="#id7">
+       4.4 Task (2 points)
+      </a>
+     </li>
+     <li class="toc-h3 nav-item toc-entry">
+      <a class="reference internal nav-link" href="#id8">
+       4.5 Task (1 points)
+      </a>
+     </li>
+    </ul>
+   </li>
+   <li class="toc-h2 nav-item toc-entry">
+    <a class="reference internal nav-link" href="#question-5-test-for-success-8-points">
+     Question 5: Test for success (8 points)
+    </a>
+    <ul class="nav section-nav flex-column">
+     <li class="toc-h3 nav-item toc-entry">
+      <a class="reference internal nav-link" href="#id9">
+       5.1 Task (2 points)
+      </a>
+     </li>
+     <li class="toc-h3 nav-item toc-entry">
+      <a class="reference internal nav-link" href="#id10">
+       5.2 Task (4 points)
+      </a>
+     </li>
+     <li class="toc-h3 nav-item toc-entry">
+      <a class="reference internal nav-link" href="#id11">
+       5.3 Task (2 points)
+      </a>
+     </li>
+     <li class="toc-h3 nav-item toc-entry">
+      <a class="reference internal nav-link" href="#congratulations-you-re-done">
+       Congratulations, you’re done!
+      </a>
+     </li>
+    </ul>
+   </li>
+  </ul>
+ </li>
+</ul>
+
+    </nav>
+</div>
+    </div>
+    <div class="article row">
+        <div class="col pl-md-3 pl-lg-5 content-container">
+            <!-- Table of contents that is only displayed when printing the page -->
+            <div id="jb-print-docs-body" class="onlyprint">
+                <h1>Homework 6: Programming a Robotic Sheepdog (Extra Credit)</h1>
+                <!-- Table of contents -->
+                <div id="print-main-content">
+                    <div id="jb-print-toc">
+                        
+                        <div>
+                            <h2> Contents </h2>
+                        </div>
+                        <nav aria-label="Page">
+                            <ul class="visible nav section-nav flex-column">
+ <li class="toc-h1 nav-item toc-entry">
+  <a class="reference internal nav-link" href="#">
+   Homework 6: Programming a Robotic Sheepdog (Extra Credit)
+  </a>
+  <ul class="visible nav section-nav flex-column">
+   <li class="toc-h2 nav-item toc-entry">
+    <a class="reference internal nav-link" href="#goals">
+     Goals
+    </a>
+    <ul class="nav section-nav flex-column">
+     <li class="toc-h3 nav-item toc-entry">
+      <a class="reference internal nav-link" href="#by-the-end-of-the-homework-assignment-you-will-have-practiced">
+       By the end of the homework assignment you will have practiced:
+      </a>
+     </li>
+    </ul>
+   </li>
+   <li class="toc-h2 nav-item toc-entry">
+    <a class="reference internal nav-link" href="#assignment-instructions">
+     Assignment instructions
+    </a>
+   </li>
+   <li class="toc-h2 nav-item toc-entry">
+    <a class="reference internal nav-link" href="#grading">
+     Grading
+    </a>
+   </li>
+  </ul>
+ </li>
+ <li class="toc-h1 nav-item toc-entry">
+  <a class="reference internal nav-link" href="#academic-integrity-statement-1-point">
+   Academic integrity statement (1 point)
+  </a>
+ </li>
+ <li class="toc-h1 nav-item toc-entry">
+  <a class="reference internal nav-link" href="#introduction">
+   Introduction
+  </a>
+  <ul class="visible nav section-nav flex-column">
+   <li class="toc-h2 nav-item toc-entry">
+    <a class="reference internal nav-link" href="#question-1-scattering-sheep-3-points">
+     Question 1:  Scattering sheep (3 points)
+    </a>
+   </li>
+   <li class="toc-h2 nav-item toc-entry">
+    <a class="reference internal nav-link" href="#question-2-these-sheep-were-made-for-walkin-10-points">
+     Question 2:  These sheep were made for walkin’ (10 points)
+    </a>
+    <ul class="nav section-nav flex-column">
+     <li class="toc-h3 nav-item toc-entry">
+      <a class="reference internal nav-link" href="#task-4-points">
+       2.1 Task (4 points)
+      </a>
+     </li>
+     <li class="toc-h3 nav-item toc-entry">
+      <a class="reference internal nav-link" href="#task-2-points">
+       2.2 Task (2 points)
+      </a>
+     </li>
+     <li class="toc-h3 nav-item toc-entry">
+      <a class="reference internal nav-link" href="#id1">
+       2.3 Task (2 points)
+      </a>
+     </li>
+     <li class="toc-h3 nav-item toc-entry">
+      <a class="reference internal nav-link" href="#id2">
+       2.4 Task (2 points)
+      </a>
+     </li>
+    </ul>
+   </li>
+   <li class="toc-h2 nav-item toc-entry">
+    <a class="reference internal nav-link" href="#question-3-all-bark-and-no-bite-12-points">
+     Question 3:  All bark and no bite (12 points)
+    </a>
+    <ul class="nav section-nav flex-column">
+     <li class="toc-h3 nav-item toc-entry">
+      <a class="reference internal nav-link" href="#id3">
+       3.1 Task (4 points)
+      </a>
+     </li>
+     <li class="toc-h3 nav-item toc-entry">
+      <a class="reference internal nav-link" href="#id4">
+       3.2 Task (4 points)
+      </a>
+     </li>
+     <li class="toc-h3 nav-item toc-entry">
+      <a class="reference internal nav-link" href="#id5">
+       3.3 Task (4 points)
+      </a>
+     </li>
+    </ul>
+   </li>
+   <li class="toc-h2 nav-item toc-entry">
+    <a class="reference internal nav-link" href="#question-4-go-dog-go-11-points">
+     Question 4:  Go dog go (11 points)
+    </a>
+    <ul class="nav section-nav flex-column">
+     <li class="toc-h3 nav-item toc-entry">
+      <a class="reference internal nav-link" href="#task-1-points">
+       4.1 Task (1 points)
+      </a>
+     </li>
+     <li class="toc-h3 nav-item toc-entry">
+      <a class="reference internal nav-link" href="#id6">
+       4.2 Task (4 points)
+      </a>
+     </li>
+     <li class="toc-h3 nav-item toc-entry">
+      <a class="reference internal nav-link" href="#task-3-points">
+       4.3 Task (3 points)
+      </a>
+     </li>
+     <li class="toc-h3 nav-item toc-entry">
+      <a class="reference internal nav-link" href="#id7">
+       4.4 Task (2 points)
+      </a>
+     </li>
+     <li class="toc-h3 nav-item toc-entry">
+      <a class="reference internal nav-link" href="#id8">
+       4.5 Task (1 points)
+      </a>
+     </li>
+    </ul>
+   </li>
+   <li class="toc-h2 nav-item toc-entry">
+    <a class="reference internal nav-link" href="#question-5-test-for-success-8-points">
+     Question 5: Test for success (8 points)
+    </a>
+    <ul class="nav section-nav flex-column">
+     <li class="toc-h3 nav-item toc-entry">
+      <a class="reference internal nav-link" href="#id9">
+       5.1 Task (2 points)
+      </a>
+     </li>
+     <li class="toc-h3 nav-item toc-entry">
+      <a class="reference internal nav-link" href="#id10">
+       5.2 Task (4 points)
+      </a>
+     </li>
+     <li class="toc-h3 nav-item toc-entry">
+      <a class="reference internal nav-link" href="#id11">
+       5.3 Task (2 points)
+      </a>
+     </li>
+     <li class="toc-h3 nav-item toc-entry">
+      <a class="reference internal nav-link" href="#congratulations-you-re-done">
+       Congratulations, you’re done!
+      </a>
+     </li>
+    </ul>
+   </li>
+  </ul>
+ </li>
+</ul>
+
+                        </nav>
+                    </div>
+                </div>
+            </div>
+            <main id="main-content" role="main">
+                
+              <div>
+                
+  <section class="tex2jax_ignore mathjax_ignore" id="homework-6-programming-a-robotic-sheepdog-extra-credit">
+<h1>Homework 6: Programming a Robotic Sheepdog (Extra Credit)<a class="headerlink" href="#homework-6-programming-a-robotic-sheepdog-extra-credit" title="Permalink to this headline">#</a></h1>
+<p><img src="https://cmse.msu.edu/sites/_cmse/assets/Image/image002.jpg"
+     alt="CMSE Grapical Image"
+     align="right" 
+     height="82" 
+     width="82" /></p>
+<p>In this homework you will continue to learn about agent-based modeling, by developing and implementing a set of rules for how agents (sheep, sheepdog) interacts with each other.  We will measure its effectiveness and compare different sets of rules to each other.  Make sure to use Slack and help room hours if you run into issues!</p>
+<hr class="docutils" />
+<section id="goals">
+<h2>Goals<a class="headerlink" href="#goals" title="Permalink to this headline">#</a></h2>
+<section id="by-the-end-of-the-homework-assignment-you-will-have-practiced">
+<h3>By the end of the homework assignment you will have practiced:<a class="headerlink" href="#by-the-end-of-the-homework-assignment-you-will-have-practiced" title="Permalink to this headline">#</a></h3>
+<ol class="simple">
+<li><p>Modeling a real world scenario.</p></li>
+<li><p>Building and manipulating agent-based models.</p></li>
+<li><p>Assessing model outcomes.</p></li>
+<li><p>Defining functions to check the state of a model</p></li>
+</ol>
+</section>
+</section>
+<section id="assignment-instructions">
+<h2>Assignment instructions<a class="headerlink" href="#assignment-instructions" title="Permalink to this headline">#</a></h2>
+<p>Work through the following assignment, making sure to follow all of the directions and answer all of the questions.</p>
+<p><strong>This assignment is due at 11:59pm on Friday, April 29th.</strong> It should be uploaded to D2L in the approach “Homework” submission folder.  Submission instructions can be found at the end of the notebook as well.</p>
+</section>
+<section id="grading">
+<h2>Grading<a class="headerlink" href="#grading" title="Permalink to this headline">#</a></h2>
+<ul class="simple">
+<li><p>Academic Integrity (1 points)</p></li>
+<li><p>Question 1: Scattering sheep (3 points)</p></li>
+<li><p>Question 2: These sheep were made for walkin’ (10 points)</p></li>
+<li><p>Question 3: All bark and no bite (12 points)</p></li>
+<li><p>Question 4: Go dog go (11 points)</p></li>
+<li><p>Question 5: Test for success (8 points)</p></li>
+</ul>
+<p>Total points possible: <strong>45</strong></p>
+<hr class="docutils" />
+</section>
+</section>
+<hr class="docutils" />
+<section class="tex2jax_ignore mathjax_ignore" id="academic-integrity-statement-1-point">
+<h1>Academic integrity statement (1 point)<a class="headerlink" href="#academic-integrity-statement-1-point" title="Permalink to this headline">#</a></h1>
+<p>In the markdown cell below, put your personal academic integrity statement (composed during the Day04 In-Class Assignment). By including this statement, you are confirming that the work you submit in the assignment is wholly your own.</p>
+<p><font size=6 color="#009600">✎</font> <em>Put your personal academic integrity statement here.</em></p>
+</section>
+<section class="tex2jax_ignore mathjax_ignore" id="introduction">
+<h1>Introduction<a class="headerlink" href="#introduction" title="Permalink to this headline">#</a></h1>
+<p>An agent-based model is a model where a set of agents interact according to a set of rules.  This is a general framework that can model many different phenomena. Here we will use a 2D grid, where the cells are given numbers to represent one of the following:</p>
+<ul class="simple">
+<li><p>0 = empty space</p></li>
+<li><p>1 = fence</p></li>
+<li><p>2 = sheep</p></li>
+<li><p>3 = dog</p></li>
+</ul>
+<p>The fence forms a pen where the sheep need to sleep every night.  However, the sheep don’t always like to go to the pen, and would rather stay up past their bedtime.</p>
+<p>One particular farmer (you) has come up with a 21st century solution: <strong>a robotic sheepdog</strong>.  This dog will help round up the sheep and get them into their pen at night.  One problem is that we’re not sure the best way to program this robot in order to get the sheep into the pen as fast as possible.</p>
+<hr class="docutils" />
+<p>Let’s get started by defining our grid:</p>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="kn">import</span> <span class="nn">matplotlib.pyplot</span> <span class="k">as</span> <span class="nn">plt</span>
+<span class="o">%</span><span class="k">matplotlib</span> inline
+
+<span class="kn">import</span> <span class="nn">numpy</span> <span class="k">as</span> <span class="nn">np</span>
+
+<span class="n">nx</span> <span class="o">=</span> <span class="mi">40</span>
+<span class="n">ny</span> <span class="o">=</span> <span class="mi">40</span>
+<span class="n">fenceline</span> <span class="o">=</span> <span class="mi">10</span>
+
+<span class="n">states</span> <span class="o">=</span> <span class="p">[</span><span class="s1">&#39;empty&#39;</span><span class="p">,</span><span class="s1">&#39;fence&#39;</span><span class="p">,</span><span class="s1">&#39;sheep&#39;</span><span class="p">,</span><span class="s1">&#39;dog&#39;</span><span class="p">]</span>
+<span class="n">state_color</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">linspace</span><span class="p">(</span><span class="mi">0</span><span class="p">,</span><span class="mi">1</span><span class="p">,</span><span class="nb">len</span><span class="p">(</span><span class="n">states</span><span class="p">))</span>
+
+<span class="n">system_state</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">zeros</span><span class="p">([</span><span class="n">ny</span><span class="p">,</span><span class="n">nx</span><span class="p">])</span> <span class="c1"># intialize everything to empty</span>
+
+<span class="n">dog_start_pos</span> <span class="o">=</span> <span class="p">[</span><span class="nb">int</span><span class="p">(</span><span class="n">ny</span><span class="o">-</span><span class="mi">1</span><span class="p">),</span><span class="nb">int</span><span class="p">(</span><span class="n">nx</span><span class="o">/</span><span class="mi">2</span><span class="p">)]</span>
+<span class="n">system_state</span><span class="p">[</span><span class="n">dog_start_pos</span><span class="p">[</span><span class="mi">0</span><span class="p">],</span><span class="n">dog_start_pos</span><span class="p">[</span><span class="mi">1</span><span class="p">]]</span> <span class="o">=</span> <span class="mi">3</span>  <span class="c1"># put a dog at the top, in the middle</span>
+<span class="n">system_state</span><span class="p">[</span><span class="n">fenceline</span><span class="p">,:]</span> <span class="o">=</span> <span class="mi">1</span>                 <span class="c1"># put a fence along y = 10</span>
+<span class="n">system_state</span><span class="p">[</span><span class="n">fenceline</span><span class="p">,</span><span class="mi">17</span><span class="p">:</span><span class="mi">24</span><span class="p">]</span> <span class="o">=</span> <span class="mi">0</span>             <span class="c1"># put a hole in the fence</span>
+</pre></div>
+</div>
+</div>
+</div>
+<p>Now lets define a function to plot our state, using symbols for the fence, the dog and the sheep.</p>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="k">def</span> <span class="nf">plotstate</span><span class="p">(</span><span class="n">state</span><span class="p">,</span><span class="n">time</span><span class="o">=</span><span class="mi">0</span><span class="p">):</span>
+    
+    <span class="c1"># first create two vectors based on the x and y sizes of the grid</span>
+    <span class="n">x_range</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">linspace</span><span class="p">(</span><span class="mi">0</span><span class="p">,</span> <span class="n">state</span><span class="o">.</span><span class="n">shape</span><span class="p">[</span><span class="mi">0</span><span class="p">],</span> <span class="n">state</span><span class="o">.</span><span class="n">shape</span><span class="p">[</span><span class="mi">0</span><span class="p">])</span> 
+    <span class="n">y_range</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">linspace</span><span class="p">(</span><span class="mi">0</span><span class="p">,</span> <span class="n">state</span><span class="o">.</span><span class="n">shape</span><span class="p">[</span><span class="mi">1</span><span class="p">],</span> <span class="n">state</span><span class="o">.</span><span class="n">shape</span><span class="p">[</span><span class="mi">1</span><span class="p">])</span>
+    
+    <span class="c1"># use the numpy meshgrid function to create two matrices </span>
+    <span class="c1"># of the same size as myarray with x and y indexes</span>
+    <span class="n">x_indexes</span><span class="p">,</span> <span class="n">y_indexes</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">meshgrid</span><span class="p">(</span><span class="n">x_range</span><span class="p">,</span> <span class="n">y_range</span><span class="p">)</span>
+    
+    <span class="c1"># make a list of all the x and y indexes that are not empty.</span>
+    <span class="n">fence_x</span> <span class="o">=</span> <span class="n">x_indexes</span><span class="p">[</span><span class="n">state</span> <span class="o">==</span> <span class="mi">1</span><span class="p">];</span>
+    <span class="n">fence_y</span> <span class="o">=</span> <span class="n">y_indexes</span><span class="p">[</span><span class="n">state</span> <span class="o">==</span> <span class="mi">1</span><span class="p">];</span> 
+    <span class="n">sheep_x</span> <span class="o">=</span> <span class="n">x_indexes</span><span class="p">[</span><span class="n">state</span> <span class="o">==</span> <span class="mi">2</span><span class="p">];</span> 
+    <span class="n">sheep_y</span> <span class="o">=</span> <span class="n">y_indexes</span><span class="p">[</span><span class="n">state</span> <span class="o">==</span> <span class="mi">2</span><span class="p">];</span>
+    <span class="n">dog_x</span> <span class="o">=</span> <span class="n">x_indexes</span><span class="p">[</span><span class="n">state</span> <span class="o">==</span> <span class="mi">3</span><span class="p">];</span> 
+    <span class="n">dog_y</span> <span class="o">=</span> <span class="n">y_indexes</span><span class="p">[</span><span class="n">state</span> <span class="o">==</span> <span class="mi">3</span><span class="p">];</span>
+ 
+    <span class="c1"># plot the squares and triangles.  make the size of the polygons </span>
+    <span class="c1"># larger than the default so they&#39;re easy to see!   </span>
+    <span class="n">plt</span><span class="o">.</span><span class="n">plot</span><span class="p">(</span><span class="n">fence_x</span><span class="p">,</span><span class="n">fence_y</span><span class="p">,</span> <span class="s1">&#39;s&#39;</span><span class="p">,</span><span class="n">markersize</span><span class="o">=</span><span class="mi">20</span><span class="p">)</span>  
+    <span class="n">plt</span><span class="o">.</span><span class="n">plot</span><span class="p">(</span><span class="n">sheep_x</span><span class="p">,</span><span class="n">sheep_y</span><span class="p">,</span> <span class="s1">&#39;o&#39;</span><span class="p">,</span><span class="n">markersize</span><span class="o">=</span><span class="mi">20</span><span class="p">)</span>  
+    <span class="n">plt</span><span class="o">.</span><span class="n">plot</span><span class="p">(</span><span class="n">dog_x</span><span class="p">,</span><span class="n">dog_y</span><span class="p">,</span> <span class="s1">&#39;1&#39;</span><span class="p">,</span><span class="n">markersize</span><span class="o">=</span><span class="mi">20</span><span class="p">)</span>
+    
+    <span class="c1"># Set the x and y limits to include half a space overlap so we don&#39;t cut off the shapes</span>
+    <span class="n">plt</span><span class="o">.</span><span class="n">ylim</span><span class="p">([</span><span class="o">-</span><span class="mf">0.5</span><span class="p">,</span><span class="n">state</span><span class="o">.</span><span class="n">shape</span><span class="p">[</span><span class="mi">0</span><span class="p">]</span> <span class="o">+</span> <span class="mf">0.5</span><span class="p">])</span> 
+    <span class="n">plt</span><span class="o">.</span><span class="n">xlim</span><span class="p">([</span><span class="o">-</span><span class="mf">0.5</span><span class="p">,</span><span class="n">state</span><span class="o">.</span><span class="n">shape</span><span class="p">[</span><span class="mi">0</span><span class="p">]</span> <span class="o">+</span> <span class="mf">0.5</span><span class="p">])</span>
+    
+    <span class="c1"># display the current time on the plot</span>
+    <span class="n">plt</span><span class="o">.</span><span class="n">text</span><span class="p">(</span><span class="mi">0</span><span class="p">,</span><span class="mi">0</span><span class="p">,</span><span class="s2">&quot;time=</span><span class="si">{0}</span><span class="s2">&quot;</span><span class="o">.</span><span class="n">format</span><span class="p">(</span><span class="n">time</span><span class="p">),</span><span class="n">fontsize</span><span class="o">=</span><span class="mi">18</span><span class="p">)</span>
+    
+    <span class="c1"># Turn the axes off</span>
+    <span class="n">plt</span><span class="o">.</span><span class="n">tick_params</span><span class="p">(</span><span class="n">axis</span><span class="o">=</span><span class="s1">&#39;both&#39;</span><span class="p">,</span> <span class="n">which</span><span class="o">=</span><span class="s1">&#39;both&#39;</span><span class="p">,</span> <span class="n">bottom</span><span class="o">=</span><span class="kc">False</span><span class="p">,</span> <span class="n">top</span><span class="o">=</span><span class="kc">False</span><span class="p">,</span> <span class="n">labelbottom</span><span class="o">=</span><span class="kc">False</span><span class="p">,</span> <span class="n">right</span><span class="o">=</span><span class="kc">False</span><span class="p">,</span> <span class="n">left</span><span class="o">=</span><span class="kc">False</span><span class="p">,</span> <span class="n">labelleft</span><span class="o">=</span><span class="kc">False</span><span class="p">)</span>
+    <span class="n">plt</span><span class="o">.</span><span class="n">gca</span><span class="p">()</span><span class="o">.</span><span class="n">set_aspect</span><span class="p">(</span><span class="s1">&#39;equal&#39;</span><span class="p">,</span> <span class="n">adjustable</span><span class="o">=</span><span class="s1">&#39;box&#39;</span><span class="p">)</span>
+</pre></div>
+</div>
+</div>
+</div>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">plt</span><span class="o">.</span><span class="n">figure</span><span class="p">(</span><span class="n">figsize</span><span class="o">=</span><span class="p">(</span><span class="mi">10</span><span class="p">,</span><span class="mi">10</span><span class="p">))</span>
+<span class="n">plotstate</span><span class="p">(</span><span class="n">system_state</span><span class="p">)</span>
+</pre></div>
+</div>
+</div>
+</div>
+<p>Doesn’t really look like a dog, but let’s use our imaginations.  We’re almost ready, but we’re missing something…. oh yes. The sheep.</p>
+<section id="question-1-scattering-sheep-3-points">
+<h2>Question 1:  Scattering sheep (3 points)<a class="headerlink" href="#question-1-scattering-sheep-3-points" title="Permalink to this headline">#</a></h2>
+<p>Write a function that randomly places the sheep in the field above the fence.  It should take as an argument the <code class="docutils literal notranslate"><span class="pre">system_state</span></code>, the number of sheep to place (<code class="docutils literal notranslate"><span class="pre">N</span></code>), and a <code class="docutils literal notranslate"><span class="pre">fenceline</span></code> parameter that describes the y-position of the fence.  It should return a new state with the sheep.</p>
+<p><strong>Importantly,</strong> the sheep cannot overlap with anything that is not empty space (i.e. <code class="docutils literal notranslate"><span class="pre">state[try_y,try_x]</span></code> must equal zero), and the sheep must be placed above the fenceline!</p>
+<p><strong>Review the code below. At each empty comment (there are three, denoted by ??), write a comment that describes what the chunk of code directly below it is supposed to be doing.</strong></p>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span>from copy import copy
+
+def place_sheep(state,N,fenceline):
+    
+    newstate = copy(state)
+    
+    sheep_placed = 0
+    
+    while ?? :# sheep_placed condition
+        # suggest somewhere for a sheep to be placed 
+        try_x = np.random.randint(state.shape[1])
+        try_y = np.random.randint(state.shape[0])
+        
+        # check if this is appropriate.  
+        # if yes, set good_place to True.  if no, set good_place to False.
+        if ??:
+            good_place = True
+        else:
+            good_place = False
+            
+        # if good, place the sheep, if not try again
+        if good_place is True:
+            # update sheep_placed and assign sheep to the newstate.
+            ?? 
+    
+    return newstate
+</pre></div>
+</div>
+</div>
+</div>
+<p>Let’s call this state <code class="docutils literal notranslate"><span class="pre">initial_state</span></code> since we’ll use it to start our agent-based model simulations.  The following should plot your new system.  Run it a few times and make sure it always gives you something appropriate.</p>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">initial_state</span> <span class="o">=</span> <span class="n">place_sheep</span><span class="p">(</span><span class="n">system_state</span><span class="p">,</span><span class="mi">20</span><span class="p">,</span><span class="n">fenceline</span><span class="p">)</span>
+<span class="n">plt</span><span class="o">.</span><span class="n">figure</span><span class="p">(</span><span class="n">figsize</span><span class="o">=</span><span class="p">(</span><span class="mi">10</span><span class="p">,</span><span class="mi">10</span><span class="p">))</span>
+<span class="n">plotstate</span><span class="p">(</span><span class="n">initial_state</span><span class="p">)</span>
+</pre></div>
+</div>
+</div>
+</div>
+</section>
+<section id="question-2-these-sheep-were-made-for-walkin-10-points">
+<h2>Question 2:  These sheep were made for walkin’ (10 points)<a class="headerlink" href="#question-2-these-sheep-were-made-for-walkin-10-points" title="Permalink to this headline">#</a></h2>
+<p>Of course these sheep aren’t going to just stand there.  They will move, randomly over time.  For each time step (say, 1 second), let’s say they will move according to the following probabilities and rules:</p>
+<div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="o">-</span> <span class="n">choose</span> <span class="n">to</span> <span class="n">move</span> <span class="k">with</span> <span class="n">probability</span> <span class="n">p_move</span>
+<span class="o">-</span> <span class="k">if</span> <span class="n">moving</span> 
+     <span class="o">-</span> <span class="n">choose</span> <span class="n">direction</span> <span class="p">(</span><span class="n">up</span><span class="p">,</span> <span class="n">down</span><span class="p">,</span> <span class="n">left</span><span class="p">,</span> <span class="n">right</span><span class="p">)</span> <span class="k">with</span> <span class="n">equal</span> <span class="n">probability</span>
+     <span class="o">-</span> <span class="n">do</span> <span class="ow">not</span> <span class="n">execute</span> <span class="n">the</span> <span class="n">move</span> <span class="k">if</span> <span class="n">it</span> <span class="n">goes</span> <span class="n">beyond</span> <span class="n">the</span> <span class="n">borders</span>
+     <span class="o">-</span> <span class="n">only</span> <span class="n">execute</span> <span class="n">the</span> <span class="n">move</span> <span class="k">if</span> <span class="n">the</span> <span class="n">new</span> <span class="n">space</span> <span class="ow">is</span> <span class="n">empty</span>
+     <span class="o">-</span> <span class="n">do</span> <span class="ow">not</span> <span class="n">execute</span> <span class="n">an</span> <span class="n">upward</span> <span class="n">move</span> <span class="k">if</span> <span class="n">sheep</span> <span class="ow">is</span> <span class="n">at</span> <span class="n">the</span> <span class="n">fenceline</span>
+</pre></div>
+</div>
+<p>Where the latter condition assumes that once the sheep are in the pen, they remember how good it feels to be home.</p>
+<section id="task-4-points">
+<h3>2.1 Task (4 points)<a class="headerlink" href="#task-4-points" title="Permalink to this headline">#</a></h3>
+<p><strong>Write a function</strong> that takes in: 1) a system state, 2) a sheep’s x and y position, 3) p_move and 4) the fenceline.  Have this function attempt to move the specified sheep according to the rules above.</p>
+<p><strong>Review the code below. At each empty comment (there are three, denoted by ####), write a comment that describes what the chunk of code directly below it is supposed to be doing.</strong></p>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="k">def</span> <span class="nf">move_sheep</span><span class="p">(</span><span class="n">state</span><span class="p">,</span><span class="n">sheep_x</span><span class="p">,</span><span class="n">sheep_y</span><span class="p">,</span><span class="n">pmove</span><span class="p">,</span><span class="n">fenceline</span><span class="p">):</span>
+
+    <span class="c1"># decide whether to move</span>
+    <span class="n">r1</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">random</span><span class="o">.</span><span class="n">random</span><span class="p">()</span>
+    <span class="k">if</span> <span class="n">r1</span> <span class="o">&lt;</span> <span class="n">pmove</span><span class="p">:</span>
+        <span class="c1"># if yes, decide to move up, down, left or right</span>
+        <span class="c1"># store the new location in the variables try_x and try_y</span>
+
+        <span class="n">r2</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">random</span><span class="o">.</span><span class="n">random</span><span class="p">()</span>
+        
+        <span class="k">if</span> <span class="c1">#### : # move left</span>
+            <span class="c1">#### # update sheep position</span>
+            
+        <span class="k">elif</span> <span class="n">r2</span> <span class="o">&lt;</span> <span class="mf">0.5</span><span class="p">:</span> <span class="c1"># move up</span>
+            
+            <span class="k">if</span> <span class="c1">#### fenceline condition</span>
+                <span class="c1">#### # update sheep position</span>
+            <span class="k">else</span><span class="p">:</span>
+                <span class="c1">#### # update sheep position</span>
+                
+        <span class="k">elif</span> <span class="c1">#### : # move right</span>
+            <span class="c1">#### # update sheep position</span>
+            
+        <span class="k">else</span><span class="p">:</span> <span class="c1"># move down</span>
+            <span class="c1">#### # update sheep position</span>
+            
+        <span class="c1"># check and see if the move is good</span>
+        <span class="n">good_move</span> <span class="o">=</span> <span class="kc">True</span>
+        
+        <span class="c1"># set good_move to False if conditions are violated</span>
+        
+        <span class="k">if</span> <span class="c1">#### # position conditions:</span>
+            <span class="n">good_move</span> <span class="o">=</span> <span class="kc">False</span>
+            
+        <span class="k">elif</span> <span class="c1">#### # position conditions:</span>
+            <span class="n">good_move</span> <span class="o">=</span> <span class="kc">False</span>
+            
+        <span class="k">elif</span> <span class="c1">#### # position conditions:</span>
+            <span class="n">good_move</span> <span class="o">=</span> <span class="kc">False</span>
+            
+        <span class="c1"># if the move is good, make the move</span>
+        <span class="k">if</span> <span class="n">good_move</span> <span class="ow">is</span> <span class="kc">True</span><span class="p">:</span>
+            <span class="c1"># make the move</span>
+            <span class="n">state</span><span class="p">[</span><span class="n">sheep_y</span><span class="p">,</span><span class="n">sheep_x</span><span class="p">]</span> <span class="o">=</span> <span class="mi">0</span>
+            <span class="n">state</span><span class="p">[</span><span class="n">try_y</span><span class="p">,</span><span class="n">try_x</span><span class="p">]</span> <span class="o">=</span> <span class="mi">2</span>
+    
+    <span class="c1"># return the state</span>
+    <span class="k">return</span> <span class="n">state</span>
+</pre></div>
+</div>
+</div>
+</div>
+<p>Great!  Now let’s write a function to move the whole system forward in time.  This will use the <code class="docutils literal notranslate"><span class="pre">move_sheep</span></code> function.  First we need to find all the sheep.  This can be done easily with the <code class="docutils literal notranslate"><span class="pre">np.where</span></code> function.  You might not have seen this before, so read the doc page before you use it.</p>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">sheep_loc</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">array</span><span class="p">(</span><span class="n">np</span><span class="o">.</span><span class="n">where</span><span class="p">(</span><span class="n">initial_state</span><span class="o">==</span><span class="mi">2</span><span class="p">))</span>
+</pre></div>
+</div>
+</div>
+</div>
+</section>
+<section id="task-2-points">
+<h3>2.2 Task (2 points)<a class="headerlink" href="#task-2-points" title="Permalink to this headline">#</a></h3>
+<p><strong>What is <code class="docutils literal notranslate"><span class="pre">sheep_loc</span></code>?  What do the first and second axes represent?</strong></p>
+<p><font size=6 color="#009600">✎</font> <em>Answer here</em></p>
+</section>
+<section id="id1">
+<h3>2.3 Task (2 points)<a class="headerlink" href="#id1" title="Permalink to this headline">#</a></h3>
+<p><strong>Use <code class="docutils literal notranslate"><span class="pre">sheep_loc</span></code> below to get the x and y position of the first sheep:</strong></p>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="c1"># your code here</span>
+</pre></div>
+</div>
+</div>
+</div>
+</section>
+<section id="id2">
+<h3>2.4 Task (2 points)<a class="headerlink" href="#id2" title="Permalink to this headline">#</a></h3>
+<p><strong>Use <code class="docutils literal notranslate"><span class="pre">sheep_loc</span></code> to get the total number of sheep:</strong></p>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="c1"># your code here</span>
+</pre></div>
+</div>
+</div>
+</div>
+<p>Now we use <code class="docutils literal notranslate"><span class="pre">sheep_loc</span></code> to finish the <code class="docutils literal notranslate"><span class="pre">evolve_system</span></code> function below, which will (at least try to) move all of the sheep.</p>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="k">def</span> <span class="nf">evolve_system</span><span class="p">(</span><span class="n">state</span><span class="p">,</span><span class="n">pmove</span><span class="p">,</span><span class="n">fenceline</span><span class="p">):</span>
+    <span class="n">sheep_loc</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">array</span><span class="p">(</span><span class="n">np</span><span class="o">.</span><span class="n">where</span><span class="p">(</span><span class="n">state</span><span class="o">==</span><span class="mi">2</span><span class="p">))</span>
+    
+    <span class="c1"># determine how many sheep there are</span>
+    <span class="n">nsheep</span> <span class="o">=</span> <span class="nb">len</span><span class="p">(</span><span class="n">sheep_loc</span><span class="p">[</span><span class="mi">0</span><span class="p">])</span>
+    
+    <span class="c1"># write a loop to iterate over each sheep</span>
+    <span class="k">for</span> <span class="n">i</span> <span class="ow">in</span> <span class="nb">range</span><span class="p">(</span><span class="n">nsheep</span><span class="p">):</span>
+        <span class="n">sheep_x</span> <span class="o">=</span> <span class="n">sheep_loc</span><span class="p">[</span><span class="mi">1</span><span class="p">][</span><span class="n">i</span><span class="p">]</span>
+        <span class="n">sheep_y</span> <span class="o">=</span> <span class="n">sheep_loc</span><span class="p">[</span><span class="mi">0</span><span class="p">][</span><span class="n">i</span><span class="p">]</span>
+        <span class="c1"># call move_sheep for each sheep_x and sheep_y position</span>
+        <span class="n">state</span> <span class="o">=</span> <span class="n">move_sheep</span><span class="p">(</span><span class="n">state</span><span class="p">,</span><span class="n">sheep_x</span><span class="p">,</span><span class="n">sheep_y</span><span class="p">,</span><span class="n">pmove</span><span class="p">,</span><span class="n">fenceline</span><span class="p">)</span>
+
+    <span class="k">return</span> <span class="n">state</span>
+</pre></div>
+</div>
+</div>
+</div>
+<p>OK, now we’ll test out our code:</p>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="kn">from</span> <span class="nn">copy</span> <span class="kn">import</span> <span class="n">copy</span>
+<span class="kn">from</span> <span class="nn">IPython.display</span> <span class="kn">import</span> <span class="n">display</span><span class="p">,</span> <span class="n">clear_output</span>
+<span class="kn">import</span> <span class="nn">time</span> 
+
+<span class="n">nsteps</span> <span class="o">=</span> <span class="mi">20</span>
+<span class="n">pmove</span> <span class="o">=</span> <span class="mf">0.5</span>
+<span class="n">fenceline</span> <span class="o">=</span> <span class="mi">10</span>
+
+<span class="n">state</span> <span class="o">=</span> <span class="n">copy</span><span class="p">(</span><span class="n">initial_state</span><span class="p">)</span>
+
+<span class="n">fig</span> <span class="o">=</span> <span class="n">plt</span><span class="o">.</span><span class="n">figure</span><span class="p">(</span><span class="n">figsize</span><span class="o">=</span><span class="p">(</span><span class="mi">8</span><span class="p">,</span><span class="mi">8</span><span class="p">))</span>
+<span class="k">for</span> <span class="n">i</span> <span class="ow">in</span> <span class="nb">range</span><span class="p">(</span><span class="n">nsteps</span><span class="p">):</span> 
+    <span class="n">state</span> <span class="o">=</span> <span class="n">evolve_system</span><span class="p">(</span><span class="n">state</span><span class="p">,</span><span class="n">pmove</span><span class="p">,</span><span class="n">fenceline</span><span class="p">)</span>
+    <span class="n">plotstate</span><span class="p">(</span><span class="n">state</span><span class="p">,</span><span class="n">time</span><span class="o">=</span><span class="n">i</span><span class="p">)</span>
+    <span class="n">time</span><span class="o">.</span><span class="n">sleep</span><span class="p">(</span><span class="mf">0.01</span><span class="p">)</span>         <span class="c1"># Sleep for 0.01 s to slow down the animation</span>
+    <span class="n">clear_output</span><span class="p">(</span><span class="n">wait</span><span class="o">=</span><span class="kc">True</span><span class="p">)</span> <span class="c1"># Clear output for dynamic display</span>
+    <span class="n">display</span><span class="p">(</span><span class="n">fig</span><span class="p">)</span>            <span class="c1"># Reset display</span>
+    <span class="n">fig</span><span class="o">.</span><span class="n">clear</span><span class="p">()</span>             <span class="c1"># Prevent overlapping and layered plots</span>
+
+<span class="n">plt</span><span class="o">.</span><span class="n">close</span><span class="p">()</span>                 <span class="c1"># Close dynamic display</span>
+</pre></div>
+</div>
+</div>
+</div>
+<p>Wow!  Just… wow.</p>
+</section>
+</section>
+<hr class="docutils" />
+<section id="question-3-all-bark-and-no-bite-12-points">
+<h2>Question 3:  All bark and no bite (12 points)<a class="headerlink" href="#question-3-all-bark-and-no-bite-12-points" title="Permalink to this headline">#</a></h2>
+<p>Now we need some sheep-sheepdog interaction.  Time to make some changes to our ruleset:</p>
+<div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="o">-</span> <span class="n">choose</span> <span class="n">to</span> <span class="n">move</span> <span class="k">with</span> <span class="n">probability</span> <span class="n">p_move</span>
+<span class="o">-</span> <span class="k">if</span> <span class="n">moving</span>
+     <span class="o">-</span> <span class="n">choose</span> <span class="n">x</span> <span class="nb">dir</span> <span class="ow">or</span> <span class="n">y</span> <span class="nb">dir</span> <span class="k">with</span> <span class="n">equal</span> <span class="n">probability</span>
+     <span class="o">-</span> <span class="n">choose</span> <span class="n">toward</span> <span class="n">dog</span> <span class="ow">or</span> <span class="n">away</span> <span class="kn">from</span> <span class="nn">dog</span> <span class="k">as</span> <span class="n">follows</span>
+         <span class="o">*</span> <span class="n">p</span> <span class="o">=</span> <span class="mf">0.5</span> <span class="o">-</span> <span class="n">delta</span> <span class="p">(</span><span class="n">towards</span> <span class="n">dog</span><span class="p">)</span>
+         <span class="o">*</span> <span class="n">p</span> <span class="o">=</span> <span class="mf">0.5</span> <span class="o">+</span> <span class="n">delta</span> <span class="p">(</span><span class="n">away</span> <span class="kn">from</span> <span class="nn">dog</span><span class="p">)</span>
+     <span class="o">-</span> <span class="n">do</span> <span class="ow">not</span> <span class="n">execute</span> <span class="n">the</span> <span class="n">move</span> <span class="k">if</span> <span class="n">it</span> <span class="n">goes</span> <span class="n">beyond</span> <span class="n">the</span> <span class="n">borders</span>
+     <span class="o">-</span> <span class="n">only</span> <span class="n">execute</span> <span class="n">the</span> <span class="n">move</span> <span class="k">if</span> <span class="n">the</span> <span class="n">new</span> <span class="n">space</span> <span class="ow">is</span> <span class="n">empty</span>
+     <span class="o">-</span> <span class="n">do</span> <span class="ow">not</span> <span class="n">execute</span> <span class="n">an</span> <span class="n">upward</span> <span class="n">move</span> <span class="k">if</span> <span class="n">sheep</span> <span class="ow">is</span> <span class="n">at</span> <span class="n">the</span> <span class="n">fenceline</span>
+</pre></div>
+</div>
+<p>where we’ve introduced another parameter <code class="docutils literal notranslate"><span class="pre">delta</span></code> which can take on values between 0 and 0.5.</p>
+<section id="id3">
+<h3>3.1 Task (4 points)<a class="headerlink" href="#id3" title="Permalink to this headline">#</a></h3>
+<p><strong>Use <code class="docutils literal notranslate"><span class="pre">move_sheep</span></code> function from question 2 to make a new <code class="docutils literal notranslate"><span class="pre">move_sheep_bias</span></code> function that accounts for the dog’s position:</strong></p>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="k">def</span> <span class="nf">move_sheep_bias</span><span class="p">(</span><span class="n">state</span><span class="p">,</span><span class="n">sheep_x</span><span class="p">,</span><span class="n">sheep_y</span><span class="p">,</span><span class="n">pmove</span><span class="p">,</span><span class="n">fenceline</span><span class="p">,</span><span class="n">delta</span><span class="p">):</span>
+
+    <span class="c1"># your code here</span>
+</pre></div>
+</div>
+</div>
+</div>
+</section>
+<section id="id4">
+<h3>3.2 Task (4 points)<a class="headerlink" href="#id4" title="Permalink to this headline">#</a></h3>
+<p><strong>Write an <code class="docutils literal notranslate"><span class="pre">evolve_system_bias</span></code> function to call this with the delta parameter:</strong></p>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="k">def</span> <span class="nf">evolve_system_bias</span><span class="p">(</span><span class="n">state</span><span class="p">,</span><span class="n">pmove</span><span class="p">,</span><span class="n">fenceline</span><span class="p">,</span><span class="n">delta</span><span class="p">):</span>
+    <span class="c1"># your code here</span>
+</pre></div>
+</div>
+</div>
+</div>
+<p>Then test our code again, this time only plotting every 10 steps:</p>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="kn">from</span> <span class="nn">IPython.display</span> <span class="kn">import</span> <span class="n">display</span><span class="p">,</span> <span class="n">clear_output</span>
+<span class="kn">import</span> <span class="nn">time</span> 
+
+<span class="n">nsteps</span> <span class="o">=</span> <span class="mi">500</span>
+<span class="n">plot_every</span> <span class="o">=</span> <span class="mi">10</span>
+<span class="n">pmove</span> <span class="o">=</span> <span class="mf">0.5</span>
+<span class="n">fenceline</span> <span class="o">=</span> <span class="mi">10</span>
+<span class="n">delta</span> <span class="o">=</span> <span class="mf">0.25</span>
+
+<span class="n">state</span> <span class="o">=</span> <span class="n">copy</span><span class="p">(</span><span class="n">initial_state</span><span class="p">)</span>
+
+<span class="n">fig</span> <span class="o">=</span> <span class="n">plt</span><span class="o">.</span><span class="n">figure</span><span class="p">(</span><span class="n">figsize</span><span class="o">=</span><span class="p">(</span><span class="mi">8</span><span class="p">,</span><span class="mi">8</span><span class="p">))</span>
+<span class="k">for</span> <span class="n">i</span> <span class="ow">in</span> <span class="nb">range</span><span class="p">(</span><span class="n">nsteps</span><span class="p">):</span> 
+    <span class="n">state</span> <span class="o">=</span> <span class="n">evolve_system_bias</span><span class="p">(</span><span class="n">state</span><span class="p">,</span><span class="n">pmove</span><span class="p">,</span><span class="n">fenceline</span><span class="p">,</span><span class="n">delta</span><span class="p">)</span>
+    <span class="k">if</span> <span class="n">i</span> <span class="o">%</span> <span class="n">plot_every</span> <span class="o">==</span> <span class="mi">0</span><span class="p">:</span>
+        <span class="n">plotstate</span><span class="p">(</span><span class="n">state</span><span class="p">,</span><span class="n">time</span><span class="o">=</span><span class="n">i</span><span class="p">)</span>
+        <span class="n">time</span><span class="o">.</span><span class="n">sleep</span><span class="p">(</span><span class="mf">0.01</span><span class="p">)</span>         <span class="c1"># Sleep for 0.01 s to slow down the animation</span>
+        <span class="n">clear_output</span><span class="p">(</span><span class="n">wait</span><span class="o">=</span><span class="kc">True</span><span class="p">)</span> <span class="c1"># Clear output for dynamic display</span>
+        <span class="n">display</span><span class="p">(</span><span class="n">fig</span><span class="p">)</span>            <span class="c1"># Reset display</span>
+        <span class="n">fig</span><span class="o">.</span><span class="n">clear</span><span class="p">()</span>             <span class="c1"># Prevent overlapping and layered plots</span>
+
+<span class="n">plt</span><span class="o">.</span><span class="n">close</span><span class="p">()</span>                 <span class="c1"># Close dynamic display</span>
+</pre></div>
+</div>
+</div>
+</div>
+<p>Maybe a little too intense.  I don’t think our dog should be that scary.</p>
+</section>
+<section id="id5">
+<h3>3.3 Task (4 points)<a class="headerlink" href="#id5" title="Permalink to this headline">#</a></h3>
+<p><strong>Add a cutoff distance (<code class="docutils literal notranslate"><span class="pre">d_cut</span></code>), where if sheep are closer to the dog than <code class="docutils literal notranslate"><span class="pre">d_cut</span></code> then they use <code class="docutils literal notranslate"><span class="pre">move_sheep_bias</span></code>, but if they are farther then they move normally with <code class="docutils literal notranslate"><span class="pre">move_sheep</span></code>.</strong></p>
+<p>Note: calculate distance as <span class="math notranslate nohighlight">\(d = \sqrt{(x_s - x_d)^2 + (y_s - y_d)^2}\)</span>, where <span class="math notranslate nohighlight">\(x_s\)</span> is the x-position of the sheep, and <span class="math notranslate nohighlight">\(x_d\)</span> is the x-position of the dog, etc.</p>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="k">def</span> <span class="nf">evolve_system_bias_cutoff</span><span class="p">(</span><span class="n">state</span><span class="p">,</span><span class="n">pmove</span><span class="p">,</span><span class="n">fenceline</span><span class="p">,</span><span class="n">delta</span><span class="p">,</span><span class="n">dcut</span><span class="p">):</span>
+    <span class="c1"># find the dog</span>
+    <span class="n">dog_loc</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">array</span><span class="p">(</span><span class="n">np</span><span class="o">.</span><span class="n">where</span><span class="p">(</span><span class="n">state</span><span class="o">==</span><span class="mi">3</span><span class="p">))</span>
+    <span class="n">dog_x</span> <span class="o">=</span> <span class="n">dog_loc</span><span class="p">[</span><span class="mi">1</span><span class="p">][</span><span class="mi">0</span><span class="p">]</span>
+    <span class="n">dog_y</span> <span class="o">=</span> <span class="n">dog_loc</span><span class="p">[</span><span class="mi">0</span><span class="p">][</span><span class="mi">0</span><span class="p">]</span>
+    
+    <span class="n">sheep_loc</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">array</span><span class="p">(</span><span class="n">np</span><span class="o">.</span><span class="n">where</span><span class="p">(</span><span class="n">state</span><span class="o">==</span><span class="mi">2</span><span class="p">))</span>
+    
+    <span class="c1"># determine how many sheep there are</span>
+    <span class="n">nsheep</span> <span class="o">=</span> <span class="nb">len</span><span class="p">(</span><span class="n">sheep_loc</span><span class="p">[</span><span class="mi">0</span><span class="p">])</span>
+    
+    <span class="c1"># write a loop to iterate over each sheep</span>
+    <span class="k">for</span> <span class="n">i</span> <span class="ow">in</span> <span class="nb">range</span><span class="p">(</span><span class="n">nsheep</span><span class="p">):</span>
+        
+        <span class="c1"># your code here</span>
+        
+    <span class="k">return</span> <span class="n">state</span>
+</pre></div>
+</div>
+</div>
+</div>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">nsteps</span> <span class="o">=</span> <span class="mi">500</span>
+<span class="n">plot_every</span> <span class="o">=</span> <span class="mi">10</span>
+<span class="n">pmove</span> <span class="o">=</span> <span class="mf">0.5</span>
+<span class="n">fenceline</span> <span class="o">=</span> <span class="mi">10</span>
+<span class="n">delta</span> <span class="o">=</span> <span class="mf">0.25</span>
+<span class="n">dcut</span> <span class="o">=</span> <span class="mi">15</span>
+
+<span class="n">state</span> <span class="o">=</span> <span class="n">copy</span><span class="p">(</span><span class="n">initial_state</span><span class="p">)</span>
+
+<span class="n">fig</span> <span class="o">=</span> <span class="n">plt</span><span class="o">.</span><span class="n">figure</span><span class="p">(</span><span class="n">figsize</span><span class="o">=</span><span class="p">(</span><span class="mi">8</span><span class="p">,</span><span class="mi">8</span><span class="p">))</span>
+<span class="k">for</span> <span class="n">i</span> <span class="ow">in</span> <span class="nb">range</span><span class="p">(</span><span class="n">nsteps</span><span class="p">):</span> 
+    <span class="n">state</span> <span class="o">=</span> <span class="n">evolve_system_bias_cutoff</span><span class="p">(</span><span class="n">state</span><span class="p">,</span><span class="n">pmove</span><span class="p">,</span><span class="n">fenceline</span><span class="p">,</span><span class="n">delta</span><span class="p">,</span><span class="n">dcut</span><span class="p">)</span>
+    <span class="k">if</span> <span class="n">i</span> <span class="o">%</span> <span class="n">plot_every</span> <span class="o">==</span> <span class="mi">0</span><span class="p">:</span>
+        <span class="n">plotstate</span><span class="p">(</span><span class="n">state</span><span class="p">,</span><span class="n">time</span><span class="o">=</span><span class="n">i</span><span class="p">)</span>
+        <span class="n">time</span><span class="o">.</span><span class="n">sleep</span><span class="p">(</span><span class="mf">0.01</span><span class="p">)</span>         <span class="c1"># Sleep for 0.01 s to slow down the animation</span>
+        <span class="n">clear_output</span><span class="p">(</span><span class="n">wait</span><span class="o">=</span><span class="kc">True</span><span class="p">)</span> <span class="c1"># Clear output for dynamic display</span>
+        <span class="n">display</span><span class="p">(</span><span class="n">fig</span><span class="p">)</span>            <span class="c1"># Reset display</span>
+        <span class="n">fig</span><span class="o">.</span><span class="n">clear</span><span class="p">()</span>             <span class="c1"># Prevent overlapping and layered plots</span>
+
+<span class="n">plt</span><span class="o">.</span><span class="n">close</span><span class="p">()</span>                 <span class="c1"># Close dynamic display</span>
+</pre></div>
+</div>
+</div>
+</div>
+<p>That’s better.</p>
+</section>
+</section>
+<section id="question-4-go-dog-go-11-points">
+<h2>Question 4:  Go dog go (11 points)<a class="headerlink" href="#question-4-go-dog-go-11-points" title="Permalink to this headline">#</a></h2>
+<p>Here’s the chance we’ve been waiting for!  Time to make our dog move.  But how?  We’ll assume our robot can move much faster than the sheep, so we’ll allow it to move one square every timestep.</p>
+<p><strong>But how should it move?</strong>  To allow us to try out a set of different strategies, we’ll assume we have a path that the dog follows, which is a list of states that are no more than one square apart.</p>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">y0</span><span class="p">,</span><span class="n">x0</span> <span class="o">=</span> <span class="n">dog_start_pos</span>
+<span class="n">short_dog_path</span> <span class="o">=</span> <span class="p">[(</span><span class="n">y0</span><span class="p">,</span><span class="n">x0</span><span class="p">),(</span><span class="n">y0</span><span class="p">,</span><span class="n">x0</span><span class="o">-</span><span class="mi">1</span><span class="p">),(</span><span class="n">y0</span><span class="p">,</span><span class="n">x0</span><span class="o">-</span><span class="mi">2</span><span class="p">),(</span><span class="n">y0</span><span class="p">,</span><span class="n">x0</span><span class="o">-</span><span class="mi">1</span><span class="p">)]</span>
+</pre></div>
+</div>
+</div>
+</div>
+<section id="task-1-points">
+<h3>4.1 Task (1 points)<a class="headerlink" href="#task-1-points" title="Permalink to this headline">#</a></h3>
+<p><strong>How many states are in this path?  What does this path describe?</strong></p>
+<p><font size=6 color="#009600">✎</font> <em>Answer here</em></p>
+</section>
+<section id="id6">
+<h3>4.2 Task (4 points)<a class="headerlink" href="#id6" title="Permalink to this headline">#</a></h3>
+<p><strong>Make a path where the dog runs all the way to the left wall, then all the way to the right wall, and then back to its starting position.</strong>  Do this by filling in the missing lines below:</p>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span>dog_path = [(y0,x0)]
+x = x0
+y = y0
+
+# first run to the left wall
+while ?: 
+    # update x
+    x = x - 1
+    
+    # append (x,y) tuple to dog_path
+    ?
+
+# then run to the right wall
+while ?:
+    # update x
+    ?
+    
+    # append (x,y) tuple to dog_path
+    ?
+    
+# then run back to the middle
+while ?:
+    # update x
+    ?
+    
+    # append (x,y) tuple to dog_path
+    ?
+</pre></div>
+</div>
+</div>
+</div>
+<p>Remember the dog can’t move more than one square per loop, and since the dog will be running this loop over and over again (until the sheep are in the pen), we need to check the endpoints as well.  <strong>Run this function below to see if your path is a good one:</strong></p>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="k">def</span> <span class="nf">pathcheck</span><span class="p">(</span><span class="n">path</span><span class="p">):</span>
+    <span class="c1"># checks to see if the dog moves more than one square per timestep</span>
+    <span class="n">oldp</span> <span class="o">=</span> <span class="n">path</span><span class="p">[</span><span class="o">-</span><span class="mi">1</span><span class="p">]</span>
+    <span class="n">goodpath</span> <span class="o">=</span> <span class="kc">True</span>
+    <span class="k">for</span> <span class="n">p</span> <span class="ow">in</span> <span class="n">path</span><span class="p">:</span>
+        <span class="n">dy</span> <span class="o">=</span> <span class="n">p</span><span class="p">[</span><span class="mi">0</span><span class="p">]</span><span class="o">-</span><span class="n">oldp</span><span class="p">[</span><span class="mi">0</span><span class="p">]</span>
+        <span class="n">dx</span> <span class="o">=</span> <span class="n">p</span><span class="p">[</span><span class="mi">1</span><span class="p">]</span><span class="o">-</span><span class="n">oldp</span><span class="p">[</span><span class="mi">1</span><span class="p">]</span>
+        <span class="k">if</span> <span class="nb">abs</span><span class="p">(</span><span class="n">dx</span><span class="p">)</span> <span class="o">+</span> <span class="nb">abs</span><span class="p">(</span><span class="n">dy</span><span class="p">)</span> <span class="o">&gt;</span> <span class="mi">1</span><span class="p">:</span>
+            <span class="n">goodpath</span> <span class="o">=</span> <span class="kc">False</span>
+        <span class="n">oldp</span> <span class="o">=</span> <span class="n">p</span>
+    <span class="k">return</span> <span class="n">goodpath</span>
+</pre></div>
+</div>
+</div>
+</div>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">pathcheck</span><span class="p">(</span><span class="n">dog_path</span><span class="p">)</span>
+</pre></div>
+</div>
+</div>
+</div>
+</section>
+<section id="task-3-points">
+<h3>4.3 Task (3 points)<a class="headerlink" href="#task-3-points" title="Permalink to this headline">#</a></h3>
+<p>OK, now we’ll make a <code class="docutils literal notranslate"><span class="pre">move_dog</span></code> function that uses this path:
+<strong>Review the code below. At each empty comment (there are three, denoted by ???), write a comment that describes what the chunk of code directly below it is supposed to be doing.</strong></p>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span>def move_dog(state,path,current_pos):
+    
+    next_pos = current_pos + 1
+    # check if the next position is occupied
+    ???
+    
+    next_y,next_x = path[next_pos]
+    
+    if ???:# empty!  or the dog is already there. 
+        # Either way, its ok to move the dog
+    
+        # find the dog
+        ???
+    
+        # delete dog from current position
+        ???
+        
+        # add dog to next position
+        ???
+        
+        # update current_pos
+        ???
+    
+    return current_pos, state
+</pre></div>
+</div>
+</div>
+</div>
+<p>Now let’s add this <code class="docutils literal notranslate"><span class="pre">move_dog</span></code> command to a new <code class="docutils literal notranslate"><span class="pre">evolve_system</span></code> function:</p>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="k">def</span> <span class="nf">evolve_system_dog</span><span class="p">(</span><span class="n">state</span><span class="p">,</span><span class="n">pmove</span><span class="p">,</span><span class="n">fenceline</span><span class="p">,</span><span class="n">delta</span><span class="p">,</span><span class="n">dcut</span><span class="p">,</span><span class="n">path</span><span class="p">,</span><span class="n">current_pos</span><span class="p">):</span>
+    <span class="n">state</span> <span class="o">=</span> <span class="n">evolve_system_bias_cutoff</span><span class="p">(</span><span class="n">state</span><span class="p">,</span><span class="n">pmove</span><span class="p">,</span><span class="n">fenceline</span><span class="p">,</span><span class="n">delta</span><span class="p">,</span><span class="n">dcut</span><span class="p">)</span>        
+    <span class="n">current_pos</span><span class="p">,</span> <span class="n">state</span> <span class="o">=</span> <span class="n">move_dog</span><span class="p">(</span><span class="n">state</span><span class="p">,</span><span class="n">path</span><span class="p">,</span><span class="n">current_pos</span><span class="p">)</span>
+
+    <span class="k">return</span> <span class="n">current_pos</span><span class="p">,</span> <span class="n">state</span>
+</pre></div>
+</div>
+</div>
+</div>
+<p>Let’s test it out!</p>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">nsteps</span> <span class="o">=</span> <span class="mi">500</span>
+<span class="n">plot_every</span> <span class="o">=</span> <span class="mi">10</span>
+<span class="n">pmove</span> <span class="o">=</span> <span class="mf">0.5</span>
+<span class="n">fenceline</span> <span class="o">=</span> <span class="mi">10</span>
+<span class="n">delta</span> <span class="o">=</span> <span class="mf">0.25</span>
+<span class="n">dcut</span> <span class="o">=</span> <span class="mi">15</span>
+<span class="n">path</span> <span class="o">=</span> <span class="n">dog_path</span>
+<span class="n">dog_pos</span> <span class="o">=</span> <span class="mi">0</span>
+
+<span class="n">state</span> <span class="o">=</span> <span class="n">copy</span><span class="p">(</span><span class="n">initial_state</span><span class="p">)</span>
+
+<span class="n">fig</span> <span class="o">=</span> <span class="n">plt</span><span class="o">.</span><span class="n">figure</span><span class="p">(</span><span class="n">figsize</span><span class="o">=</span><span class="p">(</span><span class="mi">8</span><span class="p">,</span><span class="mi">8</span><span class="p">))</span>
+<span class="k">for</span> <span class="n">i</span> <span class="ow">in</span> <span class="nb">range</span><span class="p">(</span><span class="n">nsteps</span><span class="p">):</span> 
+    <span class="n">dog_pos</span><span class="p">,</span> <span class="n">state</span> <span class="o">=</span> <span class="n">evolve_system_dog</span><span class="p">(</span><span class="n">state</span><span class="p">,</span><span class="n">pmove</span><span class="p">,</span><span class="n">fenceline</span><span class="p">,</span><span class="n">delta</span><span class="p">,</span><span class="n">dcut</span><span class="p">,</span><span class="n">path</span><span class="p">,</span><span class="n">dog_pos</span><span class="p">)</span>
+    <span class="k">if</span> <span class="n">i</span> <span class="o">%</span> <span class="n">plot_every</span> <span class="o">==</span> <span class="mi">0</span><span class="p">:</span>
+        <span class="n">plotstate</span><span class="p">(</span><span class="n">state</span><span class="p">,</span><span class="n">time</span><span class="o">=</span><span class="n">i</span><span class="p">)</span>
+        <span class="n">time</span><span class="o">.</span><span class="n">sleep</span><span class="p">(</span><span class="mf">0.01</span><span class="p">)</span>         <span class="c1"># Sleep for 0.01 s to slow down the animation</span>
+        <span class="n">clear_output</span><span class="p">(</span><span class="n">wait</span><span class="o">=</span><span class="kc">True</span><span class="p">)</span> <span class="c1"># Clear output for dynamic display</span>
+        <span class="n">display</span><span class="p">(</span><span class="n">fig</span><span class="p">)</span>            <span class="c1"># Reset display</span>
+        <span class="n">fig</span><span class="o">.</span><span class="n">clear</span><span class="p">()</span>             <span class="c1"># Prevent overlapping and layered plots</span>
+
+<span class="n">plt</span><span class="o">.</span><span class="n">close</span><span class="p">()</span>                 <span class="c1"># Close dynamic display</span>
+</pre></div>
+</div>
+</div>
+</div>
+</section>
+<section id="id7">
+<h3>4.4 Task (2 points)<a class="headerlink" href="#id7" title="Permalink to this headline">#</a></h3>
+<p><strong>Run this code for 5000 steps, with <code class="docutils literal notranslate"><span class="pre">plot_every</span></code> = 100, and for 20000 steps, with <code class="docutils literal notranslate"><span class="pre">plot_every</span></code> = 400</strong></p>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="c1"># your code here</span>
+</pre></div>
+</div>
+</div>
+</div>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="c1"># your code here</span>
+</pre></div>
+</div>
+</div>
+</div>
+</section>
+<section id="id8">
+<h3>4.5 Task (1 points)<a class="headerlink" href="#id8" title="Permalink to this headline">#</a></h3>
+<p><strong>What do you observe?</strong></p>
+<p><font size=6 color="#009600">✎</font> <em>Answer here</em></p>
+</section>
+</section>
+<section id="question-5-test-for-success-8-points">
+<h2>Question 5: Test for success (8 points)<a class="headerlink" href="#question-5-test-for-success-8-points" title="Permalink to this headline">#</a></h2>
+<p>OK our sheepdog is not very effective right now.  Let’s quantify exactly how bad it is.  Write a function that will check and see how many sheep are out of the pen (return an integer):</p>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="k">def</span> <span class="nf">sheep_still_out</span><span class="p">(</span><span class="n">state</span><span class="p">,</span><span class="n">fenceline</span><span class="p">):</span>
+    <span class="c1"># return the number of sheep that are above the fenceline</span>
+    <span class="c1"># in the current state</span>
+    
+    <span class="c1"># code here</span>
+    <span class="n">sheep_still_out</span> <span class="o">=</span> <span class="mi">0</span>
+    <span class="n">sheep_loc</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">array</span><span class="p">(</span><span class="n">np</span><span class="o">.</span><span class="n">where</span><span class="p">(</span><span class="n">state</span><span class="o">==</span><span class="mi">2</span><span class="p">))</span>
+    <span class="n">nsheep</span> <span class="o">=</span> <span class="nb">len</span><span class="p">(</span><span class="n">sheep_loc</span><span class="p">[</span><span class="mi">0</span><span class="p">])</span>
+    
+    <span class="k">for</span> <span class="n">i</span> <span class="ow">in</span> <span class="nb">range</span><span class="p">(</span><span class="n">nsheep</span><span class="p">):</span>
+        <span class="n">sheep_y</span> <span class="o">=</span> <span class="n">sheep_loc</span><span class="p">[</span><span class="mi">0</span><span class="p">][</span><span class="n">i</span><span class="p">]</span>
+        <span class="k">if</span> <span class="n">sheep_y</span> <span class="o">&gt;</span> <span class="n">fenceline</span><span class="p">:</span>
+            <span class="n">sheep_still_out</span> <span class="o">+=</span> <span class="mi">1</span>
+
+    <span class="k">return</span> <span class="n">sheep_still_out</span>
+</pre></div>
+</div>
+</div>
+</div>
+<section id="id9">
+<h3>5.1 Task (2 points)<a class="headerlink" href="#id9" title="Permalink to this headline">#</a></h3>
+<p><strong>Test this function to see how many are out of the pen in the initial and final states from above:</strong></p>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="c1"># your code here</span>
+</pre></div>
+</div>
+</div>
+</div>
+<p>Now let’s use this function in a <code class="docutils literal notranslate"><span class="pre">while</span></code> loop to see how long it will take:</p>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">pmove</span> <span class="o">=</span> <span class="mf">0.5</span>
+<span class="n">fenceline</span> <span class="o">=</span> <span class="mi">10</span>
+<span class="n">delta</span> <span class="o">=</span> <span class="mf">0.25</span>
+<span class="n">dcut</span> <span class="o">=</span> <span class="mi">15</span>
+<span class="n">path</span> <span class="o">=</span> <span class="n">dog_path</span>
+<span class="n">dog_pos</span> <span class="o">=</span> <span class="mi">0</span>
+<span class="n">report_every</span> <span class="o">=</span> <span class="mi">1000</span>
+
+<span class="n">state</span> <span class="o">=</span> <span class="n">copy</span><span class="p">(</span><span class="n">initial_state</span><span class="p">)</span>
+
+<span class="n">i</span> <span class="o">=</span> <span class="mi">0</span>
+<span class="k">while</span> <span class="p">(</span><span class="n">sheep_still_out</span><span class="p">(</span><span class="n">state</span><span class="p">,</span><span class="n">fenceline</span><span class="p">)</span> <span class="o">&gt;</span> <span class="mi">0</span><span class="p">):</span>
+    <span class="n">i</span> <span class="o">+=</span> <span class="mi">1</span>
+    <span class="n">dog_pos</span><span class="p">,</span> <span class="n">state</span> <span class="o">=</span> <span class="n">evolve_system_dog</span><span class="p">(</span><span class="n">state</span><span class="p">,</span><span class="n">pmove</span><span class="p">,</span><span class="n">fenceline</span><span class="p">,</span><span class="n">delta</span><span class="p">,</span><span class="n">dcut</span><span class="p">,</span><span class="n">path</span><span class="p">,</span><span class="n">dog_pos</span><span class="p">)</span>
+    <span class="k">if</span> <span class="n">i</span> <span class="o">%</span> <span class="n">report_every</span> <span class="o">==</span> <span class="mi">0</span><span class="p">:</span>
+        <span class="nb">print</span><span class="p">(</span><span class="s2">&quot;At time = </span><span class="si">{0}</span><span class="s2"> there are </span><span class="si">{1}</span><span class="s2"> sheep still out&quot;</span><span class="o">.</span><span class="n">format</span><span class="p">(</span><span class="n">i</span><span class="p">,</span><span class="n">sheep_still_out</span><span class="p">(</span><span class="n">state</span><span class="p">,</span><span class="n">fenceline</span><span class="p">)))</span>
+
+<span class="nb">print</span><span class="p">(</span><span class="s2">&quot;All sheep in the pen at time = </span><span class="si">{0}</span><span class="s2">&quot;</span><span class="o">.</span><span class="n">format</span><span class="p">(</span><span class="n">i</span><span class="p">))</span>
+</pre></div>
+</div>
+</div>
+</div>
+</section>
+<section id="id10">
+<h3>5.2 Task (4 points)<a class="headerlink" href="#id10" title="Permalink to this headline">#</a></h3>
+<p><strong>Put the above code in a <code class="docutils literal notranslate"><span class="pre">for</span></code> loop, and run this simulation 10 times.  Save the times in a list called <code class="docutils literal notranslate"><span class="pre">times</span></code>.</strong></p>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="c1"># your code here</span>
+</pre></div>
+</div>
+</div>
+</div>
+<p><strong>Run the cell below to get statistics of your sheepdog.</strong></p>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="kn">from</span> <span class="nn">math</span> <span class="kn">import</span> <span class="n">sqrt</span>
+<span class="n">a</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">array</span><span class="p">(</span><span class="n">times</span><span class="p">)</span>
+<span class="nb">print</span><span class="p">(</span><span class="s2">&quot;It takes an average of </span><span class="si">{0}</span><span class="s2"> +- </span><span class="si">{1}</span><span class="s2"> s for this sheepdog to work&quot;</span><span class="o">.</span><span class="n">format</span><span class="p">(</span><span class="n">a</span><span class="o">.</span><span class="n">mean</span><span class="p">(),</span><span class="n">a</span><span class="o">.</span><span class="n">std</span><span class="p">()</span><span class="o">/</span><span class="n">sqrt</span><span class="p">(</span><span class="nb">len</span><span class="p">(</span><span class="n">times</span><span class="p">))))</span>
+</pre></div>
+</div>
+</div>
+</div>
+</section>
+<section id="id11">
+<h3>5.3 Task (2 points)<a class="headerlink" href="#id11" title="Permalink to this headline">#</a></h3>
+<p><strong>What quantity is being reported after the +- signs?</strong></p>
+<p><font size=6 color="#009600">✎</font> <em>Answer here</em></p>
+</section>
+<hr class="docutils" />
+<section id="congratulations-you-re-done">
+<h3>Congratulations, you’re done!<a class="headerlink" href="#congratulations-you-re-done" title="Permalink to this headline">#</a></h3>
+<p>Submit this assignment by uploading it to the course Desire2Learn web page.  Go to the “Homework Assignments” section, find the submission folder link for Homework #6, and upload it there.</p>
+<p>© Copyright 2022, <a class="reference external" href="https://cmse.msu.edu">Department of Computational Mathematics, Science and Engineering</a> at Michigan State University.</p>
+</section>
+</section>
+</section>
+
+    <script type="text/x-thebe-config">
+    {
+        requestKernel: true,
+        binderOptions: {
+            repo: "binder-examples/jupyter-stacks-datascience",
+            ref: "master",
+        },
+        codeMirrorConfig: {
+            theme: "abcdef",
+            mode: "python"
+        },
+        kernelOptions: {
+            kernelName: "python3",
+            path: "./Homework\Homework_6"
+        },
+        predefinedOutput: true
+    }
+    </script>
+    <script>kernelName = 'python3'</script>
+
+              </div>
+              
+            </main>
+            <footer class="footer-article noprint">
+                
+    <!-- Previous / next buttons -->
+<div class='prev-next-area'>
+    <a class='left-prev' id="prev-link" href="../Homework_5/HW-05.html" title="previous page">
+        <i class="fas fa-angle-left"></i>
+        <div class="prev-next-info">
+            <p class="prev-next-subtitle">previous</p>
+            <p class="prev-next-title">Homework 5: Modeling Bacterial Growth</p>
+        </div>
+    </a>
+    <a class='right-next' id="next-link" href="../Code_Portfolio/Code_Portfolio_Assignment.html" title="next page">
+    <div class="prev-next-info">
+        <p class="prev-next-subtitle">next</p>
+        <p class="prev-next-title">Code Portfolio Assignment</p>
+    </div>
+    <i class="fas fa-angle-right"></i>
+    </a>
+</div>
+            </footer>
+        </div>
+    </div>
+    <div class="footer-content row">
+        <footer class="col footer"><p>
+  
+    By MSU CMSE<br/>
+  
+      &copy; Copyright 2022.<br/>
+</p>
+        </footer>
+    </div>
+    
+</div>
+
+
+      </div>
+    </div>
+  
+  <!-- Scripts loaded after <body> so the DOM is not blocked -->
+  <script src="../../_static/scripts/pydata-sphinx-theme.js?digest=1999514e3f237ded88cf"></script>
+
+
+  </body>
+</html>

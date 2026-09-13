@@ -1,0 +1,1586 @@
+
+<!DOCTYPE html>
+
+<html>
+  <head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Day 19 In-class Assignment: Modeling forest fires with an Agent-based Model (Part II) &#8212; CMSE 201</title>
+    
+  <link href="../_static/css/theme.css" rel="stylesheet" />
+  <link href="../_static/css/index.c5995385ac14fb8791e8eb36b4908be2.css" rel="stylesheet" />
+
+    
+  <link rel="stylesheet"
+    href="../_static/vendor/fontawesome/5.13.0/css/all.min.css">
+  <link rel="preload" as="font" type="font/woff2" crossorigin
+    href="../_static/vendor/fontawesome/5.13.0/webfonts/fa-solid-900.woff2">
+  <link rel="preload" as="font" type="font/woff2" crossorigin
+    href="../_static/vendor/fontawesome/5.13.0/webfonts/fa-brands-400.woff2">
+
+    
+      
+
+    
+    <link rel="stylesheet" href="../_static/pygments.css" type="text/css" />
+    <link rel="stylesheet" href="../_static/sphinx-book-theme.e8f53015daec13862f6db5e763c41738.css" type="text/css" />
+    <link rel="stylesheet" type="text/css" href="../_static/togglebutton.css" />
+    <link rel="stylesheet" type="text/css" href="../_static/copybutton.css" />
+    <link rel="stylesheet" type="text/css" href="../_static/mystnb.css" />
+    <link rel="stylesheet" type="text/css" href="../_static/sphinx-thebe.css" />
+    <link rel="stylesheet" type="text/css" href="../_static/panels-main.c949a650a448cc0ae9fd3441c0e17fb0.css" />
+    <link rel="stylesheet" type="text/css" href="../_static/panels-variables.06eb56fa6e07937060861dad626602ad.css" />
+    
+  <link rel="preload" as="script" href="../_static/js/index.1c5a1a01449ed65a7b51.js">
+
+    <script id="documentation_options" data-url_root="../" src="../_static/documentation_options.js"></script>
+    <script src="../_static/jquery.js"></script>
+    <script src="../_static/underscore.js"></script>
+    <script src="../_static/doctools.js"></script>
+    <script src="../_static/togglebutton.js"></script>
+    <script src="../_static/clipboard.min.js"></script>
+    <script src="../_static/copybutton.js"></script>
+    <script >var togglebuttonSelector = '.toggle, .admonition.dropdown, .tag_hide_input div.cell_input, .tag_hide-input div.cell_input, .tag_hide_output div.cell_output, .tag_hide-output div.cell_output, .tag_hide_cell.cell, .tag_hide-cell.cell';</script>
+    <script src="../_static/sphinx-book-theme.12a9622fbb08dcb3a2a40b2c02b83a57.js"></script>
+    <script async="async" src="https://cdnjs.cloudflare.com/ajax/libs/mathjax/2.7.7/latest.js?config=TeX-AMS-MML_HTMLorMML"></script>
+    <script type="text/x-mathjax-config">MathJax.Hub.Config({"tex2jax": {"inlineMath": [["\\(", "\\)"]], "displayMath": [["\\[", "\\]"]], "processRefs": false, "processEnvironments": false}})</script>
+    <script async="async" src="https://unpkg.com/thebe@0.5.1/lib/index.js"></script>
+    <script >
+        const thebe_selector = ".thebe"
+        const thebe_selector_input = "pre"
+        const thebe_selector_output = ".output"
+    </script>
+    <script async="async" src="../_static/sphinx-thebe.js"></script>
+    <link rel="shortcut icon" href="../_static/cmse_fav.ico"/>
+    <link rel="index" title="Index" href="../genindex.html" />
+    <link rel="search" title="Search" href="../search.html" />
+    <link rel="next" title="Day 20 Pre-Class Assignment: Random Numbers" href="../Day-20/Day-20_Pre-Class_RandomNumbers-STUDENT.html" />
+    <link rel="prev" title="Day 19 Pre-class: Agent-based models and forest fires, Part 2" href="Day-19_Pre-Class_ABMForestFire_Part2-STUDENT.html" />
+    <meta name="viewport" content="width=device-width, initial-scale=1" />
+    <meta name="docsearch:language" content="en" />
+    
+  </head>
+  <body data-spy="scroll" data-target="#bd-toc-nav" data-offset="80">
+    
+    <div class="container-fluid" id="banner"></div>
+
+    
+
+    <div class="container-xl">
+      <div class="row">
+          
+<div class="col-12 col-md-3 bd-sidebar site-navigation show" id="site-navigation">
+    
+        <div class="navbar-brand-box">
+    <a class="navbar-brand text-wrap" href="../index.html">
+      
+      <img src="../_static/logo.png" class="logo" alt="logo">
+      
+      
+      <h1 class="site-logo" id="site-title">CMSE 201</h1>
+      
+    </a>
+</div><form class="bd-search d-flex align-items-center" action="../search.html" method="get">
+  <i class="icon fas fa-search"></i>
+  <input type="search" class="form-control" name="q" id="search-input" placeholder="Search this book..." aria-label="Search this book..." autocomplete="off" >
+</form><nav class="bd-links" id="bd-docs-nav" aria-label="Main">
+    <div class="bd-toc-item active">
+        <ul class="nav bd-sidenav">
+ <li class="toctree-l1">
+  <a class="reference internal" href="../intro.html">
+   Welcome to Computational Modeling and Data Analysis I!
+  </a>
+ </li>
+</ul>
+<p class="caption">
+ <span class="caption-text">
+  Course Materials
+ </span>
+</p>
+<ul class="nav bd-sidenav">
+ <li class="toctree-l1 has-children">
+  <a class="reference internal" href="../Course_Materials-201/CourseDocuments.html">
+   Important Course information
+  </a>
+  <input class="toctree-checkbox" id="toctree-checkbox-1" name="toctree-checkbox-1" type="checkbox"/>
+  <label for="toctree-checkbox-1">
+   <i class="fas fa-chevron-down">
+   </i>
+  </label>
+  <ul>
+   <li class="toctree-l2">
+    <a class="reference internal" href="../Course_Materials-201/CMSE201-Syllabus.html">
+     Syllabus
+    </a>
+   </li>
+   <li class="toctree-l2">
+    <a class="reference internal" href="../Course_Materials-201/CMSE201-Schedule.html">
+     Course Schedule
+    </a>
+   </li>
+   <li class="toctree-l2">
+    <a class="reference internal" href="../Course_Materials-201/SoftwareSetupGuide.html">
+     Software Setup Guide
+    </a>
+   </li>
+   <li class="toctree-l2">
+    <a class="reference internal" href="../Course_Materials-201/classroom_participation.html">
+     Classroom Participation
+    </a>
+   </li>
+  </ul>
+ </li>
+</ul>
+<p class="caption">
+ <span class="caption-text">
+  Day 01
+ </span>
+</p>
+<ul class="nav bd-sidenav">
+ <li class="toctree-l1">
+  <a class="reference internal" href="../Day-01/Day-01_In-Class_SortingAlgorithm-STUDENT.html">
+   Day 1 In-Class Assignment
+  </a>
+ </li>
+</ul>
+<p class="caption">
+ <span class="caption-text">
+  Day 02
+ </span>
+</p>
+<ul class="nav bd-sidenav">
+ <li class="toctree-l1">
+  <a class="reference internal" href="../Day-02/Day-02_Pre-Class_IntroToPython-STUDENT.html">
+   Day 2 Pre-class Assignment: Intro to Python
+  </a>
+ </li>
+ <li class="toctree-l1">
+  <a class="reference internal" href="../Day-02/Day-02_In-Class_OrderOfMagnitudeModeling-STUDENT.html">
+   Day 2 In-class Assignment: Order of Magnitude Modeling
+  </a>
+ </li>
+</ul>
+<p class="caption">
+ <span class="caption-text">
+  Day 03
+ </span>
+</p>
+<ul class="nav bd-sidenav">
+ <li class="toctree-l1">
+  <a class="reference internal" href="../Day-03/Day-03_Pre-Class_ListsAndLoops-STUDENT.html">
+   Day 3: Pre-Class Assignment: Lists and Loops
+  </a>
+ </li>
+ <li class="toctree-l1">
+  <a class="reference internal" href="../Day-03/Day-03_In-Class_ListsLoopsAndSaving-STUDENT.html">
+   Day 3 In-class Assignment: The power of compound interest
+  </a>
+ </li>
+</ul>
+<p class="caption">
+ <span class="caption-text">
+  Day 04
+ </span>
+</p>
+<ul class="nav bd-sidenav">
+ <li class="toctree-l1">
+  <a class="reference internal" href="../Day-04/Day-04_Pre-Class_DataEthics_AcademicIntegrity-STUDENT.html">
+   Day 4 Pre-class Assignment: Introduction to Data Ethics and Practice with Lists and Loops
+  </a>
+ </li>
+ <li class="toctree-l1">
+  <a class="reference internal" href="../Day-04/Day-04_In-Class_AcademicIntegrity_CodingPractices-STUDENT.html">
+   Day 4 In-class Assignment: Academic Integrity and Coding Best Practices
+  </a>
+ </li>
+</ul>
+<p class="caption">
+ <span class="caption-text">
+  Day 05
+ </span>
+</p>
+<ul class="nav bd-sidenav">
+ <li class="toctree-l1">
+  <a class="reference internal" href="../Day-05/Day-05_Pre-Class_IfStatementsAndFunctions-STUDENT.html">
+   Day 5 Pre-class Assignment: Boolean logic, if statements, and an introduction to functions
+  </a>
+ </li>
+ <li class="toctree-l1">
+  <a class="reference internal" href="../Day-05/Day-05_In-Class_IfStatementsAndFunctions-STUDENT.html">
+   Day 5 In-class Assignment: Savings for Everyone
+  </a>
+ </li>
+</ul>
+<p class="caption">
+ <span class="caption-text">
+  Day 06
+ </span>
+</p>
+<ul class="nav bd-sidenav">
+ <li class="toctree-l1">
+  <a class="reference internal" href="../Day-06/Day-06_Pre-Class_MoreFunctions-STUDENT.html">
+   Day 6 Pre-class Assignment: Thinking more about functions
+  </a>
+ </li>
+ <li class="toctree-l1">
+  <a class="reference internal" href="../Day-06/Day-06_In-Class_MoreFunctions-STUDENT.html">
+   Day 6 In-class Assignment: Using functions for fun and profit!
+  </a>
+ </li>
+</ul>
+<p class="caption">
+ <span class="caption-text">
+  Day 07
+ </span>
+</p>
+<ul class="nav bd-sidenav">
+ <li class="toctree-l1">
+  <a class="reference internal" href="../Day-07/Day-07_Pre-Class_ModulesMathAndPlots-STUDENT.html">
+   Day 7 Pre-Class Assignment: Python Modules: Math and Plots
+  </a>
+ </li>
+ <li class="toctree-l1">
+  <a class="reference internal" href="../Day-07/Day-07_In-Class_MathAndPlotting-STUDENT.html">
+   Day 7 In-class Assignment: Visualizing population growth and projectile motion
+  </a>
+ </li>
+</ul>
+<p class="caption">
+ <span class="caption-text">
+  Day 08
+ </span>
+</p>
+<ul class="nav bd-sidenav">
+ <li class="toctree-l1">
+  <a class="reference internal" href="../Day-08/Day-08_Pre-Class_IntroToNumPy-STUDENT.html">
+   Day 8 Pre-Class: Introduction to NumPy
+  </a>
+ </li>
+ <li class="toctree-l1">
+  <a class="reference external" href="https://raw.githubusercontent.com/msu-cmse-courses/cmse201-F21-data/main/Day-08/michigan_pop.csv">
+   michigan_pop.csv
+  </a>
+ </li>
+ <li class="toctree-l1">
+  <a class="reference internal" href="../Day-08/Day-08_In-Class_NumPyWithTheGreatLakes-STUDENT.html">
+   Day 8 In-class Assignment: Exploring Great Lakes Water Levels using NumPy
+  </a>
+ </li>
+ <li class="toctree-l1">
+  <a class="reference external" href="https://raw.githubusercontent.com/msu-cmse-courses/cmse201-F21-data/main/Day-08/lake_erie.csv">
+   lake_erie.csv
+  </a>
+ </li>
+ <li class="toctree-l1">
+  <a class="reference external" href="https://raw.githubusercontent.com/msu-cmse-courses/cmse201-F21-data/main/Day-08/lake_michigan_huron.csv">
+   lake_michigan_huron.csv
+  </a>
+ </li>
+ <li class="toctree-l1">
+  <a class="reference external" href="https://raw.githubusercontent.com/msu-cmse-courses/cmse201-F21-data/main/Day-08/lake_ontario.csv">
+   lake_ontario.csv
+  </a>
+ </li>
+ <li class="toctree-l1">
+  <a class="reference external" href="https://raw.githubusercontent.com/msu-cmse-courses/cmse201-F21-data/main/Day-08/lake_superior.csv">
+   lake_superior.csv
+  </a>
+ </li>
+</ul>
+<p class="caption">
+ <span class="caption-text">
+  Day 09
+ </span>
+</p>
+<ul class="nav bd-sidenav">
+ <li class="toctree-l1">
+  <a class="reference internal" href="../Day-09/Day-09_Pre-Class_Pandas-STUDENT.html">
+   Day 9 Pre-class Assignment: Computational Models Overview and The Pandas Data Analysis Library
+  </a>
+ </li>
+ <li class="toctree-l1">
+  <a class="reference internal" href="../Day-09/Day-09_In-Class_GDP-STUDENT.html">
+   Day 9 In-Class: Cleaning and Analyzing Economic Data
+  </a>
+ </li>
+</ul>
+<p class="caption">
+ <span class="caption-text">
+  Day 10
+ </span>
+</p>
+<ul class="nav bd-sidenav">
+ <li class="toctree-l1">
+  <a class="reference internal" href="../Day-10/Day-10_Pre-Class_Masking-STUDENT.html">
+   Day 10 Pre-class Assignment: Normal Distributions, Masking, and Log Plots
+  </a>
+ </li>
+ <li class="toctree-l1">
+  <a class="reference external" href="https://raw.githubusercontent.com/msu-cmse-courses/cmse201-F21-data/main/Day-10/GDP_Cleaned.csv">
+   GDP_Cleaned.csv
+  </a>
+ </li>
+ <li class="toctree-l1">
+  <a class="reference internal" href="../Day-10/Day-10_In-Class_Flint-STUDENT.html">
+   Day 10 In-class Assignment: Get the Lead Out: Understanding The Water Crisis in Flint, MI
+  </a>
+ </li>
+ <li class="toctree-l1">
+  <a class="reference external" href="https://raw.githubusercontent.com/msu-cmse-courses/cmse201-F21-data/main/Day-10/flint_water_data.csv">
+   flint_water_data.csv
+  </a>
+ </li>
+</ul>
+<p class="caption">
+ <span class="caption-text">
+  Day 11
+ </span>
+</p>
+<ul class="nav bd-sidenav">
+ <li class="toctree-l1">
+  <a class="reference internal" href="../Day-11/Day-11_Pre-Class_Data_File_Formats_Manipulation-STUDENT.html">
+   Day 11 Pre-Class Assignment: Overview of data and file formats
+  </a>
+ </li>
+ <li class="toctree-l1">
+  <a class="reference external" href="https://raw.githubusercontent.com/msu-cmse-courses/cmse201-F21-data/main/Day-11/us_house_rep_by_state_2019.csv">
+   us_house_rep_by_state_2019.csv
+  </a>
+ </li>
+ <li class="toctree-l1">
+  <a class="reference external" href="https://raw.githubusercontent.com/msu-cmse-courses/cmse201-F21-data/main/Day-11/us_pop_by_state_2010_2011.csv">
+   us_pop_by_state_2010_2011.csv
+  </a>
+ </li>
+ <li class="toctree-l1">
+  <a class="reference external" href="https://github.com/msu-cmse-courses/cmse201-F21-data/raw/main/Day-11/us_pop_by_state_2012_2013_encoding_utf-16be.csv">
+   us_pop_by_state_2012_2013_encoding_utf-16be.csv
+  </a>
+ </li>
+ <li class="toctree-l1">
+  <a class="reference external" href="https://raw.githubusercontent.com/msu-cmse-courses/cmse201-F21-data/main/Day-11/us_pop_by_state_2014_2015_windows_linefeed.csv">
+   us_pop_by_state_2014_2015_windows_linefeed.csv
+  </a>
+ </li>
+ <li class="toctree-l1">
+  <a class="reference external" href="https://github.com/msu-cmse-courses/cmse201-F21-data/blob/main/Day-11/us_pop_by_state_2016a.csv?raw=true">
+   us_pop_by_state_2016a.csv
+  </a>
+ </li>
+ <li class="toctree-l1">
+  <a class="reference external" href="https://github.com/msu-cmse-courses/cmse201-F21-data/blob/main/Day-11/us_pop_by_state_2017a.yaff?raw=true">
+   us_pop_by_state2017a.yaff
+  </a>
+ </li>
+ <li class="toctree-l1">
+  <a class="reference external" href="https://github.com/msu-cmse-courses/cmse201-F21-data/blob/main/Day-11/us_pop_by_state_2018_2019.bin?raw=true">
+   us_pop_by_state_2018_2019.bin
+  </a>
+ </li>
+</ul>
+<p class="caption">
+ <span class="caption-text">
+  Day 12
+ </span>
+</p>
+<ul class="nav bd-sidenav">
+ <li class="toctree-l1">
+  <a class="reference internal" href="../Day-12/Day-12_Pre-Class_Regression-STUDENT.html">
+   Day 12 Pre-Class Assignment: Regression
+  </a>
+ </li>
+ <li class="toctree-l1">
+  <a class="reference internal" href="../Day-12/Day-12_In-Class_PolynomialFitting-STUDENT.html">
+   Day 12 In-Class Assignment: Linear regression and polynomial fitting
+  </a>
+ </li>
+ <li class="toctree-l1">
+  <a class="reference external" href="https://github.com/msu-cmse-courses/cmse201-F21-data/raw/main/Day-12/microprocessor-trend-data-master.zip">
+   microprocessor-trend-data-master.zip
+  </a>
+ </li>
+</ul>
+<p class="caption">
+ <span class="caption-text">
+  Day 13
+ </span>
+</p>
+<ul class="nav bd-sidenav">
+ <li class="toctree-l1">
+  <a class="reference internal" href="../Day-13/Day-13_Pre-Class_CurveFitting-STUDENT.html">
+   Day 13 Pre-Class Assignment: Fitting functions to data (curve-fitting) and thinking more about models
+  </a>
+ </li>
+ <li class="toctree-l1">
+  <a class="reference internal" href="../Day-13/Day-13_In-Class_FittingCurves-STUDENT.html">
+   Day 13 In-Class Assignment: (Thoughtfully) fitting models to data
+  </a>
+ </li>
+ <li class="toctree-l1">
+  <a class="reference external" href="https://raw.githubusercontent.com/msu-cmse-courses/cmse201-F21-data/main/Day-13/pop200.csv">
+   pop200.csv
+  </a>
+ </li>
+ <li class="toctree-l1">
+  <a class="reference external" href="https://raw.githubusercontent.com/msu-cmse-courses/cmse201-F21-data/main/Day-13/pop300.csv">
+   pop300.csv
+  </a>
+ </li>
+</ul>
+<p class="caption">
+ <span class="caption-text">
+  Day 14
+ </span>
+</p>
+<ul class="nav bd-sidenav">
+ <li class="toctree-l1">
+  <a class="reference internal" href="../Day-14/Day-14_Pre-Class_ModelingWithODEs-STUDENT.html">
+   Day 14: Pre-class Assignment: Modeling with Ordinary Differential Equations
+  </a>
+ </li>
+ <li class="toctree-l1">
+  <a class="reference internal" href="../Day-14/Day-14_In-Class_ModelingWithODEs-STUDENT.html">
+   Day 14: In-class Assignment: Modeling with ODEs
+  </a>
+ </li>
+ <li class="toctree-l1">
+  <a class="reference external" href="https://github.com/msu-cmse-courses/cmse201-F21-data/blob/main/Day-14/undamped_length.png">
+   undamped_length.png
+  </a>
+ </li>
+ <li class="toctree-l1">
+  <a class="reference external" href="https://github.com/msu-cmse-courses/cmse201-F21-data/blob/main/Day-14/undamped_vel.png">
+   undamped_vel.png
+  </a>
+ </li>
+</ul>
+<p class="caption">
+ <span class="caption-text">
+  Day 15
+ </span>
+</p>
+<ul class="nav bd-sidenav">
+ <li class="toctree-l1">
+  <a class="reference internal" href="../Day-15/Day-15_Pre-Class_ViralKinetics-STUDENT.html">
+   Day 15 Pre-Class: Viral Kinetics
+  </a>
+ </li>
+ <li class="toctree-l1">
+  <a class="reference internal" href="../Day-15/Day-15_In-Class_CompartmentalModeling-STUDENT.html">
+   Day 15 In-class: Building Compartmental Models
+  </a>
+ </li>
+</ul>
+<p class="caption">
+ <span class="caption-text">
+  Day 16
+ </span>
+</p>
+<ul class="nav bd-sidenav">
+ <li class="toctree-l1">
+  <a class="reference internal" href="../Day-16/Day-16_Pre-Class_Zombies-STUDENT.html">
+   Day 16 Pre-class Assignment: ZOMBIES!!
+  </a>
+ </li>
+ <li class="toctree-l1">
+  <a class="reference internal" href="../Day-16/Day-16_In-Class_CompartmentsWithSolveIVP-STUDENT.html">
+   Day 16 In-Class Assignment: Compartmental Modeling, moving from the model to the Code
+  </a>
+ </li>
+ <li class="toctree-l1">
+  <a class="reference external" href="https://github.com/msu-cmse-courses/cmse201-F21-data/blob/main/Day-16/latent.png">
+   latent.png
+  </a>
+ </li>
+</ul>
+<p class="caption">
+ <span class="caption-text">
+  Day 17
+ </span>
+</p>
+<ul class="nav bd-sidenav">
+ <li class="toctree-l1">
+  <a class="reference internal" href="../Day-17/Day-17_Pre-Class_2DNumPyArrays-STUDENT.html">
+   Day 17 Pre-Class: 2D NumPy Arrays
+  </a>
+ </li>
+ <li class="toctree-l1">
+  <a class="reference external" href="https://raw.githubusercontent.com/msu-cmse-courses/cmse201-F21-data/main/Day-17/PCA_files/cars.csv">
+   cars.csv
+  </a>
+ </li>
+ <li class="toctree-l1">
+  <a class="reference external" href="https://github.com/msu-cmse-courses/cmse201-F21-data/raw/main/Day-17/PCA_files/example.jpeg">
+   example.jpeg
+  </a>
+ </li>
+ <li class="toctree-l1">
+  <a class="reference internal" href="../Day-17/Day-17_In-Class_2DImageAnalysis-STUDENT.html">
+   Day 17 In-Class Assignment: Image Analysis
+  </a>
+ </li>
+ <li class="toctree-l1">
+  <a class="reference external" href="https://github.com/msu-cmse-courses/cmse201-F21-data/blob/main/Day-17/ICA_files/beach.jpeg">
+   beach.jpeg
+  </a>
+ </li>
+ <li class="toctree-l1">
+  <a class="reference external" href="https://github.com/msu-cmse-courses/cmse201-F21-data/blob/main/Day-17/ICA_files/landscape.jpeg">
+   landscape.jpeg
+  </a>
+ </li>
+ <li class="toctree-l1">
+  <a class="reference external" href="https://github.com/msu-cmse-courses/cmse201-F21-data/blob/main/Day-17/ICA_files/zebra.png">
+   zebra.png
+  </a>
+ </li>
+</ul>
+<p class="caption">
+ <span class="caption-text">
+  Day 18
+ </span>
+</p>
+<ul class="nav bd-sidenav">
+ <li class="toctree-l1">
+  <a class="reference internal" href="../Day-18/Day-18_Pre-Class_ABMForestFire-STUDENT.html">
+   Day 18 Pre-class: Agent-based models and forest fires
+  </a>
+ </li>
+ <li class="toctree-l1">
+  <a class="reference internal" href="../Day-18/Day-18_In-Class_ForestFiresPartI-STUDENT.html">
+   Day 18 Part 1 In-class Assignment: Modeling forest fires with an Agent-based Model
+  </a>
+ </li>
+</ul>
+<p class="caption">
+ <span class="caption-text">
+  Day 19
+ </span>
+</p>
+<ul class="current nav bd-sidenav">
+ <li class="toctree-l1">
+  <a class="reference internal" href="Day-19_Pre-Class_ABMForestFire_Part2-STUDENT.html">
+   Day 19 Pre-class: Agent-based models and forest fires, Part 2
+  </a>
+ </li>
+ <li class="toctree-l1 current active">
+  <a class="current reference internal" href="#">
+   Day 19 In-class Assignment: Modeling forest fires with an Agent-based Model (Part II)
+  </a>
+ </li>
+</ul>
+<p class="caption">
+ <span class="caption-text">
+  Day 20
+ </span>
+</p>
+<ul class="nav bd-sidenav">
+ <li class="toctree-l1">
+  <a class="reference internal" href="../Day-20/Day-20_Pre-Class_RandomNumbers-STUDENT.html">
+   Day 20 Pre-Class Assignment: Random Numbers
+  </a>
+ </li>
+ <li class="toctree-l1">
+  <a class="reference internal" href="../Day-20/Day-20_In-Class_RandomWalks-STUDENT.html">
+   Day 20 In-class Assignment: Random Walks
+  </a>
+ </li>
+ <li class="toctree-l1">
+  <a class="reference external" href="https://github.com/msu-cmse-courses/cmse201-F21-data/blob/main/Day-20/distance_v_steps_randomwalk.png">
+   distance_v_steps_randomwalk.png
+  </a>
+ </li>
+</ul>
+<p class="caption">
+ <span class="caption-text">
+  Day 21
+ </span>
+</p>
+<ul class="nav bd-sidenav">
+ <li class="toctree-l1">
+  <a class="reference internal" href="../Day-21/Day-21_Pre-Class_ProjectUpdates-STUDENT.html">
+   Day 21 Pre-class assignment: Making project progress!
+  </a>
+ </li>
+</ul>
+<p class="caption">
+ <span class="caption-text">
+  Day 22
+ </span>
+</p>
+<ul class="nav bd-sidenav">
+ <li class="toctree-l1">
+  <a class="reference internal" href="../Day-22/Day-22_Pre-Class_Climate-STUDENT.html">
+   Day 22 Pre-class:  Global warming and climate modeling
+  </a>
+ </li>
+ <li class="toctree-l1">
+  <a class="reference internal" href="../Day-22/Day-22_In-Class_Climate-STUDENT.html">
+   Day 22 In-class Assignment: Analyzing climate data
+  </a>
+ </li>
+ <li class="toctree-l1">
+  <a class="reference external" href="https://raw.githubusercontent.com/msu-cmse-courses/cmse201-F21-data/main/Day-22/GLB.Ts.csv">
+   GLB.Ts.csv
+  </a>
+ </li>
+ <li class="toctree-l1">
+  <a class="reference external" href="https://raw.githubusercontent.com/msu-cmse-courses/cmse201-F21-data/main/Day-22/bintanja2008.txt">
+   bintanja2008.txt
+  </a>
+ </li>
+ <li class="toctree-l1">
+  <a class="reference external" href="https://raw.githubusercontent.com/msu-cmse-courses/cmse201-F21-data/main/Day-22/ch4_annmean_gl.txt">
+   ch4_annmean_gl.txt
+  </a>
+ </li>
+ <li class="toctree-l1">
+  <a class="reference external" href="https://raw.githubusercontent.com/msu-cmse-courses/cmse201-F21-data/main/Day-22/co2_mm_mlo.txt">
+   co2_mm_mlo.txt
+  </a>
+ </li>
+ <li class="toctree-l1">
+  <a class="reference external" href="https://raw.githubusercontent.com/msu-cmse-courses/cmse201-F21-data/main/Day-22/vostok-ch4nat.txt">
+   vostok-ch4nat.txt
+  </a>
+ </li>
+ <li class="toctree-l1">
+  <a class="reference external" href="https://raw.githubusercontent.com/msu-cmse-courses/cmse201-F21-data/main/Day-22/vostok-co2nat.txt">
+   vostok-co2nat.txt
+  </a>
+ </li>
+ <li class="toctree-l1">
+  <a class="reference external" href="https://raw.githubusercontent.com/msu-cmse-courses/cmse201-F21-data/main/Day-22/vostok-deutnat.txt">
+   vostok-deutnat.txt
+  </a>
+ </li>
+</ul>
+<p class="caption">
+ <span class="caption-text">
+  Day 23
+ </span>
+</p>
+<ul class="nav bd-sidenav">
+ <li class="toctree-l1">
+  <a class="reference internal" href="../Day-23/Day-23_Pre-Class_Climate-STUDENT.html">
+   Day 23 pre-class assignment: climate modeling
+  </a>
+ </li>
+ <li class="toctree-l1">
+  <a class="reference internal" href="../Day-23/Day-23_In-Class_Climate-STUDENT.html">
+   Day 23 In-class Assignment: A simple model for global temperature
+  </a>
+ </li>
+ <li class="toctree-l1">
+  <a class="reference external" href="https://github.com/msu-cmse-courses/cmse201-F21-data/blob/main/Day-23/listentothee.png">
+   listentothee.png
+  </a>
+ </li>
+ <li class="toctree-l1">
+  <a class="reference external" href="https://github.com/msu-cmse-courses/cmse201-F21-data/blob/main/Day-23/simple_model.png">
+   simple_model.png
+  </a>
+ </li>
+</ul>
+<p class="caption">
+ <span class="caption-text">
+  Homework
+ </span>
+</p>
+<ul class="nav bd-sidenav">
+ <li class="toctree-l1">
+  <a class="reference internal" href="../Homework/Homework-1/HW_01_F21_STUDENT.html">
+   Homework 1: Introduction to Loops, Lists, and Dictionaries
+  </a>
+ </li>
+ <li class="toctree-l1">
+  <a class="reference internal" href="../Homework/Homework-2/HW_02_F21-STUDENT.html">
+   Homework 2: If Statements, Functions, and Modules
+  </a>
+ </li>
+ <li class="toctree-l1">
+  <a class="reference internal" href="../Homework/Homework-3/HOMEWORK_3_STUDENT.html">
+   Homework 3: Data Analysis with Pandas, Numpy, and Matplotlib
+  </a>
+ </li>
+ <li class="toctree-l1">
+  <a class="reference external" href="https://raw.githubusercontent.com/msu-cmse-courses/cmse201-F21-data/main/Homework/americas_gpin_2014_16.csv">
+   americas_gpin_2014_16.csv
+  </a>
+ </li>
+ <li class="toctree-l1">
+  <a class="reference internal" href="../Homework/Homework-4/HW-04-Fall2021_Final-STUDENT.html">
+   Homework 4: Fitting data using NumPy and SciPy
+  </a>
+ </li>
+ <li class="toctree-l1">
+  <a class="reference external" href="https://github.com/msu-cmse-courses/cmse201-F21-data/raw/main/Homework/Wage.csv">
+   Wage.csv
+  </a>
+ </li>
+ <li class="toctree-l1">
+  <a class="reference internal" href="../Homework/Homework-5/HW_05_F21-STUDENT.html">
+   Homework 5: Modeling Physical Systems and Heating Up the House with ODEs
+  </a>
+ </li>
+ <li class="toctree-l1">
+  <a class="reference internal" href="../Homework/Homework-6/HW-06_F21-STUDENT.html">
+   Homework 6: Agent Based Modeling
+  </a>
+ </li>
+</ul>
+<p class="caption">
+ <span class="caption-text">
+  Midterm Bootcamps
+ </span>
+</p>
+<ul class="nav bd-sidenav">
+ <li class="toctree-l1">
+  <a class="reference internal" href="../Bootcamp_Notebooks/Bootcamp1-Python_Fundamentals_STUDENT.html">
+   Bootcamp 1: Python Fundamentals
+  </a>
+ </li>
+ <li class="toctree-l1">
+  <a class="reference internal" href="../Bootcamp_Notebooks/Bootcamp2-InitialConceptsReview.html">
+   Bootcamp 2: Initial Concepts Review Cheatsheet
+  </a>
+ </li>
+ <li class="toctree-l1">
+  <a class="reference internal" href="../Bootcamp_Notebooks/Bootcamp3-Debugging_STUDENT.html">
+   Bootcamp 3: Debugging
+  </a>
+ </li>
+ <li class="toctree-l1">
+  <a class="reference internal" href="../Bootcamp_Notebooks/Bootcamp4-IfStatements_STUDENT.html">
+   Bootcamp 4: If Statements
+  </a>
+ </li>
+ <li class="toctree-l1">
+  <a class="reference internal" href="../Bootcamp_Notebooks/Bootcamp5-Functions_STUDENT.html">
+   Bootcamp 5: Functions
+  </a>
+ </li>
+ <li class="toctree-l1">
+  <a class="reference internal" href="../Bootcamp_Notebooks/Bootcamp6-Matplotlib_STUDENT.html">
+   Bootcamp 6: Matplotlib
+  </a>
+ </li>
+</ul>
+<p class="caption">
+ <span class="caption-text">
+  Semester Projects
+ </span>
+</p>
+<ul class="nav bd-sidenav">
+ <li class="toctree-l1">
+  <a class="reference internal" href="../Project_Materials/CMSE201_SemesterProjectDetails.html">
+   Semester Project Details
+  </a>
+ </li>
+ <li class="toctree-l1">
+  <a class="reference internal" href="../Project_Materials/CMSE201_FinalProject_ExampleA.html">
+   CMSE 201 Final Project Example A
+  </a>
+ </li>
+ <li class="toctree-l1">
+  <a class="reference internal" href="../Project_Materials/CMSE201_FinalProject_ExampleB.html">
+   CMSE 201 Final Project Example B
+  </a>
+ </li>
+ <li class="toctree-l1">
+  <a class="reference external" href="https://github.com/msu-cmse-courses/cmse201-F21-data/raw/main/Projects/CMSE201_Example_Projects.zip">
+   CMSE201_Example_Projects.zip
+  </a>
+ </li>
+ <li class="toctree-l1">
+  <a class="reference internal" href="../Project_Materials/First_Project_Checkpoint.html">
+   First Project Checkpoint
+  </a>
+ </li>
+ <li class="toctree-l1">
+  <a class="reference internal" href="../Project_Materials/CMSE201FinalProject_RequirementsAndGradingRubric.html">
+   Requirements and Grading Rubric
+  </a>
+ </li>
+ <li class="toctree-l1">
+  <a class="reference internal" href="../Project_Materials/CMSE201_FinalProjectTemplate.html">
+   CMSE 201 Final Project Template
+  </a>
+ </li>
+</ul>
+
+    </div>
+</nav> <!-- To handle the deprecated key -->
+
+<div class="navbar_extra_footer">
+  Powered by <a href="https://jupyterbook.org">Jupyter Book</a>
+</div>
+
+</div>
+
+
+          
+
+
+          
+<main class="col py-md-3 pl-md-4 bd-content overflow-auto" role="main">
+    
+    <div class="topbar container-xl fixed-top">
+    <div class="topbar-contents row">
+        <div class="col-12 col-md-3 bd-topbar-whitespace site-navigation show"></div>
+        <div class="col pl-md-4 topbar-main">
+            
+            <button id="navbar-toggler" class="navbar-toggler ml-0" type="button" data-toggle="collapse"
+                data-toggle="tooltip" data-placement="bottom" data-target=".site-navigation" aria-controls="navbar-menu"
+                aria-expanded="true" aria-label="Toggle navigation" aria-controls="site-navigation"
+                title="Toggle navigation" data-toggle="tooltip" data-placement="left">
+                <i class="fas fa-bars"></i>
+                <i class="fas fa-arrow-left"></i>
+                <i class="fas fa-arrow-up"></i>
+            </button>
+            
+            
+<div class="dropdown-buttons-trigger">
+    <button id="dropdown-buttons-trigger" class="btn btn-secondary topbarbtn" aria-label="Download this page"><i
+            class="fas fa-download"></i></button>
+
+    <div class="dropdown-buttons">
+        <!-- ipynb file if we had a myst markdown file -->
+        
+        <!-- Download raw file -->
+        <a class="dropdown-buttons" href="../_sources/Day-19/Day-19_In-Class_ForestFiresPartII-STUDENT.ipynb"><button type="button"
+                class="btn btn-secondary topbarbtn" title="Download source file" data-toggle="tooltip"
+                data-placement="left">.ipynb</button></a>
+        <!-- Download PDF via print -->
+        <button type="button" id="download-print" class="btn btn-secondary topbarbtn" title="Print to PDF"
+            onClick="window.print()" data-toggle="tooltip" data-placement="left">.pdf</button>
+    </div>
+</div>
+
+            <!-- Source interaction buttons -->
+
+<div class="dropdown-buttons-trigger">
+    <button id="dropdown-buttons-trigger" class="btn btn-secondary topbarbtn"
+        aria-label="Connect with source repository"><i class="fab fa-github"></i></button>
+    <div class="dropdown-buttons sourcebuttons">
+        <a class="repository-button"
+            href="https://github.com/msu-cmse-courses/cmse201-F21-jb"><button type="button" class="btn btn-secondary topbarbtn"
+                data-toggle="tooltip" data-placement="left" title="Source repository"><i
+                    class="fab fa-github"></i>repository</button></a>
+        <a class="issues-button"
+            href="https://github.com/msu-cmse-courses/cmse201-F21-jb/issues/new?title=Issue%20on%20page%20%2FDay-19/Day-19_In-Class_ForestFiresPartII-STUDENT.html&body=Your%20issue%20content%20here."><button
+                type="button" class="btn btn-secondary topbarbtn" data-toggle="tooltip" data-placement="left"
+                title="Open an issue"><i class="fas fa-lightbulb"></i>open issue</button></a>
+        
+    </div>
+</div>
+
+            <!-- Full screen (wrap in <a> to have style consistency -->
+
+<a class="full-screen-button"><button type="button" class="btn btn-secondary topbarbtn" data-toggle="tooltip"
+        data-placement="bottom" onclick="toggleFullScreen()" aria-label="Fullscreen mode"
+        title="Fullscreen mode"><i
+            class="fas fa-expand"></i></button></a>
+
+            <!-- Launch buttons -->
+
+<div class="dropdown-buttons-trigger">
+    <button id="dropdown-buttons-trigger" class="btn btn-secondary topbarbtn"
+        aria-label="Launch interactive content"><i class="fas fa-rocket"></i></button>
+    <div class="dropdown-buttons">
+        
+        <a class="binder-button" href="https://mybinder.org/v2/gh/msu-cmse-courses/cmse201-F21-jb/main?urlpath=tree/Day-19/Day-19_In-Class_ForestFiresPartII-STUDENT.ipynb"><button type="button"
+                class="btn btn-secondary topbarbtn" title="Launch Binder" data-toggle="tooltip"
+                data-placement="left"><img class="binder-button-logo"
+                    src="../_static/images/logo_binder.svg"
+                    alt="Interact on binder">Binder</button></a>
+        
+        
+        
+        
+    </div>
+</div>
+
+        </div>
+
+        <!-- Table of contents -->
+        <div class="d-none d-md-block col-md-2 bd-toc show">
+            
+            <div class="tocsection onthispage pt-5 pb-3">
+                <i class="fas fa-list"></i> Contents
+            </div>
+            <nav id="bd-toc-nav" aria-label="Page">
+                <ul class="visible nav section-nav flex-column">
+ <li class="toc-h2 nav-item toc-entry">
+  <a class="reference internal nav-link" href="#p-style-text-align-right-put-your-name-here-p">
+   <p style="text-align: right;">
+    ✅ Put your name here.
+   </p>
+  </a>
+  <ul class="nav section-nav flex-column">
+   <li class="toc-h3 nav-item toc-entry">
+    <a class="reference internal nav-link" href="#p-style-text-align-right-put-your-group-member-names-here-p">
+     <p style="text-align: right;">
+      ✅ Put your group member names here.
+     </p>
+    </a>
+   </li>
+  </ul>
+ </li>
+ <li class="toc-h2 nav-item toc-entry">
+  <a class="reference internal nav-link" href="#goals-of-this-assignment">
+   Goals of this assignment
+  </a>
+ </li>
+ <li class="toc-h2 nav-item toc-entry">
+  <a class="reference internal nav-link" href="#assignment-instructions">
+   Assignment instructions
+  </a>
+ </li>
+ <li class="toc-h2 nav-item toc-entry">
+  <a class="reference internal nav-link" href="#welcome-to-part-2-of-the-forest-fires-ica">
+   Welcome to Part 2 of the forest fires ICA!
+  </a>
+ </li>
+ <li class="toc-h2 nav-item toc-entry">
+  <a class="reference internal nav-link" href="#redefining-the-rules-for-our-model">
+   Redefining the Rules for Our Model
+  </a>
+  <ul class="nav section-nav flex-column">
+   <li class="toc-h3 nav-item toc-entry">
+    <a class="reference internal nav-link" href="#setup">
+     Setup
+    </a>
+   </li>
+   <li class="toc-h3 nav-item toc-entry">
+    <a class="reference internal nav-link" href="#neighborhoods">
+     Neighborhoods
+    </a>
+   </li>
+   <li class="toc-h3 nav-item toc-entry">
+    <a class="reference internal nav-link" href="#evolving-with-time">
+     Evolving with Time
+    </a>
+   </li>
+   <li class="toc-h3 nav-item toc-entry">
+    <a class="reference internal nav-link" href="#ending-conditions">
+     Ending Conditions
+    </a>
+   </li>
+  </ul>
+ </li>
+ <li class="toc-h2 nav-item toc-entry">
+  <a class="reference internal nav-link" href="#your-mission">
+   Your mission:
+  </a>
+ </li>
+ <li class="toc-h2 nav-item toc-entry">
+  <a class="reference internal nav-link" href="#functions-from-last-class">
+   Functions from Last Class
+  </a>
+  <ul class="nav section-nav flex-column">
+   <li class="toc-h3 nav-item toc-entry">
+    <a class="reference internal nav-link" href="#importing-libraries">
+     Importing Libraries
+    </a>
+   </li>
+   <li class="toc-h3 nav-item toc-entry">
+    <a class="reference internal nav-link" href="#plotting-the-board">
+     Plotting the Board
+    </a>
+   </li>
+   <li class="toc-h3 nav-item toc-entry">
+    <a class="reference internal nav-link" href="#initializing-the-forest">
+     Initializing the Forest
+    </a>
+   </li>
+   <li class="toc-h3 nav-item toc-entry">
+    <a class="reference internal nav-link" href="#evolving-the-board">
+     Evolving the Board
+    </a>
+   </li>
+  </ul>
+ </li>
+ <li class="toc-h2 nav-item toc-entry">
+  <a class="reference internal nav-link" href="#reviewing-the-code">
+   Reviewing the Code
+  </a>
+ </li>
+ <li class="toc-h2 nav-item toc-entry">
+  <a class="reference internal nav-link" href="#part-4-analyzing-the-state-of-the-board">
+   Part 4: Analyzing the state of the board
+  </a>
+  <ul class="nav section-nav flex-column">
+   <li class="toc-h3 nav-item toc-entry">
+    <a class="reference internal nav-link" href="#finish-the-code-below-so-that-it-calculates-the-statistics-of-the-board">
+     ✅  4.1 Finish the code below so that it calculates the statistics of the board.
+    </a>
+   </li>
+   <li class="toc-h3 nav-item toc-entry">
+    <a class="reference internal nav-link" href="#putting-it-all-together">
+     4.2 Putting it all together!
+    </a>
+    <ul class="nav section-nav flex-column">
+     <li class="toc-h4 nav-item toc-entry">
+      <a class="reference internal nav-link" href="#comment-the-code-to-indicate-that-you-know-what-its-doing">
+       ✅
+       <strong>
+        Comment the code
+       </strong>
+       to indicate that you know what its doing!
+      </a>
+     </li>
+    </ul>
+   </li>
+   <li class="toc-h3 nav-item toc-entry">
+    <a class="reference internal nav-link" href="#part-5-the-tipping-point">
+     Part 5: The tipping point
+    </a>
+    <ul class="nav section-nav flex-column">
+     <li class="toc-h4 nav-item toc-entry">
+      <a class="reference internal nav-link" href="#what-is-a-tipping-point">
+       <strong>
+        What is a “tipping point”?
+       </strong>
+      </a>
+     </li>
+     <li class="toc-h4 nav-item toc-entry">
+      <a class="reference internal nav-link" href="#finding-the-tipping-point">
+       <strong>
+        Finding the “tipping point”
+       </strong>
+      </a>
+     </li>
+     <li class="toc-h4 nav-item toc-entry">
+      <a class="reference internal nav-link" href="#follow-up-task">
+       ✅  Follow up task:
+      </a>
+     </li>
+     <li class="toc-h4 nav-item toc-entry">
+      <a class="reference internal nav-link" href="#id1">
+       ✅  Follow up task:
+      </a>
+     </li>
+    </ul>
+   </li>
+   <li class="toc-h3 nav-item toc-entry">
+    <a class="reference internal nav-link" href="#part-6-exploring-new-initial-conditions">
+     Part 6: Exploring new initial conditions
+    </a>
+   </li>
+  </ul>
+ </li>
+ <li class="toc-h2 nav-item toc-entry">
+  <a class="reference internal nav-link" href="#time-permitting">
+   Time Permitting
+  </a>
+ </li>
+ <li class="toc-h2 nav-item toc-entry">
+  <a class="reference internal nav-link" href="#congratulations-you-re-done">
+   Congratulations, you’re done!
+  </a>
+ </li>
+</ul>
+
+            </nav>
+        </div>
+    </div>
+</div>
+    <div id="main-content" class="row">
+        <div class="col-12 col-md-9 pl-md-3 pr-md-0">
+        
+              <div>
+                
+  <div class="section" id="day-19-in-class-assignment-modeling-forest-fires-with-an-agent-based-model-part-ii">
+<h1>Day 19 In-class Assignment: Modeling forest fires with an Agent-based Model (Part II)<a class="headerlink" href="#day-19-in-class-assignment-modeling-forest-fires-with-an-agent-based-model-part-ii" title="Permalink to this headline">¶</a></h1>
+<div class="section" id="p-style-text-align-right-put-your-name-here-p">
+<h2><p style="text-align: right;"> ✅ Put your name here.</p><a class="headerlink" href="#p-style-text-align-right-put-your-name-here-p" title="Permalink to this headline">¶</a></h2>
+<div class="section" id="p-style-text-align-right-put-your-group-member-names-here-p">
+<h3><p style="text-align: right;"> ✅ Put your group member names here.</p><a class="headerlink" href="#p-style-text-align-right-put-your-group-member-names-here-p" title="Permalink to this headline">¶</a></h3>
+<img src="https://cdn-images-1.medium.com/max/2000/1*VO9nuzrJ9XseMyxdtPh_vg.jpeg" width=500></div>
+</div>
+<div class="section" id="goals-of-this-assignment">
+<h2>Goals of this assignment<a class="headerlink" href="#goals-of-this-assignment" title="Permalink to this headline">¶</a></h2>
+<p>The primary goal of this assignment is to model the spread of a forest fire using an agent-based model (ABM).  In doing so, we will:</p>
+<ul class="simple">
+<li><p>Use ABM to model forest fires</p></li>
+<li><p>Examine and quantify the concept of a “tipping point” in a model.</p></li>
+</ul>
+</div>
+<div class="section" id="assignment-instructions">
+<h2>Assignment instructions<a class="headerlink" href="#assignment-instructions" title="Permalink to this headline">¶</a></h2>
+<p>Work with your group to complete this assignment. Upload the assignment to D2L at the end of class.</p>
+</div>
+<hr class="docutils" />
+<div class="section" id="welcome-to-part-2-of-the-forest-fires-ica">
+<h2>Welcome to Part 2 of the forest fires ICA!<a class="headerlink" href="#welcome-to-part-2-of-the-forest-fires-ica" title="Permalink to this headline">¶</a></h2>
+<p>We have split this assignment over two days, so that you can become more comfortable with material. Last class, we built the basics of the forest fire model. Today, we are going to put all these pieces together to complete the model and analyze the tipping point! Let’s get started!</p>
+<p>Below, we show the rules again. We’ll incorporate all of the code that you worked on last class. It may look a little different than the code that you and your group developed. If you want to bring over some of your code from Part 1, feel free to do so!</p>
+</div>
+<hr class="docutils" />
+<div class="section" id="redefining-the-rules-for-our-model">
+<h2>Redefining the Rules for Our Model<a class="headerlink" href="#redefining-the-rules-for-our-model" title="Permalink to this headline">¶</a></h2>
+<div class="section" id="setup">
+<h3>Setup<a class="headerlink" href="#setup" title="Permalink to this headline">¶</a></h3>
+<p>The model is a two-dimensional square <span class="math notranslate nohighlight">\(N \times N\)</span> array that represents the forested region we’re simulating.  <strong>The cells in the array can have three values:</strong></p>
+<ul class="simple">
+<li><p><strong>0 (empty)</strong></p></li>
+<li><p><strong>1 (trees)</strong></p></li>
+<li><p><strong>2 (on fire)</strong></p></li>
+</ul>
+<p>At the beginning of the model, a user-specified fraction of the cells <span class="math notranslate nohighlight">\(f_\text{trees_start}\)</span> are randomly filled with trees and the remaining cells are empty.<br />
+<strong>One edge of the board (say, the entire leftmost column) is set on fire.</strong></p>
+</div>
+<div class="section" id="neighborhoods">
+<h3>Neighborhoods<a class="headerlink" href="#neighborhoods" title="Permalink to this headline">¶</a></h3>
+<p>Each cell has a “neighborhood” that is composed of its four neighbors to the left, right, above, and below it. <strong>If a cell is along one of the edges of the array, only consider the neighbors that it has</strong> (i.e., don’t try to go out of the bounds of the array).</p>
+<div align="center"><img src="https://i.ibb.co/zH9YL38/indexing-example.png" alt="indexing-example" border="0" width=200px></div>
+</div>
+<div class="section" id="evolving-with-time">
+<h3>Evolving with Time<a class="headerlink" href="#evolving-with-time" title="Permalink to this headline">¶</a></h3>
+<p>The model takes steps forward in time, where every cell is modified based on the previous step.  The model evolves as follows:</p>
+<ul class="simple">
+<li><p><strong>If the cell was empty last turn, it stays empty this turn.</strong></p></li>
+<li><p><strong>If the cell is a tree and any of its neighbors were on fire last turn, it catches on fire.</strong></p></li>
+<li><p><strong>If the cell was on fire last turn, the fire has consumed all of the trees and it is now empty.</strong></p></li>
+</ul>
+</div>
+<div class="section" id="ending-conditions">
+<h3>Ending Conditions<a class="headerlink" href="#ending-conditions" title="Permalink to this headline">¶</a></h3>
+<p><strong>The model evolves forward in time until all of the fires have burned out.</strong></p>
+<p>After this happens, you can calculate the fraction of the cells that still have trees at the end of the model (<span class="math notranslate nohighlight">\(f_\text{trees_end}\)</span>) and the fraction of cells that are empty (<span class="math notranslate nohighlight">\(f_\text{empty}\)</span>).  The fraction of burned cells, <span class="math notranslate nohighlight">\(f_\text{burned}\)</span>, is just the difference between the fraction of cells that were initially trees and the fraction of cells that are trees at the end of the model; in other words,</p>
+<p><span class="math notranslate nohighlight">\(f_\text{burned} = f_\text{trees_start} - f_\text{trees_end}\)</span></p>
+</div>
+</div>
+<div class="section" id="your-mission">
+<h2>Your mission:<a class="headerlink" href="#your-mission" title="Permalink to this headline">¶</a></h2>
+<p>Your mission is to answer the question: “How does the spread of fire relate to the density of the forest?”<br />
+More precisely, we’re asking “How does <span class="math notranslate nohighlight">\(f_\text{burned}\)</span> depend on <span class="math notranslate nohighlight">\(f_\text{trees_start}\)</span>?”</p>
+</div>
+<hr class="docutils" />
+<div class="section" id="functions-from-last-class">
+<h2>Functions from Last Class<a class="headerlink" href="#functions-from-last-class" title="Permalink to this headline">¶</a></h2>
+<p>Last class, we built a function that plots the array, a function that initializes the board, and a function that advances the board based on a set of rules.</p>
+<p><strong>Make sure to execute the following cells before you move on!</strong></p>
+<div class="section" id="importing-libraries">
+<h3>Importing Libraries<a class="headerlink" href="#importing-libraries" title="Permalink to this headline">¶</a></h3>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="c1"># standard includes</span>
+<span class="kn">import</span> <span class="nn">numpy</span> <span class="k">as</span> <span class="nn">np</span>
+<span class="kn">import</span> <span class="nn">numpy.random</span> <span class="k">as</span> <span class="nn">rand</span>
+<span class="o">%</span><span class="k">matplotlib</span> inline
+<span class="kn">import</span> <span class="nn">matplotlib.pyplot</span> <span class="k">as</span> <span class="nn">plt</span>
+
+<span class="c1"># Next we are going to import some specific libraries we will use to get the animation to work cleanly</span>
+<span class="kn">from</span> <span class="nn">IPython.display</span> <span class="kn">import</span> <span class="n">display</span><span class="p">,</span> <span class="n">clear_output</span>
+<span class="kn">import</span> <span class="nn">time</span>  
+</pre></div>
+</div>
+</div>
+</div>
+</div>
+<div class="section" id="plotting-the-board">
+<h3>Plotting the Board<a class="headerlink" href="#plotting-the-board" title="Permalink to this headline">¶</a></h3>
+<p>The <code class="docutils literal notranslate"><span class="pre">plot_grid</span></code> function takes in a given array, finds the positions on the board that are a tree or fire, and displays them as such.</p>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="k">def</span> <span class="nf">plotgrid</span><span class="p">(</span><span class="n">myarray</span><span class="p">):</span>
+    
+    <span class="c1"># First create two vectors based on the x and y sizes of the grid</span>
+    <span class="n">x_range</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">linspace</span><span class="p">(</span><span class="mi">0</span><span class="p">,</span> <span class="n">myarray</span><span class="o">.</span><span class="n">shape</span><span class="p">[</span><span class="mi">1</span><span class="p">]</span><span class="o">-</span><span class="mi">1</span><span class="p">,</span> <span class="n">myarray</span><span class="o">.</span><span class="n">shape</span><span class="p">[</span><span class="mi">1</span><span class="p">])</span> 
+    <span class="n">y_range</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">linspace</span><span class="p">(</span><span class="mi">0</span><span class="p">,</span> <span class="n">myarray</span><span class="o">.</span><span class="n">shape</span><span class="p">[</span><span class="mi">0</span><span class="p">]</span><span class="o">-</span><span class="mi">1</span><span class="p">,</span> <span class="n">myarray</span><span class="o">.</span><span class="n">shape</span><span class="p">[</span><span class="mi">0</span><span class="p">])</span>
+    
+    <span class="c1"># Use the numpy meshgrid function to create two matrices</span>
+    <span class="c1"># of the same size as myarray with x and y indexes</span>
+    <span class="n">x_indices</span><span class="p">,</span> <span class="n">y_indices</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">meshgrid</span><span class="p">(</span><span class="n">x_range</span><span class="p">,</span> <span class="n">y_range</span><span class="p">)</span>
+    
+    <span class="c1"># Make a list of all the x and y indexes that are either trees or fire.</span>
+    <span class="n">tree_x</span> <span class="o">=</span> <span class="n">x_indices</span><span class="p">[</span><span class="n">myarray</span> <span class="o">==</span> <span class="mi">1</span><span class="p">];</span>   
+    <span class="n">tree_y</span> <span class="o">=</span> <span class="n">y_indices</span><span class="p">[</span><span class="n">myarray</span> <span class="o">==</span> <span class="mi">1</span><span class="p">];</span> 
+    <span class="n">fire_x</span> <span class="o">=</span> <span class="n">x_indices</span><span class="p">[</span><span class="n">myarray</span> <span class="o">==</span> <span class="mi">2</span><span class="p">];</span>   
+    <span class="n">fire_y</span> <span class="o">=</span> <span class="n">y_indices</span><span class="p">[</span><span class="n">myarray</span> <span class="o">==</span> <span class="mi">2</span><span class="p">];</span> 
+    
+    <span class="c1"># Plot the trees and fire.</span>
+    <span class="n">plt</span><span class="o">.</span><span class="n">plot</span><span class="p">(</span><span class="n">tree_x</span><span class="p">,</span> <span class="n">myarray</span><span class="o">.</span><span class="n">shape</span><span class="p">[</span><span class="mi">0</span><span class="p">]</span> <span class="o">-</span> <span class="n">tree_y</span> <span class="o">-</span> <span class="mi">1</span><span class="p">,</span> <span class="s1">&#39;gs&#39;</span><span class="p">,</span><span class="n">markersize</span><span class="o">=</span><span class="mi">10</span><span class="p">)</span>   
+    <span class="n">plt</span><span class="o">.</span><span class="n">plot</span><span class="p">(</span><span class="n">fire_x</span><span class="p">,</span> <span class="n">myarray</span><span class="o">.</span><span class="n">shape</span><span class="p">[</span><span class="mi">0</span><span class="p">]</span> <span class="o">-</span> <span class="n">fire_y</span> <span class="o">-</span> <span class="mi">1</span><span class="p">,</span> <span class="s1">&#39;rs&#39;</span><span class="p">,</span><span class="n">markersize</span><span class="o">=</span><span class="mi">10</span><span class="p">)</span>  
+    
+    <span class="c1"># Set the x and y limits so we don&#39;t cut off the shapes</span>
+    <span class="n">plt</span><span class="o">.</span><span class="n">xlim</span><span class="p">([</span><span class="o">-</span><span class="mi">1</span><span class="p">,</span><span class="n">myarray</span><span class="o">.</span><span class="n">shape</span><span class="p">[</span><span class="mi">1</span><span class="p">]])</span>
+    <span class="n">plt</span><span class="o">.</span><span class="n">ylim</span><span class="p">([</span><span class="o">-</span><span class="mi">1</span><span class="p">,</span><span class="n">myarray</span><span class="o">.</span><span class="n">shape</span><span class="p">[</span><span class="mi">0</span><span class="p">]])</span> 
+
+    <span class="c1"># Removing tick marks</span>
+    <span class="n">plt</span><span class="o">.</span><span class="n">tick_params</span><span class="p">(</span><span class="n">axis</span><span class="o">=</span><span class="s1">&#39;both&#39;</span><span class="p">,</span> <span class="n">which</span><span class="o">=</span><span class="s1">&#39;both&#39;</span><span class="p">,</span>
+                    <span class="n">bottom</span><span class="o">=</span><span class="kc">False</span><span class="p">,</span> <span class="n">top</span><span class="o">=</span><span class="kc">False</span><span class="p">,</span> <span class="n">left</span><span class="o">=</span><span class="kc">False</span><span class="p">,</span> <span class="n">right</span><span class="o">=</span><span class="kc">False</span><span class="p">,</span>
+                    <span class="n">labelbottom</span><span class="o">=</span><span class="kc">False</span><span class="p">,</span> <span class="n">labelleft</span><span class="o">=</span><span class="kc">False</span><span class="p">)</span>
+</pre></div>
+</div>
+</div>
+</div>
+</div>
+<div class="section" id="initializing-the-forest">
+<h3>Initializing the Forest<a class="headerlink" href="#initializing-the-forest" title="Permalink to this headline">¶</a></h3>
+<p>The <code class="docutils literal notranslate"><span class="pre">set_board</span></code> function creates the initial state of the board based on the provided density, setting the leftmost edge as ‘on fire.’</p>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="k">def</span> <span class="nf">set_board</span><span class="p">(</span><span class="n">board_size</span><span class="o">=</span><span class="mi">50</span><span class="p">,</span><span class="n">f_trees_start</span><span class="o">=</span><span class="mf">0.5</span><span class="p">):</span>
+    <span class="sd">&#39;&#39;&#39;</span>
+<span class="sd">    Creates the initial game board.</span>
+
+<span class="sd">    Inputs:</span>
+<span class="sd">        board_size: length of one edge of the board</span>
+<span class="sd">        f_trees_start: probability that a given cell is a tree</span>
+<span class="sd">                       (effectively the tree density)</span>
+
+<span class="sd">    Outputs a 2D numpy array with values set to either 0, 1, or 2</span>
+<span class="sd">        (empty, tree, or fire)</span>
+<span class="sd">    &#39;&#39;&#39;</span>
+    
+    <span class="c1"># all cells initialized to &#39;empty&#39; (0) by default</span>
+    <span class="n">game_board</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">zeros</span><span class="p">((</span><span class="n">board_size</span><span class="p">,</span><span class="n">board_size</span><span class="p">),</span><span class="n">dtype</span><span class="o">=</span><span class="s1">&#39;int64&#39;</span><span class="p">)</span>
+    
+    <span class="c1"># loop over board and roll the dice; if the random number is less</span>
+    <span class="c1"># than f_trees_start, make it a tree.</span>
+    <span class="k">for</span> <span class="n">i</span> <span class="ow">in</span> <span class="nb">range</span><span class="p">(</span><span class="n">board_size</span><span class="p">):</span>
+        <span class="k">for</span> <span class="n">j</span> <span class="ow">in</span> <span class="nb">range</span><span class="p">(</span><span class="n">board_size</span><span class="p">):</span>
+            <span class="k">if</span> <span class="n">rand</span><span class="o">.</span><span class="n">random</span><span class="p">()</span> <span class="o">&lt;=</span> <span class="n">f_trees_start</span><span class="p">:</span>
+                <span class="n">game_board</span><span class="p">[</span><span class="n">i</span><span class="p">,</span><span class="n">j</span><span class="p">]</span> <span class="o">=</span> <span class="mi">1</span>
+
+    <span class="c1"># set the whole left edge of the board on fire. We&#39;re arsonists!</span>
+    <span class="n">game_board</span><span class="p">[:,</span><span class="mi">0</span><span class="p">]</span> <span class="o">=</span> <span class="mi">2</span>
+    
+    <span class="k">return</span> <span class="n">game_board</span>
+</pre></div>
+</div>
+</div>
+</div>
+</div>
+<div class="section" id="evolving-the-board">
+<h3>Evolving the Board<a class="headerlink" href="#evolving-the-board" title="Permalink to this headline">¶</a></h3>
+<p>The <code class="docutils literal notranslate"><span class="pre">advance_board</span></code> function:</p>
+<ul class="simple">
+<li><p>Takes in the <em>current</em> board,</p></li>
+<li><p>Defines a <em>new</em> board, and then</p></li>
+<li><p>Returns that new board where the positions of the fire have been updated.</p></li>
+</ul>
+<p>Based on these rules:</p>
+<blockquote>
+<div><p>Each cell has a “neighborhood” that is composed of its four neighbors to the left, right, above, and below it.  (Note: not the diagonal elements!)  If a cell is along one of the edges of the array, only consider the neighbors that it has, and don’t try to go out of the bounds of the array!</p>
+</div></blockquote>
+<blockquote>
+<div><p>The model takes steps forward in time, where every cell is modified based on the previous step.  The model evolves as follows:</p>
+</div></blockquote>
+<blockquote>
+<div><ul class="simple">
+<li><p>If the cell was empty last turn, it stays empty this turn.</p></li>
+<li><p>If the cell is a tree and any of its neighbors were on fire last turn, it catches on fire.</p></li>
+<li><p>If the cell was on fire last turn, the fire has consumed all of the trees and it is now empty.</p></li>
+</ul>
+</div></blockquote>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="k">def</span> <span class="nf">onBoard</span><span class="p">(</span><span class="n">i</span><span class="p">,</span><span class="n">j</span><span class="p">,</span><span class="n">image</span><span class="p">):</span>
+    <span class="k">if</span> <span class="n">i</span> <span class="o">&lt;=</span> <span class="n">image</span><span class="o">.</span><span class="n">shape</span><span class="p">[</span><span class="mi">0</span><span class="p">]</span><span class="o">-</span><span class="mi">1</span> <span class="ow">and</span> <span class="n">i</span> <span class="o">&gt;=</span> <span class="mi">0</span> <span class="ow">and</span> <span class="n">j</span> <span class="o">&lt;=</span> <span class="n">image</span><span class="o">.</span><span class="n">shape</span><span class="p">[</span><span class="mi">1</span><span class="p">]</span><span class="o">-</span><span class="mi">1</span> <span class="ow">and</span> <span class="n">j</span> <span class="o">&gt;=</span> <span class="mi">0</span><span class="p">:</span>
+        <span class="k">return</span> <span class="kc">True</span>
+    <span class="k">else</span><span class="p">:</span>
+        <span class="k">return</span> <span class="kc">False</span>
+
+<span class="k">def</span> <span class="nf">getNeighborValues</span><span class="p">(</span><span class="n">i</span><span class="p">,</span><span class="n">j</span><span class="p">,</span> <span class="n">board</span><span class="p">):</span>
+    <span class="n">neighborhood</span> <span class="o">=</span> <span class="p">[(</span><span class="n">i</span><span class="o">-</span><span class="mi">1</span><span class="p">,</span> <span class="n">j</span><span class="p">),</span> <span class="p">(</span><span class="n">i</span><span class="p">,</span> <span class="n">j</span><span class="o">-</span><span class="mi">1</span><span class="p">),</span> <span class="p">(</span><span class="n">i</span><span class="o">+</span><span class="mi">1</span><span class="p">,</span> <span class="n">j</span><span class="p">),</span> <span class="p">(</span><span class="n">i</span><span class="p">,</span> <span class="n">j</span><span class="o">+</span><span class="mi">1</span><span class="p">)]</span>
+    
+    <span class="n">neighbor_values</span> <span class="o">=</span> <span class="p">[]</span>
+    <span class="k">for</span> <span class="n">neighbor</span> <span class="ow">in</span> <span class="n">neighborhood</span><span class="p">:</span>
+        <span class="k">if</span> <span class="n">onBoard</span><span class="p">(</span><span class="n">neighbor</span><span class="p">[</span><span class="mi">0</span><span class="p">],</span> <span class="n">neighbor</span><span class="p">[</span><span class="mi">1</span><span class="p">],</span> <span class="n">board</span><span class="p">):</span>
+            <span class="n">neighbor_values</span><span class="o">.</span><span class="n">append</span><span class="p">(</span><span class="n">board</span><span class="p">[</span><span class="n">neighbor</span><span class="p">[</span><span class="mi">0</span><span class="p">],</span> <span class="n">neighbor</span><span class="p">[</span><span class="mi">1</span><span class="p">]])</span>
+    
+    <span class="k">return</span> <span class="n">neighbor_values</span>
+
+<span class="k">def</span> <span class="nf">advance_board</span><span class="p">(</span><span class="n">game_board</span><span class="p">):</span>
+    <span class="sd">&#39;&#39;&#39;</span>
+<span class="sd">    Advances the game board using the given rules.</span>
+<span class="sd">    Input: the initial game board.</span>
+<span class="sd">    Output: the advanced game board</span>
+<span class="sd">    &#39;&#39;&#39;</span>
+    
+    <span class="c1"># create a new array that&#39;s just like the original one, but initially </span>
+    <span class="c1"># set to all zeros (i.e., totally empty)</span>
+    <span class="n">new_board</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">zeros_like</span><span class="p">(</span><span class="n">game_board</span><span class="p">)</span>
+    
+    <span class="c1"># loop over each cell in the board and decide what to do.</span>
+    <span class="k">for</span> <span class="n">i</span> <span class="ow">in</span> <span class="nb">range</span><span class="p">(</span><span class="n">game_board</span><span class="o">.</span><span class="n">shape</span><span class="p">[</span><span class="mi">0</span><span class="p">]):</span>
+        <span class="k">for</span> <span class="n">j</span> <span class="ow">in</span> <span class="nb">range</span><span class="p">(</span><span class="n">game_board</span><span class="o">.</span><span class="n">shape</span><span class="p">[</span><span class="mi">1</span><span class="p">]):</span>
+    
+            <span class="c1"># if the cell was empty last turn, it&#39;s still empty.</span>
+            <span class="c1"># if it was on fire last turn, it&#39;s now empty.</span>
+            <span class="k">if</span> <span class="n">game_board</span><span class="p">[</span><span class="n">i</span><span class="p">,</span><span class="n">j</span><span class="p">]</span> <span class="o">==</span> <span class="mi">0</span> <span class="ow">or</span> <span class="n">game_board</span><span class="p">[</span><span class="n">i</span><span class="p">,</span><span class="n">j</span><span class="p">]</span> <span class="o">==</span> <span class="mi">2</span><span class="p">:</span>
+                <span class="n">new_board</span><span class="p">[</span><span class="n">i</span><span class="p">,</span><span class="n">j</span><span class="p">]</span> <span class="o">=</span> <span class="mi">0</span>
+    
+            <span class="c1"># now, if it&#39;s a tree we have to decide what to do.</span>
+            <span class="k">if</span> <span class="n">game_board</span><span class="p">[</span><span class="n">i</span><span class="p">,</span><span class="n">j</span><span class="p">]</span> <span class="o">==</span> <span class="mi">1</span><span class="p">:</span>
+                
+                <span class="c1"># initially make it a tree</span>
+                <span class="n">new_board</span><span class="p">[</span><span class="n">i</span><span class="p">,</span><span class="n">j</span><span class="p">]</span> <span class="o">=</span> <span class="mi">1</span>
+                
+                <span class="c1"># If one of the neighboring cells was on fire last turn, </span>
+                <span class="c1"># this cell is now on fire!</span>
+                <span class="k">if</span> <span class="mi">2</span> <span class="ow">in</span> <span class="n">getNeighborValues</span><span class="p">(</span><span class="n">i</span><span class="p">,</span><span class="n">j</span><span class="p">,</span><span class="n">game_board</span><span class="p">):</span>
+                    <span class="n">new_board</span><span class="p">[</span><span class="n">i</span><span class="p">,</span><span class="n">j</span><span class="p">]</span> <span class="o">=</span> <span class="mi">2</span>
+
+    <span class="c1"># return the new board</span>
+    <span class="k">return</span> <span class="n">new_board</span>
+</pre></div>
+</div>
+</div>
+</div>
+</div>
+</div>
+<div class="section" id="reviewing-the-code">
+<h2>Reviewing the Code<a class="headerlink" href="#reviewing-the-code" title="Permalink to this headline">¶</a></h2>
+<p>✅  Compare each of the functions given above to the code you wrote last class, particularly the <code class="docutils literal notranslate"><span class="pre">advance_board</span></code> function. In the cell below, write down any changes you notice. Which version of the functions makes more sense to you?</p>
+<p><font size="+3">✎</font> <em>Put your answer here</em></p>
+</div>
+<div class="section" id="part-4-analyzing-the-state-of-the-board">
+<h2>Part 4: Analyzing the state of the board<a class="headerlink" href="#part-4-analyzing-the-state-of-the-board" title="Permalink to this headline">¶</a></h2>
+<p>Now, that we have loaded in all our functions from last class, we have one more step before seeing our complete forest fire model.</p>
+<p>As we run our model, we want to know what fraction of the board is empty and what fraction is covered with trees. You need to add code to compute these values. A bit of skeleton code is provided for you to help guide your coding efforts.</p>
+<div class="section" id="finish-the-code-below-so-that-it-calculates-the-statistics-of-the-board">
+<h3>✅  4.1 Finish the code below so that it calculates the statistics of the board.<a class="headerlink" href="#finish-the-code-below-so-that-it-calculates-the-statistics-of-the-board" title="Permalink to this headline">¶</a></h3>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="k">def</span> <span class="nf">calc_stats</span><span class="p">(</span><span class="n">game_board</span><span class="p">):</span>
+    <span class="sd">&#39;&#39;&#39;</span>
+<span class="sd">    Calculates the fraction of cells on the game board that are </span>
+<span class="sd">    a tree or are empty.</span>
+<span class="sd">    </span>
+<span class="sd">    Input: a game board</span>
+<span class="sd">    </span>
+<span class="sd">    Output: fraction that&#39;s empty, fraction that&#39;s covered in trees.</span>
+<span class="sd">    &#39;&#39;&#39;</span>
+    
+    <span class="c1"># use numpy to count up the fraction that are empty</span>
+    <span class="n">frac_empty</span> <span class="o">=</span> 
+
+    <span class="c1"># do the same for trees</span>
+    <span class="n">frac_tree</span> <span class="o">=</span> 
+    
+    <span class="c1"># return it!</span>
+    <span class="k">return</span> <span class="n">frac_empty</span><span class="p">,</span> <span class="n">frac_tree</span>
+</pre></div>
+</div>
+</div>
+</div>
+</div>
+<div class="section" id="putting-it-all-together">
+<h3>4.2 Putting it all together!<a class="headerlink" href="#putting-it-all-together" title="Permalink to this headline">¶</a></h3>
+<p>The following code takes all of the above functions and puts them in order along with some animation code so that you can see your fire spread. If your functions above were written correctly, this could should <em>just work</em>.</p>
+<p>In the code below, we are calling our advance board function at each step.</p>
+<div class="section" id="comment-the-code-to-indicate-that-you-know-what-its-doing">
+<h4>✅   <strong>Comment the code</strong> to indicate that you know what its doing!<a class="headerlink" href="#comment-the-code-to-indicate-that-you-know-what-its-doing" title="Permalink to this headline">¶</a></h4>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="c1"># </span>
+<span class="n">f_trees_start</span><span class="o">=</span><span class="mf">0.6</span>
+<span class="n">board_size</span> <span class="o">=</span> <span class="mi">50</span>
+
+<span class="c1">#</span>
+<span class="n">fig</span> <span class="o">=</span> <span class="n">plt</span><span class="o">.</span><span class="n">figure</span><span class="p">(</span><span class="n">figsize</span><span class="o">=</span><span class="p">(</span><span class="mi">10</span><span class="p">,</span><span class="mi">10</span><span class="p">))</span>
+
+<span class="c1"># </span>
+<span class="n">game_board</span> <span class="o">=</span> <span class="n">set_board</span><span class="p">(</span><span class="n">board_size</span><span class="o">=</span><span class="n">board_size</span><span class="p">,</span> <span class="n">f_trees_start</span><span class="o">=</span><span class="n">f_trees_start</span><span class="p">)</span>
+
+<span class="c1"># </span>
+<span class="n">plotgrid</span><span class="p">(</span><span class="n">game_board</span><span class="p">)</span>
+
+<span class="c1"># </span>
+<span class="n">on_fire</span> <span class="o">=</span> <span class="kc">True</span>
+
+<span class="c1"># </span>
+<span class="k">while</span> <span class="n">on_fire</span> <span class="o">==</span> <span class="kc">True</span><span class="p">:</span>
+
+    <span class="c1"># </span>
+    <span class="n">game_board</span> <span class="o">=</span> <span class="n">advance_board</span><span class="p">(</span><span class="n">game_board</span><span class="p">)</span>
+    
+    <span class="c1"># </span>
+    <span class="n">plotgrid</span><span class="p">(</span><span class="n">game_board</span><span class="p">)</span>
+    <span class="n">time</span><span class="o">.</span><span class="n">sleep</span><span class="p">(</span><span class="mf">0.01</span><span class="p">)</span>  <span class="c1"># </span>
+    <span class="n">clear_output</span><span class="p">(</span><span class="n">wait</span><span class="o">=</span><span class="kc">True</span><span class="p">)</span>
+    <span class="n">display</span><span class="p">(</span><span class="n">fig</span><span class="p">)</span>
+    <span class="n">fig</span><span class="o">.</span><span class="n">clear</span><span class="p">()</span>
+
+    <span class="c1"># </span>
+    <span class="n">frac_empty</span><span class="p">,</span> <span class="n">frac_trees</span> <span class="o">=</span> <span class="n">calc_stats</span><span class="p">(</span><span class="n">game_board</span><span class="p">)</span>
+
+    <span class="c1"># </span>
+    <span class="k">if</span> <span class="n">frac_empty</span> <span class="o">+</span> <span class="n">frac_trees</span> <span class="o">==</span> <span class="mf">1.0</span><span class="p">:</span>
+        <span class="n">on_fire</span> <span class="o">=</span> <span class="kc">False</span>
+
+<span class="c1"># </span>
+<span class="n">plt</span><span class="o">.</span><span class="n">close</span><span class="p">()</span>               
+</pre></div>
+</div>
+</div>
+</div>
+<p>✅  <strong>Task:</strong> Run the model for a few values of <span class="math notranslate nohighlight">\(f_\text{trees_start}\)</span>; say, 0.25, 0.5, 0.75, and 1.0. Do you notice any differences in the behavior of the model as you change <span class="math notranslate nohighlight">\(f_\text{trees_start}\)</span>? Put down your answer in the cell below.</p>
+<p><font size="+3">✎</font> <em>Put your answer here</em></p>
+</div>
+</div>
+<div class="section" id="part-5-the-tipping-point">
+<h3>Part 5: The tipping point<a class="headerlink" href="#part-5-the-tipping-point" title="Permalink to this headline">¶</a></h3>
+<div class="section" id="what-is-a-tipping-point">
+<h4><strong>What is a “tipping point”?</strong><a class="headerlink" href="#what-is-a-tipping-point" title="Permalink to this headline">¶</a></h4>
+<p>This model also demonstrates the concept of a “critical threshold” or a <strong>“tipping point”</strong>.  This is a phenomenon that occurs <strong>when a small change in an input parameter results in a large change in outcome</strong>.  This is a phenomenon that shows up in both simple and complex models and happens in such varied circumstances as forest fires, the spread of disease in populations, and the transfer of information within a population.</p>
+</div>
+<div class="section" id="finding-the-tipping-point">
+<h4><strong>Finding the “tipping point”</strong><a class="headerlink" href="#finding-the-tipping-point" title="Permalink to this headline">¶</a></h4>
+<p>In order to find the tipping point, i.e. the point at which the fire spreads much more substantially, we want to loop over many values of <span class="math notranslate nohighlight">\(f_\text{trees_start}\)</span> (say, values from 0.01 to 1.0, in steps of 0.01) and run the model many times.  If we keep track of the fraction of cells that are burned for each starting condition, we can show how <span class="math notranslate nohighlight">\(f_\text{burned}\)</span> and <span class="math notranslate nohighlight">\(f_\text{trees_start}\)</span> relate to each other.</p>
+<p>The fraction of burned cells, <span class="math notranslate nohighlight">\(f_\text{burned}\)</span>, is just the difference between the fraction of cells that were initially trees and the fraction of cells that are trees at the end of the model; in other words,</p>
+<p><span class="math notranslate nohighlight">\(f_\text{burned} = f_\text{trees_start} - f_\text{trees_end}\)</span></p>
+<p>Your plot should look something like this:</p>
+<p><img alt="Reference figure" src="https://github.com/msu-cmse-courses/cmse201-F21-data/blob/main/Day-18/tipping_point.png?raw=true" /></p>
+<p>✅  <strong>5.1 The code below is incomplete, fill in the “___” spots with code to make a plot to observe where the tipping point occurs.</strong></p>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">board_size</span> <span class="o">=</span> <span class="mi">50</span>
+
+<span class="n">f_tree</span> <span class="o">=</span> <span class="p">[]</span>
+<span class="n">f_burned</span> <span class="o">=</span> <span class="p">[]</span>
+
+<span class="c1"># Complete this line</span>
+<span class="k">for</span> <span class="n">tree_fraction</span> <span class="ow">in</span> <span class="n">____</span>
+    
+    <span class="c1"># Complete this line</span>
+    <span class="n">game_board</span> <span class="o">=</span> <span class="n">____</span>
+
+    <span class="n">on_fire</span> <span class="o">=</span> <span class="kc">True</span>
+    <span class="k">while</span> <span class="n">on_fire</span> <span class="o">==</span> <span class="kc">True</span><span class="p">:</span>
+        <span class="c1"># Complete this line</span>
+        <span class="n">game_board</span> <span class="o">=</span> <span class="n">____</span>
+        
+        <span class="c1"># Complete this line</span>
+        <span class="n">frac_empty</span><span class="p">,</span> <span class="n">frac_trees</span> <span class="o">=</span> <span class="n">____</span>
+        <span class="k">if</span> <span class="n">frac_empty</span> <span class="o">+</span> <span class="n">frac_trees</span> <span class="o">==</span> <span class="mf">1.0</span><span class="p">:</span>
+            <span class="c1"># Complete this line</span>
+            <span class="n">on_fire</span> <span class="o">=</span> <span class="n">____</span>
+            
+    <span class="c1"># Complete this line</span>
+    <span class="n">f_tree</span><span class="o">.</span><span class="n">append</span><span class="p">(</span><span class="n">____</span><span class="p">)</span>
+    <span class="n">f_burned</span><span class="o">.</span><span class="n">append</span><span class="p">(</span><span class="n">frac_empty</span> <span class="o">-</span> <span class="p">(</span><span class="mf">1.0</span><span class="o">-</span><span class="n">tree_fraction</span><span class="p">))</span>
+    
+    
+<span class="n">plt</span><span class="o">.</span><span class="n">plot</span><span class="p">(</span><span class="n">f_tree</span><span class="p">,</span> <span class="n">f_burned</span><span class="p">)</span>
+<span class="n">plt</span><span class="o">.</span><span class="n">xlabel</span><span class="p">(</span><span class="s2">&quot;tree fraction&quot;</span><span class="p">)</span>
+<span class="n">plt</span><span class="o">.</span><span class="n">ylabel</span><span class="p">(</span><span class="s2">&quot;burned fraction (normalized)&quot;</span><span class="p">)</span>
+</pre></div>
+</div>
+</div>
+</div>
+</div>
+<div class="section" id="follow-up-task">
+<h4>✅  Follow up task:<a class="headerlink" href="#follow-up-task" title="Permalink to this headline">¶</a></h4>
+<p>Describe the model’s behavior.  Do you observe a “tipping point” in <span class="math notranslate nohighlight">\(f_\text{burned}\)</span>? That is, is there an abrupt change in behavior in <span class="math notranslate nohighlight">\(f_\text{burned}\)</span> as you increase <span class="math notranslate nohighlight">\(f_\text{trees_start}\)</span>?  Does it agree with what you saw when you were experimenting with the NetLogo model?</p>
+<p><font size="+3">✎</font> <em>Put your answer here</em></p>
+</div>
+<div class="section" id="id1">
+<h4>✅  Follow up task:<a class="headerlink" href="#id1" title="Permalink to this headline">¶</a></h4>
+<p>Now that you have completed the forest fire model, how would you describe the process to someone who has did not complete this activity? What steps are required to set up the model? How does the forest fire move? What did you learn about the tipping point?</p>
+<p><strong>Make sure to also chat about this with an instructor about this.</strong></p>
+<p><font size="+3">✎</font> <em>Put your answer here</em></p>
+</div>
+</div>
+<hr class="docutils" />
+<div class="section" id="part-6-exploring-new-initial-conditions">
+<h3>Part 6: Exploring new initial conditions<a class="headerlink" href="#part-6-exploring-new-initial-conditions" title="Permalink to this headline">¶</a></h3>
+<p>So far, we have been setting up fire from the left edge of the forest. Now, we are going to observe how the model changes if we start the fire in a different place.</p>
+<p>For example, <strong>set the fire in a single square in the middle of the forest and examine the tipping point.</strong> Does this change where the tipping point occurs? Copy and modify the code and also put down your observations in a Markdown cell below.</p>
+<p>Repeat this analysis for multiple other starting points for the fire. Get creative! Have fun!</p>
+<p><font size="+3">✎</font> <em>Put your analysis here</em></p>
+</div>
+</div>
+<hr class="docutils" />
+<div class="section" id="time-permitting">
+<h2>Time Permitting<a class="headerlink" href="#time-permitting" title="Permalink to this headline">¶</a></h2>
+<p>If you have time left in class, brainstorm with your group (and Google) what agent-based models may be good for (other than forest fires). For those examples, discuss what aspects would be similar to the forest fire and what would be different. What would your initial conditions look like? How would you expect the model to run? What initial thoughts do you have about the tipping point?</p>
+<p>Discuss with your group and write down your thoughts in a Markdown cell below.</p>
+<p><font size="+3">✎</font> <em>Put your answer here</em></p>
+</div>
+<hr class="docutils" />
+<div class="section" id="congratulations-you-re-done">
+<h2>Congratulations, you’re done!<a class="headerlink" href="#congratulations-you-re-done" title="Permalink to this headline">¶</a></h2>
+<p>Submit this assignment by uploading your notebook and the pictures of your model planning session to the course Desire2Learn web page.  Go to the “In-Class Assignments” folder, find the appropriate submission link, and upload everything there. Make sure your name is on it!</p>
+<p>© Copyright 2018,  Michigan State University Board of Trustees</p>
+</div>
+</div>
+
+    <script type="text/x-thebe-config">
+    {
+        requestKernel: true,
+        binderOptions: {
+            repo: "binder-examples/jupyter-stacks-datascience",
+            ref: "master",
+        },
+        codeMirrorConfig: {
+            theme: "abcdef",
+            mode: "python"
+        },
+        kernelOptions: {
+            kernelName: "python3",
+            path: "./Day-19"
+        },
+        predefinedOutput: true
+    }
+    </script>
+    <script>kernelName = 'python3'</script>
+
+              </div>
+              
+        
+            
+
+
+
+<div class='prev-next-bottom'>
+    
+    <div id="prev">
+        <a class="left-prev" href="Day-19_Pre-Class_ABMForestFire_Part2-STUDENT.html" title="previous page">
+            <i class="prevnext-label fas fa-angle-left"></i>
+            <div class="prevnext-info">
+                <p class="prevnext-label">previous</p>
+                <p class="prevnext-title">Day 19 Pre-class: Agent-based models and forest fires, Part 2</p>
+            </div>
+        </a>
+    </div>
+     <div id="next">
+        <a class="right-next" href="../Day-20/Day-20_Pre-Class_RandomNumbers-STUDENT.html" title="next page">
+            <div class="prevnext-info">
+                <p class="prevnext-label">next</p>
+                <p class="prevnext-title">Day 20 Pre-Class Assignment: Random Numbers</p>
+            </div>
+            <i class="prevnext-label fas fa-angle-right"></i>
+        </a>
+     </div>
+
+</div>
+        
+        </div>
+    </div>
+    <footer class="footer mt-5 mt-md-0">
+    <div class="container">
+      <p>
+        
+          By MSU CMSE<br/>
+        
+            &copy; Copyright 2021.<br/>
+      </p>
+    </div>
+  </footer>
+</main>
+
+
+      </div>
+    </div>
+  
+  <script src="../_static/js/index.1c5a1a01449ed65a7b51.js"></script>
+
+  
+  </body>
+</html>

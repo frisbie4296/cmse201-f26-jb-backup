@@ -1,0 +1,790 @@
+
+<!DOCTYPE html>
+
+
+<html lang="en" data-content_root="../" >
+
+  <head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" /><meta name="viewport" content="width=device-width, initial-scale=1" />
+
+    <title>Day 4 Pre-class Assignment: Introduction to Data Ethics: Data and Algorithmic Bias &#8212; CMSE 201</title>
+  
+  
+  
+  <script data-cfasync="false">
+    document.documentElement.dataset.mode = localStorage.getItem("mode") || "";
+    document.documentElement.dataset.theme = localStorage.getItem("theme") || "";
+  </script>
+  
+  <!-- Loaded before other Sphinx assets -->
+  <link href="../_static/styles/theme.css?digest=3ee479438cf8b5e0d341" rel="stylesheet" />
+<link href="../_static/styles/bootstrap.css?digest=3ee479438cf8b5e0d341" rel="stylesheet" />
+<link href="../_static/styles/pydata-sphinx-theme.css?digest=3ee479438cf8b5e0d341" rel="stylesheet" />
+
+  
+  <link href="../_static/vendor/fontawesome/6.5.2/css/all.min.css?digest=3ee479438cf8b5e0d341" rel="stylesheet" />
+  <link rel="preload" as="font" type="font/woff2" crossorigin href="../_static/vendor/fontawesome/6.5.2/webfonts/fa-solid-900.woff2" />
+<link rel="preload" as="font" type="font/woff2" crossorigin href="../_static/vendor/fontawesome/6.5.2/webfonts/fa-brands-400.woff2" />
+<link rel="preload" as="font" type="font/woff2" crossorigin href="../_static/vendor/fontawesome/6.5.2/webfonts/fa-regular-400.woff2" />
+
+    <link rel="stylesheet" type="text/css" href="../_static/pygments.css?v=fa44fd50" />
+    <link rel="stylesheet" type="text/css" href="../_static/styles/sphinx-book-theme.css?v=384b581d" />
+    <link rel="stylesheet" type="text/css" href="../_static/togglebutton.css?v=13237357" />
+    <link rel="stylesheet" type="text/css" href="../_static/copybutton.css?v=76b2166b" />
+    <link rel="stylesheet" type="text/css" href="../_static/mystnb.4510f1fc1dee50b3e5859aac5469c37c29e427902b24a333a5f9fcb2f0b3ac41.css?v=be8a1c11" />
+    <link rel="stylesheet" type="text/css" href="../_static/sphinx-thebe.css?v=4fa983c6" />
+    <link rel="stylesheet" type="text/css" href="../_static/sphinx-design.min.css?v=87e54e7c" />
+  
+  <!-- Pre-loaded scripts that we'll load fully later -->
+  <link rel="preload" as="script" href="../_static/scripts/bootstrap.js?digest=3ee479438cf8b5e0d341" />
+<link rel="preload" as="script" href="../_static/scripts/pydata-sphinx-theme.js?digest=3ee479438cf8b5e0d341" />
+  <script src="../_static/vendor/fontawesome/6.5.2/js/all.min.js?digest=3ee479438cf8b5e0d341"></script>
+
+    <script src="../_static/documentation_options.js?v=9eb32ce0"></script>
+    <script src="../_static/doctools.js?v=9a2dae69"></script>
+    <script src="../_static/sphinx_highlight.js?v=dc90522c"></script>
+    <script src="../_static/clipboard.min.js?v=a7894cd8"></script>
+    <script src="../_static/copybutton.js?v=f281be69"></script>
+    <script src="../_static/scripts/sphinx-book-theme.js?v=efea14e4"></script>
+    <script>let toggleHintShow = 'Click to show';</script>
+    <script>let toggleHintHide = 'Click to hide';</script>
+    <script>let toggleOpenOnPrint = 'true';</script>
+    <script src="../_static/togglebutton.js?v=4a39c7ea"></script>
+    <script>var togglebuttonSelector = '.toggle, .admonition.dropdown';</script>
+    <script src="../_static/design-tabs.js?v=36754332"></script>
+    <script>const THEBE_JS_URL = "https://unpkg.com/thebe@0.8.2/lib/index.js"; const thebe_selector = ".thebe,.cell"; const thebe_selector_input = "pre"; const thebe_selector_output = ".output, .cell_output"</script>
+    <script async="async" src="../_static/sphinx-thebe.js?v=c100c467"></script>
+    <script>var togglebuttonSelector = '.toggle, .admonition.dropdown';</script>
+    <script>const THEBE_JS_URL = "https://unpkg.com/thebe@0.8.2/lib/index.js"; const thebe_selector = ".thebe,.cell"; const thebe_selector_input = "pre"; const thebe_selector_output = ".output, .cell_output"</script>
+    <script>DOCUMENTATION_OPTIONS.pagename = 'Day-04/Day_04_PreClass_DataAlgorithmicBias-STUDENT';</script>
+    <link rel="icon" href="../_static/cmse_fav.ico"/>
+    <link rel="index" title="Index" href="../genindex.html" />
+    <link rel="search" title="Search" href="../search.html" />
+    <link rel="prev" title="Day 3 In-class Assignment: The power of compound interest" href="../Day-03/Day-03_In-Class_ListsLoopsAndSaving-STUDENT.html" />
+  <meta name="viewport" content="width=device-width, initial-scale=1"/>
+  <meta name="docsearch:language" content="en"/>
+  </head>
+  
+  
+  <body data-bs-spy="scroll" data-bs-target=".bd-toc-nav" data-offset="180" data-bs-root-margin="0px 0px -60%" data-default-mode="">
+
+  
+  
+  <div id="pst-skip-link" class="skip-link d-print-none"><a href="#main-content">Skip to main content</a></div>
+  
+  <div id="pst-scroll-pixel-helper"></div>
+  
+  <button type="button" class="btn rounded-pill" id="pst-back-to-top">
+    <i class="fa-solid fa-arrow-up"></i>Back to top</button>
+
+  
+  <input type="checkbox"
+          class="sidebar-toggle"
+          id="pst-primary-sidebar-checkbox"/>
+  <label class="overlay overlay-primary" for="pst-primary-sidebar-checkbox"></label>
+  
+  <input type="checkbox"
+          class="sidebar-toggle"
+          id="pst-secondary-sidebar-checkbox"/>
+  <label class="overlay overlay-secondary" for="pst-secondary-sidebar-checkbox"></label>
+  
+  <div class="search-button__wrapper">
+    <div class="search-button__overlay"></div>
+    <div class="search-button__search-container">
+<form class="bd-search d-flex align-items-center"
+      action="../search.html"
+      method="get">
+  <i class="fa-solid fa-magnifying-glass"></i>
+  <input type="search"
+         class="form-control"
+         name="q"
+         id="search-input"
+         placeholder="Search..."
+         aria-label="Search..."
+         autocomplete="off"
+         autocorrect="off"
+         autocapitalize="off"
+         spellcheck="false"/>
+  <span class="search-button__kbd-shortcut"><kbd class="kbd-shortcut__modifier">Ctrl</kbd>+<kbd>K</kbd></span>
+</form></div>
+  </div>
+
+  <div class="pst-async-banner-revealer d-none">
+  <aside id="bd-header-version-warning" class="d-none d-print-none" aria-label="Version warning"></aside>
+</div>
+
+  
+    <header class="bd-header navbar navbar-expand-lg bd-navbar d-print-none">
+    </header>
+  
+
+  <div class="bd-container">
+    <div class="bd-container__inner bd-page-width">
+      
+      
+      
+      <div class="bd-sidebar-primary bd-sidebar">
+        
+
+  
+  <div class="sidebar-header-items sidebar-primary__section">
+    
+    
+    
+    
+  </div>
+  
+    <div class="sidebar-primary-items__start sidebar-primary__section">
+        <div class="sidebar-primary-item">
+
+  
+
+<a class="navbar-brand logo" href="../intro.html">
+  
+  
+  
+  
+  
+    
+    
+      
+    
+    
+    <img src="../_static/logo.png" class="logo__image only-light" alt="CMSE 201 - Home"/>
+    <script>document.write(`<img src="../_static/logo.png" class="logo__image only-dark" alt="CMSE 201 - Home"/>`);</script>
+  
+  
+</a></div>
+        <div class="sidebar-primary-item">
+
+ <script>
+ document.write(`
+   <button class="btn navbar-btn search-button-field search-button__button" title="Search" aria-label="Search" data-bs-placement="bottom" data-bs-toggle="tooltip">
+    <i class="fa-solid fa-magnifying-glass"></i>
+    <span class="search-button__default-text">Search</span>
+    <span class="search-button__kbd-shortcut"><kbd class="kbd-shortcut__modifier">Ctrl</kbd>+<kbd class="kbd-shortcut__modifier">K</kbd></span>
+   </button>
+ `);
+ </script></div>
+        <div class="sidebar-primary-item"><nav class="bd-links bd-docs-nav" aria-label="Main">
+    <div class="bd-toc-item navbar-nav active">
+        <p aria-level="2" class="caption" role="heading"><span class="caption-text">Course Materials</span></p>
+<ul class="nav bd-sidenav">
+<li class="toctree-l1 has-children"><a class="reference internal" href="../Course_Materials-201/CourseDocuments.html">Important Course information</a><details><summary><span class="toctree-toggle" role="presentation"><i class="fa-solid fa-chevron-down"></i></span></summary><ul>
+<li class="toctree-l2"><a class="reference internal" href="../Course_Materials-201/CMSE201-Syllabus.html">Syllabus</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../Course_Materials-201/CMSE201-Schedule.html">Course Schedule</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../Course_Materials-201/SoftwareSetupGuide.html">Software Setup Guide</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../Course_Materials-201/classroom_participation.html">Classroom Participation</a></li>
+</ul>
+</details></li>
+</ul>
+<p aria-level="2" class="caption" role="heading"><span class="caption-text">Day 01</span></p>
+<ul class="nav bd-sidenav">
+<li class="toctree-l1"><a class="reference internal" href="../Day-01/Day-01_In-Class_SortingAlgorithm-STUDENT.html">Day 1 In-Class Assignment: Introductions and Sorting Algorithms</a></li>
+
+
+
+</ul>
+<p aria-level="2" class="caption" role="heading"><span class="caption-text">Day 02</span></p>
+<ul class="nav bd-sidenav">
+<li class="toctree-l1"><a class="reference internal" href="../Day-02/Day-02_Pre-Class_IntroToPython-STUDENT.html">Day 2 Pre-class Assignment: Intro to Python</a></li>
+
+
+
+<li class="toctree-l1"><a class="reference internal" href="../Day-02/Day-02_In-Class_OrderOfMagnitudeModeling-STUDENT.html">Day 2 In-class Assignment: Order of Magnitude Modeling</a></li>
+
+
+</ul>
+<p aria-level="2" class="caption" role="heading"><span class="caption-text">Day 03</span></p>
+<ul class="nav bd-sidenav">
+<li class="toctree-l1"><a class="reference internal" href="../Day-03/Day-03_Pre-Class_ListsAndLoops-STUDENT.html">Day 3: Pre-Class Assignment: Lists and Loops</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../Day-03/Day-03_In-Class_ListsLoopsAndSaving-STUDENT.html">Day 3 In-class Assignment: The power of compound interest</a></li>
+</ul>
+<p aria-level="2" class="caption" role="heading"><span class="caption-text">Day 04</span></p>
+<ul class="current nav bd-sidenav">
+<li class="toctree-l1 current active"><a class="current reference internal" href="#">Day 4 Pre-class Assignment: Introduction to Data Ethics: Data and Algorithmic Bias</a></li>
+
+
+
+
+
+</ul>
+
+    </div>
+</nav></div>
+    </div>
+  
+  
+  <div class="sidebar-primary-items__end sidebar-primary__section">
+  </div>
+  
+  <div id="rtd-footer-container"></div>
+
+
+      </div>
+      
+      <main id="main-content" class="bd-main" role="main">
+        
+        
+
+<div class="sbt-scroll-pixel-helper"></div>
+
+          <div class="bd-content">
+            <div class="bd-article-container">
+              
+              <div class="bd-header-article d-print-none">
+<div class="header-article-items header-article__inner">
+  
+    <div class="header-article-items__start">
+      
+        <div class="header-article-item"><label class="sidebar-toggle primary-toggle btn btn-sm" for="__primary" title="Toggle primary sidebar" data-bs-placement="bottom" data-bs-toggle="tooltip">
+  <span class="fa-solid fa-bars"></span>
+</label></div>
+      
+    </div>
+  
+  
+    <div class="header-article-items__end">
+      
+        <div class="header-article-item">
+
+<div class="article-header-buttons">
+
+
+
+
+
+<div class="dropdown dropdown-download-buttons">
+  <button class="btn dropdown-toggle" type="button" data-bs-toggle="dropdown" aria-expanded="false" aria-label="Download this page">
+    <i class="fas fa-download"></i>
+  </button>
+  <ul class="dropdown-menu">
+      
+      
+      
+      <li><a href="../_sources/Day-04/Day_04_PreClass_DataAlgorithmicBias-STUDENT.ipynb" target="_blank"
+   class="btn btn-sm btn-download-source-button dropdown-item"
+   title="Download source file"
+   data-bs-placement="left" data-bs-toggle="tooltip"
+>
+  
+
+<span class="btn__icon-container">
+  <i class="fas fa-file"></i>
+  </span>
+<span class="btn__text-container">.ipynb</span>
+</a>
+</li>
+      
+      
+      
+      
+      <li>
+<button onclick="window.print()"
+  class="btn btn-sm btn-download-pdf-button dropdown-item"
+  title="Print to PDF"
+  data-bs-placement="left" data-bs-toggle="tooltip"
+>
+  
+
+<span class="btn__icon-container">
+  <i class="fas fa-file-pdf"></i>
+  </span>
+<span class="btn__text-container">.pdf</span>
+</button>
+</li>
+      
+  </ul>
+</div>
+
+
+
+
+<button onclick="toggleFullScreen()"
+  class="btn btn-sm btn-fullscreen-button"
+  title="Fullscreen mode"
+  data-bs-placement="bottom" data-bs-toggle="tooltip"
+>
+  
+
+<span class="btn__icon-container">
+  <i class="fas fa-expand"></i>
+  </span>
+
+</button>
+
+
+
+<script>
+document.write(`
+  <button class="btn btn-sm navbar-btn theme-switch-button" title="light/dark" aria-label="light/dark" data-bs-placement="bottom" data-bs-toggle="tooltip">
+    <span class="theme-switch nav-link" data-mode="light"><i class="fa-solid fa-sun fa-lg"></i></span>
+    <span class="theme-switch nav-link" data-mode="dark"><i class="fa-solid fa-moon fa-lg"></i></span>
+    <span class="theme-switch nav-link" data-mode="auto"><i class="fa-solid fa-circle-half-stroke fa-lg"></i></span>
+  </button>
+`);
+</script>
+
+
+<script>
+document.write(`
+  <button class="btn btn-sm navbar-btn search-button search-button__button" title="Search" aria-label="Search" data-bs-placement="bottom" data-bs-toggle="tooltip">
+    <i class="fa-solid fa-magnifying-glass fa-lg"></i>
+  </button>
+`);
+</script>
+<label class="sidebar-toggle secondary-toggle btn btn-sm" for="__secondary"title="Toggle secondary sidebar" data-bs-placement="bottom" data-bs-toggle="tooltip">
+    <span class="fa-solid fa-list"></span>
+</label>
+</div></div>
+      
+    </div>
+  
+</div>
+</div>
+              
+              
+
+<div id="jb-print-docs-body" class="onlyprint">
+    <h1>Day 4 Pre-class Assignment: Introduction to Data Ethics: Data and Algorithmic Bias</h1>
+    <!-- Table of contents -->
+    <div id="print-main-content">
+        <div id="jb-print-toc">
+            
+            <div>
+                <h2> Contents </h2>
+            </div>
+            <nav aria-label="Page">
+                <ul class="visible nav section-nav flex-column">
+<li class="toc-h1 nav-item toc-entry"><a class="reference internal nav-link" href="#">Day 4 Pre-class Assignment: Introduction to Data Ethics: Data and Algorithmic Bias</a><ul class="visible nav section-nav flex-column">
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#put-your-name-here">✅ Put your name here</a></li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#goals-for-today-s-assignment">Goals for today’s assignment</a></li>
+</ul>
+</li>
+<li class="toc-h1 nav-item toc-entry"><a class="reference internal nav-link" href="#introduction">1. Introduction</a></li>
+<li class="toc-h1 nav-item toc-entry"><a class="reference internal nav-link" href="#what-is-data-bias">2. What is data bias?</a></li>
+<li class="toc-h1 nav-item toc-entry"><a class="reference internal nav-link" href="#data-bias-and-algorithmic-bias-in-the-real-world">3. Data Bias and Algorithmic Bias in the Real World</a></li>
+<li class="toc-h1 nav-item toc-entry"><a class="reference internal nav-link" href="#craft-your-personal-academic-integrity-statement">4. Craft Your Personal Academic Integrity Statement</a></li>
+<li class="toc-h1 nav-item toc-entry"><a class="reference internal nav-link" href="#more-practice-with-variables-lists-and-loops">5. More Practice With Variables, Lists, and Loops</a><ul class="visible nav section-nav flex-column">
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#not-required-but-could-be-useful-for-building-your-skills-and-providing-additional-preparation-for-class">(Not required, but could be useful for building your skills and providing additional preparation for class)</a></li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#variables">5.1 Variables</a></li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#lists">5.2 Lists</a></li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#loops">5.3 Loops</a></li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#follow-up-questions">Follow-up Questions</a></li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#assignment-wrap-up">Assignment wrap-up</a><ul class="nav section-nav flex-column">
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#congratulations-you-re-done">Congratulations, you’re done!</a></li>
+</ul>
+</li>
+</ul>
+</li>
+</ul>
+
+            </nav>
+        </div>
+    </div>
+</div>
+
+              
+                
+<div id="searchbox"></div>
+                <article class="bd-article">
+                  
+  <section class="tex2jax_ignore mathjax_ignore" id="day-4-pre-class-assignment-introduction-to-data-ethics-data-and-algorithmic-bias">
+<h1>Day 4 Pre-class Assignment: Introduction to Data Ethics: Data and Algorithmic Bias<a class="headerlink" href="#day-4-pre-class-assignment-introduction-to-data-ethics-data-and-algorithmic-bias" title="Link to this heading">#</a></h1>
+<section id="put-your-name-here">
+<h2>✅ Put your name here<a class="headerlink" href="#put-your-name-here" title="Link to this heading">#</a></h2>
+</section>
+<section id="goals-for-today-s-assignment">
+<h2>Goals for today’s assignment<a class="headerlink" href="#goals-for-today-s-assignment" title="Link to this heading">#</a></h2>
+<p>By the end of this assignment, you should be able to:</p>
+<ul class="simple">
+<li><p>Identify how bias occurs in data and algorithms</p></li>
+<li><p>Understand the impact data and algorithmic bias has on people</p></li>
+<li><p>Apply practices to look for and minimize bias in your work and others</p></li>
+<li><p>Construct your personal academic integrity statement</p></li>
+<li><p>Practice with lists and loops</p></li>
+</ul>
+</section>
+</section>
+<section class="tex2jax_ignore mathjax_ignore" id="introduction">
+<h1>1. Introduction<a class="headerlink" href="#introduction" title="Link to this heading">#</a></h1>
+<p>Data and algorithms are everywhere, and we encounter them everyday. Streaming services use the information you’ve provided on previous shows and movies you’ve watched to give more accurate recommendations. Advertisements are customized to us based on our search histories. As students dealing with data and constructing your own algorithms, you’ll have even more involvement in these processes.</p>
+<p>✅  <strong>Question</strong>:</p>
+<p><strong>Give an example when you’ve interacted with data or algorithms outside of this class:</strong></p>
+<p>✎ <em>Write your response here</em></p>
+<p>We give a lot of power to data and algorithms. Perhaps you’ve heard someone say, “look at the data/numbers,” or “it’s just fact.” Data-driven and evidence-based thinking is a very important skill that can lead to well-informed, insightful decisions. However, we must also recognize limitations data may have.</p>
+<p>While using data, it is important to ask ourselves:</p>
+<ol class="arabic simple">
+<li><p><strong>Who collected this data, and do they have a motivation to highlight a certain perspective?</strong></p></li>
+</ol>
+<ul class="simple">
+<li><p>This is similar to watching the news- each network has it’s own bias and leanings. Several news channels might tell the same news story very differently. It is our job to tease out the most complete story we can. Data is not neutral.</p></li>
+</ul>
+<ol class="arabic simple" start="2">
+<li><p><strong>Who/What does this data exclude?</strong></p></li>
+</ol>
+<ul class="simple">
+<li><p>Often times people who have been historically marginalized find themselves erased in data. For example, in data that includes race, indigenous people may find themselves grouped in the “others” category, and data including gender may not take into account those who do not identify as male or female. In dealing with human data, it is important to remember that it cannot fully capture the complexity of the people a dataset includes. Especially with sensitive data, the trauma and full stories are missing, so understanding context is vital.</p></li>
+</ul>
+</section>
+<section class="tex2jax_ignore mathjax_ignore" id="what-is-data-bias">
+<h1>2. What is data bias?<a class="headerlink" href="#what-is-data-bias" title="Link to this heading">#</a></h1>
+<img src="https://images.prismic.io/sketchplanations/f2fdb7cb-f126-4897-ad78-4fd11c743172_SP+723+-+Sampling+bias.png?auto=format&ixlib=react-9.0.3&h=1887.6833845104059&w=1600&q=50&dpr=2" width=325px>
+<p>Image from: <a class="reference external" href="https://sketchplanations.com/sampling-bias">https://sketchplanations.com/sampling-bias</a></p>
+<p>Bias is defined to be “<em>prejudice in favor of or against one thing, person, or group compared with another, usually in a way considered to be unfair.</em>” Data bias occurs when parts of a dataset are overemphasized, underemphasized, or are completely nonexistent.</p>
+<hr class="docutils" />
+<p>✅ <strong>Task</strong>:</p>
+<p><strong>Read the article at <a class="reference external" href="https://www.ibm.com/think/topics/data-bias">this link</a> that highlights different types of data bias</strong>. While this is discussing machine learning, it is applicable to anyone collecting, using, and visualizing data. Don’t be discouraged if you are unclear about machine learning.</p>
+<p>✅  <strong>Question</strong>:</p>
+<p><strong>How has (data) bias affected you? This does not have to include you doing data science, but in your everyday life as a person, consumer, fan, etc. Give an example.</strong></p>
+<p>✎ <em>Write your response here</em></p>
+<p><strong>Data bias can lead to well intentioned algorithms outputting biased results. When those results and biased data are used in the algorithm, it perpetuates a cycle of bias.</strong></p>
+</section>
+<section class="tex2jax_ignore mathjax_ignore" id="data-bias-and-algorithmic-bias-in-the-real-world">
+<h1>3. Data Bias and Algorithmic Bias in the Real World<a class="headerlink" href="#data-bias-and-algorithmic-bias-in-the-real-world" title="Link to this heading">#</a></h1>
+<img src="https://beeckcenter.georgetown.edu/wp-content/uploads/2022/03/Getting-to-the-Root-1024x662.png" width=700px>
+<p>source: <a class="reference external" href="https://beeckcenter.georgetown.edu/foundation-of-a-successful-data-project-identify-and-mitigating-bias/">https://beeckcenter.georgetown.edu/foundation-of-a-successful-data-project-identify-and-mitigating-bias/</a></p>
+<p>✅ <strong>Task</strong>:</p>
+<p><strong>Watch the videos below and answer the reflection questions after each video.</strong></p>
+<p><a class="reference external" href="https://www.youtube.com/watch?v=1z9KsNoAmFA&amp;amp;ab_channel=TEDxTalks">How Algorithms Spread Human Bias</a></p>
+<p>✅ <strong>Question</strong>:</p>
+<p><strong>Write a paragraph reflecting on the video. Be prepared to discuss these videos and your reflections in class. Consider answering the questions below, but you are not limited to them:</strong></p>
+<ol class="arabic simple">
+<li><p>Which example of data and algorithmic bias was most impactful and surprising to you? Why?</p></li>
+<li><p>If you were explaining this video to a friend who hadn’t watched it, what would you tell them? What are the major takeaways?</p></li>
+<li><p>Will this change how you engage with data and algorithms going forward? If so, why and how? If not, why not?</p></li>
+<li><p>What is something you can do to fight against bias in algorithms? Both as a user of algorithms, and someone who could help create algorithms in the future.</p></li>
+</ol>
+<p>✎ <em>Write your response here</em></p>
+<p><a class="reference external" href="https://www.youtube.com/watch?v=UG_X_7g63rY&amp;amp;ab_channel=TED">How I’m fighting bias in algorithms</a></p>
+<p>✅ <strong>Question</strong>:</p>
+<p><strong>Write a paragraph reflecting on the video. Be prepared to discuss these videos and your reflections in class. Consider answering the questions, but you are not limited to them:</strong></p>
+<ol class="arabic simple">
+<li><p>Have algorithms ever not worked as you imagined it was, or misrepresented you? If so, how? If not, what do you think your reaction would be?</p></li>
+<li><p>Why was Joy’s face not recognized by the software?</p></li>
+<li><p>What can you do to improve how you work with data and algorithms? How would you advise the larger data science community on improving their work by minimizing bias?</p></li>
+</ol>
+<p>✎ <em>Write your response here</em></p>
+</section>
+<hr class="docutils" />
+<section class="tex2jax_ignore mathjax_ignore" id="craft-your-personal-academic-integrity-statement">
+<h1>4. Craft Your Personal Academic Integrity Statement<a class="headerlink" href="#craft-your-personal-academic-integrity-statement" title="Link to this heading">#</a></h1>
+<p>After spending some time thinking about data and algorithm bias and some of the ethical implications of that bias, it’s worth spending sometime thinking about how you, personally, are going to approach your development as a user of data and computational tools, especially in the context of your work in this course.</p>
+<p>As you work to develop your computational skills and learn to write evermore complex code, you will like find yourself searching the internet for help. <strong>This is a completely authentic part of becoming a computational professional</strong>. However, <strong>it is important that you use the resources you find on the internet in transparent and honest ways</strong>. This includes being thoughtful about how to give credit to the code authors and websites you lean on when you need to figure out something new.</p>
+<p>Along these lines, the Spartan Code of Honor Academic Pledge was adopted by the <a class="reference external" href="http://asmsu.msu.edu/ASMSU">Associated Students
+of Michigan State University (ASMU)</a> on March 3, 2016, endorsed by Academic Governance on March 22, 2016, and recognized by the Provost, President, and Board of Trustees on April 15, 2016.   It is important for you to be aware of this pledge as it acknowledges some of our shared code of ethics as members of MSU.  Academic integrity is the foundation for university success and future success. Learning how to express original ideas, cite works, work independently, and report results accurately and honestly are skills that carry students beyond their academic career.</p>
+<hr class="docutils" />
+<p><strong>The Spartan Code of Honor Academic Pledge:</strong></p>
+<p><em>As a Spartan, I will strive to uphold values of the highest ethical standard. I will practice honesty in my work, foster honesty in my peers, and take pride in knowing that honor in ownership is worth more than grades. I will carry these values beyond my time as a student at Michigan State University, continuing the endeavor to build personal integrity in all that I do.</em></p>
+<hr class="docutils" />
+<p>✅  <strong>Activity</strong>: In the cell below, craft a personal statement of commitment to academic honesty and integrity. As part of this statement, address the following components:</p>
+<ol class="arabic simple">
+<li><p>Why is integrity important to you?</p></li>
+<li><p>What values motivate the work that you do?</p></li>
+<li><p>Commitment to conducting yourself with integrity</p></li>
+<li><p>Acknowledgement that you are aware of the MSU ethical standards for integrity</p></li>
+</ol>
+<p><strong>IMPORTANT:</strong> This personal integrity statement will be placed on all of your major homework and exams. (You will be asked to paste your statement into each assignment as an acknowledgement of your committment to ethical behavior).</p>
+<p>Your personal statement may share elements with those of your peers, but it should also, ideally, be unique to you. Try to make something that has personal meaning!</p>
+<hr class="docutils" />
+<p>✎ <em>Put your statement here</em></p>
+<p>I, <code class="docutils literal notranslate"><span class="pre">_________</span></code>, commit to <code class="docutils literal notranslate"><span class="pre">_______</span></code></p>
+<hr class="docutils" />
+<p>If you need a starting place, here is a sample personal statement:</p>
+<p><strong>Jordan Chen’s Integrity Pledge:</strong>
+<em>I, Jordan Chen, value the opportunity to receive a collegiate education.  Because of this value and the sacrifices of people who have made this possible for me, I commit to studying to the best of my ability, submitting work that is my own, and citing sources when I receive help.  I acknowledge I am aware of the Michigan State University policy concerning academic honesty, plagiarism, and cheating.</em></p>
+<p>Additionally, there are numerous examples of such statements on the <a class="reference external" href="https://www.google.com/search?client=firefox-b-1-d&amp;amp;q=personal+academic+integrity+statement">internet</a>. You may find them useful for inspiration.</p>
+</section>
+<hr class="docutils" />
+<section class="tex2jax_ignore mathjax_ignore" id="more-practice-with-variables-lists-and-loops">
+<h1>5. More Practice With Variables, Lists, and Loops<a class="headerlink" href="#more-practice-with-variables-lists-and-loops" title="Link to this heading">#</a></h1>
+<section id="not-required-but-could-be-useful-for-building-your-skills-and-providing-additional-preparation-for-class">
+<h2>(Not required, but could be useful for building your skills and providing additional preparation for class)<a class="headerlink" href="#not-required-but-could-be-useful-for-building-your-skills-and-providing-additional-preparation-for-class" title="Link to this heading">#</a></h2>
+<p>If you have some extra time and want some extra practice building on your new Python skills, we encourage you to work through the following examples and exercises. <strong>It is not required that you complete this section to get credit for this pre-class assignment.</strong> However, <strong>you will be writing more lists and loops in class for Day 4</strong>, so if you feel like you need to spend some time practicing this, you may wish to do so.</p>
+</section>
+<section id="variables">
+<h2>5.1 Variables<a class="headerlink" href="#variables" title="Link to this heading">#</a></h2>
+<p>Review the following code for examples of how variables can be defined, used, and manipulated.</p>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">int_var</span> <span class="o">=</span> <span class="mi">7</span>   <span class="c1"># Integer variable</span>
+<span class="n">float_var</span> <span class="o">=</span> <span class="mf">5.74</span>  <span class="c1"># floating point variable</span>
+<span class="n">str_var</span> <span class="o">=</span> <span class="s1">&#39;Lightning McQueen&#39;</span>  <span class="c1"># string variable</span>
+
+<span class="nb">print</span><span class="p">(</span><span class="s1">&#39;1:&#39;</span><span class="p">,</span> <span class="s1">&#39;An integer plus a float works in python:&#39;</span><span class="p">,</span><span class="n">int_var</span><span class="o">+</span><span class="n">float_var</span><span class="p">)</span>
+
+<span class="c1">#You can not do math with strings, but you can concatenate strings (if you turn your variables into strings first)</span>
+<span class="n">new_str_var</span> <span class="o">=</span> <span class="n">str_var</span> <span class="o">+</span><span class="s1">&#39; won &#39;</span><span class="o">+</span><span class="nb">str</span><span class="p">(</span><span class="n">int_var</span><span class="p">)</span><span class="o">+</span><span class="s1">&#39; Piston Cups.&#39;</span>
+<span class="nb">print</span><span class="p">(</span><span class="s1">&#39;2:&#39;</span><span class="p">,</span><span class="n">new_str_var</span><span class="p">)</span>
+
+<span class="c1"># or you can just use a print statement with commas to make meaningful debugging and result statements</span>
+<span class="nb">print</span><span class="p">(</span><span class="s1">&#39;3:&#39;</span><span class="p">,</span><span class="n">str_var</span><span class="p">,</span><span class="s1">&#39;was&#39;</span><span class="p">,</span><span class="n">float_var</span><span class="o">+</span><span class="n">int_var</span><span class="p">,</span><span class="s1">&#39;times better than any other race car.&#39;</span><span class="p">)</span>
+
+<span class="nb">print</span><span class="p">(</span><span class="s1">&#39;4: The value of int_var:&#39;</span><span class="p">,</span> <span class="n">int_var</span><span class="p">)</span>
+</pre></div>
+</div>
+</div>
+</div>
+<p>✅  <strong>5.1.1 Task</strong>: Write a print statement that concatenates all of the following strings to show the complete quote. Save the concatenated variables in a variable named <code class="docutils literal notranslate"><span class="pre">concat_var</span></code>.</p>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">q1</span> <span class="o">=</span> <span class="s1">&#39;This grumpy old race car I&#39;</span>
+<span class="n">q2</span> <span class="o">=</span> <span class="s1">&#39;know once told me something,&#39;</span>
+<span class="n">q3</span> <span class="o">=</span> <span class="s1">&#39;&quot;Itâs an empty cup.&quot;&#39;</span>
+<span class="n">q4</span> <span class="o">=</span> <span class="s1">&#39;-Lightning McQueen&#39;</span>
+</pre></div>
+</div>
+</div>
+</div>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="c1"># put your code here</span>
+</pre></div>
+</div>
+</div>
+</div>
+</section>
+<section id="lists">
+<h2>5.2 Lists<a class="headerlink" href="#lists" title="Link to this heading">#</a></h2>
+<p>A list stores a series of items in a particular order. You access items using an index, or with a <code class="docutils literal notranslate"><span class="pre">for</span></code> loop (ex: <code class="docutils literal notranslate"><span class="pre">for</span> <span class="pre">val</span> <span class="pre">in</span> <span class="pre">list:</span></code>)</p>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">list_ex</span> <span class="o">=</span> <span class="p">[]</span>   <span class="c1"># initialize an empty list</span>
+<span class="n">list_ex</span><span class="o">.</span><span class="n">append</span><span class="p">(</span><span class="s1">&#39;Lightning McQueen&#39;</span><span class="p">)</span>  <span class="c1"># append an item to a list</span>
+<span class="n">list_ex</span><span class="o">.</span><span class="n">append</span><span class="p">(</span><span class="s1">&#39;Doc Hudson&#39;</span><span class="p">)</span>
+<span class="n">list_ex</span><span class="o">.</span><span class="n">append</span><span class="p">(</span><span class="s1">&#39;Tow Mater&#39;</span><span class="p">)</span>
+<span class="n">list_ex</span><span class="o">.</span><span class="n">append</span><span class="p">(</span><span class="s1">&#39;Sally Carrera&#39;</span><span class="p">)</span>
+<span class="nb">print</span><span class="p">(</span><span class="s1">&#39;Print 1:&#39;</span><span class="p">,</span><span class="n">list_ex</span><span class="p">)</span>  <span class="c1"># print contents of variable or whole blist</span>
+<span class="n">list_ex</span><span class="o">.</span><span class="n">remove</span><span class="p">(</span><span class="s1">&#39;Tow Mater&#39;</span><span class="p">)</span>  <span class="c1"># remove specific entry from list, but only first entry with this value</span>
+<span class="nb">print</span><span class="p">(</span><span class="s1">&#39;Print 2:&#39;</span><span class="p">,</span><span class="n">list_ex</span><span class="p">)</span>  <span class="c1"># print contents of variable or list</span>
+<span class="n">list_ex</span><span class="o">.</span><span class="n">append</span><span class="p">(</span><span class="s1">&#39;Holly Shiftwell&#39;</span><span class="p">)</span>
+<span class="nb">print</span><span class="p">(</span><span class="s1">&#39;Print 3:&#39;</span><span class="p">,</span><span class="n">list_ex</span><span class="p">)</span>
+<span class="nb">print</span><span class="p">(</span><span class="s1">&#39;Print 4:&#39;</span><span class="p">,</span><span class="n">list_ex</span><span class="p">[</span><span class="mi">3</span><span class="p">])</span>  <span class="c1"># print the 4th value in the list &#39;list_ex&#39;</span>
+</pre></div>
+</div>
+</div>
+</div>
+<p><strong>Note:</strong> An important concept with lists is that they have values stored at specific indexes.  It is important to remember the idea of an <strong>Index</strong> (which is the location) and the <strong>Value</strong> (which is the value of the single variable at that index).</p>
+<img src="https://railsware.com/blog/wp-content/uploads/2018/10/positive-indexes.png" width=800px>
+<p><sub>Image from: <a class="reference external" href="https://railsware.com/blog/python-for-machine-learning-indexing-and-slicing-for-lists-tuples-strings-and-other-sequential-types/">https://railsware.com/blog/python-for-machine-learning-indexing-and-slicing-for-lists-tuples-strings-and-other-sequential-types/</a></sub></p>
+<p>To access an element by its index we need to use square brackets.</p>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="c1"># Example of Values and Indexes</span>
+<span class="n">index</span> <span class="o">=</span> <span class="mi">1</span>
+<span class="nb">print</span><span class="p">(</span><span class="n">list_ex</span><span class="p">[</span><span class="n">index</span><span class="p">],</span><span class="s1">&#39;is the value at the&#39;</span><span class="p">,</span> <span class="n">index</span><span class="p">,</span> <span class="s1">&#39;index.&#39;</span><span class="p">)</span>
+</pre></div>
+</div>
+</div>
+</div>
+</section>
+<section id="loops">
+<h2>5.3 Loops<a class="headerlink" href="#loops" title="Link to this heading">#</a></h2>
+<p>So far, we have learned:</p>
+<ul class="simple">
+<li><p><code class="docutils literal notranslate"><span class="pre">for</span></code> loops  (repeats a block of code the number of times described in the “for” statement)</p></li>
+<li><p><code class="docutils literal notranslate"><span class="pre">while</span></code> loops (repeats a block of code as long as a certain condition is true.)</p></li>
+</ul>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="c1"># First Loop Type </span>
+<span class="k">for</span> <span class="n">value1</span> <span class="ow">in</span> <span class="n">list_ex</span><span class="p">:</span>   <span class="c1"># loop through all the entries in list &quot;list_ex&quot;</span>
+    <span class="nb">print</span><span class="p">(</span><span class="s1">&#39;Current entry in variable value is:&#39;</span><span class="p">,</span> <span class="n">value1</span><span class="p">)</span>  <span class="c1"># for each iteration, variable named &quot;value1&quot; </span>
+                                                        <span class="c1">#      will be assigned the next entry in &quot;list_ex&quot;</span>
+</pre></div>
+</div>
+</div>
+</div>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="c1"># Second Loop Type</span>
+<span class="k">for</span> <span class="n">index1</span> <span class="ow">in</span> <span class="nb">range</span><span class="p">(</span><span class="nb">len</span><span class="p">(</span><span class="n">list_ex</span><span class="p">)):</span> <span class="c1"># loop through integers from 0 to length of list &quot;list_ex&quot;</span>
+                                <span class="c1"># for each iteration, variable named &quot;index1&quot;</span>
+                                <span class="c1">#      will be assigned the next integer in 0 to length of list &quot;list_ex&quot;</span>
+    <span class="n">str_now</span> <span class="o">=</span> <span class="n">list_ex</span><span class="p">[</span><span class="n">index1</span><span class="p">]</span>   <span class="c1"># assign a variable the content of the index1-th entry of list &quot;list_ex&quot;</span>
+    <span class="nb">print</span><span class="p">(</span><span class="s1">&#39;The&#39;</span><span class="p">,</span><span class="n">index1</span><span class="p">,</span><span class="s1">&#39;entry in list_ex is&#39;</span><span class="p">,</span><span class="n">str_now</span><span class="p">)</span>
+</pre></div>
+</div>
+</div>
+</div>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="c1"># Third Loop Type</span>
+<span class="n">index1</span> <span class="o">=</span> <span class="mi">0</span>
+<span class="k">while</span> <span class="n">index1</span> <span class="o">&lt;</span> <span class="nb">len</span><span class="p">(</span><span class="n">list_ex</span><span class="p">):</span>  <span class="c1"># perform a while loop until index1 is equal to or greater than the length of list &quot;list_ex&quot;</span>
+    <span class="n">str_now</span> <span class="o">=</span> <span class="n">list_ex</span><span class="p">[</span><span class="n">index1</span><span class="p">]</span>
+    <span class="nb">print</span><span class="p">(</span><span class="s1">&#39;The&#39;</span><span class="p">,</span><span class="n">index1</span><span class="p">,</span><span class="s1">&#39;entry in list_ex is&#39;</span><span class="p">,</span><span class="n">str_now</span><span class="p">)</span>
+    <span class="n">index1</span> <span class="o">+=</span> <span class="mi">1</span>               <span class="c1"># increment whatever is in index1 by +1</span>
+    <span class="c1"># Note this is the identical result as the for loop in cell above</span>
+</pre></div>
+</div>
+</div>
+</div>
+<p>✅  <strong>5.3.1 Task</strong>: Write a loop using one of the types above that prints the entries in list_ex in <strong>reverse order</strong>. There is more than one way to tackle this problem!</p>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="c1"># Put your code here</span>
+</pre></div>
+</div>
+</div>
+</div>
+<p>✅  <strong>5.3.2 Task</strong>: If you were able to successfully print the list in reverse order, describe how you came up with your solution. If not, describe where you are stuck and what you have tried so far.</p>
+<p>✎ <em>Write your response here</em></p>
+</section>
+<hr class="docutils" />
+<section id="follow-up-questions">
+<h2>Follow-up Questions<a class="headerlink" href="#follow-up-questions" title="Link to this heading">#</a></h2>
+<p>Copy and paste the following questions into the appropriate box in the assignment survey include below and answer them there. (Note: You’ll have to fill out the section number and the assignment number and go to the “NEXT” section of the survey to paste in these questions.)</p>
+<ol class="arabic simple">
+<li><p>In your own words, how would your define algorithmic bias?</p></li>
+<li><p>What is one example of something we can do as either users or creators of algorithms and data to help avoid algorithmic bias?</p></li>
+<li><p>How are you feeling about your ability to work with lists and loops in Python?</p></li>
+</ol>
+</section>
+<hr class="docutils" />
+<section id="assignment-wrap-up">
+<h2>Assignment wrap-up<a class="headerlink" href="#assignment-wrap-up" title="Link to this heading">#</a></h2>
+<p>Please fill out the form that appears when you run the code below.  <strong>You must completely fill this out in order to receive credit for the assignment!</strong></p>
+<p><a class="reference external" href="https://cmse.msu.edu/cmse201-pc-survey">Pre-class survey</a></p>
+<section id="congratulations-you-re-done">
+<h3>Congratulations, you’re done!<a class="headerlink" href="#congratulations-you-re-done" title="Link to this heading">#</a></h3>
+<p>Submit this assignment by uploading it to the course Desire2Learn web page.  Go to the “Pre-class assignments” folder, find the appropriate dropbox link, and upload it there.</p>
+<p>See you in class!</p>
+<p>Copyright © 2023, <a class="reference external" href="https://cmse.msu.edu/">Department of Computational Mathematics, Science and Engineering</a> at Michigan State University, All rights reserved.</p>
+</section>
+</section>
+</section>
+
+    <script type="text/x-thebe-config">
+    {
+        requestKernel: true,
+        binderOptions: {
+            repo: "binder-examples/jupyter-stacks-datascience",
+            ref: "master",
+        },
+        codeMirrorConfig: {
+            theme: "abcdef",
+            mode: "python"
+        },
+        kernelOptions: {
+            name: "python3",
+            path: "./Day-04"
+        },
+        predefinedOutput: true
+    }
+    </script>
+    <script>kernelName = 'python3'</script>
+
+                </article>
+              
+
+              
+              
+              
+              
+                <footer class="prev-next-footer d-print-none">
+                  
+<div class="prev-next-area">
+    <a class="left-prev"
+       href="../Day-03/Day-03_In-Class_ListsLoopsAndSaving-STUDENT.html"
+       title="previous page">
+      <i class="fa-solid fa-angle-left"></i>
+      <div class="prev-next-info">
+        <p class="prev-next-subtitle">previous</p>
+        <p class="prev-next-title">Day 3 In-class Assignment: The power of compound interest</p>
+      </div>
+    </a>
+</div>
+                </footer>
+              
+            </div>
+            
+            
+              
+                <div class="bd-sidebar-secondary bd-toc"><div class="sidebar-secondary-items sidebar-secondary__inner">
+
+
+  <div class="sidebar-secondary-item">
+  <div class="page-toc tocsection onthispage">
+    <i class="fa-solid fa-list"></i> Contents
+  </div>
+  <nav class="bd-toc-nav page-toc">
+    <ul class="visible nav section-nav flex-column">
+<li class="toc-h1 nav-item toc-entry"><a class="reference internal nav-link" href="#">Day 4 Pre-class Assignment: Introduction to Data Ethics: Data and Algorithmic Bias</a><ul class="visible nav section-nav flex-column">
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#put-your-name-here">✅ Put your name here</a></li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#goals-for-today-s-assignment">Goals for today’s assignment</a></li>
+</ul>
+</li>
+<li class="toc-h1 nav-item toc-entry"><a class="reference internal nav-link" href="#introduction">1. Introduction</a></li>
+<li class="toc-h1 nav-item toc-entry"><a class="reference internal nav-link" href="#what-is-data-bias">2. What is data bias?</a></li>
+<li class="toc-h1 nav-item toc-entry"><a class="reference internal nav-link" href="#data-bias-and-algorithmic-bias-in-the-real-world">3. Data Bias and Algorithmic Bias in the Real World</a></li>
+<li class="toc-h1 nav-item toc-entry"><a class="reference internal nav-link" href="#craft-your-personal-academic-integrity-statement">4. Craft Your Personal Academic Integrity Statement</a></li>
+<li class="toc-h1 nav-item toc-entry"><a class="reference internal nav-link" href="#more-practice-with-variables-lists-and-loops">5. More Practice With Variables, Lists, and Loops</a><ul class="visible nav section-nav flex-column">
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#not-required-but-could-be-useful-for-building-your-skills-and-providing-additional-preparation-for-class">(Not required, but could be useful for building your skills and providing additional preparation for class)</a></li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#variables">5.1 Variables</a></li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#lists">5.2 Lists</a></li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#loops">5.3 Loops</a></li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#follow-up-questions">Follow-up Questions</a></li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#assignment-wrap-up">Assignment wrap-up</a><ul class="nav section-nav flex-column">
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#congratulations-you-re-done">Congratulations, you’re done!</a></li>
+</ul>
+</li>
+</ul>
+</li>
+</ul>
+
+  </nav></div>
+
+</div></div>
+              
+            
+          </div>
+          <footer class="bd-footer-content">
+            
+<div class="bd-footer-content__inner container">
+  
+  <div class="footer-item">
+    
+<p class="component-author">
+By the Department of Computational Mathematics, Science and Engineering at Michigan State University
+</p>
+
+  </div>
+  
+  <div class="footer-item">
+    
+
+  <p class="copyright">
+    
+      © Copyright 2026.
+      <br/>
+    
+  </p>
+
+  </div>
+  
+  <div class="footer-item">
+    
+  </div>
+  
+  <div class="footer-item">
+    
+  </div>
+  
+</div>
+          </footer>
+        
+
+      </main>
+    </div>
+  </div>
+  
+  <!-- Scripts loaded after <body> so the DOM is not blocked -->
+  <script src="../_static/scripts/bootstrap.js?digest=3ee479438cf8b5e0d341"></script>
+<script src="../_static/scripts/pydata-sphinx-theme.js?digest=3ee479438cf8b5e0d341"></script>
+
+  <footer class="bd-footer">
+  </footer>
+  </body>
+</html>

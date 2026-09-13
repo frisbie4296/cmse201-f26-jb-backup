@@ -1,0 +1,1821 @@
+
+<!DOCTYPE html>
+
+<html>
+  <head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" /><meta name="generator" content="Docutils 0.17.1: http://docutils.sourceforge.net/" />
+
+    <title>Day 10 In-class Assignment: Get the Lead Out: Understanding The Water Crisis in Flint, MI &#8212; CMSE 201</title>
+    
+  <!-- Loaded before other Sphinx assets -->
+  <link href="../_static/styles/theme.css?digest=1999514e3f237ded88cf" rel="stylesheet">
+<link href="../_static/styles/pydata-sphinx-theme.css?digest=1999514e3f237ded88cf" rel="stylesheet">
+
+    
+  <link rel="stylesheet"
+    href="../_static/vendor/fontawesome/5.13.0/css/all.min.css">
+  <link rel="preload" as="font" type="font/woff2" crossorigin
+    href="../_static/vendor/fontawesome/5.13.0/webfonts/fa-solid-900.woff2">
+  <link rel="preload" as="font" type="font/woff2" crossorigin
+    href="../_static/vendor/fontawesome/5.13.0/webfonts/fa-brands-400.woff2">
+
+    <link rel="stylesheet" type="text/css" href="../_static/pygments.css" />
+    <link rel="stylesheet" href="../_static/styles/sphinx-book-theme.css?digest=5115cc725059bd94278eecd172e13a965bf8f5a9" type="text/css" />
+    <link rel="stylesheet" type="text/css" href="../_static/togglebutton.css" />
+    <link rel="stylesheet" type="text/css" href="../_static/copybutton.css" />
+    <link rel="stylesheet" type="text/css" href="../_static/mystnb.css" />
+    <link rel="stylesheet" type="text/css" href="../_static/sphinx-thebe.css" />
+    <link rel="stylesheet" type="text/css" href="../_static/design-style.b7bb847fb20b106c3d81b95245e65545.min.css" />
+    
+  <!-- Pre-loaded scripts that we'll load fully later -->
+  <link rel="preload" as="script" href="../_static/scripts/pydata-sphinx-theme.js?digest=1999514e3f237ded88cf">
+
+    <script data-url_root="../" id="documentation_options" src="../_static/documentation_options.js"></script>
+    <script src="../_static/jquery.js"></script>
+    <script src="../_static/underscore.js"></script>
+    <script src="../_static/doctools.js"></script>
+    <script src="../_static/clipboard.min.js"></script>
+    <script src="../_static/copybutton.js"></script>
+    <script src="../_static/scripts/sphinx-book-theme.js?digest=9c920249402e914e316237a7dbc6769907cce411"></script>
+    <script>let toggleHintShow = 'Click to show';</script>
+    <script>let toggleHintHide = 'Click to hide';</script>
+    <script>let toggleOpenOnPrint = 'true';</script>
+    <script src="../_static/togglebutton.js"></script>
+    <script>var togglebuttonSelector = '.toggle, .admonition.dropdown, .tag_hide_input div.cell_input, .tag_hide-input div.cell_input, .tag_hide_output div.cell_output, .tag_hide-output div.cell_output, .tag_hide_cell.cell, .tag_hide-cell.cell';</script>
+    <script src="../_static/design-tabs.js"></script>
+    <script>const THEBE_JS_URL = "https://unpkg.com/thebe@0.8.2/lib/index.js"
+const thebe_selector = ".thebe,.cell"
+const thebe_selector_input = "pre"
+const thebe_selector_output = ".output, .cell_output"
+</script>
+    <script async="async" src="../_static/sphinx-thebe.js"></script>
+    <link rel="shortcut icon" href="../_static/cmse_fav.ico"/>
+    <link rel="index" title="Index" href="../genindex.html" />
+    <link rel="search" title="Search" href="../search.html" />
+    <link rel="next" title="Day 11 Pre-Class Assignment: Overview of data and file formats" href="../Day-11/Day-11_Pre-Class_Data_File_Formats_Manipulation-STUDENT.html" />
+    <link rel="prev" title="Day 10 Pre-class Assignment: Normal Distributions, Masking, and Log Plots" href="Day-10_Pre-Class_Masking-STUDENT.html" />
+    <meta name="viewport" content="width=device-width, initial-scale=1" />
+    <meta name="docsearch:language" content="None">
+    
+
+    <!-- Google Analytics -->
+    
+  </head>
+  <body data-spy="scroll" data-target="#bd-toc-nav" data-offset="60">
+<!-- Checkboxes to toggle the left sidebar -->
+<input type="checkbox" class="sidebar-toggle" name="__navigation" id="__navigation" aria-label="Toggle navigation sidebar">
+<label class="overlay overlay-navbar" for="__navigation">
+    <div class="visually-hidden">Toggle navigation sidebar</div>
+</label>
+<!-- Checkboxes to toggle the in-page toc -->
+<input type="checkbox" class="sidebar-toggle" name="__page-toc" id="__page-toc" aria-label="Toggle in-page Table of Contents">
+<label class="overlay overlay-pagetoc" for="__page-toc">
+    <div class="visually-hidden">Toggle in-page Table of Contents</div>
+</label>
+<!-- Headers at the top -->
+<div class="announcement header-item noprint"></div>
+<div class="header header-item noprint"></div>
+
+    
+    <div class="container-fluid" id="banner"></div>
+
+    
+
+    <div class="container-xl">
+      <div class="row">
+          
+<!-- Sidebar -->
+<div class="bd-sidebar noprint" id="site-navigation">
+    <div class="bd-sidebar__content">
+        <div class="bd-sidebar__top"><div class="navbar-brand-box">
+    <a class="navbar-brand text-wrap" href="../index.html">
+      
+        <!-- `logo` is deprecated in Sphinx 4.0, so remove this when we stop supporting 3 -->
+        
+      
+      
+      <img src="../_static/logo.png" class="logo" alt="logo">
+      
+      
+      <h1 class="site-logo" id="site-title">CMSE 201</h1>
+      
+    </a>
+</div><form class="bd-search d-flex align-items-center" action="../search.html" method="get">
+  <i class="icon fas fa-search"></i>
+  <input type="search" class="form-control" name="q" id="search-input" placeholder="Search this book..." aria-label="Search this book..." autocomplete="off" >
+</form><nav class="bd-links" id="bd-docs-nav" aria-label="Main">
+    <div class="bd-toc-item active">
+        
+        <ul class="nav bd-sidenav bd-sidenav__home-link">
+            <li class="toctree-l1">
+                <a class="reference internal" href="../intro.html">
+                    Welcome to Computational Modeling and Data Analysis I!
+                </a>
+            </li>
+        </ul>
+        <p aria-level="2" class="caption" role="heading">
+ <span class="caption-text">
+  Course Materials
+ </span>
+</p>
+<ul class="nav bd-sidenav">
+ <li class="toctree-l1 has-children">
+  <a class="reference internal" href="../Course_Materials-201/CourseDocuments.html">
+   Important Course information
+  </a>
+  <input class="toctree-checkbox" id="toctree-checkbox-1" name="toctree-checkbox-1" type="checkbox"/>
+  <label for="toctree-checkbox-1">
+   <i class="fas fa-chevron-down">
+   </i>
+  </label>
+  <ul>
+   <li class="toctree-l2">
+    <a class="reference internal" href="../Course_Materials-201/CMSE201-Syllabus.html">
+     Syllabus
+    </a>
+   </li>
+   <li class="toctree-l2">
+    <a class="reference internal" href="../Course_Materials-201/CMSE201-Schedule.html">
+     Course Schedule
+    </a>
+   </li>
+   <li class="toctree-l2">
+    <a class="reference internal" href="../Course_Materials-201/SoftwareSetupGuide.html">
+     Software Setup Guide
+    </a>
+   </li>
+   <li class="toctree-l2">
+    <a class="reference internal" href="../Course_Materials-201/classroom_participation.html">
+     Classroom Participation
+    </a>
+   </li>
+  </ul>
+ </li>
+</ul>
+<p aria-level="2" class="caption" role="heading">
+ <span class="caption-text">
+  Day 01
+ </span>
+</p>
+<ul class="nav bd-sidenav">
+ <li class="toctree-l1">
+  <a class="reference internal" href="../Day-01/Day-01_In-Class_SortingAlgorithm-STUDENT.html">
+   Day 1 In-Class Assignment: Introductions and Sorting Algorithms
+  </a>
+ </li>
+</ul>
+<p aria-level="2" class="caption" role="heading">
+ <span class="caption-text">
+  Day 02
+ </span>
+</p>
+<ul class="nav bd-sidenav">
+ <li class="toctree-l1">
+  <a class="reference internal" href="../Day-02/Day-02_Pre-Class_IntroToPython-STUDENT.html">
+   Day 2 Pre-class Assignment: Intro to Python
+  </a>
+ </li>
+ <li class="toctree-l1">
+  <a class="reference internal" href="../Day-02/Day-02_In-Class_OrderOfMagnitudeModeling-STUDENT.html">
+   Day 2 In-class Assignment: Order of Magnitude Modeling
+  </a>
+ </li>
+</ul>
+<p aria-level="2" class="caption" role="heading">
+ <span class="caption-text">
+  Day 03
+ </span>
+</p>
+<ul class="nav bd-sidenav">
+ <li class="toctree-l1">
+  <a class="reference internal" href="../Day-03/Day-03_Pre-Class_ListsAndLoops-STUDENT.html">
+   Day 3: Pre-Class Assignment: Lists and Loops
+  </a>
+ </li>
+ <li class="toctree-l1">
+  <a class="reference internal" href="../Day-03/Day-03_In-Class_ListsLoopsAndSaving-STUDENT.html">
+   Day 3 In-class Assignment: The power of compound interest
+  </a>
+ </li>
+</ul>
+<p aria-level="2" class="caption" role="heading">
+ <span class="caption-text">
+  Day 04
+ </span>
+</p>
+<ul class="nav bd-sidenav">
+ <li class="toctree-l1">
+  <a class="reference internal" href="../Day-04/Day_04_PreClass_DataAlgorithmicBias-STUDENT.html">
+   Day 4 Pre-class Assignment: Introduction to Data Ethics: Data and Algorithmic Bias
+  </a>
+ </li>
+ <li class="toctree-l1">
+  <a class="reference internal" href="../Day-04/Day_04_In_Class_DataAlgorithmicBias-STUDENT.html">
+   Day 4 In-class Assignment: Data and Algorithmic Bias, Academic Integrity, and Coding Best Practices
+  </a>
+ </li>
+</ul>
+<p aria-level="2" class="caption" role="heading">
+ <span class="caption-text">
+  Day 05
+ </span>
+</p>
+<ul class="nav bd-sidenav">
+ <li class="toctree-l1">
+  <a class="reference internal" href="../Day-05/Day-05_Pre-Class_IfStatementsAndFunctions-STUDENT.html">
+   Day 5 Pre-class Assignment: Boolean logic, if statements, and an introduction to functions
+  </a>
+ </li>
+ <li class="toctree-l1">
+  <a class="reference internal" href="../Day-05/Day-05_In-Class_IfStatementsAndFunctions-STUDENT.html">
+   Day 5 In-class Assignment: Savings for Everyone
+  </a>
+ </li>
+</ul>
+<p aria-level="2" class="caption" role="heading">
+ <span class="caption-text">
+  Day 06
+ </span>
+</p>
+<ul class="nav bd-sidenav">
+ <li class="toctree-l1">
+  <a class="reference internal" href="../Day-06/Day-06_Pre-Class_MoreFunctions-STUDENT.html">
+   Day 6 Pre-class Assignment: Thinking more about functions
+  </a>
+ </li>
+ <li class="toctree-l1">
+  <a class="reference internal" href="../Day-06/Day-06_In-Class_FunctionsAndSquirrels-STUDENT.html">
+   Day 6 In Class Assignment: A Scurry of Squirrels in Central Park
+  </a>
+ </li>
+ <li class="toctree-l1">
+  <a class="reference internal" href="../Day-06/Day-06_In-Class_FunctionsAndSquirrels-INSTRUCTOR.html">
+   Day 6 In Class Assignment: A Scurry of Squirrels in Central Park
+  </a>
+ </li>
+</ul>
+<p aria-level="2" class="caption" role="heading">
+ <span class="caption-text">
+  Day 07
+ </span>
+</p>
+<ul class="nav bd-sidenav">
+ <li class="toctree-l1">
+  <a class="reference internal" href="../Day-07/Day-07_Pre-Class_ModulesMathAndPlots-STUDENT.html">
+   Day 7 Pre-Class Assignment: Python Modules: Numpy and Plots
+  </a>
+ </li>
+ <li class="toctree-l1">
+  <a class="reference internal" href="../Day-07/Day-07_In-Class_MathAndPlotting-STUDENT.html">
+   Day 7 In-class Assignment: Visualizing population growth
+  </a>
+ </li>
+</ul>
+<p aria-level="2" class="caption" role="heading">
+ <span class="caption-text">
+  Day 08
+ </span>
+</p>
+<ul class="nav bd-sidenav">
+ <li class="toctree-l1">
+  <a class="reference internal" href="../Day-08/Day-08_Pre-Class_IntroToNumPy-STUDENT.html">
+   Day 8 Pre-Class: Introduction to NumPy
+  </a>
+ </li>
+ <li class="toctree-l1">
+  <a class="reference external" href="https://raw.githubusercontent.com/msu-cmse-courses/cmse201-F21-data/main/Day-08/michigan_pop.csv">
+   michigan_pop.csv
+  </a>
+ </li>
+ <li class="toctree-l1">
+  <a class="reference internal" href="../Day-08/Day-08_In-Class_NumPyWithTheGreatLakes-STUDENT.html">
+   Day 8 In-class Assignment: Exploring Great Lakes Water Levels using NumPy
+  </a>
+ </li>
+ <li class="toctree-l1">
+  <a class="reference external" href="https://raw.githubusercontent.com/msu-cmse-courses/cmse201-F21-data/main/Day-08/lake_erie.csv">
+   lake_erie.csv
+  </a>
+ </li>
+ <li class="toctree-l1">
+  <a class="reference external" href="https://raw.githubusercontent.com/msu-cmse-courses/cmse201-F21-data/main/Day-08/lake_michigan_huron.csv">
+   lake_michigan_huron.csv
+  </a>
+ </li>
+ <li class="toctree-l1">
+  <a class="reference external" href="https://raw.githubusercontent.com/msu-cmse-courses/cmse201-F21-data/main/Day-08/lake_ontario.csv">
+   lake_ontario.csv
+  </a>
+ </li>
+ <li class="toctree-l1">
+  <a class="reference external" href="https://raw.githubusercontent.com/msu-cmse-courses/cmse201-F21-data/main/Day-08/lake_superior.csv">
+   lake_superior.csv
+  </a>
+ </li>
+</ul>
+<p aria-level="2" class="caption" role="heading">
+ <span class="caption-text">
+  Day 09
+ </span>
+</p>
+<ul class="nav bd-sidenav">
+ <li class="toctree-l1">
+  <a class="reference internal" href="../Day-09/Day-09_Pre-Class_Pandas-STUDENT.html">
+   Day 9 Pre-class Assignment: Computational Models Overview and The Pandas Data Analysis Library
+  </a>
+ </li>
+ <li class="toctree-l1">
+  <a class="reference internal" href="../Day-09/Day-09_In-Class_GDP-STUDENT.html">
+   Day 9 In-Class: Cleaning and Analyzing Economic Data
+  </a>
+ </li>
+ <li class="toctree-l1">
+  <a class="reference external" href="https://raw.githubusercontent.com/msu-cmse-courses/cmse201-S22-data/main/Day-10/API_NY.GDP.MKTP.CD_DS2_en_csv_v2_3011433.csv">
+   API_NY.GDP.MKTP.CD_DS2_en_csv_v2_3011433.csv
+  </a>
+ </li>
+</ul>
+<p aria-level="2" class="caption" role="heading">
+ <span class="caption-text">
+  Day 10
+ </span>
+</p>
+<ul class="current nav bd-sidenav">
+ <li class="toctree-l1">
+  <a class="reference internal" href="Day-10_Pre-Class_Masking-STUDENT.html">
+   Day 10 Pre-class Assignment: Normal Distributions, Masking, and Log Plots
+  </a>
+ </li>
+ <li class="toctree-l1">
+  <a class="reference external" href="https://raw.githubusercontent.com/msu-cmse-courses/cmse201-S22-data/main/Day-11/GDP_Cleaned.csv">
+   GDP_Cleaned.csv
+  </a>
+ </li>
+ <li class="toctree-l1 current active">
+  <a class="current reference internal" href="#">
+   Day 10 In-class Assignment: Get the Lead Out: Understanding The Water Crisis in Flint, MI
+  </a>
+ </li>
+ <li class="toctree-l1">
+  <a class="reference external" href="https://raw.githubusercontent.com/msu-cmse-courses/cmse201-S22-data/main/Day-11/flint_water_data.csv">
+   flint_water_data.csv
+  </a>
+ </li>
+</ul>
+<p aria-level="2" class="caption" role="heading">
+ <span class="caption-text">
+  Day 11
+ </span>
+</p>
+<ul class="nav bd-sidenav">
+ <li class="toctree-l1">
+  <a class="reference internal" href="../Day-11/Day-11_Pre-Class_Data_File_Formats_Manipulation-STUDENT.html">
+   Day 11 Pre-Class Assignment: Overview of data and file formats
+  </a>
+ </li>
+ <li class="toctree-l1">
+  <a class="reference external" href="https://raw.githubusercontent.com/msu-cmse-courses/cmse201-S22-data/main/Day-12/us_pop_by_state_2010_2011.csv">
+   us_pop_by_state_2010_2011.csv
+  </a>
+ </li>
+ <li class="toctree-l1">
+  <a class="reference external" href="https://github.com/msu-cmse-courses/cmse201-S22-data/raw/main/Day-12/us_pop_by_state_2012_2013_encoding_utf-16be.csv">
+   us_pop_by_state_2012_2013_encoding_utf-16be.csv
+  </a>
+ </li>
+ <li class="toctree-l1">
+  <a class="reference external" href="https://raw.githubusercontent.com/msu-cmse-courses/cmse201-S22-data/main/Day-12/us_pop_by_state_2014_2015_windows_linefeed.csv">
+   us_pop_by_state_2014_2015_windows_linefeed.csv
+  </a>
+ </li>
+ <li class="toctree-l1">
+  <a class="reference external" href="https://github.com/msu-cmse-courses/cmse201-S22-data/blob/main/Day-12/us_pop_by_state_2016a.csv?raw=true">
+   us_pop_by_state_2016a.csv
+  </a>
+ </li>
+ <li class="toctree-l1">
+  <a class="reference external" href="https://github.com/msu-cmse-courses/cmse201-S22-data/blob/main/Day-12/us_pop_by_state_2017a.yaff?raw=true">
+   us_pop_by_state2017a.yaff
+  </a>
+ </li>
+ <li class="toctree-l1">
+  <a class="reference external" href="https://github.com/msu-cmse-courses/cmse201-S22-data/blob/main/Day-12/us_pop_by_state_2018_2019.bin?raw=true">
+   us_pop_by_state_2018_2019.bin
+  </a>
+ </li>
+ <li class="toctree-l1">
+  <a class="reference internal" href="../Day-11/Day-11_In-Class_Data_File_Formats_Manipulation-STUDENT.html">
+   Day 11 In-Class: Overview of data and file formats; US Population and Representation
+  </a>
+ </li>
+</ul>
+<p aria-level="2" class="caption" role="heading">
+ <span class="caption-text">
+  Day 12
+ </span>
+</p>
+<ul class="nav bd-sidenav">
+ <li class="toctree-l1">
+  <a class="reference internal" href="../Day-12/Day-12_Pre-Class_Online_Resources_STUDENT.html">
+   Day 12 Pre-class Assignment: Finding Resources Online
+  </a>
+ </li>
+ <li class="toctree-l1">
+  <a class="reference internal" href="../Day-12/Day-12_In-Class_Online_Resources_STUDENT.html">
+   Day 12 In-Class: Using Resources from Online
+  </a>
+ </li>
+</ul>
+<p aria-level="2" class="caption" role="heading">
+ <span class="caption-text">
+  Day 13
+ </span>
+</p>
+<ul class="nav bd-sidenav">
+ <li class="toctree-l1">
+  <a class="reference internal" href="../Day-13/Day-13_Pre-Class_CurveFitting-STUDENT.html">
+   Day 13 Pre-Class Assignment: Fitting functions to data (curve-fitting) and thinking more about models
+  </a>
+ </li>
+ <li class="toctree-l1">
+  <a class="reference internal" href="../Day-13/Day-13_In-Class_FittingCurves-STUDENT.html">
+   Day 13 In-Class Assignment: (Thoughtfully) fitting models to data
+  </a>
+ </li>
+ <li class="toctree-l1">
+  <a class="reference external" href="https://raw.githubusercontent.com/msu-cmse-courses/cmse201-S22-data/main/Day-14/pop200.csv">
+   pop200.csv
+  </a>
+ </li>
+ <li class="toctree-l1">
+  <a class="reference external" href="https://raw.githubusercontent.com/msu-cmse-courses/cmse201-S22-data/main/Day-14/pop300.csv">
+   pop300.csv
+  </a>
+ </li>
+</ul>
+<p aria-level="2" class="caption" role="heading">
+ <span class="caption-text">
+  Day 14
+ </span>
+</p>
+<ul class="nav bd-sidenav">
+ <li class="toctree-l1">
+  <a class="reference internal" href="../Day-14/Day-14_Pre-Class_Evaluating_Fits-STUDENT.html">
+   Day 14 Pre-Class Assignment: Making Predictions Using Data
+  </a>
+ </li>
+ <li class="toctree-l1">
+  <a class="reference internal" href="../Day-14/Day-14_In-Class_Evaluating_Fits-STUDENT.html">
+   Day 14 In-Class Assignment: Evaluating Models
+  </a>
+ </li>
+</ul>
+<p aria-level="2" class="caption" role="heading">
+ <span class="caption-text">
+  Day 15
+ </span>
+</p>
+<ul class="nav bd-sidenav">
+ <li class="toctree-l1">
+  <a class="reference internal" href="../Day-15/Day-15-Pre-Class_IntroToDataVisualization-STUDENT.html">
+   Day 15 Pre-class Assignment: Introduction to Data Visualization
+  </a>
+ </li>
+ <li class="toctree-l1">
+  <a class="reference internal" href="../Day-15/Day-15-In-Class_IntroToDataVisualization-STUDENT.html">
+   Day 15 In-Class: Introduction to Data Visualization
+  </a>
+ </li>
+</ul>
+<p aria-level="2" class="caption" role="heading">
+ <span class="caption-text">
+  Day 16
+ </span>
+</p>
+<ul class="nav bd-sidenav">
+ <li class="toctree-l1">
+  <a class="reference internal" href="../Day-16/Day-16-Intro_to_ODEs_Pre-Class_STUDENT.html">
+   Day 16: Pre-class Assignment: Introduction to Modeling with Ordinary Differential Equations
+  </a>
+ </li>
+ <li class="toctree-l1">
+  <a class="reference internal" href="../Day-16/Day-16-Intro_to_ODEs_In-Class_STUDENT.html">
+   Day 16: In-class Assignment: Introduction to Modeling with ODEs
+  </a>
+ </li>
+</ul>
+<p aria-level="2" class="caption" role="heading">
+ <span class="caption-text">
+  Day 17
+ </span>
+</p>
+<ul class="nav bd-sidenav">
+ <li class="toctree-l1">
+  <a class="reference internal" href="../Day-17/Day-17_Pre-Class_ModelingWithODEs-STUDENT.html">
+   Day 17: Pre-class Assignment: Modeling with Ordinary Differential Equations
+  </a>
+ </li>
+ <li class="toctree-l1">
+  <a class="reference internal" href="../Day-17/Day-17_In-Class_ModelingWithODEs-STUDENT.html">
+   Day 17: In-class Assignment: Modeling with ODEs
+  </a>
+ </li>
+ <li class="toctree-l1">
+  <a class="reference internal" href="../Day-17/Day-17_In-Class_ModelingWithODEs-INSTRUCTOR.html">
+   Day 17: In-class Assignment: Modeling with ODEs
+  </a>
+ </li>
+</ul>
+<p aria-level="2" class="caption" role="heading">
+ <span class="caption-text">
+  Day 18
+ </span>
+</p>
+<ul class="nav bd-sidenav">
+ <li class="toctree-l1">
+  <a class="reference internal" href="../Day-18/Day-18_Pre-Class_ViralKinetics-STUDENT.html">
+   Day 18 Pre-Class: Viral Kinetics
+  </a>
+ </li>
+ <li class="toctree-l1">
+  <a class="reference internal" href="../Day-18/Day-18_In-Class_CompartmentalModeling-STUDENT.html">
+   Day 18 In-class: Building Compartmental Models
+  </a>
+ </li>
+</ul>
+<p aria-level="2" class="caption" role="heading">
+ <span class="caption-text">
+  Day 19
+ </span>
+</p>
+<ul class="nav bd-sidenav">
+ <li class="toctree-l1">
+  <a class="reference internal" href="../Day-19/Day-19_Pre-Class_Zombies-STUDENT.html">
+   Day 19 Pre-class Assignment: ZOMBIES!!
+  </a>
+ </li>
+ <li class="toctree-l1">
+  <a class="reference internal" href="../Day-19/Day-19_In-Class_CompartmentsWithSolveIVP-STUDENT.html">
+   Day 19 In-Class Assignment: Compartmental Modeling, moving from the model to the Code
+  </a>
+ </li>
+ <li class="toctree-l1">
+  <a class="reference external" href="https://github.com/msu-cmse-courses/cmse201-F21-data/blob/main/Day-16/latent.png">
+   latent.png
+  </a>
+ </li>
+</ul>
+<p aria-level="2" class="caption" role="heading">
+ <span class="caption-text">
+  Day 20
+ </span>
+</p>
+<ul class="nav bd-sidenav">
+ <li class="toctree-l1">
+  <a class="reference internal" href="../Day-20/Day-20_Pre-Class_2DNumPyArrays-STUDENT.html">
+   Day 20 Pre-Class: 2D NumPy Arrays
+  </a>
+ </li>
+ <li class="toctree-l1">
+  <a class="reference external" href="https://raw.githubusercontent.com/msu-cmse-courses/cmse201-F21-data/main/Day-17/PCA_files/cars.csv">
+   cars.csv
+  </a>
+ </li>
+ <li class="toctree-l1">
+  <a class="reference external" href="https://github.com/msu-cmse-courses/cmse201-F21-data/raw/main/Day-17/PCA_files/example.jpeg">
+   example.jpeg
+  </a>
+ </li>
+ <li class="toctree-l1">
+  <a class="reference internal" href="../Day-20/Day-20_In-Class_2DImageAnalysis-STUDENT.html">
+   Day 20 In-Class Assignment: Image Analysis
+  </a>
+ </li>
+ <li class="toctree-l1">
+  <a class="reference external" href="https://github.com/msu-cmse-courses/cmse201-F21-data/blob/main/Day-17/ICA_files/beach.jpeg">
+   beach.jpeg
+  </a>
+ </li>
+ <li class="toctree-l1">
+  <a class="reference external" href="https://github.com/msu-cmse-courses/cmse201-F21-data/blob/main/Day-17/ICA_files/landscape.jpeg">
+   landscape.jpeg
+  </a>
+ </li>
+ <li class="toctree-l1">
+  <a class="reference external" href="https://github.com/msu-cmse-courses/cmse201-F21-data/blob/main/Day-17/ICA_files/zebra.png">
+   zebra.png
+  </a>
+ </li>
+</ul>
+<p aria-level="2" class="caption" role="heading">
+ <span class="caption-text">
+  Day 21
+ </span>
+</p>
+<ul class="nav bd-sidenav">
+ <li class="toctree-l1">
+  <a class="reference internal" href="../Day-21/Day-21_Pre-Class_ABMForestFire-STUDENT.html">
+   Day 21 Pre-class: Agent-based models and forest fires
+  </a>
+ </li>
+ <li class="toctree-l1">
+  <a class="reference internal" href="../Day-21/Day-21_In-Class_ForestFiresPartI-STUDENT.html">
+   Day 21 Part 1 In-class Assignment: Modeling forest fires with an Agent-based Model
+  </a>
+ </li>
+</ul>
+<p aria-level="2" class="caption" role="heading">
+ <span class="caption-text">
+  Day 22
+ </span>
+</p>
+<ul class="nav bd-sidenav">
+ <li class="toctree-l1">
+  <a class="reference internal" href="../Day-22/Day-22_Pre-Class_ABMForestFire_Part2-STUDENT.html">
+   Day 22 Pre-class: Reviewing 2D Numpy Arrays
+  </a>
+ </li>
+ <li class="toctree-l1">
+  <a class="reference internal" href="../Day-22/Day-22_In-Class_ForestFiresPartII-STUDENT.html">
+   Day 22 In-class Assignment: Modeling forest fires with an Agent-based Model (Part II)
+  </a>
+ </li>
+</ul>
+<p aria-level="2" class="caption" role="heading">
+ <span class="caption-text">
+  Day 23
+ </span>
+</p>
+<ul class="nav bd-sidenav">
+ <li class="toctree-l1">
+  <a class="reference internal" href="../Day-23/Day-23_Pre-Class_ProjectWorkDay-STUDENT.html">
+   Day 23 Pre-class: Project Update Preparation
+  </a>
+ </li>
+ <li class="toctree-l1">
+  <a class="reference internal" href="../Day-23/Day-23_In-Class_ProjectWorkDay-STUDENT.html">
+   Day 23 In-class Assignment: Project Work Day
+  </a>
+ </li>
+</ul>
+<p aria-level="2" class="caption" role="heading">
+ <span class="caption-text">
+  Day 24
+ </span>
+</p>
+<ul class="nav bd-sidenav">
+ <li class="toctree-l1">
+  <a class="reference internal" href="../Day-24/Day-24_Pre-Class_Climate-STUDENT.html">
+   Day 24 Pre-class:  Global warming and climate modeling
+  </a>
+ </li>
+ <li class="toctree-l1">
+  <a class="reference internal" href="../Day-24/Day-24_In-Class_Climate-STUDENT.html">
+   Day 24 In-class Assignment: Analyzing climate data
+  </a>
+ </li>
+ <li class="toctree-l1">
+  <a class="reference external" href="https://raw.githubusercontent.com/msu-cmse-courses/cmse201-F21-data/main/Day-22/GLB.Ts.csv">
+   GLB.Ts.csv
+  </a>
+ </li>
+ <li class="toctree-l1">
+  <a class="reference external" href="https://raw.githubusercontent.com/msu-cmse-courses/cmse201-F21-data/main/Day-22/bintanja2008.txt">
+   bintanja2008.txt
+  </a>
+ </li>
+ <li class="toctree-l1">
+  <a class="reference external" href="https://raw.githubusercontent.com/msu-cmse-courses/cmse201-F21-data/main/Day-22/ch4_annmean_gl.txt">
+   ch4_annmean_gl.txt
+  </a>
+ </li>
+ <li class="toctree-l1">
+  <a class="reference external" href="https://raw.githubusercontent.com/msu-cmse-courses/cmse201-F21-data/main/Day-22/co2_mm_mlo.txt">
+   co2_mm_mlo.txt
+  </a>
+ </li>
+ <li class="toctree-l1">
+  <a class="reference external" href="https://raw.githubusercontent.com/msu-cmse-courses/cmse201-F21-data/main/Day-22/vostok-ch4nat.txt">
+   vostok-ch4nat.txt
+  </a>
+ </li>
+ <li class="toctree-l1">
+  <a class="reference external" href="https://raw.githubusercontent.com/msu-cmse-courses/cmse201-F21-data/main/Day-22/vostok-co2nat.txt">
+   vostok-co2nat.txt
+  </a>
+ </li>
+ <li class="toctree-l1">
+  <a class="reference external" href="https://raw.githubusercontent.com/msu-cmse-courses/cmse201-F21-data/main/Day-22/vostok-deutnat.txt">
+   vostok-deutnat.txt
+  </a>
+ </li>
+</ul>
+<p aria-level="2" class="caption" role="heading">
+ <span class="caption-text">
+  Day 25
+ </span>
+</p>
+<ul class="nav bd-sidenav">
+ <li class="toctree-l1">
+  <a class="reference internal" href="../Day-25/Day-25_Pre-Class_Climate-STUDENT.html">
+   Day 25 pre-class assignment: climate modeling
+  </a>
+ </li>
+ <li class="toctree-l1">
+  <a class="reference internal" href="../Day-25/Day-25_In-Class_Climate-STUDENT.html">
+   Day 25 In-class Assignment: A simple model for global temperature
+  </a>
+ </li>
+ <li class="toctree-l1">
+  <a class="reference external" href="https://github.com/msu-cmse-courses/cmse201-F21-data/blob/main/Day-23/listentothee.png">
+   listentothee.png
+  </a>
+ </li>
+ <li class="toctree-l1">
+  <a class="reference external" href="https://github.com/msu-cmse-courses/cmse201-F21-data/blob/main/Day-23/simple_model.png">
+   simple_model.png
+  </a>
+ </li>
+</ul>
+<p aria-level="2" class="caption" role="heading">
+ <span class="caption-text">
+  Homework
+ </span>
+</p>
+<ul class="nav bd-sidenav">
+ <li class="toctree-l1">
+  <a class="reference internal" href="../Homework/Homework_1/HW_01_F22_STUDENT.html">
+   Homework 1: Introduction to Variables, Lists, and Loops
+  </a>
+ </li>
+ <li class="toctree-l1">
+  <a class="reference internal" href="../Homework/Homework_2/HW_02_F22-STUDENT.html">
+   Homework 2: Dictionaries, If Statements, Functions, and Modules
+  </a>
+ </li>
+ <li class="toctree-l1">
+  <a class="reference external" href="https://raw.githubusercontent.com/msu-cmse-courses/cmse201-S22-data/main/Homework/state_data.csv">
+   state_data.csv
+  </a>
+ </li>
+ <li class="toctree-l1">
+  <a class="reference internal" href="../Homework/Homework_3/HW3_F22-STUDENT.html">
+   Homework 3: Pandas Data Analysis
+  </a>
+ </li>
+ <li class="toctree-l1">
+  <a class="reference external" href="https://raw.githubusercontent.com/msu-cmse-courses/cmse201-S22-data/main/Homework/EV_Sale.csv">
+   EV_Sale.csv
+  </a>
+ </li>
+ <li class="toctree-l1">
+  <a class="reference internal" href="../Homework/Homework_4/HW-04_STUDENT.html">
+   Homework 4: Modeling Bacterial Growth
+  </a>
+ </li>
+ <li class="toctree-l1">
+  <a class="reference external" href="https://raw.githubusercontent.com/msu-cmse-courses/cmse201-S22-data/main/OD600.csv">
+   OD600.csv
+  </a>
+ </li>
+ <li class="toctree-l1">
+  <a class="reference internal" href="../Homework/Homework_5/HW-05_STUDENT.html">
+   Homework 5: 2D Arrays and Agent-based Modeling (EXTRA CREDIT)
+  </a>
+ </li>
+ <li class="toctree-l1">
+  <a class="reference external" href="https://raw.githubusercontent.com/msu-cmse-courses/cmse201-F21-data/main/blurred-math.png">
+   blurred-math.png
+  </a>
+ </li>
+ <li class="toctree-l1">
+  <a class="reference external" href="https://raw.githubusercontent.com/msu-cmse-courses/cmse201-F21-data/main/blurred-scream.png">
+   blurred-scream.png
+  </a>
+ </li>
+ <li class="toctree-l1">
+  <a class="reference external" href="https://raw.githubusercontent.com/msu-cmse-courses/cmse201-F21-data/main/scream.png">
+   scream.png
+  </a>
+ </li>
+ <li class="toctree-l1">
+  <a class="reference internal" href="../Homework/Code_Portfolio/Code_Portfolio_Assignment.html">
+   Code Portfolio Assignment
+  </a>
+ </li>
+ <li class="toctree-l1">
+  <a class="reference internal" href="../Homework/Code_Portfolio/Code_Portfolio_Example.html">
+   Code Portfolio Example
+  </a>
+ </li>
+</ul>
+<p aria-level="2" class="caption" role="heading">
+ <span class="caption-text">
+  Bootcamps
+ </span>
+</p>
+<ul class="nav bd-sidenav">
+ <li class="toctree-l1">
+  <a class="reference internal" href="../Bootcamp_Notebooks/Bootcamp1-Python_Fundamentals_STUDENT.html">
+   Bootcamp 1: Python Fundamentals
+  </a>
+ </li>
+ <li class="toctree-l1">
+  <a class="reference internal" href="../Bootcamp_Notebooks/Bootcamp2-InitialConceptsReview.html">
+   Bootcamp 2: Initial Concepts Review Cheatsheet
+  </a>
+ </li>
+ <li class="toctree-l1">
+  <a class="reference internal" href="../Bootcamp_Notebooks/Bootcamp3-Debugging_STUDENT.html">
+   Bootcamp 3: Debugging
+  </a>
+ </li>
+ <li class="toctree-l1">
+  <a class="reference internal" href="../Bootcamp_Notebooks/Bootcamp4-IfStatements_STUDENT.html">
+   Bootcamp 4: If Statements
+  </a>
+ </li>
+ <li class="toctree-l1">
+  <a class="reference internal" href="../Bootcamp_Notebooks/Bootcamp5-Functions_STUDENT.html">
+   Bootcamp 5: Functions
+  </a>
+ </li>
+ <li class="toctree-l1">
+  <a class="reference internal" href="../Bootcamp_Notebooks/Bootcamp6-Matplotlib_STUDENT.html">
+   Bootcamp 6: Matplotlib
+  </a>
+ </li>
+ <li class="toctree-l1">
+  <a class="reference internal" href="../Bootcamp_Notebooks/Bootcamp8_Pandas_STUDENT.html">
+   Bootcamp 8: Practice with Pandas
+  </a>
+ </li>
+ <li class="toctree-l1">
+  <a class="reference internal" href="../Bootcamp_Notebooks/Bootcamp8_Pandas_INSTRUCTOR.html">
+   Bootcamp 8: Practice with Pandas (Solution)
+  </a>
+ </li>
+ <li class="toctree-l1">
+  <a class="reference external" href="https://raw.githubusercontent.com/msu-cmse-courses/cmse201-S22-data/main/weather.csv">
+   weather.csv
+  </a>
+ </li>
+ <li class="toctree-l1">
+  <a class="reference internal" href="../Bootcamp_Notebooks/Bootcamp9-ScipyCurveFit_STUDENT.html">
+   Bootcamp 9:  Scipy curve_fit
+  </a>
+ </li>
+ <li class="toctree-l1">
+  <a class="reference internal" href="../Bootcamp_Notebooks/Bootcamp9-ScipyCurveFit_INSTRUCTOR.html">
+   Bootcamp 9:  Scipy curve_fit
+  </a>
+ </li>
+ <li class="toctree-l1">
+  <a class="reference internal" href="../Bootcamp_Notebooks/Bootcamp10-CompartmentalModels_STUDENT.html">
+   Bootcamp 10: Compartmental Models
+  </a>
+ </li>
+ <li class="toctree-l1">
+  <a class="reference internal" href="../Bootcamp_Notebooks/Bootcamp10-CompartmentalModels_INSTRUCTOR.html">
+   Bootcamp 10: Compartmental Models
+  </a>
+ </li>
+ <li class="toctree-l1">
+  <a class="reference internal" href="../Bootcamp_Notebooks/Bootcamp11_Solve_IVP_STUDENT.html">
+   Bootcamp 11: Practice with
+   <code class="docutils literal notranslate">
+    <span class="pre">
+     solve_ivp
+    </span>
+   </code>
+  </a>
+ </li>
+ <li class="toctree-l1">
+  <a class="reference internal" href="../Bootcamp_Notebooks/Bootcamp11_Solve_IVP_INSTRUCTOR.html">
+   Bootcamp 11: Practice with
+   <code class="docutils literal notranslate">
+    <span class="pre">
+     solve_ivp
+    </span>
+   </code>
+  </a>
+ </li>
+</ul>
+<p aria-level="2" class="caption" role="heading">
+ <span class="caption-text">
+  Semester Project
+ </span>
+</p>
+<ul class="nav bd-sidenav">
+ <li class="toctree-l1">
+  <a class="reference internal" href="../Project_Materials/CMSE201_SemesterProjectDetails.html">
+   Semester Project Details
+  </a>
+ </li>
+ <li class="toctree-l1">
+  <a class="reference internal" href="../Project_Materials/First_Project_Checkpoint.html">
+   First Project Checkpoint
+  </a>
+ </li>
+ <li class="toctree-l1">
+  <a class="reference internal" href="../Project_Materials/CMSE201_FinalProjectTemplate.html">
+   CMSE 201 Final Project Template
+  </a>
+ </li>
+ <li class="toctree-l1">
+  <a class="reference external" href="https://raw.githubusercontent.com/msu-cmse-courses/cmse201-S22-data/main/Projects/CMSE201_ExampleProject_A.pdf">
+   CMSE201_ExampleProject_A.pdf
+  </a>
+ </li>
+ <li class="toctree-l1">
+  <a class="reference external" href="https://raw.githubusercontent.com/msu-cmse-courses/cmse201-S22-data/main/Projects/CMSE201_ExampleProject_B.pdf">
+   CMSE201_ExampleProject_B.pdf
+  </a>
+ </li>
+ <li class="toctree-l1">
+  <a class="reference external" href="https://raw.githubusercontent.com/msu-cmse-courses/cmse201-S22-data/main/Projects/CMSE201_ExampleProject_C.pdf">
+   CMSE201_ExampleProject_C.pdf
+  </a>
+ </li>
+ <li class="toctree-l1">
+  <a class="reference external" href="https://raw.githubusercontent.com/msu-cmse-courses/cmse201-S22-data/main/Projects/CMSE201_ExampleProject_D.pdf">
+   CMSE201_ExampleProject_D.pdf
+  </a>
+ </li>
+ <li class="toctree-l1">
+  <a class="reference external" href="https://raw.githubusercontent.com/msu-cmse-courses/cmse201-S22-data/main/Projects/CMSE201_ExampleProject_E.pdf">
+   CMSE201_ExampleProject_E.pdf
+  </a>
+ </li>
+ <li class="toctree-l1">
+  <a class="reference external" href="https://raw.githubusercontent.com/msu-cmse-courses/cmse201-S22-data/main/Projects/CMSE201_final_project_example_1.pdf">
+   CMSE201_final_project_example_1.pdf
+  </a>
+ </li>
+ <li class="toctree-l1">
+  <a class="reference external" href="https://raw.githubusercontent.com/msu-cmse-courses/cmse201-S22-data/main/Projects/CMSE201_final_project_example_2.pdf">
+   CMSE201_final_project_example_2.pdf
+  </a>
+ </li>
+ <li class="toctree-l1">
+  <a class="reference external" href="https://raw.githubusercontent.com/msu-cmse-courses/cmse201-S22-data/main/Projects/CMSE201_final_project_example_3.pdf">
+   CMSE201_final_project_example_3.pdf
+  </a>
+ </li>
+ <li class="toctree-l1">
+  <a class="reference external" href="https://raw.githubusercontent.com/msu-cmse-courses/cmse201-S22-data/main/Projects/CMSE201_final_project_example_4.pdf">
+   CMSE201_final_project_example_4.pdf
+  </a>
+ </li>
+ <li class="toctree-l1">
+  <a class="reference internal" href="../Project_Materials/CMSE201FinalProject_RequirementsAndGradingRubric.html">
+   Requirements and Grading Rubric
+  </a>
+ </li>
+</ul>
+
+    </div>
+</nav></div>
+        <div class="bd-sidebar__bottom">
+             <!-- To handle the deprecated key -->
+            
+            <div class="navbar_extra_footer">
+            Powered by <a href="https://jupyterbook.org">Jupyter Book</a>
+            </div>
+            
+        </div>
+    </div>
+    <div id="rtd-footer-container"></div>
+</div>
+
+
+          
+
+
+          
+<!-- A tiny helper pixel to detect if we've scrolled -->
+<div class="sbt-scroll-pixel-helper"></div>
+<!-- Main content -->
+<div class="col py-0 content-container">
+    
+    <div class="header-article row sticky-top noprint">
+        
+
+
+
+<div class="col py-1 d-flex header-article-main">
+    <div class="header-article__left">
+        
+        <label for="__navigation"
+  class="headerbtn"
+  data-toggle="tooltip"
+data-placement="right"
+title="Toggle navigation"
+>
+  
+
+<span class="headerbtn__icon-container">
+  <i class="fas fa-bars"></i>
+  </span>
+
+</label>
+
+        
+    </div>
+    <div class="header-article__right">
+<div class="menu-dropdown menu-dropdown-launch-buttons">
+  <button class="headerbtn menu-dropdown__trigger"
+      aria-label="Launch interactive content">
+      <i class="fas fa-rocket"></i>
+  </button>
+  <div class="menu-dropdown__content">
+    <ul>
+      <li>
+        <a href="https://mybinder.org/v2/gh/msu-cmse-courses/cmse201-F22-jb/main?urlpath=tree/Day-10/Day-10_In-Class_Flint-STUDENT.ipynb"
+   class="headerbtn"
+   data-toggle="tooltip"
+data-placement="left"
+title="Launch on Binder"
+>
+  
+
+<span class="headerbtn__icon-container">
+  
+    <img src="../_static/images/logo_binder.svg">
+  </span>
+<span class="headerbtn__text-container">Binder</span>
+</a>
+
+      </li>
+      
+    </ul>
+  </div>
+</div>
+
+<button onclick="toggleFullScreen()"
+  class="headerbtn"
+  data-toggle="tooltip"
+data-placement="bottom"
+title="Fullscreen mode"
+>
+  
+
+<span class="headerbtn__icon-container">
+  <i class="fas fa-expand"></i>
+  </span>
+
+</button>
+
+<div class="menu-dropdown menu-dropdown-repository-buttons">
+  <button class="headerbtn menu-dropdown__trigger"
+      aria-label="Source repositories">
+      <i class="fab fa-github"></i>
+  </button>
+  <div class="menu-dropdown__content">
+    <ul>
+      <li>
+        <a href="https://github.com/msu-cmse-courses/cmse201-F22-jb"
+   class="headerbtn"
+   data-toggle="tooltip"
+data-placement="left"
+title="Source repository"
+>
+  
+
+<span class="headerbtn__icon-container">
+  <i class="fab fa-github"></i>
+  </span>
+<span class="headerbtn__text-container">repository</span>
+</a>
+
+      </li>
+      
+      <li>
+        <a href="https://github.com/msu-cmse-courses/cmse201-F22-jb/issues/new?title=Issue%20on%20page%20%2FDay-10/Day-10_In-Class_Flint-STUDENT.html&body=Your%20issue%20content%20here."
+   class="headerbtn"
+   data-toggle="tooltip"
+data-placement="left"
+title="Open an issue"
+>
+  
+
+<span class="headerbtn__icon-container">
+  <i class="fas fa-lightbulb"></i>
+  </span>
+<span class="headerbtn__text-container">open issue</span>
+</a>
+
+      </li>
+      
+    </ul>
+  </div>
+</div>
+
+<div class="menu-dropdown menu-dropdown-download-buttons">
+  <button class="headerbtn menu-dropdown__trigger"
+      aria-label="Download this page">
+      <i class="fas fa-download"></i>
+  </button>
+  <div class="menu-dropdown__content">
+    <ul>
+      <li>
+        <a href="../_sources/Day-10/Day-10_In-Class_Flint-STUDENT.ipynb"
+   class="headerbtn"
+   data-toggle="tooltip"
+data-placement="left"
+title="Download source file"
+>
+  
+
+<span class="headerbtn__icon-container">
+  <i class="fas fa-file"></i>
+  </span>
+<span class="headerbtn__text-container">.ipynb</span>
+</a>
+
+      </li>
+      
+      <li>
+        
+<button onclick="printPdf(this)"
+  class="headerbtn"
+  data-toggle="tooltip"
+data-placement="left"
+title="Print to PDF"
+>
+  
+
+<span class="headerbtn__icon-container">
+  <i class="fas fa-file-pdf"></i>
+  </span>
+<span class="headerbtn__text-container">.pdf</span>
+</button>
+
+      </li>
+      
+    </ul>
+  </div>
+</div>
+<label for="__page-toc"
+  class="headerbtn headerbtn-page-toc"
+  
+>
+  
+
+<span class="headerbtn__icon-container">
+  <i class="fas fa-list"></i>
+  </span>
+
+</label>
+
+    </div>
+</div>
+
+<!-- Table of contents -->
+<div class="col-md-3 bd-toc show noprint">
+    <div class="tocsection onthispage pt-5 pb-3">
+        <i class="fas fa-list"></i> Contents
+    </div>
+    <nav id="bd-toc-nav" aria-label="Page">
+        <ul class="visible nav section-nav flex-column">
+ <li class="toc-h2 nav-item toc-entry">
+  <a class="reference internal nav-link" href="#p-style-text-align-right-put-your-name-here-p">
+   <p style="text-align: right;">
+    ✅ Put your name here.
+   </p>
+  </a>
+  <ul class="nav section-nav flex-column">
+   <li class="toc-h3 nav-item toc-entry">
+    <a class="reference internal nav-link" href="#p-style-text-align-right-put-your-group-member-names-here-p">
+     <p style="text-align: right;">
+      ✅ Put your group member names here.
+     </p>
+    </a>
+   </li>
+  </ul>
+ </li>
+ <li class="toc-h2 nav-item toc-entry">
+  <a class="reference internal nav-link" href="#learning-goals">
+   Learning Goals:
+  </a>
+ </li>
+ <li class="toc-h2 nav-item toc-entry">
+  <a class="reference internal nav-link" href="#assignment-instructions">
+   Assignment instructions
+  </a>
+  <ul class="nav section-nav flex-column">
+   <li class="toc-h3 nav-item toc-entry">
+    <a class="reference internal nav-link" href="#key-for-data-fields-in-this-data-set">
+     Key for data fields in this data set:
+    </a>
+   </li>
+   <li class="toc-h3 nav-item toc-entry">
+    <a class="reference internal nav-link" href="#epa-limits">
+     EPA Limits
+    </a>
+   </li>
+  </ul>
+ </li>
+ <li class="toc-h2 nav-item toc-entry">
+  <a class="reference internal nav-link" href="#analysis-using-descriptive-statistics">
+   1. Analysis Using Descriptive Statistics
+  </a>
+  <ul class="nav section-nav flex-column">
+   <li class="toc-h3 nav-item toc-entry">
+    <a class="reference internal nav-link" href="#id1">
+     1.1
+    </a>
+   </li>
+   <li class="toc-h3 nav-item toc-entry">
+    <a class="reference internal nav-link" href="#id2">
+     1.2
+    </a>
+   </li>
+   <li class="toc-h3 nav-item toc-entry">
+    <a class="reference internal nav-link" href="#id3">
+     1.3
+    </a>
+   </li>
+  </ul>
+ </li>
+ <li class="toc-h2 nav-item toc-entry">
+  <a class="reference internal nav-link" href="#analysis-using-visualizations">
+   2. Analysis Using Visualizations
+  </a>
+  <ul class="nav section-nav flex-column">
+   <li class="toc-h3 nav-item toc-entry">
+    <a class="reference internal nav-link" href="#id4">
+     2.1
+    </a>
+   </li>
+   <li class="toc-h3 nav-item toc-entry">
+    <a class="reference internal nav-link" href="#id5">
+     2.2
+    </a>
+   </li>
+   <li class="toc-h3 nav-item toc-entry">
+    <a class="reference internal nav-link" href="#id6">
+     2.3
+    </a>
+   </li>
+   <li class="toc-h3 nav-item toc-entry">
+    <a class="reference internal nav-link" href="#id7">
+     2.4
+    </a>
+   </li>
+   <li class="toc-h3 nav-item toc-entry">
+    <a class="reference internal nav-link" href="#id8">
+     2.5
+    </a>
+   </li>
+  </ul>
+ </li>
+ <li class="toc-h2 nav-item toc-entry">
+  <a class="reference internal nav-link" href="#stop">
+   STOP
+  </a>
+ </li>
+ <li class="toc-h2 nav-item toc-entry">
+  <a class="reference internal nav-link" href="#analysis-using-masks">
+   3. Analysis Using Masks
+  </a>
+  <ul class="nav section-nav flex-column">
+   <li class="toc-h3 nav-item toc-entry">
+    <a class="reference internal nav-link" href="#id9">
+     3.1
+    </a>
+   </li>
+   <li class="toc-h3 nav-item toc-entry">
+    <a class="reference internal nav-link" href="#id10">
+     3.2
+    </a>
+   </li>
+   <li class="toc-h3 nav-item toc-entry">
+    <a class="reference internal nav-link" href="#id11">
+     3.3
+    </a>
+   </li>
+  </ul>
+ </li>
+ <li class="toc-h2 nav-item toc-entry">
+  <a class="reference internal nav-link" href="#extending-analysis-to-the-other-samples">
+   4. Extending Analysis to the Other Samples
+  </a>
+ </li>
+ <li class="toc-h2 nav-item toc-entry">
+  <a class="reference internal nav-link" href="#conclusions">
+   5. Conclusions
+  </a>
+ </li>
+ <li class="toc-h2 nav-item toc-entry">
+  <a class="reference internal nav-link" href="#time-permitting-looking-for-other-sources-of-analysis">
+   6. (Time Permitting) Looking for Other Sources of Analysis
+  </a>
+ </li>
+ <li class="toc-h2 nav-item toc-entry">
+  <a class="reference internal nav-link" href="#assignment-wrapup">
+   Assignment wrapup
+  </a>
+ </li>
+ <li class="toc-h2 nav-item toc-entry">
+  <a class="reference internal nav-link" href="#congratulations-you-re-done">
+   Congratulations, you’re done!
+  </a>
+ </li>
+</ul>
+
+    </nav>
+</div>
+    </div>
+    <div class="article row">
+        <div class="col pl-md-3 pl-lg-5 content-container">
+            <!-- Table of contents that is only displayed when printing the page -->
+            <div id="jb-print-docs-body" class="onlyprint">
+                <h1>Day 10 In-class Assignment: Get the Lead Out: Understanding The Water Crisis in Flint, MI</h1>
+                <!-- Table of contents -->
+                <div id="print-main-content">
+                    <div id="jb-print-toc">
+                        
+                        <div>
+                            <h2> Contents </h2>
+                        </div>
+                        <nav aria-label="Page">
+                            <ul class="visible nav section-nav flex-column">
+ <li class="toc-h2 nav-item toc-entry">
+  <a class="reference internal nav-link" href="#p-style-text-align-right-put-your-name-here-p">
+   <p style="text-align: right;">
+    ✅ Put your name here.
+   </p>
+  </a>
+  <ul class="nav section-nav flex-column">
+   <li class="toc-h3 nav-item toc-entry">
+    <a class="reference internal nav-link" href="#p-style-text-align-right-put-your-group-member-names-here-p">
+     <p style="text-align: right;">
+      ✅ Put your group member names here.
+     </p>
+    </a>
+   </li>
+  </ul>
+ </li>
+ <li class="toc-h2 nav-item toc-entry">
+  <a class="reference internal nav-link" href="#learning-goals">
+   Learning Goals:
+  </a>
+ </li>
+ <li class="toc-h2 nav-item toc-entry">
+  <a class="reference internal nav-link" href="#assignment-instructions">
+   Assignment instructions
+  </a>
+  <ul class="nav section-nav flex-column">
+   <li class="toc-h3 nav-item toc-entry">
+    <a class="reference internal nav-link" href="#key-for-data-fields-in-this-data-set">
+     Key for data fields in this data set:
+    </a>
+   </li>
+   <li class="toc-h3 nav-item toc-entry">
+    <a class="reference internal nav-link" href="#epa-limits">
+     EPA Limits
+    </a>
+   </li>
+  </ul>
+ </li>
+ <li class="toc-h2 nav-item toc-entry">
+  <a class="reference internal nav-link" href="#analysis-using-descriptive-statistics">
+   1. Analysis Using Descriptive Statistics
+  </a>
+  <ul class="nav section-nav flex-column">
+   <li class="toc-h3 nav-item toc-entry">
+    <a class="reference internal nav-link" href="#id1">
+     1.1
+    </a>
+   </li>
+   <li class="toc-h3 nav-item toc-entry">
+    <a class="reference internal nav-link" href="#id2">
+     1.2
+    </a>
+   </li>
+   <li class="toc-h3 nav-item toc-entry">
+    <a class="reference internal nav-link" href="#id3">
+     1.3
+    </a>
+   </li>
+  </ul>
+ </li>
+ <li class="toc-h2 nav-item toc-entry">
+  <a class="reference internal nav-link" href="#analysis-using-visualizations">
+   2. Analysis Using Visualizations
+  </a>
+  <ul class="nav section-nav flex-column">
+   <li class="toc-h3 nav-item toc-entry">
+    <a class="reference internal nav-link" href="#id4">
+     2.1
+    </a>
+   </li>
+   <li class="toc-h3 nav-item toc-entry">
+    <a class="reference internal nav-link" href="#id5">
+     2.2
+    </a>
+   </li>
+   <li class="toc-h3 nav-item toc-entry">
+    <a class="reference internal nav-link" href="#id6">
+     2.3
+    </a>
+   </li>
+   <li class="toc-h3 nav-item toc-entry">
+    <a class="reference internal nav-link" href="#id7">
+     2.4
+    </a>
+   </li>
+   <li class="toc-h3 nav-item toc-entry">
+    <a class="reference internal nav-link" href="#id8">
+     2.5
+    </a>
+   </li>
+  </ul>
+ </li>
+ <li class="toc-h2 nav-item toc-entry">
+  <a class="reference internal nav-link" href="#stop">
+   STOP
+  </a>
+ </li>
+ <li class="toc-h2 nav-item toc-entry">
+  <a class="reference internal nav-link" href="#analysis-using-masks">
+   3. Analysis Using Masks
+  </a>
+  <ul class="nav section-nav flex-column">
+   <li class="toc-h3 nav-item toc-entry">
+    <a class="reference internal nav-link" href="#id9">
+     3.1
+    </a>
+   </li>
+   <li class="toc-h3 nav-item toc-entry">
+    <a class="reference internal nav-link" href="#id10">
+     3.2
+    </a>
+   </li>
+   <li class="toc-h3 nav-item toc-entry">
+    <a class="reference internal nav-link" href="#id11">
+     3.3
+    </a>
+   </li>
+  </ul>
+ </li>
+ <li class="toc-h2 nav-item toc-entry">
+  <a class="reference internal nav-link" href="#extending-analysis-to-the-other-samples">
+   4. Extending Analysis to the Other Samples
+  </a>
+ </li>
+ <li class="toc-h2 nav-item toc-entry">
+  <a class="reference internal nav-link" href="#conclusions">
+   5. Conclusions
+  </a>
+ </li>
+ <li class="toc-h2 nav-item toc-entry">
+  <a class="reference internal nav-link" href="#time-permitting-looking-for-other-sources-of-analysis">
+   6. (Time Permitting) Looking for Other Sources of Analysis
+  </a>
+ </li>
+ <li class="toc-h2 nav-item toc-entry">
+  <a class="reference internal nav-link" href="#assignment-wrapup">
+   Assignment wrapup
+  </a>
+ </li>
+ <li class="toc-h2 nav-item toc-entry">
+  <a class="reference internal nav-link" href="#congratulations-you-re-done">
+   Congratulations, you’re done!
+  </a>
+ </li>
+</ul>
+
+                        </nav>
+                    </div>
+                </div>
+            </div>
+            <main id="main-content" role="main">
+                
+              <div>
+                
+  <section class="tex2jax_ignore mathjax_ignore" id="day-10-in-class-assignment-get-the-lead-out-understanding-the-water-crisis-in-flint-mi">
+<h1>Day 10 In-class Assignment: Get the Lead Out: Understanding The Water Crisis in Flint, MI<a class="headerlink" href="#day-10-in-class-assignment-get-the-lead-out-understanding-the-water-crisis-in-flint-mi" title="Permalink to this headline">#</a></h1>
+<section id="p-style-text-align-right-put-your-name-here-p">
+<h2><p style="text-align: right;"> ✅ Put your name here.</p><a class="headerlink" href="#p-style-text-align-right-put-your-name-here-p" title="Permalink to this headline">#</a></h2>
+<section id="p-style-text-align-right-put-your-group-member-names-here-p">
+<h3><p style="text-align: right;"> ✅ Put your group member names here.</p><a class="headerlink" href="#p-style-text-align-right-put-your-group-member-names-here-p" title="Permalink to this headline">#</a></h3>
+<div align="center"><img src="https://assets1.cbsnewsstatic.com/hub/i/r/2017/09/21/d348dfb2-b44c-49de-95c5-893fdf143ce6/thumbnail/620x349/d43e72275d7f4c4966124cfd9e66e22a/0921-eve-flinthearing-reynolds.jpg" width=800px></div>
+</section>
+</section>
+<section id="learning-goals">
+<h2>Learning Goals:<a class="headerlink" href="#learning-goals" title="Permalink to this headline">#</a></h2>
+<p>By the end of this assignment you should be able to:</p>
+<ul class="simple">
+<li><p>Use Pandas to filter data to select particular subsets of interest</p></li>
+<li><p>Articulate, based on your own perception, what you thinks makes a data visualization “good” versus “bad”</p></li>
+<li><p>Use data to support a claim or make an argument</p></li>
+</ul>
+</section>
+<section id="assignment-instructions">
+<h2>Assignment instructions<a class="headerlink" href="#assignment-instructions" title="Permalink to this headline">#</a></h2>
+<p>Work with your group to complete this assignment. Instructions for submitting this assignment are at the end of the notebook. The assignment is due at the end of class.</p>
+<p>Today we want you to think about what the data is telling you, but still use coding to help you; and, use some of the visualization ideas you explored above. We’ll be looking at the publicly released <a class="reference external" href="http://flintwaterstudy.org/2015/12/complete-dataset-lead-results-in-tap-water-for-271-flint-samples/">Flint Water Quality dataset</a>. The water testing method involves collecting three different bottles worth of water.</p>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="kn">import</span> <span class="nn">matplotlib.pyplot</span> <span class="k">as</span> <span class="nn">plt</span>
+<span class="o">%</span><span class="k">matplotlib</span> inline
+
+<span class="kn">import</span> <span class="nn">numpy</span> <span class="k">as</span> <span class="nn">np</span>
+<span class="kn">import</span> <span class="nn">pandas</span> <span class="k">as</span> <span class="nn">pd</span>
+
+<span class="c1"># Loading the data</span>
+<span class="c1"># flint_data = pd.read_json(&quot;&quot;&quot;[{&quot;SampleID&quot;:1,&quot;Zip Code&quot;:48504,&quot;Ward&quot;:6,&quot;PbBottle1_ppb&quot;:0.344,&quot;PbBottle2_ppb&quot;:0.226,&quot;PbBottle3_ppb&quot;:0.145},{&quot;SampleID&quot;:2,&quot;Zip Code&quot;:48507,&quot;Ward&quot;:9,&quot;PbBottle1_ppb&quot;:8.133,&quot;PbBottle2_ppb&quot;:10.77,&quot;PbBottle3_ppb&quot;:2.761},{&quot;SampleID&quot;:4,&quot;Zip Code&quot;:48504,&quot;Ward&quot;:1,&quot;PbBottle1_ppb&quot;:1.111,&quot;PbBottle2_ppb&quot;:0.11,&quot;PbBottle3_ppb&quot;:0.123},{&quot;SampleID&quot;:5,&quot;Zip Code&quot;:48507,&quot;Ward&quot;:8,&quot;PbBottle1_ppb&quot;:8.007,&quot;PbBottle2_ppb&quot;:7.446,&quot;PbBottle3_ppb&quot;:3.384},{&quot;SampleID&quot;:6,&quot;Zip Code&quot;:48505,&quot;Ward&quot;:3,&quot;PbBottle1_ppb&quot;:1.951,&quot;PbBottle2_ppb&quot;:0.048,&quot;PbBottle3_ppb&quot;:0.035},{&quot;SampleID&quot;:7,&quot;Zip Code&quot;:48507,&quot;Ward&quot;:9,&quot;PbBottle1_ppb&quot;:7.2,&quot;PbBottle2_ppb&quot;:1.4,&quot;PbBottle3_ppb&quot;:0.2},{&quot;SampleID&quot;:8,&quot;Zip Code&quot;:48507,&quot;Ward&quot;:9,&quot;PbBottle1_ppb&quot;:40.63,&quot;PbBottle2_ppb&quot;:9.726,&quot;PbBottle3_ppb&quot;:6.132},{&quot;SampleID&quot;:9,&quot;Zip Code&quot;:48503,&quot;Ward&quot;:5,&quot;PbBottle1_ppb&quot;:1.1,&quot;PbBottle2_ppb&quot;:2.5,&quot;PbBottle3_ppb&quot;:0.1},{&quot;SampleID&quot;:12,&quot;Zip Code&quot;:48507,&quot;Ward&quot;:9,&quot;PbBottle1_ppb&quot;:10.6,&quot;PbBottle2_ppb&quot;:1.038,&quot;PbBottle3_ppb&quot;:1.294},{&quot;SampleID&quot;:13,&quot;Zip Code&quot;:48505,&quot;Ward&quot;:3,&quot;PbBottle1_ppb&quot;:6.2,&quot;PbBottle2_ppb&quot;:4.2,&quot;PbBottle3_ppb&quot;:2.3},{&quot;SampleID&quot;:15,&quot;Zip Code&quot;:48507,&quot;Ward&quot;:9,&quot;PbBottle1_ppb&quot;:4.358,&quot;PbBottle2_ppb&quot;:0.822,&quot;PbBottle3_ppb&quot;:0.147},{&quot;SampleID&quot;:16,&quot;Zip Code&quot;:48505,&quot;Ward&quot;:5,&quot;PbBottle1_ppb&quot;:24.37,&quot;PbBottle2_ppb&quot;:8.796,&quot;PbBottle3_ppb&quot;:4.347},{&quot;SampleID&quot;:17,&quot;Zip Code&quot;:48505,&quot;Ward&quot;:2,&quot;PbBottle1_ppb&quot;:6.609,&quot;PbBottle2_ppb&quot;:5.752,&quot;PbBottle3_ppb&quot;:1.433},{&quot;SampleID&quot;:18,&quot;Zip Code&quot;:48503,&quot;Ward&quot;:7,&quot;PbBottle1_ppb&quot;:4.062,&quot;PbBottle2_ppb&quot;:1.099,&quot;PbBottle3_ppb&quot;:1.085},{&quot;SampleID&quot;:19,&quot;Zip Code&quot;:48507,&quot;Ward&quot;:9,&quot;PbBottle1_ppb&quot;:2.484,&quot;PbBottle2_ppb&quot;:0.72,&quot;PbBottle3_ppb&quot;:0.565},{&quot;SampleID&quot;:20,&quot;Zip Code&quot;:48507,&quot;Ward&quot;:9,&quot;PbBottle1_ppb&quot;:0.438,&quot;PbBottle2_ppb&quot;:1.046,&quot;PbBottle3_ppb&quot;:0.511},{&quot;SampleID&quot;:21,&quot;Zip Code&quot;:48503,&quot;Ward&quot;:5,&quot;PbBottle1_ppb&quot;:1.29,&quot;PbBottle2_ppb&quot;:0.243,&quot;PbBottle3_ppb&quot;:0.225},{&quot;SampleID&quot;:22,&quot;Zip Code&quot;:48504,&quot;Ward&quot;:6,&quot;PbBottle1_ppb&quot;:0.548,&quot;PbBottle2_ppb&quot;:0.622,&quot;PbBottle3_ppb&quot;:0.361},{&quot;SampleID&quot;:23,&quot;Zip Code&quot;:48504,&quot;Ward&quot;:2,&quot;PbBottle1_ppb&quot;:3.131,&quot;PbBottle2_ppb&quot;:0.674,&quot;PbBottle3_ppb&quot;:0.683},{&quot;SampleID&quot;:24,&quot;Zip Code&quot;:48504,&quot;Ward&quot;:6,&quot;PbBottle1_ppb&quot;:120,&quot;PbBottle2_ppb&quot;:239.7,&quot;PbBottle3_ppb&quot;:29.71},{&quot;SampleID&quot;:25,&quot;Zip Code&quot;:48505,&quot;Ward&quot;:1,&quot;PbBottle1_ppb&quot;:2.911,&quot;PbBottle2_ppb&quot;:0.406,&quot;PbBottle3_ppb&quot;:0.237},{&quot;SampleID&quot;:26,&quot;Zip Code&quot;:48505,&quot;Ward&quot;:5,&quot;PbBottle1_ppb&quot;:16.52,&quot;PbBottle2_ppb&quot;:10.26,&quot;PbBottle3_ppb&quot;:2.762},{&quot;SampleID&quot;:27,&quot;Zip Code&quot;:48505,&quot;Ward&quot;:1,&quot;PbBottle1_ppb&quot;:1.984,&quot;PbBottle2_ppb&quot;:1.13,&quot;PbBottle3_ppb&quot;:0.712},{&quot;SampleID&quot;:28,&quot;Zip Code&quot;:48503,&quot;Ward&quot;:7,&quot;PbBottle1_ppb&quot;:5.367,&quot;PbBottle2_ppb&quot;:2.474,&quot;PbBottle3_ppb&quot;:1.616},{&quot;SampleID&quot;:29,&quot;Zip Code&quot;:48504,&quot;Ward&quot;:2,&quot;PbBottle1_ppb&quot;:5.5,&quot;PbBottle2_ppb&quot;:8.4,&quot;PbBottle3_ppb&quot;:2.4},{&quot;SampleID&quot;:30,&quot;Zip Code&quot;:48506,&quot;Ward&quot;:4,&quot;PbBottle1_ppb&quot;:0.639,&quot;PbBottle2_ppb&quot;:0.223,&quot;PbBottle3_ppb&quot;:0.194},{&quot;SampleID&quot;:31,&quot;Zip Code&quot;:48503,&quot;Ward&quot;:7,&quot;PbBottle1_ppb&quot;:6.087,&quot;PbBottle2_ppb&quot;:28.87,&quot;PbBottle3_ppb&quot;:2.13,&quot;Notes&quot;:&quot;*house sampled twice&quot;},{&quot;SampleID&quot;:31,&quot;Zip Code&quot;:48503,&quot;Ward&quot;:7,&quot;PbBottle1_ppb&quot;:10.32,&quot;PbBottle2_ppb&quot;:13.47,&quot;PbBottle3_ppb&quot;:18.19,&quot;Notes&quot;:&quot;*house sampled twice&quot;},{&quot;SampleID&quot;:33,&quot;Zip Code&quot;:48503,&quot;Ward&quot;:6,&quot;PbBottle1_ppb&quot;:66.88,&quot;PbBottle2_ppb&quot;:2.662,&quot;PbBottle3_ppb&quot;:2.082},{&quot;SampleID&quot;:34,&quot;Zip Code&quot;:48505,&quot;Ward&quot;:1,&quot;PbBottle1_ppb&quot;:20.41,&quot;PbBottle2_ppb&quot;:3.543,&quot;PbBottle3_ppb&quot;:2.344},{&quot;SampleID&quot;:35,&quot;Zip Code&quot;:48504,&quot;Ward&quot;:6,&quot;PbBottle1_ppb&quot;:109.6,&quot;PbBottle2_ppb&quot;:80.47,&quot;PbBottle3_ppb&quot;:94.52},{&quot;SampleID&quot;:36,&quot;Zip Code&quot;:48503,&quot;Ward&quot;:8,&quot;PbBottle1_ppb&quot;:5.06,&quot;PbBottle2_ppb&quot;:3.406,&quot;PbBottle3_ppb&quot;:4.088},{&quot;SampleID&quot;:37,&quot;Zip Code&quot;:48504,&quot;Ward&quot;:2,&quot;PbBottle1_ppb&quot;:2.774,&quot;PbBottle2_ppb&quot;:0.21,&quot;PbBottle3_ppb&quot;:0.264},{&quot;SampleID&quot;:38,&quot;Zip Code&quot;:48505,&quot;Ward&quot;:3,&quot;PbBottle1_ppb&quot;:4.453,&quot;PbBottle2_ppb&quot;:3.679,&quot;PbBottle3_ppb&quot;:3.523},{&quot;SampleID&quot;:39,&quot;Zip Code&quot;:48505,&quot;Ward&quot;:1,&quot;PbBottle1_ppb&quot;:0.4,&quot;PbBottle2_ppb&quot;:0.3,&quot;PbBottle3_ppb&quot;:0.7},{&quot;SampleID&quot;:40,&quot;Zip Code&quot;:48529,&quot;Ward&quot;:9,&quot;PbBottle1_ppb&quot;:0.974,&quot;PbBottle2_ppb&quot;:0.142,&quot;PbBottle3_ppb&quot;:0.118},{&quot;SampleID&quot;:41,&quot;Zip Code&quot;:48505,&quot;Ward&quot;:5,&quot;PbBottle1_ppb&quot;:3.228,&quot;PbBottle2_ppb&quot;:2.534,&quot;PbBottle3_ppb&quot;:2.222},{&quot;SampleID&quot;:42,&quot;Zip Code&quot;:48505,&quot;Ward&quot;:2,&quot;PbBottle1_ppb&quot;:12.55,&quot;PbBottle2_ppb&quot;:4.132,&quot;PbBottle3_ppb&quot;:0.12},{&quot;SampleID&quot;:43,&quot;Zip Code&quot;:48505,&quot;Ward&quot;:3,&quot;PbBottle1_ppb&quot;:0.501,&quot;PbBottle2_ppb&quot;:0.156,&quot;PbBottle3_ppb&quot;:15.14},{&quot;SampleID&quot;:44,&quot;Zip Code&quot;:48504,&quot;Ward&quot;:2,&quot;PbBottle1_ppb&quot;:2.448,&quot;PbBottle2_ppb&quot;:0.373,&quot;PbBottle3_ppb&quot;:0.288},{&quot;SampleID&quot;:45,&quot;Zip Code&quot;:48505,&quot;Ward&quot;:3,&quot;PbBottle1_ppb&quot;:5.508,&quot;PbBottle2_ppb&quot;:5.157,&quot;PbBottle3_ppb&quot;:2.621},{&quot;SampleID&quot;:46,&quot;Zip Code&quot;:48504,&quot;Ward&quot;:6,&quot;PbBottle1_ppb&quot;:1.293,&quot;PbBottle2_ppb&quot;:0.441,&quot;PbBottle3_ppb&quot;:0.281},{&quot;SampleID&quot;:47,&quot;Zip Code&quot;:48505,&quot;Ward&quot;:1,&quot;PbBottle1_ppb&quot;:4.699,&quot;PbBottle2_ppb&quot;:1.395,&quot;PbBottle3_ppb&quot;:0.329},{&quot;SampleID&quot;:48,&quot;Zip Code&quot;:48504,&quot;Ward&quot;:6,&quot;PbBottle1_ppb&quot;:6.093,&quot;PbBottle2_ppb&quot;:2.682,&quot;PbBottle3_ppb&quot;:1.458},{&quot;SampleID&quot;:49,&quot;Zip Code&quot;:48504,&quot;Ward&quot;:2,&quot;PbBottle1_ppb&quot;:0.8,&quot;PbBottle2_ppb&quot;:0.8,&quot;PbBottle3_ppb&quot;:0.5},{&quot;SampleID&quot;:50,&quot;Zip Code&quot;:48503,&quot;Ward&quot;:5,&quot;PbBottle1_ppb&quot;:1.626,&quot;PbBottle2_ppb&quot;:1.332,&quot;PbBottle3_ppb&quot;:0.327},{&quot;SampleID&quot;:51,&quot;Zip Code&quot;:48507,&quot;Ward&quot;:8,&quot;PbBottle1_ppb&quot;:2.576,&quot;PbBottle2_ppb&quot;:2.852,&quot;PbBottle3_ppb&quot;:1.48},{&quot;SampleID&quot;:52,&quot;Zip Code&quot;:48504,&quot;Ward&quot;:1,&quot;PbBottle1_ppb&quot;:2.362,&quot;PbBottle2_ppb&quot;:0.467,&quot;PbBottle3_ppb&quot;:0.339},{&quot;SampleID&quot;:53,&quot;Zip Code&quot;:48503,&quot;Ward&quot;:5,&quot;PbBottle1_ppb&quot;:1.585,&quot;PbBottle2_ppb&quot;:0.494,&quot;PbBottle3_ppb&quot;:1.232},{&quot;SampleID&quot;:54,&quot;Zip Code&quot;:48506,&quot;Ward&quot;:4,&quot;PbBottle1_ppb&quot;:3.058,&quot;PbBottle2_ppb&quot;:1.808,&quot;PbBottle3_ppb&quot;:1.169},{&quot;SampleID&quot;:55,&quot;Zip Code&quot;:48506,&quot;Ward&quot;:4,&quot;PbBottle1_ppb&quot;:2.423,&quot;PbBottle2_ppb&quot;:0.393,&quot;PbBottle3_ppb&quot;:0.373},{&quot;SampleID&quot;:56,&quot;Zip Code&quot;:48503,&quot;Ward&quot;:8,&quot;PbBottle1_ppb&quot;:30.91,&quot;PbBottle2_ppb&quot;:42.58,&quot;PbBottle3_ppb&quot;:44.6},{&quot;SampleID&quot;:57,&quot;Zip Code&quot;:48503,&quot;Ward&quot;:8,&quot;PbBottle1_ppb&quot;:4.47,&quot;PbBottle2_ppb&quot;:3.649,&quot;PbBottle3_ppb&quot;:1},{&quot;SampleID&quot;:58,&quot;Zip Code&quot;:48505,&quot;Ward&quot;:1,&quot;PbBottle1_ppb&quot;:2.172,&quot;PbBottle2_ppb&quot;:1.76,&quot;PbBottle3_ppb&quot;:1.44},{&quot;SampleID&quot;:59,&quot;Zip Code&quot;:48505,&quot;Ward&quot;:3,&quot;PbBottle1_ppb&quot;:1.8,&quot;PbBottle2_ppb&quot;:0.5,&quot;PbBottle3_ppb&quot;:0.2},{&quot;SampleID&quot;:63,&quot;Zip Code&quot;:48503,&quot;Ward&quot;:5,&quot;PbBottle1_ppb&quot;:0.965,&quot;PbBottle2_ppb&quot;:0.166,&quot;PbBottle3_ppb&quot;:0.319},{&quot;SampleID&quot;:65,&quot;Zip Code&quot;:48505,&quot;Ward&quot;:1,&quot;PbBottle1_ppb&quot;:7.636,&quot;PbBottle2_ppb&quot;:5.206,&quot;PbBottle3_ppb&quot;:9.239},{&quot;SampleID&quot;:66,&quot;Zip Code&quot;:48506,&quot;Ward&quot;:3,&quot;PbBottle1_ppb&quot;:3.158,&quot;PbBottle2_ppb&quot;:1.948,&quot;PbBottle3_ppb&quot;:2.802},{&quot;SampleID&quot;:67,&quot;Zip Code&quot;:48503,&quot;Ward&quot;:7,&quot;PbBottle1_ppb&quot;:105.3,&quot;PbBottle2_ppb&quot;:12.84,&quot;PbBottle3_ppb&quot;:4.534},{&quot;SampleID&quot;:68,&quot;Zip Code&quot;:48506,&quot;Ward&quot;:3,&quot;PbBottle1_ppb&quot;:4.476,&quot;PbBottle2_ppb&quot;:0.355,&quot;PbBottle3_ppb&quot;:0.334},{&quot;SampleID&quot;:69,&quot;Zip Code&quot;:48504,&quot;Ward&quot;:1,&quot;PbBottle1_ppb&quot;:2.828,&quot;PbBottle2_ppb&quot;:6.694,&quot;PbBottle3_ppb&quot;:20.99},{&quot;SampleID&quot;:71,&quot;Zip Code&quot;:48503,&quot;Ward&quot;:5,&quot;PbBottle1_ppb&quot;:2.481,&quot;PbBottle2_ppb&quot;:3.86,&quot;PbBottle3_ppb&quot;:24.64},{&quot;SampleID&quot;:72,&quot;Zip Code&quot;:48507,&quot;Ward&quot;:5,&quot;PbBottle1_ppb&quot;:11.52,&quot;PbBottle2_ppb&quot;:0.288,&quot;PbBottle3_ppb&quot;:0.215},{&quot;SampleID&quot;:73,&quot;Zip Code&quot;:48507,&quot;Ward&quot;:8,&quot;PbBottle1_ppb&quot;:3.784,&quot;PbBottle2_ppb&quot;:0.292,&quot;PbBottle3_ppb&quot;:0.258},{&quot;SampleID&quot;:74,&quot;Zip Code&quot;:48503,&quot;Ward&quot;:5,&quot;PbBottle1_ppb&quot;:1.344,&quot;PbBottle2_ppb&quot;:0.729,&quot;PbBottle3_ppb&quot;:1.226},{&quot;SampleID&quot;:75,&quot;Zip Code&quot;:48504,&quot;Ward&quot;:6,&quot;PbBottle1_ppb&quot;:11.93,&quot;PbBottle2_ppb&quot;:9.645,&quot;PbBottle3_ppb&quot;:3.514},{&quot;SampleID&quot;:76,&quot;Zip Code&quot;:48507,&quot;Ward&quot;:9,&quot;PbBottle1_ppb&quot;:10.96,&quot;PbBottle2_ppb&quot;:7.744,&quot;PbBottle3_ppb&quot;:4.16},{&quot;SampleID&quot;:77,&quot;Zip Code&quot;:48504,&quot;Ward&quot;:6,&quot;PbBottle1_ppb&quot;:3.341,&quot;PbBottle2_ppb&quot;:0.555,&quot;PbBottle3_ppb&quot;:0.917},{&quot;SampleID&quot;:78,&quot;Zip Code&quot;:48503,&quot;Ward&quot;:5,&quot;PbBottle1_ppb&quot;:1.229,&quot;PbBottle2_ppb&quot;:1.192,&quot;PbBottle3_ppb&quot;:0.218},{&quot;SampleID&quot;:79,&quot;Zip Code&quot;:48503,&quot;Ward&quot;:6,&quot;PbBottle1_ppb&quot;:6.3,&quot;PbBottle2_ppb&quot;:1.1,&quot;PbBottle3_ppb&quot;:0.3,&quot;Notes&quot;:&quot;*house sampled twice&quot;},{&quot;SampleID&quot;:79,&quot;Zip Code&quot;:48503,&quot;Ward&quot;:6,&quot;PbBottle1_ppb&quot;:5.153,&quot;PbBottle2_ppb&quot;:0.385,&quot;PbBottle3_ppb&quot;:0.322,&quot;Notes&quot;:&quot;*house sampled twice&quot;},{&quot;SampleID&quot;:80,&quot;Zip Code&quot;:48504,&quot;Ward&quot;:6,&quot;PbBottle1_ppb&quot;:6.054,&quot;PbBottle2_ppb&quot;:0.927,&quot;PbBottle3_ppb&quot;:0.676},{&quot;SampleID&quot;:82,&quot;Zip Code&quot;:48504,&quot;Ward&quot;:2,&quot;PbBottle1_ppb&quot;:31.14,&quot;PbBottle2_ppb&quot;:4.73,&quot;PbBottle3_ppb&quot;:3.188},{&quot;SampleID&quot;:83,&quot;Zip Code&quot;:48504,&quot;Ward&quot;:6,&quot;PbBottle1_ppb&quot;:102.7,&quot;PbBottle2_ppb&quot;:9.894,&quot;PbBottle3_ppb&quot;:3.133},{&quot;SampleID&quot;:84,&quot;Zip Code&quot;:48504,&quot;Ward&quot;:2,&quot;PbBottle1_ppb&quot;:1.38,&quot;PbBottle2_ppb&quot;:3.734,&quot;PbBottle3_ppb&quot;:0.524},{&quot;SampleID&quot;:85,&quot;Zip Code&quot;:48505,&quot;Ward&quot;:3,&quot;PbBottle1_ppb&quot;:1.132,&quot;PbBottle2_ppb&quot;:2.17,&quot;PbBottle3_ppb&quot;:0.465},{&quot;SampleID&quot;:87,&quot;Zip Code&quot;:48507,&quot;Ward&quot;:9,&quot;PbBottle1_ppb&quot;:3.232,&quot;PbBottle2_ppb&quot;:2.989,&quot;PbBottle3_ppb&quot;:1.927},{&quot;SampleID&quot;:88,&quot;Zip Code&quot;:48532,&quot;Ward&quot;:8,&quot;PbBottle1_ppb&quot;:0.507,&quot;PbBottle2_ppb&quot;:2.315,&quot;PbBottle3_ppb&quot;:0.231},{&quot;SampleID&quot;:90,&quot;Zip Code&quot;:48506,&quot;Ward&quot;:4,&quot;PbBottle1_ppb&quot;:8.561,&quot;PbBottle2_ppb&quot;:5.141,&quot;PbBottle3_ppb&quot;:4.724},{&quot;SampleID&quot;:91,&quot;Zip Code&quot;:48505,&quot;Ward&quot;:3,&quot;PbBottle1_ppb&quot;:9.997,&quot;PbBottle2_ppb&quot;:0.983,&quot;PbBottle3_ppb&quot;:0.611},{&quot;SampleID&quot;:92,&quot;Zip Code&quot;:48504,&quot;Ward&quot;:1,&quot;PbBottle1_ppb&quot;:4.152,&quot;PbBottle2_ppb&quot;:0.758,&quot;PbBottle3_ppb&quot;:0.433},{&quot;SampleID&quot;:93,&quot;Zip Code&quot;:48504,&quot;Ward&quot;:2,&quot;PbBottle1_ppb&quot;:75.82,&quot;PbBottle2_ppb&quot;:11.65,&quot;PbBottle3_ppb&quot;:3.942},{&quot;SampleID&quot;:95,&quot;Zip Code&quot;:48506,&quot;Ward&quot;:4,&quot;PbBottle1_ppb&quot;:138.8,&quot;PbBottle2_ppb&quot;:2.745,&quot;PbBottle3_ppb&quot;:0.797},{&quot;SampleID&quot;:96,&quot;Zip Code&quot;:48507,&quot;Ward&quot;:9,&quot;PbBottle1_ppb&quot;:0.8,&quot;PbBottle2_ppb&quot;:0.2,&quot;PbBottle3_ppb&quot;:0.2},{&quot;SampleID&quot;:97,&quot;Zip Code&quot;:48504,&quot;Ward&quot;:2,&quot;PbBottle1_ppb&quot;:7.244,&quot;PbBottle2_ppb&quot;:1051,&quot;PbBottle3_ppb&quot;:1.328},{&quot;SampleID&quot;:98,&quot;Zip Code&quot;:48506,&quot;Ward&quot;:3,&quot;PbBottle1_ppb&quot;:1.621,&quot;PbBottle2_ppb&quot;:0.3,&quot;PbBottle3_ppb&quot;:0.238},{&quot;SampleID&quot;:99,&quot;Zip Code&quot;:48505,&quot;Ward&quot;:1,&quot;PbBottle1_ppb&quot;:1.032,&quot;PbBottle2_ppb&quot;:0.363,&quot;PbBottle3_ppb&quot;:0.216},{&quot;SampleID&quot;:100,&quot;Zip Code&quot;:48504,&quot;Ward&quot;:2,&quot;PbBottle1_ppb&quot;:0.866,&quot;PbBottle2_ppb&quot;:0.292,&quot;PbBottle3_ppb&quot;:0.269},{&quot;SampleID&quot;:101,&quot;Zip Code&quot;:48504,&quot;Ward&quot;:2,&quot;PbBottle1_ppb&quot;:2.525,&quot;PbBottle2_ppb&quot;:0.59,&quot;PbBottle3_ppb&quot;:0.438},{&quot;SampleID&quot;:102,&quot;Zip Code&quot;:48505,&quot;Ward&quot;:5,&quot;PbBottle1_ppb&quot;:9.408,&quot;PbBottle2_ppb&quot;:4.444,&quot;PbBottle3_ppb&quot;:3.935},{&quot;SampleID&quot;:103,&quot;Zip Code&quot;:48505,&quot;Ward&quot;:0,&quot;PbBottle1_ppb&quot;:0.739,&quot;PbBottle2_ppb&quot;:4.883,&quot;PbBottle3_ppb&quot;:0.953},{&quot;SampleID&quot;:104,&quot;Zip Code&quot;:48505,&quot;Ward&quot;:1,&quot;PbBottle1_ppb&quot;:0.9,&quot;PbBottle2_ppb&quot;:0.2,&quot;PbBottle3_ppb&quot;:0.1},{&quot;SampleID&quot;:105,&quot;Zip Code&quot;:48504,&quot;Ward&quot;:2,&quot;PbBottle1_ppb&quot;:1.403,&quot;PbBottle2_ppb&quot;:0.142,&quot;PbBottle3_ppb&quot;:0.121},{&quot;SampleID&quot;:106,&quot;Zip Code&quot;:48503,&quot;Ward&quot;:8,&quot;PbBottle1_ppb&quot;:5.655,&quot;PbBottle2_ppb&quot;:5.882,&quot;PbBottle3_ppb&quot;:10.66},{&quot;SampleID&quot;:107,&quot;Zip Code&quot;:48505,&quot;Ward&quot;:2,&quot;PbBottle1_ppb&quot;:31.06,&quot;PbBottle2_ppb&quot;:8.578,&quot;PbBottle3_ppb&quot;:3.176},{&quot;SampleID&quot;:108,&quot;Zip Code&quot;:48506,&quot;Ward&quot;:4,&quot;PbBottle1_ppb&quot;:1.469,&quot;PbBottle2_ppb&quot;:0.291,&quot;PbBottle3_ppb&quot;:0.25},{&quot;SampleID&quot;:109,&quot;Zip Code&quot;:48505,&quot;Ward&quot;:1,&quot;PbBottle1_ppb&quot;:23.85,&quot;PbBottle2_ppb&quot;:2.301,&quot;PbBottle3_ppb&quot;:1.62},{&quot;SampleID&quot;:110,&quot;Zip Code&quot;:48505,&quot;Ward&quot;:2,&quot;PbBottle1_ppb&quot;:9.766,&quot;PbBottle2_ppb&quot;:11.13,&quot;PbBottle3_ppb&quot;:7.144},{&quot;SampleID&quot;:111,&quot;Zip Code&quot;:48505,&quot;Ward&quot;:1,&quot;PbBottle1_ppb&quot;:4.69,&quot;PbBottle2_ppb&quot;:0.953,&quot;PbBottle3_ppb&quot;:0.929},{&quot;SampleID&quot;:112,&quot;Zip Code&quot;:48505,&quot;Ward&quot;:3,&quot;PbBottle1_ppb&quot;:4.066,&quot;PbBottle2_ppb&quot;:5.894,&quot;PbBottle3_ppb&quot;:4.76},{&quot;SampleID&quot;:113,&quot;Zip Code&quot;:48505,&quot;Ward&quot;:1,&quot;PbBottle1_ppb&quot;:0.846,&quot;PbBottle2_ppb&quot;:0.455,&quot;PbBottle3_ppb&quot;:0.366},{&quot;SampleID&quot;:114,&quot;Zip Code&quot;:48505,&quot;Ward&quot;:1,&quot;PbBottle1_ppb&quot;:2.054,&quot;PbBottle2_ppb&quot;:3.978,&quot;PbBottle3_ppb&quot;:0.355},{&quot;SampleID&quot;:115,&quot;Zip Code&quot;:48506,&quot;Ward&quot;:7,&quot;PbBottle1_ppb&quot;:3.744,&quot;PbBottle2_ppb&quot;:5.592,&quot;PbBottle3_ppb&quot;:2.476},{&quot;SampleID&quot;:116,&quot;Zip Code&quot;:48507,&quot;Ward&quot;:9,&quot;PbBottle1_ppb&quot;:12.9,&quot;PbBottle2_ppb&quot;:2.202,&quot;PbBottle3_ppb&quot;:1.667},{&quot;SampleID&quot;:117,&quot;Zip Code&quot;:48505,&quot;Ward&quot;:1,&quot;PbBottle1_ppb&quot;:0.543,&quot;PbBottle2_ppb&quot;:0.183,&quot;PbBottle3_ppb&quot;:0.162},{&quot;SampleID&quot;:118,&quot;Zip Code&quot;:48503,&quot;Ward&quot;:7,&quot;PbBottle1_ppb&quot;:6.877,&quot;PbBottle2_ppb&quot;:2.984,&quot;PbBottle3_ppb&quot;:2.201},{&quot;SampleID&quot;:119,&quot;Zip Code&quot;:48505,&quot;Ward&quot;:1,&quot;PbBottle1_ppb&quot;:0.552,&quot;PbBottle2_ppb&quot;:0.19,&quot;PbBottle3_ppb&quot;:0.205},{&quot;SampleID&quot;:121,&quot;Zip Code&quot;:48506,&quot;Ward&quot;:3,&quot;PbBottle1_ppb&quot;:59,&quot;PbBottle2_ppb&quot;:2.9,&quot;PbBottle3_ppb&quot;:0.5},{&quot;SampleID&quot;:122,&quot;Zip Code&quot;:48506,&quot;Ward&quot;:4,&quot;PbBottle1_ppb&quot;:0.349,&quot;PbBottle2_ppb&quot;:0.13,&quot;PbBottle3_ppb&quot;:0.131},{&quot;SampleID&quot;:123,&quot;Zip Code&quot;:48506,&quot;Ward&quot;:4,&quot;PbBottle1_ppb&quot;:4.764,&quot;PbBottle2_ppb&quot;:1.388,&quot;PbBottle3_ppb&quot;:1.06},{&quot;SampleID&quot;:124,&quot;Zip Code&quot;:48506,&quot;Ward&quot;:4,&quot;PbBottle1_ppb&quot;:0.832,&quot;PbBottle2_ppb&quot;:0.284,&quot;PbBottle3_ppb&quot;:0.214},{&quot;SampleID&quot;:125,&quot;Zip Code&quot;:48506,&quot;Ward&quot;:4,&quot;PbBottle1_ppb&quot;:1.224,&quot;PbBottle2_ppb&quot;:0.568,&quot;PbBottle3_ppb&quot;:0.465},{&quot;SampleID&quot;:126,&quot;Zip Code&quot;:48507,&quot;Ward&quot;:9,&quot;PbBottle1_ppb&quot;:15.9,&quot;PbBottle2_ppb&quot;:3.7,&quot;PbBottle3_ppb&quot;:2.2},{&quot;SampleID&quot;:127,&quot;Zip Code&quot;:48506,&quot;Ward&quot;:4,&quot;PbBottle1_ppb&quot;:5.667,&quot;PbBottle2_ppb&quot;:1.405,&quot;PbBottle3_ppb&quot;:0.896},{&quot;SampleID&quot;:128,&quot;Zip Code&quot;:48506,&quot;Ward&quot;:4,&quot;PbBottle1_ppb&quot;:3.564,&quot;PbBottle2_ppb&quot;:2.767,&quot;PbBottle3_ppb&quot;:2.127},{&quot;SampleID&quot;:129,&quot;Zip Code&quot;:48506,&quot;Ward&quot;:4,&quot;PbBottle1_ppb&quot;:0.475,&quot;PbBottle2_ppb&quot;:0.2,&quot;PbBottle3_ppb&quot;:0.268},{&quot;SampleID&quot;:130,&quot;Zip Code&quot;:48507,&quot;Ward&quot;:9,&quot;PbBottle1_ppb&quot;:5.3,&quot;PbBottle2_ppb&quot;:0.5,&quot;PbBottle3_ppb&quot;:0.2},{&quot;SampleID&quot;:131,&quot;Zip Code&quot;:48506,&quot;Ward&quot;:4,&quot;PbBottle1_ppb&quot;:1.166,&quot;PbBottle2_ppb&quot;:0.736,&quot;PbBottle3_ppb&quot;:0.269},{&quot;SampleID&quot;:132,&quot;Zip Code&quot;:48506,&quot;Ward&quot;:4,&quot;PbBottle1_ppb&quot;:0.684,&quot;PbBottle2_ppb&quot;:0.306,&quot;PbBottle3_ppb&quot;:0.094},{&quot;SampleID&quot;:133,&quot;Zip Code&quot;:48503,&quot;Ward&quot;:8,&quot;PbBottle1_ppb&quot;:6.347,&quot;PbBottle2_ppb&quot;:1.724,&quot;PbBottle3_ppb&quot;:0.678},{&quot;SampleID&quot;:134,&quot;Zip Code&quot;:48507,&quot;Ward&quot;:9,&quot;PbBottle1_ppb&quot;:10.56,&quot;PbBottle2_ppb&quot;:5.672,&quot;PbBottle3_ppb&quot;:4.813},{&quot;SampleID&quot;:135,&quot;Zip Code&quot;:48502,&quot;Ward&quot;:5,&quot;PbBottle1_ppb&quot;:2.273,&quot;PbBottle2_ppb&quot;:2.808,&quot;PbBottle3_ppb&quot;:3.048},{&quot;SampleID&quot;:136,&quot;Zip Code&quot;:48505,&quot;Ward&quot;:1,&quot;PbBottle1_ppb&quot;:1.571,&quot;PbBottle2_ppb&quot;:1.265,&quot;PbBottle3_ppb&quot;:0.316},{&quot;SampleID&quot;:137,&quot;Zip Code&quot;:48503,&quot;Ward&quot;:8,&quot;PbBottle1_ppb&quot;:5.402,&quot;PbBottle2_ppb&quot;:4.196,&quot;PbBottle3_ppb&quot;:1.945},{&quot;SampleID&quot;:138,&quot;Zip Code&quot;:48504,&quot;Ward&quot;:6,&quot;PbBottle1_ppb&quot;:43.19,&quot;PbBottle2_ppb&quot;:7.688,&quot;PbBottle3_ppb&quot;:4.39},{&quot;SampleID&quot;:139,&quot;Zip Code&quot;:48503,&quot;Ward&quot;:8,&quot;PbBottle1_ppb&quot;:1.492,&quot;PbBottle2_ppb&quot;:1.409,&quot;PbBottle3_ppb&quot;:0.378},{&quot;SampleID&quot;:140,&quot;Zip Code&quot;:48503,&quot;Ward&quot;:5,&quot;PbBottle1_ppb&quot;:66.24,&quot;PbBottle2_ppb&quot;:17.75,&quot;PbBottle3_ppb&quot;:8.815},{&quot;SampleID&quot;:141,&quot;Zip Code&quot;:48505,&quot;Ward&quot;:1,&quot;PbBottle1_ppb&quot;:1.799,&quot;PbBottle2_ppb&quot;:0.032,&quot;PbBottle3_ppb&quot;:0.031},{&quot;SampleID&quot;:142,&quot;Zip Code&quot;:48503,&quot;Ward&quot;:8,&quot;PbBottle1_ppb&quot;:1.861,&quot;PbBottle2_ppb&quot;:1.355,&quot;PbBottle3_ppb&quot;:0.64},{&quot;SampleID&quot;:143,&quot;Zip Code&quot;:48503,&quot;Ward&quot;:8,&quot;PbBottle1_ppb&quot;:2.672,&quot;PbBottle2_ppb&quot;:2.001,&quot;PbBottle3_ppb&quot;:1.094},{&quot;SampleID&quot;:144,&quot;Zip Code&quot;:48505,&quot;Ward&quot;:1,&quot;PbBottle1_ppb&quot;:3.741,&quot;PbBottle2_ppb&quot;:1.211,&quot;PbBottle3_ppb&quot;:0.258},{&quot;SampleID&quot;:145,&quot;Zip Code&quot;:48506,&quot;Ward&quot;:4,&quot;PbBottle1_ppb&quot;:1.934,&quot;PbBottle2_ppb&quot;:0.374,&quot;PbBottle3_ppb&quot;:0.424},{&quot;SampleID&quot;:146,&quot;Zip Code&quot;:48506,&quot;Ward&quot;:4,&quot;PbBottle1_ppb&quot;:27.05,&quot;PbBottle2_ppb&quot;:0.902,&quot;PbBottle3_ppb&quot;:0.61},{&quot;SampleID&quot;:147,&quot;Zip Code&quot;:48506,&quot;Ward&quot;:4,&quot;PbBottle1_ppb&quot;:1.174,&quot;PbBottle2_ppb&quot;:0.291,&quot;PbBottle3_ppb&quot;:4.055},{&quot;SampleID&quot;:148,&quot;Zip Code&quot;:48507,&quot;Ward&quot;:9,&quot;PbBottle1_ppb&quot;:2.325,&quot;PbBottle2_ppb&quot;:1.099,&quot;PbBottle3_ppb&quot;:0.466},{&quot;SampleID&quot;:149,&quot;Zip Code&quot;:48506,&quot;Ward&quot;:4,&quot;PbBottle1_ppb&quot;:1.966,&quot;PbBottle2_ppb&quot;:0.253,&quot;PbBottle3_ppb&quot;:0.201},{&quot;SampleID&quot;:150,&quot;Zip Code&quot;:48506,&quot;Ward&quot;:4,&quot;PbBottle1_ppb&quot;:1.959,&quot;PbBottle2_ppb&quot;:0.438,&quot;PbBottle3_ppb&quot;:0.448},{&quot;SampleID&quot;:151,&quot;Zip Code&quot;:48506,&quot;Ward&quot;:4,&quot;PbBottle1_ppb&quot;:0.823,&quot;PbBottle2_ppb&quot;:1.881,&quot;PbBottle3_ppb&quot;:0.412},{&quot;SampleID&quot;:152,&quot;Zip Code&quot;:48506,&quot;Ward&quot;:4,&quot;PbBottle1_ppb&quot;:11.2,&quot;PbBottle2_ppb&quot;:7.553,&quot;PbBottle3_ppb&quot;:12.21},{&quot;SampleID&quot;:153,&quot;Zip Code&quot;:48504,&quot;Ward&quot;:2,&quot;PbBottle1_ppb&quot;:5.668,&quot;PbBottle2_ppb&quot;:3.341,&quot;PbBottle3_ppb&quot;:3.268},{&quot;SampleID&quot;:154,&quot;Zip Code&quot;:48506,&quot;Ward&quot;:4,&quot;PbBottle1_ppb&quot;:6.261,&quot;PbBottle2_ppb&quot;:1.316,&quot;PbBottle3_ppb&quot;:0.5},{&quot;SampleID&quot;:155,&quot;Zip Code&quot;:48506,&quot;Ward&quot;:4,&quot;PbBottle1_ppb&quot;:4.797,&quot;PbBottle2_ppb&quot;:1.594,&quot;PbBottle3_ppb&quot;:1.264},{&quot;SampleID&quot;:156,&quot;Zip Code&quot;:48506,&quot;Ward&quot;:4,&quot;PbBottle1_ppb&quot;:0.64,&quot;PbBottle2_ppb&quot;:0.905,&quot;PbBottle3_ppb&quot;:0.151},{&quot;SampleID&quot;:158,&quot;Zip Code&quot;:48507,&quot;Ward&quot;:9,&quot;PbBottle1_ppb&quot;:8.713,&quot;PbBottle2_ppb&quot;:2.799,&quot;PbBottle3_ppb&quot;:50.97},{&quot;SampleID&quot;:159,&quot;Zip Code&quot;:48507,&quot;Ward&quot;:9,&quot;PbBottle1_ppb&quot;:2.544,&quot;PbBottle2_ppb&quot;:1.099,&quot;PbBottle3_ppb&quot;:0.498},{&quot;SampleID&quot;:161,&quot;Zip Code&quot;:48507,&quot;Ward&quot;:9,&quot;PbBottle1_ppb&quot;:0.41,&quot;PbBottle2_ppb&quot;:0.096,&quot;PbBottle3_ppb&quot;:0.116},{&quot;SampleID&quot;:162,&quot;Zip Code&quot;:48503,&quot;Ward&quot;:7,&quot;PbBottle1_ppb&quot;:32.85,&quot;PbBottle2_ppb&quot;:35.76,&quot;PbBottle3_ppb&quot;:9.103},{&quot;SampleID&quot;:163,&quot;Zip Code&quot;:48503,&quot;Ward&quot;:7,&quot;PbBottle1_ppb&quot;:12.87,&quot;PbBottle2_ppb&quot;:14.87,&quot;PbBottle3_ppb&quot;:6.326},{&quot;SampleID&quot;:164,&quot;Zip Code&quot;:48503,&quot;Ward&quot;:8,&quot;PbBottle1_ppb&quot;:38.02,&quot;PbBottle2_ppb&quot;:38.7,&quot;PbBottle3_ppb&quot;:38.94},{&quot;SampleID&quot;:165,&quot;Zip Code&quot;:48507,&quot;Ward&quot;:9,&quot;PbBottle1_ppb&quot;:2.435,&quot;PbBottle2_ppb&quot;:8.183,&quot;PbBottle3_ppb&quot;:1.296},{&quot;SampleID&quot;:166,&quot;Zip Code&quot;:48507,&quot;Ward&quot;:9,&quot;PbBottle1_ppb&quot;:2.997,&quot;PbBottle2_ppb&quot;:1.867,&quot;PbBottle3_ppb&quot;:1.512},{&quot;SampleID&quot;:167,&quot;Zip Code&quot;:48507,&quot;Ward&quot;:9,&quot;PbBottle1_ppb&quot;:11,&quot;PbBottle2_ppb&quot;:10.53,&quot;PbBottle3_ppb&quot;:8.688},{&quot;SampleID&quot;:168,&quot;Zip Code&quot;:48507,&quot;Ward&quot;:9,&quot;PbBottle1_ppb&quot;:6.219,&quot;PbBottle2_ppb&quot;:12.33,&quot;PbBottle3_ppb&quot;:4.202},{&quot;SampleID&quot;:169,&quot;Zip Code&quot;:48503,&quot;Ward&quot;:8,&quot;PbBottle1_ppb&quot;:8.8,&quot;PbBottle2_ppb&quot;:3.1,&quot;PbBottle3_ppb&quot;:4.5},{&quot;SampleID&quot;:170,&quot;Zip Code&quot;:48504,&quot;Ward&quot;:6,&quot;PbBottle1_ppb&quot;:8.071,&quot;PbBottle2_ppb&quot;:0.947,&quot;PbBottle3_ppb&quot;:0.839},{&quot;SampleID&quot;:171,&quot;Zip Code&quot;:48507,&quot;Ward&quot;:9,&quot;PbBottle1_ppb&quot;:3.262,&quot;PbBottle2_ppb&quot;:0.453,&quot;PbBottle3_ppb&quot;:0.252},{&quot;SampleID&quot;:172,&quot;Zip Code&quot;:48503,&quot;Ward&quot;:8,&quot;PbBottle1_ppb&quot;:2.267,&quot;PbBottle2_ppb&quot;:0.541,&quot;PbBottle3_ppb&quot;:0.391},{&quot;SampleID&quot;:173,&quot;Zip Code&quot;:48505,&quot;Ward&quot;:3,&quot;PbBottle1_ppb&quot;:0.922,&quot;PbBottle2_ppb&quot;:0.878,&quot;PbBottle3_ppb&quot;:0.491},{&quot;SampleID&quot;:174,&quot;Zip Code&quot;:48504,&quot;Ward&quot;:6,&quot;PbBottle1_ppb&quot;:27.02,&quot;PbBottle2_ppb&quot;:31.25,&quot;PbBottle3_ppb&quot;:11.37},{&quot;SampleID&quot;:176,&quot;Zip Code&quot;:48503,&quot;Ward&quot;:8,&quot;PbBottle1_ppb&quot;:0.906,&quot;PbBottle2_ppb&quot;:0.961,&quot;PbBottle3_ppb&quot;:1.052},{&quot;SampleID&quot;:177,&quot;Zip Code&quot;:48507,&quot;Ward&quot;:9,&quot;PbBottle1_ppb&quot;:2.85,&quot;PbBottle2_ppb&quot;:6.862,&quot;PbBottle3_ppb&quot;:0.951},{&quot;SampleID&quot;:178,&quot;Zip Code&quot;:48504,&quot;Ward&quot;:2,&quot;PbBottle1_ppb&quot;:1.852,&quot;PbBottle2_ppb&quot;:0.472,&quot;PbBottle3_ppb&quot;:0.422},{&quot;SampleID&quot;:179,&quot;Zip Code&quot;:48506,&quot;Ward&quot;:4,&quot;PbBottle1_ppb&quot;:5.35,&quot;PbBottle2_ppb&quot;:1.328,&quot;PbBottle3_ppb&quot;:0.595},{&quot;SampleID&quot;:180,&quot;Zip Code&quot;:48503,&quot;Ward&quot;:7,&quot;PbBottle1_ppb&quot;:25.21,&quot;PbBottle2_ppb&quot;:4.337,&quot;PbBottle3_ppb&quot;:1.019},{&quot;SampleID&quot;:182,&quot;Zip Code&quot;:48504,&quot;Ward&quot;:6,&quot;PbBottle1_ppb&quot;:15.55,&quot;PbBottle2_ppb&quot;:3.962,&quot;PbBottle3_ppb&quot;:1.861},{&quot;SampleID&quot;:183,&quot;Zip Code&quot;:48506,&quot;Ward&quot;:4,&quot;PbBottle1_ppb&quot;:0.793,&quot;PbBottle2_ppb&quot;:0.533,&quot;PbBottle3_ppb&quot;:0.391},{&quot;SampleID&quot;:184,&quot;Zip Code&quot;:48506,&quot;Ward&quot;:4,&quot;PbBottle1_ppb&quot;:5.068,&quot;PbBottle2_ppb&quot;:0.683,&quot;PbBottle3_ppb&quot;:0.489},{&quot;SampleID&quot;:185,&quot;Zip Code&quot;:48507,&quot;Ward&quot;:8,&quot;PbBottle1_ppb&quot;:26.64,&quot;PbBottle2_ppb&quot;:8.878,&quot;PbBottle3_ppb&quot;:6.619},{&quot;SampleID&quot;:186,&quot;Zip Code&quot;:48506,&quot;Ward&quot;:4,&quot;PbBottle1_ppb&quot;:1.867,&quot;PbBottle2_ppb&quot;:0.165,&quot;PbBottle3_ppb&quot;:0.175},{&quot;SampleID&quot;:189,&quot;Zip Code&quot;:48506,&quot;Ward&quot;:4,&quot;PbBottle1_ppb&quot;:19.16,&quot;PbBottle2_ppb&quot;:12.54,&quot;PbBottle3_ppb&quot;:7.719},{&quot;SampleID&quot;:191,&quot;Zip Code&quot;:48503,&quot;Ward&quot;:5,&quot;PbBottle1_ppb&quot;:28.7,&quot;PbBottle2_ppb&quot;:12.7,&quot;PbBottle3_ppb&quot;:8.6},{&quot;SampleID&quot;:192,&quot;Zip Code&quot;:48507,&quot;Ward&quot;:9,&quot;PbBottle1_ppb&quot;:20.22,&quot;PbBottle2_ppb&quot;:8.908,&quot;PbBottle3_ppb&quot;:6.677},{&quot;SampleID&quot;:193,&quot;Zip Code&quot;:48507,&quot;Ward&quot;:8,&quot;PbBottle1_ppb&quot;:2.9,&quot;PbBottle2_ppb&quot;:0.6,&quot;PbBottle3_ppb&quot;:0.7},{&quot;SampleID&quot;:194,&quot;Zip Code&quot;:48503,&quot;Ward&quot;:7,&quot;PbBottle1_ppb&quot;:18.86,&quot;PbBottle2_ppb&quot;:5.051,&quot;PbBottle3_ppb&quot;:2.548},{&quot;SampleID&quot;:195,&quot;Zip Code&quot;:48507,&quot;Ward&quot;:9,&quot;PbBottle1_ppb&quot;:2.816,&quot;PbBottle2_ppb&quot;:0.324,&quot;PbBottle3_ppb&quot;:0.362},{&quot;SampleID&quot;:196,&quot;Zip Code&quot;:48506,&quot;Ward&quot;:3,&quot;PbBottle1_ppb&quot;:118.4,&quot;PbBottle2_ppb&quot;:40.78,&quot;PbBottle3_ppb&quot;:39.99},{&quot;SampleID&quot;:197,&quot;Zip Code&quot;:48506,&quot;Ward&quot;:3,&quot;PbBottle1_ppb&quot;:27.45,&quot;PbBottle2_ppb&quot;:0.939,&quot;PbBottle3_ppb&quot;:0.533},{&quot;SampleID&quot;:198,&quot;Zip Code&quot;:48503,&quot;Ward&quot;:7,&quot;PbBottle1_ppb&quot;:1.2,&quot;PbBottle2_ppb&quot;:0.1,&quot;PbBottle3_ppb&quot;:0.1},{&quot;SampleID&quot;:200,&quot;Zip Code&quot;:48506,&quot;Ward&quot;:4,&quot;PbBottle1_ppb&quot;:4.681,&quot;PbBottle2_ppb&quot;:0.755,&quot;PbBottle3_ppb&quot;:0.456},{&quot;SampleID&quot;:201,&quot;Zip Code&quot;:48506,&quot;Ward&quot;:3,&quot;PbBottle1_ppb&quot;:11.57,&quot;PbBottle2_ppb&quot;:6.08,&quot;PbBottle3_ppb&quot;:1.782},{&quot;SampleID&quot;:202,&quot;Zip Code&quot;:48532,&quot;Ward&quot;:8,&quot;PbBottle1_ppb&quot;:6.557,&quot;PbBottle2_ppb&quot;:0.289,&quot;PbBottle3_ppb&quot;:0.371},{&quot;SampleID&quot;:203,&quot;Zip Code&quot;:48505,&quot;Ward&quot;:3,&quot;PbBottle1_ppb&quot;:3.4,&quot;PbBottle2_ppb&quot;:9.6,&quot;PbBottle3_ppb&quot;:1.7},{&quot;SampleID&quot;:204,&quot;Zip Code&quot;:48504,&quot;Ward&quot;:6,&quot;PbBottle1_ppb&quot;:0.7,&quot;PbBottle2_ppb&quot;:0.2,&quot;PbBottle3_ppb&quot;:0.2},{&quot;SampleID&quot;:205,&quot;Zip Code&quot;:48507,&quot;Ward&quot;:8,&quot;PbBottle1_ppb&quot;:158,&quot;PbBottle2_ppb&quot;:90.83,&quot;PbBottle3_ppb&quot;:91.69},{&quot;SampleID&quot;:206,&quot;Zip Code&quot;:48506,&quot;Ward&quot;:4,&quot;PbBottle1_ppb&quot;:0.977,&quot;PbBottle2_ppb&quot;:0.47,&quot;PbBottle3_ppb&quot;:0.381},{&quot;SampleID&quot;:207,&quot;Zip Code&quot;:48503,&quot;Ward&quot;:8,&quot;PbBottle1_ppb&quot;:8.471,&quot;PbBottle2_ppb&quot;:4.692,&quot;PbBottle3_ppb&quot;:1.48},{&quot;SampleID&quot;:208,&quot;Zip Code&quot;:48507,&quot;Ward&quot;:9,&quot;PbBottle1_ppb&quot;:11.47,&quot;PbBottle2_ppb&quot;:23.15,&quot;PbBottle3_ppb&quot;:7.129},{&quot;SampleID&quot;:209,&quot;Zip Code&quot;:48503,&quot;Ward&quot;:7,&quot;PbBottle1_ppb&quot;:5.228,&quot;PbBottle2_ppb&quot;:2.477,&quot;PbBottle3_ppb&quot;:1.014},{&quot;SampleID&quot;:210,&quot;Zip Code&quot;:48507,&quot;Ward&quot;:9,&quot;PbBottle1_ppb&quot;:0.956,&quot;PbBottle2_ppb&quot;:0.196,&quot;PbBottle3_ppb&quot;:0.157},{&quot;SampleID&quot;:211,&quot;Zip Code&quot;:48504,&quot;Ward&quot;:6,&quot;PbBottle1_ppb&quot;:1.671,&quot;PbBottle2_ppb&quot;:0.405,&quot;PbBottle3_ppb&quot;:4.721},{&quot;SampleID&quot;:212,&quot;Zip Code&quot;:48507,&quot;Ward&quot;:9,&quot;PbBottle1_ppb&quot;:1.152,&quot;PbBottle2_ppb&quot;:0.708,&quot;PbBottle3_ppb&quot;:0.282},{&quot;SampleID&quot;:213,&quot;Zip Code&quot;:48507,&quot;Ward&quot;:9,&quot;PbBottle1_ppb&quot;:0.5,&quot;PbBottle2_ppb&quot;:0.1,&quot;PbBottle3_ppb&quot;:0.1},{&quot;SampleID&quot;:214,&quot;Zip Code&quot;:48503,&quot;Ward&quot;:5,&quot;PbBottle1_ppb&quot;:10.74,&quot;PbBottle2_ppb&quot;:2.331,&quot;PbBottle3_ppb&quot;:1.628},{&quot;SampleID&quot;:215,&quot;Zip Code&quot;:48507,&quot;Ward&quot;:9,&quot;PbBottle1_ppb&quot;:3.9,&quot;PbBottle2_ppb&quot;:0.4,&quot;PbBottle3_ppb&quot;:0.2},{&quot;SampleID&quot;:216,&quot;Zip Code&quot;:48507,&quot;Ward&quot;:9,&quot;PbBottle1_ppb&quot;:2.149,&quot;PbBottle2_ppb&quot;:0.368,&quot;PbBottle3_ppb&quot;:0.333},{&quot;SampleID&quot;:217,&quot;Zip Code&quot;:48506,&quot;Ward&quot;:4,&quot;PbBottle1_ppb&quot;:1.1,&quot;PbBottle2_ppb&quot;:0.4,&quot;PbBottle3_ppb&quot;:0.2},{&quot;SampleID&quot;:218,&quot;Zip Code&quot;:48507,&quot;Ward&quot;:9,&quot;PbBottle1_ppb&quot;:7.087,&quot;PbBottle2_ppb&quot;:9.467,&quot;PbBottle3_ppb&quot;:1.28},{&quot;SampleID&quot;:219,&quot;Zip Code&quot;:48505,&quot;Ward&quot;:1,&quot;PbBottle1_ppb&quot;:1.329,&quot;PbBottle2_ppb&quot;:0.609,&quot;PbBottle3_ppb&quot;:0.527},{&quot;SampleID&quot;:220,&quot;Zip Code&quot;:48507,&quot;Ward&quot;:9,&quot;PbBottle1_ppb&quot;:6.2,&quot;PbBottle2_ppb&quot;:0.7,&quot;PbBottle3_ppb&quot;:0.6},{&quot;SampleID&quot;:221,&quot;Zip Code&quot;:48505,&quot;Ward&quot;:3,&quot;PbBottle1_ppb&quot;:0.8,&quot;PbBottle2_ppb&quot;:0.26,&quot;PbBottle3_ppb&quot;:0.255},{&quot;SampleID&quot;:222,&quot;Zip Code&quot;:48503,&quot;Ward&quot;:8,&quot;PbBottle1_ppb&quot;:9.3,&quot;PbBottle2_ppb&quot;:9.7,&quot;PbBottle3_ppb&quot;:5},{&quot;SampleID&quot;:223,&quot;Zip Code&quot;:48504,&quot;Ward&quot;:2,&quot;PbBottle1_ppb&quot;:2.1,&quot;PbBottle2_ppb&quot;:1.2,&quot;PbBottle3_ppb&quot;:0.5},{&quot;SampleID&quot;:224,&quot;Zip Code&quot;:48505,&quot;Ward&quot;:1,&quot;PbBottle1_ppb&quot;:4.563,&quot;PbBottle2_ppb&quot;:3.106,&quot;PbBottle3_ppb&quot;:2.997},{&quot;SampleID&quot;:225,&quot;Zip Code&quot;:48504,&quot;Ward&quot;:2,&quot;PbBottle1_ppb&quot;:4.808,&quot;PbBottle2_ppb&quot;:6.196,&quot;PbBottle3_ppb&quot;:1.523},{&quot;SampleID&quot;:226,&quot;Zip Code&quot;:48504,&quot;Ward&quot;:2,&quot;PbBottle1_ppb&quot;:0.753,&quot;PbBottle2_ppb&quot;:2.526,&quot;PbBottle3_ppb&quot;:0.549},{&quot;SampleID&quot;:227,&quot;Zip Code&quot;:48505,&quot;Ward&quot;:1,&quot;PbBottle1_ppb&quot;:1.862,&quot;PbBottle2_ppb&quot;:1.213,&quot;PbBottle3_ppb&quot;:0.898},{&quot;SampleID&quot;:228,&quot;Zip Code&quot;:48503,&quot;Ward&quot;:7,&quot;PbBottle1_ppb&quot;:1.183,&quot;PbBottle2_ppb&quot;:0.366,&quot;PbBottle3_ppb&quot;:0.201},{&quot;SampleID&quot;:229,&quot;Zip Code&quot;:48503,&quot;Ward&quot;:7,&quot;PbBottle1_ppb&quot;:8.2,&quot;PbBottle2_ppb&quot;:3.2,&quot;PbBottle3_ppb&quot;:2.6},{&quot;SampleID&quot;:230,&quot;Zip Code&quot;:48504,&quot;Ward&quot;:6,&quot;PbBottle1_ppb&quot;:3.679,&quot;PbBottle2_ppb&quot;:0.498,&quot;PbBottle3_ppb&quot;:0.288},{&quot;SampleID&quot;:231,&quot;Zip Code&quot;:48505,&quot;Ward&quot;:1,&quot;PbBottle1_ppb&quot;:2.37,&quot;PbBottle2_ppb&quot;:7.333,&quot;PbBottle3_ppb&quot;:3.797},{&quot;SampleID&quot;:234,&quot;Zip Code&quot;:48504,&quot;Ward&quot;:2,&quot;PbBottle1_ppb&quot;:0.828,&quot;PbBottle2_ppb&quot;:1.318,&quot;PbBottle3_ppb&quot;:0.233},{&quot;SampleID&quot;:235,&quot;Zip Code&quot;:48503,&quot;Ward&quot;:7,&quot;PbBottle1_ppb&quot;:0.719,&quot;PbBottle2_ppb&quot;:0.254,&quot;PbBottle3_ppb&quot;:0.058},{&quot;SampleID&quot;:236,&quot;Zip Code&quot;:48504,&quot;Ward&quot;:1,&quot;PbBottle1_ppb&quot;:2.822,&quot;PbBottle2_ppb&quot;:1.221,&quot;PbBottle3_ppb&quot;:0.258},{&quot;SampleID&quot;:237,&quot;Zip Code&quot;:48504,&quot;Ward&quot;:8,&quot;PbBottle1_ppb&quot;:2.867,&quot;PbBottle2_ppb&quot;:0.723,&quot;PbBottle3_ppb&quot;:0.744},{&quot;SampleID&quot;:238,&quot;Zip Code&quot;:48503,&quot;Ward&quot;:7,&quot;PbBottle1_ppb&quot;:2.332,&quot;PbBottle2_ppb&quot;:3.588,&quot;PbBottle3_ppb&quot;:1.221},{&quot;SampleID&quot;:240,&quot;Zip Code&quot;:48503,&quot;Ward&quot;:8,&quot;PbBottle1_ppb&quot;:4.401,&quot;PbBottle2_ppb&quot;:2.111,&quot;PbBottle3_ppb&quot;:1.572},{&quot;SampleID&quot;:241,&quot;Zip Code&quot;:48504,&quot;Ward&quot;:6,&quot;PbBottle1_ppb&quot;:2.708,&quot;PbBottle2_ppb&quot;:2.238,&quot;PbBottle3_ppb&quot;:0.809},{&quot;SampleID&quot;:242,&quot;Zip Code&quot;:48504,&quot;Ward&quot;:6,&quot;PbBottle1_ppb&quot;:34.13,&quot;PbBottle2_ppb&quot;:6.002,&quot;PbBottle3_ppb&quot;:1.71},{&quot;SampleID&quot;:243,&quot;Zip Code&quot;:48503,&quot;Ward&quot;:7,&quot;PbBottle1_ppb&quot;:5.218,&quot;PbBottle2_ppb&quot;:2.614,&quot;PbBottle3_ppb&quot;:0.831},{&quot;SampleID&quot;:244,&quot;Zip Code&quot;:48503,&quot;Ward&quot;:7,&quot;PbBottle1_ppb&quot;:15.73,&quot;PbBottle2_ppb&quot;:13.95,&quot;PbBottle3_ppb&quot;:3.584},{&quot;SampleID&quot;:245,&quot;Zip Code&quot;:48504,&quot;Ward&quot;:6,&quot;PbBottle1_ppb&quot;:3.045,&quot;PbBottle2_ppb&quot;:2.744,&quot;PbBottle3_ppb&quot;:0.299},{&quot;SampleID&quot;:246,&quot;Zip Code&quot;:48503,&quot;Ward&quot;:7,&quot;PbBottle1_ppb&quot;:1.1,&quot;PbBottle2_ppb&quot;:0.5,&quot;PbBottle3_ppb&quot;:0.3},{&quot;SampleID&quot;:247,&quot;Zip Code&quot;:48503,&quot;Ward&quot;:7,&quot;PbBottle1_ppb&quot;:1.386,&quot;PbBottle2_ppb&quot;:0.288,&quot;PbBottle3_ppb&quot;:0.432},{&quot;SampleID&quot;:248,&quot;Zip Code&quot;:48504,&quot;Ward&quot;:6,&quot;PbBottle1_ppb&quot;:0.915,&quot;PbBottle2_ppb&quot;:0.354,&quot;PbBottle3_ppb&quot;:0.306},{&quot;SampleID&quot;:249,&quot;Zip Code&quot;:48504,&quot;Ward&quot;:6,&quot;PbBottle1_ppb&quot;:2.145,&quot;PbBottle2_ppb&quot;:0.345,&quot;PbBottle3_ppb&quot;:3.738},{&quot;SampleID&quot;:250,&quot;Zip Code&quot;:48507,&quot;Ward&quot;:8,&quot;PbBottle1_ppb&quot;:4.056,&quot;PbBottle2_ppb&quot;:0.547,&quot;PbBottle3_ppb&quot;:0.378},{&quot;SampleID&quot;:251,&quot;Zip Code&quot;:48503,&quot;Ward&quot;:7,&quot;PbBottle1_ppb&quot;:1.668,&quot;PbBottle2_ppb&quot;:1.508,&quot;PbBottle3_ppb&quot;:2.72},{&quot;SampleID&quot;:252,&quot;Zip Code&quot;:48503,&quot;Ward&quot;:7,&quot;PbBottle1_ppb&quot;:7.575,&quot;PbBottle2_ppb&quot;:1.362,&quot;PbBottle3_ppb&quot;:1.094},{&quot;SampleID&quot;:253,&quot;Zip Code&quot;:48507,&quot;Ward&quot;:8,&quot;PbBottle1_ppb&quot;:5.59,&quot;PbBottle2_ppb&quot;:4.306,&quot;PbBottle3_ppb&quot;:2.019},{&quot;SampleID&quot;:254,&quot;Zip Code&quot;:48503,&quot;Ward&quot;:5,&quot;PbBottle1_ppb&quot;:0.708,&quot;PbBottle2_ppb&quot;:0.326,&quot;PbBottle3_ppb&quot;:0.303},{&quot;SampleID&quot;:255,&quot;Zip Code&quot;:48504,&quot;Ward&quot;:6,&quot;PbBottle1_ppb&quot;:1.701,&quot;PbBottle2_ppb&quot;:4.397,&quot;PbBottle3_ppb&quot;:1.287},{&quot;SampleID&quot;:256,&quot;Zip Code&quot;:48504,&quot;Ward&quot;:6,&quot;PbBottle1_ppb&quot;:1.467,&quot;PbBottle2_ppb&quot;:0.149,&quot;PbBottle3_ppb&quot;:0.137},{&quot;SampleID&quot;:258,&quot;Zip Code&quot;:48504,&quot;Ward&quot;:2,&quot;PbBottle1_ppb&quot;:2.582,&quot;PbBottle2_ppb&quot;:259.8,&quot;PbBottle3_ppb&quot;:61.96},{&quot;SampleID&quot;:259,&quot;Zip Code&quot;:48505,&quot;Ward&quot;:2,&quot;PbBottle1_ppb&quot;:22.08,&quot;PbBottle2_ppb&quot;:15.86,&quot;PbBottle3_ppb&quot;:9.262},{&quot;SampleID&quot;:260,&quot;Zip Code&quot;:48507,&quot;Ward&quot;:8,&quot;PbBottle1_ppb&quot;:16.51,&quot;PbBottle2_ppb&quot;:2.024,&quot;PbBottle3_ppb&quot;:7.068},{&quot;SampleID&quot;:262,&quot;Zip Code&quot;:48507,&quot;Ward&quot;:8,&quot;PbBottle1_ppb&quot;:56.26,&quot;PbBottle2_ppb&quot;:4.692,&quot;PbBottle3_ppb&quot;:1.243},{&quot;SampleID&quot;:263,&quot;Zip Code&quot;:48504,&quot;Ward&quot;:6,&quot;PbBottle1_ppb&quot;:2.433,&quot;PbBottle2_ppb&quot;:1.334,&quot;PbBottle3_ppb&quot;:1.376},{&quot;SampleID&quot;:264,&quot;Zip Code&quot;:48503,&quot;Ward&quot;:7,&quot;PbBottle1_ppb&quot;:0.5,&quot;PbBottle2_ppb&quot;:0.2,&quot;PbBottle3_ppb&quot;:0.5},{&quot;SampleID&quot;:265,&quot;Zip Code&quot;:48504,&quot;Ward&quot;:6,&quot;PbBottle1_ppb&quot;:29.13,&quot;PbBottle2_ppb&quot;:11.57,&quot;PbBottle3_ppb&quot;:6.388},{&quot;SampleID&quot;:266,&quot;Zip Code&quot;:48505,&quot;Ward&quot;:1,&quot;PbBottle1_ppb&quot;:12.3,&quot;PbBottle2_ppb&quot;:0.5,&quot;PbBottle3_ppb&quot;:0.4},{&quot;SampleID&quot;:267,&quot;Zip Code&quot;:48504,&quot;Ward&quot;:6,&quot;PbBottle1_ppb&quot;:3.445,&quot;PbBottle2_ppb&quot;:0.29,&quot;PbBottle3_ppb&quot;:0.167},{&quot;SampleID&quot;:268,&quot;Zip Code&quot;:48507,&quot;Ward&quot;:9,&quot;PbBottle1_ppb&quot;:16.49,&quot;PbBottle2_ppb&quot;:12.83,&quot;PbBottle3_ppb&quot;:9.018},{&quot;SampleID&quot;:269,&quot;Zip Code&quot;:48503,&quot;Ward&quot;:7,&quot;PbBottle1_ppb&quot;:3.365,&quot;PbBottle2_ppb&quot;:2.45,&quot;PbBottle3_ppb&quot;:1.675},{&quot;SampleID&quot;:270,&quot;Zip Code&quot;:48503,&quot;Ward&quot;:7,&quot;PbBottle1_ppb&quot;:1.154,&quot;PbBottle2_ppb&quot;:0.176,&quot;PbBottle3_ppb&quot;:0.12},{&quot;SampleID&quot;:271,&quot;Zip Code&quot;:48507,&quot;Ward&quot;:9,&quot;PbBottle1_ppb&quot;:13.53,&quot;PbBottle2_ppb&quot;:21.91,&quot;PbBottle3_ppb&quot;:4.675},{&quot;SampleID&quot;:272,&quot;Zip Code&quot;:48504,&quot;Ward&quot;:6,&quot;PbBottle1_ppb&quot;:2.229,&quot;PbBottle2_ppb&quot;:1.573,&quot;PbBottle3_ppb&quot;:0.84},{&quot;SampleID&quot;:273,&quot;Zip Code&quot;:48503,&quot;Ward&quot;:7,&quot;PbBottle1_ppb&quot;:28.91,&quot;PbBottle2_ppb&quot;:5.471,&quot;PbBottle3_ppb&quot;:3.056},{&quot;SampleID&quot;:274,&quot;Zip Code&quot;:48503,&quot;Ward&quot;:7,&quot;PbBottle1_ppb&quot;:6.601,&quot;PbBottle2_ppb&quot;:1.929,&quot;PbBottle3_ppb&quot;:0.417},{&quot;SampleID&quot;:275,&quot;Zip Code&quot;:48507,&quot;Ward&quot;:9,&quot;PbBottle1_ppb&quot;:0.948,&quot;PbBottle2_ppb&quot;:0.27,&quot;PbBottle3_ppb&quot;:0.207},{&quot;SampleID&quot;:276,&quot;Zip Code&quot;:48505,&quot;Ward&quot;:3,&quot;PbBottle1_ppb&quot;:3.484,&quot;PbBottle2_ppb&quot;:0.434,&quot;PbBottle3_ppb&quot;:0.306},{&quot;SampleID&quot;:278,&quot;Zip Code&quot;:48503,&quot;Ward&quot;:7,&quot;PbBottle1_ppb&quot;:1.888,&quot;PbBottle2_ppb&quot;:0.359,&quot;PbBottle3_ppb&quot;:0.322},{&quot;SampleID&quot;:279,&quot;Zip Code&quot;:48503,&quot;Ward&quot;:7,&quot;PbBottle1_ppb&quot;:13.95,&quot;PbBottle2_ppb&quot;:12.2,&quot;PbBottle3_ppb&quot;:8.251},{&quot;SampleID&quot;:280,&quot;Zip Code&quot;:48504,&quot;Ward&quot;:6,&quot;PbBottle1_ppb&quot;:6.27,&quot;PbBottle2_ppb&quot;:4.036,&quot;PbBottle3_ppb&quot;:1.182},{&quot;SampleID&quot;:281,&quot;Zip Code&quot;:48506,&quot;Ward&quot;:7,&quot;PbBottle1_ppb&quot;:19.12,&quot;PbBottle2_ppb&quot;:22.02,&quot;PbBottle3_ppb&quot;:7.968},{&quot;SampleID&quot;:282,&quot;Zip Code&quot;:48507,&quot;Ward&quot;:9,&quot;PbBottle1_ppb&quot;:1.633,&quot;PbBottle2_ppb&quot;:0.465,&quot;PbBottle3_ppb&quot;:0.238},{&quot;SampleID&quot;:283,&quot;Zip Code&quot;:48503,&quot;Ward&quot;:7,&quot;PbBottle1_ppb&quot;:1.114,&quot;PbBottle2_ppb&quot;:0.605,&quot;PbBottle3_ppb&quot;:0.255},{&quot;SampleID&quot;:284,&quot;Zip Code&quot;:48503,&quot;Ward&quot;:7,&quot;PbBottle1_ppb&quot;:3.9,&quot;PbBottle2_ppb&quot;:0.558,&quot;PbBottle3_ppb&quot;:0.504},{&quot;SampleID&quot;:285,&quot;Zip Code&quot;:48504,&quot;Ward&quot;:1,&quot;PbBottle1_ppb&quot;:3.521,&quot;PbBottle2_ppb&quot;:0.45,&quot;PbBottle3_ppb&quot;:0.321},{&quot;SampleID&quot;:286,&quot;Zip Code&quot;:48507,&quot;Ward&quot;:9,&quot;PbBottle1_ppb&quot;:3.832,&quot;PbBottle2_ppb&quot;:0.794,&quot;PbBottle3_ppb&quot;:0.339},{&quot;SampleID&quot;:287,&quot;Zip Code&quot;:48505,&quot;Ward&quot;:3,&quot;PbBottle1_ppb&quot;:3.243,&quot;PbBottle2_ppb&quot;:0.738,&quot;PbBottle3_ppb&quot;:0.27},{&quot;SampleID&quot;:289,&quot;Zip Code&quot;:48503,&quot;Ward&quot;:7,&quot;PbBottle1_ppb&quot;:0.99,&quot;PbBottle2_ppb&quot;:0.25,&quot;PbBottle3_ppb&quot;:0.263},{&quot;SampleID&quot;:290,&quot;Zip Code&quot;:48507,&quot;Ward&quot;:9,&quot;PbBottle1_ppb&quot;:1.203,&quot;PbBottle2_ppb&quot;:19.26,&quot;PbBottle3_ppb&quot;:1.626},{&quot;SampleID&quot;:291,&quot;Zip Code&quot;:48506,&quot;Ward&quot;:3,&quot;PbBottle1_ppb&quot;:2.261,&quot;PbBottle2_ppb&quot;:0.102,&quot;PbBottle3_ppb&quot;:0.407},{&quot;SampleID&quot;:292,&quot;Zip Code&quot;:48503,&quot;Ward&quot;:4,&quot;PbBottle1_ppb&quot;:16.99,&quot;PbBottle2_ppb&quot;:6.32,&quot;PbBottle3_ppb&quot;:3.585},{&quot;SampleID&quot;:293,&quot;Zip Code&quot;:48503,&quot;Ward&quot;:7,&quot;PbBottle1_ppb&quot;:3.322,&quot;PbBottle2_ppb&quot;:2.559,&quot;PbBottle3_ppb&quot;:1.512},{&quot;SampleID&quot;:294,&quot;Zip Code&quot;:48506,&quot;Ward&quot;:4,&quot;PbBottle1_ppb&quot;:14.33,&quot;PbBottle2_ppb&quot;:1.284,&quot;PbBottle3_ppb&quot;:0.323},{&quot;SampleID&quot;:295,&quot;Zip Code&quot;:48503,&quot;Ward&quot;:7,&quot;PbBottle1_ppb&quot;:18.11,&quot;PbBottle2_ppb&quot;:20.21,&quot;PbBottle3_ppb&quot;:4.263},{&quot;SampleID&quot;:296,&quot;Zip Code&quot;:48503,&quot;Ward&quot;:7,&quot;PbBottle1_ppb&quot;:12.81,&quot;PbBottle2_ppb&quot;:7.874,&quot;PbBottle3_ppb&quot;:1.78},{&quot;SampleID&quot;:298,&quot;Zip Code&quot;:48503,&quot;Ward&quot;:7,&quot;PbBottle1_ppb&quot;:1.083,&quot;PbBottle2_ppb&quot;:0.322,&quot;PbBottle3_ppb&quot;:0.26},{&quot;SampleID&quot;:299,&quot;Zip Code&quot;:48503,&quot;Ward&quot;:7,&quot;PbBottle1_ppb&quot;:29.59,&quot;PbBottle2_ppb&quot;:3.258,&quot;PbBottle3_ppb&quot;:1.843},{&quot;SampleID&quot;:300,&quot;Zip Code&quot;:48505,&quot;Ward&quot;:1,&quot;PbBottle1_ppb&quot;:4.287,&quot;PbBottle2_ppb&quot;:4.345,&quot;PbBottle3_ppb&quot;:4.905}]&quot;&quot;&quot;)</span>
+<span class="n">flint_data</span> <span class="o">=</span> <span class="n">pd</span><span class="o">.</span><span class="n">read_csv</span><span class="p">(</span><span class="s1">&#39;flint_water_data.csv&#39;</span><span class="p">)</span>
+</pre></div>
+</div>
+</div>
+</div>
+<section id="key-for-data-fields-in-this-data-set">
+<h3>Key for data fields in this data set:<a class="headerlink" href="#key-for-data-fields-in-this-data-set" title="Permalink to this headline">#</a></h3>
+<ul class="simple">
+<li><p><em>SampleID</em>: Unique study code for each sample</p></li>
+<li><p><em>Zip Code</em>: location where samples were collected</p></li>
+<li><p><em>Ward</em>: location where samples were collected</p></li>
+<li><p><em>PbBottle1_ppb</em>: Concentration of lead in parts per billion (ppb) in sample acquired at initial turn on of water</p></li>
+<li><p><em>PbBottle2_ppb</em>: Concentration of lead in parts per billion (ppb) in sample acquired after 45 seconds of flushing water</p></li>
+<li><p><em>PbBottle3_ppb</em>: Concentration of lead in parts per billion (ppb) in sample acquired after 120 seconds of flushing water</p></li>
+</ul>
+</section>
+<section id="epa-limits">
+<h3>EPA Limits<a class="headerlink" href="#epa-limits" title="Permalink to this headline">#</a></h3>
+<p>The U.S. Environmental Protection Agency (EPA) guidelines about lead contaminants state:</p>
+<blockquote>
+<div><p>Lead and copper are regulated by a treatment technique that requires systems to control the corrosiveness of their water. <strong>If more than 10% of tap water samples exceed the action level,</strong> water systems must take additional steps. For copper, the action level is 1.3 mg/L (1300 ppb), and <strong>for lead is 0.015 mg/L (15 ppb).</strong></p>
+<p>Source: (<a class="reference external" href="http://www.epa.gov/your-drinking-water/table-regulated-drinking-water-contaminants#seven">http://www.epa.gov/your-drinking-water/table-regulated-drinking-water-contaminants#seven</a>).</p>
+</div></blockquote>
+</section>
+</section>
+<section id="analysis-using-descriptive-statistics">
+<h2>1. Analysis Using Descriptive Statistics<a class="headerlink" href="#analysis-using-descriptive-statistics" title="Permalink to this headline">#</a></h2>
+<section id="id1">
+<h3>1.1<a class="headerlink" href="#id1" title="Permalink to this headline">#</a></h3>
+<p>Use <code class="docutils literal notranslate"><span class="pre">describe()</span></code> function to determine the mean, standard deviation, min, median, and max of the first set of samples (<code class="docutils literal notranslate"><span class="pre">PbBottle1_ppb</span></code>).</p>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="c1">#Write your code here</span>
+</pre></div>
+</div>
+</div>
+</div>
+</section>
+<section id="id2">
+<h3>1.2<a class="headerlink" href="#id2" title="Permalink to this headline">#</a></h3>
+<p>From this, can you determine if the water supply in Flint met the EPA standard?</p>
+<p><em>Write your answer here</em></p>
+</section>
+<section id="id3">
+<h3>1.3<a class="headerlink" href="#id3" title="Permalink to this headline">#</a></h3>
+<p>What is the median of this sample? How does it compare to the mean? Do you expect this sample to be close to a normal (Gaussian) distribution?</p>
+<p><em>Write your answer here</em></p>
+</section>
+</section>
+<section id="analysis-using-visualizations">
+<h2>2. Analysis Using Visualizations<a class="headerlink" href="#analysis-using-visualizations" title="Permalink to this headline">#</a></h2>
+<section id="id4">
+<h3>2.1<a class="headerlink" href="#id4" title="Permalink to this headline">#</a></h3>
+<p>Make a histogram visualization of the distribution of the first set of samples (<code class="docutils literal notranslate"><span class="pre">PbBottle1_ppb</span></code>). Use the <code class="docutils literal notranslate"><span class="pre">axvline()</span></code> function to add a line showing where the EPA limit is. (You will probably need to google what this function does.) Also, make sure that your plot has x and y-axes labels and a title.</p>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="c1">#Write your code here</span>
+</pre></div>
+</div>
+</div>
+</div>
+</section>
+<section id="id5">
+<h3>2.2<a class="headerlink" href="#id5" title="Permalink to this headline">#</a></h3>
+<p>Does the distribution of samples look like a normal (Gausian) distribution? Is that what you predicted based on your analysis of the descriptive statistics (Part 1.3)?</p>
+<p><em>Write your answer here</em></p>
+</section>
+<section id="id6">
+<h3>2.3<a class="headerlink" href="#id6" title="Permalink to this headline">#</a></h3>
+<p>Looking at this, there’s a big pile up of samples that are near or below the EPA limit, and it makes it hard to get a sense of what the full distribution looks like. Use the <code class="docutils literal notranslate"><span class="pre">yscale()</span></code> to make the y-scale logarithmic.</p>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="c1">#Write your code here</span>
+</pre></div>
+</div>
+</div>
+</div>
+</section>
+<section id="id7">
+<h3>2.4<a class="headerlink" href="#id7" title="Permalink to this headline">#</a></h3>
+<p>As discussed in the pre-class, logarithmic scales allow us to get a better handle on distributions with a <em>large dynamic range</em>. Use your log plot to count the number of samples that lie above the EPA limit.</p>
+<p>What fraction of the total samples appear to fall above the EPA limit?</p>
+<p><em>Write your answer here</em></p>
+</section>
+<section id="id8">
+<h3>2.5<a class="headerlink" href="#id8" title="Permalink to this headline">#</a></h3>
+<p>Based on this analysis, does it appear that the Flint samples met the EPA standards?</p>
+<p><em>Write your answer here</em></p>
+</section>
+</section>
+<section id="stop">
+<h2>STOP<a class="headerlink" href="#stop" title="Permalink to this headline">#</a></h2>
+<p>Based on your analysis so far, answer the following question: <em><strong>Would you feel comfortable drinking a glass of water in Flint at the height of the water crises?</strong></em></p>
+<p><em>Write your answer here</em></p>
+</section>
+<section id="analysis-using-masks">
+<h2>3. Analysis Using Masks<a class="headerlink" href="#analysis-using-masks" title="Permalink to this headline">#</a></h2>
+<p>In the previous part, you used descriptive statistics and a visualization to try to estimate the number of samples that fell above the EPA limit. Now we’re going to actually count the number that actually don’t meet the EPA regulation.</p>
+<section id="id9">
+<h3>3.1<a class="headerlink" href="#id9" title="Permalink to this headline">#</a></h3>
+<p>Create a mask and a new dataframe that only contain samples where <code class="docutils literal notranslate"><span class="pre">PbBottle1_pb</span></code> was greater than the EPA limit.</p>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="c1">#Write your code here</span>
+</pre></div>
+</div>
+</div>
+</div>
+</section>
+<section id="id10">
+<h3>3.2<a class="headerlink" href="#id10" title="Permalink to this headline">#</a></h3>
+<p>Answer the following questions:</p>
+<ol class="simple">
+<li><p>How many samples were above the EPA limit?</p></li>
+<li><p>What fraction of the total samples does this comprise?</p></li>
+</ol>
+<p><em>Write your answer here</em></p>
+</section>
+<section id="id11">
+<h3>3.3<a class="headerlink" href="#id11" title="Permalink to this headline">#</a></h3>
+<p>Based on this analysis, do these samples meet the EPA standards?</p>
+<p><em>Write your answer here</em></p>
+</section>
+</section>
+<section id="extending-analysis-to-the-other-samples">
+<h2>4. Extending Analysis to the Other Samples<a class="headerlink" href="#extending-analysis-to-the-other-samples" title="Permalink to this headline">#</a></h2>
+<p>Repeat the analysis you did parts 1, 2, and 3 for both the <code class="docutils literal notranslate"><span class="pre">PbBottle2_ppb</span></code> and  <code class="docutils literal notranslate"><span class="pre">PbBottle3_ppb</span></code> samples. Recall that these are samples drawn 45 seconds after the taps are turned on (<code class="docutils literal notranslate"><span class="pre">PbBottle2_ppb</span></code>) and two minutes after the taps are turned on (<code class="docutils literal notranslate"><span class="pre">PbBottle3_ppb</span></code>).
+To complete this section, you should:</p>
+<ol class="simple">
+<li><p>Fill in the table below with descriptive statistics and fraction of samples above the EPA limit.</p></li>
+<li><p>Have a three panel plot showing the distribution of samples. The y-axes for each of them should be logarithmic and each plot should have x and y-axes labels and a title.</p></li>
+</ol>
+<table class="colwidths-auto table">
+<thead>
+<tr class="row-odd"><th class="text-align:left head"><p>Sample</p></th>
+<th class="text-align:left head"><p>Mean</p></th>
+<th class="text-align:left head"><p>Std. Dev</p></th>
+<th class="text-align:left head"><p>Min</p></th>
+<th class="text-align:left head"><p>Median</p></th>
+<th class="text-align:left head"><p>Max</p></th>
+<th class="text-align:left head"><p>Fraction &gt; EPA</p></th>
+</tr>
+</thead>
+<tbody>
+<tr class="row-even"><td class="text-align:left"><p>PbBottle1_ppb</p></td>
+<td class="text-align:left"><p>??</p></td>
+<td class="text-align:left"><p>??</p></td>
+<td class="text-align:left"><p>??</p></td>
+<td class="text-align:left"><p>??</p></td>
+<td class="text-align:left"><p>??</p></td>
+<td class="text-align:left"><p>??</p></td>
+</tr>
+<tr class="row-odd"><td class="text-align:left"><p>PbBottle2_ppb</p></td>
+<td class="text-align:left"><p>??</p></td>
+<td class="text-align:left"><p>??</p></td>
+<td class="text-align:left"><p>??</p></td>
+<td class="text-align:left"><p>??</p></td>
+<td class="text-align:left"><p>??</p></td>
+<td class="text-align:left"><p>??</p></td>
+</tr>
+<tr class="row-even"><td class="text-align:left"><p>PbBottle3_ppb</p></td>
+<td class="text-align:left"><p>??</p></td>
+<td class="text-align:left"><p>??</p></td>
+<td class="text-align:left"><p>??</p></td>
+<td class="text-align:left"><p>??</p></td>
+<td class="text-align:left"><p>??</p></td>
+<td class="text-align:left"><p>??</p></td>
+</tr>
+</tbody>
+</table>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="c1">#Write your code here</span>
+</pre></div>
+</div>
+</div>
+</div>
+</section>
+<section id="conclusions">
+<h2>5. Conclusions<a class="headerlink" href="#conclusions" title="Permalink to this headline">#</a></h2>
+<p>Based on your new analysis, answer the following question: <em><strong>Would you feel comfortable drinking a glass of water in Flint at the height of the water crises?</strong></em></p>
+<p><strong>Use statistical values and/or data visualizations to back up your choice.</strong></p>
+<p><em>Write your answer here</em></p>
+</section>
+<section id="time-permitting-looking-for-other-sources-of-analysis">
+<h2>6. (Time Permitting) Looking for Other Sources of Analysis<a class="headerlink" href="#time-permitting-looking-for-other-sources-of-analysis" title="Permalink to this headline">#</a></h2>
+<p>For your project, it will be good to draw upon other resources to compare your results/conclusions to.</p>
+<p>Go through the <a class="reference external" href="https://www.nytimes.com/2018/07/22/opinion/flint-lead-poisoning-water.html">following article from the New York Times</a> and compare it’s conclusions to your own from Part 5. Given the information in this article, <em><strong>Would you feel comfortable drinking a glass of water in Flint at the height of the water crises?</strong></em></p>
+<p><strong>NOTE:</strong> If you are an MSU student, you have access to a free New York Times account. <a class="reference external" href="https://asmsu.msu.edu/home/services/717-2/">Click this link</a> and follow the steps to get access through MSU.</p>
+<p><em>Write your answer here</em></p>
+</section>
+<hr class="docutils" />
+<section id="assignment-wrapup">
+<h2>Assignment wrapup<a class="headerlink" href="#assignment-wrapup" title="Permalink to this headline">#</a></h2>
+<p>Please fill out the form that appears when you run the code below. <strong>You must completely fill this out in order to receive credit for the assignment!</strong></p>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="kn">from</span> <span class="nn">IPython.display</span> <span class="kn">import</span> <span class="n">HTML</span>
+<span class="n">HTML</span><span class="p">(</span>
+<span class="sd">&quot;&quot;&quot;</span>
+<span class="sd">&lt;iframe </span>
+<span class="sd">	src=&quot;https://cmse.msu.edu/cmse201-ic-survey&quot; </span>
+<span class="sd">	width=&quot;800px&quot; </span>
+<span class="sd">	height=&quot;600px&quot; </span>
+<span class="sd">	frameborder=&quot;0&quot; </span>
+<span class="sd">	marginheight=&quot;0&quot; </span>
+<span class="sd">	marginwidth=&quot;0&quot;&gt;</span>
+<span class="sd">	Loading...</span>
+<span class="sd">&lt;/iframe&gt;</span>
+<span class="sd">&quot;&quot;&quot;</span>
+<span class="p">)</span>
+</pre></div>
+</div>
+</div>
+</div>
+</section>
+<hr class="docutils" />
+<section id="congratulations-you-re-done">
+<h2>Congratulations, you’re done!<a class="headerlink" href="#congratulations-you-re-done" title="Permalink to this headline">#</a></h2>
+<p>Submit this assignment by uploading your notebook to the course Desire2Learn web page.  Go to the “In-Class Assignments” folder, find the appropriate submission link, and upload everything there. Make sure your name is on it!</p>
+<p>© Copyright 2021,  Michigan State University Board of Trustees</p>
+</section>
+</section>
+
+    <script type="text/x-thebe-config">
+    {
+        requestKernel: true,
+        binderOptions: {
+            repo: "binder-examples/jupyter-stacks-datascience",
+            ref: "master",
+        },
+        codeMirrorConfig: {
+            theme: "abcdef",
+            mode: "python"
+        },
+        kernelOptions: {
+            kernelName: "python3",
+            path: "./Day-10"
+        },
+        predefinedOutput: true
+    }
+    </script>
+    <script>kernelName = 'python3'</script>
+
+              </div>
+              
+            </main>
+            <footer class="footer-article noprint">
+                
+    <!-- Previous / next buttons -->
+<div class='prev-next-area'>
+    <a class='left-prev' id="prev-link" href="Day-10_Pre-Class_Masking-STUDENT.html" title="previous page">
+        <i class="fas fa-angle-left"></i>
+        <div class="prev-next-info">
+            <p class="prev-next-subtitle">previous</p>
+            <p class="prev-next-title">Day 10 Pre-class Assignment: Normal Distributions, Masking, and Log Plots</p>
+        </div>
+    </a>
+    <a class='right-next' id="next-link" href="../Day-11/Day-11_Pre-Class_Data_File_Formats_Manipulation-STUDENT.html" title="next page">
+    <div class="prev-next-info">
+        <p class="prev-next-subtitle">next</p>
+        <p class="prev-next-title">Day 11 Pre-Class Assignment: Overview of data and file formats</p>
+    </div>
+    <i class="fas fa-angle-right"></i>
+    </a>
+</div>
+            </footer>
+        </div>
+    </div>
+    <div class="footer-content row">
+        <footer class="col footer"><p>
+  
+    By MSU CMSE<br/>
+  
+      &copy; Copyright 2022.<br/>
+</p>
+        </footer>
+    </div>
+    
+</div>
+
+
+      </div>
+    </div>
+  
+  <!-- Scripts loaded after <body> so the DOM is not blocked -->
+  <script src="../_static/scripts/pydata-sphinx-theme.js?digest=1999514e3f237ded88cf"></script>
+
+
+  </body>
+</html>
