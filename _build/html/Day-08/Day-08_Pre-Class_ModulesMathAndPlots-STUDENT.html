@@ -1,0 +1,998 @@
+
+<!DOCTYPE html>
+
+
+<html lang="en" data-content_root="../" >
+
+  <head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" /><meta name="viewport" content="width=device-width, initial-scale=1" />
+
+    <title>Day 8 Pre-Class Assignment: Python Modules: Numpy and Plots &#8212; CMSE 201</title>
+  
+  
+  
+  <script data-cfasync="false">
+    document.documentElement.dataset.mode = localStorage.getItem("mode") || "";
+    document.documentElement.dataset.theme = localStorage.getItem("theme") || "";
+  </script>
+  
+  <!-- Loaded before other Sphinx assets -->
+  <link href="../_static/styles/theme.css?digest=3ee479438cf8b5e0d341" rel="stylesheet" />
+<link href="../_static/styles/bootstrap.css?digest=3ee479438cf8b5e0d341" rel="stylesheet" />
+<link href="../_static/styles/pydata-sphinx-theme.css?digest=3ee479438cf8b5e0d341" rel="stylesheet" />
+
+  
+  <link href="../_static/vendor/fontawesome/6.5.2/css/all.min.css?digest=3ee479438cf8b5e0d341" rel="stylesheet" />
+  <link rel="preload" as="font" type="font/woff2" crossorigin href="../_static/vendor/fontawesome/6.5.2/webfonts/fa-solid-900.woff2" />
+<link rel="preload" as="font" type="font/woff2" crossorigin href="../_static/vendor/fontawesome/6.5.2/webfonts/fa-brands-400.woff2" />
+<link rel="preload" as="font" type="font/woff2" crossorigin href="../_static/vendor/fontawesome/6.5.2/webfonts/fa-regular-400.woff2" />
+
+    <link rel="stylesheet" type="text/css" href="../_static/pygments.css?v=fa44fd50" />
+    <link rel="stylesheet" type="text/css" href="../_static/styles/sphinx-book-theme.css?v=384b581d" />
+    <link rel="stylesheet" type="text/css" href="../_static/togglebutton.css?v=13237357" />
+    <link rel="stylesheet" type="text/css" href="../_static/copybutton.css?v=76b2166b" />
+    <link rel="stylesheet" type="text/css" href="../_static/mystnb.4510f1fc1dee50b3e5859aac5469c37c29e427902b24a333a5f9fcb2f0b3ac41.css?v=be8a1c11" />
+    <link rel="stylesheet" type="text/css" href="../_static/sphinx-thebe.css?v=4fa983c6" />
+    <link rel="stylesheet" type="text/css" href="../_static/sphinx-design.min.css?v=87e54e7c" />
+  
+  <!-- Pre-loaded scripts that we'll load fully later -->
+  <link rel="preload" as="script" href="../_static/scripts/bootstrap.js?digest=3ee479438cf8b5e0d341" />
+<link rel="preload" as="script" href="../_static/scripts/pydata-sphinx-theme.js?digest=3ee479438cf8b5e0d341" />
+  <script src="../_static/vendor/fontawesome/6.5.2/js/all.min.js?digest=3ee479438cf8b5e0d341"></script>
+
+    <script src="../_static/documentation_options.js?v=9eb32ce0"></script>
+    <script src="../_static/doctools.js?v=9a2dae69"></script>
+    <script src="../_static/sphinx_highlight.js?v=dc90522c"></script>
+    <script src="../_static/clipboard.min.js?v=a7894cd8"></script>
+    <script src="../_static/copybutton.js?v=f281be69"></script>
+    <script src="../_static/scripts/sphinx-book-theme.js?v=efea14e4"></script>
+    <script>let toggleHintShow = 'Click to show';</script>
+    <script>let toggleHintHide = 'Click to hide';</script>
+    <script>let toggleOpenOnPrint = 'true';</script>
+    <script src="../_static/togglebutton.js?v=4a39c7ea"></script>
+    <script>var togglebuttonSelector = '.toggle, .admonition.dropdown';</script>
+    <script src="../_static/design-tabs.js?v=36754332"></script>
+    <script>const THEBE_JS_URL = "https://unpkg.com/thebe@0.8.2/lib/index.js"; const thebe_selector = ".thebe,.cell"; const thebe_selector_input = "pre"; const thebe_selector_output = ".output, .cell_output"</script>
+    <script async="async" src="../_static/sphinx-thebe.js?v=c100c467"></script>
+    <script>var togglebuttonSelector = '.toggle, .admonition.dropdown';</script>
+    <script>const THEBE_JS_URL = "https://unpkg.com/thebe@0.8.2/lib/index.js"; const thebe_selector = ".thebe,.cell"; const thebe_selector_input = "pre"; const thebe_selector_output = ".output, .cell_output"</script>
+    <script>window.MathJax = {"options": {"processHtmlClass": "tex2jax_process|mathjax_process|math|output_area"}}</script>
+    <script defer="defer" src="https://cdn.jsdelivr.net/npm/mathjax@3/es5/tex-mml-chtml.js"></script>
+    <script>DOCUMENTATION_OPTIONS.pagename = 'Day-08/Day-08_Pre-Class_ModulesMathAndPlots-STUDENT';</script>
+    <link rel="icon" href="../_static/cmse_fav.ico"/>
+    <link rel="index" title="Index" href="../genindex.html" />
+    <link rel="search" title="Search" href="../search.html" />
+    <link rel="next" title="Day 8 In-class Assignment: Visualizing population growth" href="Day-08_In-Class_MathAndPlotting-STUDENT.html" />
+    <link rel="prev" title="Practice with Debugging" href="../Day-07/Debugging-STUDENT.html" />
+  <meta name="viewport" content="width=device-width, initial-scale=1"/>
+  <meta name="docsearch:language" content="en"/>
+  </head>
+  
+  
+  <body data-bs-spy="scroll" data-bs-target=".bd-toc-nav" data-offset="180" data-bs-root-margin="0px 0px -60%" data-default-mode="">
+
+  
+  
+  <div id="pst-skip-link" class="skip-link d-print-none"><a href="#main-content">Skip to main content</a></div>
+  
+  <div id="pst-scroll-pixel-helper"></div>
+  
+  <button type="button" class="btn rounded-pill" id="pst-back-to-top">
+    <i class="fa-solid fa-arrow-up"></i>Back to top</button>
+
+  
+  <input type="checkbox"
+          class="sidebar-toggle"
+          id="pst-primary-sidebar-checkbox"/>
+  <label class="overlay overlay-primary" for="pst-primary-sidebar-checkbox"></label>
+  
+  <input type="checkbox"
+          class="sidebar-toggle"
+          id="pst-secondary-sidebar-checkbox"/>
+  <label class="overlay overlay-secondary" for="pst-secondary-sidebar-checkbox"></label>
+  
+  <div class="search-button__wrapper">
+    <div class="search-button__overlay"></div>
+    <div class="search-button__search-container">
+<form class="bd-search d-flex align-items-center"
+      action="../search.html"
+      method="get">
+  <i class="fa-solid fa-magnifying-glass"></i>
+  <input type="search"
+         class="form-control"
+         name="q"
+         id="search-input"
+         placeholder="Search..."
+         aria-label="Search..."
+         autocomplete="off"
+         autocorrect="off"
+         autocapitalize="off"
+         spellcheck="false"/>
+  <span class="search-button__kbd-shortcut"><kbd class="kbd-shortcut__modifier">Ctrl</kbd>+<kbd>K</kbd></span>
+</form></div>
+  </div>
+
+  <div class="pst-async-banner-revealer d-none">
+  <aside id="bd-header-version-warning" class="d-none d-print-none" aria-label="Version warning"></aside>
+</div>
+
+  
+    <header class="bd-header navbar navbar-expand-lg bd-navbar d-print-none">
+    </header>
+  
+
+  <div class="bd-container">
+    <div class="bd-container__inner bd-page-width">
+      
+      
+      
+      <div class="bd-sidebar-primary bd-sidebar">
+        
+
+  
+  <div class="sidebar-header-items sidebar-primary__section">
+    
+    
+    
+    
+  </div>
+  
+    <div class="sidebar-primary-items__start sidebar-primary__section">
+        <div class="sidebar-primary-item">
+
+  
+
+<a class="navbar-brand logo" href="../intro.html">
+  
+  
+  
+  
+  
+    
+    
+      
+    
+    
+    <img src="../_static/logo.png" class="logo__image only-light" alt="CMSE 201 - Home"/>
+    <script>document.write(`<img src="../_static/logo.png" class="logo__image only-dark" alt="CMSE 201 - Home"/>`);</script>
+  
+  
+</a></div>
+        <div class="sidebar-primary-item">
+
+ <script>
+ document.write(`
+   <button class="btn navbar-btn search-button-field search-button__button" title="Search" aria-label="Search" data-bs-placement="bottom" data-bs-toggle="tooltip">
+    <i class="fa-solid fa-magnifying-glass"></i>
+    <span class="search-button__default-text">Search</span>
+    <span class="search-button__kbd-shortcut"><kbd class="kbd-shortcut__modifier">Ctrl</kbd>+<kbd class="kbd-shortcut__modifier">K</kbd></span>
+   </button>
+ `);
+ </script></div>
+        <div class="sidebar-primary-item"><nav class="bd-links bd-docs-nav" aria-label="Main">
+    <div class="bd-toc-item navbar-nav active">
+        <p aria-level="2" class="caption" role="heading"><span class="caption-text">Course Materials</span></p>
+<ul class="nav bd-sidenav">
+<li class="toctree-l1 has-children"><a class="reference internal" href="../Course_Materials-201/CourseDocuments.html">Important Course information</a><details><summary><span class="toctree-toggle" role="presentation"><i class="fa-solid fa-chevron-down"></i></span></summary><ul>
+<li class="toctree-l2"><a class="reference internal" href="../Course_Materials-201/CMSE201-Syllabus.html">Syllabus</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../Course_Materials-201/CMSE201-Schedule.html">Course Schedule</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../Course_Materials-201/SoftwareSetupGuide.html">Software Setup Guide</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../Course_Materials-201/classroom_participation.html">Classroom Participation</a></li>
+</ul>
+</details></li>
+</ul>
+<p aria-level="2" class="caption" role="heading"><span class="caption-text">Day 01</span></p>
+<ul class="nav bd-sidenav">
+<li class="toctree-l1"><a class="reference internal" href="../Day-01/Day-01_In-Class_SortingAlgorithm-STUDENT.html">Day 1 In-Class Assignment: Introductions and Sorting Algorithms</a></li>
+
+
+
+</ul>
+<p aria-level="2" class="caption" role="heading"><span class="caption-text">Day 02</span></p>
+<ul class="nav bd-sidenav">
+<li class="toctree-l1"><a class="reference internal" href="../Day-02/Day-02_Pre-Class_IntroToPython-STUDENT.html">Day 2 Pre-class Assignment: Intro to Python</a></li>
+
+
+
+<li class="toctree-l1"><a class="reference internal" href="../Day-02/Day-02_In-Class_OrderOfMagnitudeModeling-STUDENT.html">Day 2 In-class Assignment: Order of Magnitude Modeling</a></li>
+
+
+</ul>
+<p aria-level="2" class="caption" role="heading"><span class="caption-text">Day 03</span></p>
+<ul class="nav bd-sidenav">
+<li class="toctree-l1"><a class="reference internal" href="../Day-03/Day-03_Pre-Class_ListsAndLoops-STUDENT.html">Day 3: Pre-Class Assignment: Lists and Loops</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../Day-03/Day-03_In-Class_ListsLoopsAndSaving-STUDENT.html">Day 3 In-class Assignment: The power of compound interest</a></li>
+</ul>
+<p aria-level="2" class="caption" role="heading"><span class="caption-text">Day 04</span></p>
+<ul class="nav bd-sidenav">
+<li class="toctree-l1"><a class="reference internal" href="../Day-04/Day_04_PreClass_DataAlgorithmicBias-STUDENT.html">Day 4 Pre-class Assignment: Introduction to Data Ethics: Data and Algorithmic Bias</a></li>
+
+
+
+
+
+<li class="toctree-l1"><a class="reference internal" href="../Day-04/Day_04_In_Class_DataAlgorithmicBias-STUDENT.html">Day 4 In-class Assignment: Data and Algorithmic Bias, Academic Integrity, and Coding Best Practices</a></li>
+
+</ul>
+<p aria-level="2" class="caption" role="heading"><span class="caption-text">Day 05</span></p>
+<ul class="nav bd-sidenav">
+<li class="toctree-l1"><a class="reference internal" href="../Day-05/Day-05_Pre-Class_IfStatementsAndFunctions-STUDENT.html">Day 5 Pre-class Assignment: Boolean logic, if statements, and an introduction to functions</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../Day-05/Day-05_In-Class_IfStatementsAndFunctions-STUDENT.html">Day 5 In-class Assignment: Savings for Everyone</a></li>
+</ul>
+<p aria-level="2" class="caption" role="heading"><span class="caption-text">Day 06</span></p>
+<ul class="nav bd-sidenav">
+<li class="toctree-l1"><a class="reference internal" href="../Day-06/Day-06_Pre-Class_MoreFunctions-STUDENT.html">Day 6 Pre-class Assignment: Thinking more about functions</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../Day-06/Day-06_In-Class_FunctionsAndSquirrels-STUDENT.html">Day 6 In Class Assignment: A Scurry of Squirrels in Central Park</a></li>
+
+
+
+
+
+</ul>
+<p aria-level="2" class="caption" role="heading"><span class="caption-text">Day 07</span></p>
+<ul class="nav bd-sidenav">
+<li class="toctree-l1"><a class="reference internal" href="../Day-07/Day-07_Pre-Class_ReflectingOnUnderstanding-STUDENT.html">Day 7 Pre-Class Assignment: A reflection on what you’ve learned so far and an introduction to Generative Artificial Intelligence!</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../Day-07/Day-07_In-Class_ReviewingAndPracticingConcepts-STUDENT.html">Day 7 In-class Assignment: Reviewing and practicing prior concepts</a></li>
+
+<li class="toctree-l1"><a class="reference internal" href="../Day-07/Day-07_In-Class_ReviewingAndPracticingConcepts-Solutions.html">Day 7 In-class Assignment: Reviewing and practicing prior concepts</a></li>
+
+<li class="toctree-l1"><a class="reference internal" href="../Day-07/Debugging-STUDENT.html">Practice with Debugging</a></li>
+
+
+</ul>
+<p aria-level="2" class="caption" role="heading"><span class="caption-text">Day 08</span></p>
+<ul class="current nav bd-sidenav">
+<li class="toctree-l1 current active"><a class="current reference internal" href="#">Day 8 Pre-Class Assignment: Python Modules: Numpy and Plots</a></li>
+<li class="toctree-l1"><a class="reference internal" href="Day-08_In-Class_MathAndPlotting-STUDENT.html">Day 8 In-class Assignment: Visualizing population growth</a></li>
+</ul>
+<p aria-level="2" class="caption" role="heading"><span class="caption-text">Day 09</span></p>
+<ul class="nav bd-sidenav">
+<li class="toctree-l1"><a class="reference internal" href="../Day-09/Day-09_Pre-Class_IntroToNumPy-STUDENT.html">Day 9 Pre-Class: Introduction to NumPy</a></li>
+<li class="toctree-l1"><a class="reference external" href="https://raw.githubusercontent.com/msu-cmse-courses/cmse201-supplemental/main/ICA_datasets/michigan_pop.csv">michigan_pop.csv</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../Day-09/Day-09_In-Class_NumPyWithTheGreatLakes-STUDENT.html">Day 9 In-class Assignment: Exploring Great Lakes Water Levels using NumPy</a></li>
+
+<li class="toctree-l1"><a class="reference external" href="https://raw.githubusercontent.com/msu-cmse-courses/cmse201-supplemental/main/ICA_datasets/lake_erie.csv">lake_erie.csv</a></li>
+<li class="toctree-l1"><a class="reference external" href="https://raw.githubusercontent.com/msu-cmse-courses/cmse201-supplemental/main/ICA_datasets/lake_michigan_huron.csv">lake_michigan_huron.csv</a></li>
+<li class="toctree-l1"><a class="reference external" href="https://raw.githubusercontent.com/msu-cmse-courses/cmse201-supplemental/main/ICA_datasets/lake_ontario.csv">lake_ontario.csv</a></li>
+<li class="toctree-l1"><a class="reference external" href="https://raw.githubusercontent.com/msu-cmse-courses/cmse201-supplemental/main/ICA_datasets/lake_superior.csv">lake_superior.csv</a></li>
+</ul>
+<p aria-level="2" class="caption" role="heading"><span class="caption-text">Day 10</span></p>
+<ul class="nav bd-sidenav">
+<li class="toctree-l1"><a class="reference internal" href="../Day-10/Day-10_Pre-Class_Pandas-STUDENT.html">Day 10 Pre-class Assignment: Computational Models Overview and The Pandas Data Analysis Library</a></li>
+
+
+
+<li class="toctree-l1"><a class="reference external" href="https://raw.githubusercontent.com/msu-cmse-courses/cmse201-supplemental/main/Day-09/heart_disease_data.csv">heart_disease_data.csv</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../Day-10/Day-10_In-Class_GDP-STUDENT.html">Day 10 In-Class: Cleaning and Analyzing Economic Data</a></li>
+
+
+<li class="toctree-l1"><a class="reference external" href="https://raw.githubusercontent.com/msu-cmse-courses/cmse201-supplemental/main/ICA_datasets/API_NY.GDP.MKTP.CD_DS2_en_csv_v2_31795.csv">API_NY.GDP.MKTP.CD_DS2_en_csv_v2_31795.csv</a></li>
+</ul>
+<p aria-level="2" class="caption" role="heading"><span class="caption-text">Day 11</span></p>
+<ul class="nav bd-sidenav">
+<li class="toctree-l1"><a class="reference internal" href="../Day-11/Day-11_Pre-Class_Masking-STUDENT.html">Day 11 Pre-class Assignment: Normal Distributions, Masking, and Log Plots</a></li>
+<li class="toctree-l1"><a class="reference external" href="https://raw.githubusercontent.com/msu-cmse-courses/cmse201-supplemental/main/ICA_datasets/GDP_Cleaned.csv">GDP_Cleaned.csv</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../Day-11/Day-11_In-Class_Flint-STUDENT.html">Day 11 In-class Assignment: Get the Lead Out: Understanding The Water Crisis in Flint, MI</a></li>
+
+
+<li class="toctree-l1"><a class="reference external" href="https://raw.githubusercontent.com/msu-cmse-courses/cmse201-supplemental/main/ICA_datasets/flint_water_data.csv">flint_water_data.csv</a></li>
+</ul>
+<p aria-level="2" class="caption" role="heading"><span class="caption-text">Day 12</span></p>
+<ul class="nav bd-sidenav">
+<li class="toctree-l1"><a class="reference internal" href="../Day-12/Day-12_Pre-Class_Unprocessed_Data-STUDENT.html">Day 12 Pre-class: Introduction to Data Wrangling</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../Day-12/Day-12_In-Class_Unprocessed_Data-STUDENT.html">Day 12 In-Class: Data Contextualization and Wrangling</a></li>
+</ul>
+<p aria-level="2" class="caption" role="heading"><span class="caption-text">Day 13</span></p>
+<ul class="nav bd-sidenav">
+<li class="toctree-l1"><a class="reference internal" href="../Day-13/Day-13_Pre-Class_Online_Resources-STUDENT.html">Day 13 Pre-class Assignment: Finding resources online and tinkering wth code</a></li>
+
+
+<li class="toctree-l1"><a class="reference internal" href="../Day-13/Day-13_In-Class_Online_Resources-STUDENT.html">Day 13 In-Class: Using online resources (code and data)</a></li>
+</ul>
+<p aria-level="2" class="caption" role="heading"><span class="caption-text">Day 14</span></p>
+<ul class="nav bd-sidenav">
+<li class="toctree-l1"><a class="reference internal" href="../Day-14/Day-14_Pre-Class_Evaluating_Fits-STUDENT.html">Day 14 Pre-Class Assignment: Making Predictions Using Data</a></li>
+<li class="toctree-l1"><a class="reference external" href="https://raw.githubusercontent.com/msu-cmse-courses/cmse201-supplemental/main/image_critique_ver2.pptx">Image Critique</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../Day-14/Day-14_In-Class_Evaluating_Fits-STUDENT.html">Day 14 In-Class Assignment: Evaluating Models</a></li>
+</ul>
+<p aria-level="2" class="caption" role="heading"><span class="caption-text">Day 15</span></p>
+<ul class="nav bd-sidenav">
+<li class="toctree-l1"><a class="reference internal" href="../Day-15/Day-15_Pre-Class_CurveFitting-STUDENT.html">Day 15 Pre-Class Assignment: Fitting functions to data (curve-fitting) and thinking more about models</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../Day-15/Day-15_In-Class_FittingCurves-STUDENT.html">Day 15 In-Class Assignment: (Thoughtfully) fitting models to data</a></li>
+<li class="toctree-l1"><a class="reference external" href="https://raw.githubusercontent.com/msu-cmse-courses/cmse201-S22-data/main/Day-14/pop200.csv">pop200.csv</a></li>
+<li class="toctree-l1"><a class="reference external" href="https://raw.githubusercontent.com/msu-cmse-courses/cmse201-S22-data/main/Day-14/pop300.csv">pop300.csv</a></li>
+</ul>
+<p aria-level="2" class="caption" role="heading"><span class="caption-text">Day 16</span></p>
+<ul class="nav bd-sidenav">
+<li class="toctree-l1"><a class="reference internal" href="../Day-16/Day-16-Intro_to_ODEs_Pre-Class-STUDENT.html">Day 16 Pre-class Assignment: Introduction to Modeling with Ordinary Differential Equations</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../Day-16/Day-16-Intro_to_ODEs_In-Class_STUDENT.html">Day 16: In-class Assignment: Introduction to Modeling with ODEs</a></li>
+</ul>
+<p aria-level="2" class="caption" role="heading"><span class="caption-text">Day 17</span></p>
+<ul class="nav bd-sidenav">
+<li class="toctree-l1"><a class="reference internal" href="../Day-17/Day-17_Pre-Class_ModelingWithODEs-STUDENT.html">Day 17: Pre-class Assignment: Modeling with Ordinary Differential Equations</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../Day-17/Day-17_In-Class_ModelingWithODEs-STUDENT.html">Day 17: In-class Assignment: Modeling with ODEs</a></li>
+
+
+</ul>
+<p aria-level="2" class="caption" role="heading"><span class="caption-text">Day 18</span></p>
+<ul class="nav bd-sidenav">
+<li class="toctree-l1"><a class="reference internal" href="../Day-18/Day-18_Pre-Class_ViralKinetics-STUDENT.html">Day 18 Pre-Class: Viral Kinetics</a></li>
+
+<li class="toctree-l1"><a class="reference internal" href="../Day-18/Day-18_In-Class_CompartmentalModeling-STUDENT.html">Day 18 In-class Assignment: Building Compartmental Models</a></li>
+
+
+
+</ul>
+<p aria-level="2" class="caption" role="heading"><span class="caption-text">Day 19</span></p>
+<ul class="nav bd-sidenav">
+<li class="toctree-l1"><a class="reference internal" href="../Day-19/Day-19_Pre-Class_Zombies-STUDENT.html">Day 19 Pre-class Assignment: ZOMBIES!!</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../Day-19/Day-19_In-Class_CompartmentsWithSolveIVP-STUDENT.html">Day 19 In-Class Assignment: Compartmental Modeling, moving from the model to the code</a></li>
+</ul>
+<p aria-level="2" class="caption" role="heading"><span class="caption-text">Day 20</span></p>
+<ul class="nav bd-sidenav">
+<li class="toctree-l1"><a class="reference internal" href="../Day-20/Day-20_Pre-Class_IntroToDataVisualization-STUDENT.html">Day 20 Pre-class Assignment: Introduction to Data Visualization</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../Day-20/Day-20_In-Class_IntroToDataVisualization-STUDENT.html">Day 20 In-Class: Introduction to Data Visualization</a></li>
+</ul>
+<p aria-level="2" class="caption" role="heading"><span class="caption-text">Day 21</span></p>
+<ul class="nav bd-sidenav">
+<li class="toctree-l1"><a class="reference internal" href="../Day-21/Day-21_Pre-Class_2DNumPyArrays-STUDENT.html">Day 21 Pre-Class: 2D NumPy Arrays</a></li>
+<li class="toctree-l1"><a class="reference external" href="https://raw.githubusercontent.com/msu-cmse-courses/cmse201-supplemental/main/Day-17/PCA_files/cars.csv">cars.csv</a></li>
+<li class="toctree-l1"><a class="reference external" href="https://github.com/msu-cmse-courses/cmse201-supplemental/raw/main/Day-17/PCA_files/example.jpeg">example.jpeg</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../Day-21/Day-21_In-Class_2DImageAnalysis-STUDENT.html">Day 21 In-Class Assignment: Image Analysis</a></li>
+<li class="toctree-l1"><a class="reference external" href="https://raw.githubusercontent.com/msu-cmse-courses/cmse201-supplemental/main/Day-17/ICA_files/beach.jpeg">beach.jpeg</a></li>
+<li class="toctree-l1"><a class="reference external" href="https://raw.githubusercontent.com/msu-cmse-courses/cmse201-supplemental/main/Day-17/ICA_files/landscape.jpeg">landscape.jpeg</a></li>
+<li class="toctree-l1"><a class="reference external" href="https://raw.githubusercontent.com/msu-cmse-courses/cmse201-supplemental/main/Day-17/ICA_files/zebra.png">zebra.png</a></li>
+</ul>
+<p aria-level="2" class="caption" role="heading"><span class="caption-text">Day 22</span></p>
+<ul class="nav bd-sidenav">
+<li class="toctree-l1"><a class="reference internal" href="../Day-22/Day-22_Pre-Class_ProjectWorkDay-STUDENT.html">Day 22 Pre-class: Project Draft Presentation Preparation</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../Day-22/Day-22_In-Class_ProjectWorkDay-STUDENT.html">Day 22 In-class Assignment: Project Work Day</a></li>
+</ul>
+<p aria-level="2" class="caption" role="heading"><span class="caption-text">Day 23</span></p>
+<ul class="nav bd-sidenav">
+<li class="toctree-l1"><a class="reference internal" href="../Day-23/Day-23_Pre-Class_ABMForestFire-STUDENT.html">Day 23 Pre-class: Agent-based models and forest fires</a></li>
+
+
+
+
+
+<li class="toctree-l1"><a class="reference internal" href="../Day-23/Day-23_In-Class_ForestFiresPartI-STUDENT.html">Day 23 Part 1 In-class Assignment: Modeling forest fires with an Agent-based Model</a></li>
+</ul>
+<p aria-level="2" class="caption" role="heading"><span class="caption-text">Day 24</span></p>
+<ul class="nav bd-sidenav">
+<li class="toctree-l1"><a class="reference internal" href="../Day-24/Day-24_Pre-Class_MoreNumPyArrayManipulation-STUDENT.html">Day 24 Pre-class: More practice manipulating 2D Numpy Arrays</a></li>
+
+<li class="toctree-l1"><a class="reference internal" href="../Day-24/Day-24_In-Class_ForestFiresPartII-STUDENT.html">Day 24 In-class Assignment: Modeling forest fires with an Agent-based Model (Part II)</a></li>
+</ul>
+<p aria-level="2" class="caption" role="heading"><span class="caption-text">Day 25</span></p>
+<ul class="nav bd-sidenav">
+<li class="toctree-l1"><a class="reference internal" href="../Day-25/Day-25_Pre-Class_DataDilemmas-STUDENT.html">Day 25 Pre-Class - Data Dilemmas: Ethics in an Algorithmic World</a></li>
+
+
+<li class="toctree-l1"><a class="reference internal" href="../Day-25/Day-25_In-Class_DataDilemmas-STUDENT.html">Day 25 - In-Class - Data Dilemmas: Ethics in an Algorithmic World</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../Day-25/biased_data_gen.html">Data Generation Sheet</a></li>
+</ul>
+<p aria-level="2" class="caption" role="heading"><span class="caption-text">Homework</span></p>
+<ul class="nav bd-sidenav">
+<li class="toctree-l1"><a class="reference internal" href="../Homework/Homework_01/HW_01_PythonFundamentals-SS25-STUDENT.html">Homework 1 - Python Fundamentals</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../Homework/Homework_02/HW_02_IfelseFunctionsNumpyMatplotlib_SS25-STUDENT.html">Homework 2: Dictionaries, If Statements, Functions, and Modules</a></li>
+
+<li class="toctree-l1"><a class="reference external" href="https://raw.githubusercontent.com/msu-cmse-courses/cmse201-supplemental/main/Homework/global_temperature_anomalies.csv">global_temperature_anomalies.csv</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../Homework/Homework_03/HW3_Spring25_STUDENT.html">Homework 3 - Loading, Cleaning, Analyzing, and Visualizing Data with Pandas</a></li>
+<li class="toctree-l1"><a class="reference external" href="https://raw.githubusercontent.com/msu-cmse-courses/cmse201-supplemental/main/Homework/zipped_data_files_part1.zip">zipped_data_files_part1.zip</a></li>
+<li class="toctree-l1"><a class="reference external" href="https://raw.githubusercontent.com/msu-cmse-courses/cmse201-supplemental/main/Homework/zipped_data_files_part2.zip">zipped_data_files_part2.zip</a></li>
+<li class="toctree-l1"><a class="reference external" href="https://raw.githubusercontent.com/msu-cmse-courses/cmse201-supplemental/main/Homework/Example002.csv">Example002.csv</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../Homework/Homework_04/HW4_SS25_STUDENT.html">Homework 4 - Compartmental Models + Data Visualization</a></li>
+<li class="toctree-l1"><a class="reference external" href="https://raw.githubusercontent.com/msu-cmse-courses/cmse201-supplemental/main/Homework/auto-mpg-clean.csv">auto-mpg-clean.csv</a></li>
+<li class="toctree-l1"><a class="reference external" href="https://raw.githubusercontent.com/msu-cmse-courses/cmse201-supplemental/main/Homework/auto-mpg.data-original">auto-mpg.data-original</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../Homework/Homework_05/HW-05_SS25_STUDENT.html">Homework 5: Algorithmic Bias and Agent-based Modeling (EXTRA CREDIT)</a></li>
+
+
+
+</ul>
+<p aria-level="2" class="caption" role="heading"><span class="caption-text">Code Portfolio</span></p>
+<ul class="nav bd-sidenav">
+<li class="toctree-l1"><a class="reference internal" href="../Homework/Code_Portfolio/Code_Portfolio_Assignment.html">Code Portfolio Assignment</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../Homework/Code_Portfolio/Code_Portfolio_Example.html">Code Portfolio Example</a></li>
+
+
+
+
+</ul>
+<p aria-level="2" class="caption" role="heading"><span class="caption-text">Semester Project</span></p>
+<ul class="nav bd-sidenav">
+<li class="toctree-l1"><a class="reference internal" href="../Project_Materials/CMSE201_SemesterProjectDetails.html">Semester Project Details</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../Project_Materials/Project_Plan_Check-in.html">First Project Checkpoint</a></li>
+
+
+
+<li class="toctree-l1"><a class="reference internal" href="../Project_Materials/CMSE201_FinalProjectTemplate.html">CMSE 201 Final Project Template</a></li>
+
+<li class="toctree-l1"><a class="reference external" href="https://raw.githubusercontent.com/msu-cmse-courses/cmse201-supplemental/main/Projects/CMSE201_final_project_examples.zip">Zip file of example projects</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../Project_Materials/CMSE201FinalProject_RequirementsAndGradingRubric.html">Requirements and Grading Rubric</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../Project_Materials/peer_assessment.html">Peer Assessment Notebook</a></li>
+<li class="toctree-l1"><a class="reference external" href="https://github.com/msu-cmse-courses/cmse201-supplemental/raw/main/Projects/Presentation_Evaluation_Rubric.pdf">Presentation Evaluation Rubric</a></li>
+</ul>
+<p aria-level="2" class="caption" role="heading"><span class="caption-text">Practice Notebooks</span></p>
+<ul class="nav bd-sidenav">
+<li class="toctree-l1"><a class="reference internal" href="../Quiz_Prep_Notebooks/PracticeNotebook_IfStatements-STUDENT.html">Practice with: <code class="docutils literal notranslate"><span class="pre">if</span></code> statements</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../Quiz_Prep_Notebooks/PracticeNotebook_Functions-STUDENT.html">Practice with: functions</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../Quiz_Prep_Notebooks/PracticeNotebook_Matplotlib-STUDENT.html">Practice with: <code class="docutils literal notranslate"><span class="pre">matplotlib</span></code></a></li>
+<li class="toctree-l1"><a class="reference internal" href="../Quiz_Prep_Notebooks/filtering_ws_ver2.html">Practice with Masking</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../Quiz_Prep_Notebooks/PracticeNotebook_Pandas-STUDENT.html">Practice with: Pandas</a></li>
+<li class="toctree-l1"><a class="reference external" href="https://raw.githubusercontent.com/msu-cmse-courses/cmse201-supplemental/main/PracticeNotebooks/weather.csv">weather.csv</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../Quiz_Prep_Notebooks/PracticeNotebook_ScipyCurveFit-STUDENT.html">Practice with: SciPy <code class="docutils literal notranslate"><span class="pre">curve_fit</span></code></a></li>
+<li class="toctree-l1"><a class="reference internal" href="../Quiz_Prep_Notebooks/PracticeNotebook_CompartmentalModels-STUDENT.html">Practice with: Compartmental Models</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../Quiz_Prep_Notebooks/PracticeNotebook_SolveIVP-STUDENT.html">Practice with: <code class="docutils literal notranslate"><span class="pre">solve_ivp</span></code></a></li>
+</ul>
+
+    </div>
+</nav></div>
+    </div>
+  
+  
+  <div class="sidebar-primary-items__end sidebar-primary__section">
+  </div>
+  
+  <div id="rtd-footer-container"></div>
+
+
+      </div>
+      
+      <main id="main-content" class="bd-main" role="main">
+        
+        
+
+<div class="sbt-scroll-pixel-helper"></div>
+
+          <div class="bd-content">
+            <div class="bd-article-container">
+              
+              <div class="bd-header-article d-print-none">
+<div class="header-article-items header-article__inner">
+  
+    <div class="header-article-items__start">
+      
+        <div class="header-article-item"><label class="sidebar-toggle primary-toggle btn btn-sm" for="__primary" title="Toggle primary sidebar" data-bs-placement="bottom" data-bs-toggle="tooltip">
+  <span class="fa-solid fa-bars"></span>
+</label></div>
+      
+    </div>
+  
+  
+    <div class="header-article-items__end">
+      
+        <div class="header-article-item">
+
+<div class="article-header-buttons">
+
+
+
+
+
+<div class="dropdown dropdown-download-buttons">
+  <button class="btn dropdown-toggle" type="button" data-bs-toggle="dropdown" aria-expanded="false" aria-label="Download this page">
+    <i class="fas fa-download"></i>
+  </button>
+  <ul class="dropdown-menu">
+      
+      
+      
+      <li><a href="../_sources/Day-08/Day-08_Pre-Class_ModulesMathAndPlots-STUDENT.ipynb" target="_blank"
+   class="btn btn-sm btn-download-source-button dropdown-item"
+   title="Download source file"
+   data-bs-placement="left" data-bs-toggle="tooltip"
+>
+  
+
+<span class="btn__icon-container">
+  <i class="fas fa-file"></i>
+  </span>
+<span class="btn__text-container">.ipynb</span>
+</a>
+</li>
+      
+      
+      
+      
+      <li>
+<button onclick="window.print()"
+  class="btn btn-sm btn-download-pdf-button dropdown-item"
+  title="Print to PDF"
+  data-bs-placement="left" data-bs-toggle="tooltip"
+>
+  
+
+<span class="btn__icon-container">
+  <i class="fas fa-file-pdf"></i>
+  </span>
+<span class="btn__text-container">.pdf</span>
+</button>
+</li>
+      
+  </ul>
+</div>
+
+
+
+
+<button onclick="toggleFullScreen()"
+  class="btn btn-sm btn-fullscreen-button"
+  title="Fullscreen mode"
+  data-bs-placement="bottom" data-bs-toggle="tooltip"
+>
+  
+
+<span class="btn__icon-container">
+  <i class="fas fa-expand"></i>
+  </span>
+
+</button>
+
+
+
+<script>
+document.write(`
+  <button class="btn btn-sm navbar-btn theme-switch-button" title="light/dark" aria-label="light/dark" data-bs-placement="bottom" data-bs-toggle="tooltip">
+    <span class="theme-switch nav-link" data-mode="light"><i class="fa-solid fa-sun fa-lg"></i></span>
+    <span class="theme-switch nav-link" data-mode="dark"><i class="fa-solid fa-moon fa-lg"></i></span>
+    <span class="theme-switch nav-link" data-mode="auto"><i class="fa-solid fa-circle-half-stroke fa-lg"></i></span>
+  </button>
+`);
+</script>
+
+
+<script>
+document.write(`
+  <button class="btn btn-sm navbar-btn search-button search-button__button" title="Search" aria-label="Search" data-bs-placement="bottom" data-bs-toggle="tooltip">
+    <i class="fa-solid fa-magnifying-glass fa-lg"></i>
+  </button>
+`);
+</script>
+<label class="sidebar-toggle secondary-toggle btn btn-sm" for="__secondary"title="Toggle secondary sidebar" data-bs-placement="bottom" data-bs-toggle="tooltip">
+    <span class="fa-solid fa-list"></span>
+</label>
+</div></div>
+      
+    </div>
+  
+</div>
+</div>
+              
+              
+
+<div id="jb-print-docs-body" class="onlyprint">
+    <h1>Day 8 Pre-Class Assignment: Python Modules: Numpy and Plots</h1>
+    <!-- Table of contents -->
+    <div id="print-main-content">
+        <div id="jb-print-toc">
+            
+            <div>
+                <h2> Contents </h2>
+            </div>
+            <nav aria-label="Page">
+                <ul class="visible nav section-nav flex-column">
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#put-your-name-here"><p style="text-align: right;"> ✅ Put your name here</p></a></li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#goals-for-this-pre-class-assignment">Goals for this pre-class assignment</a></li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#assignment-instructions">Assignment instructions</a></li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#some-possibly-useful-links">Some possibly useful links</a></li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#python-modules">Python Modules</a><ul class="nav section-nav flex-column">
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#the-numpy-module">The <code class="docutils literal notranslate"><span class="pre">numpy</span></code> Module</a></li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#useful-references">Useful references:</a></li>
+</ul>
+</li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#working-with-matplotlib">Working with matplotlib</a></li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#using-the-numpy-module-to-compute-new-values-and-matplotlib-to-plot-them">Using the numpy module to compute new values and matplotlib to plot them</a></li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#checking-in-on-prior-knowledge">Checking in on prior knowledge</a><ul class="nav section-nav flex-column">
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#assigning-students-to-kindergarten">Assigning students to kindergarten</a></li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#talking-about-code">Talking about code</a></li>
+</ul>
+</li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#an-introduction-to-the-cmse-201-code-portfolio">An introduction to the CMSE 201 “Code Portfolio”</a></li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#follow-up-questions">Follow-up Questions</a></li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#assignment-wrap-up">Assignment wrap-up</a><ul class="nav section-nav flex-column">
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#congratulations-you-re-done">Congratulations, you’re done!</a></li>
+</ul>
+</li>
+</ul>
+            </nav>
+        </div>
+    </div>
+</div>
+
+              
+                
+<div id="searchbox"></div>
+                <article class="bd-article">
+                  
+  <section class="tex2jax_ignore mathjax_ignore" id="day-8-pre-class-assignment-python-modules-numpy-and-plots">
+<h1>Day 8 Pre-Class Assignment: Python Modules: Numpy and Plots<a class="headerlink" href="#day-8-pre-class-assignment-python-modules-numpy-and-plots" title="Link to this heading">#</a></h1>
+<img src="https://upload.wikimedia.org/wikipedia/en/thumb/5/56/Matplotlib_logo.svg/1280px-Matplotlib_logo.svg.png" width="500px"><section id="put-your-name-here">
+<h2><p style="text-align: right;"> ✅ Put your name here</p><a class="headerlink" href="#put-your-name-here" title="Link to this heading">#</a></h2>
+</section>
+<section id="goals-for-this-pre-class-assignment">
+<h2>Goals for this pre-class assignment<a class="headerlink" href="#goals-for-this-pre-class-assignment" title="Link to this heading">#</a></h2>
+<p>By the end of this assignment, you should be able to:</p>
+<ul class="simple">
+<li><p>Import modules into Python and understand how to use them.</p></li>
+<li><p>Use Python’s <code>numpy</code> module to do simple calculations</p></li>
+<li><p>Use <code>matplotlib</code> and the <code>pyplot</code> submodule to make plots.</p></li>
+</ul>
+</section>
+<section id="assignment-instructions">
+<h2>Assignment instructions<a class="headerlink" href="#assignment-instructions" title="Link to this heading">#</a></h2>
+<p>Watch the videos below, do the readings linked to below the videos, and complete the assigned programming problems.  Please get started early, and come to office hours if you have any questions! Make use of Teams as well!</p>
+<p><strong>This assignment is due by 11:59 p.m. the day before class,</strong> and should be uploaded into appropriate the “Pre-class assignments” submission folder.  Submission instructions can be found at the end of the notebook.</p>
+</section>
+<hr class="docutils" />
+<section id="some-possibly-useful-links">
+<h2>Some possibly useful links<a class="headerlink" href="#some-possibly-useful-links" title="Link to this heading">#</a></h2>
+<p>Before we dive into the pre-class assignment, here are some links that might be useful if you’re looking to learn some extra iPython (which is what the Jupyter Notebooks are built on) and Jupyter Notebook skills:</p>
+<ul class="simple">
+<li><p><a class="reference external" href="http://ipython.readthedocs.org/en/stable/interactive/tutorial.html">IPython tutorial</a> – this contains some <em>very</em> useful suggestions about IPython commands that allow you to get help on Python, figure out what specific variables or objects do, and many other things.</p></li>
+<li><p><a class="reference external" href="http://blog.dominodatalab.com/lesser-known-ways-of-using-notebooks/">Jupyter notebook tips and tricks</a> – some clever things you can do with Jupyter notebooks</p></li>
+</ul>
+<p>These are not things you <em>have</em> to learn, but for those looking to push their limits, these pages might be useful!</p>
+</section>
+<hr class="docutils" />
+<section id="python-modules">
+<h2>Python Modules<a class="headerlink" href="#python-modules" title="Link to this heading">#</a></h2>
+<p>The following video introduces the concept of Python “modules” which are extra software libraries that you can import into your Python environment in order to add new functionality to Python that it doesn’t have by default. Python modules are often created because they include commonly used and generally useful code, like mathematical functions or plotting routines. You may have noticed that we’ve actually already been using one module quite regularly, the <code>YouTubeVideo</code> module.</p>
+<p>Watch the video and then answer the questions below. (If the YouTube video work won’t, try the <a class="reference external" href="https://mediaspace.msu.edu/media/Modules+in+python/1_wdxtzbr2">MediaSpace version</a>)</p>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="c1"># Imports the functionality that we need to display YouTube videos in a Jupyter Notebook.  </span>
+<span class="c1"># You need to run this cell before you run ANY of the YouTube videos.</span>
+<span class="kn">from</span> <span class="nn">IPython.display</span> <span class="kn">import</span> <span class="n">YouTubeVideo</span>
+
+<span class="c1"># Video on Modules in Python</span>
+<span class="c1"># Make sure to watch it in full-screen mode!</span>
+<span class="n">YouTubeVideo</span><span class="p">(</span><span class="s2">&quot;chBLLNBGoEE&quot;</span><span class="p">,</span><span class="n">width</span><span class="o">=</span><span class="mi">640</span><span class="p">,</span><span class="n">height</span><span class="o">=</span><span class="mi">360</span><span class="p">)</span>  <span class="c1"># modules and pyplot</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<div class="output text_html">
+        <iframe
+            width="640"
+            height="360"
+            src="https://www.youtube.com/embed/chBLLNBGoEE"
+            frameborder="0"
+            allowfullscreen
+            
+        ></iframe>
+        </div></div>
+</div>
+<hr class="docutils" />
+<section id="the-numpy-module">
+<h3>The <code class="docutils literal notranslate"><span class="pre">numpy</span></code> Module<a class="headerlink" href="#the-numpy-module" title="Link to this heading">#</a></h3>
+<p>In the video above, we reference the <code class="docutils literal notranslate"><span class="pre">math</span></code> module. While it is a useful and powerful module, we are going to put it aside in favor of an even more powerful module, “NumPy” or <code class="docutils literal notranslate"><span class="pre">numpy</span></code>. The <code class="docutils literal notranslate"><span class="pre">numpy</span></code> module has many purposes beyond doing calculations that we will explore in later classes, but for now, we will only use it for numbers.</p>
+<p><strong>Watch this video on <a class="reference external" href="https://mediaspace.msu.edu/media/The+numpy+Module+for+Doing+Math/1_h1lnbsug">MediaSpace</a> for a brief introduction to using <code class="docutils literal notranslate"><span class="pre">numpy</span></code> for calculations</strong> (you might notice it is very similar to the <code class="docutils literal notranslate"><span class="pre">math</span></code> module for this purpose!).</p>
+<p><a class="reference external" href="https://mediaspace.msu.edu/media/The+numpy+Module+for+Doing+Math/1_h1lnbsug">https://mediaspace.msu.edu/media/The+numpy+Module+for+Doing+Math/1_h1lnbsug</a></p>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">YouTubeVideo</span><span class="p">(</span><span class="s2">&quot;e0WUrM-P9QI&quot;</span><span class="p">,</span><span class="n">width</span><span class="o">=</span><span class="mi">640</span><span class="p">,</span><span class="n">height</span><span class="o">=</span><span class="mi">360</span><span class="p">)</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<div class="output text_html">
+        <iframe
+            width="640"
+            height="360"
+            src="https://www.youtube.com/embed/e0WUrM-P9QI"
+            frameborder="0"
+            allowfullscreen
+            
+        ></iframe>
+        </div></div>
+</div>
+</section>
+<section id="useful-references">
+<h3>Useful references:<a class="headerlink" href="#useful-references" title="Link to this heading">#</a></h3>
+<p>In addition to the video, the following references may be useful for your pre-class and in-class assignments:</p>
+<ul class="simple">
+<li><p><a class="reference external" href="https://numpy.org/doc/stable/reference/routines.math.html">The Python NumPY module</a> - contains a list of numpy mathematics commands</p></li>
+<li><p><a class="reference external" href="http://matplotlib.org/stable">The matplotlib website</a> - where you can find all information about the matplotlib package</p></li>
+<li><p><a class="reference external" href="https://matplotlib.org/stable/gallery/index.html">The matplotlib gallery</a> - lots of cool visualizations that can be made with matplotlib</p></li>
+<li><p><a class="reference external" href="https://matplotlib.org/stable/tutorials/introductory/pyplot.html">The Pyplot tutorial</a> - the pyplot tutorial.  A good place to get started.</p></li>
+<li><p><a class="reference external" href="https://matplotlib.org/stable/api/pyplot_summary.html">A summary of pyplot commands</a> - more extensive documentation on pyplot.</p></li>
+</ul>
+</section>
+</section>
+<hr class="docutils" />
+<section id="working-with-matplotlib">
+<h2>Working with matplotlib<a class="headerlink" href="#working-with-matplotlib" title="Link to this heading">#</a></h2>
+<p>✅  <strong>Question 1:</strong>
+The cell below contains <strong>four</strong> lists of data, which correspond to two sets of X and Y values.  Use matplotlib to make a plot of these datasets. Make your plot with the following guidelines:</p>
+<ul class="simple">
+<li><p>The first pair of lists (x1, y1) should be drawn with a <strong><em>thick</em>, blue, dashed line</strong>.</p></li>
+<li><p>The second pair of lists (x2, y2) should be drawn with <strong>red diamonds</strong>.</p></li>
+<li><p>Make the width of the plot extend from 0 to 20 and height of the plot extend from 6 to 16. This will help make the image bit easier to see.</p></li>
+<li><p>Add axis labels to the x and y axes, with whatever text you like.</p></li>
+</ul>
+<p>Use the <a class="reference external" href="https://matplotlib.org/stable/tutorials/introductory/pyplot.html">Pyplot Tutorial</a> for inspiration, and in particular you can find instructions on how to create different types of characters and line types in the <a class="reference external" href="https://matplotlib.org/stable/api/_as_gen/matplotlib.pyplot.plot.html#matplotlib.pyplot.plot">pyplot ‘plot’ command documentation</a>.</p>
+<p><strong>Note</strong>: It is important to remember that any time you need a module, you <strong>need to import it</strong>. A good coding practice is to put all of your import commands at the top of your code block. Try to get into the habit of always importing the modules you are going to need <strong>first</strong>, before writing the rest of your code. If you realize you need another module, add it to your list at the top, don’t just insert it into the body of the code randomly.</p>
+<p><strong>Another Note</strong>: Your plots might look different than the ones in the video because <code>matplotlib</code> has been updated to a new version since that video was made.</p>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="c1"># ensures that the plots made by matplotlib/pyplot show up in the notebook!</span>
+<span class="o">%</span><span class="k">matplotlib</span> inline                 
+
+<span class="c1"># imports the pyplot module from matplotlib</span>
+<span class="kn">import</span> <span class="nn">matplotlib.pyplot</span> <span class="k">as</span> <span class="nn">plt</span>    
+
+<span class="n">x1</span> <span class="o">=</span> <span class="p">[</span><span class="mi">2</span><span class="p">,</span><span class="mi">4</span><span class="p">,</span><span class="mi">6</span><span class="p">,</span><span class="mi">8</span><span class="p">,</span><span class="mi">10</span><span class="p">,</span><span class="mi">12</span><span class="p">,</span><span class="mi">14</span><span class="p">,</span><span class="mi">16</span><span class="p">,</span><span class="mi">18</span><span class="p">]</span>
+<span class="n">y1</span> <span class="o">=</span> <span class="p">[</span><span class="mi">10</span><span class="p">,</span><span class="mf">8.25</span><span class="p">,</span><span class="mf">7.5</span><span class="p">,</span><span class="mi">7</span><span class="p">,</span><span class="mf">6.75</span><span class="p">,</span><span class="mi">7</span><span class="p">,</span><span class="mf">7.5</span><span class="p">,</span><span class="mf">8.25</span><span class="p">,</span><span class="mi">10</span><span class="p">]</span>
+
+<span class="n">x2</span> <span class="o">=</span> <span class="p">[</span><span class="mi">5</span><span class="p">,</span> <span class="mi">15</span><span class="p">]</span>
+<span class="n">y2</span> <span class="o">=</span> <span class="p">[</span><span class="mi">15</span><span class="p">,</span> <span class="mi">15</span><span class="p">]</span>
+
+<span class="c1"># put your plotting commands below this comment!</span>
+</pre></div>
+</div>
+</div>
+</div>
+</section>
+<section id="using-the-numpy-module-to-compute-new-values-and-matplotlib-to-plot-them">
+<h2>Using the numpy module to compute new values and matplotlib to plot them<a class="headerlink" href="#using-the-numpy-module-to-compute-new-values-and-matplotlib-to-plot-them" title="Link to this heading">#</a></h2>
+<p>Now we want you to try to use various components of everything you just learned in the video, and things you’ve learned in class up to this point, to make a new plot. This will require that you use the <code class="docutils literal notranslate"><span class="pre">numpy</span></code> module, the <code class="docutils literal notranslate"><span class="pre">pyplot</span></code> module, and probably loop (or two).</p>
+<p>Just like with <code class="docutils literal notranslate"><span class="pre">matplotlib</span></code>, when you need/want to use <code class="docutils literal notranslate"><span class="pre">numpy</span></code>, you need to import that as well, we normally use <code class="docutils literal notranslate"><span class="pre">import</span> <span class="pre">numpy</span> <span class="pre">as</span> <span class="pre">np</span></code> – make sure to put this in your code cell below!</p>
+<p>✅  <strong>Question 2</strong>: Using the values from the <code class="docutils literal notranslate"><span class="pre">x1</span></code> list above, make a plot of <span class="math notranslate nohighlight">\(f(x) = \sin(x)\)</span> using a green line and <span class="math notranslate nohighlight">\(f(x) = \cos(x)\)</span> using an orange line. Label your plot so that the x-axis reads “x”, and the y-axis reads “f(x)”.</p>
+<p><strong>Hint</strong>: The first step will be to figure out a way to calculate the sine and cosine values of <code class="docutils literal notranslate"><span class="pre">x1</span></code> and store them. For calculating sine and cosine values, you can use <code class="docutils literal notranslate"><span class="pre">np.sin()</span></code> and <code class="docutils literal notranslate"><span class="pre">np.cos()</span></code>. For storing these new values in your list, you might want to review how the <code class="docutils literal notranslate"><span class="pre">append()</span></code> function works for lists.</p>
+<p><strong>Extra challenge</strong>: See if you can figure out how to use the <code class="docutils literal notranslate"><span class="pre">label</span></code> parameter in the <code class="docutils literal notranslate"><span class="pre">plt.plot()</span></code> function and the <code class="docutils literal notranslate"><span class="pre">plt.legend()</span></code> command to add a legend your plot that identifies each line appropriately.</p>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="c1"># put your python commands here, make sure to include comments in your code using the &quot;#&quot; symbol</span>
+</pre></div>
+</div>
+</div>
+</div>
+<p>✅  <strong>Question 3</strong>: Now that you’ve been able to plot some functions that <em>look</em> like sine and cosine, we want to make them look <strong>more</strong> like sine and cosine by calculating more data points for our curves. One way of doing this is to create a more dense list of values that we will pass to the sine or cosine function. We created a list called <code class="docutils literal notranslate"><span class="pre">x1</span></code> for you that you used for the plots you made above, but it didn’t have enough values to make the curves look very smooth.</p>
+<p>Your goal is to generate a list called <code class="docutils literal notranslate"><span class="pre">x_list</span></code> of <span class="math notranslate nohighlight">\(x\)</span>-values from 0 to <span class="math notranslate nohighlight">\(2\pi\)</span> with a spacing of 0.1 between each value (you might want to use the numpy module for obtaining a value for <span class="math notranslate nohighlight">\(\pi\)</span>, which can be accessed with <code class="docutils literal notranslate"><span class="pre">np.pi</span></code>). Then plot cosine and sine over this interval with the same axis labels and colors as the plot you made above.</p>
+<p><strong>Hint</strong>: To create your list, consider using a while-loop, that stops once the increment has surpassed <span class="math notranslate nohighlight">\(2\pi\)</span>. The while-loop should  <em>append</em> new values to <code class="docutils literal notranslate"><span class="pre">x_list</span></code>, starting at 0 and adding 0.1, appending that to the list, then adding 0.1 to the previous value, appending that value to the list, and so on. We will see other methods of creating lists like this in the future by some other very helpful modules. (Please do not hard code the values of your list by hand. If you get stuck, just ask one of the instructors for help via Teams.)</p>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="c1"># put your python commands here, make sure to include comments in your code using the &quot;#&quot; symbol</span>
+</pre></div>
+</div>
+</div>
+</div>
+</section>
+<hr class="docutils" />
+<section id="checking-in-on-prior-knowledge">
+<h2>Checking in on prior knowledge<a class="headerlink" href="#checking-in-on-prior-knowledge" title="Link to this heading">#</a></h2>
+<p>As we work on learning new things, it can be useful to check-in now and again on some of our previous skills and make sure they’re still fresh. <strong>Work through</strong> the following prompts to revisit your knowledge of using lists and loops.</p>
+<section id="assigning-students-to-kindergarten">
+<h3>Assigning students to kindergarten<a class="headerlink" href="#assigning-students-to-kindergarten" title="Link to this heading">#</a></h3>
+<p>Imagine that you are working for the school board, and you need to determine which children should enroll in kindergarten. You are given a list below(<code class="docutils literal notranslate"><span class="pre">children_list</span></code>), where each entry is another list with two values: the child’s name and the month they were born in.</p>
+<p>✅ <strong>Task</strong>: The cutoff date for enrollment is August, meaning that all children born after July (7th month) should be enrolled in kindergarten. <strong>Write a piece of code that selects the students to be enrolled in kindergarten and appends their names to the list <code class="docutils literal notranslate"><span class="pre">kinder_students</span></code>.</strong></p>
+<p>Some <em>optional</em> starter code has been provided for you.</p>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">children_list</span> <span class="o">=</span> <span class="p">[[</span><span class="s1">&#39;Maxine Reed&#39;</span><span class="p">,</span><span class="mi">1</span><span class="p">],</span> <span class="p">[</span><span class="s1">&#39;Luz Ryan&#39;</span><span class="p">,</span><span class="mi">10</span><span class="p">],</span> <span class="p">[</span><span class="s1">&#39;Betty Fleming&#39;</span><span class="p">,</span><span class="mi">9</span><span class="p">],</span> <span class="p">[</span><span class="s1">&#39;Sherman Powers&#39;</span><span class="p">,</span><span class="mi">6</span><span class="p">],</span> <span class="p">[</span><span class="s1">&#39;Jerald Santos&#39;</span><span class="p">,</span><span class="mi">8</span><span class="p">],</span> <span class="p">[</span><span class="s1">&#39;Alberta Flowers&#39;</span><span class="p">,</span><span class="mi">7</span><span class="p">],</span> <span class="p">[</span><span class="s1">&#39;Lillie Nguyen&#39;</span><span class="p">,</span><span class="mi">3</span><span class="p">],</span> <span class="p">[</span><span class="s1">&#39;Martha Jackson&#39;</span><span class="p">,</span><span class="mi">8</span><span class="p">],</span> <span class="p">[</span><span class="s1">&#39;Troy Wilkins&#39;</span><span class="p">,</span><span class="mi">11</span><span class="p">],</span> <span class="p">[</span><span class="s1">&#39;Eric Mendez&#39;</span><span class="p">,</span><span class="mi">11</span><span class="p">],</span> <span class="p">[</span><span class="s1">&#39;Violet Ramsey&#39;</span><span class="p">,</span><span class="mi">2</span><span class="p">],</span> <span class="p">[</span><span class="s1">&#39;Beth Thompson&#39;</span><span class="p">,</span><span class="mi">9</span><span class="p">],</span> <span class="p">[</span><span class="s1">&#39;Erik Craig&#39;</span><span class="p">,</span><span class="mi">5</span><span class="p">],</span> <span class="p">[</span><span class="s1">&#39;Hugo Ray&#39;</span><span class="p">,</span><span class="mi">12</span><span class="p">],</span> <span class="p">[</span><span class="s1">&#39;Linda Nash&#39;</span><span class="p">,</span><span class="mi">2</span><span class="p">],</span> <span class="p">[</span><span class="s1">&#39;Laura Banks&#39;</span><span class="p">,</span><span class="mi">12</span><span class="p">],</span> <span class="p">[</span><span class="s1">&#39;Israel Pierce&#39;</span><span class="p">,</span><span class="mi">8</span><span class="p">],</span> <span class="p">[</span><span class="s1">&#39;Dora Caldwell&#39;</span><span class="p">,</span><span class="mi">5</span><span class="p">],</span> <span class="p">[</span><span class="s1">&#39;Agnes Matthews&#39;</span><span class="p">,</span><span class="mi">11</span><span class="p">],</span> <span class="p">[</span><span class="s1">&#39;Norma Fox&#39;</span><span class="p">,</span><span class="mi">9</span><span class="p">],</span> <span class="p">[</span><span class="s1">&#39;Marian Miller&#39;</span><span class="p">,</span><span class="mi">11</span><span class="p">],</span> <span class="p">[</span><span class="s1">&#39;Alfredo Cox&#39;</span><span class="p">,</span><span class="mi">9</span><span class="p">],</span> <span class="p">[</span><span class="s1">&#39;Manuel Black&#39;</span><span class="p">,</span><span class="mi">4</span><span class="p">],</span> <span class="p">[</span><span class="s1">&#39;Beatrice Sanders&#39;</span><span class="p">,</span><span class="mi">2</span><span class="p">],</span> <span class="p">[</span><span class="s1">&#39;Bruce Joseph&#39;</span><span class="p">,</span><span class="mi">5</span><span class="p">],</span> <span class="p">[</span><span class="s1">&#39;Guadalupe Allison&#39;</span><span class="p">,</span><span class="mi">2</span><span class="p">],</span> <span class="p">[</span><span class="s1">&#39;Sheri Carter&#39;</span><span class="p">,</span><span class="mi">9</span><span class="p">],</span> <span class="p">[</span><span class="s1">&#39;Floyd Hines&#39;</span><span class="p">,</span><span class="mi">7</span><span class="p">],</span> <span class="p">[</span><span class="s1">&#39;Abel Hamilton&#39;</span><span class="p">,</span><span class="mi">8</span><span class="p">],</span> <span class="p">[</span><span class="s1">&#39;Angel Jones&#39;</span><span class="p">,</span><span class="mi">9</span><span class="p">],</span> <span class="p">[</span><span class="s1">&#39;Carole Webb&#39;</span><span class="p">,</span><span class="mi">6</span><span class="p">],</span> <span class="p">[</span><span class="s1">&#39;Kelly Brady&#39;</span><span class="p">,</span><span class="mi">9</span><span class="p">],</span> <span class="p">[</span><span class="s1">&#39;Silvia Mclaughlin&#39;</span><span class="p">,</span><span class="mi">7</span><span class="p">],</span> <span class="p">[</span><span class="s1">&#39;Jaime Nunez&#39;</span><span class="p">,</span><span class="mi">6</span><span class="p">],</span> <span class="p">[</span><span class="s1">&#39;Joey Greene&#39;</span><span class="p">,</span><span class="mi">1</span><span class="p">]]</span>
+<span class="n">kinder_students</span> <span class="o">=</span> <span class="p">[]</span>
+
+<span class="c1">#Write your code here</span>
+
+<span class="c1">#Optional starter code (uncomment the line below and use, if you wish)</span>
+<span class="c1"># for jj in range(len(children_list)):</span>
+</pre></div>
+</div>
+</div>
+</div>
+</section>
+<section id="talking-about-code">
+<h3>Talking about code<a class="headerlink" href="#talking-about-code" title="Link to this heading">#</a></h3>
+<p>Consider the following snippet of code:</p>
+<p><code class="docutils literal notranslate"><span class="pre">children_list[3]</span></code></p>
+<p>✅ <strong>Task:</strong> In your own words, describe what the square brackets (<code class="docutils literal notranslate"><span class="pre">[]</span></code>) are doing in this code snippet.</p>
+<p><font size=+3>✎</font> Write your answer here</p>
+<p>✅ <strong>Task:</strong> In your own words, describe what the number three (<code class="docutils literal notranslate"><span class="pre">3</span></code>) is doing in this code snippet.</p>
+<p><font size=+3>✎</font> Write your answer here</p>
+<p>✅ <strong>Question:</strong> How would you describe what this code snippet is doing to someone that has never coded before?</p>
+<p><font size=+3>✎</font> Write your answer here</p>
+</section>
+</section>
+<hr class="docutils" />
+<section id="an-introduction-to-the-cmse-201-code-portfolio">
+<h2>An introduction to the CMSE 201 “Code Portfolio”<a class="headerlink" href="#an-introduction-to-the-cmse-201-code-portfolio" title="Link to this heading">#</a></h2>
+<p>As you’ve probably found already this semester, you often will need to write new code that can be simplified by referencing old code either as a reminder for how something works or as a starting point for your new code. To help you with creating <strong>easily accessible examples</strong> of useful code, you will be expect to develop a “code portfolio” this semester. The details for the code portfolio can be found on the course website, by navigating to the section of the left-hand navigation bar labeled, you guessed it, “Code Portfolio”. There is one page that provides a description of the purpose and expectations for the code portfolio (“Code Portfolio Assignment”) and another page that provides and example of what a code portfolio might look like (“Code Portfolio Example”). <strong>Go to the course website and check out these two pages</strong>.</p>
+<p>We’ll be discussing this portfolio in class and you can use your portfolio as a resource for all of your CMSE 201 quizzes, so <strong>you might want to start building your portfolio as your prepare for Quiz 1</strong>.</p>
+</section>
+<hr class="docutils" />
+<section id="follow-up-questions">
+<h2>Follow-up Questions<a class="headerlink" href="#follow-up-questions" title="Link to this heading">#</a></h2>
+<p>Copy and paste the following questions into the appropriate box in the assignment survey include below and answer them there. (Note: You’ll have to fill out the section number and the assignment number and go to the “NEXT” section of the survey to paste in these questions.)</p>
+<ol class="arabic simple">
+<li><p>What is the <code class="docutils literal notranslate"><span class="pre">matplotlib</span></code> Python package used for? Have you every used this package prior to this assignment? If so, what was the context in which you used it?</p></li>
+<li><p>What command do you need to use in your notebook to make sure extra packages like <code class="docutils literal notranslate"><span class="pre">matplotlib</span></code> or <code class="docutils literal notranslate"><span class="pre">numpy</span></code> are available for you to use?</p></li>
+</ol>
+</section>
+<hr class="docutils" />
+<section id="assignment-wrap-up">
+<h2>Assignment wrap-up<a class="headerlink" href="#assignment-wrap-up" title="Link to this heading">#</a></h2>
+<p>Please fill out the form that appears when you run the code below.  <strong>You must completely fill this out in order to receive credit for the assignment!</strong></p>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="kn">from</span> <span class="nn">IPython.display</span> <span class="kn">import</span> <span class="n">HTML</span>
+<span class="n">HTML</span><span class="p">(</span>
+<span class="sd">&quot;&quot;&quot;</span>
+<span class="sd">&lt;iframe </span>
+<span class="sd">	src=&quot;https://cmse.msu.edu/cmse201-pc-survey&quot; </span>
+<span class="sd">	width=&quot;800px&quot; </span>
+<span class="sd">	height=&quot;600px&quot; </span>
+<span class="sd">	frameborder=&quot;0&quot; </span>
+<span class="sd">	marginheight=&quot;0&quot; </span>
+<span class="sd">	marginwidth=&quot;0&quot;&gt;</span>
+<span class="sd">	Loading...</span>
+<span class="sd">&lt;/iframe&gt;</span>
+<span class="sd">&quot;&quot;&quot;</span>
+<span class="p">)</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<div class="output text_html">
+<iframe 
+	src="https://cmse.msu.edu/cmse201-pc-survey" 
+	width="800px" 
+	height="600px" 
+	frameborder="0" 
+	marginheight="0" 
+	marginwidth="0">
+	Loading...
+</iframe>
+</div></div>
+</div>
+<section id="congratulations-you-re-done">
+<h3>Congratulations, you’re done!<a class="headerlink" href="#congratulations-you-re-done" title="Link to this heading">#</a></h3>
+<p>Submit this assignment by uploading it to the course Desire2Learn web page.  Go to the “Pre-class assignments” folder, find the appropriate assignment submission link, and upload it there.</p>
+<p>See you in class!</p>
+<p>© Copyright 2024, The Department of Computational Mathematics, Science and Engineering at Michigan State University.</p>
+</section>
+</section>
+</section>
+
+    <script type="text/x-thebe-config">
+    {
+        requestKernel: true,
+        binderOptions: {
+            repo: "binder-examples/jupyter-stacks-datascience",
+            ref: "master",
+        },
+        codeMirrorConfig: {
+            theme: "abcdef",
+            mode: "python"
+        },
+        kernelOptions: {
+            name: "python3",
+            path: "./Day-08"
+        },
+        predefinedOutput: true
+    }
+    </script>
+    <script>kernelName = 'python3'</script>
+
+                </article>
+              
+
+              
+              
+              
+              
+                <footer class="prev-next-footer d-print-none">
+                  
+<div class="prev-next-area">
+    <a class="left-prev"
+       href="../Day-07/Debugging-STUDENT.html"
+       title="previous page">
+      <i class="fa-solid fa-angle-left"></i>
+      <div class="prev-next-info">
+        <p class="prev-next-subtitle">previous</p>
+        <p class="prev-next-title">Practice with Debugging</p>
+      </div>
+    </a>
+    <a class="right-next"
+       href="Day-08_In-Class_MathAndPlotting-STUDENT.html"
+       title="next page">
+      <div class="prev-next-info">
+        <p class="prev-next-subtitle">next</p>
+        <p class="prev-next-title">Day 8 In-class Assignment: Visualizing population growth</p>
+      </div>
+      <i class="fa-solid fa-angle-right"></i>
+    </a>
+</div>
+                </footer>
+              
+            </div>
+            
+            
+              
+                <div class="bd-sidebar-secondary bd-toc"><div class="sidebar-secondary-items sidebar-secondary__inner">
+
+
+  <div class="sidebar-secondary-item">
+  <div class="page-toc tocsection onthispage">
+    <i class="fa-solid fa-list"></i> Contents
+  </div>
+  <nav class="bd-toc-nav page-toc">
+    <ul class="visible nav section-nav flex-column">
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#put-your-name-here"><p style="text-align: right;"> ✅ Put your name here</p></a></li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#goals-for-this-pre-class-assignment">Goals for this pre-class assignment</a></li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#assignment-instructions">Assignment instructions</a></li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#some-possibly-useful-links">Some possibly useful links</a></li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#python-modules">Python Modules</a><ul class="nav section-nav flex-column">
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#the-numpy-module">The <code class="docutils literal notranslate"><span class="pre">numpy</span></code> Module</a></li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#useful-references">Useful references:</a></li>
+</ul>
+</li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#working-with-matplotlib">Working with matplotlib</a></li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#using-the-numpy-module-to-compute-new-values-and-matplotlib-to-plot-them">Using the numpy module to compute new values and matplotlib to plot them</a></li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#checking-in-on-prior-knowledge">Checking in on prior knowledge</a><ul class="nav section-nav flex-column">
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#assigning-students-to-kindergarten">Assigning students to kindergarten</a></li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#talking-about-code">Talking about code</a></li>
+</ul>
+</li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#an-introduction-to-the-cmse-201-code-portfolio">An introduction to the CMSE 201 “Code Portfolio”</a></li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#follow-up-questions">Follow-up Questions</a></li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#assignment-wrap-up">Assignment wrap-up</a><ul class="nav section-nav flex-column">
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#congratulations-you-re-done">Congratulations, you’re done!</a></li>
+</ul>
+</li>
+</ul>
+  </nav></div>
+
+</div></div>
+              
+            
+          </div>
+          <footer class="bd-footer-content">
+            
+<div class="bd-footer-content__inner container">
+  
+  <div class="footer-item">
+    
+<p class="component-author">
+By the Department of Computational Mathematics, Science and Engineering at Michigan State University
+</p>
+
+  </div>
+  
+  <div class="footer-item">
+    
+
+  <p class="copyright">
+    
+      © Copyright 2023.
+      <br/>
+    
+  </p>
+
+  </div>
+  
+  <div class="footer-item">
+    
+  </div>
+  
+  <div class="footer-item">
+    
+  </div>
+  
+</div>
+          </footer>
+        
+
+      </main>
+    </div>
+  </div>
+  
+  <!-- Scripts loaded after <body> so the DOM is not blocked -->
+  <script src="../_static/scripts/bootstrap.js?digest=3ee479438cf8b5e0d341"></script>
+<script src="../_static/scripts/pydata-sphinx-theme.js?digest=3ee479438cf8b5e0d341"></script>
+
+  <footer class="bd-footer">
+  </footer>
+  </body>
+</html>

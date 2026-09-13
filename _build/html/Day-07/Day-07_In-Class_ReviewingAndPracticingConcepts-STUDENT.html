@@ -1,0 +1,2158 @@
+
+<!DOCTYPE html>
+
+
+<html lang="en" data-content_root="../" >
+
+  <head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" /><meta name="viewport" content="width=device-width, initial-scale=1" />
+
+    <title>Day 7 In-class Assignment: Reviewing and practicing prior concepts &#8212; CMSE 201</title>
+  
+  
+  
+  <script data-cfasync="false">
+    document.documentElement.dataset.mode = localStorage.getItem("mode") || "";
+    document.documentElement.dataset.theme = localStorage.getItem("theme") || "";
+  </script>
+  
+  <!-- Loaded before other Sphinx assets -->
+  <link href="../_static/styles/theme.css?digest=3ee479438cf8b5e0d341" rel="stylesheet" />
+<link href="../_static/styles/bootstrap.css?digest=3ee479438cf8b5e0d341" rel="stylesheet" />
+<link href="../_static/styles/pydata-sphinx-theme.css?digest=3ee479438cf8b5e0d341" rel="stylesheet" />
+
+  
+  <link href="../_static/vendor/fontawesome/6.5.2/css/all.min.css?digest=3ee479438cf8b5e0d341" rel="stylesheet" />
+  <link rel="preload" as="font" type="font/woff2" crossorigin href="../_static/vendor/fontawesome/6.5.2/webfonts/fa-solid-900.woff2" />
+<link rel="preload" as="font" type="font/woff2" crossorigin href="../_static/vendor/fontawesome/6.5.2/webfonts/fa-brands-400.woff2" />
+<link rel="preload" as="font" type="font/woff2" crossorigin href="../_static/vendor/fontawesome/6.5.2/webfonts/fa-regular-400.woff2" />
+
+    <link rel="stylesheet" type="text/css" href="../_static/pygments.css?v=fa44fd50" />
+    <link rel="stylesheet" type="text/css" href="../_static/styles/sphinx-book-theme.css?v=384b581d" />
+    <link rel="stylesheet" type="text/css" href="../_static/togglebutton.css?v=13237357" />
+    <link rel="stylesheet" type="text/css" href="../_static/copybutton.css?v=76b2166b" />
+    <link rel="stylesheet" type="text/css" href="../_static/mystnb.4510f1fc1dee50b3e5859aac5469c37c29e427902b24a333a5f9fcb2f0b3ac41.css?v=be8a1c11" />
+    <link rel="stylesheet" type="text/css" href="../_static/sphinx-thebe.css?v=4fa983c6" />
+    <link rel="stylesheet" type="text/css" href="../_static/sphinx-design.min.css?v=87e54e7c" />
+  
+  <!-- Pre-loaded scripts that we'll load fully later -->
+  <link rel="preload" as="script" href="../_static/scripts/bootstrap.js?digest=3ee479438cf8b5e0d341" />
+<link rel="preload" as="script" href="../_static/scripts/pydata-sphinx-theme.js?digest=3ee479438cf8b5e0d341" />
+  <script src="../_static/vendor/fontawesome/6.5.2/js/all.min.js?digest=3ee479438cf8b5e0d341"></script>
+
+    <script src="../_static/documentation_options.js?v=9eb32ce0"></script>
+    <script src="../_static/doctools.js?v=9a2dae69"></script>
+    <script src="../_static/sphinx_highlight.js?v=dc90522c"></script>
+    <script src="../_static/clipboard.min.js?v=a7894cd8"></script>
+    <script src="../_static/copybutton.js?v=f281be69"></script>
+    <script src="../_static/scripts/sphinx-book-theme.js?v=efea14e4"></script>
+    <script>let toggleHintShow = 'Click to show';</script>
+    <script>let toggleHintHide = 'Click to hide';</script>
+    <script>let toggleOpenOnPrint = 'true';</script>
+    <script src="../_static/togglebutton.js?v=4a39c7ea"></script>
+    <script>var togglebuttonSelector = '.toggle, .admonition.dropdown';</script>
+    <script src="../_static/design-tabs.js?v=36754332"></script>
+    <script>const THEBE_JS_URL = "https://unpkg.com/thebe@0.8.2/lib/index.js"; const thebe_selector = ".thebe,.cell"; const thebe_selector_input = "pre"; const thebe_selector_output = ".output, .cell_output"</script>
+    <script async="async" src="../_static/sphinx-thebe.js?v=c100c467"></script>
+    <script>var togglebuttonSelector = '.toggle, .admonition.dropdown';</script>
+    <script>const THEBE_JS_URL = "https://unpkg.com/thebe@0.8.2/lib/index.js"; const thebe_selector = ".thebe,.cell"; const thebe_selector_input = "pre"; const thebe_selector_output = ".output, .cell_output"</script>
+    <script>DOCUMENTATION_OPTIONS.pagename = 'Day-07/Day-07_In-Class_ReviewingAndPracticingConcepts-STUDENT';</script>
+    <link rel="icon" href="../_static/cmse_fav.ico"/>
+    <link rel="index" title="Index" href="../genindex.html" />
+    <link rel="search" title="Search" href="../search.html" />
+    <link rel="next" title="Day 7 In-class Assignment: Reviewing and practicing prior concepts" href="Day-07_In-Class_ReviewingAndPracticingConcepts-Solutions.html" />
+    <link rel="prev" title="Day 6 In Class Assignment: A Scurry of Squirrels in Central Park" href="../Day-06/Day-06_In-Class_FunctionsAndSquirrels-STUDENT.html" />
+  <meta name="viewport" content="width=device-width, initial-scale=1"/>
+  <meta name="docsearch:language" content="en"/>
+  </head>
+  
+  
+  <body data-bs-spy="scroll" data-bs-target=".bd-toc-nav" data-offset="180" data-bs-root-margin="0px 0px -60%" data-default-mode="">
+
+  
+  
+  <div id="pst-skip-link" class="skip-link d-print-none"><a href="#main-content">Skip to main content</a></div>
+  
+  <div id="pst-scroll-pixel-helper"></div>
+  
+  <button type="button" class="btn rounded-pill" id="pst-back-to-top">
+    <i class="fa-solid fa-arrow-up"></i>Back to top</button>
+
+  
+  <input type="checkbox"
+          class="sidebar-toggle"
+          id="pst-primary-sidebar-checkbox"/>
+  <label class="overlay overlay-primary" for="pst-primary-sidebar-checkbox"></label>
+  
+  <input type="checkbox"
+          class="sidebar-toggle"
+          id="pst-secondary-sidebar-checkbox"/>
+  <label class="overlay overlay-secondary" for="pst-secondary-sidebar-checkbox"></label>
+  
+  <div class="search-button__wrapper">
+    <div class="search-button__overlay"></div>
+    <div class="search-button__search-container">
+<form class="bd-search d-flex align-items-center"
+      action="../search.html"
+      method="get">
+  <i class="fa-solid fa-magnifying-glass"></i>
+  <input type="search"
+         class="form-control"
+         name="q"
+         id="search-input"
+         placeholder="Search..."
+         aria-label="Search..."
+         autocomplete="off"
+         autocorrect="off"
+         autocapitalize="off"
+         spellcheck="false"/>
+  <span class="search-button__kbd-shortcut"><kbd class="kbd-shortcut__modifier">Ctrl</kbd>+<kbd>K</kbd></span>
+</form></div>
+  </div>
+
+  <div class="pst-async-banner-revealer d-none">
+  <aside id="bd-header-version-warning" class="d-none d-print-none" aria-label="Version warning"></aside>
+</div>
+
+  
+    <header class="bd-header navbar navbar-expand-lg bd-navbar d-print-none">
+    </header>
+  
+
+  <div class="bd-container">
+    <div class="bd-container__inner bd-page-width">
+      
+      
+      
+      <div class="bd-sidebar-primary bd-sidebar">
+        
+
+  
+  <div class="sidebar-header-items sidebar-primary__section">
+    
+    
+    
+    
+  </div>
+  
+    <div class="sidebar-primary-items__start sidebar-primary__section">
+        <div class="sidebar-primary-item">
+
+  
+
+<a class="navbar-brand logo" href="../intro.html">
+  
+  
+  
+  
+  
+    
+    
+      
+    
+    
+    <img src="../_static/logo.png" class="logo__image only-light" alt="CMSE 201 - Home"/>
+    <script>document.write(`<img src="../_static/logo.png" class="logo__image only-dark" alt="CMSE 201 - Home"/>`);</script>
+  
+  
+</a></div>
+        <div class="sidebar-primary-item">
+
+ <script>
+ document.write(`
+   <button class="btn navbar-btn search-button-field search-button__button" title="Search" aria-label="Search" data-bs-placement="bottom" data-bs-toggle="tooltip">
+    <i class="fa-solid fa-magnifying-glass"></i>
+    <span class="search-button__default-text">Search</span>
+    <span class="search-button__kbd-shortcut"><kbd class="kbd-shortcut__modifier">Ctrl</kbd>+<kbd class="kbd-shortcut__modifier">K</kbd></span>
+   </button>
+ `);
+ </script></div>
+        <div class="sidebar-primary-item"><nav class="bd-links bd-docs-nav" aria-label="Main">
+    <div class="bd-toc-item navbar-nav active">
+        <p aria-level="2" class="caption" role="heading"><span class="caption-text">Course Materials</span></p>
+<ul class="nav bd-sidenav">
+<li class="toctree-l1 has-children"><a class="reference internal" href="../Course_Materials-201/CourseDocuments.html">Important Course information</a><details><summary><span class="toctree-toggle" role="presentation"><i class="fa-solid fa-chevron-down"></i></span></summary><ul>
+<li class="toctree-l2"><a class="reference internal" href="../Course_Materials-201/CMSE201-Syllabus.html">Syllabus</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../Course_Materials-201/CMSE201-Schedule.html">Course Schedule</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../Course_Materials-201/SoftwareSetupGuide.html">Software Setup Guide</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../Course_Materials-201/classroom_participation.html">Classroom Participation</a></li>
+</ul>
+</details></li>
+</ul>
+<p aria-level="2" class="caption" role="heading"><span class="caption-text">CodeGrade</span></p>
+<ul class="nav bd-sidenav">
+<li class="toctree-l1"><a class="reference external" href="https://raw.githubusercontent.com/msu-cmse-courses/cmse201-supplemental/main/CodeGrade_Students.pdf">CodeGrade flowchart</a></li>
+</ul>
+<p aria-level="2" class="caption" role="heading"><span class="caption-text">Day 01</span></p>
+<ul class="nav bd-sidenav">
+<li class="toctree-l1"><a class="reference internal" href="../Day-01/Day-01_In-Class_SortingAlgorithm-STUDENT.html">Day 1 In-Class Assignment: Introductions and Sorting Algorithms</a></li>
+
+
+
+</ul>
+<p aria-level="2" class="caption" role="heading"><span class="caption-text">Day 02</span></p>
+<ul class="nav bd-sidenav">
+<li class="toctree-l1"><a class="reference internal" href="../Day-02/Day-02_In-Class_OrderOfMagnitudeModeling-STUDENT.html">Day 2 In-class Assignment: Order of Magnitude Modeling</a></li>
+
+
+</ul>
+<p aria-level="2" class="caption" role="heading"><span class="caption-text">Day 03</span></p>
+<ul class="nav bd-sidenav">
+<li class="toctree-l1"><a class="reference internal" href="../Day-03/Day-03_In-Class_ListsLoopsAndSaving-STUDENT.html">Day 3 In-class Assignment: The power of compound interest</a></li>
+</ul>
+<p aria-level="2" class="caption" role="heading"><span class="caption-text">Day 04</span></p>
+<ul class="nav bd-sidenav">
+<li class="toctree-l1"><a class="reference internal" href="../Day-04/Day_04_In_Class_DataAlgorithmicBias-STUDENT.html">Day 4 In-class Assignment: Data and Algorithmic Bias, Academic Integrity, and Coding Best Practices</a></li>
+
+</ul>
+<p aria-level="2" class="caption" role="heading"><span class="caption-text">Day 05</span></p>
+<ul class="nav bd-sidenav">
+<li class="toctree-l1"><a class="reference internal" href="../Day-05/Day-05_In-Class_IfStatementsAndFunctions-STUDENT.html">Day 5 In-class Assignment: Savings for Everyone</a></li>
+</ul>
+<p aria-level="2" class="caption" role="heading"><span class="caption-text">Day 06</span></p>
+<ul class="nav bd-sidenav">
+<li class="toctree-l1"><a class="reference internal" href="../Day-06/Day-06_In-Class_FunctionsAndSquirrels-STUDENT.html">Day 6 In Class Assignment: A Scurry of Squirrels in Central Park</a></li>
+
+
+
+
+
+</ul>
+<p aria-level="2" class="caption" role="heading"><span class="caption-text">Day 07</span></p>
+<ul class="current nav bd-sidenav">
+<li class="toctree-l1 current active"><a class="current reference internal" href="#">Day 7 In-class Assignment: Reviewing and practicing prior concepts</a></li>
+
+<li class="toctree-l1"><a class="reference internal" href="Day-07_In-Class_ReviewingAndPracticingConcepts-Solutions.html">Day 7 In-class Assignment: Reviewing and practicing prior concepts</a></li>
+
+<li class="toctree-l1"><a class="reference internal" href="Debugging-STUDENT.html">Practice with Debugging</a></li>
+
+
+</ul>
+<p aria-level="2" class="caption" role="heading"><span class="caption-text">Day 08</span></p>
+<ul class="nav bd-sidenav">
+<li class="toctree-l1"><a class="reference internal" href="../Day-08/Day-08_In-Class_MathAndPlotting-STUDENT.html">Day 8 In-class Assignment: Visualizing population growth</a></li>
+</ul>
+<p aria-level="2" class="caption" role="heading"><span class="caption-text">Day 09</span></p>
+<ul class="nav bd-sidenav">
+<li class="toctree-l1"><a class="reference internal" href="../Day-09/Day-09_In-Class_NumPyWithTheGreatLakes-STUDENT.html">Day 9 In-class Assignment: Exploring Great Lakes Water Levels using NumPy</a></li>
+
+<li class="toctree-l1"><a class="reference external" href="https://raw.githubusercontent.com/msu-cmse-courses/cmse201-supplemental/main/ICA_datasets/lake_erie.csv">lake_erie.csv</a></li>
+<li class="toctree-l1"><a class="reference external" href="https://raw.githubusercontent.com/msu-cmse-courses/cmse201-supplemental/main/ICA_datasets/lake_michigan_huron.csv">lake_michigan_huron.csv</a></li>
+<li class="toctree-l1"><a class="reference external" href="https://raw.githubusercontent.com/msu-cmse-courses/cmse201-supplemental/main/ICA_datasets/lake_ontario.csv">lake_ontario.csv</a></li>
+<li class="toctree-l1"><a class="reference external" href="https://raw.githubusercontent.com/msu-cmse-courses/cmse201-supplemental/main/ICA_datasets/lake_superior.csv">lake_superior.csv</a></li>
+</ul>
+<p aria-level="2" class="caption" role="heading"><span class="caption-text">Day 10</span></p>
+<ul class="nav bd-sidenav">
+<li class="toctree-l1"><a class="reference internal" href="../Day-10/Day-10_In-Class_GDP-STUDENT.html">Day 10 In-Class: Cleaning and Analyzing Economic Data</a></li>
+
+
+<li class="toctree-l1"><a class="reference external" href="https://raw.githubusercontent.com/msu-cmse-courses/cmse201-supplemental/main/ICA_datasets/API_NY.GDP.MKTP.CD_DS2_en_csv_v2_31795.csv">API_NY.GDP.MKTP.CD_DS2_en_csv_v2_31795.csv</a></li>
+</ul>
+<p aria-level="2" class="caption" role="heading"><span class="caption-text">Day 11</span></p>
+<ul class="nav bd-sidenav">
+<li class="toctree-l1"><a class="reference internal" href="../Day-11/Day-11_In-Class_Flint-STUDENT.html">Day 11 In-class Assignment: Get the Lead Out: Understanding The Water Crisis in Flint, MI</a></li>
+
+
+<li class="toctree-l1"><a class="reference external" href="https://raw.githubusercontent.com/msu-cmse-courses/cmse201-supplemental/main/ICA_datasets/flint_water_data.csv">flint_water_data.csv</a></li>
+</ul>
+<p aria-level="2" class="caption" role="heading"><span class="caption-text">Day 12</span></p>
+<ul class="nav bd-sidenav">
+<li class="toctree-l1"><a class="reference internal" href="../Day-12/Day-12_In-Class_Unprocessed_Data-STUDENT.html">Day 12 In-Class: Data Contextualization and Wrangling</a></li>
+</ul>
+<p aria-level="2" class="caption" role="heading"><span class="caption-text">Day 13</span></p>
+<ul class="nav bd-sidenav">
+<li class="toctree-l1"><a class="reference internal" href="../Day-13/Day-13_Pre-Class_Online_Resources-STUDENT.html">Day 13 Pre-class Assignment: Finding resources online and tinkering wth code</a></li>
+
+
+<li class="toctree-l1"><a class="reference internal" href="../Day-13/Day-13_In-Class_Online_Resources-STUDENT.html">Day 13 In-Class: Using online resources (code and data)</a></li>
+</ul>
+<p aria-level="2" class="caption" role="heading"><span class="caption-text">Day 14</span></p>
+<ul class="nav bd-sidenav">
+<li class="toctree-l1"><a class="reference internal" href="../Day-14/Day-14_In-Class_Evaluating_Fits-STUDENT.html">Day 14 In-Class Assignment: Evaluating Models</a></li>
+</ul>
+<p aria-level="2" class="caption" role="heading"><span class="caption-text">Day 15</span></p>
+<ul class="nav bd-sidenav">
+<li class="toctree-l1"><a class="reference external" href="https://raw.githubusercontent.com/msu-cmse-courses/cmse201-supplemental/main/image_critique_ver2.pptx">Image Critique</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../Day-15/Day-15_In-Class_FittingCurves-STUDENT.html">Day 15 In-Class Assignment: (Thoughtfully) fitting models to data</a></li>
+<li class="toctree-l1"><a class="reference external" href="https://raw.githubusercontent.com/msu-cmse-courses/cmse201-S22-data/main/Day-14/pop200.csv">pop200.csv</a></li>
+<li class="toctree-l1"><a class="reference external" href="https://raw.githubusercontent.com/msu-cmse-courses/cmse201-S22-data/main/Day-14/pop300.csv">pop300.csv</a></li>
+</ul>
+<p aria-level="2" class="caption" role="heading"><span class="caption-text">Day 16</span></p>
+<ul class="nav bd-sidenav">
+<li class="toctree-l1"><a class="reference internal" href="../Day-16/Day-16-Intro_to_ODEs_In-Class_STUDENT.html">Day 16: In-class Assignment: Introduction to Modeling with ODEs</a></li>
+</ul>
+<p aria-level="2" class="caption" role="heading"><span class="caption-text">Day 17</span></p>
+<ul class="nav bd-sidenav">
+<li class="toctree-l1"><a class="reference internal" href="../Day-17/Day-17_In-Class_ModelingWithODEs-STUDENT.html">Day 17: In-class Assignment: Modeling with Ordinary Differential Equations</a></li>
+
+
+
+</ul>
+<p aria-level="2" class="caption" role="heading"><span class="caption-text">Day 18</span></p>
+<ul class="nav bd-sidenav">
+<li class="toctree-l1"><a class="reference internal" href="../Day-18/Day-18_In-Class_CompartmentalModeling-STUDENT.html">Day 18 In-class Assignment: Building Compartmental Models</a></li>
+
+
+
+</ul>
+<p aria-level="2" class="caption" role="heading"><span class="caption-text">Day 19</span></p>
+<ul class="nav bd-sidenav">
+<li class="toctree-l1"><a class="reference internal" href="../Day-19/Day-19_In-Class_CompartmentsWithSolveIVP-STUDENT.html">Day 19 In-Class Assignment: Compartmental Modeling, moving from the model to the code</a></li>
+</ul>
+<p aria-level="2" class="caption" role="heading"><span class="caption-text">Day 20</span></p>
+<ul class="nav bd-sidenav">
+<li class="toctree-l1"><a class="reference internal" href="../Day-20/Day-20_In-Class_IntroToDataVisualization-STUDENT.html">Day 20 In-Class: Introduction to Data Visualization</a></li>
+</ul>
+<p aria-level="2" class="caption" role="heading"><span class="caption-text">Day 21</span></p>
+<ul class="nav bd-sidenav">
+<li class="toctree-l1"><a class="reference internal" href="../Day-21/Day-21_In-Class_2DImageAnalysis-STUDENT.html">Day 21 In-Class Assignment: Image Analysis</a></li>
+<li class="toctree-l1"><a class="reference external" href="https://raw.githubusercontent.com/msu-cmse-courses/cmse201-supplemental/main/Day-17/ICA_files/beach.jpeg">beach.jpeg</a></li>
+<li class="toctree-l1"><a class="reference external" href="https://raw.githubusercontent.com/msu-cmse-courses/cmse201-supplemental/main/Day-17/ICA_files/landscape.jpeg">landscape.jpeg</a></li>
+<li class="toctree-l1"><a class="reference external" href="https://raw.githubusercontent.com/msu-cmse-courses/cmse201-supplemental/main/Day-17/ICA_files/zebra.png">zebra.png</a></li>
+</ul>
+<p aria-level="2" class="caption" role="heading"><span class="caption-text">Day 22</span></p>
+<ul class="nav bd-sidenav">
+<li class="toctree-l1"><a class="reference internal" href="../Day-22/Day-22_In-Class_ForestFiresPartI-STUDENT.html">Day 22 Part 1 In-class Assignment: Modeling forest fires with an Agent-based Model</a></li>
+</ul>
+<p aria-level="2" class="caption" role="heading"><span class="caption-text">Day 23</span></p>
+<ul class="nav bd-sidenav">
+<li class="toctree-l1"><a class="reference internal" href="../Day-23/Day-23_In-Class_ForestFiresPartII-STUDENT.html">Day 23 In-class Assignment: Modeling forest fires with an Agent-based Model (Part II)</a></li>
+</ul>
+<p aria-level="2" class="caption" role="heading"><span class="caption-text">Day 24</span></p>
+<ul class="nav bd-sidenav">
+<li class="toctree-l1"><a class="reference internal" href="../Day-24/Day-24_In-Class_DataDilemmas-STUDENT.html">Day 24 - In-Class - Data Dilemmas: Ethics in an Algorithmic World</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../Day-24/biased_data_gen.html">Data Generation Sheet</a></li>
+</ul>
+<p aria-level="2" class="caption" role="heading"><span class="caption-text">Day 25</span></p>
+<ul class="nav bd-sidenav">
+<li class="toctree-l1"><a class="reference internal" href="../Day-25/Day-25_In-Class_ProjectWorkDay-STUDENT.html">Day 25 In-class Assignment: Project Work Day</a></li>
+</ul>
+<p aria-level="2" class="caption" role="heading"><span class="caption-text">Homework</span></p>
+<ul class="nav bd-sidenav">
+<li class="toctree-l1"><a class="reference internal" href="../Homework/Homework_01/HW_01_PythonFundamentals-STUDENT.html">Homework 1: Python fundamentals and using external resources to better understand code!</a></li>
+
+
+
+
+
+
+<li class="toctree-l1"><a class="reference internal" href="../Homework/Homework_02/HW_02_SS26-Spring-2026-STUDENT.html">Homework 2: Dictionaries, If Statements, Functions, and Modules</a></li>
+
+<li class="toctree-l1"><a class="reference external" href="https://raw.githubusercontent.com/msu-cmse-courses/cmse201-supplemental/main/stock_data.csv">stock_data.csv</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../Homework/Homework_03/HW_03_SS26_-Spring-2026-STUDENT.html">Homework 3 - Loading, Cleaning, Analyzing, and Visualizing Data with Pandas</a></li>
+<li class="toctree-l1"><a class="reference external" href="https://raw.githubusercontent.com/msu-cmse-courses/cmse201-supplemental/main/Homework/ahuacatl.csv">ahuacatl.csv</a></li>
+<li class="toctree-l1"><a class="reference external" href="https://raw.githubusercontent.com/msu-cmse-courses/cmse201-supplemental/main/Homework/nahuatl_names.csv">nahuatl_names.csv</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../Homework/Homework_04/HW4_SS26-STUDENT.html">Homework 4 - Compartmental Models + Data Visualization</a></li>
+<li class="toctree-l1"><a class="reference external" href="https://raw.githubusercontent.com/msu-cmse-courses/cmse201-supplemental/main/Homework/nypd_collisions_sample.csv">nypd_collisions_sample.csv</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../Homework/Homework_05/HW-05_SS26_STUDENT.html">Homework 5: Algorithmic Bias and Agent-based Modeling (EXTRA CREDIT)</a></li>
+
+
+
+</ul>
+<p aria-level="2" class="caption" role="heading"><span class="caption-text">Code Portfolio</span></p>
+<ul class="nav bd-sidenav">
+<li class="toctree-l1"><a class="reference internal" href="../Homework/Code_Portfolio/Code_Portfolio_Assignment.html">Code Portfolio Assignment</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../Homework/Code_Portfolio/Code_Portfolio_Example-CodeGrade.html">Code Portfolio Example</a></li>
+
+</ul>
+<p aria-level="2" class="caption" role="heading"><span class="caption-text">Semester Project</span></p>
+<ul class="nav bd-sidenav">
+<li class="toctree-l1"><a class="reference internal" href="../Project_Materials/CMSE201_SemesterProjectDetails.html">Semester Project Details</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../Project_Materials/Project_Plan_Check-in.html">First Project Checkpoint</a></li>
+
+
+
+<li class="toctree-l1"><a class="reference internal" href="../Project_Materials/First_Project_Checkpoint.html">First Project Checkpoint</a></li>
+
+
+
+<li class="toctree-l1"><a class="reference internal" href="../Project_Materials/CMSE201_FinalProjectTemplate.html">CMSE 201 Final Project Template</a></li>
+
+<li class="toctree-l1"><a class="reference external" href="https://raw.githubusercontent.com/msu-cmse-courses/cmse201-supplemental/main/Projects/CMSE201_final_project_examples.zip">Zip file of example projects</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../Project_Materials/CMSE201FinalProject_RequirementsAndGradingRubric.html">Requirements and Grading Rubric</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../Project_Materials/peer_assessment.html">Peer Assessment Notebook</a></li>
+<li class="toctree-l1"><a class="reference external" href="https://github.com/msu-cmse-courses/cmse201-supplemental/raw/main/Projects/Presentation_Evaluation_Rubric.pdf">Presentation Evaluation Rubric</a></li>
+</ul>
+<p aria-level="2" class="caption" role="heading"><span class="caption-text">Practice Notebooks</span></p>
+<ul class="nav bd-sidenav">
+<li class="toctree-l1"><a class="reference internal" href="../Quiz_Prep_Notebooks/PracticeNotebook_IfStatements-STUDENT.html">Practice with: <code class="docutils literal notranslate"><span class="pre">if</span></code> statements</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../Quiz_Prep_Notebooks/PracticeNotebook_Functions-STUDENT.html">Practice with: functions</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../Quiz_Prep_Notebooks/PracticeNotebook_Matplotlib-STUDENT.html">Practice with: <code class="docutils literal notranslate"><span class="pre">matplotlib</span></code></a></li>
+<li class="toctree-l1"><a class="reference internal" href="../Quiz_Prep_Notebooks/filtering_ws_ver2.html">Practice with Masking</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../Quiz_Prep_Notebooks/PracticeNotebook_Pandas-STUDENT.html">Practice with: Pandas</a></li>
+<li class="toctree-l1"><a class="reference external" href="https://raw.githubusercontent.com/msu-cmse-courses/cmse201-supplemental/main/PracticeNotebooks/weather.csv">weather.csv</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../Quiz_Prep_Notebooks/PracticeNotebook_ScipyCurveFit-STUDENT.html">Practice with: SciPy <code class="docutils literal notranslate"><span class="pre">curve_fit</span></code></a></li>
+<li class="toctree-l1"><a class="reference internal" href="../Quiz_Prep_Notebooks/PracticeNotebook_CompartmentalModels-STUDENT.html">Practice with: Compartmental Models</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../Quiz_Prep_Notebooks/PracticeNotebook_SolveIVP-STUDENT.html">Practice with: <code class="docutils literal notranslate"><span class="pre">solve_ivp</span></code></a></li>
+</ul>
+
+    </div>
+</nav></div>
+    </div>
+  
+  
+  <div class="sidebar-primary-items__end sidebar-primary__section">
+  </div>
+  
+  <div id="rtd-footer-container"></div>
+
+
+      </div>
+      
+      <main id="main-content" class="bd-main" role="main">
+        
+        
+
+<div class="sbt-scroll-pixel-helper"></div>
+
+          <div class="bd-content">
+            <div class="bd-article-container">
+              
+              <div class="bd-header-article d-print-none">
+<div class="header-article-items header-article__inner">
+  
+    <div class="header-article-items__start">
+      
+        <div class="header-article-item"><label class="sidebar-toggle primary-toggle btn btn-sm" for="__primary" title="Toggle primary sidebar" data-bs-placement="bottom" data-bs-toggle="tooltip">
+  <span class="fa-solid fa-bars"></span>
+</label></div>
+      
+    </div>
+  
+  
+    <div class="header-article-items__end">
+      
+        <div class="header-article-item">
+
+<div class="article-header-buttons">
+
+
+
+
+
+<div class="dropdown dropdown-download-buttons">
+  <button class="btn dropdown-toggle" type="button" data-bs-toggle="dropdown" aria-expanded="false" aria-label="Download this page">
+    <i class="fas fa-download"></i>
+  </button>
+  <ul class="dropdown-menu">
+      
+      
+      
+      <li><a href="../_sources/Day-07/Day-07_In-Class_ReviewingAndPracticingConcepts-STUDENT.ipynb" target="_blank"
+   class="btn btn-sm btn-download-source-button dropdown-item"
+   title="Download source file"
+   data-bs-placement="left" data-bs-toggle="tooltip"
+>
+  
+
+<span class="btn__icon-container">
+  <i class="fas fa-file"></i>
+  </span>
+<span class="btn__text-container">.ipynb</span>
+</a>
+</li>
+      
+      
+      
+      
+      <li>
+<button onclick="window.print()"
+  class="btn btn-sm btn-download-pdf-button dropdown-item"
+  title="Print to PDF"
+  data-bs-placement="left" data-bs-toggle="tooltip"
+>
+  
+
+<span class="btn__icon-container">
+  <i class="fas fa-file-pdf"></i>
+  </span>
+<span class="btn__text-container">.pdf</span>
+</button>
+</li>
+      
+  </ul>
+</div>
+
+
+
+
+<button onclick="toggleFullScreen()"
+  class="btn btn-sm btn-fullscreen-button"
+  title="Fullscreen mode"
+  data-bs-placement="bottom" data-bs-toggle="tooltip"
+>
+  
+
+<span class="btn__icon-container">
+  <i class="fas fa-expand"></i>
+  </span>
+
+</button>
+
+
+
+<script>
+document.write(`
+  <button class="btn btn-sm navbar-btn theme-switch-button" title="light/dark" aria-label="light/dark" data-bs-placement="bottom" data-bs-toggle="tooltip">
+    <span class="theme-switch nav-link" data-mode="light"><i class="fa-solid fa-sun fa-lg"></i></span>
+    <span class="theme-switch nav-link" data-mode="dark"><i class="fa-solid fa-moon fa-lg"></i></span>
+    <span class="theme-switch nav-link" data-mode="auto"><i class="fa-solid fa-circle-half-stroke fa-lg"></i></span>
+  </button>
+`);
+</script>
+
+
+<script>
+document.write(`
+  <button class="btn btn-sm navbar-btn search-button search-button__button" title="Search" aria-label="Search" data-bs-placement="bottom" data-bs-toggle="tooltip">
+    <i class="fa-solid fa-magnifying-glass fa-lg"></i>
+  </button>
+`);
+</script>
+<label class="sidebar-toggle secondary-toggle btn btn-sm" for="__secondary"title="Toggle secondary sidebar" data-bs-placement="bottom" data-bs-toggle="tooltip">
+    <span class="fa-solid fa-list"></span>
+</label>
+</div></div>
+      
+    </div>
+  
+</div>
+</div>
+              
+              
+
+<div id="jb-print-docs-body" class="onlyprint">
+    <h1>Day 7 In-class Assignment: Reviewing and practicing prior concepts</h1>
+    <!-- Table of contents -->
+    <div id="print-main-content">
+        <div id="jb-print-toc">
+            
+            <div>
+                <h2> Contents </h2>
+            </div>
+            <nav aria-label="Page">
+                <ul class="visible nav section-nav flex-column">
+<li class="toc-h1 nav-item toc-entry"><a class="reference internal nav-link" href="#">Day 7 In-class Assignment: Reviewing and practicing prior concepts</a><ul class="visible nav section-nav flex-column">
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#put-your-name-here"><p style="text-align: right;"> ✅ Put your name here.</p></a></li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#learning-goals">Learning Goals:</a></li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#plans-for-today">Plans for today <a id="top"></a></a><ul class="nav section-nav flex-column">
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#getting-around-in-this-document">Getting around in this document</a></li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#concept-sections">Concept Sections:</a></li>
+</ul>
+</li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#introduction-to-generative-ai-and-evaluating-code-produced-by-generative-ai">0. Introduction to Generative AI and Evaluating Code Produced by Generative AI</a><ul class="nav section-nav flex-column">
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#back-to-top"><span class="xref myst">back to top</span></a></li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#getting-started-with-generative-ai">Getting Started with Generative AI</a></li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#large-language-model-explained-by-chatgpt">Large Language Model Explained by ChatGPT</a></li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#wait-what-if-i-don-t-understand-all-that-vocabulary">Wait, what if I don’t understand all that vocabulary?</a></li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#nongpt-answer">nonGPT Answer</a></li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#concerns-about-llms">Concerns about LLMs</a></li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#lets-try-a-few-real-examples-with-chatgpt">Lets try a few real examples with ChatGPT</a></li>
+</ul>
+</li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#generative-ai-in-cmse-201-hita">Generative AI in CMSE 201: HiTA</a><ul class="nav section-nav flex-column">
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#evaluating-generative-ai-output">Evaluating Generative AI Output</a></li>
+</ul>
+</li>
+</ul>
+</li>
+<li class="toc-h1 nav-item toc-entry"><a class="reference internal nav-link" href="#next-steps">Next Steps</a><ul class="visible nav section-nav flex-column">
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#defining-variables-and-basic-data-types">1. Defining variables and basic data types</a><ul class="nav section-nav flex-column">
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#id1"><span class="xref myst">back to top</span></a></li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#primitive-data-types">1.1 Primitive Data Types</a></li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#one-equal-sign-versus-two-equal-signs">1.2 One Equal Sign Versus Two Equal Signs</a></li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#container-data-types">1.3 “Container” Data Types</a><ul class="nav section-nav flex-column">
+<li class="toc-h4 nav-item toc-entry"><a class="reference internal nav-link" href="#practice-problems-for-list">Practice Problems for <code class="docutils literal notranslate"><span class="pre">List</span></code></a></li>
+<li class="toc-h4 nav-item toc-entry"><a class="reference internal nav-link" href="#practice-problems-for-dict-this-can-be-useful-to-review-but-won-t-end-up-on-the-quiz">Practice Problems for <code class="docutils literal notranslate"><span class="pre">Dict</span></code> (this can be useful to review, but won’t end up on the quiz)</a></li>
+</ul>
+</li>
+</ul>
+</li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#performing-arithmetic-operations-and-concatenating-strings">2. Performing arithmetic operations and concatenating strings</a><ul class="nav section-nav flex-column">
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#id2"><span class="xref myst">back to top</span></a></li>
+</ul>
+</li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#working-with-loops-in-python">3. Working with loops in Python</a><ul class="nav section-nav flex-column">
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#id3"><span class="xref myst">back to top</span></a></li>
+</ul>
+</li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#for-loops-two-common-constructions"><code class="docutils literal notranslate"><span class="pre">for</span></code> loops: Two Common Constructions</a><ul class="nav section-nav flex-column">
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#when-to-use-which">When to use which?</a></li>
+</ul>
+</li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#practice-problems">Practice Problems</a></li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#connecting-lists-and-loops">4. Connecting lists and Loops</a><ul class="nav section-nav flex-column">
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#id4"><span class="xref myst">back to top</span></a></li>
+</ul>
+</li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#practice-problems-with-lists-and-loops">Practice Problems with Lists and Loops</a></li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#conditional-statements-using-if-in-python">5. Conditional Statements (using <code class="docutils literal notranslate"><span class="pre">if</span></code> in Python)</a><ul class="nav section-nav flex-column">
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#id5"><span class="xref myst">back to top</span></a></li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#task">Task</a></li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#id6">Task</a></li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#id7">Task</a></li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#id8">Task</a></li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#id9">Task</a></li>
+</ul>
+</li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#defining-and-using-functions-functions-will-not-be-on-quiz-1-but-will-likely-be-involved-in-future-quizzes">6. Defining and using functions (functions will not be on Quiz 1, but will likely be involved in future quizzes)</a><ul class="nav section-nav flex-column">
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#id10"><span class="xref myst">back to top</span></a></li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#the-difference-between-return-and-print">The Difference Between <code class="docutils literal notranslate"><span class="pre">return</span></code> and <code class="docutils literal notranslate"><span class="pre">print</span></code></a></li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#practice-problems-for-functions">Practice Problems for Functions</a></li>
+</ul>
+</li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#debugging-code">7. Debugging code</a><ul class="nav section-nav flex-column">
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#id11"><span class="xref myst">back to top</span></a></li>
+</ul>
+</li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#assignment-wrapup">Assignment wrapup</a></li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#congratulations-you-re-done">Congratulations, you’re done!</a></li>
+</ul>
+</li>
+</ul>
+
+            </nav>
+        </div>
+    </div>
+</div>
+
+              
+                
+<div id="searchbox"></div>
+                <article class="bd-article">
+                  
+  <section class="tex2jax_ignore mathjax_ignore" id="day-7-in-class-assignment-reviewing-and-practicing-prior-concepts">
+<h1>Day 7 In-class Assignment: Reviewing and practicing prior concepts<a class="headerlink" href="#day-7-in-class-assignment-reviewing-and-practicing-prior-concepts" title="Link to this heading">#</a></h1>
+<section id="put-your-name-here">
+<h2><p style="text-align: right;"> ✅ Put your name here.<a class="headerlink" href="#put-your-name-here" title="Link to this heading">#</a></h2>
+<p style="text-align: right;"> &#9989; Put your group member names here.</section>
+<section id="learning-goals">
+<h2>Learning Goals:<a class="headerlink" href="#learning-goals" title="Link to this heading">#</a></h2>
+<p>The primary purpose of this assignment is to give you the opportunity to review and practice the types of coding concepts you’ve identified as having a weaker understanding of than other, or where you’ve identified some gaps in your knowledge.</p>
+<p>As such, the learning goals embedding within this activity are those that have been covered in previous assignments.</p>
+</section>
+<hr class="docutils" />
+<section id="plans-for-today">
+<h2>Plans for today <a id="top"></a><a class="headerlink" href="#plans-for-today" title="Link to this heading">#</a></h2>
+<p>Today’s assignment has two parts.</p>
+<p>First, you will work together with your group to explore how Generative AI produces code and evaluate the output from Generative AI based on the expertise you have gained so far in this course. In this first part, you will engage in discussions and then practice coding with a focus on the concepts from the Pre-class that you feel confident in!</p>
+<p>Second, you will take the concepts you identified in the Pre-class as things you feel less confident about and review them using the practice problems. In doing this, you are encouraged to use all of the resources at your disposal, including Google, Generative AI, peers, etc. Your instructors will float around and be ready to help answer questions you may have or help you to solve/troubleshoot issues you run into. You may also find it useful to check in with your group from time to time to see if anyone else might have idea for how to solve something you get stuck on or answer questions you might have.</p>
+<section id="getting-around-in-this-document">
+<h3>Getting around in this document<a class="headerlink" href="#getting-around-in-this-document" title="Link to this heading">#</a></h3>
+<p>To help you navigate this assignment, the notebook is divided up into section and these sections are listed below. You’ll notice that you can actually click on each section to jump right to that section and within each section, there is another link you can click to jump back up to the top. <strong>These links should help to minimize the amount of scrolling you need to do!</strong>.</p>
+</section>
+<section id="concept-sections">
+<h3>Concept Sections:<a class="headerlink" href="#concept-sections" title="Link to this heading">#</a></h3>
+<ol class="arabic simple" start="0">
+<li><p><a class="reference internal" href="#genAI"><span class="xref myst">Evaluating Code Produced by Generative AI</span></a></p></li>
+<li><p><a class="reference internal" href="#variables"><span class="xref myst">Defining variables and basic data types</span></a></p></li>
+<li><p><a class="reference internal" href="#operators"><span class="xref myst">Performing arithemtic operations and concatenating strings</span></a></p></li>
+<li><p><a class="reference internal" href="#loops"><span class="xref myst">Working with loops in Python</span></a></p></li>
+<li><p><a class="reference internal" href="#listsandloops"><span class="xref myst">Connecting lists and loops to interact with data</span></a></p></li>
+<li><p><a class="reference internal" href="#if"><span class="xref myst">Conditional statements (using <code class="docutils literal notranslate"><span class="pre">if</span></code> in Python)</span></a></p></li>
+<li><p><a class="reference internal" href="#functions"><span class="xref myst">Defining and using functions</span></a></p></li>
+<li><p><a class="reference internal" href="#debugging"><span class="xref myst">Debugging code</span></a></p></li>
+</ol>
+<hr class="docutils" />
+<p><a id="genAI"></a></p>
+</section>
+</section>
+<section id="introduction-to-generative-ai-and-evaluating-code-produced-by-generative-ai">
+<h2>0. Introduction to Generative AI and Evaluating Code Produced by Generative AI<a class="headerlink" href="#introduction-to-generative-ai-and-evaluating-code-produced-by-generative-ai" title="Link to this heading">#</a></h2>
+<section id="back-to-top">
+<h3><a class="reference internal" href="#top"><span class="xref myst">back to top</span></a><a class="headerlink" href="#back-to-top" title="Link to this heading">#</a></h3>
+<p>We will begin by moving through this discussion in groups and as a class. Below each discussion prompt, take notes on the discussion to capture the variety of perspectives brought to the table!</p>
+</section>
+<section id="getting-started-with-generative-ai">
+<h3>Getting Started with Generative AI<a class="headerlink" href="#getting-started-with-generative-ai" title="Link to this heading">#</a></h3>
+<ul class="simple">
+<li><p>What is Generative AI? ChatGPT, DALL-E, <a class="reference external" href="http://Claude.AI">Claude.AI</a>, Ollama, etc?</p></li>
+<li><p>How have you used it? How have you seen it used?</p></li>
+<li><p>What are some useful things about GenAI?</p></li>
+<li><p>What are some problematic things about GenAI?</p></li>
+<li><p><em>How does GenAI work?</em></p></li>
+<li><p>What additional things did you learn in the pre-class that you haven’t talked about yet?</p></li>
+</ul>
+<p><strong>Take 5 Minutes with your group to discuss and answer</strong></p>
+<p><font size=6 color="#009600">✎</font> <em>Capture your discussion here.</em></p>
+</section>
+<section id="large-language-model-explained-by-chatgpt">
+<h3>Large Language Model Explained by ChatGPT<a class="headerlink" href="#large-language-model-explained-by-chatgpt" title="Link to this heading">#</a></h3>
+<p>What happens if we ask chatGPT to explain what chatGPT is?</p>
+<p><strong>Prompt: Explain using 5 bullet points for first year computational science students how large language modeling works</strong></p>
+<ul class="simple">
+<li><p><strong>Training on Massive Data</strong>: LLMs are trained on vast amounts of text data from books, websites, and other sources. The model learns the structure and patterns in language by predicting the next word in a sentence based on previous words.</p></li>
+<li><p><strong>Neural Networks and Layers</strong>: LLMs use deep neural networks, consisting of many layers of interconnected nodes. Each layer processes and refines the input data, transforming it step by step into a more abstract representation.</p></li>
+<li><p><strong>Tokenization</strong>: Text is broken down into smaller units called tokens (like words or subwords). The model learns how these tokens relate to one another, allowing it to understand and generate coherent text.</p></li>
+<li><p><strong>Attention Mechanism</strong>: LLMs, like GPT, use an attention mechanism to focus on different parts of the input text. This allows the model to capture the relationships between words, even if they’re far apart in a sentence.</p></li>
+<li><p><strong>Generalization and Adaptation</strong>: Once trained, LLMs can generalize from their training data and apply their knowledge to a wide range of tasks, such as answering questions, translating text, or generating new sentences based on user input.</p></li>
+</ul>
+</section>
+<section id="wait-what-if-i-don-t-understand-all-that-vocabulary">
+<h3>Wait, what if I don’t understand all that vocabulary?<a class="headerlink" href="#wait-what-if-i-don-t-understand-all-that-vocabulary" title="Link to this heading">#</a></h3>
+<p><strong>Prompt: I’m not sure I understand that; can you provide an analogy that most people will understand?</strong></p>
+<ul class="simple">
+<li><p><strong>Reading Many Books</strong>: The language model (student) reads millions of books and articles to learn how sentences are structured, what words usually come after one another, and the general rules of grammar, much like a person learns to write by reading a lot.</p></li>
+<li><p><strong>Brain with Layers</strong>: The model’s “brain” is like a series of filters, where each layer picks up on different details. Early layers might recognize simple things like letters or words, while deeper layers understand bigger ideas, like the overall meaning of a sentence.</p></li>
+<li><p><strong>Breaking Down Sentences</strong>: Before the model understands text, it has to break it into chunks or “words” (tokens). Imagine you give the student a sentence one word at a time, and they slowly figure out what comes next based on what they’ve already read.</p></li>
+<li><p><strong>Paying Attention</strong>: Just like a student focuses on the important parts of a story (like remembering who the main character is), the model uses an “attention mechanism” to focus on key words and concepts, ignoring less important details.</p></li>
+<li><p><strong>Becoming a Great Writer</strong>: After all this reading and practice, the model can generate its own writing. It doesn’t just copy sentences—it mixes what it’s learned to write new sentences that fit the rules and patterns of language.</p></li>
+</ul>
+</section>
+<section id="nongpt-answer">
+<h3>nonGPT Answer<a class="headerlink" href="#nongpt-answer" title="Link to this heading">#</a></h3>
+<p>Now, suppose that you ask a CMSE 201 professor to explain chatGPT to you in their own words. Below is an example of what one might say:</p>
+<ul class="simple">
+<li><p>A Large Language Model is trained on an enormous corpus of text data (e.g., Meta’s Llama 3.1 used every facebook post ever made)</p></li>
+<li><p>When you prompt it, the words and their order are “tokenized” - mathematically represented in an abstract space (many dimensions)</p>
+<ul>
+<li><p>This process introduces error and bias</p></li>
+</ul>
+</li>
+<li><p>When asked a question or given a tasks, the LLM produces text that it predicts to be associated and relevant to the tokens</p>
+<ul>
+<li><p>It doesn’t understand or know the meaning of words</p></li>
+<li><p>This also introduces error and bias</p></li>
+</ul>
+</li>
+<li><p>When the LLM produces text, it uses probability based on the data it is trained on to predict each word it produces in the text.</p>
+<ul>
+<li><p><strong>It doesn’t understand or know the meaning of words</strong></p></li>
+<li><p><strong>This also introduces error and bias</strong></p></li>
+</ul>
+</li>
+</ul>
+<p><strong>A challenge for LLMs is to produce text that humans find relevant and useful.</strong></p>
+<p><strong>Take 5 minutes and discuss with your group what you notice about the three different explanations for what chatGPT is</strong></p>
+<p><font size=6 color="#009600">✎</font> <em>Capture your discussion here.</em></p>
+</section>
+<section id="concerns-about-llms">
+<h3>Concerns about LLMs<a class="headerlink" href="#concerns-about-llms" title="Link to this heading">#</a></h3>
+<ul class="simple">
+<li><p>LLMs can be a useful resource, but their responses are driven by probability</p></li>
+<li><p>Without external checks or additional programming, they cannot be truthful</p></li>
+<li><p>The race to build bigger models is destroying the environment</p>
+<ul>
+<li><p>e.g., one image generated by Dall-E uses the energy needed to charge your phone from 0 to 100%</p></li>
+</ul>
+</li>
+<li><p>Billionare tech moguls and their companies are expanding their use across software and websites</p>
+<ul>
+<li><p>Did we ask for this?</p></li>
+<li><p>How do the environmental concerns scale?</p></li>
+<li><p>What happens to certain employees and job sectors?</p></li>
+</ul>
+</li>
+</ul>
+<p><strong>Our goal is to help you become critical and informed users of generative AI.</strong></p>
+<p><strong>Take 5 minutes at your group to come up with as many positive/negative use cases of genAI as you can think of.</strong></p>
+<p><font size=6 color="#009600">✎</font> <em>Capture your discussion here.</em></p>
+</section>
+<section id="lets-try-a-few-real-examples-with-chatgpt">
+<h3>Lets try a few real examples with ChatGPT<a class="headerlink" href="#lets-try-a-few-real-examples-with-chatgpt" title="Link to this heading">#</a></h3>
+<p><em>Here we use the latest model that is available ChatGPT 4o</em></p>
+<ul class="simple">
+<li><p>Example 1 - copy-paste an in-class activity: <em>Write your code for calculating the total retirement savings in the cell below. Start by writing code for a single set of parameter values (i.e., not a range). It is simpler, and you can also add to it later.</em></p>
+<ul>
+<li><p>What if you are unfamiliar with the code that is produced?</p></li>
+<li><p>How might you trust that this code is correct?</p></li>
+</ul>
+</li>
+<li><p>Example 2 - asking for help with pseudocode: <em>I am trying to develop a retirement calculator using Python, but I’m not sure where to start. Can you help me write some pseudocode to get the idea of what I should do?</em></p>
+<ul>
+<li><p>What if the pseudocode doesn’t make sense to you?</p></li>
+<li><p>What if it provides a pseudocode that is more complex that expected?</p></li>
+</ul>
+</li>
+<li><p>Example 3 - asking for clarity: <em>I am writing a retirement calculator and I don’t really understand the loop that I need to write, can you explain how the loop works for this calculation?</em></p>
+<ul>
+<li><p>You can always ask for more examples, or more clarity</p></li>
+</ul>
+</li>
+</ul>
+<p><strong>How do you judge if what it tells you is correct?</strong></p>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="c1"># Here is a space for you to test the code you get from chatGPT 4o</span>
+</pre></div>
+</div>
+</div>
+</div>
+<p><font size=6 color="#009600">✎</font> <em>Here is a space to take notes about what you observe!</em></p>
+</section>
+</section>
+<section id="generative-ai-in-cmse-201-hita">
+<h2>Generative AI in CMSE 201: HiTA<a class="headerlink" href="#generative-ai-in-cmse-201-hita" title="Link to this heading">#</a></h2>
+<p>After discussion and experimentation, you have likely identified some of the issues with general Generative AI tools. For example:</p>
+<ol class="arabic simple">
+<li><p>They may produce code that has things you have never seen before or cannot explain.</p></li>
+<li><p>They typically are capturing your data and using it in ways you have no control over.</p></li>
+<li><p>They use data from <em>everywhere</em> which leaves them prone to “hallucinations” - giving fake or false answers.</p></li>
+<li><p>The answers provided are based on the probability or words being related to each other, rather than facts or knowledge.</p></li>
+<li><p>They are not a replacement for the in-depth, complex support that experts (like your faculty instructors, TAs, and ULAs) can provide on course material.</p></li>
+</ol>
+<p>However, there are still ways that Generative AI tools can support your learning! As a student in CMSE 201, you will have access to a tool called <a class="reference external" href="https://www.hita.ai/">HiTA</a>. Below are some of the ways that HiTA addresses the issues with more general tools:</p>
+<ol class="arabic simple">
+<li><p>HiTA uses <strong>Retrieval-Augmented Generation (RAG)</strong> to provide context to the underlying model that is based only on course material - so the answers you get are based on things we have covered in class! Note: That does not mean that HiTA will never give an incorrect answer, so you should always fact check and evaluate the output.</p></li>
+<li><p>Your data is kept confidential. We can see the questions you ask and use that information to guide the class as a whole, but they are never connected with you as an individual (And the company never has access to your data either).</p></li>
+<li><p>The AI Assistant is available all the time, so you can get course-relevant help even when the office hours Zoom isn’t open.</p></li>
+</ol>
+<p>Today, we are just introducing the tool and giving you the opportunity to use it when you can actively interact with your facilitators to evaluate the outputs you get. You will get a follow-up email, including an instructional video with some additional information from the lead instructor after this class.</p>
+<p>Now, let’s practice!</p>
+<section id="evaluating-generative-ai-output">
+<h3>Evaluating Generative AI Output<a class="headerlink" href="#evaluating-generative-ai-output" title="Link to this heading">#</a></h3>
+<p>In the pre-class assignment, you identifed concepts we have covered so far that you feel confident in and ones that you feel less confident in. Evaluating Generative AI output requires some expertise in the domain you are using it for.</p>
+<ol class="arabic simple">
+<li><p>In the cell below, choose one of the concepts you feel confident in and write it down.</p></li>
+<li><p>Then, locate the section of this document that has practice problems for that concept.</p></li>
+<li><p>Choose at least one practice problem, copy it here, and use chatGPT 4o to help you solve it. Then, try getting HiTA to solve it.</p></li>
+<li><p>What did you notice when you used ChatGPT 4o and HiTA? Were they the same? Different?</p></li>
+<li><p>Based on your previous discussions, reflect on your experience and what strategies may work in the future to help you use generative AI in support of your learning rather than circumventing your learning!</p></li>
+</ol>
+<p><strong>Note:</strong> You are encouraged to use HiTA over other more general tools because it will do a better job of supporting your learning than more general tools. However, you are still expected to cite your usage!</p>
+<p><strong>Policy Note:</strong> We also recognize that generative AI tools are fast changing, and we may need to adapt our course-wide policies based on what we observe throughout the semester.</p>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="c1"># Here is a space for you to test the code you get from chatGPT 4o</span>
+</pre></div>
+</div>
+</div>
+</div>
+<p><font size=6 color="#009600">✎</font> <em>Here is a space to take notes and reflect on what you observe!</em></p>
+</section>
+</section>
+</section>
+<section class="tex2jax_ignore mathjax_ignore" id="next-steps">
+<h1>Next Steps<a class="headerlink" href="#next-steps" title="Link to this heading">#</a></h1>
+<p>Now, use the remaining time in class to use all of your available resources to review the concepts you need more support on!</p>
+<p><a id="variables"></a></p>
+<section id="defining-variables-and-basic-data-types">
+<h2>1. Defining variables and basic data types<a class="headerlink" href="#defining-variables-and-basic-data-types" title="Link to this heading">#</a></h2>
+<section id="id1">
+<h3><a class="reference internal" href="#top"><span class="xref myst">back to top</span></a><a class="headerlink" href="#id1" title="Link to this heading">#</a></h3>
+<p>Variables and data types are how we store and represent data in programs. Being comfortable with what the different data types are and how you can store them in variable is fundamental to using Python.</p>
+</section>
+<section id="primitive-data-types">
+<h3>1.1 Primitive Data Types<a class="headerlink" href="#primitive-data-types" title="Link to this heading">#</a></h3>
+<p>Primitive data types are the most basic way we store data. The following cell defines variables that are instances of three common primitive data types.</p>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="sd">&quot;&quot;&quot;Primitive data types.&quot;&quot;&quot;</span>
+<span class="c1"># integer data type</span>
+<span class="n">x</span> <span class="o">=</span> <span class="mi">5</span>
+
+<span class="c1"># float data dype</span>
+<span class="n">value</span> <span class="o">=</span> <span class="mf">1.23</span>
+
+<span class="c1"># string data type</span>
+<span class="n">string</span> <span class="o">=</span> <span class="s2">&quot;CMSE 201 is fun!&quot;</span>
+</pre></div>
+</div>
+</div>
+</div>
+<p>In the cell below, print out the <code class="docutils literal notranslate"><span class="pre">type</span></code> of each variable.</p>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="sd">&quot;&quot;&quot;EXERCISE: Print out the type of each variable defined above.&quot;&quot;&quot;</span>
+</pre></div>
+</div>
+</div>
+</div>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="sd">&quot;&quot;&quot;EXERCISE: Here&#39;s a new primitive data type we haven&#39;t seen before. Print out it&#39;s type.&quot;&quot;&quot;</span>
+<span class="n">mystery_variable</span> <span class="o">=</span> <span class="sa">b</span><span class="s2">&quot;1011&quot;</span>
+</pre></div>
+</div>
+</div>
+</div>
+<p>Important: You DO NOT need to know about the above data type for the quiz. This is just a useful reminder that the <code class="docutils literal notranslate"><span class="pre">type</span></code> function can be useful when you encounter something you’re not familiar with.</p>
+<p>You SHOULD KNOW about primitive data types including <code class="docutils literal notranslate"><span class="pre">int</span></code>, <code class="docutils literal notranslate"><span class="pre">float</span></code>, and <code class="docutils literal notranslate"><span class="pre">str</span></code> and how to work with them. You SHOULD ALSO KNOW how to check the type of a variable.</p>
+</section>
+<section id="one-equal-sign-versus-two-equal-signs">
+<h3>1.2 One Equal Sign Versus Two Equal Signs<a class="headerlink" href="#one-equal-sign-versus-two-equal-signs" title="Link to this heading">#</a></h3>
+<p>The following is crucial to know!</p>
+<ol class="arabic simple">
+<li><p>An expression with <b>one equals sign</b>, for example <code class="docutils literal notranslate"><span class="pre">x</span> <span class="pre">=</span> <span class="pre">5</span></code>, is an <b>assignment</b>. It says: “Hey Python, <i>assign</i> the value of <code class="docutils literal notranslate"><span class="pre">5</span></code> to the variable named <code class="docutils literal notranslate"><span class="pre">x</span></code>.”</p></li>
+<li><p>An expression with <b>two equals signs</b>, for example, <code class="docutils literal notranslate"><span class="pre">x</span> <span class="pre">==</span> <span class="pre">5</span></code>, is a <b>comparison</b>. It says: “Hey Python, does the variable <code class="docutils literal notranslate"><span class="pre">x</span></code> have the value <code class="docutils literal notranslate"><span class="pre">5</span></code>?” This expression returns <code class="docutils literal notranslate"><span class="pre">True</span></code> or <code class="docutils literal notranslate"><span class="pre">False</span></code>.</p></li>
+</ol>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="sd">&quot;&quot;&quot;EXERCISE: Use two equal signs to check if the type of x is an integer (int in Python)&quot;&quot;&quot;</span>
+</pre></div>
+</div>
+</div>
+</div>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="sd">&quot;&quot;&quot;EXERCISE: Use two equal signs to check if the value of x is 5.&quot;&quot;&quot;</span>
+</pre></div>
+</div>
+</div>
+</div>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="sd">&quot;&quot;&quot;EXERCISE: Use one equal sign to change the value of x to be 7.&quot;&quot;&quot;</span>
+</pre></div>
+</div>
+</div>
+</div>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="sd">&quot;&quot;&quot;EXERCISE: Use two equal signs to check if the type of x is an integer (int in Python)&quot;&quot;&quot;</span>
+</pre></div>
+</div>
+</div>
+</div>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="sd">&quot;&quot;&quot;EXERCISE: Use two equal signs to check if the value of x is 5.&quot;&quot;&quot;</span>
+</pre></div>
+</div>
+</div>
+</div>
+<p>We often use two equals signs (comparisons) in <code class="docutils literal notranslate"><span class="pre">if</span></code> statements and <code class="docutils literal notranslate"><span class="pre">for</span></code> loops.</p>
+</section>
+<section id="container-data-types">
+<h3>1.3 “Container” Data Types<a class="headerlink" href="#container-data-types" title="Link to this heading">#</a></h3>
+<p>Container data types store several primitive data types, just like a container stores several objects.</p>
+<p>(Containers can also store containers themselves. For example, we can have a list of lists.)</p>
+<p>Common container data types we have seen:</p>
+<ol class="arabic simple">
+<li><p><code class="docutils literal notranslate"><span class="pre">List</span></code>: A container of items with particular data types. Items an a <code class="docutils literal notranslate"><span class="pre">list</span></code> CAN be changed.</p></li>
+<li><p><code class="docutils literal notranslate"><span class="pre">Dictionary</span></code>: An container of items that are “key, value” pairs. NOTE: In Python, <code class="docutils literal notranslate"><span class="pre">dict</span></code> is short for dictionary.</p></li>
+</ol>
+<p>The cell below defines each of these data types.</p>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="sd">&quot;&quot;&quot;Container data types.&quot;&quot;&quot;</span>
+<span class="c1"># lists</span>
+<span class="n">xlist</span> <span class="o">=</span> <span class="p">[</span><span class="mi">1</span><span class="p">,</span> <span class="mi">1</span><span class="p">,</span> <span class="mi">2</span><span class="p">,</span> <span class="mi">3</span><span class="p">,</span> <span class="mi">5</span><span class="p">]</span>
+
+<span class="c1"># tuples</span>
+<span class="n">xtuple</span> <span class="o">=</span> <span class="p">(</span><span class="mi">1</span><span class="p">,</span> <span class="mi">1</span><span class="p">,</span> <span class="mi">2</span><span class="p">,</span> <span class="mi">3</span><span class="p">,</span> <span class="mi">5</span><span class="p">)</span>
+
+<span class="c1"># dictionaries</span>
+<span class="n">strings_and_ints</span> <span class="o">=</span> <span class="p">{</span><span class="s2">&quot;one&quot;</span><span class="p">:</span> <span class="mi">1</span><span class="p">,</span> <span class="s2">&quot;one&quot;</span><span class="p">:</span> <span class="mi">1</span><span class="p">,</span> <span class="s2">&quot;two&quot;</span><span class="p">:</span> <span class="mi">2</span><span class="p">,</span> <span class="s2">&quot;three&quot;</span><span class="p">:</span> <span class="mi">3</span><span class="p">,</span> <span class="s2">&quot;five&quot;</span><span class="p">:</span> <span class="mi">5</span><span class="p">}</span>
+</pre></div>
+</div>
+</div>
+</div>
+<p>We have been primarily workings the <code class="docutils literal notranslate"><span class="pre">list</span></code> data type to store data up to this point and this is the one you should be familiar with. The other can be useful to know about, but won’t show up on a quiz.</p>
+<p>Most container objects have a length.</p>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="sd">&quot;&quot;&quot;EXERCISE: Print out the length of each container data type defined above.&quot;&quot;&quot;</span>
+</pre></div>
+</div>
+</div>
+</div>
+<p>Note that dictionaries can only have one unique key for each value, so there’s only four items in the dictionary.</p>
+<section id="practice-problems-for-list">
+<h4>Practice Problems for <code class="docutils literal notranslate"><span class="pre">List</span></code><a class="headerlink" href="#practice-problems-for-list" title="Link to this heading">#</a></h4>
+<p>Here’s four practice problems for the <code class="docutils literal notranslate"><span class="pre">list</span></code>. We’ll see more when we look at <code class="docutils literal notranslate"><span class="pre">list</span></code>s below.</p>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="sd">&quot;&quot;&quot;EXERCISE: Print out the third number in xlist.&quot;&quot;&quot;</span>
+</pre></div>
+</div>
+</div>
+</div>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="sd">&quot;&quot;&quot;EXERCISE: Change the third number in xlist to have the value -5.&quot;&quot;&quot;</span>
+</pre></div>
+</div>
+</div>
+</div>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="sd">&quot;&quot;&quot;EXERCISE: Append the number 8 to the list xlist, then print out the new list.&quot;&quot;&quot;</span>
+</pre></div>
+</div>
+</div>
+</div>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="sd">&quot;&quot;&quot;Test cases. Run this cell to check your solutions. If correct, no errors will occur.&quot;&quot;&quot;</span>
+<span class="k">assert</span> <span class="n">xlist</span> <span class="o">==</span> <span class="p">[</span><span class="mi">1</span><span class="p">,</span> <span class="mi">1</span><span class="p">,</span> <span class="o">-</span><span class="mi">5</span><span class="p">,</span> <span class="mi">3</span><span class="p">,</span> <span class="mi">5</span><span class="p">,</span> <span class="mi">8</span><span class="p">]</span>
+</pre></div>
+</div>
+</div>
+</div>
+</section>
+<section id="practice-problems-for-dict-this-can-be-useful-to-review-but-won-t-end-up-on-the-quiz">
+<h4>Practice Problems for <code class="docutils literal notranslate"><span class="pre">Dict</span></code> (this can be useful to review, but won’t end up on the quiz)<a class="headerlink" href="#practice-problems-for-dict-this-can-be-useful-to-review-but-won-t-end-up-on-the-quiz" title="Link to this heading">#</a></h4>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="sd">&quot;&quot;&quot;EXERCISE: Print out the value for the key &quot;one&quot; in the dictionary given above.&quot;&quot;&quot;</span>
+</pre></div>
+</div>
+</div>
+</div>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="sd">&quot;&quot;&quot;EXAMPLE: Python allows you to see all keys and values in a dict, as follows.&quot;&quot;&quot;</span>
+<span class="nb">print</span><span class="p">(</span><span class="s2">&quot;Keys = &quot;</span><span class="p">,</span> <span class="n">strings_and_ints</span><span class="o">.</span><span class="n">keys</span><span class="p">())</span>
+<span class="nb">print</span><span class="p">(</span><span class="s2">&quot;Values =&quot;</span><span class="p">,</span> <span class="n">strings_and_ints</span><span class="o">.</span><span class="n">values</span><span class="p">())</span>
+</pre></div>
+</div>
+</div>
+</div>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="sd">&quot;&quot;&quot;EXERCISE: Check if the key &quot;eight&quot; is in the dictionary&#39;s keys.&quot;&quot;&quot;</span>
+</pre></div>
+</div>
+</div>
+</div>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="sd">&quot;&quot;&quot;EXERCISE: Add the key, value pair &quot;eight&quot;, 8 to the dictionary given above.&quot;&quot;&quot;</span>
+</pre></div>
+</div>
+</div>
+</div>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="sd">&quot;&quot;&quot;EXERCISE: Check if the key &quot;eight&quot; is in the dictionary&#39;s keys and </span>
+<span class="sd">if the value 8 is in the dictionary&#39;s values.</span>
+<span class="sd">&quot;&quot;&quot;</span>
+</pre></div>
+</div>
+</div>
+</div>
+<hr class="docutils" />
+<p><a id="operators"></a></p>
+</section>
+</section>
+</section>
+<section id="performing-arithmetic-operations-and-concatenating-strings">
+<h2>2. Performing arithmetic operations and concatenating strings<a class="headerlink" href="#performing-arithmetic-operations-and-concatenating-strings" title="Link to this heading">#</a></h2>
+<section id="id2">
+<h3><a class="reference internal" href="#top"><span class="xref myst">back to top</span></a><a class="headerlink" href="#id2" title="Link to this heading">#</a></h3>
+<p>When working with variables of different types in Python, those that are numbers (i.e. integers and floats) can be used to perform mathematical operations, but those that are strings cannot. However, you can use what looks like a mathematical operator, <code class="docutils literal notranslate"><span class="pre">+</span></code>, to concatenate (or merge) two strings together. You can also convert non-strings to strings with the <code class="docutils literal notranslate"><span class="pre">str</span></code> function.</p>
+<p>Review the code below that defines some variable and manipulates them a bit.</p>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">int_var</span> <span class="o">=</span> <span class="mi">2</span>   <span class="c1"># Integer variable</span>
+<span class="n">float_var</span> <span class="o">=</span> <span class="mf">2.34</span>  <span class="c1"># floating point variable</span>
+<span class="n">str_var</span> <span class="o">=</span> <span class="s1">&#39;bananas&#39;</span>  <span class="c1"># string variable</span>
+
+<span class="nb">print</span><span class="p">(</span><span class="s1">&#39;1:&#39;</span><span class="p">,</span> <span class="s1">&#39;An integer plus a float works in python:&#39;</span><span class="p">,</span><span class="n">int_var</span><span class="o">+</span><span class="n">float_var</span><span class="p">)</span>
+<span class="c1">#You can not do math with strings, but you can concatenate strings (if you turn your variables into strings first)</span>
+<span class="n">new_str_var</span> <span class="o">=</span> <span class="nb">str</span><span class="p">(</span><span class="n">int_var</span><span class="p">)</span><span class="o">+</span><span class="s1">&#39; &#39;</span><span class="o">+</span><span class="n">str_var</span><span class="o">+</span><span class="s1">&#39; is &#39;</span><span class="o">+</span><span class="nb">str</span><span class="p">(</span><span class="n">float_var</span><span class="p">)</span><span class="o">+</span><span class="s1">&#39; times the fun.&#39;</span>
+<span class="nb">print</span><span class="p">(</span><span class="s1">&#39;2:&#39;</span><span class="p">,</span><span class="n">new_str_var</span><span class="p">)</span>
+<span class="c1"># or you can just use a print statement with commas to make meaningful debugging and result statements</span>
+<span class="nb">print</span><span class="p">(</span><span class="s1">&#39;3:&#39;</span><span class="p">,</span><span class="n">int_var</span><span class="p">,</span><span class="s1">&#39;or&#39;</span><span class="p">,</span><span class="n">float_var</span><span class="p">,</span> <span class="n">str_var</span><span class="p">,</span><span class="s1">&#39;are not all that fun.&#39;</span><span class="p">)</span>
+</pre></div>
+</div>
+</div>
+</div>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="sd">&quot;&quot;&quot;EXERCISE: Test out multiply, dividing int_var and float_var.&quot;&quot;&quot;</span>
+</pre></div>
+</div>
+</div>
+</div>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="sd">&quot;&quot;&quot;EXERCISE: Take the int_var variable and square it, what operator do you need to do that?&quot;&quot;&quot;</span>
+</pre></div>
+</div>
+</div>
+</div>
+<p>Obviously, there is a lot of additional math you could do with Python variables. Feel free to experiment with other math you’re not comfortable with or ask an instructor if you have any questions about doing math in Python.</p>
+<p>Make sure you’re comfortable <strong>concatenating</strong> strings.</p>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="sd">&quot;&quot;&quot;EXERCISE: Define a new string variable and concatenate it with the str_var variable.</span>
+<span class="sd">Choose something that makes sense!&quot;&quot;&quot;</span>
+</pre></div>
+</div>
+</div>
+</div>
+<hr class="docutils" />
+<p><a id="loops"></a></p>
+</section>
+</section>
+<section id="working-with-loops-in-python">
+<h2>3. Working with loops in Python<a class="headerlink" href="#working-with-loops-in-python" title="Link to this heading">#</a></h2>
+<section id="id3">
+<h3><a class="reference internal" href="#top"><span class="xref myst">back to top</span></a><a class="headerlink" href="#id3" title="Link to this heading">#</a></h3>
+<p>Loops are extremely useful in programming. They prevent us from having to write out every instruction explicity. The caveat is you have to be careful to write the loop correctly <i>for all</i> cases!</p>
+<p>In class, we covered</p>
+<ol class="arabic simple">
+<li><p><code class="docutils literal notranslate"><span class="pre">while</span></code> loops: Keep performing the code in the <i>body</i> of the loop while an expression is <code class="docutils literal notranslate"><span class="pre">True</span></code>. We sometimes refer to this as “<strong>looping by condition</strong>.”</p></li>
+<li><p><code class="docutils literal notranslate"><span class="pre">for</span></code> loops. Perform the code in the <i>body</i> of the loop for a given number of iterations or values.</p></li>
+</ol>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="sd">&quot;&quot;&quot;EXAMPLE: A typical while loop.&quot;&quot;&quot;</span>
+<span class="c1"># variable that we care about</span>
+<span class="n">x</span> <span class="o">=</span> <span class="mi">0</span>
+
+<span class="c1"># while loop</span>
+<span class="k">while</span> <span class="n">x</span> <span class="o">&lt;</span> <span class="mi">5</span><span class="p">:</span>
+    <span class="c1"># body of the loop</span>
+    <span class="nb">print</span><span class="p">(</span><span class="n">x</span><span class="p">)</span>
+    <span class="n">x</span> <span class="o">+=</span> <span class="mi">1</span>
+</pre></div>
+</div>
+</div>
+</div>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="sd">&quot;&quot;&quot;EXAMPLE: A typical for loop.&quot;&quot;&quot;</span>
+<span class="c1"># variable that we care about</span>
+<span class="n">x</span> <span class="o">=</span> <span class="p">[</span><span class="mi">0</span><span class="p">,</span> <span class="mi">1</span><span class="p">,</span> <span class="mi">2</span><span class="p">,</span> <span class="mi">3</span><span class="p">,</span> <span class="mi">4</span><span class="p">]</span>
+
+<span class="k">for</span> <span class="n">value</span> <span class="ow">in</span> <span class="n">x</span><span class="p">:</span>
+    <span class="nb">print</span><span class="p">(</span><span class="n">value</span><span class="p">)</span>
+</pre></div>
+</div>
+</div>
+</div>
+<p>As can be seen, the <code class="docutils literal notranslate"><span class="pre">for</span></code> loop produces the same output as the <code class="docutils literal notranslate"><span class="pre">while</span></code> loop. This is generally true, for any loop:</p>
+<p><i>Any loop can be written as a <code class="docutils literal notranslate"><span class="pre">for</span></code> loop.</i></p>
+<p>Because of this, we only focus on <code class="docutils literal notranslate"><span class="pre">for</span></code> loops below. Sometimes it is easier or more natural to use a different style of loop, so you should be comfortable with <code class="docutils literal notranslate"><span class="pre">while</span></code> loops as well.</p>
+</section>
+</section>
+<section id="for-loops-two-common-constructions">
+<h2><code class="docutils literal notranslate"><span class="pre">for</span></code> loops: Two Common Constructions<a class="headerlink" href="#for-loops-two-common-constructions" title="Link to this heading">#</a></h2>
+<p>We use two main types, or “constructions,” of <code class="docutils literal notranslate"><span class="pre">for</span></code> loops in Python.</p>
+<p>(1) <b>”Loop by integer or index.”</b> We use this to loop over the indices in an iterable object.</p>
+<p>(Note: <em>Iterable</em> means a sequential data type. That is, a data type that “is able to be iterated over.” Examples include lists and tuples.)</p>
+<p>(2) <b>”Loop by value.”</b> We use this to loop over the values of an iterable object.</p>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="sd">&quot;&quot;&quot;EXAMPLE: Loop by index.&quot;&quot;&quot;</span>
+<span class="n">values</span> <span class="o">=</span> <span class="p">[</span><span class="s2">&quot;a&quot;</span><span class="p">,</span> <span class="s2">&quot;b&quot;</span><span class="p">,</span> <span class="s2">&quot;c&quot;</span><span class="p">,</span> <span class="s2">&quot;d&quot;</span><span class="p">]</span>
+
+<span class="k">for</span> <span class="n">index</span> <span class="ow">in</span> <span class="nb">range</span><span class="p">(</span><span class="nb">len</span><span class="p">(</span><span class="n">values</span><span class="p">)):</span>
+    <span class="nb">print</span><span class="p">(</span><span class="n">values</span><span class="p">[</span><span class="n">index</span><span class="p">])</span>
+</pre></div>
+</div>
+</div>
+</div>
+<p>We commonly use variables like <code class="docutils literal notranslate"><span class="pre">i</span></code>, <code class="docutils literal notranslate"><span class="pre">j</span></code>, or <code class="docutils literal notranslate"><span class="pre">k</span></code> for the above <code class="docutils literal notranslate"><span class="pre">index</span></code> variable. We’ll continue to use <code class="docutils literal notranslate"><span class="pre">index</span></code> for pedagogy in this notebook.</p>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="sd">&quot;&quot;&quot;EXAMPLE: Loop by value.&quot;&quot;&quot;</span>
+<span class="n">values</span> <span class="o">=</span> <span class="p">[</span><span class="s2">&quot;a&quot;</span><span class="p">,</span> <span class="s2">&quot;b&quot;</span><span class="p">,</span> <span class="s2">&quot;c&quot;</span><span class="p">,</span> <span class="s2">&quot;d&quot;</span><span class="p">]</span>
+
+<span class="k">for</span> <span class="n">value</span> <span class="ow">in</span> <span class="n">values</span><span class="p">:</span>
+    <span class="nb">print</span><span class="p">(</span><span class="n">value</span><span class="p">)</span>
+</pre></div>
+</div>
+</div>
+</div>
+<p>We commonly use variables like <code class="docutils literal notranslate"><span class="pre">x</span></code>, <code class="docutils literal notranslate"><span class="pre">y</span></code>, or <code class="docutils literal notranslate"><span class="pre">val</span></code> (short for value) for the above <code class="docutils literal notranslate"><span class="pre">value</span></code> variable. (Really, anything that’s NOT <code class="docutils literal notranslate"><span class="pre">i</span></code>, <code class="docutils literal notranslate"><span class="pre">j</span></code>, or <code class="docutils literal notranslate"><span class="pre">k</span></code> so we don’t confuse ourselves with the “loop by index” construction above.) We’ll continue to use <code class="docutils literal notranslate"><span class="pre">value</span></code> for pedagogy in this notebook.</p>
+<section id="when-to-use-which">
+<h3>When to use which?<a class="headerlink" href="#when-to-use-which" title="Link to this heading">#</a></h3>
+<p><em>Each for loop type is useful in different situations.</em></p>
+<p>To just loop over values in an iterable object, “loop by value” is sufficient and simpler to program.</p>
+<p>You can use “loop by index” when:</p>
+<ul class="simple">
+<li><p>You need to access values from multiple lists at the same index.</p></li>
+<li><p>You need neighboring values from the list.</p></li>
+</ul>
+</section>
+</section>
+<section id="practice-problems">
+<h2>Practice Problems<a class="headerlink" href="#practice-problems" title="Link to this heading">#</a></h2>
+<p>In the following practice problems, consider which type of for loop construction is easiest to solve the problem. For extra practice, solve each problem using both constructions.</p>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="sd">&quot;&quot;&quot;EXERCISE. Given two lists of the same length, use ONE loop to print out all elements from each list,</span>
+<span class="sd">in alternating order.</span>
+
+<span class="sd">Example: Given [1, 2] and [3, 4], your code should produce the output</span>
+<span class="sd">1</span>
+<span class="sd">3</span>
+<span class="sd">2</span>
+<span class="sd">4</span>
+<span class="sd">&quot;&quot;&quot;</span>
+<span class="n">list1</span> <span class="o">=</span> <span class="p">[</span><span class="s2">&quot;I&quot;</span><span class="p">,</span> <span class="s2">&quot;ace&quot;</span><span class="p">,</span> <span class="s2">&quot;CMSE 201&quot;</span><span class="p">]</span>
+<span class="n">list2</span> <span class="o">=</span> <span class="p">[</span><span class="s2">&quot;will&quot;</span><span class="p">,</span> <span class="s2">&quot;the&quot;</span><span class="p">,</span> <span class="s2">&quot;quiz!&quot;</span><span class="p">]</span>
+
+<span class="c1"># YOUR CODE HERE</span>
+</pre></div>
+</div>
+</div>
+</div>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="sd">&quot;&quot;&quot;EXERCISE: Given a list, print out the value in each list squared.&quot;&quot;&quot;</span>
+<span class="n">xlist</span> <span class="o">=</span> <span class="p">[</span><span class="mi">1</span><span class="p">,</span> <span class="mi">2</span><span class="p">,</span> <span class="mi">3</span><span class="p">,</span> <span class="mi">4</span><span class="p">,</span> <span class="mi">5</span><span class="p">]</span>
+
+<span class="c1"># YOUR CODE HERE</span>
+</pre></div>
+</div>
+</div>
+</div>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="sd">&quot;&quot;&quot;EXERCISE: Given a list, create a new list of squared values.</span>
+<span class="sd">Example: Given [1, 2, 3], your code should produce the new list [1, 4, 9] stored in some variable.&quot;&quot;&quot;</span>
+<span class="n">xlist</span> <span class="o">=</span> <span class="p">[</span><span class="mi">1</span><span class="p">,</span> <span class="mi">11</span><span class="p">,</span> <span class="mi">21</span><span class="p">,</span> <span class="mi">1211</span><span class="p">]</span>
+
+<span class="c1"># YOUR CODE HERE</span>
+</pre></div>
+</div>
+</div>
+</div>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="sd">&quot;&quot;&quot;EXERCISE: Given a list, compute the sum of all elements in the list.</span>
+<span class="sd">Example: Given [1, 2, 3], store the resulting sum 1 + 2 + 3 = 6 in some variable.&quot;&quot;&quot;</span>
+<span class="n">numbers</span> <span class="o">=</span> <span class="p">[</span><span class="n">x</span> <span class="o">*</span> <span class="p">(</span><span class="n">x</span> <span class="o">-</span> <span class="mi">1</span><span class="p">)</span> <span class="o">*</span> <span class="p">(</span><span class="n">x</span> <span class="o">-</span> <span class="mi">2</span><span class="p">)</span> <span class="k">for</span> <span class="n">x</span> <span class="ow">in</span> <span class="nb">range</span><span class="p">(</span><span class="mi">5</span><span class="p">,</span> <span class="mi">20</span><span class="p">)]</span>
+
+<span class="c1"># YOUR CODE HERE</span>
+</pre></div>
+</div>
+</div>
+</div>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="sd">&quot;&quot;&quot;EXERCISE: Given a list, compute the product of all elements in the list.</span>
+<span class="sd">Example: Given [1, 2, 3], store the resulting product 1 * 2 * 3 = 6 in some variable.&quot;&quot;&quot;</span>
+<span class="n">numbers</span> <span class="o">=</span> <span class="nb">list</span><span class="p">(</span><span class="nb">range</span><span class="p">(</span><span class="mi">1</span><span class="p">,</span> <span class="mi">10</span><span class="p">))</span>
+
+<span class="c1"># YOUR CODE HERE</span>
+</pre></div>
+</div>
+</div>
+</div>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="sd">&quot;&quot;&quot;EXERCISE: Given a list, compute the &quot;nearest neighbor sum&quot; of the list. That is, a list of the same length</span>
+<span class="sd">whose nth value is defined as </span>
+
+<span class="sd">a[n] = a[0] for n = 0,</span>
+<span class="sd">a[n] = a[n - 1] + a[n] for all n &gt; 0</span>
+
+<span class="sd">Example: Given [1, 2, 3], you should produce the list [1, 1 + 2, 2 + 3] = [1, 3, 5].&quot;&quot;&quot;</span>
+<span class="n">xlist</span> <span class="o">=</span> <span class="nb">list</span><span class="p">(</span><span class="nb">range</span><span class="p">(</span><span class="mi">1</span><span class="p">,</span> <span class="mi">10</span><span class="p">))</span>
+
+<span class="c1"># YOUR CODE HERE</span>
+</pre></div>
+</div>
+</div>
+</div>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="sd">&quot;&quot;&quot;EXERCISE: Given a list, compute the &quot;cumulative sum&quot; of the list. That is, a list of the same length</span>
+<span class="sd">whose nth value is defined as </span>
+
+<span class="sd">a[n] = a[0] for n = 0,</span>
+<span class="sd">a[n] = a[0] + a[1] + ... + a[n - 1] + a[n] for all n &gt; 0</span>
+
+<span class="sd">Example: Given [1, 2, 3], you should produce the list [1, 1 + 2, 1 + 2 + 3] = [1, 3, 6].&quot;&quot;&quot;</span>
+<span class="n">xlist</span> <span class="o">=</span> <span class="nb">list</span><span class="p">(</span><span class="nb">range</span><span class="p">(</span><span class="mi">1</span><span class="p">,</span> <span class="mi">10</span><span class="p">))</span>
+
+<span class="c1"># YOUR CODE HERE</span>
+</pre></div>
+</div>
+</div>
+</div>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="sd">&quot;&quot;&quot;CHALLENGE PROBLEM: Given a list, produce a new list whose elements are reversed.</span>
+
+<span class="sd">Example. Given [1, 2, 3], your code should produce a new list that is equal to [3, 2, 1].&quot;&quot;&quot;</span>
+<span class="n">numbers</span> <span class="o">=</span> <span class="nb">list</span><span class="p">(</span><span class="nb">range</span><span class="p">(</span><span class="mi">20</span><span class="p">))</span>
+</pre></div>
+</div>
+</div>
+</div>
+<hr class="docutils" />
+<p><a id="listsandloops"></a></p>
+</section>
+<section id="connecting-lists-and-loops">
+<h2>4. Connecting lists and Loops<a class="headerlink" href="#connecting-lists-and-loops" title="Link to this heading">#</a></h2>
+<section id="id4">
+<h3><a class="reference internal" href="#top"><span class="xref myst">back to top</span></a><a class="headerlink" href="#id4" title="Link to this heading">#</a></h3>
+<p>We know lists are containers. Lists are also called sequential data types in Python, meaning they store a sequence of objects.</p>
+<p><strong>Note</strong>: Objects in a list do not have to be of the same type! (For example, [1, “two”] is a valid list.)</p>
+<p>Lists are mutable, meaning they can be changed. (Tuples are immutable, meaning they cannot be changed.)</p>
+<p>There are several ways to create lists in Python. Some examples are shown below.</p>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="sd">&quot;&quot;&quot;EXAMPLE: Creating lists in Python.&quot;&quot;&quot;</span>
+<span class="c1"># by listing all values</span>
+<span class="n">list1</span> <span class="o">=</span> <span class="p">[</span><span class="mi">1</span><span class="p">,</span> <span class="mi">2</span><span class="p">,</span> <span class="mi">3</span><span class="p">,</span> <span class="mi">4</span><span class="p">,</span> <span class="s2">&quot;I&quot;</span><span class="p">,</span> <span class="s2">&quot;declare&quot;</span><span class="p">,</span> <span class="s2">&quot;a&quot;</span><span class="p">,</span> <span class="s2">&quot;thumb&quot;</span><span class="p">,</span> <span class="s2">&quot;war&quot;</span><span class="p">]</span>
+
+<span class="c1"># by using list(range(...)) to get range of values in a list</span>
+<span class="n">list2</span> <span class="o">=</span> <span class="nb">list</span><span class="p">(</span><span class="nb">range</span><span class="p">(</span><span class="mi">4</span><span class="p">))</span> <span class="c1"># = [0, 1, 2, 3]</span>
+
+<span class="c1"># by using multiplication to get a list of a certain length with a certain value</span>
+<span class="n">list3</span> <span class="o">=</span> <span class="p">[</span><span class="mi">1</span><span class="p">]</span> <span class="o">*</span> <span class="mi">5</span> <span class="c1"># = [1, 1, 1, 1, 1] (a list of five ones)</span>
+
+<span class="c1"># by converting other containers into lists</span>
+<span class="n">xtuple</span> <span class="o">=</span> <span class="p">(</span><span class="mi">1</span><span class="p">,</span> <span class="mi">2</span><span class="p">,</span> <span class="mi">3</span><span class="p">)</span>
+<span class="n">xlist</span> <span class="o">=</span> <span class="nb">list</span><span class="p">(</span><span class="n">xtuple</span><span class="p">)</span> <span class="c1"># = [1, 2, 3]</span>
+</pre></div>
+</div>
+</div>
+</div>
+</section>
+</section>
+<section id="practice-problems-with-lists-and-loops">
+<h2>Practice Problems with Lists and Loops<a class="headerlink" href="#practice-problems-with-lists-and-loops" title="Link to this heading">#</a></h2>
+<p>Complete the following problems to get practice with lists. <strong>Note</strong>: you will find some code cell below that use the <code class="docutils literal notranslate"><span class="pre">assert</span></code> command in Python to test the code you write. You do not need to know exactly what this command does, but you should be able to run those cells without getting an error. If you get an error, then something you didn’t in your code isn’t quite right.</p>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="sd">&quot;&quot;&quot;EXERCISE: Using a loop, create a list with all integers from zero to twenty. Call the list values.&quot;&quot;&quot;</span>
+</pre></div>
+</div>
+</div>
+</div>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="sd">&quot;&quot;&quot;Test cases.&quot;&quot;&quot;</span>
+<span class="k">assert</span> <span class="nb">len</span><span class="p">(</span><span class="n">values</span><span class="p">)</span> <span class="o">==</span> <span class="mi">21</span>
+<span class="k">assert</span> <span class="n">values</span> <span class="o">==</span> <span class="p">[</span><span class="n">x</span> <span class="k">for</span> <span class="n">x</span> <span class="ow">in</span> <span class="nb">range</span><span class="p">(</span><span class="mi">20</span> <span class="o">+</span> <span class="mi">1</span><span class="p">)]</span>
+</pre></div>
+</div>
+</div>
+</div>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="sd">&quot;&quot;&quot;EXERCISE: Make the fourth entry in the list equal to zero.&quot;&quot;&quot;</span>
+</pre></div>
+</div>
+</div>
+</div>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="sd">&quot;&quot;&quot;Test cases.&quot;&quot;&quot;</span>
+<span class="k">assert</span> <span class="n">values</span><span class="p">[</span><span class="mi">3</span><span class="p">]</span> <span class="o">==</span> <span class="mi">0</span>
+<span class="k">assert</span> <span class="nb">sum</span><span class="p">(</span><span class="n">values</span><span class="p">)</span> <span class="o">==</span> <span class="nb">int</span><span class="p">(</span><span class="mi">21</span> <span class="o">*</span> <span class="mi">20</span> <span class="o">/</span> <span class="mi">2</span> <span class="o">-</span> <span class="mi">3</span><span class="p">)</span>
+</pre></div>
+</div>
+</div>
+</div>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="sd">&quot;&quot;&quot;EXERCISE: Append the integer 21 to the list.&quot;&quot;&quot;</span>
+</pre></div>
+</div>
+</div>
+</div>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="sd">&quot;&quot;&quot;Test cases.&quot;&quot;&quot;</span>
+<span class="k">assert</span> <span class="nb">len</span><span class="p">(</span><span class="n">values</span><span class="p">)</span> <span class="o">==</span> <span class="mi">22</span>
+<span class="k">assert</span> <span class="n">values</span><span class="p">[</span><span class="o">-</span><span class="mi">1</span><span class="p">]</span> <span class="o">==</span> <span class="mi">21</span>
+</pre></div>
+</div>
+</div>
+</div>
+<p>For the next exercise, you’ll need to check if a number is even. This can be done by using the “modulus operator” <code class="docutils literal notranslate"><span class="pre">%</span></code> in Python. The value of <code class="docutils literal notranslate"><span class="pre">a</span> <span class="pre">%</span> <span class="pre">b</span></code>, where <code class="docutils literal notranslate"><span class="pre">a</span></code> and <code class="docutils literal notranslate"><span class="pre">b</span></code> are integers, is the remainder of <code class="docutils literal notranslate"><span class="pre">a</span> <span class="pre">/</span> <span class="pre">b</span></code>. For example, <code class="docutils literal notranslate"><span class="pre">5</span> <span class="pre">%</span> <span class="pre">2</span> <span class="pre">=</span> <span class="pre">1</span></code>, since 5 divided by 2 has a remainder of 1.</p>
+<p>To check if a number <code class="docutils literal notranslate"><span class="pre">num</span></code> is even, you can thus use <code class="docutils literal notranslate"><span class="pre">num</span> <span class="pre">%</span> <span class="pre">2</span> <span class="pre">==</span> <span class="pre">0</span></code>.</p>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="sd">&quot;&quot;&quot;EXERCISE: Find every entry in the list with an even number and set that entry equal to (the integer) zero.&quot;&quot;&quot;</span>
+</pre></div>
+</div>
+</div>
+</div>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="sd">&quot;&quot;&quot;Test cases.&quot;&quot;&quot;</span>
+<span class="k">assert</span> <span class="p">[</span><span class="n">x</span> <span class="o">%</span> <span class="mi">2</span> <span class="o">==</span> <span class="mi">1</span> <span class="k">for</span> <span class="n">x</span> <span class="ow">in</span> <span class="n">values</span><span class="p">]</span>
+</pre></div>
+</div>
+</div>
+</div>
+<hr class="docutils" />
+<p><a id="if"></a></p>
+</section>
+<section id="conditional-statements-using-if-in-python">
+<h2>5. Conditional Statements (using <code class="docutils literal notranslate"><span class="pre">if</span></code> in Python)<a class="headerlink" href="#conditional-statements-using-if-in-python" title="Link to this heading">#</a></h2>
+<section id="id5">
+<h3><a class="reference internal" href="#top"><span class="xref myst">back to top</span></a><a class="headerlink" href="#id5" title="Link to this heading">#</a></h3>
+<p>This section includes practice examples centered on <code class="docutils literal notranslate"><span class="pre">if</span></code> statements with increasing complexity.</p>
+<p><code class="docutils literal notranslate"><span class="pre">if</span></code> statements are great way to control the flow of our code and add nuance an complexity to our algorithms.</p>
+</section>
+<section id="task">
+<h3>Task<a class="headerlink" href="#task" title="Link to this heading">#</a></h3>
+<p>Comment the code below to explain what each line is doing.</p>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="sd">&#39;&#39;&#39;basic structure of an if statement&#39;&#39;&#39;</span>
+
+<span class="k">for</span> <span class="n">i</span> <span class="ow">in</span> <span class="nb">range</span><span class="p">(</span><span class="mi">10</span><span class="p">):</span> <span class="c1"># add a comment here to explain what this code is doing</span>
+    <span class="k">if</span> <span class="n">i</span><span class="o">%</span><span class="k">2</span> != 0: #add a comment here to exlplain what this code is doing
+        <span class="nb">print</span><span class="p">(</span><span class="n">i</span><span class="p">,</span> <span class="s1">&#39;is odd!&#39;</span><span class="p">)</span> <span class="c1">#add a comment here to explain what the code is doing</span>
+</pre></div>
+</div>
+</div>
+</div>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="c1">###ANSWER###</span>
+
+<span class="k">for</span> <span class="n">i</span> <span class="ow">in</span> <span class="nb">range</span><span class="p">(</span><span class="mi">10</span><span class="p">):</span> <span class="c1"># a for loop where i goes from 0 to 9</span>
+    <span class="k">if</span> <span class="n">i</span><span class="o">%</span><span class="k">2</span> != 0: # if i is not evenly divisible by two, move on to the next line
+        <span class="nb">print</span><span class="p">(</span><span class="n">i</span><span class="p">,</span> <span class="s1">&#39;is odd!&#39;</span><span class="p">)</span> <span class="c1"># if i is odd, this will print the value of i and the string &#39;is odd!&#39;</span>
+</pre></div>
+</div>
+</div>
+</div>
+</section>
+<section id="id6">
+<h3>Task<a class="headerlink" href="#id6" title="Link to this heading">#</a></h3>
+<p>Comment the code below to explain what each line is doing.</p>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="sd">&#39;&#39;&#39;basic structure of an if-else statement&#39;&#39;&#39;</span>
+
+<span class="k">for</span> <span class="n">i</span> <span class="ow">in</span> <span class="nb">range</span><span class="p">(</span><span class="mi">10</span><span class="p">):</span> 
+    <span class="k">if</span> <span class="n">i</span><span class="o">%</span><span class="k">2</span> != 0: 
+        <span class="nb">print</span><span class="p">(</span><span class="n">i</span><span class="p">,</span> <span class="s1">&#39;is odd!&#39;</span><span class="p">)</span> 
+    <span class="k">else</span><span class="p">:</span>             <span class="c1">#add a comment here to explain what the code is doing</span>
+        <span class="nb">print</span><span class="p">(</span><span class="n">i</span><span class="p">,</span><span class="s1">&#39;is even!&#39;</span><span class="p">)</span> <span class="c1">#add a comment here to explain what the code is doing</span>
+</pre></div>
+</div>
+</div>
+</div>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="c1">###ANSWER###</span>
+
+<span class="k">for</span> <span class="n">i</span> <span class="ow">in</span> <span class="nb">range</span><span class="p">(</span><span class="mi">10</span><span class="p">):</span> 
+    <span class="k">if</span> <span class="n">i</span><span class="o">%</span><span class="k">2</span> != 0: 
+        <span class="nb">print</span><span class="p">(</span><span class="n">i</span><span class="p">,</span> <span class="s1">&#39;is odd!&#39;</span><span class="p">)</span> 
+    <span class="k">else</span><span class="p">:</span>             <span class="c1">#if i is evenly divisible by two, do this next line of code instead</span>
+        <span class="nb">print</span><span class="p">(</span><span class="n">i</span><span class="p">,</span><span class="s1">&#39;is even!&#39;</span><span class="p">)</span> <span class="c1"># prints the value of i (if i is even) and the string &#39;is even!&#39;</span>
+</pre></div>
+</div>
+</div>
+</div>
+</section>
+<section id="id7">
+<h3>Task<a class="headerlink" href="#id7" title="Link to this heading">#</a></h3>
+<p>Write an if-else statement that loops through the list of numbers below and prints “I am greater than 25” if the number is greater than 25 and “I am less than 25” otherwise. Comment your code to explain what each line is doing!</p>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">list_of_ints</span> <span class="o">=</span> <span class="p">[</span><span class="mi">18</span><span class="p">,</span> <span class="mi">34</span><span class="p">,</span> <span class="mi">9</span><span class="p">,</span> <span class="mi">4</span><span class="p">,</span> <span class="mi">5</span><span class="p">,</span> <span class="mi">43</span><span class="p">,</span> <span class="mi">11</span><span class="p">,</span> <span class="mi">49</span><span class="p">,</span> <span class="mi">50</span><span class="p">,</span> <span class="mi">14</span><span class="p">,</span> <span class="mi">35</span><span class="p">,</span> <span class="mi">37</span><span class="p">,</span> <span class="mi">39</span><span class="p">,</span> <span class="mi">22</span><span class="p">,</span> <span class="mi">38</span><span class="p">,</span> <span class="mi">36</span><span class="p">,</span> <span class="mi">46</span><span class="p">,</span> <span class="mi">44</span><span class="p">,</span> <span class="mi">22</span><span class="p">,</span> <span class="mi">16</span><span class="p">]</span>
+
+<span class="c1"># put your pseudocode and code here</span>
+</pre></div>
+</div>
+</div>
+</div>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="c1">###ANSWER###</span>
+
+<span class="k">for</span> <span class="n">number</span> <span class="ow">in</span> <span class="n">list_of_ints</span><span class="p">:</span>
+    <span class="k">if</span> <span class="n">number</span> <span class="o">&gt;</span> <span class="mi">25</span><span class="p">:</span>
+        <span class="nb">print</span><span class="p">(</span><span class="n">number</span><span class="p">,</span><span class="s1">&#39;I am greater than 25!&#39;</span><span class="p">)</span>
+    <span class="k">else</span><span class="p">:</span>
+        <span class="nb">print</span><span class="p">(</span><span class="n">number</span><span class="p">,</span><span class="s1">&#39;I am less than 25!&#39;</span><span class="p">)</span>
+</pre></div>
+</div>
+</div>
+</div>
+</section>
+<section id="id8">
+<h3>Task<a class="headerlink" href="#id8" title="Link to this heading">#</a></h3>
+<p>Comment the code below to explain what each line is doing.</p>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="sd">&#39;&#39;&#39;if-elif-else statments add further complexity to our code!&#39;&#39;&#39;</span>
+
+<span class="n">list_of_things</span> <span class="o">=</span> <span class="p">[</span><span class="s1">&#39;cheese&#39;</span><span class="p">,</span><span class="mf">5.0</span><span class="p">,</span><span class="s1">&#39;puppies&#39;</span><span class="p">,</span><span class="mi">1</span><span class="p">,</span><span class="mi">3</span><span class="p">,</span><span class="s1">&#39;otters&#39;</span><span class="p">,</span><span class="mf">9.7</span><span class="p">,</span><span class="mf">1.5</span><span class="p">,</span><span class="s1">&#39;football&#39;</span><span class="p">]</span>
+
+<span class="k">for</span> <span class="n">item</span> <span class="ow">in</span> <span class="n">list_of_things</span><span class="p">:</span> <span class="c1">#add a comment here to explain what the code is doing</span>
+    <span class="k">if</span> <span class="nb">type</span><span class="p">(</span><span class="n">item</span><span class="p">)</span><span class="o">==</span><span class="nb">str</span><span class="p">:</span> <span class="c1">#add a comment here to explain what the code is doing</span>
+        <span class="nb">print</span><span class="p">(</span><span class="n">item</span><span class="p">,</span> <span class="s1">&#39;is a string!&#39;</span><span class="p">)</span>
+    <span class="k">elif</span> <span class="nb">type</span><span class="p">(</span><span class="n">item</span><span class="p">)</span> <span class="o">==</span> <span class="nb">int</span><span class="p">:</span>            <span class="c1">#add a comment here to explain what the code is doing</span>
+        <span class="nb">print</span><span class="p">(</span><span class="n">item</span><span class="p">,</span><span class="s1">&#39;is an integer!&#39;</span><span class="p">)</span>
+    <span class="k">else</span><span class="p">:</span>             <span class="c1">#add a comment here to explain what the code is doing</span>
+        <span class="nb">print</span><span class="p">(</span><span class="n">item</span><span class="p">,</span><span class="s1">&#39;is a float!&#39;</span><span class="p">)</span> 
+</pre></div>
+</div>
+</div>
+</div>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="c1">###ANSWER###</span>
+
+<span class="k">for</span> <span class="n">item</span> <span class="ow">in</span> <span class="n">list_of_things</span><span class="p">:</span> <span class="c1">#iterating over each element in list_of_things</span>
+    <span class="k">if</span> <span class="nb">type</span><span class="p">(</span><span class="n">item</span><span class="p">)</span><span class="o">==</span><span class="nb">str</span><span class="p">:</span> <span class="c1">#if the type of item is a string, print the value and &#39;is a string!&#39;</span>
+        <span class="nb">print</span><span class="p">(</span><span class="n">item</span><span class="p">,</span> <span class="s1">&#39;is a string!&#39;</span><span class="p">)</span>
+    <span class="k">elif</span> <span class="nb">type</span><span class="p">(</span><span class="n">item</span><span class="p">)</span> <span class="o">==</span> <span class="nb">int</span><span class="p">:</span>            <span class="c1">#if the type of item is an integer, print the value and &#39;is an integer!&#39;</span>
+        <span class="nb">print</span><span class="p">(</span><span class="n">item</span><span class="p">,</span><span class="s1">&#39;is an integer!&#39;</span><span class="p">)</span>
+    <span class="k">else</span><span class="p">:</span>             <span class="c1">#otherwise, print that the value is a float</span>
+        <span class="nb">print</span><span class="p">(</span><span class="n">item</span><span class="p">,</span><span class="s1">&#39;is a float!&#39;</span><span class="p">)</span> 
+</pre></div>
+</div>
+</div>
+</div>
+</section>
+<section id="id9">
+<h3>Task<a class="headerlink" href="#id9" title="Link to this heading">#</a></h3>
+<p>Write a set of if-elif-else statements to categorize the animals in this list as two-legged, four-legged, swimming, or something else. Comment your code to explain what each line is doing!</p>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">list_of_animals</span> <span class="o">=</span> <span class="p">[</span><span class="s1">&#39;parrot&#39;</span><span class="p">,</span><span class="s1">&#39;mussel&#39;</span><span class="p">,</span><span class="s1">&#39;penguin&#39;</span><span class="p">,</span><span class="s1">&#39;polar bear&#39;</span><span class="p">,</span><span class="s1">&#39;salmon&#39;</span><span class="p">,</span><span class="s1">&#39;zebra&#39;</span><span class="p">,</span><span class="s1">&#39;shark&#39;</span><span class="p">,</span><span class="s1">&#39;clam&#39;</span><span class="p">]</span>
+
+<span class="c1">#put your code and pseudocode here</span>
+</pre></div>
+</div>
+</div>
+</div>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="c1">###ANSWER###</span>
+
+<span class="k">for</span> <span class="n">animal</span> <span class="ow">in</span> <span class="n">list_of_animals</span><span class="p">:</span>
+    <span class="k">if</span> <span class="n">animal</span> <span class="o">==</span> <span class="s1">&#39;parrot&#39;</span> <span class="ow">or</span> <span class="n">animal</span> <span class="o">==</span> <span class="s1">&#39;penguin&#39;</span><span class="p">:</span>
+        <span class="nb">print</span><span class="p">(</span><span class="s1">&#39;I have two legs!&#39;</span><span class="p">)</span>
+    <span class="k">elif</span> <span class="n">animal</span> <span class="o">==</span> <span class="s1">&#39;polar bear&#39;</span> <span class="ow">or</span> <span class="n">animal</span> <span class="o">==</span> <span class="s1">&#39;zebra&#39;</span><span class="p">:</span>
+        <span class="nb">print</span><span class="p">(</span><span class="s1">&#39;I have four legs!&#39;</span><span class="p">)</span>
+    <span class="k">elif</span> <span class="n">animal</span> <span class="o">==</span> <span class="s1">&#39;salmon&#39;</span> <span class="ow">or</span> <span class="n">animal</span> <span class="o">==</span> <span class="s1">&#39;shark&#39;</span><span class="p">:</span>
+        <span class="nb">print</span><span class="p">(</span><span class="s1">&#39;I swim!&#39;</span><span class="p">)</span>
+    <span class="k">else</span><span class="p">:</span>
+        <span class="nb">print</span><span class="p">(</span><span class="s1">&#39;I travel another way!&#39;</span><span class="p">)</span>
+</pre></div>
+</div>
+</div>
+</div>
+<hr class="docutils" />
+<p><a id="functions"></a></p>
+</section>
+</section>
+<section id="defining-and-using-functions-functions-will-not-be-on-quiz-1-but-will-likely-be-involved-in-future-quizzes">
+<h2>6. Defining and using functions (functions will not be on Quiz 1, but will likely be involved in future quizzes)<a class="headerlink" href="#defining-and-using-functions-functions-will-not-be-on-quiz-1-but-will-likely-be-involved-in-future-quizzes" title="Link to this heading">#</a></h2>
+<section id="id10">
+<h3><a class="reference internal" href="#top"><span class="xref myst">back to top</span></a><a class="headerlink" href="#id10" title="Link to this heading">#</a></h3>
+<p>Like loops, functions are another extremely useful tool in programming. Functions allow use to run code in different places for different uses <i>without rewriting the code every time!</i></p>
+<p>Functions have the following key components.</p>
+<ol class="arabic simple">
+<li><p><b>Input:</b> What is “fed into” the function.</p></li>
+<li><p><b>Body:</b> The “body of a function” is the code inside of the function that executes when the function is called.</p></li>
+<li><p><b>Output:</b> Whatever a function “produces,” depending on its input. “Output” is also called a <b>return</b> value.</p></li>
+</ol>
+<p>Here’s an example of a function that adds two numbers.</p>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="sd">&quot;&quot;&quot;EXAMPLE: Defining a function in Python.&quot;&quot;&quot;</span>
+<span class="k">def</span> <span class="nf">add</span><span class="p">(</span><span class="n">x</span><span class="p">,</span> <span class="n">y</span><span class="p">):</span>
+    <span class="n">val</span> <span class="o">=</span> <span class="n">x</span> <span class="o">+</span> <span class="n">y</span>
+    <span class="k">return</span> <span class="n">val</span>
+</pre></div>
+</div>
+</div>
+</div>
+<p>Let’s breakdown this function:</p>
+<ol class="arabic simple">
+<li><p><b>Input:</b> Two numbers, called <code class="docutils literal notranslate"><span class="pre">x</span></code> and <code class="docutils literal notranslate"><span class="pre">y</span></code>.</p></li>
+<li><p><b>Body:</b> The line <code class="docutils literal notranslate"><span class="pre">val</span> <span class="pre">=</span> <span class="pre">x</span> <span class="pre">+</span> <span class="pre">y</span></code>. (Generally, every line that’s inside (indented) in the function is part of the body. Whether we include the <code class="docutils literal notranslate"><span class="pre">return</span></code> statement as part of the body depends on who you talk to and is not important here.)</p></li>
+<li><p><b>Output:</b>The sum of the two numbers, called <code class="docutils literal notranslate"><span class="pre">val</span></code>, which is returned by the function.</p></li>
+</ol>
+<p><b>KEY POINT:</b> Variables INSIDE a function CANNOT be accessed OUTSIDE a function.</p>
+<p>The names of the variables are “dummies” and can be changed.</p>
+<p><b>KEY POINT:</b> To get the output of a function, we must CALL the function.</p>
+<p>You cannot access the variable <code class="docutils literal notranslate"><span class="pre">val</span></code> inside the function <code class="docutils literal notranslate"><span class="pre">add</span></code> above! To get it, you must call the function.</p>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="sd">&quot;&quot;&quot;EXAMPLE: Calling a function.&quot;&quot;&quot;</span>
+<span class="n">answer</span> <span class="o">=</span> <span class="n">add</span><span class="p">(</span><span class="mi">10</span><span class="p">,</span> <span class="mi">20</span><span class="p">)</span>
+<span class="nb">print</span><span class="p">(</span><span class="n">answer</span><span class="p">)</span>
+</pre></div>
+</div>
+</div>
+</div>
+<p>The function above is simple and wouldn’t likely help us simplify our code as programmers. Functions that perform more complex tasks that we need to do repeteadly can <i>significantly help us as programmers.</i></p>
+</section>
+<section id="the-difference-between-return-and-print">
+<h3>The Difference Between <code class="docutils literal notranslate"><span class="pre">return</span></code> and <code class="docutils literal notranslate"><span class="pre">print</span></code><a class="headerlink" href="#the-difference-between-return-and-print" title="Link to this heading">#</a></h3>
+<p>In a few words:</p>
+<ol class="arabic simple">
+<li><p><code class="docutils literal notranslate"><span class="pre">return</span></code> produces an output that can be stored in a variable when the function is called.</p></li>
+<li><p><code class="docutils literal notranslate"><span class="pre">print</span></code> displays variables to the screen. They cannot be stored by calling the function.</p></li>
+</ol>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="sd">&quot;&quot;&quot;EXAMPLE: Difference between print and return.&quot;&quot;&quot;</span>
+
+<span class="k">def</span> <span class="nf">return_string</span><span class="p">(</span><span class="n">string</span><span class="p">):</span>
+    <span class="k">return</span> <span class="n">string</span>
+
+<span class="k">def</span> <span class="nf">print_string</span><span class="p">(</span><span class="n">string</span><span class="p">):</span>
+    <span class="nb">print</span><span class="p">(</span><span class="n">string</span><span class="p">)</span>
+</pre></div>
+</div>
+</div>
+</div>
+<p>Let’s call the <code class="docutils literal notranslate"><span class="pre">return_string</span></code> function below:</p>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">output_from_return</span> <span class="o">=</span> <span class="n">return_string</span><span class="p">(</span><span class="s2">&quot;hello&quot;</span><span class="p">)</span>
+</pre></div>
+</div>
+</div>
+</div>
+<p>Nothing happens when we call the function. The output is stored in the variable called <code class="docutils literal notranslate"><span class="pre">output_from_return</span></code>.</p>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="nb">print</span><span class="p">(</span><span class="nb">type</span><span class="p">(</span><span class="n">output_from_return</span><span class="p">))</span>
+<span class="nb">print</span><span class="p">(</span><span class="n">output_from_return</span><span class="p">)</span>
+</pre></div>
+</div>
+</div>
+</div>
+<p>Now let’s call the <code class="docutils literal notranslate"><span class="pre">print_string</span></code> function below:</p>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">output_from_print</span> <span class="o">=</span> <span class="n">print_string</span><span class="p">(</span><span class="s2">&quot;hello&quot;</span><span class="p">)</span>
+</pre></div>
+</div>
+</div>
+</div>
+<p>When we call this function, the string <code class="docutils literal notranslate"><span class="pre">hello</span></code> is printed to the screen. This happens because there is a <code class="docutils literal notranslate"><span class="pre">print</span></code> statement in the body of the function. When the function is called, every line in the body of the function gets evaluated.</p>
+<p>Let’s look at the variable <code class="docutils literal notranslate"><span class="pre">output_from_print</span></code>:</p>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="nb">print</span><span class="p">(</span><span class="nb">type</span><span class="p">(</span><span class="n">output_from_print</span><span class="p">))</span>
+<span class="nb">print</span><span class="p">(</span><span class="n">output_from_print</span><span class="p">)</span>
+</pre></div>
+</div>
+</div>
+</div>
+<p>The variable is <code class="docutils literal notranslate"><span class="pre">None</span></code> because the function doesn’t return anything. (In other words, it returns <code class="docutils literal notranslate"><span class="pre">None</span></code>.)</p>
+</section>
+<section id="practice-problems-for-functions">
+<h3>Practice Problems for Functions<a class="headerlink" href="#practice-problems-for-functions" title="Link to this heading">#</a></h3>
+<p>Solve the following exercises to get more practice with functions.</p>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="sd">&quot;&quot;&quot;EXERCISE: Write a function called mult that </span>
+
+<span class="sd">inputs: two integers </span>
+
+<span class="sd">and </span>
+
+<span class="sd">returns: the product of the two integers.</span>
+
+<span class="sd">Example: mult(4, 5) should return 4 * 5 = 20.</span>
+<span class="sd">&quot;&quot;&quot;</span>
+</pre></div>
+</div>
+</div>
+</div>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="sd">&quot;&quot;&quot;Test cases. If your code is correct, no errors will be thrown.&quot;&quot;&quot;</span>
+<span class="k">assert</span> <span class="n">mult</span><span class="p">(</span><span class="mi">4</span><span class="p">,</span> <span class="mi">5</span><span class="p">)</span> <span class="o">==</span> <span class="mi">20</span>
+<span class="k">assert</span> <span class="n">mult</span><span class="p">(</span><span class="mi">1</span><span class="p">,</span> <span class="mi">3</span><span class="p">)</span> <span class="o">==</span> <span class="mi">3</span>
+<span class="k">assert</span> <span class="n">mult</span><span class="p">(</span><span class="mi">2</span><span class="p">,</span> <span class="mi">4</span><span class="p">)</span> <span class="o">==</span> <span class="mi">8</span>
+</pre></div>
+</div>
+</div>
+</div>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="sd">&quot;&quot;&quot;EXERCISE: Write a function called square that </span>
+
+<span class="sd">inputs: one integer </span>
+
+<span class="sd">and</span>
+
+<span class="sd">returns: the squared integer.</span>
+
+<span class="sd">Example: square(5) should return 5**2 = 25.</span>
+<span class="sd">&quot;&quot;&quot;</span>
+</pre></div>
+</div>
+</div>
+</div>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="sd">&quot;&quot;&quot;Test cases. If your code is correct, no errors will be thrown.&quot;&quot;&quot;</span>
+<span class="k">assert</span> <span class="n">square</span><span class="p">(</span><span class="mi">5</span><span class="p">)</span> <span class="o">==</span> <span class="mi">25</span>
+<span class="k">assert</span> <span class="n">square</span><span class="p">(</span><span class="mi">0</span><span class="p">)</span> <span class="o">==</span> <span class="mi">0</span>
+<span class="k">assert</span> <span class="n">square</span><span class="p">(</span><span class="mi">1</span><span class="p">)</span> <span class="o">==</span> <span class="mi">1</span>
+</pre></div>
+</div>
+</div>
+</div>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="sd">&quot;&quot;&quot;EXERCISE: Use your function square to compute the squared value of each element in a given list,</span>
+<span class="sd">appending each to a new list.&quot;&quot;&quot;</span>
+<span class="c1"># given input</span>
+<span class="n">xlist</span> <span class="o">=</span> <span class="nb">list</span><span class="p">(</span><span class="nb">range</span><span class="p">(</span><span class="mi">20</span> <span class="o">+</span> <span class="mi">1</span><span class="p">))</span>
+</pre></div>
+</div>
+</div>
+</div>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="sd">&quot;&quot;&quot;EXERCISE: Write a function called contains which </span>
+
+<span class="sd">inputs: a list and an item </span>
+
+<span class="sd">and </span>
+
+<span class="sd">outputs: True if the item is in the list, else False.</span>
+
+<span class="sd">Examples: contains([1, 2, 3], 2) should return True</span>
+<span class="sd">          contains([1, 2, 3], 4) should return False</span>
+<span class="sd">          contains([&quot;a&quot;, &quot;b&quot;, &quot;c&quot;], &quot;c&quot;) should return True.</span>
+<span class="sd">&quot;&quot;&quot;</span>
+</pre></div>
+</div>
+</div>
+</div>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="sd">&quot;&quot;&quot;Test cases. If your code is correct, no errors should be thrown.&quot;&quot;&quot;</span>
+<span class="k">assert</span> <span class="n">contains</span><span class="p">([</span><span class="mi">1</span><span class="p">,</span> <span class="mi">2</span><span class="p">,</span> <span class="mi">3</span><span class="p">],</span> <span class="mi">1</span><span class="p">)</span>
+<span class="k">assert</span> <span class="ow">not</span> <span class="n">contains</span><span class="p">([</span><span class="mi">1</span><span class="p">,</span> <span class="mi">2</span><span class="p">,</span> <span class="mi">3</span><span class="p">],</span> <span class="mi">4</span><span class="p">)</span>
+<span class="k">assert</span> <span class="n">contains</span><span class="p">([</span><span class="s2">&quot;a&quot;</span><span class="p">,</span> <span class="s2">&quot;b&quot;</span><span class="p">,</span> <span class="s2">&quot;c&quot;</span><span class="p">],</span> <span class="s2">&quot;c&quot;</span><span class="p">)</span>
+</pre></div>
+</div>
+</div>
+</div>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="sd">&quot;&quot;&quot;EXERCISE: Write a function called in_either that</span>
+
+<span class="sd">inputs: two lists (call them list1 and list2) and an item</span>
+
+<span class="sd">and</span>
+
+<span class="sd">returns: True if the item is in either list, else False.</span>
+
+<span class="sd">Hint: Can you utilize a function you&#39;ve already written?</span>
+
+<span class="sd">Examples: in_either([1, 2, 3], [4, 5, 6], 3) should return True</span>
+<span class="sd">          in_either([1, 2, 3], [4, 5, 6], 7) should return False</span>
+<span class="sd">&quot;&quot;&quot;</span>
+</pre></div>
+</div>
+</div>
+</div>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="sd">&quot;&quot;&quot;Test cases. If your code is correct, no errors should be thrown.&quot;&quot;&quot;</span>
+<span class="k">assert</span> <span class="n">in_either</span><span class="p">([</span><span class="mi">1</span><span class="p">,</span> <span class="mi">2</span><span class="p">,</span> <span class="mi">3</span><span class="p">],</span> <span class="p">[</span><span class="mi">4</span><span class="p">,</span> <span class="mi">5</span><span class="p">,</span> <span class="mi">6</span><span class="p">],</span> <span class="mi">3</span><span class="p">)</span> <span class="o">==</span> <span class="kc">True</span>
+<span class="k">assert</span> <span class="n">in_either</span><span class="p">([</span><span class="mi">1</span><span class="p">,</span> <span class="mi">2</span><span class="p">,</span> <span class="mi">3</span><span class="p">],</span> <span class="p">[</span><span class="mi">4</span><span class="p">,</span> <span class="mi">5</span><span class="p">,</span> <span class="mi">6</span><span class="p">],</span> <span class="mi">7</span><span class="p">)</span> <span class="o">==</span> <span class="kc">False</span>
+<span class="k">assert</span> <span class="n">in_either</span><span class="p">([</span><span class="mi">1</span><span class="p">,</span> <span class="mi">2</span><span class="p">,</span> <span class="mi">3</span><span class="p">],</span> <span class="p">[</span><span class="mi">3</span><span class="p">,</span> <span class="mi">5</span><span class="p">,</span> <span class="mi">6</span><span class="p">],</span> <span class="mi">3</span><span class="p">)</span> <span class="o">==</span> <span class="kc">True</span>
+</pre></div>
+</div>
+</div>
+</div>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="sd">&quot;&quot;&quot;EXERCISE: Write a function called mymax which</span>
+
+<span class="sd">inputs: a list of integers</span>
+
+<span class="sd">and </span>
+
+<span class="sd">outputs: the maximum integer in the list.</span>
+
+<span class="sd">NOTE: Python has a builtin function called max to do this. DO NOT USE this function!</span>
+<span class="sd">&quot;&quot;&quot;</span>
+</pre></div>
+</div>
+</div>
+</div>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="sd">&quot;&quot;&quot;Test cases. If your code is correct, no errors should be thrown.&quot;&quot;&quot;</span>
+<span class="k">assert</span> <span class="n">mymax</span><span class="p">([</span><span class="mi">66</span><span class="p">,</span> <span class="mi">4</span><span class="p">,</span> <span class="mi">3</span><span class="p">,</span> <span class="mi">77</span><span class="p">,</span> <span class="mi">1</span><span class="p">,</span> <span class="mi">4</span><span class="p">,</span> <span class="mi">5</span><span class="p">])</span> <span class="o">==</span> <span class="mi">77</span>
+<span class="k">assert</span> <span class="n">mymax</span><span class="p">([</span><span class="o">-</span><span class="mi">3</span><span class="p">,</span> <span class="o">-</span><span class="mi">2</span><span class="p">,</span> <span class="o">-</span><span class="mi">9</span><span class="p">])</span> <span class="o">==</span> <span class="o">-</span><span class="mi">2</span>
+<span class="k">assert</span> <span class="n">mymax</span><span class="p">([</span><span class="mi">1</span><span class="p">])</span> <span class="o">==</span> <span class="mi">1</span>
+<span class="k">assert</span> <span class="n">mymax</span><span class="p">(</span><span class="nb">list</span><span class="p">(</span><span class="nb">range</span><span class="p">(</span><span class="mi">99</span><span class="p">)))</span> <span class="o">==</span> <span class="mi">98</span>
+</pre></div>
+</div>
+</div>
+</div>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="sd">&quot;&quot;&quot;EXERCISE: Write a function called minimax which</span>
+
+<span class="sd">inputs: a list of nonnegative integers</span>
+
+<span class="sd">outputs: the ratio of the maximum value in the list to the minimum value in the list.</span>
+
+<span class="sd">IF the minimum value in the list is zero, just return the maximum value.</span>
+
+<span class="sd">Example: minimax([2, 5, 3, 8]) should return 8 / 2 = 4.&quot;&quot;&quot;</span>
+</pre></div>
+</div>
+</div>
+</div>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="sd">&quot;&quot;&quot;Test cases. If your code is correct, no errors should be thrown.&quot;&quot;&quot;</span>
+<span class="k">assert</span> <span class="nb">int</span><span class="p">(</span><span class="n">minimax</span><span class="p">([</span><span class="mi">2</span><span class="p">,</span> <span class="mi">5</span><span class="p">,</span> <span class="mi">3</span><span class="p">,</span> <span class="mi">8</span><span class="p">]))</span> <span class="o">==</span> <span class="mi">4</span>
+<span class="k">assert</span> <span class="nb">int</span><span class="p">(</span><span class="n">minimax</span><span class="p">([</span><span class="mi">0</span><span class="p">,</span> <span class="mi">5</span><span class="p">,</span> <span class="mi">3</span><span class="p">,</span> <span class="mi">8</span><span class="p">]))</span> <span class="o">==</span> <span class="mi">8</span>
+<span class="k">assert</span> <span class="nb">int</span><span class="p">(</span><span class="n">minimax</span><span class="p">([</span><span class="mi">3</span><span class="p">,</span> <span class="mi">5</span><span class="p">,</span> <span class="mi">8</span><span class="p">,</span> <span class="mi">100</span><span class="p">]))</span> <span class="o">==</span> <span class="mi">33</span>
+</pre></div>
+</div>
+</div>
+</div>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="sd">&quot;&quot;&quot;EXERCISE: Write a function called fib that</span>
+
+<span class="sd">inputs: an integer n</span>
+
+<span class="sd">and</span>
+
+<span class="sd">outputs: the nth fibonacci number, defined by a[n] = a[n - 1] + a[n - 2] with a[0] = a[1] = 1.</span>
+<span class="sd">&quot;&quot;&quot;</span>
+</pre></div>
+</div>
+</div>
+</div>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="sd">&quot;&quot;&quot;Test cases. If your code is correct, no errors should be thrown.&quot;&quot;&quot;</span>
+<span class="k">assert</span> <span class="n">fib</span><span class="p">(</span><span class="mi">3</span><span class="p">)</span> <span class="o">==</span> <span class="mi">2</span>
+<span class="k">assert</span> <span class="n">fib</span><span class="p">(</span><span class="mi">7</span><span class="p">)</span> <span class="o">==</span> <span class="mi">13</span>
+<span class="k">assert</span> <span class="n">fib</span><span class="p">(</span><span class="mi">14</span><span class="p">)</span> <span class="o">==</span> <span class="mi">377</span>
+</pre></div>
+</div>
+</div>
+</div>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="sd">&quot;&quot;&quot;EXERCISE: Given the function prime below, which </span>
+
+<span class="sd">inputs: an integer</span>
+
+<span class="sd">and</span>
+
+<span class="sd">outputs: True if the integer is prime, else False</span>
+
+
+<span class="sd">and a list of numbers, determine every number that is prime.</span>
+
+<span class="sd">Store all prime numbers in a list called primes.</span>
+<span class="sd">&quot;&quot;&quot;</span>
+
+<span class="kn">from</span> <span class="nn">math</span> <span class="kn">import</span> <span class="n">sqrt</span><span class="p">,</span> <span class="n">floor</span>
+
+<span class="k">def</span> <span class="nf">prime</span><span class="p">(</span><span class="n">n</span><span class="p">):</span>
+<span class="w">    </span><span class="sd">&quot;&quot;&quot;Returns True if n is prime, else False.&quot;&quot;&quot;</span>
+    <span class="k">for</span> <span class="n">x</span> <span class="ow">in</span> <span class="nb">range</span><span class="p">(</span><span class="mi">2</span><span class="p">,</span> <span class="n">floor</span><span class="p">(</span><span class="n">sqrt</span><span class="p">(</span><span class="n">n</span><span class="p">)</span> <span class="o">+</span> <span class="mi">1</span><span class="p">)):</span>
+        <span class="k">if</span> <span class="n">n</span> <span class="o">%</span> <span class="n">x</span> <span class="o">==</span> <span class="mi">0</span><span class="p">:</span>
+            <span class="k">return</span> <span class="kc">False</span>
+    <span class="k">return</span> <span class="kc">True</span>
+
+<span class="n">numbers</span> <span class="o">=</span> <span class="nb">list</span><span class="p">(</span><span class="nb">range</span><span class="p">(</span><span class="mi">1</span><span class="p">,</span> <span class="mi">100</span><span class="p">))</span>
+
+<span class="c1"># YOUR CODE HERE</span>
+</pre></div>
+</div>
+</div>
+</div>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="sd">&quot;&quot;&quot;Test cases. If your code is correct, no errors should be thrown.&quot;&quot;&quot;</span>
+<span class="k">for</span> <span class="n">x</span> <span class="ow">in</span> <span class="n">primes</span><span class="p">[</span><span class="mi">2</span><span class="p">:]:</span>
+    <span class="k">assert</span> <span class="n">x</span> <span class="o">%</span> <span class="mi">2</span> <span class="o">==</span> <span class="mi">1</span>
+</pre></div>
+</div>
+</div>
+</div>
+<p>Note that functions can receive functions as input arguments!</p>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="sd">&quot;&quot;&quot;EXAMPLE: The function given below</span>
+
+<span class="sd">inputs: a function which inputs one integer and an integer</span>
+
+<span class="sd">body: evaluates the function at the given integer</span>
+
+<span class="sd">returns: the output of the input function</span>
+<span class="sd">&quot;&quot;&quot;</span>
+
+<span class="k">def</span> <span class="nf">evaluate</span><span class="p">(</span><span class="n">func</span><span class="p">,</span> <span class="n">val</span><span class="p">):</span>
+<span class="w">    </span><span class="sd">&quot;&quot;&quot;Evaluates the function func at the value val and returns the output.</span>
+<span class="sd">    </span>
+<span class="sd">    ASSUMES: func is a function with one input</span>
+<span class="sd">             val is a valid input for func</span>
+<span class="sd">    &quot;&quot;&quot;</span>
+    <span class="n">output</span> <span class="o">=</span> <span class="n">func</span><span class="p">(</span><span class="n">val</span><span class="p">)</span>
+    <span class="k">return</span> <span class="n">output</span>
+
+<span class="c1"># example -- using the above function with our square function from above</span>
+<span class="n">output</span> <span class="o">=</span> <span class="n">evaluate</span><span class="p">(</span><span class="n">square</span><span class="p">,</span> <span class="mi">5</span><span class="p">)</span>
+<span class="nb">print</span><span class="p">(</span><span class="n">output</span><span class="p">)</span>
+<span class="k">assert</span> <span class="n">output</span> <span class="o">==</span> <span class="mi">25</span>
+</pre></div>
+</div>
+</div>
+</div>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="sd">&quot;&quot;&quot;EXERCISE: Use the evaluate function, given above, with the function prime and the integer 1637 as inputs.</span>
+
+<span class="sd">Store the outcome of evaluate in a variable called output.&quot;&quot;&quot;</span>
+</pre></div>
+</div>
+</div>
+</div>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="sd">&quot;&quot;&quot;Test cases. If your code is correct, no errors should be thrown.&quot;&quot;&quot;</span>
+<span class="k">assert</span> <span class="n">output</span> <span class="o">==</span> <span class="kc">True</span>
+</pre></div>
+</div>
+</div>
+</div>
+<hr class="docutils" />
+<p><a id="debugging"></a></p>
+</section>
+</section>
+<section id="debugging-code">
+<h2>7. Debugging code<a class="headerlink" href="#debugging-code" title="Link to this heading">#</a></h2>
+<section id="id11">
+<h3><a class="reference internal" href="#top"><span class="xref myst">back to top</span></a><a class="headerlink" href="#id11" title="Link to this heading">#</a></h3>
+<p>Since this notebook is already quite large, we’ve put a separate “Debugging” notebook on the course website under Day 07, if you want to practice debugging some code. Go check it out!</p>
+</section>
+</section>
+<hr class="docutils" />
+<section id="assignment-wrapup">
+<h2>Assignment wrapup<a class="headerlink" href="#assignment-wrapup" title="Link to this heading">#</a></h2>
+<p>Please fill out the form that appears when you run the code below. <strong>You must completely fill this out in order to receive credit for the assignment!</strong></p>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="kn">from</span> <span class="nn">IPython.display</span> <span class="kn">import</span> <span class="n">HTML</span>
+<span class="n">HTML</span><span class="p">(</span>
+<span class="sd">&quot;&quot;&quot;</span>
+<span class="sd">&lt;iframe </span>
+<span class="sd">	src=&quot;https://cmse.msu.edu/cmse201-ic-survey&quot; </span>
+<span class="sd">	width=&quot;800px&quot; </span>
+<span class="sd">	height=&quot;600px&quot; </span>
+<span class="sd">	frameborder=&quot;0&quot; </span>
+<span class="sd">	marginheight=&quot;0&quot; </span>
+<span class="sd">	marginwidth=&quot;0&quot;&gt;</span>
+<span class="sd">	Loading...</span>
+<span class="sd">&lt;/iframe&gt;</span>
+<span class="sd">&quot;&quot;&quot;</span>
+<span class="p">)</span>
+</pre></div>
+</div>
+</div>
+</div>
+</section>
+<hr class="docutils" />
+<section id="congratulations-you-re-done">
+<h2>Congratulations, you’re done!<a class="headerlink" href="#congratulations-you-re-done" title="Link to this heading">#</a></h2>
+<p>Submit this assignment by uploading it to the course Desire2Learn web page.  Go to the “In-class assignments” folder, find the appropriate submission folder link, and upload it there.</p>
+<p>See you next class!</p>
+<p>© Copyright 2023,  The Department of Computational Mathematics, Science and Engineering at Michigan State University</p>
+</section>
+</section>
+
+    <script type="text/x-thebe-config">
+    {
+        requestKernel: true,
+        binderOptions: {
+            repo: "binder-examples/jupyter-stacks-datascience",
+            ref: "master",
+        },
+        codeMirrorConfig: {
+            theme: "abcdef",
+            mode: "python"
+        },
+        kernelOptions: {
+            name: "python3",
+            path: "./Day-07"
+        },
+        predefinedOutput: true
+    }
+    </script>
+    <script>kernelName = 'python3'</script>
+
+                </article>
+              
+
+              
+              
+              
+              
+                <footer class="prev-next-footer d-print-none">
+                  
+<div class="prev-next-area">
+    <a class="left-prev"
+       href="../Day-06/Day-06_In-Class_FunctionsAndSquirrels-STUDENT.html"
+       title="previous page">
+      <i class="fa-solid fa-angle-left"></i>
+      <div class="prev-next-info">
+        <p class="prev-next-subtitle">previous</p>
+        <p class="prev-next-title">Day 6 In Class Assignment: A Scurry of Squirrels in Central Park</p>
+      </div>
+    </a>
+    <a class="right-next"
+       href="Day-07_In-Class_ReviewingAndPracticingConcepts-Solutions.html"
+       title="next page">
+      <div class="prev-next-info">
+        <p class="prev-next-subtitle">next</p>
+        <p class="prev-next-title">Day 7 In-class Assignment: Reviewing and practicing prior concepts</p>
+      </div>
+      <i class="fa-solid fa-angle-right"></i>
+    </a>
+</div>
+                </footer>
+              
+            </div>
+            
+            
+              
+                <div class="bd-sidebar-secondary bd-toc"><div class="sidebar-secondary-items sidebar-secondary__inner">
+
+
+  <div class="sidebar-secondary-item">
+  <div class="page-toc tocsection onthispage">
+    <i class="fa-solid fa-list"></i> Contents
+  </div>
+  <nav class="bd-toc-nav page-toc">
+    <ul class="visible nav section-nav flex-column">
+<li class="toc-h1 nav-item toc-entry"><a class="reference internal nav-link" href="#">Day 7 In-class Assignment: Reviewing and practicing prior concepts</a><ul class="visible nav section-nav flex-column">
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#put-your-name-here"><p style="text-align: right;"> ✅ Put your name here.</p></a></li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#learning-goals">Learning Goals:</a></li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#plans-for-today">Plans for today <a id="top"></a></a><ul class="nav section-nav flex-column">
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#getting-around-in-this-document">Getting around in this document</a></li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#concept-sections">Concept Sections:</a></li>
+</ul>
+</li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#introduction-to-generative-ai-and-evaluating-code-produced-by-generative-ai">0. Introduction to Generative AI and Evaluating Code Produced by Generative AI</a><ul class="nav section-nav flex-column">
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#back-to-top"><span class="xref myst">back to top</span></a></li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#getting-started-with-generative-ai">Getting Started with Generative AI</a></li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#large-language-model-explained-by-chatgpt">Large Language Model Explained by ChatGPT</a></li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#wait-what-if-i-don-t-understand-all-that-vocabulary">Wait, what if I don’t understand all that vocabulary?</a></li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#nongpt-answer">nonGPT Answer</a></li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#concerns-about-llms">Concerns about LLMs</a></li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#lets-try-a-few-real-examples-with-chatgpt">Lets try a few real examples with ChatGPT</a></li>
+</ul>
+</li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#generative-ai-in-cmse-201-hita">Generative AI in CMSE 201: HiTA</a><ul class="nav section-nav flex-column">
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#evaluating-generative-ai-output">Evaluating Generative AI Output</a></li>
+</ul>
+</li>
+</ul>
+</li>
+<li class="toc-h1 nav-item toc-entry"><a class="reference internal nav-link" href="#next-steps">Next Steps</a><ul class="visible nav section-nav flex-column">
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#defining-variables-and-basic-data-types">1. Defining variables and basic data types</a><ul class="nav section-nav flex-column">
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#id1"><span class="xref myst">back to top</span></a></li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#primitive-data-types">1.1 Primitive Data Types</a></li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#one-equal-sign-versus-two-equal-signs">1.2 One Equal Sign Versus Two Equal Signs</a></li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#container-data-types">1.3 “Container” Data Types</a><ul class="nav section-nav flex-column">
+<li class="toc-h4 nav-item toc-entry"><a class="reference internal nav-link" href="#practice-problems-for-list">Practice Problems for <code class="docutils literal notranslate"><span class="pre">List</span></code></a></li>
+<li class="toc-h4 nav-item toc-entry"><a class="reference internal nav-link" href="#practice-problems-for-dict-this-can-be-useful-to-review-but-won-t-end-up-on-the-quiz">Practice Problems for <code class="docutils literal notranslate"><span class="pre">Dict</span></code> (this can be useful to review, but won’t end up on the quiz)</a></li>
+</ul>
+</li>
+</ul>
+</li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#performing-arithmetic-operations-and-concatenating-strings">2. Performing arithmetic operations and concatenating strings</a><ul class="nav section-nav flex-column">
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#id2"><span class="xref myst">back to top</span></a></li>
+</ul>
+</li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#working-with-loops-in-python">3. Working with loops in Python</a><ul class="nav section-nav flex-column">
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#id3"><span class="xref myst">back to top</span></a></li>
+</ul>
+</li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#for-loops-two-common-constructions"><code class="docutils literal notranslate"><span class="pre">for</span></code> loops: Two Common Constructions</a><ul class="nav section-nav flex-column">
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#when-to-use-which">When to use which?</a></li>
+</ul>
+</li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#practice-problems">Practice Problems</a></li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#connecting-lists-and-loops">4. Connecting lists and Loops</a><ul class="nav section-nav flex-column">
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#id4"><span class="xref myst">back to top</span></a></li>
+</ul>
+</li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#practice-problems-with-lists-and-loops">Practice Problems with Lists and Loops</a></li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#conditional-statements-using-if-in-python">5. Conditional Statements (using <code class="docutils literal notranslate"><span class="pre">if</span></code> in Python)</a><ul class="nav section-nav flex-column">
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#id5"><span class="xref myst">back to top</span></a></li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#task">Task</a></li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#id6">Task</a></li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#id7">Task</a></li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#id8">Task</a></li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#id9">Task</a></li>
+</ul>
+</li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#defining-and-using-functions-functions-will-not-be-on-quiz-1-but-will-likely-be-involved-in-future-quizzes">6. Defining and using functions (functions will not be on Quiz 1, but will likely be involved in future quizzes)</a><ul class="nav section-nav flex-column">
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#id10"><span class="xref myst">back to top</span></a></li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#the-difference-between-return-and-print">The Difference Between <code class="docutils literal notranslate"><span class="pre">return</span></code> and <code class="docutils literal notranslate"><span class="pre">print</span></code></a></li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#practice-problems-for-functions">Practice Problems for Functions</a></li>
+</ul>
+</li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#debugging-code">7. Debugging code</a><ul class="nav section-nav flex-column">
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#id11"><span class="xref myst">back to top</span></a></li>
+</ul>
+</li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#assignment-wrapup">Assignment wrapup</a></li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#congratulations-you-re-done">Congratulations, you’re done!</a></li>
+</ul>
+</li>
+</ul>
+
+  </nav></div>
+
+</div></div>
+              
+            
+          </div>
+          <footer class="bd-footer-content">
+            
+<div class="bd-footer-content__inner container">
+  
+  <div class="footer-item">
+    
+<p class="component-author">
+By the Department of Computational Mathematics, Science and Engineering at Michigan State University
+</p>
+
+  </div>
+  
+  <div class="footer-item">
+    
+
+  <p class="copyright">
+    
+      © Copyright 2026.
+      <br/>
+    
+  </p>
+
+  </div>
+  
+  <div class="footer-item">
+    
+  </div>
+  
+  <div class="footer-item">
+    
+  </div>
+  
+</div>
+          </footer>
+        
+
+      </main>
+    </div>
+  </div>
+  
+  <!-- Scripts loaded after <body> so the DOM is not blocked -->
+  <script src="../_static/scripts/bootstrap.js?digest=3ee479438cf8b5e0d341"></script>
+<script src="../_static/scripts/pydata-sphinx-theme.js?digest=3ee479438cf8b5e0d341"></script>
+
+  <footer class="bd-footer">
+  </footer>
+  </body>
+</html>

@@ -1,0 +1,1521 @@
+
+<!DOCTYPE html>
+
+<html>
+  <head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Homework 5: Modeling Physical Systems and Heating Up the House with ODEs &#8212; CMSE 201</title>
+    
+  <link href="../../_static/css/theme.css" rel="stylesheet" />
+  <link href="../../_static/css/index.c5995385ac14fb8791e8eb36b4908be2.css" rel="stylesheet" />
+
+    
+  <link rel="stylesheet"
+    href="../../_static/vendor/fontawesome/5.13.0/css/all.min.css">
+  <link rel="preload" as="font" type="font/woff2" crossorigin
+    href="../../_static/vendor/fontawesome/5.13.0/webfonts/fa-solid-900.woff2">
+  <link rel="preload" as="font" type="font/woff2" crossorigin
+    href="../../_static/vendor/fontawesome/5.13.0/webfonts/fa-brands-400.woff2">
+
+    
+      
+
+    
+    <link rel="stylesheet" href="../../_static/pygments.css" type="text/css" />
+    <link rel="stylesheet" href="../../_static/sphinx-book-theme.e8f53015daec13862f6db5e763c41738.css" type="text/css" />
+    <link rel="stylesheet" type="text/css" href="../../_static/togglebutton.css" />
+    <link rel="stylesheet" type="text/css" href="../../_static/copybutton.css" />
+    <link rel="stylesheet" type="text/css" href="../../_static/mystnb.css" />
+    <link rel="stylesheet" type="text/css" href="../../_static/sphinx-thebe.css" />
+    <link rel="stylesheet" type="text/css" href="../../_static/panels-main.c949a650a448cc0ae9fd3441c0e17fb0.css" />
+    <link rel="stylesheet" type="text/css" href="../../_static/panels-variables.06eb56fa6e07937060861dad626602ad.css" />
+    
+  <link rel="preload" as="script" href="../../_static/js/index.1c5a1a01449ed65a7b51.js">
+
+    <script id="documentation_options" data-url_root="../../" src="../../_static/documentation_options.js"></script>
+    <script src="../../_static/jquery.js"></script>
+    <script src="../../_static/underscore.js"></script>
+    <script src="../../_static/doctools.js"></script>
+    <script src="../../_static/togglebutton.js"></script>
+    <script src="../../_static/clipboard.min.js"></script>
+    <script src="../../_static/copybutton.js"></script>
+    <script >var togglebuttonSelector = '.toggle, .admonition.dropdown, .tag_hide_input div.cell_input, .tag_hide-input div.cell_input, .tag_hide_output div.cell_output, .tag_hide-output div.cell_output, .tag_hide_cell.cell, .tag_hide-cell.cell';</script>
+    <script src="../../_static/sphinx-book-theme.12a9622fbb08dcb3a2a40b2c02b83a57.js"></script>
+    <script async="async" src="https://cdnjs.cloudflare.com/ajax/libs/mathjax/2.7.7/latest.js?config=TeX-AMS-MML_HTMLorMML"></script>
+    <script type="text/x-mathjax-config">MathJax.Hub.Config({"tex2jax": {"inlineMath": [["\\(", "\\)"]], "displayMath": [["\\[", "\\]"]], "processRefs": false, "processEnvironments": false}})</script>
+    <script async="async" src="https://unpkg.com/thebe@0.5.1/lib/index.js"></script>
+    <script >
+        const thebe_selector = ".thebe"
+        const thebe_selector_input = "pre"
+        const thebe_selector_output = ".output"
+    </script>
+    <script async="async" src="../../_static/sphinx-thebe.js"></script>
+    <link rel="shortcut icon" href="../../_static/cmse_fav.ico"/>
+    <link rel="index" title="Index" href="../../genindex.html" />
+    <link rel="search" title="Search" href="../../search.html" />
+    <link rel="next" title="Homework 6: Agent Based Modeling" href="../Homework-6/HW-06_F21-STUDENT.html" />
+    <link rel="prev" title="Homework 4: Fitting data using NumPy and SciPy" href="../Homework-4/HW-04-Fall2021_Final-STUDENT.html" />
+    <meta name="viewport" content="width=device-width, initial-scale=1" />
+    <meta name="docsearch:language" content="en" />
+    
+  </head>
+  <body data-spy="scroll" data-target="#bd-toc-nav" data-offset="80">
+    
+    <div class="container-fluid" id="banner"></div>
+
+    
+
+    <div class="container-xl">
+      <div class="row">
+          
+<div class="col-12 col-md-3 bd-sidebar site-navigation show" id="site-navigation">
+    
+        <div class="navbar-brand-box">
+    <a class="navbar-brand text-wrap" href="../../index.html">
+      
+      <img src="../../_static/logo.png" class="logo" alt="logo">
+      
+      
+      <h1 class="site-logo" id="site-title">CMSE 201</h1>
+      
+    </a>
+</div><form class="bd-search d-flex align-items-center" action="../../search.html" method="get">
+  <i class="icon fas fa-search"></i>
+  <input type="search" class="form-control" name="q" id="search-input" placeholder="Search this book..." aria-label="Search this book..." autocomplete="off" >
+</form><nav class="bd-links" id="bd-docs-nav" aria-label="Main">
+    <div class="bd-toc-item active">
+        <ul class="nav bd-sidenav">
+ <li class="toctree-l1">
+  <a class="reference internal" href="../../intro.html">
+   Welcome to Computational Modeling and Data Analysis I!
+  </a>
+ </li>
+</ul>
+<p class="caption">
+ <span class="caption-text">
+  Course Materials
+ </span>
+</p>
+<ul class="nav bd-sidenav">
+ <li class="toctree-l1 has-children">
+  <a class="reference internal" href="../../Course_Materials-201/CourseDocuments.html">
+   Important Course information
+  </a>
+  <input class="toctree-checkbox" id="toctree-checkbox-1" name="toctree-checkbox-1" type="checkbox"/>
+  <label for="toctree-checkbox-1">
+   <i class="fas fa-chevron-down">
+   </i>
+  </label>
+  <ul>
+   <li class="toctree-l2">
+    <a class="reference internal" href="../../Course_Materials-201/CMSE201-Syllabus.html">
+     Syllabus
+    </a>
+   </li>
+   <li class="toctree-l2">
+    <a class="reference internal" href="../../Course_Materials-201/CMSE201-Schedule.html">
+     Course Schedule
+    </a>
+   </li>
+   <li class="toctree-l2">
+    <a class="reference internal" href="../../Course_Materials-201/SoftwareSetupGuide.html">
+     Software Setup Guide
+    </a>
+   </li>
+   <li class="toctree-l2">
+    <a class="reference internal" href="../../Course_Materials-201/classroom_participation.html">
+     Classroom Participation
+    </a>
+   </li>
+  </ul>
+ </li>
+</ul>
+<p class="caption">
+ <span class="caption-text">
+  Day 01
+ </span>
+</p>
+<ul class="nav bd-sidenav">
+ <li class="toctree-l1">
+  <a class="reference internal" href="../../Day-01/Day-01_In-Class_SortingAlgorithm-STUDENT.html">
+   Day 1 In-Class Assignment
+  </a>
+ </li>
+</ul>
+<p class="caption">
+ <span class="caption-text">
+  Day 02
+ </span>
+</p>
+<ul class="nav bd-sidenav">
+ <li class="toctree-l1">
+  <a class="reference internal" href="../../Day-02/Day-02_Pre-Class_IntroToPython-STUDENT.html">
+   Day 2 Pre-class Assignment: Intro to Python
+  </a>
+ </li>
+ <li class="toctree-l1">
+  <a class="reference internal" href="../../Day-02/Day-02_In-Class_OrderOfMagnitudeModeling-STUDENT.html">
+   Day 2 In-class Assignment: Order of Magnitude Modeling
+  </a>
+ </li>
+</ul>
+<p class="caption">
+ <span class="caption-text">
+  Day 03
+ </span>
+</p>
+<ul class="nav bd-sidenav">
+ <li class="toctree-l1">
+  <a class="reference internal" href="../../Day-03/Day-03_Pre-Class_ListsAndLoops-STUDENT.html">
+   Day 3: Pre-Class Assignment: Lists and Loops
+  </a>
+ </li>
+ <li class="toctree-l1">
+  <a class="reference internal" href="../../Day-03/Day-03_In-Class_ListsLoopsAndSaving-STUDENT.html">
+   Day 3 In-class Assignment: The power of compound interest
+  </a>
+ </li>
+</ul>
+<p class="caption">
+ <span class="caption-text">
+  Day 04
+ </span>
+</p>
+<ul class="nav bd-sidenav">
+ <li class="toctree-l1">
+  <a class="reference internal" href="../../Day-04/Day-04_Pre-Class_DataEthics_AcademicIntegrity-STUDENT.html">
+   Day 4 Pre-class Assignment: Introduction to Data Ethics and Practice with Lists and Loops
+  </a>
+ </li>
+ <li class="toctree-l1">
+  <a class="reference internal" href="../../Day-04/Day-04_In-Class_AcademicIntegrity_CodingPractices-STUDENT.html">
+   Day 4 In-class Assignment: Academic Integrity and Coding Best Practices
+  </a>
+ </li>
+</ul>
+<p class="caption">
+ <span class="caption-text">
+  Day 05
+ </span>
+</p>
+<ul class="nav bd-sidenav">
+ <li class="toctree-l1">
+  <a class="reference internal" href="../../Day-05/Day-05_Pre-Class_IfStatementsAndFunctions-STUDENT.html">
+   Day 5 Pre-class Assignment: Boolean logic, if statements, and an introduction to functions
+  </a>
+ </li>
+ <li class="toctree-l1">
+  <a class="reference internal" href="../../Day-05/Day-05_In-Class_IfStatementsAndFunctions-STUDENT.html">
+   Day 5 In-class Assignment: Savings for Everyone
+  </a>
+ </li>
+</ul>
+<p class="caption">
+ <span class="caption-text">
+  Day 06
+ </span>
+</p>
+<ul class="nav bd-sidenav">
+ <li class="toctree-l1">
+  <a class="reference internal" href="../../Day-06/Day-06_Pre-Class_MoreFunctions-STUDENT.html">
+   Day 6 Pre-class Assignment: Thinking more about functions
+  </a>
+ </li>
+ <li class="toctree-l1">
+  <a class="reference internal" href="../../Day-06/Day-06_In-Class_MoreFunctions-STUDENT.html">
+   Day 6 In-class Assignment: Using functions for fun and profit!
+  </a>
+ </li>
+</ul>
+<p class="caption">
+ <span class="caption-text">
+  Day 07
+ </span>
+</p>
+<ul class="nav bd-sidenav">
+ <li class="toctree-l1">
+  <a class="reference internal" href="../../Day-07/Day-07_Pre-Class_ModulesMathAndPlots-STUDENT.html">
+   Day 7 Pre-Class Assignment: Python Modules: Math and Plots
+  </a>
+ </li>
+ <li class="toctree-l1">
+  <a class="reference internal" href="../../Day-07/Day-07_In-Class_MathAndPlotting-STUDENT.html">
+   Day 7 In-class Assignment: Visualizing population growth and projectile motion
+  </a>
+ </li>
+</ul>
+<p class="caption">
+ <span class="caption-text">
+  Day 08
+ </span>
+</p>
+<ul class="nav bd-sidenav">
+ <li class="toctree-l1">
+  <a class="reference internal" href="../../Day-08/Day-08_Pre-Class_IntroToNumPy-STUDENT.html">
+   Day 8 Pre-Class: Introduction to NumPy
+  </a>
+ </li>
+ <li class="toctree-l1">
+  <a class="reference external" href="https://raw.githubusercontent.com/msu-cmse-courses/cmse201-F21-data/main/Day-08/michigan_pop.csv">
+   michigan_pop.csv
+  </a>
+ </li>
+ <li class="toctree-l1">
+  <a class="reference internal" href="../../Day-08/Day-08_In-Class_NumPyWithTheGreatLakes-STUDENT.html">
+   Day 8 In-class Assignment: Exploring Great Lakes Water Levels using NumPy
+  </a>
+ </li>
+ <li class="toctree-l1">
+  <a class="reference external" href="https://raw.githubusercontent.com/msu-cmse-courses/cmse201-F21-data/main/Day-08/lake_erie.csv">
+   lake_erie.csv
+  </a>
+ </li>
+ <li class="toctree-l1">
+  <a class="reference external" href="https://raw.githubusercontent.com/msu-cmse-courses/cmse201-F21-data/main/Day-08/lake_michigan_huron.csv">
+   lake_michigan_huron.csv
+  </a>
+ </li>
+ <li class="toctree-l1">
+  <a class="reference external" href="https://raw.githubusercontent.com/msu-cmse-courses/cmse201-F21-data/main/Day-08/lake_ontario.csv">
+   lake_ontario.csv
+  </a>
+ </li>
+ <li class="toctree-l1">
+  <a class="reference external" href="https://raw.githubusercontent.com/msu-cmse-courses/cmse201-F21-data/main/Day-08/lake_superior.csv">
+   lake_superior.csv
+  </a>
+ </li>
+</ul>
+<p class="caption">
+ <span class="caption-text">
+  Day 09
+ </span>
+</p>
+<ul class="nav bd-sidenav">
+ <li class="toctree-l1">
+  <a class="reference internal" href="../../Day-09/Day-09_Pre-Class_Pandas-STUDENT.html">
+   Day 9 Pre-class Assignment: Computational Models Overview and The Pandas Data Analysis Library
+  </a>
+ </li>
+ <li class="toctree-l1">
+  <a class="reference internal" href="../../Day-09/Day-09_In-Class_GDP-STUDENT.html">
+   Day 9 In-Class: Cleaning and Analyzing Economic Data
+  </a>
+ </li>
+</ul>
+<p class="caption">
+ <span class="caption-text">
+  Day 10
+ </span>
+</p>
+<ul class="nav bd-sidenav">
+ <li class="toctree-l1">
+  <a class="reference internal" href="../../Day-10/Day-10_Pre-Class_Masking-STUDENT.html">
+   Day 10 Pre-class Assignment: Normal Distributions, Masking, and Log Plots
+  </a>
+ </li>
+ <li class="toctree-l1">
+  <a class="reference external" href="https://raw.githubusercontent.com/msu-cmse-courses/cmse201-F21-data/main/Day-10/GDP_Cleaned.csv">
+   GDP_Cleaned.csv
+  </a>
+ </li>
+ <li class="toctree-l1">
+  <a class="reference internal" href="../../Day-10/Day-10_In-Class_Flint-STUDENT.html">
+   Day 10 In-class Assignment: Get the Lead Out: Understanding The Water Crisis in Flint, MI
+  </a>
+ </li>
+ <li class="toctree-l1">
+  <a class="reference external" href="https://raw.githubusercontent.com/msu-cmse-courses/cmse201-F21-data/main/Day-10/flint_water_data.csv">
+   flint_water_data.csv
+  </a>
+ </li>
+</ul>
+<p class="caption">
+ <span class="caption-text">
+  Day 11
+ </span>
+</p>
+<ul class="nav bd-sidenav">
+ <li class="toctree-l1">
+  <a class="reference internal" href="../../Day-11/Day-11_Pre-Class_Data_File_Formats_Manipulation-STUDENT.html">
+   Day 11 Pre-Class Assignment: Overview of data and file formats
+  </a>
+ </li>
+ <li class="toctree-l1">
+  <a class="reference external" href="https://raw.githubusercontent.com/msu-cmse-courses/cmse201-F21-data/main/Day-11/us_house_rep_by_state_2019.csv">
+   us_house_rep_by_state_2019.csv
+  </a>
+ </li>
+ <li class="toctree-l1">
+  <a class="reference external" href="https://raw.githubusercontent.com/msu-cmse-courses/cmse201-F21-data/main/Day-11/us_pop_by_state_2010_2011.csv">
+   us_pop_by_state_2010_2011.csv
+  </a>
+ </li>
+ <li class="toctree-l1">
+  <a class="reference external" href="https://github.com/msu-cmse-courses/cmse201-F21-data/raw/main/Day-11/us_pop_by_state_2012_2013_encoding_utf-16be.csv">
+   us_pop_by_state_2012_2013_encoding_utf-16be.csv
+  </a>
+ </li>
+ <li class="toctree-l1">
+  <a class="reference external" href="https://raw.githubusercontent.com/msu-cmse-courses/cmse201-F21-data/main/Day-11/us_pop_by_state_2014_2015_windows_linefeed.csv">
+   us_pop_by_state_2014_2015_windows_linefeed.csv
+  </a>
+ </li>
+ <li class="toctree-l1">
+  <a class="reference external" href="https://github.com/msu-cmse-courses/cmse201-F21-data/blob/main/Day-11/us_pop_by_state_2016a.csv?raw=true">
+   us_pop_by_state_2016a.csv
+  </a>
+ </li>
+ <li class="toctree-l1">
+  <a class="reference external" href="https://github.com/msu-cmse-courses/cmse201-F21-data/blob/main/Day-11/us_pop_by_state_2017a.yaff?raw=true">
+   us_pop_by_state2017a.yaff
+  </a>
+ </li>
+ <li class="toctree-l1">
+  <a class="reference external" href="https://github.com/msu-cmse-courses/cmse201-F21-data/blob/main/Day-11/us_pop_by_state_2018_2019.bin?raw=true">
+   us_pop_by_state_2018_2019.bin
+  </a>
+ </li>
+</ul>
+<p class="caption">
+ <span class="caption-text">
+  Day 12
+ </span>
+</p>
+<ul class="nav bd-sidenav">
+ <li class="toctree-l1">
+  <a class="reference internal" href="../../Day-12/Day-12_Pre-Class_Regression-STUDENT.html">
+   Day 12 Pre-Class Assignment: Regression
+  </a>
+ </li>
+ <li class="toctree-l1">
+  <a class="reference internal" href="../../Day-12/Day-12_In-Class_PolynomialFitting-STUDENT.html">
+   Day 12 In-Class Assignment: Linear regression and polynomial fitting
+  </a>
+ </li>
+ <li class="toctree-l1">
+  <a class="reference external" href="https://github.com/msu-cmse-courses/cmse201-F21-data/raw/main/Day-12/microprocessor-trend-data-master.zip">
+   microprocessor-trend-data-master.zip
+  </a>
+ </li>
+</ul>
+<p class="caption">
+ <span class="caption-text">
+  Day 13
+ </span>
+</p>
+<ul class="nav bd-sidenav">
+ <li class="toctree-l1">
+  <a class="reference internal" href="../../Day-13/Day-13_Pre-Class_CurveFitting-STUDENT.html">
+   Day 13 Pre-Class Assignment: Fitting functions to data (curve-fitting) and thinking more about models
+  </a>
+ </li>
+ <li class="toctree-l1">
+  <a class="reference internal" href="../../Day-13/Day-13_In-Class_FittingCurves-STUDENT.html">
+   Day 13 In-Class Assignment: (Thoughtfully) fitting models to data
+  </a>
+ </li>
+ <li class="toctree-l1">
+  <a class="reference external" href="https://raw.githubusercontent.com/msu-cmse-courses/cmse201-F21-data/main/Day-13/pop200.csv">
+   pop200.csv
+  </a>
+ </li>
+ <li class="toctree-l1">
+  <a class="reference external" href="https://raw.githubusercontent.com/msu-cmse-courses/cmse201-F21-data/main/Day-13/pop300.csv">
+   pop300.csv
+  </a>
+ </li>
+</ul>
+<p class="caption">
+ <span class="caption-text">
+  Day 14
+ </span>
+</p>
+<ul class="nav bd-sidenav">
+ <li class="toctree-l1">
+  <a class="reference internal" href="../../Day-14/Day-14_Pre-Class_ModelingWithODEs-STUDENT.html">
+   Day 14: Pre-class Assignment: Modeling with Ordinary Differential Equations
+  </a>
+ </li>
+ <li class="toctree-l1">
+  <a class="reference internal" href="../../Day-14/Day-14_In-Class_ModelingWithODEs-STUDENT.html">
+   Day 14: In-class Assignment: Modeling with ODEs
+  </a>
+ </li>
+ <li class="toctree-l1">
+  <a class="reference external" href="https://github.com/msu-cmse-courses/cmse201-F21-data/blob/main/Day-14/undamped_length.png">
+   undamped_length.png
+  </a>
+ </li>
+ <li class="toctree-l1">
+  <a class="reference external" href="https://github.com/msu-cmse-courses/cmse201-F21-data/blob/main/Day-14/undamped_vel.png">
+   undamped_vel.png
+  </a>
+ </li>
+</ul>
+<p class="caption">
+ <span class="caption-text">
+  Day 15
+ </span>
+</p>
+<ul class="nav bd-sidenav">
+ <li class="toctree-l1">
+  <a class="reference internal" href="../../Day-15/Day-15_Pre-Class_ViralKinetics-STUDENT.html">
+   Day 15 Pre-Class: Viral Kinetics
+  </a>
+ </li>
+ <li class="toctree-l1">
+  <a class="reference internal" href="../../Day-15/Day-15_In-Class_CompartmentalModeling-STUDENT.html">
+   Day 15 In-class: Building Compartmental Models
+  </a>
+ </li>
+</ul>
+<p class="caption">
+ <span class="caption-text">
+  Day 16
+ </span>
+</p>
+<ul class="nav bd-sidenav">
+ <li class="toctree-l1">
+  <a class="reference internal" href="../../Day-16/Day-16_Pre-Class_Zombies-STUDENT.html">
+   Day 16 Pre-class Assignment: ZOMBIES!!
+  </a>
+ </li>
+ <li class="toctree-l1">
+  <a class="reference internal" href="../../Day-16/Day-16_In-Class_CompartmentsWithSolveIVP-STUDENT.html">
+   Day 16 In-Class Assignment: Compartmental Modeling, moving from the model to the Code
+  </a>
+ </li>
+ <li class="toctree-l1">
+  <a class="reference external" href="https://github.com/msu-cmse-courses/cmse201-F21-data/blob/main/Day-16/latent.png">
+   latent.png
+  </a>
+ </li>
+</ul>
+<p class="caption">
+ <span class="caption-text">
+  Day 17
+ </span>
+</p>
+<ul class="nav bd-sidenav">
+ <li class="toctree-l1">
+  <a class="reference internal" href="../../Day-17/Day-17_Pre-Class_2DNumPyArrays-STUDENT.html">
+   Day 17 Pre-Class: 2D NumPy Arrays
+  </a>
+ </li>
+ <li class="toctree-l1">
+  <a class="reference external" href="https://raw.githubusercontent.com/msu-cmse-courses/cmse201-F21-data/main/Day-17/PCA_files/cars.csv">
+   cars.csv
+  </a>
+ </li>
+ <li class="toctree-l1">
+  <a class="reference external" href="https://github.com/msu-cmse-courses/cmse201-F21-data/raw/main/Day-17/PCA_files/example.jpeg">
+   example.jpeg
+  </a>
+ </li>
+ <li class="toctree-l1">
+  <a class="reference internal" href="../../Day-17/Day-17_In-Class_2DImageAnalysis-STUDENT.html">
+   Day 17 In-Class Assignment: Image Analysis
+  </a>
+ </li>
+ <li class="toctree-l1">
+  <a class="reference external" href="https://github.com/msu-cmse-courses/cmse201-F21-data/blob/main/Day-17/ICA_files/beach.jpeg">
+   beach.jpeg
+  </a>
+ </li>
+ <li class="toctree-l1">
+  <a class="reference external" href="https://github.com/msu-cmse-courses/cmse201-F21-data/blob/main/Day-17/ICA_files/landscape.jpeg">
+   landscape.jpeg
+  </a>
+ </li>
+ <li class="toctree-l1">
+  <a class="reference external" href="https://github.com/msu-cmse-courses/cmse201-F21-data/blob/main/Day-17/ICA_files/zebra.png">
+   zebra.png
+  </a>
+ </li>
+</ul>
+<p class="caption">
+ <span class="caption-text">
+  Day 18
+ </span>
+</p>
+<ul class="nav bd-sidenav">
+ <li class="toctree-l1">
+  <a class="reference internal" href="../../Day-18/Day-18_Pre-Class_ABMForestFire-STUDENT.html">
+   Day 18 Pre-class: Agent-based models and forest fires
+  </a>
+ </li>
+ <li class="toctree-l1">
+  <a class="reference internal" href="../../Day-18/Day-18_In-Class_ForestFiresPartI-STUDENT.html">
+   Day 18 Part 1 In-class Assignment: Modeling forest fires with an Agent-based Model
+  </a>
+ </li>
+</ul>
+<p class="caption">
+ <span class="caption-text">
+  Day 19
+ </span>
+</p>
+<ul class="nav bd-sidenav">
+ <li class="toctree-l1">
+  <a class="reference internal" href="../../Day-19/Day-19_Pre-Class_ABMForestFire_Part2-STUDENT.html">
+   Day 19 Pre-class: Agent-based models and forest fires, Part 2
+  </a>
+ </li>
+ <li class="toctree-l1">
+  <a class="reference internal" href="../../Day-19/Day-19_In-Class_ForestFiresPartII-STUDENT.html">
+   Day 19 In-class Assignment: Modeling forest fires with an Agent-based Model (Part II)
+  </a>
+ </li>
+</ul>
+<p class="caption">
+ <span class="caption-text">
+  Day 20
+ </span>
+</p>
+<ul class="nav bd-sidenav">
+ <li class="toctree-l1">
+  <a class="reference internal" href="../../Day-20/Day-20_Pre-Class_RandomNumbers-STUDENT.html">
+   Day 20 Pre-Class Assignment: Random Numbers
+  </a>
+ </li>
+ <li class="toctree-l1">
+  <a class="reference internal" href="../../Day-20/Day-20_In-Class_RandomWalks-STUDENT.html">
+   Day 20 In-class Assignment: Random Walks
+  </a>
+ </li>
+ <li class="toctree-l1">
+  <a class="reference external" href="https://github.com/msu-cmse-courses/cmse201-F21-data/blob/main/Day-20/distance_v_steps_randomwalk.png">
+   distance_v_steps_randomwalk.png
+  </a>
+ </li>
+</ul>
+<p class="caption">
+ <span class="caption-text">
+  Day 21
+ </span>
+</p>
+<ul class="nav bd-sidenav">
+ <li class="toctree-l1">
+  <a class="reference internal" href="../../Day-21/Day-21_Pre-Class_ProjectUpdates-STUDENT.html">
+   Day 21 Pre-class assignment: Making project progress!
+  </a>
+ </li>
+</ul>
+<p class="caption">
+ <span class="caption-text">
+  Day 22
+ </span>
+</p>
+<ul class="nav bd-sidenav">
+ <li class="toctree-l1">
+  <a class="reference internal" href="../../Day-22/Day-22_Pre-Class_Climate-STUDENT.html">
+   Day 22 Pre-class:  Global warming and climate modeling
+  </a>
+ </li>
+ <li class="toctree-l1">
+  <a class="reference internal" href="../../Day-22/Day-22_In-Class_Climate-STUDENT.html">
+   Day 22 In-class Assignment: Analyzing climate data
+  </a>
+ </li>
+ <li class="toctree-l1">
+  <a class="reference external" href="https://raw.githubusercontent.com/msu-cmse-courses/cmse201-F21-data/main/Day-22/GLB.Ts.csv">
+   GLB.Ts.csv
+  </a>
+ </li>
+ <li class="toctree-l1">
+  <a class="reference external" href="https://raw.githubusercontent.com/msu-cmse-courses/cmse201-F21-data/main/Day-22/bintanja2008.txt">
+   bintanja2008.txt
+  </a>
+ </li>
+ <li class="toctree-l1">
+  <a class="reference external" href="https://raw.githubusercontent.com/msu-cmse-courses/cmse201-F21-data/main/Day-22/ch4_annmean_gl.txt">
+   ch4_annmean_gl.txt
+  </a>
+ </li>
+ <li class="toctree-l1">
+  <a class="reference external" href="https://raw.githubusercontent.com/msu-cmse-courses/cmse201-F21-data/main/Day-22/co2_mm_mlo.txt">
+   co2_mm_mlo.txt
+  </a>
+ </li>
+ <li class="toctree-l1">
+  <a class="reference external" href="https://raw.githubusercontent.com/msu-cmse-courses/cmse201-F21-data/main/Day-22/vostok-ch4nat.txt">
+   vostok-ch4nat.txt
+  </a>
+ </li>
+ <li class="toctree-l1">
+  <a class="reference external" href="https://raw.githubusercontent.com/msu-cmse-courses/cmse201-F21-data/main/Day-22/vostok-co2nat.txt">
+   vostok-co2nat.txt
+  </a>
+ </li>
+ <li class="toctree-l1">
+  <a class="reference external" href="https://raw.githubusercontent.com/msu-cmse-courses/cmse201-F21-data/main/Day-22/vostok-deutnat.txt">
+   vostok-deutnat.txt
+  </a>
+ </li>
+</ul>
+<p class="caption">
+ <span class="caption-text">
+  Day 23
+ </span>
+</p>
+<ul class="nav bd-sidenav">
+ <li class="toctree-l1">
+  <a class="reference internal" href="../../Day-23/Day-23_Pre-Class_Climate-STUDENT.html">
+   Day 23 pre-class assignment: climate modeling
+  </a>
+ </li>
+ <li class="toctree-l1">
+  <a class="reference internal" href="../../Day-23/Day-23_In-Class_Climate-STUDENT.html">
+   Day 23 In-class Assignment: A simple model for global temperature
+  </a>
+ </li>
+ <li class="toctree-l1">
+  <a class="reference external" href="https://github.com/msu-cmse-courses/cmse201-F21-data/blob/main/Day-23/listentothee.png">
+   listentothee.png
+  </a>
+ </li>
+ <li class="toctree-l1">
+  <a class="reference external" href="https://github.com/msu-cmse-courses/cmse201-F21-data/blob/main/Day-23/simple_model.png">
+   simple_model.png
+  </a>
+ </li>
+</ul>
+<p class="caption">
+ <span class="caption-text">
+  Homework
+ </span>
+</p>
+<ul class="current nav bd-sidenav">
+ <li class="toctree-l1">
+  <a class="reference internal" href="../Homework-1/HW_01_F21_STUDENT.html">
+   Homework 1: Introduction to Loops, Lists, and Dictionaries
+  </a>
+ </li>
+ <li class="toctree-l1">
+  <a class="reference internal" href="../Homework-2/HW_02_F21-STUDENT.html">
+   Homework 2: If Statements, Functions, and Modules
+  </a>
+ </li>
+ <li class="toctree-l1">
+  <a class="reference internal" href="../Homework-3/HOMEWORK_3_STUDENT.html">
+   Homework 3: Data Analysis with Pandas, Numpy, and Matplotlib
+  </a>
+ </li>
+ <li class="toctree-l1">
+  <a class="reference external" href="https://raw.githubusercontent.com/msu-cmse-courses/cmse201-F21-data/main/Homework/americas_gpin_2014_16.csv">
+   americas_gpin_2014_16.csv
+  </a>
+ </li>
+ <li class="toctree-l1">
+  <a class="reference internal" href="../Homework-4/HW-04-Fall2021_Final-STUDENT.html">
+   Homework 4: Fitting data using NumPy and SciPy
+  </a>
+ </li>
+ <li class="toctree-l1">
+  <a class="reference external" href="https://github.com/msu-cmse-courses/cmse201-F21-data/raw/main/Homework/Wage.csv">
+   Wage.csv
+  </a>
+ </li>
+ <li class="toctree-l1 current active">
+  <a class="current reference internal" href="#">
+   Homework 5: Modeling Physical Systems and Heating Up the House with ODEs
+  </a>
+ </li>
+ <li class="toctree-l1">
+  <a class="reference internal" href="../Homework-6/HW-06_F21-STUDENT.html">
+   Homework 6: Agent Based Modeling
+  </a>
+ </li>
+</ul>
+<p class="caption">
+ <span class="caption-text">
+  Midterm Bootcamps
+ </span>
+</p>
+<ul class="nav bd-sidenav">
+ <li class="toctree-l1">
+  <a class="reference internal" href="../../Bootcamp_Notebooks/Bootcamp1-Python_Fundamentals_STUDENT.html">
+   Bootcamp 1: Python Fundamentals
+  </a>
+ </li>
+ <li class="toctree-l1">
+  <a class="reference internal" href="../../Bootcamp_Notebooks/Bootcamp2-InitialConceptsReview.html">
+   Bootcamp 2: Initial Concepts Review Cheatsheet
+  </a>
+ </li>
+ <li class="toctree-l1">
+  <a class="reference internal" href="../../Bootcamp_Notebooks/Bootcamp3-Debugging_STUDENT.html">
+   Bootcamp 3: Debugging
+  </a>
+ </li>
+ <li class="toctree-l1">
+  <a class="reference internal" href="../../Bootcamp_Notebooks/Bootcamp4-IfStatements_STUDENT.html">
+   Bootcamp 4: If Statements
+  </a>
+ </li>
+ <li class="toctree-l1">
+  <a class="reference internal" href="../../Bootcamp_Notebooks/Bootcamp5-Functions_STUDENT.html">
+   Bootcamp 5: Functions
+  </a>
+ </li>
+ <li class="toctree-l1">
+  <a class="reference internal" href="../../Bootcamp_Notebooks/Bootcamp6-Matplotlib_STUDENT.html">
+   Bootcamp 6: Matplotlib
+  </a>
+ </li>
+</ul>
+<p class="caption">
+ <span class="caption-text">
+  Semester Projects
+ </span>
+</p>
+<ul class="nav bd-sidenav">
+ <li class="toctree-l1">
+  <a class="reference internal" href="../../Project_Materials/CMSE201_SemesterProjectDetails.html">
+   Semester Project Details
+  </a>
+ </li>
+ <li class="toctree-l1">
+  <a class="reference internal" href="../../Project_Materials/CMSE201_FinalProject_ExampleA.html">
+   CMSE 201 Final Project Example A
+  </a>
+ </li>
+ <li class="toctree-l1">
+  <a class="reference internal" href="../../Project_Materials/CMSE201_FinalProject_ExampleB.html">
+   CMSE 201 Final Project Example B
+  </a>
+ </li>
+ <li class="toctree-l1">
+  <a class="reference external" href="https://github.com/msu-cmse-courses/cmse201-F21-data/raw/main/Projects/CMSE201_Example_Projects.zip">
+   CMSE201_Example_Projects.zip
+  </a>
+ </li>
+ <li class="toctree-l1">
+  <a class="reference internal" href="../../Project_Materials/First_Project_Checkpoint.html">
+   First Project Checkpoint
+  </a>
+ </li>
+ <li class="toctree-l1">
+  <a class="reference internal" href="../../Project_Materials/CMSE201FinalProject_RequirementsAndGradingRubric.html">
+   Requirements and Grading Rubric
+  </a>
+ </li>
+ <li class="toctree-l1">
+  <a class="reference internal" href="../../Project_Materials/CMSE201_FinalProjectTemplate.html">
+   CMSE 201 Final Project Template
+  </a>
+ </li>
+</ul>
+
+    </div>
+</nav> <!-- To handle the deprecated key -->
+
+<div class="navbar_extra_footer">
+  Powered by <a href="https://jupyterbook.org">Jupyter Book</a>
+</div>
+
+</div>
+
+
+          
+
+
+          
+<main class="col py-md-3 pl-md-4 bd-content overflow-auto" role="main">
+    
+    <div class="topbar container-xl fixed-top">
+    <div class="topbar-contents row">
+        <div class="col-12 col-md-3 bd-topbar-whitespace site-navigation show"></div>
+        <div class="col pl-md-4 topbar-main">
+            
+            <button id="navbar-toggler" class="navbar-toggler ml-0" type="button" data-toggle="collapse"
+                data-toggle="tooltip" data-placement="bottom" data-target=".site-navigation" aria-controls="navbar-menu"
+                aria-expanded="true" aria-label="Toggle navigation" aria-controls="site-navigation"
+                title="Toggle navigation" data-toggle="tooltip" data-placement="left">
+                <i class="fas fa-bars"></i>
+                <i class="fas fa-arrow-left"></i>
+                <i class="fas fa-arrow-up"></i>
+            </button>
+            
+            
+<div class="dropdown-buttons-trigger">
+    <button id="dropdown-buttons-trigger" class="btn btn-secondary topbarbtn" aria-label="Download this page"><i
+            class="fas fa-download"></i></button>
+
+    <div class="dropdown-buttons">
+        <!-- ipynb file if we had a myst markdown file -->
+        
+        <!-- Download raw file -->
+        <a class="dropdown-buttons" href="../../_sources/Homework/Homework-5/HW_05_F21-STUDENT.ipynb"><button type="button"
+                class="btn btn-secondary topbarbtn" title="Download source file" data-toggle="tooltip"
+                data-placement="left">.ipynb</button></a>
+        <!-- Download PDF via print -->
+        <button type="button" id="download-print" class="btn btn-secondary topbarbtn" title="Print to PDF"
+            onClick="window.print()" data-toggle="tooltip" data-placement="left">.pdf</button>
+    </div>
+</div>
+
+            <!-- Source interaction buttons -->
+
+<div class="dropdown-buttons-trigger">
+    <button id="dropdown-buttons-trigger" class="btn btn-secondary topbarbtn"
+        aria-label="Connect with source repository"><i class="fab fa-github"></i></button>
+    <div class="dropdown-buttons sourcebuttons">
+        <a class="repository-button"
+            href="https://github.com/msu-cmse-courses/cmse201-F21-jb"><button type="button" class="btn btn-secondary topbarbtn"
+                data-toggle="tooltip" data-placement="left" title="Source repository"><i
+                    class="fab fa-github"></i>repository</button></a>
+        <a class="issues-button"
+            href="https://github.com/msu-cmse-courses/cmse201-F21-jb/issues/new?title=Issue%20on%20page%20%2FHomework/Homework-5/HW_05_F21-STUDENT.html&body=Your%20issue%20content%20here."><button
+                type="button" class="btn btn-secondary topbarbtn" data-toggle="tooltip" data-placement="left"
+                title="Open an issue"><i class="fas fa-lightbulb"></i>open issue</button></a>
+        
+    </div>
+</div>
+
+            <!-- Full screen (wrap in <a> to have style consistency -->
+
+<a class="full-screen-button"><button type="button" class="btn btn-secondary topbarbtn" data-toggle="tooltip"
+        data-placement="bottom" onclick="toggleFullScreen()" aria-label="Fullscreen mode"
+        title="Fullscreen mode"><i
+            class="fas fa-expand"></i></button></a>
+
+            <!-- Launch buttons -->
+
+<div class="dropdown-buttons-trigger">
+    <button id="dropdown-buttons-trigger" class="btn btn-secondary topbarbtn"
+        aria-label="Launch interactive content"><i class="fas fa-rocket"></i></button>
+    <div class="dropdown-buttons">
+        
+        <a class="binder-button" href="https://mybinder.org/v2/gh/msu-cmse-courses/cmse201-F21-jb/main?urlpath=tree/Homework/Homework-5/HW_05_F21-STUDENT.ipynb"><button type="button"
+                class="btn btn-secondary topbarbtn" title="Launch Binder" data-toggle="tooltip"
+                data-placement="left"><img class="binder-button-logo"
+                    src="../../_static/images/logo_binder.svg"
+                    alt="Interact on binder">Binder</button></a>
+        
+        
+        
+        
+    </div>
+</div>
+
+        </div>
+
+        <!-- Table of contents -->
+        <div class="d-none d-md-block col-md-2 bd-toc show">
+            
+            <div class="tocsection onthispage pt-5 pb-3">
+                <i class="fas fa-list"></i> Contents
+            </div>
+            <nav id="bd-toc-nav" aria-label="Page">
+                <ul class="visible nav section-nav flex-column">
+ <li class="toc-h1 nav-item toc-entry">
+  <a class="reference internal nav-link" href="#">
+   Homework 5: Modeling Physical Systems and Heating Up the House with ODEs
+  </a>
+  <ul class="visible nav section-nav flex-column">
+   <li class="toc-h2 nav-item toc-entry">
+    <a class="reference internal nav-link" href="#p-style-text-align-right-put-your-name-here-p">
+     <p style="text-align: right;">
+      ✅ Put your name here
+     </p>
+    </a>
+   </li>
+  </ul>
+ </li>
+ <li class="toc-h1 nav-item toc-entry">
+  <a class="reference internal nav-link" href="#cmse-201">
+   CMSE 201
+  </a>
+  <ul class="visible nav section-nav flex-column">
+   <li class="toc-h2 nav-item toc-entry">
+    <a class="reference internal nav-link" href="#fall-2021">
+     Fall 2021
+    </a>
+    <ul class="nav section-nav flex-column">
+     <li class="toc-h3 nav-item toc-entry">
+      <a class="reference internal nav-link" href="#goals">
+       Goals
+      </a>
+      <ul class="nav section-nav flex-column">
+       <li class="toc-h4 nav-item toc-entry">
+        <a class="reference internal nav-link" href="#by-the-end-of-this-homework-you-will">
+         By the end of this homework, you will:
+        </a>
+       </li>
+      </ul>
+     </li>
+     <li class="toc-h3 nav-item toc-entry">
+      <a class="reference internal nav-link" href="#assignment-instructions">
+       Assignment instructions
+      </a>
+     </li>
+     <li class="toc-h3 nav-item toc-entry">
+      <a class="reference internal nav-link" href="#grading">
+       Grading
+      </a>
+     </li>
+    </ul>
+   </li>
+   <li class="toc-h2 nav-item toc-entry">
+    <a class="reference internal nav-link" href="#part-1-reviewing-solve-ivp-with-an-rc-circuit">
+     Part 1: Reviewing
+     <code class="docutils literal notranslate">
+      <span class="pre">
+       solve_ivp
+      </span>
+     </code>
+     with an RC circuit
+    </a>
+    <ul class="nav section-nav flex-column">
+     <li class="toc-h3 nav-item toc-entry">
+      <a class="reference internal nav-link" href="#points-comment-every-line-of-this-code">
+       1.1 [4 Points] Comment every line of this code.
+      </a>
+     </li>
+     <li class="toc-h3 nav-item toc-entry">
+      <a class="reference internal nav-link" href="#points">
+       1.2 [6 Points]
+      </a>
+      <ul class="nav section-nav flex-column">
+       <li class="toc-h4 nav-item toc-entry">
+        <a class="reference internal nav-link" href="#id1">
+         1.3 [5 Points]
+        </a>
+       </li>
+      </ul>
+     </li>
+    </ul>
+   </li>
+   <li class="toc-h2 nav-item toc-entry">
+    <a class="reference internal nav-link" href="#part-2-modeling-a-spring">
+     Part 2: Modeling a spring
+    </a>
+   </li>
+   <li class="toc-h2 nav-item toc-entry">
+    <a class="reference internal nav-link" href="#in-the-cells-below-following-the-step-guideline-to-finish-the-simulation">
+     In the cells below, following the step guideline to finish the simulation.
+    </a>
+   </li>
+   <li class="toc-h2 nav-item toc-entry">
+    <a class="reference internal nav-link" href="#part-3-modeling-house-temperatures-floor-by-floor">
+     Part 3: Modeling house temperatures floor by floor
+    </a>
+   </li>
+   <li class="toc-h2 nav-item toc-entry">
+    <a class="reference internal nav-link" href="#id2">
+     In the cells below, following the step guideline to finish the simulation.
+    </a>
+    <ul class="nav section-nav flex-column">
+     <li class="toc-h3 nav-item toc-entry">
+      <a class="reference internal nav-link" href="#congratulations-you-re-done">
+       Congratulations, you’re done!
+      </a>
+     </li>
+    </ul>
+   </li>
+  </ul>
+ </li>
+</ul>
+
+            </nav>
+        </div>
+    </div>
+</div>
+    <div id="main-content" class="row">
+        <div class="col-12 col-md-9 pl-md-3 pr-md-0">
+        
+              <div>
+                
+  <div class="section" id="homework-5-modeling-physical-systems-and-heating-up-the-house-with-odes">
+<h1>Homework 5: Modeling Physical Systems and Heating Up the House with ODEs<a class="headerlink" href="#homework-5-modeling-physical-systems-and-heating-up-the-house-with-odes" title="Permalink to this headline">¶</a></h1>
+<hr class="docutils" />
+<div class="section" id="p-style-text-align-right-put-your-name-here-p">
+<h2><p style="text-align: right;"> ✅ Put your name here</p><a class="headerlink" href="#p-style-text-align-right-put-your-name-here-p" title="Permalink to this headline">¶</a></h2>
+<hr class="docutils" />
+<p><img src="https://cmse.msu.edu/sites/_cmse/assets/Image/image002.jpg"
+     alt="CMSE Logo"
+     align="right" 
+     height="100" 
+     width="100" /></p>
+</div>
+</div>
+<div class="section" id="cmse-201">
+<h1>CMSE 201<a class="headerlink" href="#cmse-201" title="Permalink to this headline">¶</a></h1>
+<div class="section" id="fall-2021">
+<h2>Fall 2021<a class="headerlink" href="#fall-2021" title="Permalink to this headline">¶</a></h2>
+<div class="section" id="goals">
+<h3>Goals<a class="headerlink" href="#goals" title="Permalink to this headline">¶</a></h3>
+<div class="section" id="by-the-end-of-this-homework-you-will">
+<h4>By the end of this homework, you will:<a class="headerlink" href="#by-the-end-of-this-homework-you-will" title="Permalink to this headline">¶</a></h4>
+<ol class="simple">
+<li><p>Practice more examples with <code class="docutils literal notranslate"><span class="pre">solve_ivp</span></code> and get comfortable using it on different systems</p></li>
+<li><p>Simulate a differential equation describing a simple RC circuit</p></li>
+<li><p>Simulate spring motion with two differential equations</p></li>
+<li><p>Simulate how heat transfers around a house using Newton’s cooling laws</p></li>
+</ol>
+</div>
+</div>
+<hr class="docutils" />
+<div class="section" id="assignment-instructions">
+<h3>Assignment instructions<a class="headerlink" href="#assignment-instructions" title="Permalink to this headline">¶</a></h3>
+<p>Work through this notebook and follow the directions. This HW is slightly more conceptual with larger portions of the code given to you. Be sure to look for the questions.</p>
+<p><em>This assignment is due at the usual time for your section. Ask your instructor if you are unclear on the due time.</em></p>
+<p>Upload to D2L as usual.</p>
+</div>
+<hr class="docutils" />
+<div class="section" id="grading">
+<h3>Grading<a class="headerlink" href="#grading" title="Permalink to this headline">¶</a></h3>
+<ul class="simple">
+<li><p>Part 1: Reviewing solve_ivp with an RC circuit (15 pts)</p></li>
+<li><p>Part 2: Modeling a spring (15 pts)</p></li>
+<li><p>Part 3: Modeling house temperatures floor by floor (15 pts)</p></li>
+</ul>
+<p><strong>Total:</strong> 45 points</p>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="kn">import</span> <span class="nn">numpy</span> <span class="k">as</span> <span class="nn">np</span>
+<span class="kn">import</span> <span class="nn">matplotlib.pyplot</span> <span class="k">as</span> <span class="nn">plt</span>
+<span class="kn">from</span> <span class="nn">scipy.integrate</span> <span class="kn">import</span> <span class="n">solve_ivp</span>
+<span class="c1"># Upgrade from the usual boring style</span>
+<span class="n">plt</span><span class="o">.</span><span class="n">style</span><span class="o">.</span><span class="n">use</span><span class="p">(</span><span class="s1">&#39;fivethirtyeight&#39;</span><span class="p">)</span>
+</pre></div>
+</div>
+</div>
+</div>
+<hr class="docutils" />
+</div>
+</div>
+<hr class="docutils" />
+<div class="section" id="part-1-reviewing-solve-ivp-with-an-rc-circuit">
+<h2>Part 1: Reviewing <code class="docutils literal notranslate"><span class="pre">solve_ivp</span></code> with an RC circuit<a class="headerlink" href="#part-1-reviewing-solve-ivp-with-an-rc-circuit" title="Permalink to this headline">¶</a></h2>
+<hr class="docutils" />
+<p>When you learn to use a new library in Python, it’s a good idea to be sure that you are using it correctly.
+A common approach to this is to think of an example that is easy;
+if you already know the answer, you can be sure that an unexpected result is due to a bug rather than a misunderstanding of the problem.</p>
+<p>A capacitor is an electronic device that stores energy in an electric field.
+The capacitance, <span class="math notranslate nohighlight">\(C\)</span>, gives the information on how much energy the capacitor can store.
+Our cellphones (among many devices) rely on hundreds of tiny capacitors to function.
+Now let’s stop by the physics lab and do some experiments.
+When our capacitor is fully charged at <span class="math notranslate nohighlight">\(t=0\)</span>, it carries charge <span class="math notranslate nohighlight">\(Q_0\)</span>.
+When we connect the capacitor across a resistor with resistance <span class="math notranslate nohighlight">\(R\)</span>, the charge changes as the function of time:</p>
+<div class="math notranslate nohighlight">
+\[\frac{d Q(t)}{d t} = -RC Q(t)\text{,}\]</div>
+<p>which is an ordinary differential equation (ODE).
+If you’ve taken enough calculus, you should already know the analytic solution.</p>
+<p>In the spirit of CMSE hands-on experience, let’s use <code class="docutils literal notranslate"><span class="pre">solve_ivp</span></code> to solve this ODE as if we didn’t know the answer.</p>
+<p>First, take a look at what we know: set up the code to plot our known solution for later comparison.</p>
+<div class="section" id="points-comment-every-line-of-this-code">
+<h3>1.1 [4 Points] Comment every line of this code.<a class="headerlink" href="#points-comment-every-line-of-this-code" title="Permalink to this headline">¶</a></h3>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="c1"># </span>
+<span class="n">T</span> <span class="o">=</span> <span class="mi">3</span>
+<span class="c1"># </span>
+<span class="n">time_array</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">linspace</span><span class="p">(</span><span class="mi">0</span><span class="p">,</span><span class="mi">5</span><span class="p">)</span>
+<span class="c1"># </span>
+<span class="n">Q_0</span> <span class="o">=</span> <span class="mi">1</span>
+<span class="n">Rval</span><span class="o">=</span><span class="mi">1</span>
+<span class="n">Cval</span><span class="o">=</span><span class="mi">1</span>
+<span class="c1">#</span>
+<span class="n">Qt</span> <span class="o">=</span> <span class="n">Q_0</span><span class="o">*</span><span class="n">np</span><span class="o">.</span><span class="n">exp</span><span class="p">(</span><span class="o">-</span><span class="n">Rval</span><span class="o">*</span><span class="n">Cval</span><span class="o">*</span><span class="n">time_array</span><span class="p">)</span>
+
+<span class="c1">#</span>
+<span class="n">plt</span><span class="o">.</span><span class="n">figure</span><span class="p">(</span><span class="n">figsize</span><span class="o">=</span><span class="p">(</span><span class="mi">10</span><span class="p">,</span><span class="mi">5</span><span class="p">))</span>
+<span class="c1">#</span>
+<span class="n">plt</span><span class="o">.</span><span class="n">plot</span><span class="p">(</span><span class="n">time_array</span><span class="p">,</span> <span class="n">Qt</span><span class="p">)</span>
+<span class="c1">#</span>
+<span class="n">plt</span><span class="o">.</span><span class="n">grid</span><span class="p">(</span><span class="n">alpha</span><span class="o">=</span><span class="mf">0.25</span><span class="p">)</span>
+<span class="c1">#</span>
+<span class="n">plt</span><span class="o">.</span><span class="n">xlabel</span><span class="p">(</span><span class="s2">&quot;time&quot;</span><span class="p">)</span>
+<span class="c1">#</span>
+<span class="n">plt</span><span class="o">.</span><span class="n">ylabel</span><span class="p">(</span><span class="s2">&quot;Q(t)&quot;</span><span class="p">)</span>
+<span class="c1">#</span>
+<span class="n">plt</span><span class="o">.</span><span class="n">title</span><span class="p">(</span><span class="s2">&quot;Capacitor Discharging&quot;</span><span class="p">);</span>
+</pre></div>
+</div>
+</div>
+</div>
+<p>Now, the question is:
+Can we get <code class="docutils literal notranslate"><span class="pre">solve_ivp</span></code> to give us the same result?
+We will follow these steps:</p>
+<ol class="simple">
+<li><p>Put our equation(s) here</p></li>
+<li><p>Define the function <code class="docutils literal notranslate"><span class="pre">solve_ivp</span></code> needs to use</p></li>
+<li><p>Define the time range</p></li>
+<li><p>Define the initial condition(s)</p></li>
+<li><p>Set up parameters for the model</p></li>
+<li><p>Call <code class="docutils literal notranslate"><span class="pre">solve_ivp</span></code></p></li>
+<li><p>Unpack the results and make a plot</p></li>
+</ol>
+<p>Note that this problem is simple enough that step 1 is automatically done:
+$<span class="math notranslate nohighlight">\(\frac{d Q(t)}{d t} = -RC Q(t)\)</span>$</p>
+</div>
+<div class="section" id="points">
+<h3>1.2 [6 Points]<a class="headerlink" href="#points" title="Permalink to this headline">¶</a></h3>
+<p>Change all of the comments in the following code by replacing each “X” with the correct step from above and explain <em>why</em> this step is needed (use as many lines for the comments as you need).
+You do not need to change the code itself.</p>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="c1"># step X</span>
+<span class="c1"># this step is needed to.....</span>
+<span class="c1">#</span>
+<span class="k">def</span> <span class="nf">capacitor_discharge</span><span class="p">(</span><span class="n">time_in</span><span class="p">,</span> <span class="n">current_value</span><span class="p">,</span> <span class="n">R_in</span><span class="p">,</span> <span class="n">C_in</span><span class="p">):</span> 
+    <span class="c1"># return dQdt =-RC Q</span>
+    <span class="k">return</span> <span class="o">-</span><span class="n">R_in</span><span class="o">*</span><span class="n">C_in</span><span class="o">*</span><span class="n">current_value</span>
+
+<span class="c1"># step X</span>
+<span class="c1"># this step is needed to.....</span>
+<span class="c1">#</span>
+<span class="n">time_range</span> <span class="o">=</span> <span class="p">[</span><span class="mi">0</span><span class="p">,</span> <span class="mi">5</span><span class="p">]</span>
+
+<span class="c1"># step X</span>
+<span class="c1"># this step is needed to.....</span>
+<span class="c1">#</span>
+<span class="n">initial_conditions</span> <span class="o">=</span> <span class="p">[</span><span class="n">Q_0</span><span class="p">]</span>
+
+<span class="c1"># step X</span>
+<span class="c1"># this step is needed to.....</span>
+<span class="c1">#</span>
+<span class="n">my_parameter</span> <span class="o">=</span> <span class="p">[</span><span class="n">Rval</span><span class="p">,</span> <span class="n">Cval</span><span class="p">]</span>
+
+<span class="c1"># step X</span>
+<span class="c1"># this step is needed to.....</span>
+<span class="c1">#</span>
+<span class="n">my_solution</span> <span class="o">=</span> <span class="n">solve_ivp</span><span class="p">(</span><span class="n">capacitor_discharge</span><span class="p">,</span>  <span class="c1"># store the equations of our model</span>
+                        <span class="n">time_range</span><span class="p">,</span>           <span class="c1"># when to start and when to end</span>
+                        <span class="n">initial_conditions</span><span class="p">,</span>   <span class="c1"># where we want to start from</span>
+                        <span class="n">args</span><span class="o">=</span><span class="p">(</span><span class="n">my_parameter</span><span class="p">))</span>  <span class="c1"># parameters for the model</span>
+
+<span class="c1"># step X</span>
+<span class="c1"># this step is needed to.....</span>
+<span class="c1">#</span>
+<span class="n">plt</span><span class="o">.</span><span class="n">figure</span><span class="p">(</span><span class="n">figsize</span><span class="o">=</span><span class="p">(</span><span class="mi">10</span><span class="p">,</span><span class="mi">4</span><span class="p">))</span>
+<span class="n">plt</span><span class="o">.</span><span class="n">plot</span><span class="p">(</span><span class="n">my_solution</span><span class="o">.</span><span class="n">t</span><span class="p">,</span> <span class="n">my_solution</span><span class="o">.</span><span class="n">y</span><span class="p">[</span><span class="mi">0</span><span class="p">],</span> <span class="s1">&#39;o-&#39;</span><span class="p">,</span> <span class="n">label</span><span class="o">=</span><span class="s1">&#39;solve_ivp&#39;</span><span class="p">)</span>
+<span class="n">plt</span><span class="o">.</span><span class="n">plot</span><span class="p">(</span><span class="n">time_array</span><span class="p">,</span> <span class="n">Qt</span><span class="p">,</span> <span class="n">label</span><span class="o">=</span><span class="s1">&#39;known answer&#39;</span><span class="p">)</span>
+<span class="n">plt</span><span class="o">.</span><span class="n">grid</span><span class="p">(</span><span class="n">alpha</span><span class="o">=</span><span class="mf">0.1</span><span class="p">)</span>
+<span class="n">plt</span><span class="o">.</span><span class="n">xlabel</span><span class="p">(</span><span class="s2">&quot;time&quot;</span><span class="p">)</span>
+<span class="n">plt</span><span class="o">.</span><span class="n">ylabel</span><span class="p">(</span><span class="s2">&quot;Q(t)&quot;</span><span class="p">)</span>
+<span class="n">plt</span><span class="o">.</span><span class="n">title</span><span class="p">(</span><span class="s2">&quot;Capicitor Discharging: solution comparison&quot;</span><span class="p">)</span>
+<span class="n">plt</span><span class="o">.</span><span class="n">legend</span><span class="p">();</span>
+</pre></div>
+</div>
+</div>
+</div>
+<div class="section" id="id1">
+<h4>1.3 [5 Points]<a class="headerlink" href="#id1" title="Permalink to this headline">¶</a></h4>
+<p>Do the results from your two different methods agree? If they don’t, how do they differ?
+How can you improve the agreement between the two solutions given above?
+<strong>Show your reasoning, code, and updated results below.</strong></p>
+<p><font size=+3>✎</font> <em>your reasoning here (3pts)</em></p>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="c1"># put your code here and run it (2pts)</span>
+</pre></div>
+</div>
+</div>
+</div>
+<hr class="docutils" />
+</div>
+</div>
+</div>
+<hr class="docutils" />
+<div class="section" id="part-2-modeling-a-spring">
+<h2>Part 2: Modeling a spring<a class="headerlink" href="#part-2-modeling-a-spring" title="Permalink to this headline">¶</a></h2>
+<p>Great work so far! Let’s ramp this up a bit.</p>
+<p>In this exercise, we are going to simulate how spring moves.
+You can see a simple simulation here:
+<a class="reference external" href="https://www.myphysicslab.com/springs/single-spring-en.html">https://www.myphysicslab.com/springs/single-spring-en.html</a></p>
+<p>We will need to keep track of two variables: the position of the block, <span class="math notranslate nohighlight">\(x(t)\)</span>, and its velocity, <span class="math notranslate nohighlight">\(v(t)\)</span>.
+The change of the position <span class="math notranslate nohighlight">\(x\)</span> is related to the velocity via</p>
+<div class="math notranslate nohighlight">
+\[\frac{d x(t)}{dt} = v(t)\]</div>
+<p>The change of the velocity is proportional to the spring force
+$<span class="math notranslate nohighlight">\(\frac{d v(t)}{dt} = -k x(t)\)</span><span class="math notranslate nohighlight">\(
+where \)</span>k$ is the spring constant (telling us how stiff the spring is).</p>
+<p>To describe the position and velocity of the spring, we will follow these steps:</p>
+<ol class="simple">
+<li><p>Put our equation(s)  (3 points)</p></li>
+<li><p>Define the function <code class="docutils literal notranslate"><span class="pre">solve_ivp</span></code> needs to use (2 points)</p></li>
+<li><p>Define the time range</p></li>
+<li><p>Define the initial condition(s)</p></li>
+<li><p>Set up parameters for the model</p></li>
+<li><p>Call <code class="docutils literal notranslate"><span class="pre">solve_ivp</span></code> (4 points)</p></li>
+<li><p>Unpack the results and make a plot (4 points)</p></li>
+</ol>
+</div>
+<div class="section" id="in-the-cells-below-following-the-step-guideline-to-finish-the-simulation">
+<h2>In the cells below, following the step guideline to finish the simulation.<a class="headerlink" href="#in-the-cells-below-following-the-step-guideline-to-finish-the-simulation" title="Permalink to this headline">¶</a></h2>
+<ul class="simple">
+<li><p>Step 1: Put our equation(s) in here  (2 points)</p></li>
+</ul>
+<p><font size=+3>✎</font> <em>your equation(s) here</em></p>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="c1"># Step 2: Define the function solve_ivp needs to use (3 points)</span>
+<span class="c1"># Your code below:</span>
+
+<span class="k">def</span> <span class="nf">spring_simulation</span><span class="p">(</span><span class="n">t</span><span class="p">,</span> <span class="n">curr_vals</span><span class="p">,</span> <span class="n">k</span><span class="p">):</span>
+    <span class="c1"># fill in the missing code </span>
+    
+    
+    <span class="c1"># return the current derivatives back to solve_ivp: </span>
+    <span class="c1"># dxdt, dvdt</span>
+    <span class="k">return</span> 
+</pre></div>
+</div>
+</div>
+</div>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="c1"># Step 3: Define the time range </span>
+<span class="n">tend</span><span class="o">=</span><span class="mi">100</span>
+<span class="n">time_array</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">linspace</span><span class="p">(</span><span class="mi">0</span><span class="p">,</span> <span class="n">tend</span><span class="p">,</span> <span class="mi">1000</span><span class="p">)</span> 
+<span class="n">time_range</span> <span class="o">=</span> <span class="p">[</span><span class="mi">0</span><span class="p">,</span><span class="n">tend</span><span class="p">]</span>
+</pre></div>
+</div>
+</div>
+</div>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="c1"># Step 4: Define the initial condition(s) </span>
+<span class="n">first_initial_conditions</span> <span class="o">=</span> <span class="p">[</span><span class="mf">0.2</span><span class="p">,</span> <span class="mf">0.2</span><span class="p">]</span> 
+</pre></div>
+</div>
+</div>
+</div>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="c1"># Step 5: Set up parameters for the model</span>
+<span class="n">k</span> <span class="o">=</span> <span class="mf">0.1</span> 
+</pre></div>
+</div>
+</div>
+</div>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="c1"># Step 6: Call `solve_ivp` (4 points)</span>
+<span class="c1"># Your code below:</span>
+</pre></div>
+</div>
+</div>
+</div>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="c1"># Step 7: Unpack the results and make a plot (4 points)</span>
+<span class="c1"># Your code below:</span>
+</pre></div>
+</div>
+</div>
+</div>
+<p><strong>Question:</strong> What happens if you change the spring constant by a factor of 5? (2 points)</p>
+</div>
+<div class="section" id="part-3-modeling-house-temperatures-floor-by-floor">
+<h2>Part 3: Modeling house temperatures floor by floor<a class="headerlink" href="#part-3-modeling-house-temperatures-floor-by-floor" title="Permalink to this headline">¶</a></h2>
+<hr class="docutils" />
+<p>Consider a typical house with an attic, basement and insulated main floor.
+Usually, the main living area where people’s activities are located is surrounded with insulation, but not the attic and ceiling.</p>
+<p>Let us analyze the changing temperatures in the three levels using the following variables:</p>
+<ul class="simple">
+<li><p><span class="math notranslate nohighlight">\(T_a(t)\)</span>: Temperature in the attic</p></li>
+<li><p><span class="math notranslate nohighlight">\(T_m(t)\)</span>: Temperature in the main living area</p></li>
+<li><p><span class="math notranslate nohighlight">\(T_b(t)\)</span>: Temperature in the basement</p></li>
+<li><p><span class="math notranslate nohighlight">\(t\)</span>: Time in hours</p></li>
+</ul>
+<p>In Michigan, we are approaching winter, and the temperature outside is getting colder and colder.<br />
+Unfortunately, a polar vortex hits our model house while the heater is off because the family is away visiting relatives in another state.
+After several days, the temperatures inside the house have been dropped to same as the as outdoor temperature, <span class="math notranslate nohighlight">\(25^\circ\text{F}\)</span>, except for the basement (due to the surrounding earth), which is slightly warmer, <span class="math notranslate nohighlight">\(30^\circ\text{F}\)</span>.
+When the family returns, they are unable to fix the main heater immediately.
+Instead, they turn on a small electric heater with its thermostat set to 80°F.
+When the heater is running, it provides a <span class="math notranslate nohighlight">\(r=15^\circ\text{F}/\text{h}\)</span> rise per hour.
+To simulate how the temperature changes in this house, we can use something called “Newton’s cooling law”:</p>
+<div class="math notranslate nohighlight">
+\[\text{Rate of temperature change} = k\times \text{Temperature difference}\]</div>
+<p>applied to the five boundary surfaces, which have different insulation constants <span class="math notranslate nohighlight">\(k\)</span>:</p>
+<ul class="simple">
+<li><p><span class="math notranslate nohighlight">\(k_0=0.5\)</span> for the basement walls floor,</p></li>
+<li><p><span class="math notranslate nohighlight">\(k_1=0.5\)</span> for the basement ceiling,</p></li>
+<li><p><span class="math notranslate nohighlight">\(k_2=0.25\)</span> for the main floor walls,</p></li>
+<li><p><span class="math notranslate nohighlight">\(k_3=0.25\)</span> for the main  floor ceiling,</p></li>
+<li><p><span class="math notranslate nohighlight">\(k_4=0.5\)</span>  for the attic walls and ceiling.</p></li>
+</ul>
+<p>Newton’s cooling law says that the temperatures in these 3 areas of the house are related via
+$<span class="math notranslate nohighlight">\(\frac{T_b(t)}{dt} = k_0 (T_b(0)-T_b(t)) +k_1(T_m(t)-T_b(t))\)</span><span class="math notranslate nohighlight">\(
+\)</span><span class="math notranslate nohighlight">\(\frac{T_m(t)}{dt} =  k_1 (T_b(t) -T_m(t)) + k_2 ( T_m(0)-T_m(t)) + k3(T_a(t)-T_m(t))+ r \)</span><span class="math notranslate nohighlight">\(
+\)</span><span class="math notranslate nohighlight">\(\frac{T_a(t)}{dt} =  k_3 (T_m(t)T-T_a(t)) + k_4(T_a(0)-T_a(t))\)</span><span class="math notranslate nohighlight">\(
+\)</span>T_b(0)<span class="math notranslate nohighlight">\(, \)</span>T_m(0)<span class="math notranslate nohighlight">\( and \)</span>T_a(0)<span class="math notranslate nohighlight">\( are the initial temperature at basement, main floor and attic, when the heater first turned on; they are \)</span>25^\circ\text{F}<span class="math notranslate nohighlight">\(, \)</span>25^\circ\text{F}<span class="math notranslate nohighlight">\(, and \)</span>30^\circ\text{F}$ respectively.</p>
+<p>We would like to know how the temperatures in the 3 areas changes over the next 24 hours. Assume the outside temperatures remain constant due to that polar vortex.</p>
+<p>Your task is to code this model using <code class="docutils literal notranslate"><span class="pre">solve_ivp</span></code>, by following these steps:</p>
+<ol class="simple">
+<li><p>Put our equations here (3 points)</p></li>
+<li><p>Define the function <code class="docutils literal notranslate"><span class="pre">solve_ivp</span></code> needs to use (2 points)</p></li>
+<li><p>Define the time range</p></li>
+<li><p>Define the initial conditions</p></li>
+<li><p>Set up parameters for the model</p></li>
+<li><p>Call <code class="docutils literal notranslate"><span class="pre">solve_ivp</span></code> (4 points)</p></li>
+<li><p>Unpack the results and make a plot (4 points)</p></li>
+</ol>
+</div>
+<div class="section" id="id2">
+<h2>In the cells below, following the step guideline to finish the simulation.<a class="headerlink" href="#id2" title="Permalink to this headline">¶</a></h2>
+<ul class="simple">
+<li><p>Step 1: Put our equation(s) here  (2 points)</p></li>
+</ul>
+<p><font size=+3>✎</font> <em>your equation(s) here</em></p>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="c1"># Step 2: Define the function solve_ivp needs to use (3 points)</span>
+<span class="c1"># Your code below:</span>
+
+<span class="k">def</span> <span class="nf">heat_simulation</span><span class="p">(</span><span class="n">t</span><span class="p">,</span> <span class="n">curr_vals</span><span class="p">,</span> <span class="n">ks</span><span class="p">,</span> <span class="n">T0s</span><span class="p">,</span> <span class="n">r</span><span class="p">):</span>
+    <span class="c1"># &quot;ks&quot; is a list of insulation constants in the order of k0, k1,k2...k4</span>
+    <span class="c1"># &quot;T0s&quot; is a list the initial temperature for basement, main floor and attic at the time when the heater turned on</span>
+    
+    <span class="c1"># fill in the missing code and comments</span>
+    <span class="n">T_b</span> <span class="o">=</span> <span class="n">curr_vals</span><span class="p">[</span><span class="mi">0</span><span class="p">]</span> <span class="c1"># temperatue of the basement at time t </span>
+    <span class="n">T_m</span> <span class="o">=</span> 
+    <span class="n">T_a</span> <span class="o">=</span>
+    
+    <span class="c1"># return the current derivatives back to solve_ivp: dTbdt, dTmdt, dTadt</span>
+    <span class="k">return</span> 
+</pre></div>
+</div>
+</div>
+</div>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="c1"># Step 3: Define the time range </span>
+<span class="n">tend</span><span class="o">=</span><span class="mi">24</span> <span class="c1"># 24 hours </span>
+<span class="n">time_array</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">linspace</span><span class="p">(</span><span class="mi">0</span><span class="p">,</span> <span class="n">tend</span><span class="p">,</span> <span class="mi">1000</span><span class="p">)</span> 
+<span class="n">time_range</span> <span class="o">=</span> <span class="p">[</span><span class="mi">0</span><span class="p">,</span><span class="n">tend</span><span class="p">]</span>
+</pre></div>
+</div>
+</div>
+</div>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="c1"># Step 4: Define the initial condition(s) </span>
+<span class="n">T0s</span><span class="o">=</span><span class="p">[</span><span class="mi">30</span><span class="p">,</span><span class="mi">25</span><span class="p">,</span><span class="mi">25</span><span class="p">]</span>
+</pre></div>
+</div>
+</div>
+</div>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="c1"># Step 5: Set up parameters for the model</span>
+<span class="n">ks</span><span class="o">=</span><span class="p">[</span><span class="mf">0.5</span><span class="p">,</span><span class="mf">0.5</span><span class="p">,</span><span class="mf">0.25</span><span class="p">,</span><span class="mf">0.25</span><span class="p">,</span><span class="mf">0.5</span><span class="p">]</span>
+<span class="n">r</span><span class="o">=</span><span class="mi">15</span> <span class="c1">#F/hr </span>
+</pre></div>
+</div>
+</div>
+</div>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="c1"># Step 6: Call `solve_ivp` (4 points)</span>
+<span class="c1"># Your code below:</span>
+</pre></div>
+</div>
+</div>
+</div>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="c1"># Step 7: Unpack the results and make a plot (4 points)</span>
+<span class="c1"># Your code below:</span>
+</pre></div>
+</div>
+</div>
+</div>
+<p><strong>Question (2 points):</strong> What can you do to raise the temperature of the main floor higher or faster.<br />
+Put your code below to show a different results from the above parameter setting</p>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="c1"># code here </span>
+</pre></div>
+</div>
+</div>
+</div>
+<hr class="docutils" />
+<div class="section" id="congratulations-you-re-done">
+<h3>Congratulations, you’re done!<a class="headerlink" href="#congratulations-you-re-done" title="Permalink to this headline">¶</a></h3>
+<p>Submit this assignment by uploading it to the course Desire2Learn web page.<br />
+Go to the “Homework Assignments” section, find the appropriate submission folder link, and upload it there.</p>
+<p>© Copyright 2021, <a class="reference external" href="https://cmse.msu.edu">Department of Computational Mathematics, Science and Engineering</a> at Michigan State University.</p>
+</div>
+</div>
+</div>
+
+    <script type="text/x-thebe-config">
+    {
+        requestKernel: true,
+        binderOptions: {
+            repo: "binder-examples/jupyter-stacks-datascience",
+            ref: "master",
+        },
+        codeMirrorConfig: {
+            theme: "abcdef",
+            mode: "python"
+        },
+        kernelOptions: {
+            kernelName: "python3",
+            path: "./Homework/Homework-5"
+        },
+        predefinedOutput: true
+    }
+    </script>
+    <script>kernelName = 'python3'</script>
+
+              </div>
+              
+        
+            
+
+
+
+<div class='prev-next-bottom'>
+    
+    <div id="prev">
+        <a class="left-prev" href="../Homework-4/HW-04-Fall2021_Final-STUDENT.html" title="previous page">
+            <i class="prevnext-label fas fa-angle-left"></i>
+            <div class="prevnext-info">
+                <p class="prevnext-label">previous</p>
+                <p class="prevnext-title">Homework 4: Fitting data using NumPy and SciPy</p>
+            </div>
+        </a>
+    </div>
+     <div id="next">
+        <a class="right-next" href="../Homework-6/HW-06_F21-STUDENT.html" title="next page">
+            <div class="prevnext-info">
+                <p class="prevnext-label">next</p>
+                <p class="prevnext-title">Homework 6: Agent Based Modeling</p>
+            </div>
+            <i class="prevnext-label fas fa-angle-right"></i>
+        </a>
+     </div>
+
+</div>
+        
+        </div>
+    </div>
+    <footer class="footer mt-5 mt-md-0">
+    <div class="container">
+      <p>
+        
+          By MSU CMSE<br/>
+        
+            &copy; Copyright 2021.<br/>
+      </p>
+    </div>
+  </footer>
+</main>
+
+
+      </div>
+    </div>
+  
+  <script src="../../_static/js/index.1c5a1a01449ed65a7b51.js"></script>
+
+  
+  </body>
+</html>

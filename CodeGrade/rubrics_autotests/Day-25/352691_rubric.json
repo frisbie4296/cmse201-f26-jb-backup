@@ -1,0 +1,30 @@
+[
+  {
+    "id": 974961,
+    "header": "Full grade",
+    "description": "",
+    "description_type": "markdown",
+    "items": [
+      {
+        "id": 2437615,
+        "description": "No solution, did not fill out the survey",
+        "header": "Incomplete",
+        "points": 0.0
+      },
+      {
+        "id": 2437616,
+        "description": "Missing a submission or filling out the survey",
+        "header": "Partial credit",
+        "points": 1.0
+      },
+      {
+        "id": 2437617,
+        "description": "",
+        "header": "Complete",
+        "points": 2.0
+      }
+    ],
+    "locked": false,
+    "type": "normal"
+  }
+]

@@ -1,0 +1,2044 @@
+
+<!DOCTYPE html>
+
+<html>
+  <head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>CMSE 201 Final Project Example A &#8212; CMSE 201</title>
+    
+  <link href="../_static/css/theme.css" rel="stylesheet" />
+  <link href="../_static/css/index.c5995385ac14fb8791e8eb36b4908be2.css" rel="stylesheet" />
+
+    
+  <link rel="stylesheet"
+    href="../_static/vendor/fontawesome/5.13.0/css/all.min.css">
+  <link rel="preload" as="font" type="font/woff2" crossorigin
+    href="../_static/vendor/fontawesome/5.13.0/webfonts/fa-solid-900.woff2">
+  <link rel="preload" as="font" type="font/woff2" crossorigin
+    href="../_static/vendor/fontawesome/5.13.0/webfonts/fa-brands-400.woff2">
+
+    
+      
+
+    
+    <link rel="stylesheet" href="../_static/pygments.css" type="text/css" />
+    <link rel="stylesheet" href="../_static/sphinx-book-theme.e8f53015daec13862f6db5e763c41738.css" type="text/css" />
+    <link rel="stylesheet" type="text/css" href="../_static/togglebutton.css" />
+    <link rel="stylesheet" type="text/css" href="../_static/copybutton.css" />
+    <link rel="stylesheet" type="text/css" href="../_static/mystnb.css" />
+    <link rel="stylesheet" type="text/css" href="../_static/sphinx-thebe.css" />
+    <link rel="stylesheet" type="text/css" href="../_static/panels-main.c949a650a448cc0ae9fd3441c0e17fb0.css" />
+    <link rel="stylesheet" type="text/css" href="../_static/panels-variables.06eb56fa6e07937060861dad626602ad.css" />
+    
+  <link rel="preload" as="script" href="../_static/js/index.1c5a1a01449ed65a7b51.js">
+
+    <script id="documentation_options" data-url_root="../" src="../_static/documentation_options.js"></script>
+    <script src="../_static/jquery.js"></script>
+    <script src="../_static/underscore.js"></script>
+    <script src="../_static/doctools.js"></script>
+    <script src="../_static/togglebutton.js"></script>
+    <script src="../_static/clipboard.min.js"></script>
+    <script src="../_static/copybutton.js"></script>
+    <script >var togglebuttonSelector = '.toggle, .admonition.dropdown, .tag_hide_input div.cell_input, .tag_hide-input div.cell_input, .tag_hide_output div.cell_output, .tag_hide-output div.cell_output, .tag_hide_cell.cell, .tag_hide-cell.cell';</script>
+    <script src="../_static/sphinx-book-theme.12a9622fbb08dcb3a2a40b2c02b83a57.js"></script>
+    <script async="async" src="https://cdnjs.cloudflare.com/ajax/libs/mathjax/2.7.7/latest.js?config=TeX-AMS-MML_HTMLorMML"></script>
+    <script type="text/x-mathjax-config">MathJax.Hub.Config({"tex2jax": {"inlineMath": [["\\(", "\\)"]], "displayMath": [["\\[", "\\]"]], "processRefs": false, "processEnvironments": false}})</script>
+    <script async="async" src="https://unpkg.com/thebe@0.5.1/lib/index.js"></script>
+    <script >
+        const thebe_selector = ".thebe"
+        const thebe_selector_input = "pre"
+        const thebe_selector_output = ".output"
+    </script>
+    <script async="async" src="../_static/sphinx-thebe.js"></script>
+    <link rel="shortcut icon" href="../_static/cmse_fav.ico"/>
+    <link rel="index" title="Index" href="../genindex.html" />
+    <link rel="search" title="Search" href="../search.html" />
+    <link rel="next" title="CMSE 201 Final Project Example B" href="CMSE201_FinalProject_ExampleB.html" />
+    <link rel="prev" title="CMSE 201 - Semester Project" href="CMSE201_SemesterProjectDetails.html" />
+    <meta name="viewport" content="width=device-width, initial-scale=1" />
+    <meta name="docsearch:language" content="en" />
+    
+  </head>
+  <body data-spy="scroll" data-target="#bd-toc-nav" data-offset="80">
+    
+    <div class="container-fluid" id="banner"></div>
+
+    
+
+    <div class="container-xl">
+      <div class="row">
+          
+<div class="col-12 col-md-3 bd-sidebar site-navigation show" id="site-navigation">
+    
+        <div class="navbar-brand-box">
+    <a class="navbar-brand text-wrap" href="../index.html">
+      
+      <img src="../_static/logo.png" class="logo" alt="logo">
+      
+      
+      <h1 class="site-logo" id="site-title">CMSE 201</h1>
+      
+    </a>
+</div><form class="bd-search d-flex align-items-center" action="../search.html" method="get">
+  <i class="icon fas fa-search"></i>
+  <input type="search" class="form-control" name="q" id="search-input" placeholder="Search this book..." aria-label="Search this book..." autocomplete="off" >
+</form><nav class="bd-links" id="bd-docs-nav" aria-label="Main">
+    <div class="bd-toc-item active">
+        <ul class="nav bd-sidenav">
+ <li class="toctree-l1">
+  <a class="reference internal" href="../intro.html">
+   Welcome to Computational Modeling and Data Analysis I!
+  </a>
+ </li>
+</ul>
+<p class="caption">
+ <span class="caption-text">
+  Course Materials
+ </span>
+</p>
+<ul class="nav bd-sidenav">
+ <li class="toctree-l1 has-children">
+  <a class="reference internal" href="../Course_Materials-201/CourseDocuments.html">
+   Important Course information
+  </a>
+  <input class="toctree-checkbox" id="toctree-checkbox-1" name="toctree-checkbox-1" type="checkbox"/>
+  <label for="toctree-checkbox-1">
+   <i class="fas fa-chevron-down">
+   </i>
+  </label>
+  <ul>
+   <li class="toctree-l2">
+    <a class="reference internal" href="../Course_Materials-201/CMSE201-Syllabus.html">
+     Syllabus
+    </a>
+   </li>
+   <li class="toctree-l2">
+    <a class="reference internal" href="../Course_Materials-201/CMSE201-Schedule.html">
+     Course Schedule
+    </a>
+   </li>
+   <li class="toctree-l2">
+    <a class="reference internal" href="../Course_Materials-201/SoftwareSetupGuide.html">
+     Software Setup Guide
+    </a>
+   </li>
+   <li class="toctree-l2">
+    <a class="reference internal" href="../Course_Materials-201/classroom_participation.html">
+     Classroom Participation
+    </a>
+   </li>
+  </ul>
+ </li>
+</ul>
+<p class="caption">
+ <span class="caption-text">
+  Day 01
+ </span>
+</p>
+<ul class="nav bd-sidenav">
+ <li class="toctree-l1">
+  <a class="reference internal" href="../Day-01/Day-01_In-Class_SortingAlgorithm-STUDENT.html">
+   Day 1 In-Class Assignment
+  </a>
+ </li>
+</ul>
+<p class="caption">
+ <span class="caption-text">
+  Day 02
+ </span>
+</p>
+<ul class="nav bd-sidenav">
+ <li class="toctree-l1">
+  <a class="reference internal" href="../Day-02/Day-02_Pre-Class_IntroToPython-STUDENT.html">
+   Day 2 Pre-class Assignment: Intro to Python
+  </a>
+ </li>
+ <li class="toctree-l1">
+  <a class="reference internal" href="../Day-02/Day-02_In-Class_OrderOfMagnitudeModeling-STUDENT.html">
+   Day 2 In-class Assignment: Order of Magnitude Modeling
+  </a>
+ </li>
+</ul>
+<p class="caption">
+ <span class="caption-text">
+  Day 03
+ </span>
+</p>
+<ul class="nav bd-sidenav">
+ <li class="toctree-l1">
+  <a class="reference internal" href="../Day-03/Day-03_Pre-Class_ListsAndLoops-STUDENT.html">
+   Day 3: Pre-Class Assignment: Lists and Loops
+  </a>
+ </li>
+ <li class="toctree-l1">
+  <a class="reference internal" href="../Day-03/Day-03_In-Class_ListsLoopsAndSaving-STUDENT.html">
+   Day 3 In-class Assignment: The power of compound interest
+  </a>
+ </li>
+</ul>
+<p class="caption">
+ <span class="caption-text">
+  Day 04
+ </span>
+</p>
+<ul class="nav bd-sidenav">
+ <li class="toctree-l1">
+  <a class="reference internal" href="../Day-04/Day-04_Pre-Class_DataEthics_AcademicIntegrity-STUDENT.html">
+   Day 4 Pre-class Assignment: Introduction to Data Ethics and Practice with Lists and Loops
+  </a>
+ </li>
+ <li class="toctree-l1">
+  <a class="reference internal" href="../Day-04/Day-04_In-Class_AcademicIntegrity_CodingPractices-STUDENT.html">
+   Day 4 In-class Assignment: Academic Integrity and Coding Best Practices
+  </a>
+ </li>
+</ul>
+<p class="caption">
+ <span class="caption-text">
+  Day 05
+ </span>
+</p>
+<ul class="nav bd-sidenav">
+ <li class="toctree-l1">
+  <a class="reference internal" href="../Day-05/Day-05_Pre-Class_IfStatementsAndFunctions-STUDENT.html">
+   Day 5 Pre-class Assignment: Boolean logic, if statements, and an introduction to functions
+  </a>
+ </li>
+ <li class="toctree-l1">
+  <a class="reference internal" href="../Day-05/Day-05_In-Class_IfStatementsAndFunctions-STUDENT.html">
+   Day 5 In-class Assignment: Savings for Everyone
+  </a>
+ </li>
+</ul>
+<p class="caption">
+ <span class="caption-text">
+  Day 06
+ </span>
+</p>
+<ul class="nav bd-sidenav">
+ <li class="toctree-l1">
+  <a class="reference internal" href="../Day-06/Day-06_Pre-Class_MoreFunctions-STUDENT.html">
+   Day 6 Pre-class Assignment: Thinking more about functions
+  </a>
+ </li>
+ <li class="toctree-l1">
+  <a class="reference internal" href="../Day-06/Day-06_In-Class_MoreFunctions-STUDENT.html">
+   Day 6 In-class Assignment: Using functions for fun and profit!
+  </a>
+ </li>
+</ul>
+<p class="caption">
+ <span class="caption-text">
+  Day 07
+ </span>
+</p>
+<ul class="nav bd-sidenav">
+ <li class="toctree-l1">
+  <a class="reference internal" href="../Day-07/Day-07_Pre-Class_ModulesMathAndPlots-STUDENT.html">
+   Day 7 Pre-Class Assignment: Python Modules: Math and Plots
+  </a>
+ </li>
+ <li class="toctree-l1">
+  <a class="reference internal" href="../Day-07/Day-07_In-Class_MathAndPlotting-STUDENT.html">
+   Day 7 In-class Assignment: Visualizing population growth and projectile motion
+  </a>
+ </li>
+</ul>
+<p class="caption">
+ <span class="caption-text">
+  Day 08
+ </span>
+</p>
+<ul class="nav bd-sidenav">
+ <li class="toctree-l1">
+  <a class="reference internal" href="../Day-08/Day-08_Pre-Class_IntroToNumPy-STUDENT.html">
+   Day 8 Pre-Class: Introduction to NumPy
+  </a>
+ </li>
+ <li class="toctree-l1">
+  <a class="reference external" href="https://raw.githubusercontent.com/msu-cmse-courses/cmse201-F21-data/main/Day-08/michigan_pop.csv">
+   michigan_pop.csv
+  </a>
+ </li>
+ <li class="toctree-l1">
+  <a class="reference internal" href="../Day-08/Day-08_In-Class_NumPyWithTheGreatLakes-STUDENT.html">
+   Day 8 In-class Assignment: Exploring Great Lakes Water Levels using NumPy
+  </a>
+ </li>
+ <li class="toctree-l1">
+  <a class="reference external" href="https://raw.githubusercontent.com/msu-cmse-courses/cmse201-F21-data/main/Day-08/lake_erie.csv">
+   lake_erie.csv
+  </a>
+ </li>
+ <li class="toctree-l1">
+  <a class="reference external" href="https://raw.githubusercontent.com/msu-cmse-courses/cmse201-F21-data/main/Day-08/lake_michigan_huron.csv">
+   lake_michigan_huron.csv
+  </a>
+ </li>
+ <li class="toctree-l1">
+  <a class="reference external" href="https://raw.githubusercontent.com/msu-cmse-courses/cmse201-F21-data/main/Day-08/lake_ontario.csv">
+   lake_ontario.csv
+  </a>
+ </li>
+ <li class="toctree-l1">
+  <a class="reference external" href="https://raw.githubusercontent.com/msu-cmse-courses/cmse201-F21-data/main/Day-08/lake_superior.csv">
+   lake_superior.csv
+  </a>
+ </li>
+</ul>
+<p class="caption">
+ <span class="caption-text">
+  Day 09
+ </span>
+</p>
+<ul class="nav bd-sidenav">
+ <li class="toctree-l1">
+  <a class="reference internal" href="../Day-09/Day-09_Pre-Class_Pandas-STUDENT.html">
+   Day 9 Pre-class Assignment: Computational Models Overview and The Pandas Data Analysis Library
+  </a>
+ </li>
+ <li class="toctree-l1">
+  <a class="reference internal" href="../Day-09/Day-09_In-Class_GDP-STUDENT.html">
+   Day 9 In-Class: Cleaning and Analyzing Economic Data
+  </a>
+ </li>
+</ul>
+<p class="caption">
+ <span class="caption-text">
+  Day 10
+ </span>
+</p>
+<ul class="nav bd-sidenav">
+ <li class="toctree-l1">
+  <a class="reference internal" href="../Day-10/Day-10_Pre-Class_Masking-STUDENT.html">
+   Day 10 Pre-class Assignment: Normal Distributions, Masking, and Log Plots
+  </a>
+ </li>
+ <li class="toctree-l1">
+  <a class="reference external" href="https://raw.githubusercontent.com/msu-cmse-courses/cmse201-F21-data/main/Day-10/GDP_Cleaned.csv">
+   GDP_Cleaned.csv
+  </a>
+ </li>
+ <li class="toctree-l1">
+  <a class="reference internal" href="../Day-10/Day-10_In-Class_Flint-STUDENT.html">
+   Day 10 In-class Assignment: Get the Lead Out: Understanding The Water Crisis in Flint, MI
+  </a>
+ </li>
+ <li class="toctree-l1">
+  <a class="reference external" href="https://raw.githubusercontent.com/msu-cmse-courses/cmse201-F21-data/main/Day-10/flint_water_data.csv">
+   flint_water_data.csv
+  </a>
+ </li>
+</ul>
+<p class="caption">
+ <span class="caption-text">
+  Day 11
+ </span>
+</p>
+<ul class="nav bd-sidenav">
+ <li class="toctree-l1">
+  <a class="reference internal" href="../Day-11/Day-11_Pre-Class_Data_File_Formats_Manipulation-STUDENT.html">
+   Day 11 Pre-Class Assignment: Overview of data and file formats
+  </a>
+ </li>
+ <li class="toctree-l1">
+  <a class="reference external" href="https://raw.githubusercontent.com/msu-cmse-courses/cmse201-F21-data/main/Day-11/us_house_rep_by_state_2019.csv">
+   us_house_rep_by_state_2019.csv
+  </a>
+ </li>
+ <li class="toctree-l1">
+  <a class="reference external" href="https://raw.githubusercontent.com/msu-cmse-courses/cmse201-F21-data/main/Day-11/us_pop_by_state_2010_2011.csv">
+   us_pop_by_state_2010_2011.csv
+  </a>
+ </li>
+ <li class="toctree-l1">
+  <a class="reference external" href="https://github.com/msu-cmse-courses/cmse201-F21-data/raw/main/Day-11/us_pop_by_state_2012_2013_encoding_utf-16be.csv">
+   us_pop_by_state_2012_2013_encoding_utf-16be.csv
+  </a>
+ </li>
+ <li class="toctree-l1">
+  <a class="reference external" href="https://raw.githubusercontent.com/msu-cmse-courses/cmse201-F21-data/main/Day-11/us_pop_by_state_2014_2015_windows_linefeed.csv">
+   us_pop_by_state_2014_2015_windows_linefeed.csv
+  </a>
+ </li>
+ <li class="toctree-l1">
+  <a class="reference external" href="https://github.com/msu-cmse-courses/cmse201-F21-data/blob/main/Day-11/us_pop_by_state_2016a.csv?raw=true">
+   us_pop_by_state_2016a.csv
+  </a>
+ </li>
+ <li class="toctree-l1">
+  <a class="reference external" href="https://github.com/msu-cmse-courses/cmse201-F21-data/blob/main/Day-11/us_pop_by_state_2017a.yaff?raw=true">
+   us_pop_by_state2017a.yaff
+  </a>
+ </li>
+ <li class="toctree-l1">
+  <a class="reference external" href="https://github.com/msu-cmse-courses/cmse201-F21-data/blob/main/Day-11/us_pop_by_state_2018_2019.bin?raw=true">
+   us_pop_by_state_2018_2019.bin
+  </a>
+ </li>
+</ul>
+<p class="caption">
+ <span class="caption-text">
+  Day 12
+ </span>
+</p>
+<ul class="nav bd-sidenav">
+ <li class="toctree-l1">
+  <a class="reference internal" href="../Day-12/Day-12_Pre-Class_Regression-STUDENT.html">
+   Day 12 Pre-Class Assignment: Regression
+  </a>
+ </li>
+ <li class="toctree-l1">
+  <a class="reference internal" href="../Day-12/Day-12_In-Class_PolynomialFitting-STUDENT.html">
+   Day 12 In-Class Assignment: Linear regression and polynomial fitting
+  </a>
+ </li>
+ <li class="toctree-l1">
+  <a class="reference external" href="https://github.com/msu-cmse-courses/cmse201-F21-data/raw/main/Day-12/microprocessor-trend-data-master.zip">
+   microprocessor-trend-data-master.zip
+  </a>
+ </li>
+</ul>
+<p class="caption">
+ <span class="caption-text">
+  Day 13
+ </span>
+</p>
+<ul class="nav bd-sidenav">
+ <li class="toctree-l1">
+  <a class="reference internal" href="../Day-13/Day-13_Pre-Class_CurveFitting-STUDENT.html">
+   Day 13 Pre-Class Assignment: Fitting functions to data (curve-fitting) and thinking more about models
+  </a>
+ </li>
+ <li class="toctree-l1">
+  <a class="reference internal" href="../Day-13/Day-13_In-Class_FittingCurves-STUDENT.html">
+   Day 13 In-Class Assignment: (Thoughtfully) fitting models to data
+  </a>
+ </li>
+ <li class="toctree-l1">
+  <a class="reference external" href="https://raw.githubusercontent.com/msu-cmse-courses/cmse201-F21-data/main/Day-13/pop200.csv">
+   pop200.csv
+  </a>
+ </li>
+ <li class="toctree-l1">
+  <a class="reference external" href="https://raw.githubusercontent.com/msu-cmse-courses/cmse201-F21-data/main/Day-13/pop300.csv">
+   pop300.csv
+  </a>
+ </li>
+</ul>
+<p class="caption">
+ <span class="caption-text">
+  Day 14
+ </span>
+</p>
+<ul class="nav bd-sidenav">
+ <li class="toctree-l1">
+  <a class="reference internal" href="../Day-14/Day-14_Pre-Class_ModelingWithODEs-STUDENT.html">
+   Day 14: Pre-class Assignment: Modeling with Ordinary Differential Equations
+  </a>
+ </li>
+ <li class="toctree-l1">
+  <a class="reference internal" href="../Day-14/Day-14_In-Class_ModelingWithODEs-STUDENT.html">
+   Day 14: In-class Assignment: Modeling with ODEs
+  </a>
+ </li>
+ <li class="toctree-l1">
+  <a class="reference external" href="https://github.com/msu-cmse-courses/cmse201-F21-data/blob/main/Day-14/undamped_length.png">
+   undamped_length.png
+  </a>
+ </li>
+ <li class="toctree-l1">
+  <a class="reference external" href="https://github.com/msu-cmse-courses/cmse201-F21-data/blob/main/Day-14/undamped_vel.png">
+   undamped_vel.png
+  </a>
+ </li>
+</ul>
+<p class="caption">
+ <span class="caption-text">
+  Day 15
+ </span>
+</p>
+<ul class="nav bd-sidenav">
+ <li class="toctree-l1">
+  <a class="reference internal" href="../Day-15/Day-15_Pre-Class_ViralKinetics-STUDENT.html">
+   Day 15 Pre-Class: Viral Kinetics
+  </a>
+ </li>
+ <li class="toctree-l1">
+  <a class="reference internal" href="../Day-15/Day-15_In-Class_CompartmentalModeling-STUDENT.html">
+   Day 15 In-class: Building Compartmental Models
+  </a>
+ </li>
+</ul>
+<p class="caption">
+ <span class="caption-text">
+  Day 16
+ </span>
+</p>
+<ul class="nav bd-sidenav">
+ <li class="toctree-l1">
+  <a class="reference internal" href="../Day-16/Day-16_Pre-Class_Zombies-STUDENT.html">
+   Day 16 Pre-class Assignment: ZOMBIES!!
+  </a>
+ </li>
+ <li class="toctree-l1">
+  <a class="reference internal" href="../Day-16/Day-16_In-Class_CompartmentsWithSolveIVP-STUDENT.html">
+   Day 16 In-Class Assignment: Compartmental Modeling, moving from the model to the Code
+  </a>
+ </li>
+ <li class="toctree-l1">
+  <a class="reference external" href="https://github.com/msu-cmse-courses/cmse201-F21-data/blob/main/Day-16/latent.png">
+   latent.png
+  </a>
+ </li>
+</ul>
+<p class="caption">
+ <span class="caption-text">
+  Day 17
+ </span>
+</p>
+<ul class="nav bd-sidenav">
+ <li class="toctree-l1">
+  <a class="reference internal" href="../Day-17/Day-17_Pre-Class_2DNumPyArrays-STUDENT.html">
+   Day 17 Pre-Class: 2D NumPy Arrays
+  </a>
+ </li>
+ <li class="toctree-l1">
+  <a class="reference external" href="https://raw.githubusercontent.com/msu-cmse-courses/cmse201-F21-data/main/Day-17/PCA_files/cars.csv">
+   cars.csv
+  </a>
+ </li>
+ <li class="toctree-l1">
+  <a class="reference external" href="https://github.com/msu-cmse-courses/cmse201-F21-data/raw/main/Day-17/PCA_files/example.jpeg">
+   example.jpeg
+  </a>
+ </li>
+ <li class="toctree-l1">
+  <a class="reference internal" href="../Day-17/Day-17_In-Class_2DImageAnalysis-STUDENT.html">
+   Day 17 In-Class Assignment: Image Analysis
+  </a>
+ </li>
+ <li class="toctree-l1">
+  <a class="reference external" href="https://github.com/msu-cmse-courses/cmse201-F21-data/blob/main/Day-17/ICA_files/beach.jpeg">
+   beach.jpeg
+  </a>
+ </li>
+ <li class="toctree-l1">
+  <a class="reference external" href="https://github.com/msu-cmse-courses/cmse201-F21-data/blob/main/Day-17/ICA_files/landscape.jpeg">
+   landscape.jpeg
+  </a>
+ </li>
+ <li class="toctree-l1">
+  <a class="reference external" href="https://github.com/msu-cmse-courses/cmse201-F21-data/blob/main/Day-17/ICA_files/zebra.png">
+   zebra.png
+  </a>
+ </li>
+</ul>
+<p class="caption">
+ <span class="caption-text">
+  Day 18
+ </span>
+</p>
+<ul class="nav bd-sidenav">
+ <li class="toctree-l1">
+  <a class="reference internal" href="../Day-18/Day-18_Pre-Class_ABMForestFire-STUDENT.html">
+   Day 18 Pre-class: Agent-based models and forest fires
+  </a>
+ </li>
+ <li class="toctree-l1">
+  <a class="reference internal" href="../Day-18/Day-18_In-Class_ForestFiresPartI-STUDENT.html">
+   Day 18 Part 1 In-class Assignment: Modeling forest fires with an Agent-based Model
+  </a>
+ </li>
+</ul>
+<p class="caption">
+ <span class="caption-text">
+  Day 19
+ </span>
+</p>
+<ul class="nav bd-sidenav">
+ <li class="toctree-l1">
+  <a class="reference internal" href="../Day-19/Day-19_Pre-Class_ABMForestFire_Part2-STUDENT.html">
+   Day 19 Pre-class: Agent-based models and forest fires, Part 2
+  </a>
+ </li>
+ <li class="toctree-l1">
+  <a class="reference internal" href="../Day-19/Day-19_In-Class_ForestFiresPartII-STUDENT.html">
+   Day 19 In-class Assignment: Modeling forest fires with an Agent-based Model (Part II)
+  </a>
+ </li>
+</ul>
+<p class="caption">
+ <span class="caption-text">
+  Day 20
+ </span>
+</p>
+<ul class="nav bd-sidenav">
+ <li class="toctree-l1">
+  <a class="reference internal" href="../Day-20/Day-20_Pre-Class_RandomNumbers-STUDENT.html">
+   Day 20 Pre-Class Assignment: Random Numbers
+  </a>
+ </li>
+ <li class="toctree-l1">
+  <a class="reference internal" href="../Day-20/Day-20_In-Class_RandomWalks-STUDENT.html">
+   Day 20 In-class Assignment: Random Walks
+  </a>
+ </li>
+ <li class="toctree-l1">
+  <a class="reference external" href="https://github.com/msu-cmse-courses/cmse201-F21-data/blob/main/Day-20/distance_v_steps_randomwalk.png">
+   distance_v_steps_randomwalk.png
+  </a>
+ </li>
+</ul>
+<p class="caption">
+ <span class="caption-text">
+  Day 21
+ </span>
+</p>
+<ul class="nav bd-sidenav">
+ <li class="toctree-l1">
+  <a class="reference internal" href="../Day-21/Day-21_Pre-Class_ProjectUpdates-STUDENT.html">
+   Day 21 Pre-class assignment: Making project progress!
+  </a>
+ </li>
+</ul>
+<p class="caption">
+ <span class="caption-text">
+  Day 22
+ </span>
+</p>
+<ul class="nav bd-sidenav">
+ <li class="toctree-l1">
+  <a class="reference internal" href="../Day-22/Day-22_Pre-Class_Climate-STUDENT.html">
+   Day 22 Pre-class:  Global warming and climate modeling
+  </a>
+ </li>
+ <li class="toctree-l1">
+  <a class="reference internal" href="../Day-22/Day-22_In-Class_Climate-STUDENT.html">
+   Day 22 In-class Assignment: Analyzing climate data
+  </a>
+ </li>
+ <li class="toctree-l1">
+  <a class="reference external" href="https://raw.githubusercontent.com/msu-cmse-courses/cmse201-F21-data/main/Day-22/GLB.Ts.csv">
+   GLB.Ts.csv
+  </a>
+ </li>
+ <li class="toctree-l1">
+  <a class="reference external" href="https://raw.githubusercontent.com/msu-cmse-courses/cmse201-F21-data/main/Day-22/bintanja2008.txt">
+   bintanja2008.txt
+  </a>
+ </li>
+ <li class="toctree-l1">
+  <a class="reference external" href="https://raw.githubusercontent.com/msu-cmse-courses/cmse201-F21-data/main/Day-22/ch4_annmean_gl.txt">
+   ch4_annmean_gl.txt
+  </a>
+ </li>
+ <li class="toctree-l1">
+  <a class="reference external" href="https://raw.githubusercontent.com/msu-cmse-courses/cmse201-F21-data/main/Day-22/co2_mm_mlo.txt">
+   co2_mm_mlo.txt
+  </a>
+ </li>
+ <li class="toctree-l1">
+  <a class="reference external" href="https://raw.githubusercontent.com/msu-cmse-courses/cmse201-F21-data/main/Day-22/vostok-ch4nat.txt">
+   vostok-ch4nat.txt
+  </a>
+ </li>
+ <li class="toctree-l1">
+  <a class="reference external" href="https://raw.githubusercontent.com/msu-cmse-courses/cmse201-F21-data/main/Day-22/vostok-co2nat.txt">
+   vostok-co2nat.txt
+  </a>
+ </li>
+ <li class="toctree-l1">
+  <a class="reference external" href="https://raw.githubusercontent.com/msu-cmse-courses/cmse201-F21-data/main/Day-22/vostok-deutnat.txt">
+   vostok-deutnat.txt
+  </a>
+ </li>
+</ul>
+<p class="caption">
+ <span class="caption-text">
+  Day 23
+ </span>
+</p>
+<ul class="nav bd-sidenav">
+ <li class="toctree-l1">
+  <a class="reference internal" href="../Day-23/Day-23_Pre-Class_Climate-STUDENT.html">
+   Day 23 pre-class assignment: climate modeling
+  </a>
+ </li>
+ <li class="toctree-l1">
+  <a class="reference internal" href="../Day-23/Day-23_In-Class_Climate-STUDENT.html">
+   Day 23 In-class Assignment: A simple model for global temperature
+  </a>
+ </li>
+ <li class="toctree-l1">
+  <a class="reference external" href="https://github.com/msu-cmse-courses/cmse201-F21-data/blob/main/Day-23/listentothee.png">
+   listentothee.png
+  </a>
+ </li>
+ <li class="toctree-l1">
+  <a class="reference external" href="https://github.com/msu-cmse-courses/cmse201-F21-data/blob/main/Day-23/simple_model.png">
+   simple_model.png
+  </a>
+ </li>
+</ul>
+<p class="caption">
+ <span class="caption-text">
+  Homework
+ </span>
+</p>
+<ul class="nav bd-sidenav">
+ <li class="toctree-l1">
+  <a class="reference internal" href="../Homework/Homework-1/HW_01_F21_STUDENT.html">
+   Homework 1: Introduction to Loops, Lists, and Dictionaries
+  </a>
+ </li>
+ <li class="toctree-l1">
+  <a class="reference internal" href="../Homework/Homework-2/HW_02_F21-STUDENT.html">
+   Homework 2: If Statements, Functions, and Modules
+  </a>
+ </li>
+ <li class="toctree-l1">
+  <a class="reference internal" href="../Homework/Homework-3/HOMEWORK_3_STUDENT.html">
+   Homework 3: Data Analysis with Pandas, Numpy, and Matplotlib
+  </a>
+ </li>
+ <li class="toctree-l1">
+  <a class="reference external" href="https://raw.githubusercontent.com/msu-cmse-courses/cmse201-F21-data/main/Homework/americas_gpin_2014_16.csv">
+   americas_gpin_2014_16.csv
+  </a>
+ </li>
+ <li class="toctree-l1">
+  <a class="reference internal" href="../Homework/Homework-4/HW-04-Fall2021_Final-STUDENT.html">
+   Homework 4: Fitting data using NumPy and SciPy
+  </a>
+ </li>
+ <li class="toctree-l1">
+  <a class="reference external" href="https://github.com/msu-cmse-courses/cmse201-F21-data/raw/main/Homework/Wage.csv">
+   Wage.csv
+  </a>
+ </li>
+ <li class="toctree-l1">
+  <a class="reference internal" href="../Homework/Homework-5/HW_05_F21-STUDENT.html">
+   Homework 5: Modeling Physical Systems and Heating Up the House with ODEs
+  </a>
+ </li>
+ <li class="toctree-l1">
+  <a class="reference internal" href="../Homework/Homework-6/HW-06_F21-STUDENT.html">
+   Homework 6: Agent Based Modeling
+  </a>
+ </li>
+</ul>
+<p class="caption">
+ <span class="caption-text">
+  Midterm Bootcamps
+ </span>
+</p>
+<ul class="nav bd-sidenav">
+ <li class="toctree-l1">
+  <a class="reference internal" href="../Bootcamp_Notebooks/Bootcamp1-Python_Fundamentals_STUDENT.html">
+   Bootcamp 1: Python Fundamentals
+  </a>
+ </li>
+ <li class="toctree-l1">
+  <a class="reference internal" href="../Bootcamp_Notebooks/Bootcamp2-InitialConceptsReview.html">
+   Bootcamp 2: Initial Concepts Review Cheatsheet
+  </a>
+ </li>
+ <li class="toctree-l1">
+  <a class="reference internal" href="../Bootcamp_Notebooks/Bootcamp3-Debugging_STUDENT.html">
+   Bootcamp 3: Debugging
+  </a>
+ </li>
+ <li class="toctree-l1">
+  <a class="reference internal" href="../Bootcamp_Notebooks/Bootcamp4-IfStatements_STUDENT.html">
+   Bootcamp 4: If Statements
+  </a>
+ </li>
+ <li class="toctree-l1">
+  <a class="reference internal" href="../Bootcamp_Notebooks/Bootcamp5-Functions_STUDENT.html">
+   Bootcamp 5: Functions
+  </a>
+ </li>
+ <li class="toctree-l1">
+  <a class="reference internal" href="../Bootcamp_Notebooks/Bootcamp6-Matplotlib_STUDENT.html">
+   Bootcamp 6: Matplotlib
+  </a>
+ </li>
+</ul>
+<p class="caption">
+ <span class="caption-text">
+  Semester Projects
+ </span>
+</p>
+<ul class="current nav bd-sidenav">
+ <li class="toctree-l1">
+  <a class="reference internal" href="CMSE201_SemesterProjectDetails.html">
+   Semester Project Details
+  </a>
+ </li>
+ <li class="toctree-l1 current active">
+  <a class="current reference internal" href="#">
+   CMSE 201 Final Project Example A
+  </a>
+ </li>
+ <li class="toctree-l1">
+  <a class="reference internal" href="CMSE201_FinalProject_ExampleB.html">
+   CMSE 201 Final Project Example B
+  </a>
+ </li>
+ <li class="toctree-l1">
+  <a class="reference external" href="https://github.com/msu-cmse-courses/cmse201-F21-data/raw/main/Projects/CMSE201_Example_Projects.zip">
+   CMSE201_Example_Projects.zip
+  </a>
+ </li>
+ <li class="toctree-l1">
+  <a class="reference internal" href="First_Project_Checkpoint.html">
+   First Project Checkpoint
+  </a>
+ </li>
+ <li class="toctree-l1">
+  <a class="reference internal" href="CMSE201FinalProject_RequirementsAndGradingRubric.html">
+   Requirements and Grading Rubric
+  </a>
+ </li>
+ <li class="toctree-l1">
+  <a class="reference internal" href="CMSE201_FinalProjectTemplate.html">
+   CMSE 201 Final Project Template
+  </a>
+ </li>
+</ul>
+
+    </div>
+</nav> <!-- To handle the deprecated key -->
+
+<div class="navbar_extra_footer">
+  Powered by <a href="https://jupyterbook.org">Jupyter Book</a>
+</div>
+
+</div>
+
+
+          
+
+
+          
+<main class="col py-md-3 pl-md-4 bd-content overflow-auto" role="main">
+    
+    <div class="topbar container-xl fixed-top">
+    <div class="topbar-contents row">
+        <div class="col-12 col-md-3 bd-topbar-whitespace site-navigation show"></div>
+        <div class="col pl-md-4 topbar-main">
+            
+            <button id="navbar-toggler" class="navbar-toggler ml-0" type="button" data-toggle="collapse"
+                data-toggle="tooltip" data-placement="bottom" data-target=".site-navigation" aria-controls="navbar-menu"
+                aria-expanded="true" aria-label="Toggle navigation" aria-controls="site-navigation"
+                title="Toggle navigation" data-toggle="tooltip" data-placement="left">
+                <i class="fas fa-bars"></i>
+                <i class="fas fa-arrow-left"></i>
+                <i class="fas fa-arrow-up"></i>
+            </button>
+            
+            
+<div class="dropdown-buttons-trigger">
+    <button id="dropdown-buttons-trigger" class="btn btn-secondary topbarbtn" aria-label="Download this page"><i
+            class="fas fa-download"></i></button>
+
+    <div class="dropdown-buttons">
+        <!-- ipynb file if we had a myst markdown file -->
+        
+        <!-- Download raw file -->
+        <a class="dropdown-buttons" href="../_sources/Project_Materials/CMSE201_FinalProject_ExampleA.ipynb"><button type="button"
+                class="btn btn-secondary topbarbtn" title="Download source file" data-toggle="tooltip"
+                data-placement="left">.ipynb</button></a>
+        <!-- Download PDF via print -->
+        <button type="button" id="download-print" class="btn btn-secondary topbarbtn" title="Print to PDF"
+            onClick="window.print()" data-toggle="tooltip" data-placement="left">.pdf</button>
+    </div>
+</div>
+
+            <!-- Source interaction buttons -->
+
+<div class="dropdown-buttons-trigger">
+    <button id="dropdown-buttons-trigger" class="btn btn-secondary topbarbtn"
+        aria-label="Connect with source repository"><i class="fab fa-github"></i></button>
+    <div class="dropdown-buttons sourcebuttons">
+        <a class="repository-button"
+            href="https://github.com/msu-cmse-courses/cmse201-F21-jb"><button type="button" class="btn btn-secondary topbarbtn"
+                data-toggle="tooltip" data-placement="left" title="Source repository"><i
+                    class="fab fa-github"></i>repository</button></a>
+        <a class="issues-button"
+            href="https://github.com/msu-cmse-courses/cmse201-F21-jb/issues/new?title=Issue%20on%20page%20%2FProject_Materials/CMSE201_FinalProject_ExampleA.html&body=Your%20issue%20content%20here."><button
+                type="button" class="btn btn-secondary topbarbtn" data-toggle="tooltip" data-placement="left"
+                title="Open an issue"><i class="fas fa-lightbulb"></i>open issue</button></a>
+        
+    </div>
+</div>
+
+            <!-- Full screen (wrap in <a> to have style consistency -->
+
+<a class="full-screen-button"><button type="button" class="btn btn-secondary topbarbtn" data-toggle="tooltip"
+        data-placement="bottom" onclick="toggleFullScreen()" aria-label="Fullscreen mode"
+        title="Fullscreen mode"><i
+            class="fas fa-expand"></i></button></a>
+
+            <!-- Launch buttons -->
+
+<div class="dropdown-buttons-trigger">
+    <button id="dropdown-buttons-trigger" class="btn btn-secondary topbarbtn"
+        aria-label="Launch interactive content"><i class="fas fa-rocket"></i></button>
+    <div class="dropdown-buttons">
+        
+        <a class="binder-button" href="https://mybinder.org/v2/gh/msu-cmse-courses/cmse201-F21-jb/main?urlpath=tree/Project_Materials/CMSE201_FinalProject_ExampleA.ipynb"><button type="button"
+                class="btn btn-secondary topbarbtn" title="Launch Binder" data-toggle="tooltip"
+                data-placement="left"><img class="binder-button-logo"
+                    src="../_static/images/logo_binder.svg"
+                    alt="Interact on binder">Binder</button></a>
+        
+        
+        
+        
+    </div>
+</div>
+
+        </div>
+
+        <!-- Table of contents -->
+        <div class="d-none d-md-block col-md-2 bd-toc show">
+            
+            <div class="tocsection onthispage pt-5 pb-3">
+                <i class="fas fa-list"></i> Contents
+            </div>
+            <nav id="bd-toc-nav" aria-label="Page">
+                <ul class="visible nav section-nav flex-column">
+ <li class="toc-h1 nav-item toc-entry">
+  <a class="reference internal nav-link" href="#">
+   CMSE 201 Final Project Example A
+  </a>
+  <ul class="visible nav section-nav flex-column">
+   <li class="toc-h2 nav-item toc-entry">
+    <a class="reference internal nav-link" href="#cmse-student">
+     ✅ CMSE Student
+    </a>
+   </li>
+   <li class="toc-h2 nav-item toc-entry">
+    <a class="reference internal nav-link" href="#section-001">
+     ✅ Section_001
+    </a>
+    <ul class="nav section-nav flex-column">
+     <li class="toc-h3 nav-item toc-entry">
+      <a class="reference internal nav-link" href="#april-15th-2021">
+       ✅ April 15th, 2021
+      </a>
+     </li>
+    </ul>
+   </li>
+  </ul>
+ </li>
+ <li class="toc-h1 nav-item toc-entry">
+  <a class="reference internal nav-link" href="#analyzing-the-most-influential-factors-in-democratic-primary-election-success">
+   Analyzing the Most Influential Factors in Democratic Primary Election Success
+  </a>
+  <ul class="visible nav section-nav flex-column">
+   <li class="toc-h2 nav-item toc-entry">
+    <a class="reference internal nav-link" href="#background-and-motivation">
+     1 Background and Motivation
+    </a>
+   </li>
+   <li class="toc-h2 nav-item toc-entry">
+    <a class="reference internal nav-link" href="#methodology">
+     2 Methodology
+    </a>
+    <ul class="nav section-nav flex-column">
+     <li class="toc-h3 nav-item toc-entry">
+      <a class="reference internal nav-link" href="#separating-data">
+       2.1 Separating Data
+      </a>
+     </li>
+     <li class="toc-h3 nav-item toc-entry">
+      <a class="reference internal nav-link" href="#all-representatives">
+       2.2 All Representatives
+      </a>
+     </li>
+     <li class="toc-h3 nav-item toc-entry">
+      <a class="reference internal nav-link" href="#senate-candidates">
+       2.3 Senate Candidates
+      </a>
+     </li>
+     <li class="toc-h3 nav-item toc-entry">
+      <a class="reference internal nav-link" href="#house-candidates">
+       2.4 House Candidates
+      </a>
+     </li>
+    </ul>
+   </li>
+   <li class="toc-h2 nav-item toc-entry">
+    <a class="reference internal nav-link" href="#results">
+     3 Results
+    </a>
+    <ul class="nav section-nav flex-column">
+     <li class="toc-h3 nav-item toc-entry">
+      <a class="reference internal nav-link" href="#overall-results">
+       3.1 Overall Results
+      </a>
+     </li>
+     <li class="toc-h3 nav-item toc-entry">
+      <a class="reference internal nav-link" href="#comparisons">
+       3.2 Comparisons
+      </a>
+     </li>
+    </ul>
+   </li>
+   <li class="toc-h2 nav-item toc-entry">
+    <a class="reference internal nav-link" href="#discussion-and-conclusion">
+     Discussion and Conclusion
+    </a>
+    <ul class="nav section-nav flex-column">
+     <li class="toc-h3 nav-item toc-entry">
+      <a class="reference internal nav-link" href="#references">
+       References
+      </a>
+     </li>
+    </ul>
+   </li>
+  </ul>
+ </li>
+</ul>
+
+            </nav>
+        </div>
+    </div>
+</div>
+    <div id="main-content" class="row">
+        <div class="col-12 col-md-9 pl-md-3 pr-md-0">
+        
+              <div>
+                
+  <div class="section" id="cmse-201-final-project-example-a">
+<h1>CMSE 201 Final Project Example A<a class="headerlink" href="#cmse-201-final-project-example-a" title="Permalink to this headline">¶</a></h1>
+<div class="section" id="cmse-student">
+<h2>✅ CMSE Student<a class="headerlink" href="#cmse-student" title="Permalink to this headline">¶</a></h2>
+</div>
+<div class="section" id="section-001">
+<h2>✅ Section_001<a class="headerlink" href="#section-001" title="Permalink to this headline">¶</a></h2>
+<div class="section" id="april-15th-2021">
+<h3>✅ April 15th, 2021<a class="headerlink" href="#april-15th-2021" title="Permalink to this headline">¶</a></h3>
+</div>
+</div>
+</div>
+<div class="section" id="analyzing-the-most-influential-factors-in-democratic-primary-election-success">
+<h1>Analyzing the Most Influential Factors in Democratic Primary Election Success<a class="headerlink" href="#analyzing-the-most-influential-factors-in-democratic-primary-election-success" title="Permalink to this headline">¶</a></h1>
+<div class="section" id="background-and-motivation">
+<h2>1 Background and Motivation<a class="headerlink" href="#background-and-motivation" title="Permalink to this headline">¶</a></h2>
+<p>Over the course of American history, elections have never been simple creatures, and over the past few decades, the process has only become more complicated. Between the rise of the 24-hour news cycle, increasing polarization between political parties and a slew of other political influences, elections have been growing increasingly closer (1) and winners are becoming less predictable to the average voter. This means that it is becoming increasingly more important (And increasingly more difficult) for political parties to field potential candidates to appeal to voters. Because of this, the primary election cycle has become a vital part of party decisions, but also a natural experiment of what candidates are more likely to appease their party. Through this, we will attempt to answer the question: <em>what are the most important factors of a successful Democratic primary candidate?</em></p>
+<p>This question has been on the mind of political analysts and committee leaders since the beginning of the election experiment, so this will be a simplified break down of a much larger political quandary. The focus of this study is only Democratic primary candidates running for Congress in 2018. However, using data from the 2018 primary election cycle (2), we can begin to see patterns among more successful candidates and those that fail to advance. In doing so, we will control for two important factors known to influence primary success, the first of which is party affiliation. The two main American political parties have vastly different values, so it makes sense that they field different candidates who experience different versions of success. We will only use Democratic candidates for this study, as they tend to field a greater range of candidates and to control for party influence. The other factor we will control for is a phenomenon called the incumbancy effect, where it is known that incumbents have a significant advantage when running for re-election. To account for this, we will only be using the data of challengers as they tend to have equal opportunity against each other in the face of an incumbent competitor.</p>
+<p>Within the greater question of what factors are better-suited for primary election success, we can answer several smaller inquiries in order to understand the causes behind some patterns. We can separate candidates by which type of seat they are trying for, namely a Senate seat or a House of Representatives seat, to determine if different factors are more beneficial to one office or the other. Once we create a rgression to test for significance of factors, we can then attempt to create a combination of factors best-suited for a candidate to achieve election success.</p>
+</div>
+<div class="section" id="methodology">
+<h2>2 Methodology<a class="headerlink" href="#methodology" title="Permalink to this headline">¶</a></h2>
+<div class="section" id="separating-data">
+<h3>2.1 Separating Data<a class="headerlink" href="#separating-data" title="Permalink to this headline">¶</a></h3>
+<p>In order to proceed, we need to do some basic data cleaning, the majority of which can be done as the data exists in a CSV file. That way, we can combine the dataset containing most of the candidates’ information (2) and with the financial data taken from the FEC (3). Any  missing data was found via Ballotpedia (3) and inserted into the data frame. The result is the data frame <code class="docutils literal notranslate"><span class="pre">allreps</span></code> which we will break down into <code class="docutils literal notranslate"><span class="pre">sen</span></code>, which contains the data for those running for a Senate position, and <code class="docutils literal notranslate"><span class="pre">rep</span></code>, which contains all of the data of those running for a House seat. Within each of those data sets, each variable will be adjusted to be displayed as an integer. The categorical variables (such as race, veteran status, etc.) will be dummy variables, represented as a 0 or 1 for a yes/no value. They variables can be better understood with this key:</p>
+<p>-<em>Primary%</em>: The percent of the vote won by the candidate in the primary election</p>
+<p>-<em>Partisan Lean</em>: the average difference between how the district votes and how the country votes. Higher absolute values are districts that are more likely to elect one party over the other and since we are only working with Democratic candidates, negative values represent Republican-dominated districts.</p>
+<p>-<em>Race</em>: 0 represents a non-Hispanic white candidate, 1 represents a candidate of color</p>
+<p>-<em>Veteran</em>: 0 represents a candidate with no military history, 1 represents a candidate who has served</p>
+<p>-<em>LGBTQ</em>: 0 represents a candidate who does not identify with the LBGTQ community, 1 represents a candidate who advertises that they are a member of the LGBTQ community</p>
+<p>-<em>Past Service</em>: 0 represents a candidate that has never held office before, 1 represents a candidate who has held any political office in the past</p>
+<p>-<em>Funds</em>:The amount of money (in thousands) a candidate raised as declared to the FEC.</p>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="kn">import</span> <span class="nn">pandas</span> <span class="k">as</span> <span class="nn">pd</span> 
+<span class="kn">import</span> <span class="nn">numpy</span> <span class="k">as</span> <span class="nn">np</span>
+<span class="kn">import</span> <span class="nn">statsmodels.api</span> <span class="k">as</span> <span class="nn">statsm</span>
+<span class="kn">import</span> <span class="nn">matplotlib.pyplot</span> <span class="k">as</span> <span class="nn">plt</span>
+<span class="o">%</span><span class="k">matplotlib</span> inline
+
+<span class="n">np</span><span class="o">.</span><span class="n">random</span><span class="o">.</span><span class="n">seed</span><span class="p">(</span><span class="mi">5678</span><span class="p">)</span>
+</pre></div>
+</div>
+</div>
+</div>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="c1">#Data imports</span>
+<span class="n">allreps</span> <span class="o">=</span> <span class="n">pd</span><span class="o">.</span><span class="n">read_csv</span><span class="p">(</span><span class="s2">&quot;allreps.csv&quot;</span><span class="p">,</span> <span class="n">delimiter</span> <span class="o">=</span> <span class="s2">&quot;,&quot;</span><span class="p">)</span>
+<span class="k">for</span> <span class="n">i</span> <span class="ow">in</span> <span class="nb">range</span><span class="p">(</span><span class="nb">len</span><span class="p">(</span><span class="n">allreps</span><span class="p">)):</span>
+    <span class="k">if</span> <span class="n">allreps</span><span class="p">[</span><span class="s2">&quot;Race&quot;</span><span class="p">][</span><span class="n">i</span><span class="p">]</span> <span class="o">==</span> <span class="s2">&quot;White&quot;</span><span class="p">:</span>
+        <span class="n">allreps</span><span class="p">[</span><span class="s2">&quot;Race&quot;</span><span class="p">][</span><span class="n">i</span><span class="p">]</span> <span class="o">=</span> <span class="mi">0</span>
+    <span class="k">else</span><span class="p">:</span>
+        <span class="n">allreps</span><span class="p">[</span><span class="s2">&quot;Race&quot;</span><span class="p">][</span><span class="n">i</span><span class="p">]</span> <span class="o">=</span> <span class="mi">1</span>
+    <span class="k">if</span> <span class="n">allreps</span><span class="p">[</span><span class="s2">&quot;Veteran?&quot;</span><span class="p">][</span><span class="n">i</span><span class="p">]</span> <span class="o">==</span> <span class="s2">&quot;Yes&quot;</span><span class="p">:</span>
+        <span class="n">allreps</span><span class="p">[</span><span class="s2">&quot;Veteran?&quot;</span><span class="p">][</span><span class="n">i</span><span class="p">]</span> <span class="o">=</span> <span class="mi">1</span>
+    <span class="k">else</span><span class="p">:</span>
+        <span class="n">allreps</span><span class="p">[</span><span class="s2">&quot;Veteran?&quot;</span><span class="p">][</span><span class="n">i</span><span class="p">]</span> <span class="o">=</span> <span class="mi">0</span>
+    <span class="k">if</span> <span class="n">allreps</span><span class="p">[</span><span class="s2">&quot;LGBTQ?&quot;</span><span class="p">][</span><span class="n">i</span><span class="p">]</span> <span class="o">==</span> <span class="s2">&quot;Yes&quot;</span><span class="p">:</span>
+        <span class="n">allreps</span><span class="p">[</span><span class="s2">&quot;LGBTQ?&quot;</span><span class="p">][</span><span class="n">i</span><span class="p">]</span> <span class="o">=</span> <span class="mi">1</span>
+    <span class="k">else</span><span class="p">:</span>
+        <span class="n">allreps</span><span class="p">[</span><span class="s2">&quot;LGBTQ?&quot;</span><span class="p">][</span><span class="n">i</span><span class="p">]</span> <span class="o">=</span> <span class="mi">0</span>
+    <span class="k">if</span> <span class="n">allreps</span><span class="p">[</span><span class="s2">&quot;Past Service&quot;</span><span class="p">][</span><span class="n">i</span><span class="p">]</span> <span class="o">==</span> <span class="s2">&quot;Yes&quot;</span><span class="p">:</span>
+        <span class="n">allreps</span><span class="p">[</span><span class="s2">&quot;Past Service&quot;</span><span class="p">][</span><span class="n">i</span><span class="p">]</span> <span class="o">=</span> <span class="mi">1</span>
+    <span class="k">else</span><span class="p">:</span>
+        <span class="n">allreps</span><span class="p">[</span><span class="s2">&quot;Past Service&quot;</span><span class="p">][</span><span class="n">i</span><span class="p">]</span> <span class="o">=</span> <span class="mi">0</span>
+    <span class="n">allreps</span><span class="p">[</span><span class="s2">&quot;Funds&quot;</span><span class="p">][</span><span class="n">i</span><span class="p">]</span> <span class="o">=</span> <span class="n">allreps</span><span class="p">[</span><span class="s2">&quot;Funds&quot;</span><span class="p">][</span><span class="n">i</span><span class="p">]</span><span class="o">/</span><span class="mi">1000</span>
+
+<span class="n">sen</span> <span class="o">=</span> <span class="n">allreps</span><span class="o">.</span><span class="n">loc</span><span class="p">[</span><span class="n">np</span><span class="o">.</span><span class="n">where</span><span class="p">(</span><span class="n">allreps</span><span class="p">[</span><span class="s2">&quot;Office Type&quot;</span><span class="p">]</span> <span class="o">==</span> <span class="s2">&quot;Senator&quot;</span><span class="p">)]</span>
+<span class="n">rep</span> <span class="o">=</span> <span class="n">allreps</span><span class="o">.</span><span class="n">loc</span><span class="p">[</span><span class="n">np</span><span class="o">.</span><span class="n">where</span><span class="p">(</span><span class="n">allreps</span><span class="p">[</span><span class="s2">&quot;Office Type&quot;</span><span class="p">]</span> <span class="o">==</span> <span class="s2">&quot;Representative&quot;</span><span class="p">)]</span>
+<span class="nb">print</span><span class="p">(</span><span class="s2">&quot;All Representatives:&quot;</span><span class="p">,</span> <span class="n">allreps</span><span class="o">.</span><span class="n">head</span><span class="p">())</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<div class="output stderr highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>&lt;ipython-input-3-6e0443556810&gt;:7: SettingWithCopyWarning: 
+A value is trying to be set on a copy of a slice from a DataFrame
+
+See the caveats in the documentation: https://pandas.pydata.org/pandas-docs/stable/user_guide/indexing.html#returning-a-view-versus-a-copy
+  allreps[&quot;Race&quot;][i] = 1
+&lt;ipython-input-3-6e0443556810&gt;:11: SettingWithCopyWarning: 
+A value is trying to be set on a copy of a slice from a DataFrame
+
+See the caveats in the documentation: https://pandas.pydata.org/pandas-docs/stable/user_guide/indexing.html#returning-a-view-versus-a-copy
+  allreps[&quot;Veteran?&quot;][i] = 0
+&lt;ipython-input-3-6e0443556810&gt;:15: SettingWithCopyWarning: 
+A value is trying to be set on a copy of a slice from a DataFrame
+
+See the caveats in the documentation: https://pandas.pydata.org/pandas-docs/stable/user_guide/indexing.html#returning-a-view-versus-a-copy
+  allreps[&quot;LGBTQ?&quot;][i] = 0
+&lt;ipython-input-3-6e0443556810&gt;:19: SettingWithCopyWarning: 
+A value is trying to be set on a copy of a slice from a DataFrame
+
+See the caveats in the documentation: https://pandas.pydata.org/pandas-docs/stable/user_guide/indexing.html#returning-a-view-versus-a-copy
+  allreps[&quot;Past Service&quot;][i] = 0
+&lt;ipython-input-3-6e0443556810&gt;:20: SettingWithCopyWarning: 
+A value is trying to be set on a copy of a slice from a DataFrame
+
+See the caveats in the documentation: https://pandas.pydata.org/pandas-docs/stable/user_guide/indexing.html#returning-a-view-versus-a-copy
+  allreps[&quot;Funds&quot;][i] = allreps[&quot;Funds&quot;][i]/1000
+&lt;ipython-input-3-6e0443556810&gt;:9: SettingWithCopyWarning: 
+A value is trying to be set on a copy of a slice from a DataFrame
+
+See the caveats in the documentation: https://pandas.pydata.org/pandas-docs/stable/user_guide/indexing.html#returning-a-view-versus-a-copy
+  allreps[&quot;Veteran?&quot;][i] = 1
+&lt;ipython-input-3-6e0443556810&gt;:5: SettingWithCopyWarning: 
+A value is trying to be set on a copy of a slice from a DataFrame
+
+See the caveats in the documentation: https://pandas.pydata.org/pandas-docs/stable/user_guide/indexing.html#returning-a-view-versus-a-copy
+  allreps[&quot;Race&quot;][i] = 0
+&lt;ipython-input-3-6e0443556810&gt;:17: SettingWithCopyWarning: 
+A value is trying to be set on a copy of a slice from a DataFrame
+
+See the caveats in the documentation: https://pandas.pydata.org/pandas-docs/stable/user_guide/indexing.html#returning-a-view-versus-a-copy
+  allreps[&quot;Past Service&quot;][i] = 1
+&lt;ipython-input-3-6e0443556810&gt;:13: SettingWithCopyWarning: 
+A value is trying to be set on a copy of a slice from a DataFrame
+
+See the caveats in the documentation: https://pandas.pydata.org/pandas-docs/stable/user_guide/indexing.html#returning-a-view-versus-a-copy
+  allreps[&quot;LGBTQ?&quot;][i] = 1
+</pre></div>
+</div>
+<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>All Representatives:                  Candidate State                       District  \
+0  Lizzetta Hill McConnell    AL  U.S. House Alabama District 1   
+1       Robert Kennedy Jr.    AL  U.S. House Alabama District 1   
+2     Audri Scott Williams    AL  U.S. House Alabama District 2   
+3            Tabitha Isner    AL  U.S. House Alabama District 2   
+4   Adia McClellan Winfrey    AL  U.S. House Alabama District 3   
+
+      Office Type Race Type Primary Status Won Primary Obama Alum?  Primary %  \
+0  Representative   Regular           Lost          No          No  19.230000   
+1  Representative   Regular       Advanced         Yes          No  80.769997   
+2  Representative   Regular           Lost          No          No  39.560001   
+3  Representative   Regular       Advanced         Yes          No  60.439999   
+4  Representative   Regular           Lost          No          No  34.240002   
+
+   Partisan Lean Race Veteran? LGBTQ? Past Service      Funds  
+0     -30.680000    1        0      0            0    5.12700  
+1     -30.680000    1        1      0            0  166.84521  
+2     -33.080002    1        1      0            0   35.36502  
+3     -33.080002    0        0      0            0  524.94135  
+4     -33.660000    1        0      0            0   14.53525  
+</pre></div>
+</div>
+</div>
+</div>
+</div>
+<div class="section" id="all-representatives">
+<h3>2.2 All Representatives<a class="headerlink" href="#all-representatives" title="Permalink to this headline">¶</a></h3>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="c1">#all_inputs = allreps.iloc[:, 9:]</span>
+<span class="n">all_X</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">array</span><span class="p">(</span><span class="n">allreps</span><span class="p">[[</span><span class="s2">&quot;Partisan Lean&quot;</span><span class="p">,</span> <span class="s2">&quot;Race&quot;</span><span class="p">,</span> <span class="s2">&quot;LGBTQ?&quot;</span><span class="p">,</span> <span class="s2">&quot;Veteran?&quot;</span><span class="p">,</span> <span class="s2">&quot;Past Service&quot;</span><span class="p">,</span> <span class="s2">&quot;Funds&quot;</span><span class="p">]],</span><span class="n">dtype</span> <span class="o">=</span> <span class="nb">float</span><span class="p">)</span> <span class="c1">#Defining independent variables</span>
+<span class="n">all_Y</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">array</span><span class="p">(</span><span class="n">allreps</span><span class="p">[</span><span class="s2">&quot;Primary %&quot;</span><span class="p">])</span> <span class="c1">#Defining dependent variable</span>
+
+<span class="n">all_X2</span> <span class="o">=</span> <span class="n">statsm</span><span class="o">.</span><span class="n">add_constant</span><span class="p">(</span><span class="n">all_X</span><span class="p">)</span> <span class="c1">#Add a constant so model does not start at 0</span>
+<span class="n">lm</span> <span class="o">=</span> <span class="n">statsm</span><span class="o">.</span><span class="n">OLS</span><span class="p">(</span><span class="n">all_Y</span><span class="p">,</span> <span class="n">all_X2</span><span class="p">)</span>
+<span class="n">model</span> <span class="o">=</span> <span class="n">lm</span><span class="o">.</span><span class="n">fit</span><span class="p">()</span>
+<span class="nb">print</span><span class="p">(</span><span class="s2">&quot;Parameters:&quot;</span><span class="p">,</span> <span class="n">model</span><span class="o">.</span><span class="n">params</span><span class="p">)</span>
+<span class="nb">print</span><span class="p">(</span><span class="s2">&quot;Coefficient of Determination:&quot;</span><span class="p">,</span> <span class="n">model</span><span class="o">.</span><span class="n">rsquared</span><span class="p">)</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>Parameters: [ 1.59200272e+01 -3.88394558e-01  1.93755247e+00 -5.33345483e-01
+ -8.68813779e-01  1.23553344e+01  3.73762325e-03]
+Coefficient of Determination: 0.28324881302505
+</pre></div>
+</div>
+</div>
+</div>
+<p>First, we’ll treat candidates running for either the Senate or the House of Representatives as the same population, and create a regression for candidate qualities overall. Using the <code class="docutils literal notranslate"><span class="pre">statsmodel</span></code> package, we can create regression coefficients to model the relationship between each factor and the percent of the vote won. We will lump all of the columns containing our independent variables into one array and the dependent into another so that <code class="docutils literal notranslate"><span class="pre">fit</span></code> command can handle the input. The regression of choice is an ordinary least squares regression, which is well suited to large datasets and is unbiased so we can view each factor as equal. The output is a set of parameters (1 intercept value and 6 coefficients) that we can use for future estimates.</p>
+<p>We can also see the coefficient of determination, which is quite low at 0.283. This is not uncommon because it is difficult to fit a regression to multiple factors but we can attempt to improve this by removing insignificant variables. For our purposes, insignificant variables are variables that do not have an impact on the candidate’s winning percentage. To do this, we can look at the p_values of each coefficient. If they are above a chosen significance level (we will use <span class="math notranslate nohighlight">\(\alpha = 0.1\)</span> as to incorporate as many coefficients while accounting for extremes), we do not have to include them in the model as they do not have a significant impact.</p>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="c1">#Statistical signifiance </span>
+<span class="n">model</span><span class="o">.</span><span class="n">summary</span><span class="p">()</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<div class="output text_html"><table class="simpletable">
+<caption>OLS Regression Results</caption>
+<tr>
+  <th>Dep. Variable:</th>            <td>y</td>        <th>  R-squared:         </th> <td>   0.283</td>
+</tr>
+<tr>
+  <th>Model:</th>                   <td>OLS</td>       <th>  Adj. R-squared:    </th> <td>   0.276</td>
+</tr>
+<tr>
+  <th>Method:</th>             <td>Least Squares</td>  <th>  F-statistic:       </th> <td>   38.40</td>
+</tr>
+<tr>
+  <th>Date:</th>             <td>Sun, 18 Apr 2021</td> <th>  Prob (F-statistic):</th> <td>2.42e-39</td>
+</tr>
+<tr>
+  <th>Time:</th>                 <td>14:33:01</td>     <th>  Log-Likelihood:    </th> <td> -2522.3</td>
+</tr>
+<tr>
+  <th>No. Observations:</th>      <td>   590</td>      <th>  AIC:               </th> <td>   5059.</td>
+</tr>
+<tr>
+  <th>Df Residuals:</th>          <td>   583</td>      <th>  BIC:               </th> <td>   5089.</td>
+</tr>
+<tr>
+  <th>Df Model:</th>              <td>     6</td>      <th>                     </th>     <td> </td>   
+</tr>
+<tr>
+  <th>Covariance Type:</th>      <td>nonrobust</td>    <th>                     </th>     <td> </td>   
+</tr>
+</table>
+<table class="simpletable">
+<tr>
+    <td></td>       <th>coef</th>     <th>std err</th>      <th>t</th>      <th>P>|t|</th>  <th>[0.025</th>    <th>0.975]</th>  
+</tr>
+<tr>
+  <th>const</th> <td>   15.9200</td> <td>    1.207</td> <td>   13.191</td> <td> 0.000</td> <td>   13.550</td> <td>   18.290</td>
+</tr>
+<tr>
+  <th>x1</th>    <td>   -0.3884</td> <td>    0.040</td> <td>   -9.721</td> <td> 0.000</td> <td>   -0.467</td> <td>   -0.310</td>
+</tr>
+<tr>
+  <th>x2</th>    <td>    1.9376</td> <td>    1.758</td> <td>    1.102</td> <td> 0.271</td> <td>   -1.514</td> <td>    5.389</td>
+</tr>
+<tr>
+  <th>x3</th>    <td>   -0.5333</td> <td>    3.334</td> <td>   -0.160</td> <td> 0.873</td> <td>   -7.081</td> <td>    6.015</td>
+</tr>
+<tr>
+  <th>x4</th>    <td>   -0.8688</td> <td>    1.994</td> <td>   -0.436</td> <td> 0.663</td> <td>   -4.786</td> <td>    3.048</td>
+</tr>
+<tr>
+  <th>x5</th>    <td>   12.3553</td> <td>    2.430</td> <td>    5.085</td> <td> 0.000</td> <td>    7.584</td> <td>   17.127</td>
+</tr>
+<tr>
+  <th>x6</th>    <td>    0.0037</td> <td>    0.000</td> <td>   11.699</td> <td> 0.000</td> <td>    0.003</td> <td>    0.004</td>
+</tr>
+</table>
+<table class="simpletable">
+<tr>
+  <th>Omnibus:</th>       <td>72.521</td> <th>  Durbin-Watson:     </th> <td>   1.744</td>
+</tr>
+<tr>
+  <th>Prob(Omnibus):</th> <td> 0.000</td> <th>  Jarque-Bera (JB):  </th> <td>  96.795</td>
+</tr>
+<tr>
+  <th>Skew:</th>          <td> 0.938</td> <th>  Prob(JB):          </th> <td>9.58e-22</td>
+</tr>
+<tr>
+  <th>Kurtosis:</th>      <td> 3.649</td> <th>  Cond. No.          </th> <td>1.14e+04</td>
+</tr>
+</table><br/><br/>Notes:<br/>[1] Standard Errors assume that the covariance matrix of the errors is correctly specified.<br/>[2] The condition number is large, 1.14e+04. This might indicate that there are<br/>strong multicollinearity or other numerical problems.</div></div>
+</div>
+<p>In the above table, x2 (Race), x3 (LBGTQ identity), and x4 (Veteran status) all have p values greater than 0.1, so we can exclude them from our model. When we remove these values from the regression, our <span class="math notranslate nohighlight">\(R^2\)</span> value does not really change, so we can have a much simpler model with less variables.</p>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="c1">#Create OLS regression - coding suggestions taken from citation 5</span>
+<span class="n">all_X_fitted</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">array</span><span class="p">(</span><span class="n">allreps</span><span class="p">[[</span><span class="s2">&quot;Partisan Lean&quot;</span><span class="p">,</span> <span class="s2">&quot;Past Service&quot;</span><span class="p">,</span> <span class="s2">&quot;Funds&quot;</span><span class="p">]],</span><span class="n">dtype</span> <span class="o">=</span> <span class="nb">float</span><span class="p">)</span> <span class="c1">#array w/out insignificant variables</span>
+
+<span class="n">all_X2_fitted</span> <span class="o">=</span> <span class="n">statsm</span><span class="o">.</span><span class="n">add_constant</span><span class="p">(</span><span class="n">all_X_fitted</span><span class="p">)</span> <span class="c1">#Add a constant so model does not start at 0</span>
+<span class="n">lm2</span> <span class="o">=</span> <span class="n">statsm</span><span class="o">.</span><span class="n">OLS</span><span class="p">(</span><span class="n">all_Y</span><span class="p">,</span> <span class="n">all_X2_fitted</span><span class="p">)</span>
+<span class="n">model_fitted</span> <span class="o">=</span> <span class="n">lm2</span><span class="o">.</span><span class="n">fit</span><span class="p">()</span>
+
+<span class="n">fitted_params</span> <span class="o">=</span> <span class="p">[]</span>
+<span class="n">fitted_params</span><span class="o">.</span><span class="n">append</span><span class="p">([</span><span class="nb">round</span><span class="p">(</span><span class="n">model_fitted</span><span class="o">.</span><span class="n">params</span><span class="p">[</span><span class="mi">0</span><span class="p">],</span><span class="mi">3</span><span class="p">),</span> <span class="nb">round</span><span class="p">(</span><span class="n">model_fitted</span><span class="o">.</span><span class="n">params</span><span class="p">[</span><span class="mi">1</span><span class="p">],</span><span class="mi">3</span><span class="p">),</span> <span class="mi">0</span><span class="p">,</span><span class="mi">0</span><span class="p">,</span><span class="mi">0</span><span class="p">,</span> <span class="nb">round</span><span class="p">(</span><span class="n">model_fitted</span><span class="o">.</span><span class="n">params</span><span class="p">[</span><span class="mi">2</span><span class="p">],</span><span class="mi">3</span><span class="p">),</span> <span class="nb">round</span><span class="p">(</span><span class="n">model_fitted</span><span class="o">.</span><span class="n">params</span><span class="p">[</span><span class="mi">3</span><span class="p">],</span><span class="mi">3</span><span class="p">)])</span>
+
+<span class="nb">print</span><span class="p">(</span><span class="s2">&quot;Parameters:&quot;</span><span class="p">,</span> <span class="n">model_fitted</span><span class="o">.</span><span class="n">params</span><span class="p">)</span>
+<span class="nb">print</span><span class="p">(</span><span class="s2">&quot;Coefficient of Determination:&quot;</span><span class="p">,</span> <span class="n">model_fitted</span><span class="o">.</span><span class="n">rsquared</span><span class="p">)</span>
+<span class="n">model_fitted</span><span class="o">.</span><span class="n">summary</span><span class="p">()</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>Parameters: [ 1.64320042e+01 -3.75161708e-01  1.24938684e+01  3.69846378e-03]
+Coefficient of Determination: 0.28152402767800777
+</pre></div>
+</div>
+<div class="output text_html"><table class="simpletable">
+<caption>OLS Regression Results</caption>
+<tr>
+  <th>Dep. Variable:</th>            <td>y</td>        <th>  R-squared:         </th> <td>   0.282</td>
+</tr>
+<tr>
+  <th>Model:</th>                   <td>OLS</td>       <th>  Adj. R-squared:    </th> <td>   0.278</td>
+</tr>
+<tr>
+  <th>Method:</th>             <td>Least Squares</td>  <th>  F-statistic:       </th> <td>   76.54</td>
+</tr>
+<tr>
+  <th>Date:</th>             <td>Sun, 18 Apr 2021</td> <th>  Prob (F-statistic):</th> <td>8.75e-42</td>
+</tr>
+<tr>
+  <th>Time:</th>                 <td>14:34:49</td>     <th>  Log-Likelihood:    </th> <td> -2523.0</td>
+</tr>
+<tr>
+  <th>No. Observations:</th>      <td>   590</td>      <th>  AIC:               </th> <td>   5054.</td>
+</tr>
+<tr>
+  <th>Df Residuals:</th>          <td>   586</td>      <th>  BIC:               </th> <td>   5072.</td>
+</tr>
+<tr>
+  <th>Df Model:</th>              <td>     3</td>      <th>                     </th>     <td> </td>   
+</tr>
+<tr>
+  <th>Covariance Type:</th>      <td>nonrobust</td>    <th>                     </th>     <td> </td>   
+</tr>
+</table>
+<table class="simpletable">
+<tr>
+    <td></td>       <th>coef</th>     <th>std err</th>      <th>t</th>      <th>P>|t|</th>  <th>[0.025</th>    <th>0.975]</th>  
+</tr>
+<tr>
+  <th>const</th> <td>   16.4320</td> <td>    1.010</td> <td>   16.262</td> <td> 0.000</td> <td>   14.447</td> <td>   18.417</td>
+</tr>
+<tr>
+  <th>x1</th>    <td>   -0.3752</td> <td>    0.038</td> <td>   -9.800</td> <td> 0.000</td> <td>   -0.450</td> <td>   -0.300</td>
+</tr>
+<tr>
+  <th>x2</th>    <td>   12.4939</td> <td>    2.423</td> <td>    5.156</td> <td> 0.000</td> <td>    7.735</td> <td>   17.253</td>
+</tr>
+<tr>
+  <th>x3</th>    <td>    0.0037</td> <td>    0.000</td> <td>   11.657</td> <td> 0.000</td> <td>    0.003</td> <td>    0.004</td>
+</tr>
+</table>
+<table class="simpletable">
+<tr>
+  <th>Omnibus:</th>       <td>72.309</td> <th>  Durbin-Watson:     </th> <td>   1.734</td>
+</tr>
+<tr>
+  <th>Prob(Omnibus):</th> <td> 0.000</td> <th>  Jarque-Bera (JB):  </th> <td>  96.431</td>
+</tr>
+<tr>
+  <th>Skew:</th>          <td> 0.936</td> <th>  Prob(JB):          </th> <td>1.15e-21</td>
+</tr>
+<tr>
+  <th>Kurtosis:</th>      <td> 3.648</td> <th>  Cond. No.          </th> <td>8.42e+03</td>
+</tr>
+</table><br/><br/>Notes:<br/>[1] Standard Errors assume that the covariance matrix of the errors is correctly specified.<br/>[2] The condition number is large, 8.42e+03. This might indicate that there are<br/>strong multicollinearity or other numerical problems.</div></div>
+</div>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="nb">print</span><span class="p">(</span><span class="s2">&quot;The regression equation for all of the representatives is:&quot;</span><span class="p">)</span>
+<span class="nb">print</span><span class="p">(</span><span class="s2">&quot;Percent of the primary vote won =&quot;</span><span class="p">,</span> <span class="n">model_fitted</span><span class="o">.</span><span class="n">params</span><span class="p">[</span><span class="mi">0</span><span class="p">],</span> <span class="s2">&quot;+&quot;</span><span class="p">,</span> <span class="n">model_fitted</span><span class="o">.</span><span class="n">params</span><span class="p">[</span><span class="mi">1</span><span class="p">],</span> <span class="s2">&quot;*(Partisan Lean) +&quot;</span><span class="p">)</span>
+<span class="nb">print</span><span class="p">(</span><span class="n">model_fitted</span><span class="o">.</span><span class="n">params</span><span class="p">[</span><span class="mi">2</span><span class="p">],</span><span class="s2">&quot;(if the candidate has held office) +&quot;</span><span class="p">,</span> <span class="n">model_fitted</span><span class="o">.</span><span class="n">params</span><span class="p">[</span><span class="mi">3</span><span class="p">],</span><span class="s2">&quot;* Funds raised (in thousands)&quot;</span><span class="p">)</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>The regression equation for all of the representatives is:
+Percent of the primary vote won = 16.432004181595527 + -0.375161708366295 *(Partisan Lean) +
+12.493868442431586 (if the candidate has held office) + 0.0036984637828083736 * Funds raised (in thousands)
+</pre></div>
+</div>
+</div>
+</div>
+</div>
+<div class="section" id="senate-candidates">
+<h3>2.3 Senate Candidates<a class="headerlink" href="#senate-candidates" title="Permalink to this headline">¶</a></h3>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="nb">print</span><span class="p">(</span><span class="s2">&quot;Senators:&quot;</span><span class="p">,</span> <span class="n">sen</span><span class="o">.</span><span class="n">head</span><span class="p">(</span><span class="mi">3</span><span class="p">))</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>Senators:           Candidate State                 District Office Type Race Type  \
+245     David Baria    MS  U.S. Senate Mississippi     Senator   Regular   
+246  Howard Sherman    MS  U.S. Senate Mississippi     Senator   Regular   
+247   Jensen Bohren    MS  U.S. Senate Mississippi     Senator   Regular   
+
+    Primary Status Won Primary Obama Alum?  Primary %  Partisan Lean Race  \
+245       Advanced         Yes          No  30.980000     -18.780001    0   
+246       Advanced          No          No  31.790001     -18.780001    0   
+247           Lost          No          No   3.210000     -18.780001    0   
+
+    Veteran? LGBTQ? Past Service       Funds  
+245        0      0            1   904.53922  
+246        0      0            0  1207.91100  
+247        0      0            0     4.44700  
+</pre></div>
+</div>
+</div>
+</div>
+<p>We can repeat the same process for the different types of representatives, the two types being those running for a Senate seat and those running for a House of Representatives seat. Later, we will compare the parameters to see if certain variables have different impacts for different races, or even if some additional variables are insignificant. The dataset for Senators is considerably smaller than that of the overall data, and even the Representatives, so we will have to keep that in mind when interpreting the results.</p>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">sen_X</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">array</span><span class="p">(</span><span class="n">sen</span><span class="p">[[</span><span class="s2">&quot;Partisan Lean&quot;</span><span class="p">,</span> <span class="s2">&quot;Race&quot;</span><span class="p">,</span> <span class="s2">&quot;LGBTQ?&quot;</span><span class="p">,</span> <span class="s2">&quot;Veteran?&quot;</span><span class="p">,</span> <span class="s2">&quot;Past Service&quot;</span><span class="p">,</span> <span class="s2">&quot;Funds&quot;</span><span class="p">]],</span><span class="n">dtype</span> <span class="o">=</span> <span class="nb">float</span><span class="p">)</span> 
+<span class="n">sen_Y</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">array</span><span class="p">(</span><span class="n">sen</span><span class="p">[</span><span class="s2">&quot;Primary %&quot;</span><span class="p">])</span> 
+<span class="n">sen_X2</span> <span class="o">=</span> <span class="n">statsm</span><span class="o">.</span><span class="n">add_constant</span><span class="p">(</span><span class="n">sen_X</span><span class="p">)</span> <span class="c1">#Add a constant so model does not start at 0</span>
+
+<span class="n">sen_lm</span> <span class="o">=</span> <span class="n">statsm</span><span class="o">.</span><span class="n">OLS</span><span class="p">(</span><span class="n">sen_Y</span><span class="p">,</span> <span class="n">sen_X2</span><span class="p">)</span>
+<span class="n">sen_model</span> <span class="o">=</span> <span class="n">sen_lm</span><span class="o">.</span><span class="n">fit</span><span class="p">()</span>
+<span class="n">sen_model</span><span class="o">.</span><span class="n">summary</span><span class="p">()</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<div class="output text_html"><table class="simpletable">
+<caption>OLS Regression Results</caption>
+<tr>
+  <th>Dep. Variable:</th>            <td>y</td>        <th>  R-squared:         </th> <td>   0.865</td>
+</tr>
+<tr>
+  <th>Model:</th>                   <td>OLS</td>       <th>  Adj. R-squared:    </th> <td>   0.820</td>
+</tr>
+<tr>
+  <th>Method:</th>             <td>Least Squares</td>  <th>  F-statistic:       </th> <td>   19.16</td>
+</tr>
+<tr>
+  <th>Date:</th>             <td>Sun, 18 Apr 2021</td> <th>  Prob (F-statistic):</th> <td>4.92e-06</td>
+</tr>
+<tr>
+  <th>Time:</th>                 <td>14:33:52</td>     <th>  Log-Likelihood:    </th> <td> -76.739</td>
+</tr>
+<tr>
+  <th>No. Observations:</th>      <td>    21</td>      <th>  AIC:               </th> <td>   165.5</td>
+</tr>
+<tr>
+  <th>Df Residuals:</th>          <td>    15</td>      <th>  BIC:               </th> <td>   171.7</td>
+</tr>
+<tr>
+  <th>Df Model:</th>              <td>     5</td>      <th>                     </th>     <td> </td>   
+</tr>
+<tr>
+  <th>Covariance Type:</th>      <td>nonrobust</td>    <th>                     </th>     <td> </td>   
+</tr>
+</table>
+<table class="simpletable">
+<tr>
+    <td></td>       <th>coef</th>     <th>std err</th>      <th>t</th>      <th>P>|t|</th>  <th>[0.025</th>    <th>0.975]</th>  
+</tr>
+<tr>
+  <th>const</th> <td>    1.3773</td> <td>    5.921</td> <td>    0.233</td> <td> 0.819</td> <td>  -11.243</td> <td>   13.997</td>
+</tr>
+<tr>
+  <th>x1</th>    <td>   -0.6007</td> <td>    0.265</td> <td>   -2.264</td> <td> 0.039</td> <td>   -1.166</td> <td>   -0.035</td>
+</tr>
+<tr>
+  <th>x2</th>    <td>    1.7142</td> <td>    5.697</td> <td>    0.301</td> <td> 0.768</td> <td>  -10.428</td> <td>   13.856</td>
+</tr>
+<tr>
+  <th>x3</th>    <td> 5.735e-16</td> <td> 1.88e-15</td> <td>    0.304</td> <td> 0.765</td> <td>-3.44e-15</td> <td> 4.59e-15</td>
+</tr>
+<tr>
+  <th>x4</th>    <td>  -15.8283</td> <td>    7.351</td> <td>   -2.153</td> <td> 0.048</td> <td>  -31.498</td> <td>   -0.159</td>
+</tr>
+<tr>
+  <th>x5</th>    <td>   19.0659</td> <td>    6.779</td> <td>    2.812</td> <td> 0.013</td> <td>    4.617</td> <td>   33.515</td>
+</tr>
+<tr>
+  <th>x6</th>    <td>    0.0024</td> <td>    0.000</td> <td>    5.293</td> <td> 0.000</td> <td>    0.001</td> <td>    0.003</td>
+</tr>
+</table>
+<table class="simpletable">
+<tr>
+  <th>Omnibus:</th>       <td> 1.369</td> <th>  Durbin-Watson:     </th> <td>   1.919</td>
+</tr>
+<tr>
+  <th>Prob(Omnibus):</th> <td> 0.504</td> <th>  Jarque-Bera (JB):  </th> <td>   1.007</td>
+</tr>
+<tr>
+  <th>Skew:</th>          <td> 0.516</td> <th>  Prob(JB):          </th> <td>   0.604</td>
+</tr>
+<tr>
+  <th>Kurtosis:</th>      <td> 2.711</td> <th>  Cond. No.          </th> <td>1.26e+22</td>
+</tr>
+</table><br/><br/>Notes:<br/>[1] Standard Errors assume that the covariance matrix of the errors is correctly specified.<br/>[2] The smallest eigenvalue is 6.87e-36. This might indicate that there are<br/>strong multicollinearity problems or that the design matrix is singular.</div></div>
+</div>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">sen_X_fitted</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">array</span><span class="p">(</span><span class="n">sen</span><span class="p">[[</span><span class="s2">&quot;Partisan Lean&quot;</span><span class="p">,</span> <span class="s2">&quot;Veteran?&quot;</span><span class="p">,</span> <span class="s2">&quot;Past Service&quot;</span><span class="p">,</span> <span class="s2">&quot;Funds&quot;</span><span class="p">]],</span><span class="n">dtype</span> <span class="o">=</span> <span class="nb">float</span><span class="p">)</span> <span class="c1">#array w/out insignificant variables</span>
+
+<span class="n">sen_X2_fitted</span> <span class="o">=</span> <span class="n">statsm</span><span class="o">.</span><span class="n">add_constant</span><span class="p">(</span><span class="n">sen_X_fitted</span><span class="p">)</span> <span class="c1">#Add a constant so model does not start at 0</span>
+<span class="n">senlm2</span> <span class="o">=</span> <span class="n">statsm</span><span class="o">.</span><span class="n">OLS</span><span class="p">(</span><span class="n">sen_Y</span><span class="p">,</span> <span class="n">sen_X2_fitted</span><span class="p">)</span>
+<span class="n">sen_fitted</span> <span class="o">=</span> <span class="n">senlm2</span><span class="o">.</span><span class="n">fit</span><span class="p">()</span>
+
+<span class="n">fitted_params</span><span class="o">.</span><span class="n">append</span><span class="p">([</span><span class="nb">round</span><span class="p">(</span><span class="n">sen_fitted</span><span class="o">.</span><span class="n">params</span><span class="p">[</span><span class="mi">0</span><span class="p">],</span> <span class="mi">3</span><span class="p">),</span> <span class="nb">round</span><span class="p">(</span><span class="n">sen_fitted</span><span class="o">.</span><span class="n">params</span><span class="p">[</span><span class="mi">1</span><span class="p">],</span><span class="mi">3</span><span class="p">),</span> <span class="mi">0</span><span class="p">,</span><span class="mi">0</span><span class="p">,</span> <span class="nb">round</span><span class="p">(</span><span class="n">sen_fitted</span><span class="o">.</span><span class="n">params</span><span class="p">[</span><span class="mi">2</span><span class="p">],</span><span class="mi">3</span><span class="p">),</span> <span class="nb">round</span><span class="p">(</span><span class="n">sen_fitted</span><span class="o">.</span><span class="n">params</span><span class="p">[</span><span class="mi">3</span><span class="p">],</span><span class="mi">3</span><span class="p">),</span> <span class="nb">round</span><span class="p">(</span><span class="n">sen_fitted</span><span class="o">.</span><span class="n">params</span><span class="p">[</span><span class="mi">4</span><span class="p">],</span><span class="mi">3</span><span class="p">)])</span>
+
+<span class="nb">print</span><span class="p">(</span><span class="s2">&quot;Parameters:&quot;</span><span class="p">,</span> <span class="n">sen_fitted</span><span class="o">.</span><span class="n">params</span><span class="p">)</span>
+<span class="nb">print</span><span class="p">(</span><span class="s2">&quot;Coefficient of Determination:&quot;</span><span class="p">,</span> <span class="n">sen_fitted</span><span class="o">.</span><span class="n">rsquared</span><span class="p">)</span>
+<span class="n">sen_fitted</span><span class="o">.</span><span class="n">summary</span><span class="p">()</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>Parameters: [ 2.59856223e+00 -5.69214344e-01 -1.57007479e+01  1.90165840e+01
+  2.41310090e-03]
+Coefficient of Determination: 0.8638208485312847
+</pre></div>
+</div>
+<div class="output text_html"><table class="simpletable">
+<caption>OLS Regression Results</caption>
+<tr>
+  <th>Dep. Variable:</th>            <td>y</td>        <th>  R-squared:         </th> <td>   0.864</td>
+</tr>
+<tr>
+  <th>Model:</th>                   <td>OLS</td>       <th>  Adj. R-squared:    </th> <td>   0.830</td>
+</tr>
+<tr>
+  <th>Method:</th>             <td>Least Squares</td>  <th>  F-statistic:       </th> <td>   25.37</td>
+</tr>
+<tr>
+  <th>Date:</th>             <td>Sun, 18 Apr 2021</td> <th>  Prob (F-statistic):</th> <td>9.36e-07</td>
+</tr>
+<tr>
+  <th>Time:</th>                 <td>14:35:00</td>     <th>  Log-Likelihood:    </th> <td> -76.803</td>
+</tr>
+<tr>
+  <th>No. Observations:</th>      <td>    21</td>      <th>  AIC:               </th> <td>   163.6</td>
+</tr>
+<tr>
+  <th>Df Residuals:</th>          <td>    16</td>      <th>  BIC:               </th> <td>   168.8</td>
+</tr>
+<tr>
+  <th>Df Model:</th>              <td>     4</td>      <th>                     </th>     <td> </td>   
+</tr>
+<tr>
+  <th>Covariance Type:</th>      <td>nonrobust</td>    <th>                     </th>     <td> </td>   
+</tr>
+</table>
+<table class="simpletable">
+<tr>
+    <td></td>       <th>coef</th>     <th>std err</th>      <th>t</th>      <th>P>|t|</th>  <th>[0.025</th>    <th>0.975]</th>  
+</tr>
+<tr>
+  <th>const</th> <td>    2.5986</td> <td>    4.187</td> <td>    0.621</td> <td> 0.544</td> <td>   -6.277</td> <td>   11.474</td>
+</tr>
+<tr>
+  <th>x1</th>    <td>   -0.5692</td> <td>    0.237</td> <td>   -2.404</td> <td> 0.029</td> <td>   -1.071</td> <td>   -0.067</td>
+</tr>
+<tr>
+  <th>x2</th>    <td>  -15.7007</td> <td>    7.128</td> <td>   -2.203</td> <td> 0.043</td> <td>  -30.811</td> <td>   -0.591</td>
+</tr>
+<tr>
+  <th>x3</th>    <td>   19.0166</td> <td>    6.582</td> <td>    2.889</td> <td> 0.011</td> <td>    5.064</td> <td>   32.969</td>
+</tr>
+<tr>
+  <th>x4</th>    <td>    0.0024</td> <td>    0.000</td> <td>    5.556</td> <td> 0.000</td> <td>    0.001</td> <td>    0.003</td>
+</tr>
+</table>
+<table class="simpletable">
+<tr>
+  <th>Omnibus:</th>       <td> 1.213</td> <th>  Durbin-Watson:     </th> <td>   1.938</td>
+</tr>
+<tr>
+  <th>Prob(Omnibus):</th> <td> 0.545</td> <th>  Jarque-Bera (JB):  </th> <td>   0.946</td>
+</tr>
+<tr>
+  <th>Skew:</th>          <td> 0.490</td> <th>  Prob(JB):          </th> <td>   0.623</td>
+</tr>
+<tr>
+  <th>Kurtosis:</th>      <td> 2.652</td> <th>  Cond. No.          </th> <td>2.19e+04</td>
+</tr>
+</table><br/><br/>Notes:<br/>[1] Standard Errors assume that the covariance matrix of the errors is correctly specified.<br/>[2] The condition number is large, 2.19e+04. This might indicate that there are<br/>strong multicollinearity or other numerical problems.</div></div>
+</div>
+<p>For this regression, we end with 4 significant variables, with all the same as the overall data but with the inclusion of Veteran statis as a significant variable. The coefficient of determination is also much higher, suggesting that there is a difference in the two types of representatives that caused the low value for the overall dataset.</p>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="nb">print</span><span class="p">(</span><span class="s2">&quot;The regression equation for Senators is:&quot;</span><span class="p">)</span>
+<span class="nb">print</span><span class="p">(</span><span class="s2">&quot;Percent of the primary vote won =&quot;</span><span class="p">,</span> <span class="n">sen_fitted</span><span class="o">.</span><span class="n">params</span><span class="p">[</span><span class="mi">0</span><span class="p">],</span> <span class="s2">&quot;=&quot;</span><span class="p">,</span> <span class="n">sen_fitted</span><span class="o">.</span><span class="n">params</span><span class="p">[</span><span class="mi">1</span><span class="p">],</span> <span class="s2">&quot;*(Partisan Lean) +&quot;</span><span class="p">)</span>
+<span class="nb">print</span><span class="p">(</span><span class="n">sen_fitted</span><span class="o">.</span><span class="n">params</span><span class="p">[</span><span class="mi">2</span><span class="p">],</span><span class="s2">&quot;(if the candidate is a veteran) +&quot;</span><span class="p">,</span> <span class="n">sen_fitted</span><span class="o">.</span><span class="n">params</span><span class="p">[</span><span class="mi">3</span><span class="p">],</span><span class="s2">&quot;(if the candidate has previously held office) +&quot;</span><span class="p">)</span>
+<span class="nb">print</span><span class="p">(</span><span class="n">sen_fitted</span><span class="o">.</span><span class="n">params</span><span class="p">[</span><span class="mi">4</span><span class="p">],</span> <span class="s2">&quot;* Funds raised (in thousands)&quot;</span><span class="p">)</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>The regression equation for Senators is:
+Percent of the primary vote won = 2.598562230473023 = -0.5692143438380506 *(Partisan Lean) +
+-15.70074794172507 (if the candidate is a veteran) + 19.016583983753726 (if the candidate has previously held office) +
+0.002413100901593789 * Funds raised (in thousands)
+</pre></div>
+</div>
+</div>
+</div>
+</div>
+<div class="section" id="house-candidates">
+<h3>2.4 House Candidates<a class="headerlink" href="#house-candidates" title="Permalink to this headline">¶</a></h3>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="nb">print</span><span class="p">(</span><span class="s2">&quot;Representatives:&quot;</span><span class="p">,</span> <span class="n">rep</span><span class="o">.</span><span class="n">head</span><span class="p">(</span><span class="mi">3</span><span class="p">))</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>Representatives:                  Candidate State                       District  \
+0  Lizzetta Hill McConnell    AL  U.S. House Alabama District 1   
+1       Robert Kennedy Jr.    AL  U.S. House Alabama District 1   
+2     Audri Scott Williams    AL  U.S. House Alabama District 2   
+
+      Office Type Race Type Primary Status Won Primary Obama Alum?  Primary %  \
+0  Representative   Regular           Lost          No          No  19.230000   
+1  Representative   Regular       Advanced         Yes          No  80.769997   
+2  Representative   Regular           Lost          No          No  39.560001   
+
+   Partisan Lean Race Veteran? LGBTQ? Past Service      Funds  
+0     -30.680000    1        0      0            0    5.12700  
+1     -30.680000    1        1      0            0  166.84521  
+2     -33.080002    1        1      0            0   35.36502  
+</pre></div>
+</div>
+</div>
+</div>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">rep_X</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">array</span><span class="p">(</span><span class="n">rep</span><span class="p">[[</span><span class="s2">&quot;Partisan Lean&quot;</span><span class="p">,</span> <span class="s2">&quot;Race&quot;</span><span class="p">,</span> <span class="s2">&quot;LGBTQ?&quot;</span><span class="p">,</span> <span class="s2">&quot;Veteran?&quot;</span><span class="p">,</span> <span class="s2">&quot;Past Service&quot;</span><span class="p">,</span> <span class="s2">&quot;Funds&quot;</span><span class="p">]],</span><span class="n">dtype</span> <span class="o">=</span> <span class="nb">float</span><span class="p">)</span> 
+<span class="n">rep_Y</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">array</span><span class="p">(</span><span class="n">rep</span><span class="p">[</span><span class="s2">&quot;Primary %&quot;</span><span class="p">])</span> 
+<span class="n">rep_X2</span> <span class="o">=</span> <span class="n">statsm</span><span class="o">.</span><span class="n">add_constant</span><span class="p">(</span><span class="n">rep_X</span><span class="p">)</span> <span class="c1">#Add a constant so model does not start at 0</span>
+
+<span class="n">rep_lm</span> <span class="o">=</span> <span class="n">statsm</span><span class="o">.</span><span class="n">OLS</span><span class="p">(</span><span class="n">rep_Y</span><span class="p">,</span> <span class="n">rep_X2</span><span class="p">)</span>
+<span class="n">rep_model</span> <span class="o">=</span> <span class="n">rep_lm</span><span class="o">.</span><span class="n">fit</span><span class="p">()</span>
+<span class="n">rep_model</span><span class="o">.</span><span class="n">summary</span><span class="p">()</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<div class="output text_html"><table class="simpletable">
+<caption>OLS Regression Results</caption>
+<tr>
+  <th>Dep. Variable:</th>            <td>y</td>        <th>  R-squared:         </th> <td>   0.279</td>
+</tr>
+<tr>
+  <th>Model:</th>                   <td>OLS</td>       <th>  Adj. R-squared:    </th> <td>   0.272</td>
+</tr>
+<tr>
+  <th>Method:</th>             <td>Least Squares</td>  <th>  F-statistic:       </th> <td>   36.33</td>
+</tr>
+<tr>
+  <th>Date:</th>             <td>Sun, 18 Apr 2021</td> <th>  Prob (F-statistic):</th> <td>3.16e-37</td>
+</tr>
+<tr>
+  <th>Time:</th>                 <td>14:35:08</td>     <th>  Log-Likelihood:    </th> <td> -2427.5</td>
+</tr>
+<tr>
+  <th>No. Observations:</th>      <td>   569</td>      <th>  AIC:               </th> <td>   4869.</td>
+</tr>
+<tr>
+  <th>Df Residuals:</th>          <td>   562</td>      <th>  BIC:               </th> <td>   4899.</td>
+</tr>
+<tr>
+  <th>Df Model:</th>              <td>     6</td>      <th>                     </th>     <td> </td>   
+</tr>
+<tr>
+  <th>Covariance Type:</th>      <td>nonrobust</td>    <th>                     </th>     <td> </td>   
+</tr>
+</table>
+<table class="simpletable">
+<tr>
+    <td></td>       <th>coef</th>     <th>std err</th>      <th>t</th>      <th>P>|t|</th>  <th>[0.025</th>    <th>0.975]</th>  
+</tr>
+<tr>
+  <th>const</th> <td>   15.3552</td> <td>    1.231</td> <td>   12.470</td> <td> 0.000</td> <td>   12.936</td> <td>   17.774</td>
+</tr>
+<tr>
+  <th>x1</th>    <td>   -0.4089</td> <td>    0.040</td> <td>  -10.148</td> <td> 0.000</td> <td>   -0.488</td> <td>   -0.330</td>
+</tr>
+<tr>
+  <th>x2</th>    <td>    2.5580</td> <td>    1.787</td> <td>    1.432</td> <td> 0.153</td> <td>   -0.952</td> <td>    6.068</td>
+</tr>
+<tr>
+  <th>x3</th>    <td>   -1.2461</td> <td>    3.310</td> <td>   -0.377</td> <td> 0.707</td> <td>   -7.747</td> <td>    5.254</td>
+</tr>
+<tr>
+  <th>x4</th>    <td>   -0.8830</td> <td>    2.014</td> <td>   -0.438</td> <td> 0.661</td> <td>   -4.839</td> <td>    3.073</td>
+</tr>
+<tr>
+  <th>x5</th>    <td>   13.7137</td> <td>    2.524</td> <td>    5.434</td> <td> 0.000</td> <td>    8.757</td> <td>   18.670</td>
+</tr>
+<tr>
+  <th>x6</th>    <td>    0.0044</td> <td>    0.000</td> <td>   11.574</td> <td> 0.000</td> <td>    0.004</td> <td>    0.005</td>
+</tr>
+</table>
+<table class="simpletable">
+<tr>
+  <th>Omnibus:</th>       <td>67.308</td> <th>  Durbin-Watson:     </th> <td>   1.746</td>
+</tr>
+<tr>
+  <th>Prob(Omnibus):</th> <td> 0.000</td> <th>  Jarque-Bera (JB):  </th> <td>  89.064</td>
+</tr>
+<tr>
+  <th>Skew:</th>          <td> 0.902</td> <th>  Prob(JB):          </th> <td>4.57e-20</td>
+</tr>
+<tr>
+  <th>Kurtosis:</th>      <td> 3.709</td> <th>  Cond. No.          </th> <td>9.58e+03</td>
+</tr>
+</table><br/><br/>Notes:<br/>[1] Standard Errors assume that the covariance matrix of the errors is correctly specified.<br/>[2] The condition number is large, 9.58e+03. This might indicate that there are<br/>strong multicollinearity or other numerical problems.</div></div>
+</div>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">rep_X_fitted</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">array</span><span class="p">(</span><span class="n">rep</span><span class="p">[[</span><span class="s2">&quot;Partisan Lean&quot;</span><span class="p">,</span> <span class="s2">&quot;Past Service&quot;</span><span class="p">,</span> <span class="s2">&quot;Funds&quot;</span><span class="p">]],</span><span class="n">dtype</span> <span class="o">=</span> <span class="nb">float</span><span class="p">)</span> <span class="c1">#array w/out insignificant variables</span>
+
+<span class="n">rep_X2_fitted</span> <span class="o">=</span> <span class="n">statsm</span><span class="o">.</span><span class="n">add_constant</span><span class="p">(</span><span class="n">rep_X_fitted</span><span class="p">)</span> <span class="c1">#Add a constant so model does not start at 0</span>
+<span class="n">replm2</span> <span class="o">=</span> <span class="n">statsm</span><span class="o">.</span><span class="n">OLS</span><span class="p">(</span><span class="n">rep_Y</span><span class="p">,</span> <span class="n">rep_X2_fitted</span><span class="p">)</span>
+<span class="n">rep_fitted</span> <span class="o">=</span> <span class="n">replm2</span><span class="o">.</span><span class="n">fit</span><span class="p">()</span>
+
+<span class="n">fitted_params</span><span class="o">.</span><span class="n">append</span><span class="p">([</span><span class="nb">round</span><span class="p">(</span><span class="n">rep_fitted</span><span class="o">.</span><span class="n">params</span><span class="p">[</span><span class="mi">0</span><span class="p">],</span><span class="mi">3</span><span class="p">),</span> <span class="nb">round</span><span class="p">(</span><span class="n">rep_fitted</span><span class="o">.</span><span class="n">params</span><span class="p">[</span><span class="mi">1</span><span class="p">],</span><span class="mi">3</span><span class="p">),</span> <span class="mi">0</span><span class="p">,</span><span class="mi">0</span><span class="p">,</span><span class="mi">0</span><span class="p">,</span> <span class="nb">round</span><span class="p">(</span><span class="n">rep_fitted</span><span class="o">.</span><span class="n">params</span><span class="p">[</span><span class="mi">2</span><span class="p">],</span><span class="mi">3</span><span class="p">),</span> <span class="nb">round</span><span class="p">(</span><span class="n">rep_fitted</span><span class="o">.</span><span class="n">params</span><span class="p">[</span><span class="mi">3</span><span class="p">],</span><span class="mi">3</span><span class="p">)])</span>
+
+<span class="nb">print</span><span class="p">(</span><span class="s2">&quot;Parameters:&quot;</span><span class="p">,</span> <span class="n">rep_fitted</span><span class="o">.</span><span class="n">params</span><span class="p">)</span>
+<span class="nb">print</span><span class="p">(</span><span class="s2">&quot;Coefficient of Determination:&quot;</span><span class="p">,</span> <span class="n">rep_fitted</span><span class="o">.</span><span class="n">rsquared</span><span class="p">)</span>
+<span class="n">rep_fitted</span><span class="o">.</span><span class="n">summary</span><span class="p">()</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>Parameters: [ 1.60247765e+01 -3.91966054e-01  1.38944451e+01  4.38888154e-03]
+Coefficient of Determination: 0.2765002374031068
+</pre></div>
+</div>
+<div class="output text_html"><table class="simpletable">
+<caption>OLS Regression Results</caption>
+<tr>
+  <th>Dep. Variable:</th>            <td>y</td>        <th>  R-squared:         </th> <td>   0.277</td>
+</tr>
+<tr>
+  <th>Model:</th>                   <td>OLS</td>       <th>  Adj. R-squared:    </th> <td>   0.273</td>
+</tr>
+<tr>
+  <th>Method:</th>             <td>Least Squares</td>  <th>  F-statistic:       </th> <td>   71.98</td>
+</tr>
+<tr>
+  <th>Date:</th>             <td>Sun, 18 Apr 2021</td> <th>  Prob (F-statistic):</th> <td>1.96e-39</td>
+</tr>
+<tr>
+  <th>Time:</th>                 <td>14:35:17</td>     <th>  Log-Likelihood:    </th> <td> -2428.7</td>
+</tr>
+<tr>
+  <th>No. Observations:</th>      <td>   569</td>      <th>  AIC:               </th> <td>   4865.</td>
+</tr>
+<tr>
+  <th>Df Residuals:</th>          <td>   565</td>      <th>  BIC:               </th> <td>   4883.</td>
+</tr>
+<tr>
+  <th>Df Model:</th>              <td>     3</td>      <th>                     </th>     <td> </td>   
+</tr>
+<tr>
+  <th>Covariance Type:</th>      <td>nonrobust</td>    <th>                     </th>     <td> </td>   
+</tr>
+</table>
+<table class="simpletable">
+<tr>
+    <td></td>       <th>coef</th>     <th>std err</th>      <th>t</th>      <th>P>|t|</th>  <th>[0.025</th>    <th>0.975]</th>  
+</tr>
+<tr>
+  <th>const</th> <td>   16.0248</td> <td>    1.046</td> <td>   15.325</td> <td> 0.000</td> <td>   13.971</td> <td>   18.079</td>
+</tr>
+<tr>
+  <th>x1</th>    <td>   -0.3920</td> <td>    0.039</td> <td>  -10.135</td> <td> 0.000</td> <td>   -0.468</td> <td>   -0.316</td>
+</tr>
+<tr>
+  <th>x2</th>    <td>   13.8944</td> <td>    2.518</td> <td>    5.517</td> <td> 0.000</td> <td>    8.948</td> <td>   18.841</td>
+</tr>
+<tr>
+  <th>x3</th>    <td>    0.0044</td> <td>    0.000</td> <td>   11.502</td> <td> 0.000</td> <td>    0.004</td> <td>    0.005</td>
+</tr>
+</table>
+<table class="simpletable">
+<tr>
+  <th>Omnibus:</th>       <td>67.382</td> <th>  Durbin-Watson:     </th> <td>   1.729</td>
+</tr>
+<tr>
+  <th>Prob(Omnibus):</th> <td> 0.000</td> <th>  Jarque-Bera (JB):  </th> <td>  89.177</td>
+</tr>
+<tr>
+  <th>Skew:</th>          <td> 0.903</td> <th>  Prob(JB):          </th> <td>4.32e-20</td>
+</tr>
+<tr>
+  <th>Kurtosis:</th>      <td> 3.708</td> <th>  Cond. No.          </th> <td>7.38e+03</td>
+</tr>
+</table><br/><br/>Notes:<br/>[1] Standard Errors assume that the covariance matrix of the errors is correctly specified.<br/>[2] The condition number is large, 7.38e+03. This might indicate that there are<br/>strong multicollinearity or other numerical problems.</div></div>
+</div>
+<p>The process is the exact same as that of the Senators, but with the larger dataset comes the smaller <span class="math notranslate nohighlight">\(R^2\)</span> value as we have more points to fit.</p>
+</div>
+</div>
+<div class="section" id="results">
+<h2>3 Results<a class="headerlink" href="#results" title="Permalink to this headline">¶</a></h2>
+<div class="section" id="overall-results">
+<h3>3.1 Overall Results<a class="headerlink" href="#overall-results" title="Permalink to this headline">¶</a></h3>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="nb">print</span><span class="p">(</span><span class="s2">&quot;The regression equation for all of the representatives is:&quot;</span><span class="p">)</span>
+<span class="nb">print</span><span class="p">(</span><span class="s2">&quot;Percent of the primary vote won =&quot;</span><span class="p">,</span> <span class="n">model_fitted</span><span class="o">.</span><span class="n">params</span><span class="p">[</span><span class="mi">0</span><span class="p">],</span> <span class="s2">&quot;=&quot;</span><span class="p">,</span> <span class="n">model_fitted</span><span class="o">.</span><span class="n">params</span><span class="p">[</span><span class="mi">1</span><span class="p">],</span> <span class="s2">&quot;*(Partisan Lean) +&quot;</span><span class="p">)</span>
+<span class="nb">print</span><span class="p">(</span><span class="n">model_fitted</span><span class="o">.</span><span class="n">params</span><span class="p">[</span><span class="mi">2</span><span class="p">],</span><span class="s2">&quot;if the candidate has held office +&quot;</span><span class="p">,</span> <span class="n">model_fitted</span><span class="o">.</span><span class="n">params</span><span class="p">[</span><span class="mi">3</span><span class="p">],</span><span class="s2">&quot;* Funds raised (in thousands)&quot;</span><span class="p">)</span>
+<span class="nb">print</span><span class="p">(</span><span class="s2">&quot;R^2 Coefficient of Determination:&quot;</span><span class="p">,</span> <span class="n">model_fitted</span><span class="o">.</span><span class="n">rsquared</span><span class="p">)</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>The regression equation for all of the representatives is:
+Percent of the primary vote won = 16.432004181595527 = -0.375161708366295 *(Partisan Lean) +
+12.493868442431586 if the candidate has held office + 0.0036984637828083736 * Funds raised (in thousands)
+R^2 Coefficient of Determination: 0.28152402767800777
+</pre></div>
+</div>
+</div>
+</div>
+<p>Overall, only three variables had a significant impact on the percent of the primary vote won by a candidate: partisan lean, funds raised, and whether the candidate has previously held office. Race, veteran status, and LGBTQ identity all were found to have no significant evidence suggesting anything other than a zero correlation. We can visualize this on a 3D plot with color coordination to see all variables.
+Our regression also suggests that a candidate with no prior experiences, funds raised, and an equally partisan district will receive approximately 16% of the vote. given the regression, we can say that an ideal situation for a candidate is to have previously held office, be in a strongly Republican district (more on that later), and raise a great amount of funding.</p>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">fig</span> <span class="o">=</span> <span class="n">plt</span><span class="o">.</span><span class="n">figure</span><span class="p">()</span>
+<span class="n">plt</span><span class="o">.</span><span class="n">figure</span><span class="p">(</span><span class="n">figsize</span> <span class="o">=</span> <span class="p">(</span><span class="mi">15</span><span class="p">,</span><span class="mi">10</span><span class="p">))</span>
+<span class="n">ax</span> <span class="o">=</span> <span class="n">plt</span><span class="o">.</span><span class="n">axes</span><span class="p">(</span><span class="n">projection</span> <span class="o">=</span> <span class="s2">&quot;3d&quot;</span><span class="p">)</span>
+<span class="n">ax</span><span class="o">.</span><span class="n">scatter</span><span class="p">(</span><span class="n">allreps</span><span class="p">[</span><span class="s2">&quot;Funds&quot;</span><span class="p">],</span><span class="n">allreps</span><span class="p">[</span><span class="s2">&quot;Partisan Lean&quot;</span><span class="p">],</span> <span class="n">allreps</span><span class="p">[</span><span class="s2">&quot;Primary %&quot;</span><span class="p">],</span> <span class="s2">&quot;o&quot;</span><span class="p">,</span> <span class="n">c</span> <span class="o">=</span> <span class="n">allreps</span><span class="p">[</span><span class="s2">&quot;Past Service&quot;</span><span class="p">],</span> <span class="n">cmap</span> <span class="o">=</span> <span class="s2">&quot;cividis&quot;</span><span class="p">)</span>
+<span class="n">plt</span><span class="o">.</span><span class="n">ylabel</span><span class="p">(</span><span class="s2">&quot;Partisan Lean of District&quot;</span><span class="p">)</span>
+<span class="n">plt</span><span class="o">.</span><span class="n">xlabel</span><span class="p">(</span><span class="s2">&quot;Funds Raised (in thousands)&quot;</span><span class="p">)</span>
+<span class="n">plt</span><span class="o">.</span><span class="n">legend</span><span class="p">([</span><span class="s2">&quot;Has not held office before&quot;</span><span class="p">])</span>
+<span class="n">ax</span><span class="o">.</span><span class="n">set_zlabel</span><span class="p">(</span><span class="s2">&quot;</span><span class="si">% o</span><span class="s2">f Vote Won&quot;</span><span class="p">)</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<div class="output text_plain highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>Text(0.5, 0, &#39;% of Vote Won&#39;)
+</pre></div>
+</div>
+<div class="output text_plain highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>&lt;Figure size 432x288 with 0 Axes&gt;
+</pre></div>
+</div>
+<img alt="../_images/CMSE201_FinalProject_ExampleA_32_2.png" src="../_images/CMSE201_FinalProject_ExampleA_32_2.png" />
+</div>
+</div>
+<p>Since this is hard to visualize given the different scales, the subplots below show the variables as they separately relate to the vote won. We will not plot the condition of past service as it is a categorical variable we replaced with a dummy variable for the purpose of regression and the plot will not reflect the true impact that the variable has on the outcome.</p>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">plt</span><span class="o">.</span><span class="n">figure</span><span class="p">(</span><span class="n">figsize</span> <span class="o">=</span> <span class="p">(</span><span class="mi">12</span><span class="p">,</span><span class="mi">10</span><span class="p">))</span>
+<span class="n">plt</span><span class="o">.</span><span class="n">subplot</span><span class="p">(</span><span class="mi">121</span><span class="p">)</span>
+<span class="n">plt</span><span class="o">.</span><span class="n">plot</span><span class="p">(</span><span class="n">allreps</span><span class="p">[</span><span class="s2">&quot;Partisan Lean&quot;</span><span class="p">],</span> <span class="n">allreps</span><span class="p">[</span><span class="s2">&quot;Primary %&quot;</span><span class="p">],</span> <span class="s2">&quot;go&quot;</span><span class="p">)</span>
+<span class="n">plt</span><span class="o">.</span><span class="n">plot</span><span class="p">(</span><span class="n">allreps</span><span class="p">[</span><span class="s2">&quot;Partisan Lean&quot;</span><span class="p">],</span> <span class="n">model_fitted</span><span class="o">.</span><span class="n">params</span><span class="p">[</span><span class="mi">1</span><span class="p">]</span><span class="o">*</span><span class="n">allreps</span><span class="p">[</span><span class="s2">&quot;Partisan Lean&quot;</span><span class="p">]</span> <span class="o">+</span> <span class="n">model_fitted</span><span class="o">.</span><span class="n">params</span><span class="p">[</span><span class="mi">0</span><span class="p">]</span> <span class="p">,</span><span class="s2">&quot;grey&quot;</span><span class="p">,</span> <span class="n">lw</span> <span class="o">=</span><span class="mi">5</span><span class="p">)</span>
+<span class="n">plt</span><span class="o">.</span><span class="n">xlabel</span><span class="p">(</span><span class="s2">&quot;Partisan Lean&quot;</span><span class="p">)</span>
+<span class="n">plt</span><span class="o">.</span><span class="n">ylabel</span><span class="p">(</span><span class="s2">&quot;Percent of the Vote Won&quot;</span><span class="p">)</span>
+<span class="n">plt</span><span class="o">.</span><span class="n">title</span><span class="p">(</span><span class="s2">&quot;Partisan Lean vs Vote Percentage&quot;</span><span class="p">)</span>
+<span class="n">plt</span><span class="o">.</span><span class="n">legend</span><span class="p">([</span><span class="s2">&quot;Data&quot;</span><span class="p">,</span> <span class="s2">&quot;Trend Line&quot;</span><span class="p">])</span>
+<span class="n">plt</span><span class="o">.</span><span class="n">subplot</span><span class="p">(</span><span class="mi">122</span><span class="p">)</span>
+<span class="n">plt</span><span class="o">.</span><span class="n">plot</span><span class="p">(</span><span class="n">allreps</span><span class="p">[</span><span class="s2">&quot;Funds&quot;</span><span class="p">],</span> <span class="n">allreps</span><span class="p">[</span><span class="s2">&quot;Primary %&quot;</span><span class="p">],</span> <span class="s2">&quot;go&quot;</span><span class="p">)</span>
+<span class="n">plt</span><span class="o">.</span><span class="n">plot</span><span class="p">(</span><span class="n">allreps</span><span class="p">[</span><span class="s2">&quot;Funds&quot;</span><span class="p">],</span> <span class="n">model_fitted</span><span class="o">.</span><span class="n">params</span><span class="p">[</span><span class="mi">3</span><span class="p">]</span><span class="o">*</span><span class="n">allreps</span><span class="p">[</span><span class="s2">&quot;Funds&quot;</span><span class="p">]</span> <span class="o">+</span> <span class="n">model_fitted</span><span class="o">.</span><span class="n">params</span><span class="p">[</span><span class="mi">0</span><span class="p">]</span> <span class="p">,</span><span class="s2">&quot;grey&quot;</span><span class="p">,</span> <span class="n">lw</span><span class="o">=</span><span class="mi">5</span><span class="p">)</span>
+<span class="n">plt</span><span class="o">.</span><span class="n">xlabel</span><span class="p">(</span><span class="s2">&quot;Funds Raised (in thousands)&quot;</span><span class="p">)</span>
+<span class="n">plt</span><span class="o">.</span><span class="n">ylabel</span><span class="p">(</span><span class="s2">&quot;Percent of the Vote Won&quot;</span><span class="p">)</span>
+<span class="n">plt</span><span class="o">.</span><span class="n">title</span><span class="p">(</span><span class="s2">&quot;Funds Raised vs Vote Percentage&quot;</span><span class="p">)</span>
+<span class="n">plt</span><span class="o">.</span><span class="n">legend</span><span class="p">([</span><span class="s2">&quot;Data&quot;</span><span class="p">,</span> <span class="s2">&quot;Trend Line&quot;</span><span class="p">])</span>
+<span class="n">plt</span><span class="o">.</span><span class="n">tight_layout</span><span class="p">()</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<img alt="../_images/CMSE201_FinalProject_ExampleA_34_0.png" src="../_images/CMSE201_FinalProject_ExampleA_34_0.png" />
+</div>
+</div>
+<p>These plots reveal something very important about the data: that it is very nonlinear with very weak correlations. With the addition of the trend lines, we can see the loose relationship between the two, a positive relation for funds raised and a negative one for partisan lean, but it is loose. This means that any correlation made by our regression can only be taken as a suggestion.</p>
+</div>
+<div class="section" id="comparisons">
+<h3>3.2 Comparisons<a class="headerlink" href="#comparisons" title="Permalink to this headline">¶</a></h3>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="nb">print</span><span class="p">(</span><span class="s2">&quot;Overall:&quot;</span><span class="p">,</span> <span class="n">fitted_params</span><span class="p">[</span><span class="mi">0</span><span class="p">],</span> <span class="s2">&quot;R^2:&quot;</span><span class="p">,</span> <span class="n">model_fitted</span><span class="o">.</span><span class="n">rsquared</span><span class="p">)</span>
+<span class="nb">print</span><span class="p">(</span><span class="s2">&quot;Senators:&quot;</span> <span class="p">,</span><span class="n">fitted_params</span><span class="p">[</span><span class="mi">1</span><span class="p">],</span> <span class="s2">&quot;R^2:&quot;</span><span class="p">,</span> <span class="n">sen_fitted</span><span class="o">.</span><span class="n">rsquared</span><span class="p">)</span>
+<span class="nb">print</span><span class="p">(</span><span class="s2">&quot;House Reps:&quot;</span><span class="p">,</span> <span class="n">fitted_params</span><span class="p">[</span><span class="mi">2</span><span class="p">],</span> <span class="s2">&quot;R^2:&quot;</span><span class="p">,</span> <span class="n">rep_fitted</span><span class="o">.</span><span class="n">rsquared</span><span class="p">)</span>
+<span class="c1">#Constant, Partisan lean, Race, LGBT, Veteran, Past Service, Funds</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>Overall: [16.432, -0.375, 0, 0, 0, 12.494, 0.004] R^2: 0.28152402767800777
+Senators: [2.599, -0.569, 0, 0, -15.701, 19.017, 0.002] R^2: 0.8638208485312847
+House Reps: [16.025, -0.392, 0, 0, 0, 13.894, 0.004] R^2: 0.2765002374031068
+</pre></div>
+</div>
+</div>
+</div>
+<p>The parameters for each dataset are shown above. The parameters for the House Representatives are very similar to those of the overall dataset, which makes sense due to the fact that House candidates make up a considerably larger portion of the dataset over the Senate candidates. The Senator parameters are considerably different with partisan lean and funds raised both having nearly double the effect on Senate candidates than Representatives and the addition of a parameter for Veteran status. We can visualize the difference in the plots of the separate variables below.</p>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">plt</span><span class="o">.</span><span class="n">figure</span><span class="p">(</span><span class="n">figsize</span> <span class="o">=</span> <span class="p">(</span><span class="mi">12</span><span class="p">,</span><span class="mi">10</span><span class="p">))</span>
+<span class="n">plt</span><span class="o">.</span><span class="n">subplot</span><span class="p">(</span><span class="mi">121</span><span class="p">)</span>
+<span class="n">plt</span><span class="o">.</span><span class="n">plot</span><span class="p">(</span><span class="n">sen</span><span class="p">[</span><span class="s2">&quot;Partisan Lean&quot;</span><span class="p">],</span> <span class="n">sen</span><span class="p">[</span><span class="s2">&quot;Primary %&quot;</span><span class="p">],</span> <span class="s2">&quot;ro&quot;</span><span class="p">)</span>
+<span class="n">plt</span><span class="o">.</span><span class="n">plot</span><span class="p">(</span><span class="n">rep</span><span class="p">[</span><span class="s2">&quot;Partisan Lean&quot;</span><span class="p">],</span> <span class="n">rep</span><span class="p">[</span><span class="s2">&quot;Primary %&quot;</span><span class="p">],</span> <span class="s2">&quot;bo&quot;</span><span class="p">)</span>
+<span class="n">plt</span><span class="o">.</span><span class="n">plot</span><span class="p">(</span><span class="n">sen</span><span class="p">[</span><span class="s2">&quot;Partisan Lean&quot;</span><span class="p">],</span> <span class="n">sen_fitted</span><span class="o">.</span><span class="n">params</span><span class="p">[</span><span class="mi">1</span><span class="p">]</span><span class="o">*</span><span class="n">sen</span><span class="p">[</span><span class="s2">&quot;Partisan Lean&quot;</span><span class="p">]</span> <span class="o">+</span> <span class="n">sen_fitted</span><span class="o">.</span><span class="n">params</span><span class="p">[</span><span class="mi">0</span><span class="p">]</span> <span class="p">,</span><span class="s2">&quot;darkred&quot;</span><span class="p">,</span> <span class="n">lw</span><span class="o">=</span> <span class="mi">5</span><span class="p">)</span>
+<span class="n">plt</span><span class="o">.</span><span class="n">plot</span><span class="p">(</span><span class="n">rep</span><span class="p">[</span><span class="s2">&quot;Partisan Lean&quot;</span><span class="p">],</span> <span class="n">rep_fitted</span><span class="o">.</span><span class="n">params</span><span class="p">[</span><span class="mi">1</span><span class="p">]</span><span class="o">*</span><span class="n">rep</span><span class="p">[</span><span class="s2">&quot;Partisan Lean&quot;</span><span class="p">]</span> <span class="o">+</span> <span class="n">rep_fitted</span><span class="o">.</span><span class="n">params</span><span class="p">[</span><span class="mi">0</span><span class="p">]</span> <span class="p">,</span><span class="s2">&quot;lightblue&quot;</span><span class="p">,</span> <span class="n">lw</span> <span class="o">=</span><span class="mi">5</span><span class="p">)</span>
+<span class="n">plt</span><span class="o">.</span><span class="n">xlabel</span><span class="p">(</span><span class="s2">&quot;Partisan Lean&quot;</span><span class="p">)</span>
+<span class="n">plt</span><span class="o">.</span><span class="n">ylabel</span><span class="p">(</span><span class="s2">&quot;Percent of the Vote Won&quot;</span><span class="p">)</span>
+<span class="n">plt</span><span class="o">.</span><span class="n">title</span><span class="p">(</span><span class="s2">&quot;Partisan Lean vs Vote Percentage&quot;</span><span class="p">)</span>
+<span class="n">plt</span><span class="o">.</span><span class="n">legend</span><span class="p">([</span><span class="s2">&quot;Senators&quot;</span><span class="p">,</span> <span class="s2">&quot;House Reps&quot;</span><span class="p">,</span> <span class="s2">&quot;Senate best fit&quot;</span><span class="p">,</span> <span class="s2">&quot;House best fit&quot;</span><span class="p">])</span>
+<span class="n">plt</span><span class="o">.</span><span class="n">subplot</span><span class="p">(</span><span class="mi">122</span><span class="p">)</span>
+<span class="n">plt</span><span class="o">.</span><span class="n">plot</span><span class="p">(</span><span class="n">sen</span><span class="p">[</span><span class="s2">&quot;Funds&quot;</span><span class="p">],</span> <span class="n">sen</span><span class="p">[</span><span class="s2">&quot;Primary %&quot;</span><span class="p">],</span> <span class="s2">&quot;ro&quot;</span><span class="p">)</span>
+<span class="n">plt</span><span class="o">.</span><span class="n">plot</span><span class="p">(</span><span class="n">rep</span><span class="p">[</span><span class="s2">&quot;Funds&quot;</span><span class="p">],</span> <span class="n">rep</span><span class="p">[</span><span class="s2">&quot;Primary %&quot;</span><span class="p">],</span> <span class="s2">&quot;bo&quot;</span><span class="p">)</span>
+<span class="n">plt</span><span class="o">.</span><span class="n">plot</span><span class="p">(</span><span class="n">sen</span><span class="p">[</span><span class="s2">&quot;Funds&quot;</span><span class="p">],</span> <span class="n">sen_fitted</span><span class="o">.</span><span class="n">params</span><span class="p">[</span><span class="mi">4</span><span class="p">]</span><span class="o">*</span><span class="n">sen</span><span class="p">[</span><span class="s2">&quot;Funds&quot;</span><span class="p">]</span> <span class="o">+</span> <span class="n">sen_fitted</span><span class="o">.</span><span class="n">params</span><span class="p">[</span><span class="mi">0</span><span class="p">]</span> <span class="p">,</span><span class="s2">&quot;darkred&quot;</span><span class="p">,</span> <span class="n">lw</span><span class="o">=</span> <span class="mi">5</span><span class="p">)</span>
+<span class="n">plt</span><span class="o">.</span><span class="n">plot</span><span class="p">(</span><span class="n">rep</span><span class="p">[</span><span class="s2">&quot;Funds&quot;</span><span class="p">],</span> <span class="n">rep_fitted</span><span class="o">.</span><span class="n">params</span><span class="p">[</span><span class="mi">3</span><span class="p">]</span><span class="o">*</span><span class="n">rep</span><span class="p">[</span><span class="s2">&quot;Funds&quot;</span><span class="p">]</span> <span class="o">+</span> <span class="n">rep_fitted</span><span class="o">.</span><span class="n">params</span><span class="p">[</span><span class="mi">0</span><span class="p">]</span> <span class="p">,</span><span class="s2">&quot;lightblue&quot;</span><span class="p">,</span> <span class="n">lw</span> <span class="o">=</span><span class="mi">5</span><span class="p">)</span>
+<span class="n">plt</span><span class="o">.</span><span class="n">xlabel</span><span class="p">(</span><span class="s2">&quot;Funds Raised (in thousands)&quot;</span><span class="p">)</span>
+<span class="n">plt</span><span class="o">.</span><span class="n">ylabel</span><span class="p">(</span><span class="s2">&quot;Percent of the Vote Won&quot;</span><span class="p">)</span>
+<span class="n">plt</span><span class="o">.</span><span class="n">title</span><span class="p">(</span><span class="s2">&quot;Funds Raised vs Vote Percentage&quot;</span><span class="p">)</span>
+<span class="n">plt</span><span class="o">.</span><span class="n">legend</span><span class="p">([</span><span class="s2">&quot;Senators&quot;</span><span class="p">,</span> <span class="s2">&quot;House Reps&quot;</span><span class="p">,</span> <span class="s2">&quot;Senate best fit&quot;</span><span class="p">,</span> <span class="s2">&quot;House best fit&quot;</span><span class="p">])</span>
+<span class="n">plt</span><span class="o">.</span><span class="n">tight_layout</span><span class="p">()</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<img alt="../_images/CMSE201_FinalProject_ExampleA_39_0.png" src="../_images/CMSE201_FinalProject_ExampleA_39_0.png" />
+</div>
+</div>
+<p>There are a notably fewer amount of Senator data points that tend to get lost among the Representatives but when we highlight the different points, we can see the difference in the trends between the types of office. But overall, the most important observation is that neither subset has linear data, so we must proceed with caution considering our regression. The data looks even more scattered in a 3D plot reflecting on funding, partisan lean, and the winning percentage. This shows that our data has a very weak correlation, and that our regression should only be used for analysis rather than any further interpolating or extrapolating.</p>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">plt</span><span class="o">.</span><span class="n">figure</span><span class="p">(</span><span class="n">figsize</span><span class="o">=</span><span class="p">(</span><span class="mi">15</span><span class="p">,</span><span class="mi">10</span><span class="p">))</span>
+<span class="n">ax2</span> <span class="o">=</span> <span class="n">plt</span><span class="o">.</span><span class="n">axes</span><span class="p">(</span><span class="n">projection</span> <span class="o">=</span> <span class="s2">&quot;3d&quot;</span><span class="p">)</span>
+<span class="n">ax2</span><span class="o">.</span><span class="n">scatter</span><span class="p">(</span><span class="n">sen</span><span class="p">[</span><span class="s2">&quot;Funds&quot;</span><span class="p">],</span><span class="n">sen</span><span class="p">[</span><span class="s2">&quot;Partisan Lean&quot;</span><span class="p">],</span> <span class="n">sen</span><span class="p">[</span><span class="s2">&quot;Primary %&quot;</span><span class="p">],</span> <span class="s2">&quot;o&quot;</span><span class="p">,</span> <span class="n">c</span> <span class="o">=</span> <span class="s2">&quot;r&quot;</span><span class="p">)</span>
+<span class="n">ax2</span><span class="o">.</span><span class="n">scatter</span><span class="p">(</span><span class="n">rep</span><span class="p">[</span><span class="s2">&quot;Funds&quot;</span><span class="p">],</span> <span class="n">rep</span><span class="p">[</span><span class="s2">&quot;Partisan Lean&quot;</span><span class="p">],</span> <span class="n">rep</span><span class="p">[</span><span class="s2">&quot;Primary %&quot;</span><span class="p">],</span> <span class="s2">&quot;o&quot;</span><span class="p">,</span> <span class="n">c</span> <span class="o">=</span> <span class="s2">&quot;b&quot;</span><span class="p">)</span>
+<span class="n">plt</span><span class="o">.</span><span class="n">ylabel</span><span class="p">(</span><span class="s2">&quot;Partisan Lean of District&quot;</span><span class="p">)</span>
+<span class="n">plt</span><span class="o">.</span><span class="n">xlabel</span><span class="p">(</span><span class="s2">&quot;Funds Raised (in thousands)&quot;</span><span class="p">)</span>
+<span class="n">plt</span><span class="o">.</span><span class="n">legend</span><span class="p">([</span><span class="s2">&quot;Senate&quot;</span><span class="p">,</span> <span class="s2">&quot;House&quot;</span><span class="p">])</span>
+<span class="n">ax</span><span class="o">.</span><span class="n">set_zlabel</span><span class="p">(</span><span class="s2">&quot;</span><span class="si">% o</span><span class="s2">f Vote Won&quot;</span><span class="p">)</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<div class="output text_plain highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>Text(0.0935927996572016, 0.012539057542757442, &#39;% of Vote Won&#39;)
+</pre></div>
+</div>
+<img alt="../_images/CMSE201_FinalProject_ExampleA_41_1.png" src="../_images/CMSE201_FinalProject_ExampleA_41_1.png" />
+</div>
+</div>
+</div>
+</div>
+<div class="section" id="discussion-and-conclusion">
+<h2>Discussion and Conclusion<a class="headerlink" href="#discussion-and-conclusion" title="Permalink to this headline">¶</a></h2>
+<p>So in the end, we can conclude that:</p>
+<ul class="simple">
+<li><p>For every increase of 1 unit of partisan lean in a district, a candidate’s expected percent of the vote will decrease by 0.375%.</p></li>
+<li><p>For every increase of $1000 raised, a candidate’s expected percent of the vote will increase 0.004%.</p></li>
+<li><p>If a candidate has previously held office, there is an expected increase of 12.5%</p></li>
+<li><p>If those variables are 0 (no funds raised, equally partisan district, and no history of office), a candidate is still expected to win approximately 16.4% of the vote.</p></li>
+<li><p>Race, Veteran status, and LGBTQ identity do not have a significant impact on the percent of the vote won.</p></li>
+</ul>
+<p>These reflect known phenomenon: candidates that raise more money are more likely to win and more partisan districts yield more competitive candidates in the opposite party. We have excluded imcumbents from this dataset so it makes sense that Democratic-held districts (districts with positive partisan leans) will have smaller candidates with less of the vote. On the other hand, in Republican-held districts (negative partisan values), voters are more likely to rally behind one strong candidate to beat the imcumbent.Finally, candidates that have previously held office are typically deemed more competant among voters and are more likely to win higher elections.</p>
+<p>These trends hold between the different Congressional races. Between the Senate and House races, we can see:</p>
+<ul class="simple">
+<li><p>For every increase of 1 unit in a district’s partisan lean, a House candidate’s expected percent of the vote will decrease by 0.392% and a corresponding Senate candidate’s percent will decrease by 0.569%</p></li>
+<li><p>For every increase of $1000 dollars raised, a House candidate’s percent will increase by 0.004% and a Senate candidate’s will increase by 0.002%</p></li>
+<li><p>If a House candidate has previously held office, they are expected to win about 13.9% of the vote while a Senate candidate is expected to win about 19.0% more.</p></li>
+<li><p>If a Senate candidate has advertised that they are a veteran, they are expected to win 15.7% less of the vote.</p></li>
+<li><p>If those variables are 0 (no funds raised, equally partisan district, and no history of office), a House candidate is expected to still receieve 16.0% of the vote while a Senate candidate will receive 2.6% of the vote.</p></li>
+<li><p>Race, Veteran status, and LGBTQ identity do not have a significant impact on the percent of the vote won for House candidates and race and LGBTQ identity do not have a significant impact for Senate candidates.</p></li>
+</ul>
+<p>As previously stated, the trends for the House candidates resemble the overall trends very closely because there are considerably more House than Senate candidates in the dataset due to the number of districts up for election in 2018. Considering that higher coefficients have a greater impact on the general trend, we can see that the most influential factors differ between the two chambers of Congress. Funding matters slightly more to Representatives than Senators, likely because Representatives have more competitors and more hands-on campaigns. On the other hand, past service (both in political office and in the military) are more important for Senate candidates, but in different ways. Senators serve longer terms than House Representatives and typically go for re-election more often, so past service is important, but Republican candidates and voters are more likely to be veterans and military force is not traditionally a Democratic party ideal (6), so veteran status might be a detractor.</p>
+<p>However, we cannot use this data to make predictions about ideal candidates. To start, many of these factors are out of the control of the candidates, as candidates cannot choose their own race or the partisan lean of their district, so there is no strategical gain to changing a campaign based on any of these factors. Second, many of the data readings suggest multicollinearity, where two or more of our independent variables are not actaully independent of each other, which is a reminder that we cannot prove causation for any of these variables. For example, are these candidates winning because they raised more money or does the money raised reflect that the candidate is more popular among the people and win the vote that way? From this dataset, we can only say that winning candidates tend to raise a greater amount of money. This does explain of our trends from the Senate candidates where funding does not matter as much but past office does. Perhaps funding does not matter because those candidates already have the free press from holding office before. We do not know for sure which variables are linked in this way, but it can explain some of the connections. Finally, the correlations within our data are all very weak. The dataset is large enough that any scatter plot we create will not show a clear linear relation, and our regression handles that to the best of its ability, but the resulting coefficients of determination are relatively low. This means that there is something missing in our correlation, which is probably the biggest and hardest to measure difference between candidates, policy. So from our regression, we can conclude that while funding, partisan lean, and past service are the most influential factors and that winning Senate and House candidates possess slightly different traits, the greatest factors in election success are policy decisions and connections with the voters.</p>
+<p>Furthermore, this study is limited to this election only. The greatest limitation of this research is the data we are working with is very specific. Knowing these models are capable of analyzing election trends, it may be beneficial to expand our view to look at trends over time to see if variable significance has changed. Also, we only have access to the personal data of Democratic candidates but there are likely to be notable differences in regressions for Democratic and Republican candidates, but the data was not availible. It would be interesting to analyze the differences in what factors each party deems more important. For future inquiries, there are other factors that this method could be expanded to test significance. Gender, years in office, and endorsements are all potential variables that affect primary election outcomes but the data was not availible for this study. Additionally, the scale could be increased to examine national elections or even decreased for more local elections.</p>
+<div class="section" id="references">
+<h3>References<a class="headerlink" href="#references" title="Permalink to this headline">¶</a></h3>
+<ol class="simple">
+<li><p>M. (n.d.). It’s not just 2020: U.S. presidential elections have long featured close state races. Pew Research Center. Retrieved April 6, 2021, from <a class="reference external" href="https://www.pewresearch.org/fact-tank/2020/12/04/its-not-just-2020-u-s-presidential-elections-have-long-featured-close-state-races/">https://www.pewresearch.org/fact-tank/2020/12/04/its-not-just-2020-u-s-presidential-elections-have-long-featured-close-state-races/</a></p></li>
+<li><p>Conroy, M. (2018, August 10). We researched hundreds of races. Here’s who democrats are nominating. FiveThirtyEight. <a class="reference external" href="https://fivethirtyeight.com/features/democrats-primaries-candidates-demographics/">https://fivethirtyeight.com/features/democrats-primaries-candidates-demographics/</a></p></li>
+<li><p>Browse data. (n.d.). <a class="reference external" href="http://FEC.Gov">FEC.Gov</a>. Retrieved April 6, 2021, from <a class="reference external" href="https://www.fec.gov/data/browse-data/">https://www.fec.gov/data/browse-data/</a></p></li>
+<li><p>United states senate democratic party primaries, 2018. (n.d.). Ballotpedia. Retrieved April 6, 2021, from <a class="reference external" href="https://ballotpedia.org/United_States_Senate_Democratic_Party_primaries,_2018">https://ballotpedia.org/United_States_Senate_Democratic_Party_primaries,_2018</a></p></li>
+<li><p>Ordinary Least Squares — statsmodels. Retrieved April 13, 2021 from  <a class="reference external" href="https://www.statsmodels.org/devel/examples/notebooks/generated/ols.html">https://www.statsmodels.org/devel/examples/notebooks/generated/ols.html</a></p></li>
+<li><p>Clement, S. (n.d.). Veterans are voting Republican. And that’s not likely to change. Washington Post. Retrieved April 15, 2021, from <a class="reference external" href="https://www.washingtonpost.com/news/the-fix/wp/2014/11/11/veterans-are-voting-republican-and-thats-not-likely-to-change/">https://www.washingtonpost.com/news/the-fix/wp/2014/11/11/veterans-are-voting-republican-and-thats-not-likely-to-change/</a></p></li>
+</ol>
+</div>
+</div>
+</div>
+
+    <script type="text/x-thebe-config">
+    {
+        requestKernel: true,
+        binderOptions: {
+            repo: "binder-examples/jupyter-stacks-datascience",
+            ref: "master",
+        },
+        codeMirrorConfig: {
+            theme: "abcdef",
+            mode: "python"
+        },
+        kernelOptions: {
+            kernelName: "python3",
+            path: "./Project_Materials"
+        },
+        predefinedOutput: true
+    }
+    </script>
+    <script>kernelName = 'python3'</script>
+
+              </div>
+              
+        
+            
+
+
+
+<div class='prev-next-bottom'>
+    
+    <div id="prev">
+        <a class="left-prev" href="CMSE201_SemesterProjectDetails.html" title="previous page">
+            <i class="prevnext-label fas fa-angle-left"></i>
+            <div class="prevnext-info">
+                <p class="prevnext-label">previous</p>
+                <p class="prevnext-title">CMSE 201 - Semester Project</p>
+            </div>
+        </a>
+    </div>
+     <div id="next">
+        <a class="right-next" href="CMSE201_FinalProject_ExampleB.html" title="next page">
+            <div class="prevnext-info">
+                <p class="prevnext-label">next</p>
+                <p class="prevnext-title">CMSE 201 Final Project Example B</p>
+            </div>
+            <i class="prevnext-label fas fa-angle-right"></i>
+        </a>
+     </div>
+
+</div>
+        
+        </div>
+    </div>
+    <footer class="footer mt-5 mt-md-0">
+    <div class="container">
+      <p>
+        
+          By MSU CMSE<br/>
+        
+            &copy; Copyright 2021.<br/>
+      </p>
+    </div>
+  </footer>
+</main>
+
+
+      </div>
+    </div>
+  
+  <script src="../_static/js/index.1c5a1a01449ed65a7b51.js"></script>
+
+  
+  </body>
+</html>

@@ -1,0 +1,1370 @@
+
+<!DOCTYPE html>
+
+<html>
+  <head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Day 4 Pre-class Assignment: Introduction to Data Ethics and Practice with Lists and Loops &#8212; CMSE 201</title>
+    
+  <link href="../_static/css/theme.css" rel="stylesheet" />
+  <link href="../_static/css/index.c5995385ac14fb8791e8eb36b4908be2.css" rel="stylesheet" />
+
+    
+  <link rel="stylesheet"
+    href="../_static/vendor/fontawesome/5.13.0/css/all.min.css">
+  <link rel="preload" as="font" type="font/woff2" crossorigin
+    href="../_static/vendor/fontawesome/5.13.0/webfonts/fa-solid-900.woff2">
+  <link rel="preload" as="font" type="font/woff2" crossorigin
+    href="../_static/vendor/fontawesome/5.13.0/webfonts/fa-brands-400.woff2">
+
+    
+      
+
+    
+    <link rel="stylesheet" href="../_static/pygments.css" type="text/css" />
+    <link rel="stylesheet" href="../_static/sphinx-book-theme.e8f53015daec13862f6db5e763c41738.css" type="text/css" />
+    <link rel="stylesheet" type="text/css" href="../_static/togglebutton.css" />
+    <link rel="stylesheet" type="text/css" href="../_static/copybutton.css" />
+    <link rel="stylesheet" type="text/css" href="../_static/mystnb.css" />
+    <link rel="stylesheet" type="text/css" href="../_static/sphinx-thebe.css" />
+    <link rel="stylesheet" type="text/css" href="../_static/panels-main.c949a650a448cc0ae9fd3441c0e17fb0.css" />
+    <link rel="stylesheet" type="text/css" href="../_static/panels-variables.06eb56fa6e07937060861dad626602ad.css" />
+    
+  <link rel="preload" as="script" href="../_static/js/index.1c5a1a01449ed65a7b51.js">
+
+    <script id="documentation_options" data-url_root="../" src="../_static/documentation_options.js"></script>
+    <script src="../_static/jquery.js"></script>
+    <script src="../_static/underscore.js"></script>
+    <script src="../_static/doctools.js"></script>
+    <script src="../_static/togglebutton.js"></script>
+    <script src="../_static/clipboard.min.js"></script>
+    <script src="../_static/copybutton.js"></script>
+    <script >var togglebuttonSelector = '.toggle, .admonition.dropdown, .tag_hide_input div.cell_input, .tag_hide-input div.cell_input, .tag_hide_output div.cell_output, .tag_hide-output div.cell_output, .tag_hide_cell.cell, .tag_hide-cell.cell';</script>
+    <script src="../_static/sphinx-book-theme.12a9622fbb08dcb3a2a40b2c02b83a57.js"></script>
+    <script async="async" src="https://unpkg.com/thebe@0.5.1/lib/index.js"></script>
+    <script >
+        const thebe_selector = ".thebe"
+        const thebe_selector_input = "pre"
+        const thebe_selector_output = ".output"
+    </script>
+    <script async="async" src="../_static/sphinx-thebe.js"></script>
+    <link rel="shortcut icon" href="../_static/cmse_fav.ico"/>
+    <link rel="index" title="Index" href="../genindex.html" />
+    <link rel="search" title="Search" href="../search.html" />
+    <link rel="next" title="Day 4 In-class Assignment: Academic Integrity and Coding Best Practices" href="Day-04_In-Class_AcademicIntegrity_CodingPractices-STUDENT.html" />
+    <link rel="prev" title="Day 3 In-class Assignment: The power of compound interest" href="../Day-03/Day-03_In-Class_ListsLoopsAndSaving-STUDENT.html" />
+    <meta name="viewport" content="width=device-width, initial-scale=1" />
+    <meta name="docsearch:language" content="en" />
+    
+  </head>
+  <body data-spy="scroll" data-target="#bd-toc-nav" data-offset="80">
+    
+    <div class="container-fluid" id="banner"></div>
+
+    
+
+    <div class="container-xl">
+      <div class="row">
+          
+<div class="col-12 col-md-3 bd-sidebar site-navigation show" id="site-navigation">
+    
+        <div class="navbar-brand-box">
+    <a class="navbar-brand text-wrap" href="../index.html">
+      
+      <img src="../_static/logo.png" class="logo" alt="logo">
+      
+      
+      <h1 class="site-logo" id="site-title">CMSE 201</h1>
+      
+    </a>
+</div><form class="bd-search d-flex align-items-center" action="../search.html" method="get">
+  <i class="icon fas fa-search"></i>
+  <input type="search" class="form-control" name="q" id="search-input" placeholder="Search this book..." aria-label="Search this book..." autocomplete="off" >
+</form><nav class="bd-links" id="bd-docs-nav" aria-label="Main">
+    <div class="bd-toc-item active">
+        <ul class="nav bd-sidenav">
+ <li class="toctree-l1">
+  <a class="reference internal" href="../intro.html">
+   Welcome to Computational Modeling and Data Analysis I!
+  </a>
+ </li>
+</ul>
+<p class="caption">
+ <span class="caption-text">
+  Course Materials
+ </span>
+</p>
+<ul class="nav bd-sidenav">
+ <li class="toctree-l1 has-children">
+  <a class="reference internal" href="../Course_Materials-201/CourseDocuments.html">
+   Important Course information
+  </a>
+  <input class="toctree-checkbox" id="toctree-checkbox-1" name="toctree-checkbox-1" type="checkbox"/>
+  <label for="toctree-checkbox-1">
+   <i class="fas fa-chevron-down">
+   </i>
+  </label>
+  <ul>
+   <li class="toctree-l2">
+    <a class="reference internal" href="../Course_Materials-201/CMSE201-Syllabus.html">
+     Syllabus
+    </a>
+   </li>
+   <li class="toctree-l2">
+    <a class="reference internal" href="../Course_Materials-201/SoftwareSetupGuide.html">
+     Software Setup Guide
+    </a>
+   </li>
+   <li class="toctree-l2">
+    <a class="reference internal" href="../Course_Materials-201/classroom_participation.html">
+     Classroom Participation
+    </a>
+   </li>
+  </ul>
+ </li>
+</ul>
+<p class="caption">
+ <span class="caption-text">
+  Day 01
+ </span>
+</p>
+<ul class="nav bd-sidenav">
+ <li class="toctree-l1">
+  <a class="reference internal" href="../Day-01/Day-01_In-Class_SortingAlgorithm-STUDENT.html">
+   Day 1 In-Class Assignment: Introductions and Sorting Algorithms
+  </a>
+ </li>
+</ul>
+<p class="caption">
+ <span class="caption-text">
+  Day 02
+ </span>
+</p>
+<ul class="nav bd-sidenav">
+ <li class="toctree-l1">
+  <a class="reference internal" href="../Day-02/Day-02_Pre-Class_IntroToPython-STUDENT.html">
+   Day 2 Pre-class Assignment: Intro to Python
+  </a>
+ </li>
+ <li class="toctree-l1">
+  <a class="reference internal" href="../Day-02/Day-02_In-Class_OrderOfMagnitudeModeling-STUDENT.html">
+   Day 2 In-class Assignment: Order of Magnitude Modeling
+  </a>
+ </li>
+</ul>
+<p class="caption">
+ <span class="caption-text">
+  Day 03
+ </span>
+</p>
+<ul class="nav bd-sidenav">
+ <li class="toctree-l1">
+  <a class="reference internal" href="../Day-03/Day-03_Pre-Class_ListsAndLoops-STUDENT.html">
+   Day 3: Pre-Class Assignment: Lists and Loops
+  </a>
+ </li>
+ <li class="toctree-l1">
+  <a class="reference internal" href="../Day-03/Day-03_In-Class_ListsLoopsAndSaving-STUDENT.html">
+   Day 3 In-class Assignment: The power of compound interest
+  </a>
+ </li>
+</ul>
+<p class="caption">
+ <span class="caption-text">
+  Day 04
+ </span>
+</p>
+<ul class="current nav bd-sidenav">
+ <li class="toctree-l1 current active">
+  <a class="current reference internal" href="#">
+   Day 4 Pre-class Assignment: Introduction to Data Ethics and Practice with Lists and Loops
+  </a>
+ </li>
+ <li class="toctree-l1">
+  <a class="reference internal" href="Day-04_In-Class_AcademicIntegrity_CodingPractices-STUDENT.html">
+   Day 4 In-class Assignment: Academic Integrity and Coding Best Practices
+  </a>
+ </li>
+</ul>
+<p class="caption">
+ <span class="caption-text">
+  Day 05
+ </span>
+</p>
+<ul class="nav bd-sidenav">
+ <li class="toctree-l1">
+  <a class="reference internal" href="../Day-05/Day-05_Pre-Class_IfStatementsAndFunctions-STUDENT.html">
+   Day 5 Pre-class Assignment: Boolean logic, if statements, and an introduction to functions
+  </a>
+ </li>
+ <li class="toctree-l1">
+  <a class="reference internal" href="../Day-05/Day-05_In-Class_IfStatementsAndFunctions-STUDENT.html">
+   Day 5 In-class Assignment: Savings for Everyone
+  </a>
+ </li>
+</ul>
+<p class="caption">
+ <span class="caption-text">
+  Day 06
+ </span>
+</p>
+<ul class="nav bd-sidenav">
+ <li class="toctree-l1">
+  <a class="reference internal" href="../Day-06/Day-06_Pre-Class_MoreFunctions-STUDENT.html">
+   Day 6 Pre-class Assignment: Thinking more about functions
+  </a>
+ </li>
+ <li class="toctree-l1">
+  <a class="reference internal" href="../Day-06/Day-06_In-Class_MoreFunctions-STUDENT.html">
+   Day 6 In-class Assignment: Using functions for fun and profit!
+  </a>
+ </li>
+</ul>
+<p class="caption">
+ <span class="caption-text">
+  Day 07
+ </span>
+</p>
+<ul class="nav bd-sidenav">
+ <li class="toctree-l1">
+  <a class="reference internal" href="../Day-07/Day-07_Pre-Class_ModulesMathAndPlots-STUDENT.html">
+   Day 7 Pre-Class Assignment: Python Modules: Math and Plots
+  </a>
+ </li>
+ <li class="toctree-l1">
+  <a class="reference internal" href="../Day-07/Day-07_In-Class_MathAndPlotting-STUDENT.html">
+   Day 7 In-class Assignment: Visualizing population growth and projectile motion
+  </a>
+ </li>
+</ul>
+<p class="caption">
+ <span class="caption-text">
+  Day 08
+ </span>
+</p>
+<ul class="nav bd-sidenav">
+ <li class="toctree-l1">
+  <a class="reference internal" href="../Day-08/Day-08_Pre-Class_IntroToNumPy-STUDENT.html">
+   Day 8 Pre-Class: Introduction to NumPy
+  </a>
+ </li>
+ <li class="toctree-l1">
+  <a class="reference external" href="https://raw.githubusercontent.com/msu-cmse-courses/cmse201-F21-data/main/Day-08/michigan_pop.csv">
+   michigan_pop.csv
+  </a>
+ </li>
+ <li class="toctree-l1">
+  <a class="reference internal" href="../Day-08/Day-08_In-Class_NumPyWithTheGreatLakes-STUDENT.html">
+   Day 8 In-class Assignment: Exploring Great Lakes Water Levels using NumPy
+  </a>
+ </li>
+ <li class="toctree-l1">
+  <a class="reference external" href="https://raw.githubusercontent.com/msu-cmse-courses/cmse201-F21-data/main/Day-08/lake_erie.csv">
+   lake_erie.csv
+  </a>
+ </li>
+ <li class="toctree-l1">
+  <a class="reference external" href="https://raw.githubusercontent.com/msu-cmse-courses/cmse201-F21-data/main/Day-08/lake_michigan_huron.csv">
+   lake_michigan_huron.csv
+  </a>
+ </li>
+ <li class="toctree-l1">
+  <a class="reference external" href="https://raw.githubusercontent.com/msu-cmse-courses/cmse201-F21-data/main/Day-08/lake_ontario.csv">
+   lake_ontario.csv
+  </a>
+ </li>
+ <li class="toctree-l1">
+  <a class="reference external" href="https://raw.githubusercontent.com/msu-cmse-courses/cmse201-F21-data/main/Day-08/lake_superior.csv">
+   lake_superior.csv
+  </a>
+ </li>
+</ul>
+<p class="caption">
+ <span class="caption-text">
+  Day 09
+ </span>
+</p>
+<ul class="nav bd-sidenav">
+ <li class="toctree-l1">
+  <a class="reference internal" href="../Day-09/Day_09_PCA_Debugging_skills_STUDENT.html">
+   Day 9 Pre-class Assignment: Tools for Debugging Code
+  </a>
+ </li>
+ <li class="toctree-l1">
+  <a class="reference internal" href="../Day-09/Day_09_ICA_Debugging_STUDENT.html">
+   Day 9 In-class Assignment: Debugging
+  </a>
+ </li>
+ <li class="toctree-l1">
+  <a class="reference external" href="https://raw.githubusercontent.com/msu-cmse-courses/cmse201-S22-data/main/Day-09/Weather_Data_Metric.csv">
+   Weather_Data_Metric.csv
+  </a>
+ </li>
+</ul>
+<p class="caption">
+ <span class="caption-text">
+  Day 10
+ </span>
+</p>
+<ul class="nav bd-sidenav">
+ <li class="toctree-l1">
+  <a class="reference internal" href="../Day-10/Day-10_Pre-Class_Pandas-STUDENT.html">
+   Day 10 Pre-class Assignment: Computational Models Overview and The Pandas Data Analysis Library
+  </a>
+ </li>
+ <li class="toctree-l1">
+  <a class="reference internal" href="../Day-10/Day-10_In-Class_GDP-STUDENT.html">
+   Day 10 In-Class: Cleaning and Analyzing Economic Data
+  </a>
+ </li>
+ <li class="toctree-l1">
+  <a class="reference external" href="https://raw.githubusercontent.com/msu-cmse-courses/cmse201-S22-data/main/Day-10/API_NY.GDP.MKTP.CD_DS2_en_csv_v2_3011433.csv">
+   API_NY.GDP.MKTP.CD_DS2_en_csv_v2_3011433.csv
+  </a>
+ </li>
+</ul>
+<p class="caption">
+ <span class="caption-text">
+  Day 11
+ </span>
+</p>
+<ul class="nav bd-sidenav">
+ <li class="toctree-l1">
+  <a class="reference internal" href="../Day-11/Day-11_Pre-Class_Masking-STUDENT.html">
+   Day 11 Pre-class Assignment: Normal Distributions, Masking, and Log Plots
+  </a>
+ </li>
+ <li class="toctree-l1">
+  <a class="reference external" href="https://raw.githubusercontent.com/msu-cmse-courses/cmse201-S22-data/main/Day-11/GDP_Cleaned.csv">
+   GDP_Cleaned.csv
+  </a>
+ </li>
+ <li class="toctree-l1">
+  <a class="reference internal" href="../Day-11/Day-11_In-Class_Flint-STUDENT.html">
+   Day 11 In-class Assignment: Get the Lead Out: Understanding The Water Crisis in Flint, MI
+  </a>
+ </li>
+ <li class="toctree-l1">
+  <a class="reference external" href="https://raw.githubusercontent.com/msu-cmse-courses/cmse201-S22-data/main/Day-11/flint_water_data.csv">
+   flint_water_data.csv
+  </a>
+ </li>
+</ul>
+<p class="caption">
+ <span class="caption-text">
+  Day 12
+ </span>
+</p>
+<ul class="nav bd-sidenav">
+ <li class="toctree-l1">
+  <a class="reference internal" href="../Day-12/Day-12_Pre-Class_Data_File_Formats_Manipulation-STUDENT.html">
+   Day 12 Pre-Class Assignment: Overview of data and file formats
+  </a>
+ </li>
+ <li class="toctree-l1">
+  <a class="reference external" href="https://raw.githubusercontent.com/msu-cmse-courses/cmse201-S22-data/main/Day-12/us_pop_by_state_2010_2011.csv">
+   us_pop_by_state_2010_2011.csv
+  </a>
+ </li>
+ <li class="toctree-l1">
+  <a class="reference external" href="https://github.com/msu-cmse-courses/cmse201-S22-data/raw/main/Day-12/us_pop_by_state_2012_2013_encoding_utf-16be.csv">
+   us_pop_by_state_2012_2013_encoding_utf-16be.csv
+  </a>
+ </li>
+ <li class="toctree-l1">
+  <a class="reference external" href="https://raw.githubusercontent.com/msu-cmse-courses/cmse201-S22-data/main/Day-12/us_pop_by_state_2014_2015_windows_linefeed.csv">
+   us_pop_by_state_2014_2015_windows_linefeed.csv
+  </a>
+ </li>
+ <li class="toctree-l1">
+  <a class="reference external" href="https://github.com/msu-cmse-courses/cmse201-S22-data/blob/main/Day-12/us_pop_by_state_2016a.csv?raw=true">
+   us_pop_by_state_2016a.csv
+  </a>
+ </li>
+ <li class="toctree-l1">
+  <a class="reference external" href="https://github.com/msu-cmse-courses/cmse201-S22-data/blob/main/Day-12/us_pop_by_state_2017a.yaff?raw=true">
+   us_pop_by_state2017a.yaff
+  </a>
+ </li>
+ <li class="toctree-l1">
+  <a class="reference external" href="https://github.com/msu-cmse-courses/cmse201-S22-data/blob/main/Day-12/us_pop_by_state_2018_2019.bin?raw=true">
+   us_pop_by_state_2018_2019.bin
+  </a>
+ </li>
+ <li class="toctree-l1">
+  <a class="reference internal" href="../Day-12/Day-12_In-Class_Data_File_Formats_Manipulation-STUDENT.html">
+   Day 12 In-Class: Overview of data and file formats; US Population and Representation
+  </a>
+ </li>
+</ul>
+<p class="caption">
+ <span class="caption-text">
+  Day 13
+ </span>
+</p>
+<ul class="nav bd-sidenav">
+ <li class="toctree-l1">
+  <a class="reference internal" href="../Day-13/Day-13_Pre-Class_Online_Resources_STUDENT.html">
+   Day 13 Pre-class Assignment: Finding Resources Online
+  </a>
+ </li>
+ <li class="toctree-l1">
+  <a class="reference internal" href="../Day-13/Day-13_In-Class_Online_Resources_STUDENT.html">
+   Day 13 In-Class: Using Resources from Online
+  </a>
+ </li>
+</ul>
+<p class="caption">
+ <span class="caption-text">
+  Day 14
+ </span>
+</p>
+<ul class="nav bd-sidenav">
+ <li class="toctree-l1">
+  <a class="reference internal" href="../Day-14/Day-14_Pre-Class_CurveFitting-STUDENT.html">
+   Day 14 Pre-Class Assignment: Fitting functions to data (curve-fitting) and thinking more about models
+  </a>
+ </li>
+ <li class="toctree-l1">
+  <a class="reference internal" href="../Day-14/Day-14_In-Class_FittingCurves-STUDENT.html">
+   Day 14 In-Class Assignment: (Thoughtfully) fitting models to data
+  </a>
+ </li>
+ <li class="toctree-l1">
+  <a class="reference external" href="https://raw.githubusercontent.com/msu-cmse-courses/cmse201-S22-data/main/Day-14/pop200.csv">
+   pop200.csv
+  </a>
+ </li>
+ <li class="toctree-l1">
+  <a class="reference external" href="https://raw.githubusercontent.com/msu-cmse-courses/cmse201-S22-data/main/Day-14/pop300.csv">
+   pop300.csv
+  </a>
+ </li>
+</ul>
+<p class="caption">
+ <span class="caption-text">
+  Day 15
+ </span>
+</p>
+<ul class="nav bd-sidenav">
+ <li class="toctree-l1">
+  <a class="reference internal" href="../Day-15/Day-15_Pre-Class_Evaluating_Fits-STUDENT.html">
+   Day 15 Pre-Class Assignment: Making Predictions Using Data
+  </a>
+ </li>
+ <li class="toctree-l1">
+  <a class="reference internal" href="../Day-15/Day-15_In-Class_Evaluating_Fits-STUDENT.html">
+   Day 15 In-Class Assignment: Evaluating Models
+  </a>
+ </li>
+</ul>
+<p class="caption">
+ <span class="caption-text">
+  Day 16
+ </span>
+</p>
+<ul class="nav bd-sidenav">
+ <li class="toctree-l1">
+  <a class="reference internal" href="../Day-16/Day-16-Intro_to_ODEs_Pre-Class_STUDENT.html">
+   Day 16: Pre-class Assignment: Introduction to Modeling with Ordinary Differential Equations
+  </a>
+ </li>
+ <li class="toctree-l1">
+  <a class="reference internal" href="../Day-16/Day-16-Intro_to_ODEs_In-Class_STUDENT.html">
+   Day 16: In-class Assignment: Introduction to Modeling with ODEs
+  </a>
+ </li>
+</ul>
+<p class="caption">
+ <span class="caption-text">
+  Day 17
+ </span>
+</p>
+<ul class="nav bd-sidenav">
+ <li class="toctree-l1">
+  <a class="reference internal" href="../Day-17/Day-17_Pre-Class_ModelingWithODEs-STUDENT.html">
+   Day 17: Pre-class Assignment: Modeling with Ordinary Differential Equations
+  </a>
+ </li>
+ <li class="toctree-l1">
+  <a class="reference internal" href="../Day-17/Day-17_In-Class_ModelingWithODEs-STUDENT.html">
+   Day 17: In-class Assignment: Modeling with ODEs
+  </a>
+ </li>
+</ul>
+<p class="caption">
+ <span class="caption-text">
+  Day 18
+ </span>
+</p>
+<ul class="nav bd-sidenav">
+ <li class="toctree-l1">
+  <a class="reference internal" href="../Day-18/Day-18_Pre-Class_ViralKinetics-STUDENT.html">
+   Day 18 Pre-Class: Viral Kinetics
+  </a>
+ </li>
+ <li class="toctree-l1">
+  <a class="reference internal" href="../Day-18/Day-18_In-Class_CompartmentalModeling-STUDENT.html">
+   Day 18 In-class: Building Compartmental Models
+  </a>
+ </li>
+</ul>
+<p class="caption">
+ <span class="caption-text">
+  Day 19
+ </span>
+</p>
+<ul class="nav bd-sidenav">
+ <li class="toctree-l1">
+  <a class="reference internal" href="../Day-19/Day-19_Pre-Class_Zombies-STUDENT.html">
+   Day 19 Pre-class Assignment: ZOMBIES!!
+  </a>
+ </li>
+ <li class="toctree-l1">
+  <a class="reference internal" href="../Day-19/Day-19_In-Class_CompartmentsWithSolveIVP-STUDENT.html">
+   Day 19 In-Class Assignment: Compartmental Modeling, moving from the model to the Code
+  </a>
+ </li>
+ <li class="toctree-l1">
+  <a class="reference external" href="https://github.com/msu-cmse-courses/cmse201-F21-data/blob/main/Day-16/latent.png">
+   latent.png
+  </a>
+ </li>
+</ul>
+<p class="caption">
+ <span class="caption-text">
+  Day 20
+ </span>
+</p>
+<ul class="nav bd-sidenav">
+ <li class="toctree-l1">
+  <a class="reference internal" href="../Day-20/Day-20-Pre-Class_IntroToDataVisualization-STUDENT.html">
+   Day 20 Pre-class Assignment: Introduction to Data Visualization
+  </a>
+ </li>
+ <li class="toctree-l1">
+  <a class="reference internal" href="../Day-20/Day-20-In-Class_IntroToDataVisualization-STUDENT.html">
+   Day 20 In-Class: Introduction to Data Visualization
+  </a>
+ </li>
+</ul>
+<p class="caption">
+ <span class="caption-text">
+  Day 21
+ </span>
+</p>
+<ul class="nav bd-sidenav">
+ <li class="toctree-l1">
+  <a class="reference internal" href="../Day-21/Day-21_Pre-Class_2DNumPyArrays-STUDENT.html">
+   Day 21 Pre-Class: 2D NumPy Arrays
+  </a>
+ </li>
+ <li class="toctree-l1">
+  <a class="reference external" href="https://raw.githubusercontent.com/msu-cmse-courses/cmse201-F21-data/main/Day-17/PCA_files/cars.csv">
+   cars.csv
+  </a>
+ </li>
+ <li class="toctree-l1">
+  <a class="reference external" href="https://github.com/msu-cmse-courses/cmse201-F21-data/raw/main/Day-17/PCA_files/example.jpeg">
+   example.jpeg
+  </a>
+ </li>
+ <li class="toctree-l1">
+  <a class="reference internal" href="../Day-21/Day-21_In-Class_2DImageAnalysis-STUDENT.html">
+   Day 21 In-Class Assignment: Image Analysis
+  </a>
+ </li>
+ <li class="toctree-l1">
+  <a class="reference external" href="https://github.com/msu-cmse-courses/cmse201-F21-data/blob/main/Day-17/ICA_files/beach.jpeg">
+   beach.jpeg
+  </a>
+ </li>
+ <li class="toctree-l1">
+  <a class="reference external" href="https://github.com/msu-cmse-courses/cmse201-F21-data/blob/main/Day-17/ICA_files/landscape.jpeg">
+   landscape.jpeg
+  </a>
+ </li>
+ <li class="toctree-l1">
+  <a class="reference external" href="https://github.com/msu-cmse-courses/cmse201-F21-data/blob/main/Day-17/ICA_files/zebra.png">
+   zebra.png
+  </a>
+ </li>
+</ul>
+<p class="caption">
+ <span class="caption-text">
+  Day 22
+ </span>
+</p>
+<ul class="nav bd-sidenav">
+ <li class="toctree-l1">
+  <a class="reference internal" href="../Day-22/Day-22_Pre-Class_ABMForestFire-STUDENT.html">
+   Day 22 Pre-class: Agent-based models and forest fires
+  </a>
+ </li>
+ <li class="toctree-l1">
+  <a class="reference internal" href="../Day-22/Day-22_In-Class_ForestFiresPartI-STUDENT.html">
+   Day 22 Part 1 In-class Assignment: Modeling forest fires with an Agent-based Model
+  </a>
+ </li>
+</ul>
+<p class="caption">
+ <span class="caption-text">
+  Day 23
+ </span>
+</p>
+<ul class="nav bd-sidenav">
+ <li class="toctree-l1">
+  <a class="reference internal" href="../Day-23/Day-23_Pre-Class_ABMForestFire_Part2-STUDENT.html">
+   Day 23 Pre-class: Agent-based models and forest fires, Part 2
+  </a>
+ </li>
+ <li class="toctree-l1">
+  <a class="reference internal" href="../Day-23/Day-23_In-Class_ForestFiresPartII-STUDENT.html">
+   Day 23 In-class Assignment: Modeling forest fires with an Agent-based Model (Part II)
+  </a>
+ </li>
+</ul>
+<p class="caption">
+ <span class="caption-text">
+  Day 24
+ </span>
+</p>
+<ul class="nav bd-sidenav">
+ <li class="toctree-l1">
+  <a class="reference internal" href="../Day-24/Day-24_Pre-Class_Climate-STUDENT.html">
+   Day 24 Pre-class:  Global warming and climate modeling
+  </a>
+ </li>
+ <li class="toctree-l1">
+  <a class="reference internal" href="../Day-24/Day-24_In-Class_Climate-STUDENT.html">
+   Day 24 In-class Assignment: Analyzing climate data
+  </a>
+ </li>
+ <li class="toctree-l1">
+  <a class="reference external" href="https://raw.githubusercontent.com/msu-cmse-courses/cmse201-F21-data/main/Day-22/GLB.Ts.csv">
+   GLB.Ts.csv
+  </a>
+ </li>
+ <li class="toctree-l1">
+  <a class="reference external" href="https://raw.githubusercontent.com/msu-cmse-courses/cmse201-F21-data/main/Day-22/bintanja2008.txt">
+   bintanja2008.txt
+  </a>
+ </li>
+ <li class="toctree-l1">
+  <a class="reference external" href="https://raw.githubusercontent.com/msu-cmse-courses/cmse201-F21-data/main/Day-22/ch4_annmean_gl.txt">
+   ch4_annmean_gl.txt
+  </a>
+ </li>
+ <li class="toctree-l1">
+  <a class="reference external" href="https://raw.githubusercontent.com/msu-cmse-courses/cmse201-F21-data/main/Day-22/co2_mm_mlo.txt">
+   co2_mm_mlo.txt
+  </a>
+ </li>
+ <li class="toctree-l1">
+  <a class="reference external" href="https://raw.githubusercontent.com/msu-cmse-courses/cmse201-F21-data/main/Day-22/vostok-ch4nat.txt">
+   vostok-ch4nat.txt
+  </a>
+ </li>
+ <li class="toctree-l1">
+  <a class="reference external" href="https://raw.githubusercontent.com/msu-cmse-courses/cmse201-F21-data/main/Day-22/vostok-co2nat.txt">
+   vostok-co2nat.txt
+  </a>
+ </li>
+ <li class="toctree-l1">
+  <a class="reference external" href="https://raw.githubusercontent.com/msu-cmse-courses/cmse201-F21-data/main/Day-22/vostok-deutnat.txt">
+   vostok-deutnat.txt
+  </a>
+ </li>
+</ul>
+<p class="caption">
+ <span class="caption-text">
+  Day 25
+ </span>
+</p>
+<ul class="nav bd-sidenav">
+ <li class="toctree-l1">
+  <a class="reference internal" href="../Day-25/Day-25_Pre-Class_Climate-STUDENT.html">
+   Day 25 pre-class assignment: climate modeling
+  </a>
+ </li>
+ <li class="toctree-l1">
+  <a class="reference internal" href="../Day-25/Day-25_In-Class_Climate-STUDENT.html">
+   Day 25 In-class Assignment: A simple model for global temperature
+  </a>
+ </li>
+</ul>
+<p class="caption">
+ <span class="caption-text">
+  Homework
+ </span>
+</p>
+<ul class="nav bd-sidenav">
+ <li class="toctree-l1">
+  <a class="reference internal" href="../Homework/Homework_1/HW_01_S22_STUDENT.html">
+   Homework 1: Introduction to Loops, Lists, and Dictionaries
+  </a>
+ </li>
+ <li class="toctree-l1">
+  <a class="reference internal" href="../Homework/Homework_2/HW2_S22-STUDENT.html">
+   Homework 2: If Statements, Functions, and Modules
+  </a>
+ </li>
+ <li class="toctree-l1">
+  <a class="reference external" href="https://raw.githubusercontent.com/msu-cmse-courses/cmse201-F21-data/main/Homework/S22/game.txt">
+   game.txt
+  </a>
+ </li>
+ <li class="toctree-l1">
+  <a class="reference internal" href="../Homework/Homework_3/HW3_S22-STUDENT.html">
+   Homework 3: Pandas data analysis
+  </a>
+ </li>
+ <li class="toctree-l1">
+  <a class="reference external" href="https://raw.githubusercontent.com/msu-cmse-courses/cmse201-S22-data/main/Homework/HW_3/happiness_index.csv">
+   happiness_index.csv
+  </a>
+ </li>
+ <li class="toctree-l1">
+  <a class="reference internal" href="../Homework/Homework_4/HW4_S22-STUDENT.html">
+   Homework 4: Fitting data using SciPy
+  </a>
+ </li>
+ <li class="toctree-l1">
+  <a class="reference internal" href="../Homework/Homework_5/HW-05.html">
+   Homework 5: Modeling Bacterial Growth
+  </a>
+ </li>
+ <li class="toctree-l1">
+  <a class="reference internal" href="../Homework/Homework_6/HW-06_Programming_a_robotic_sheepdog-STUDENT.html">
+   Homework 6: Programming a Robotic Sheepdog (Extra Credit)
+  </a>
+ </li>
+ <li class="toctree-l1">
+  <a class="reference internal" href="../Homework/Code_Portfolio/Code_Portfolio_Assignment.html">
+   Code Portfolio Assignment
+  </a>
+ </li>
+ <li class="toctree-l1">
+  <a class="reference internal" href="../Homework/Code_Portfolio/Code_Portfolio_Example.html">
+   Code Portfolio Example
+  </a>
+ </li>
+</ul>
+<p class="caption">
+ <span class="caption-text">
+  Bootcamps
+ </span>
+</p>
+<ul class="nav bd-sidenav">
+ <li class="toctree-l1">
+  <a class="reference internal" href="../Bootcamp_Notebooks/Bootcamp1-Python_Fundamentals_STUDENT.html">
+   Bootcamp 1: Python Fundamentals
+  </a>
+ </li>
+ <li class="toctree-l1">
+  <a class="reference internal" href="../Bootcamp_Notebooks/Bootcamp2-InitialConceptsReview.html">
+   Bootcamp 2: Initial Concepts Review Cheatsheet
+  </a>
+ </li>
+ <li class="toctree-l1">
+  <a class="reference internal" href="../Bootcamp_Notebooks/Bootcamp3-Debugging_STUDENT.html">
+   Bootcamp 3: Debugging
+  </a>
+ </li>
+ <li class="toctree-l1">
+  <a class="reference internal" href="../Bootcamp_Notebooks/Bootcamp4-IfStatements_STUDENT.html">
+   Bootcamp 4: If Statements
+  </a>
+ </li>
+ <li class="toctree-l1">
+  <a class="reference internal" href="../Bootcamp_Notebooks/Bootcamp5-Functions_STUDENT.html">
+   Bootcamp 5: Functions
+  </a>
+ </li>
+ <li class="toctree-l1">
+  <a class="reference internal" href="../Bootcamp_Notebooks/Bootcamp6-Matplotlib_STUDENT.html">
+   Bootcamp 6: Matplotlib
+  </a>
+ </li>
+ <li class="toctree-l1">
+  <a class="reference internal" href="../Bootcamp_Notebooks/Bootcamp7-Arrays_STUDENT.html">
+   Bootcamp 7: Practice with Indexing and Masking 2D Arrays
+  </a>
+ </li>
+ <li class="toctree-l1">
+  <a class="reference internal" href="../Bootcamp_Notebooks/Bootcamp8_Pandas_STUDENT.html">
+   Bootcamp 8: Practice with Pandas
+  </a>
+ </li>
+ <li class="toctree-l1">
+  <a class="reference external" href="https://raw.githubusercontent.com/msu-cmse-courses/cmse201-F21-data/main/Homework/americas_gpin_2014_16.csv?raw=true">
+   americas_gpin_2014_16.csv
+  </a>
+ </li>
+ <li class="toctree-l1">
+  <a class="reference internal" href="../Bootcamp_Notebooks/Bootcamp9-ScipyCurveFit_STUDENT.html">
+   Bootcamp 9:  Scipy curve_fit
+  </a>
+ </li>
+ <li class="toctree-l1">
+  <a class="reference internal" href="../Bootcamp_Notebooks/Bootcamp10-CompartmentalModels_STUDENT.html">
+   Bootcamp 10: Compartmental Models
+  </a>
+ </li>
+ <li class="toctree-l1">
+  <a class="reference internal" href="../Bootcamp_Notebooks/Bootcamp11_Solve_IVP_STUDENT.html">
+   Bootcamp 11: Practice with
+   <code class="docutils literal notranslate">
+    <span class="pre">
+     solve_ivp
+    </span>
+   </code>
+  </a>
+ </li>
+</ul>
+<p class="caption">
+ <span class="caption-text">
+  Semester Projects
+ </span>
+</p>
+<ul class="nav bd-sidenav">
+ <li class="toctree-l1">
+  <a class="reference internal" href="../Project_Materials/CMSE201_SemesterProjectDetails.html">
+   Semester Project Details
+  </a>
+ </li>
+ <li class="toctree-l1">
+  <a class="reference internal" href="../Project_Materials/Project_Work_Week_Summary.html">
+   Project Work Week Summary
+  </a>
+ </li>
+ <li class="toctree-l1">
+  <a class="reference internal" href="../Project_Materials/Project_Rough_Draft_Guidelines_Feedback.html">
+   Rough Draft Guidelines/Feedback
+  </a>
+ </li>
+ <li class="toctree-l1">
+  <a class="reference internal" href="../Project_Materials/Lightning_Presentation_Details.html">
+   Lightning Presentation Details
+  </a>
+ </li>
+ <li class="toctree-l1">
+  <a class="reference internal" href="../Project_Materials/Second_Project_Checkpoint.html">
+   Second Project Checkpoint
+  </a>
+ </li>
+ <li class="toctree-l1">
+  <a class="reference internal" href="../Project_Materials/First_Project_Checkpoint.html">
+   First Project Checkpoint
+  </a>
+ </li>
+ <li class="toctree-l1">
+  <a class="reference external" href="https://github.com/msu-cmse-courses/cmse201-S22-data/raw/main/Projects/Example_Football_Dataset.csv">
+   Example_Football_Dataset.csv
+  </a>
+ </li>
+ <li class="toctree-l1">
+  <a class="reference internal" href="../Project_Materials/CMSE201_FinalProjectTemplate.html">
+   CMSE 201 Final Project Template
+  </a>
+ </li>
+ <li class="toctree-l1">
+  <a class="reference external" href="https://raw.githubusercontent.com/msu-cmse-courses/cmse201-S22-data/main/Projects/CMSE201_ExampleProject_A.pdf">
+   CMSE201_ExampleProject_A.pdf
+  </a>
+ </li>
+ <li class="toctree-l1">
+  <a class="reference external" href="https://raw.githubusercontent.com/msu-cmse-courses/cmse201-S22-data/main/Projects/CMSE201_ExampleProject_B.pdf">
+   CMSE201_ExampleProject_B.pdf
+  </a>
+ </li>
+ <li class="toctree-l1">
+  <a class="reference external" href="https://raw.githubusercontent.com/msu-cmse-courses/cmse201-S22-data/main/Projects/CMSE201_ExampleProject_C.pdf">
+   CMSE201_ExampleProject_C.pdf
+  </a>
+ </li>
+ <li class="toctree-l1">
+  <a class="reference external" href="https://raw.githubusercontent.com/msu-cmse-courses/cmse201-S22-data/main/Projects/CMSE201_ExampleProject_D.pdf">
+   CMSE201_ExampleProject_D.pdf
+  </a>
+ </li>
+ <li class="toctree-l1">
+  <a class="reference external" href="https://raw.githubusercontent.com/msu-cmse-courses/cmse201-S22-data/main/Projects/CMSE201_ExampleProject_E.pdf">
+   CMSE201_ExampleProject_E.pdf
+  </a>
+ </li>
+</ul>
+
+    </div>
+</nav> <!-- To handle the deprecated key -->
+
+<div class="navbar_extra_footer">
+  Powered by <a href="https://jupyterbook.org">Jupyter Book</a>
+</div>
+
+</div>
+
+
+          
+
+
+          
+<main class="col py-md-3 pl-md-4 bd-content overflow-auto" role="main">
+    
+    <div class="topbar container-xl fixed-top">
+    <div class="topbar-contents row">
+        <div class="col-12 col-md-3 bd-topbar-whitespace site-navigation show"></div>
+        <div class="col pl-md-4 topbar-main">
+            
+            <button id="navbar-toggler" class="navbar-toggler ml-0" type="button" data-toggle="collapse"
+                data-toggle="tooltip" data-placement="bottom" data-target=".site-navigation" aria-controls="navbar-menu"
+                aria-expanded="true" aria-label="Toggle navigation" aria-controls="site-navigation"
+                title="Toggle navigation" data-toggle="tooltip" data-placement="left">
+                <i class="fas fa-bars"></i>
+                <i class="fas fa-arrow-left"></i>
+                <i class="fas fa-arrow-up"></i>
+            </button>
+            
+            
+<div class="dropdown-buttons-trigger">
+    <button id="dropdown-buttons-trigger" class="btn btn-secondary topbarbtn" aria-label="Download this page"><i
+            class="fas fa-download"></i></button>
+
+    <div class="dropdown-buttons">
+        <!-- ipynb file if we had a myst markdown file -->
+        
+        <!-- Download raw file -->
+        <a class="dropdown-buttons" href="../_sources/Day-04/Day-04_Pre-Class_DataEthics_AcademicIntegrity-STUDENT.ipynb"><button type="button"
+                class="btn btn-secondary topbarbtn" title="Download source file" data-toggle="tooltip"
+                data-placement="left">.ipynb</button></a>
+        <!-- Download PDF via print -->
+        <button type="button" id="download-print" class="btn btn-secondary topbarbtn" title="Print to PDF"
+            onClick="window.print()" data-toggle="tooltip" data-placement="left">.pdf</button>
+    </div>
+</div>
+
+            <!-- Source interaction buttons -->
+
+<div class="dropdown-buttons-trigger">
+    <button id="dropdown-buttons-trigger" class="btn btn-secondary topbarbtn"
+        aria-label="Connect with source repository"><i class="fab fa-github"></i></button>
+    <div class="dropdown-buttons sourcebuttons">
+        <a class="repository-button"
+            href="https://github.com/msu-cmse-courses/cmse201-S22-jb"><button type="button" class="btn btn-secondary topbarbtn"
+                data-toggle="tooltip" data-placement="left" title="Source repository"><i
+                    class="fab fa-github"></i>repository</button></a>
+        <a class="issues-button"
+            href="https://github.com/msu-cmse-courses/cmse201-S22-jb/issues/new?title=Issue%20on%20page%20%2FDay-04/Day-04_Pre-Class_DataEthics_AcademicIntegrity-STUDENT.html&body=Your%20issue%20content%20here."><button
+                type="button" class="btn btn-secondary topbarbtn" data-toggle="tooltip" data-placement="left"
+                title="Open an issue"><i class="fas fa-lightbulb"></i>open issue</button></a>
+        
+    </div>
+</div>
+
+            <!-- Full screen (wrap in <a> to have style consistency -->
+
+<a class="full-screen-button"><button type="button" class="btn btn-secondary topbarbtn" data-toggle="tooltip"
+        data-placement="bottom" onclick="toggleFullScreen()" aria-label="Fullscreen mode"
+        title="Fullscreen mode"><i
+            class="fas fa-expand"></i></button></a>
+
+            <!-- Launch buttons -->
+
+<div class="dropdown-buttons-trigger">
+    <button id="dropdown-buttons-trigger" class="btn btn-secondary topbarbtn"
+        aria-label="Launch interactive content"><i class="fas fa-rocket"></i></button>
+    <div class="dropdown-buttons">
+        
+        <a class="binder-button" href="https://mybinder.org/v2/gh/msu-cmse-courses/cmse201-S22-jb/main?urlpath=tree/Day-04/Day-04_Pre-Class_DataEthics_AcademicIntegrity-STUDENT.ipynb"><button type="button"
+                class="btn btn-secondary topbarbtn" title="Launch Binder" data-toggle="tooltip"
+                data-placement="left"><img class="binder-button-logo"
+                    src="../_static/images/logo_binder.svg"
+                    alt="Interact on binder">Binder</button></a>
+        
+        
+        
+        
+    </div>
+</div>
+
+        </div>
+
+        <!-- Table of contents -->
+        <div class="d-none d-md-block col-md-2 bd-toc show">
+            
+            <div class="tocsection onthispage pt-5 pb-3">
+                <i class="fas fa-list"></i> Contents
+            </div>
+            <nav id="bd-toc-nav" aria-label="Page">
+                <ul class="visible nav section-nav flex-column">
+ <li class="toc-h2 nav-item toc-entry">
+  <a class="reference internal nav-link" href="#p-style-text-align-right-put-your-name-here-p">
+   <p style="text-align: right;">
+    ✅ Put your name here
+   </p>
+  </a>
+ </li>
+ <li class="toc-h2 nav-item toc-entry">
+  <a class="reference internal nav-link" href="#goals-for-today-s-pre-class-assignment">
+   Goals for Today’s Pre-Class Assignment
+  </a>
+ </li>
+ <li class="toc-h2 nav-item toc-entry">
+  <a class="reference internal nav-link" href="#assignment-instructions">
+   Assignment instructions
+  </a>
+ </li>
+ <li class="toc-h2 nav-item toc-entry">
+  <a class="reference internal nav-link" href="#data-ethics">
+   1. Data Ethics
+  </a>
+ </li>
+ <li class="toc-h2 nav-item toc-entry">
+  <a class="reference internal nav-link" href="#data-ethics-in-this-course-plagiarism">
+   2. Data ethics in this course: Plagiarism
+  </a>
+ </li>
+ <li class="toc-h2 nav-item toc-entry">
+  <a class="reference internal nav-link" href="#review-of-variables-lists-and-loops">
+   3. Review of Variables, Lists, and Loops
+  </a>
+ </li>
+ <li class="toc-h2 nav-item toc-entry">
+  <a class="reference internal nav-link" href="#follow-up-questions">
+   Follow-up Questions
+  </a>
+ </li>
+ <li class="toc-h2 nav-item toc-entry">
+  <a class="reference internal nav-link" href="#assignment-wrap-up">
+   Assignment wrap-up
+  </a>
+  <ul class="nav section-nav flex-column">
+   <li class="toc-h3 nav-item toc-entry">
+    <a class="reference internal nav-link" href="#congratulations-you-re-done">
+     Congratulations, you’re done!
+    </a>
+   </li>
+  </ul>
+ </li>
+</ul>
+
+            </nav>
+        </div>
+    </div>
+</div>
+    <div id="main-content" class="row">
+        <div class="col-12 col-md-9 pl-md-3 pr-md-0">
+        
+              <div>
+                
+  <div class="section" id="day-4-pre-class-assignment-introduction-to-data-ethics-and-practice-with-lists-and-loops">
+<h1>Day 4 Pre-class Assignment: Introduction to Data Ethics and Practice with Lists and Loops<a class="headerlink" href="#day-4-pre-class-assignment-introduction-to-data-ethics-and-practice-with-lists-and-loops" title="Permalink to this headline">¶</a></h1>
+<div class="section" id="p-style-text-align-right-put-your-name-here-p">
+<h2><p style="text-align: right;"> ✅ Put your name here</p><a class="headerlink" href="#p-style-text-align-right-put-your-name-here-p" title="Permalink to this headline">¶</a></h2>
+</div>
+<div class="section" id="goals-for-today-s-pre-class-assignment">
+<h2>Goals for Today’s Pre-Class Assignment<a class="headerlink" href="#goals-for-today-s-pre-class-assignment" title="Permalink to this headline">¶</a></h2>
+<p>By the end of this assignment, you should be able to:</p>
+<ul class="simple">
+<li><p>Articulate in your own words what <strong>data ethics</strong> means</p></li>
+<li><p>Understand expectations for <strong>academic integrity</strong> in this class</p></li>
+<li><p>Recognize what constitutes <strong>cheating</strong> in a coding class</p></li>
+<li><p>Loop through a list of numbers and strings</p></li>
+</ul>
+</div>
+<div class="section" id="assignment-instructions">
+<h2>Assignment instructions<a class="headerlink" href="#assignment-instructions" title="Permalink to this headline">¶</a></h2>
+<p>Watch videos below, read all included and linked to content, and complete any assigned programming problems.  Please get started early, and come to office hours if you have any questions and make use of Slack!</p>
+<p><strong>This assignment is due by 11:59 p.m. the day before class,</strong> and should be uploaded into the appropriate “Pre-class assignments” submission folder.  Submission instructions can be found at the end of the notebook.</p>
+</div>
+<hr class="docutils" />
+<div class="section" id="data-ethics">
+<h2>1. Data Ethics<a class="headerlink" href="#data-ethics" title="Permalink to this headline">¶</a></h2>
+<p><img alt="ethics_sm.png" src="Day-04/attachment:ethics_sm.png" /></p>
+<p>Data and how we interact with data are rapidly reshaping daily life and how we interact in the world.  In this course, you are learning methods and tools to interact with and model data.  It is important for you to be aware of the ethical issues in this space.</p>
+<p>Watch the video below to start thinking about the role ethics may play in your personal and professional life. If the YouTube video doesn’t work, try this link: <a class="reference external" href="https://mediaspace.msu.edu/media/Introduction+to+Data+Ethics/1_cieharl7">https://mediaspace.msu.edu/media/Introduction+to+Data+Ethics/1_cieharl7</a></p>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="c1"># Don&#39;t forget to watch the video in full-screen mode!</span>
+<span class="kn">from</span> <span class="nn">IPython.display</span> <span class="kn">import</span> <span class="n">YouTubeVideo</span>  
+<span class="n">YouTubeVideo</span><span class="p">(</span><span class="s2">&quot;onqBhQ_CeTE&quot;</span><span class="p">,</span><span class="n">width</span><span class="o">=</span><span class="mi">640</span><span class="p">,</span><span class="n">height</span><span class="o">=</span><span class="mi">360</span><span class="p">)</span>
+</pre></div>
+</div>
+</div>
+</div>
+<p>✅  <strong>Question</strong>: What are some of your personal values that motivate you to act ethically?  How would you complete this sentence: <em>I value <code class="docutils literal notranslate"><span class="pre">___________</span></code></em></p>
+<p>For example, this can be straightforward as:</p>
+<ul class="simple">
+<li><p>I value hard work.</p></li>
+<li><p>I value getting good grades.</p></li>
+<li><p>I value the respect of my family.</p></li>
+</ul>
+<p><font size="6" color="#009600">✎</font> <em>Put your answer here</em></p>
+</div>
+<hr class="docutils" />
+<div class="section" id="data-ethics-in-this-course-plagiarism">
+<h2>2. Data ethics in this course: Plagiarism<a class="headerlink" href="#data-ethics-in-this-course-plagiarism" title="Permalink to this headline">¶</a></h2>
+<p>Plagiarim is the practice of taking someone else’s work or ideas and passing them off as one’s own.  Please review the following video to understand the definition of plagiarism and cheating in this course. If the YouTube video doesn’t work, try this link: <a class="reference external" href="https://mediaspace.msu.edu/media/Discussion+of+Cheating+in+a+Coding+Class/1_iroh8u4v">https://mediaspace.msu.edu/media/Discussion+of+Cheating+in+a+Coding+Class/1_iroh8u4v</a></p>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="c1"># Don&#39;t forget to watch the video in full-screen mode!</span>
+<span class="kn">from</span> <span class="nn">IPython.display</span> <span class="kn">import</span> <span class="n">YouTubeVideo</span>  
+<span class="n">YouTubeVideo</span><span class="p">(</span><span class="s2">&quot;P1sDXH4sdCg&quot;</span><span class="p">,</span><span class="n">width</span><span class="o">=</span><span class="mi">640</span><span class="p">,</span><span class="n">height</span><span class="o">=</span><span class="mi">360</span><span class="p">)</span> 
+</pre></div>
+</div>
+</div>
+</div>
+<p>✅  <strong>Exercise</strong>: Read the information at the <a class="reference external" href="http://splife.studentlife.msu.edu/spartan-code-of-honor-academic-pledge">Spartan Code of Honor Academic Pledge</a>.</p>
+<p>Copy and paste the <strong>The Spartan Code of Honor Academic Pledge</strong> below.  This academic pledge is important for your success in this course and at MSU.  During the in-class assignment, we will do a short exercise in writing our own integrity statement.</p>
+<p><font size="6" color="#009600">✎</font> <em>Paste pledge here</em></p>
+<p><strong>The Spartan Code of Honor Academic Pledge:</strong></p>
+<p>“As a Spartan, …”</p>
+</div>
+<hr class="docutils" />
+<div class="section" id="review-of-variables-lists-and-loops">
+<h2>3. Review of Variables, Lists, and Loops<a class="headerlink" href="#review-of-variables-lists-and-loops" title="Permalink to this headline">¶</a></h2>
+<p>Read the following cells and ensure you understand each concept. Complete the empty cells.</p>
+<p><strong>1. Variables</strong></p>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">int_var</span> <span class="o">=</span> <span class="mi">6</span>   <span class="c1"># Integer variable</span>
+<span class="n">float_var</span> <span class="o">=</span> <span class="mf">5.74</span>  <span class="c1"># floating point variable</span>
+<span class="n">str_var</span> <span class="o">=</span> <span class="s1">&#39;Hermione&#39;</span>  <span class="c1"># string variable</span>
+
+<span class="nb">print</span><span class="p">(</span><span class="s1">&#39;1:&#39;</span><span class="p">,</span> <span class="s1">&#39;An integer plus a float works in python:&#39;</span><span class="p">,</span><span class="n">int_var</span><span class="o">+</span><span class="n">float_var</span><span class="p">)</span>
+
+<span class="c1">#You can not do math with strings, but you can concatenate strings (if you turn your variables into strings first)</span>
+<span class="n">new_str_var</span> <span class="o">=</span> <span class="n">str_var</span> <span class="o">+</span><span class="s1">&#39; went to Hogwarts for &#39;</span><span class="o">+</span><span class="nb">str</span><span class="p">(</span><span class="n">int_var</span><span class="p">)</span><span class="o">+</span><span class="s1">&#39; years.&#39;</span>
+<span class="nb">print</span><span class="p">(</span><span class="s1">&#39;2:&#39;</span><span class="p">,</span><span class="n">new_str_var</span><span class="p">)</span>
+
+<span class="c1"># or you can just use a print statement with commas to make meaningful debugging and result statements</span>
+<span class="nb">print</span><span class="p">(</span><span class="s1">&#39;3:&#39;</span><span class="p">,</span><span class="n">str_var</span><span class="p">,</span><span class="s1">&#39; was &#39;</span><span class="p">,</span><span class="n">float_var</span><span class="o">+</span><span class="n">int_var</span><span class="p">,</span><span class="s1">&#39; years old when she first went to Hogwarts.&#39;</span><span class="p">)</span>
+
+<span class="nb">print</span><span class="p">(</span><span class="s1">&#39;4: The value of int_var:&#39;</span><span class="p">,</span> <span class="n">int_var</span><span class="p">)</span>
+</pre></div>
+</div>
+</div>
+</div>
+<p>✅  <strong>1.1 Task</strong>: Write a print statement that concatenates all of the following strings to show the complete quote</p>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">q1</span> <span class="o">=</span> <span class="s1">&#39;It is our choices,&#39;</span>
+<span class="n">q2</span> <span class="o">=</span> <span class="s1">&#39;that show what we truly are,&#39;</span>
+<span class="n">q3</span> <span class="o">=</span> <span class="s1">&#39;far more than our abilities.&#39;</span>
+<span class="n">q4</span> <span class="o">=</span> <span class="s1">&#39;-Albus Dumbledore&#39;</span>
+</pre></div>
+</div>
+</div>
+</div>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="c1"># Put your code here</span>
+</pre></div>
+</div>
+</div>
+</div>
+<p><strong>2. Lists</strong></p>
+<p>A list stores a series of items in a particular order. You access items using an index, or with a <code class="docutils literal notranslate"><span class="pre">for</span></code> loop (ex: <code class="docutils literal notranslate"><span class="pre">for</span> <span class="pre">val</span> <span class="pre">in</span> <span class="pre">list:</span></code>)</p>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">list_ex</span> <span class="o">=</span> <span class="p">[]</span>   <span class="c1"># initialize an empty list</span>
+<span class="n">list_ex</span><span class="o">.</span><span class="n">append</span><span class="p">(</span><span class="s1">&#39;Harry&#39;</span><span class="p">)</span>  <span class="c1"># append an item to a list</span>
+<span class="n">list_ex</span><span class="o">.</span><span class="n">append</span><span class="p">(</span><span class="s1">&#39;Hermione&#39;</span><span class="p">)</span>
+<span class="n">list_ex</span><span class="o">.</span><span class="n">append</span><span class="p">(</span><span class="s1">&#39;Ron&#39;</span><span class="p">)</span>
+<span class="n">list_ex</span><span class="o">.</span><span class="n">append</span><span class="p">(</span><span class="s1">&#39;Frank&#39;</span><span class="p">)</span>
+<span class="nb">print</span><span class="p">(</span><span class="s1">&#39;Print 1:&#39;</span><span class="p">,</span><span class="n">list_ex</span><span class="p">)</span>  <span class="c1"># print contents of variable or whole blist</span>
+<span class="n">list_ex</span><span class="o">.</span><span class="n">remove</span><span class="p">(</span><span class="s1">&#39;Frank&#39;</span><span class="p">)</span>  <span class="c1"># remove specific entry from list, but only first entry with this value</span>
+<span class="nb">print</span><span class="p">(</span><span class="s1">&#39;Print 2:&#39;</span><span class="p">,</span><span class="n">list_ex</span><span class="p">)</span>  <span class="c1"># print contents of variable or list</span>
+<span class="n">list_ex</span><span class="o">.</span><span class="n">append</span><span class="p">(</span><span class="s1">&#39;Luna&#39;</span><span class="p">)</span>
+<span class="nb">print</span><span class="p">(</span><span class="s1">&#39;Print 3:&#39;</span><span class="p">,</span><span class="n">list_ex</span><span class="p">)</span>
+<span class="nb">print</span><span class="p">(</span><span class="s1">&#39;Print 4:&#39;</span><span class="p">,</span><span class="n">list_ex</span><span class="p">[</span><span class="mi">3</span><span class="p">])</span>  <span class="c1"># print the 4th value in the list &#39;list_ex&#39;</span>
+</pre></div>
+</div>
+</div>
+</div>
+<p><em>Note:</em> An important concept with lists is that they have values stored a specific indexes.  It is important to remember the idea of an <strong>Index</strong> (which is the location) and the <strong>Value</strong> (which is the value of the single variable at that index).<br />
+<img alt="positive-indexes.png" src="Day-04/attachment:positive-indexes.png" /></p>
+<p><sub>Image from: <a class="reference external" href="https://railsware.com/blog/python-for-machine-learning-indexing-and-slicing-for-lists-tuples-strings-and-other-sequential-types/">https://railsware.com/blog/python-for-machine-learning-indexing-and-slicing-for-lists-tuples-strings-and-other-sequential-types/</a></sub></p>
+<p>To access an element by its index we need to use square brackets.</p>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="c1"># Example of Values and Indexes</span>
+<span class="n">index</span> <span class="o">=</span> <span class="mi">1</span>
+<span class="nb">print</span><span class="p">(</span><span class="n">list_ex</span><span class="p">[</span><span class="n">index</span><span class="p">],</span><span class="s1">&#39;is the value at the&#39;</span><span class="p">,</span> <span class="n">index</span><span class="p">,</span> <span class="s1">&#39;index.&#39;</span><span class="p">)</span>
+</pre></div>
+</div>
+</div>
+</div>
+<p><strong>3. Loops</strong></p>
+<p>So far, we have learned:</p>
+<ul class="simple">
+<li><p>for loops  (repeats a block of code the number of times described in the “for” statement)</p></li>
+<li><p>while loops (repeats a block of code as long as a certain condition is true.)</p></li>
+</ul>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="c1"># First Loop Type </span>
+<span class="k">for</span> <span class="n">value1</span> <span class="ow">in</span> <span class="n">list_ex</span><span class="p">:</span>   <span class="c1"># loop through all the entries in list &quot;list_ex&quot;</span>
+    <span class="nb">print</span><span class="p">(</span><span class="s1">&#39;Current entry in variable value is:&#39;</span><span class="p">,</span> <span class="n">value1</span><span class="p">)</span>  <span class="c1"># for each iteration, variable named &quot;value1&quot; </span>
+                                                        <span class="c1">#      will be assigned the next entry in &quot;list_ex&quot;</span>
+</pre></div>
+</div>
+</div>
+</div>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="c1"># Second Loop Type</span>
+<span class="k">for</span> <span class="n">index1</span> <span class="ow">in</span> <span class="nb">range</span><span class="p">(</span><span class="nb">len</span><span class="p">(</span><span class="n">list_ex</span><span class="p">)):</span> <span class="c1"># loop through integers from 0 to length of list &quot;list_ex&quot;</span>
+                                <span class="c1"># for each iteration, variable named &quot;index1&quot;</span>
+                                <span class="c1">#      will be assigned the next integer in 0 to length of list &quot;list_ex&quot;</span>
+    <span class="n">str_now</span> <span class="o">=</span> <span class="n">list_ex</span><span class="p">[</span><span class="n">index1</span><span class="p">]</span>   <span class="c1"># assign a variable the content of the index1-th entry of list &quot;list_ex&quot;</span>
+    <span class="nb">print</span><span class="p">(</span><span class="s1">&#39;The&#39;</span><span class="p">,</span><span class="n">index1</span><span class="p">,</span><span class="s1">&#39;entry in list_ex is&#39;</span><span class="p">,</span><span class="n">str_now</span><span class="p">)</span>
+</pre></div>
+</div>
+</div>
+</div>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="c1"># Third Loop Type</span>
+<span class="n">index1</span> <span class="o">=</span> <span class="mi">0</span>
+<span class="k">while</span> <span class="n">index1</span> <span class="o">&lt;</span> <span class="nb">len</span><span class="p">(</span><span class="n">list_ex</span><span class="p">):</span>  <span class="c1"># perform a while loop until index1 is equal to or greater than the length of list &quot;list_ex&quot;</span>
+    <span class="n">str_now</span> <span class="o">=</span> <span class="n">list_ex</span><span class="p">[</span><span class="n">index1</span><span class="p">]</span>
+    <span class="nb">print</span><span class="p">(</span><span class="s1">&#39;The&#39;</span><span class="p">,</span><span class="n">index1</span><span class="p">,</span><span class="s1">&#39;entry in list_ex is&#39;</span><span class="p">,</span><span class="n">str_now</span><span class="p">)</span>
+    <span class="n">index1</span> <span class="o">+=</span> <span class="mi">1</span>               <span class="c1"># increment whatever is in index1 by +1</span>
+    <span class="c1"># Note this is the identical result as the for loop in cell above</span>
+</pre></div>
+</div>
+</div>
+</div>
+<p>✅  <strong>3.1 Task</strong>: Write a loop using one of the types above that prints the entries in list_ex in <strong>reverse order</strong>. There is more than one way to tackle this problem!</p>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="c1"># Put your code here</span>
+</pre></div>
+</div>
+</div>
+</div>
+<p>✅  <strong>3.2 Task:</strong> Now, try completing the same task again (print the entries in list_ex in reverse order), but use one of the different types of loops discussed above.</p>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="c1"># Put your code here</span>
+</pre></div>
+</div>
+</div>
+</div>
+</div>
+<div class="section" id="follow-up-questions">
+<h2>Follow-up Questions<a class="headerlink" href="#follow-up-questions" title="Permalink to this headline">¶</a></h2>
+<p>Copy and paste the following questions into the appropriate box in the assignment survey include below and answer them there. (Note: You’ll have to fill out the section number and the assignment number and go to the “NEXT” section of the survey to paste in these questions.)</p>
+<ol class="simple">
+<li><p>What are two different ways of looping through a list?</p></li>
+<li><p>Explain a benefit for each.</p></li>
+</ol>
+</div>
+<hr class="docutils" />
+<div class="section" id="assignment-wrap-up">
+<h2>Assignment wrap-up<a class="headerlink" href="#assignment-wrap-up" title="Permalink to this headline">¶</a></h2>
+<p>Please fill out the form that appears when you run the code below.  <strong>You must completely fill this out in order to receive credit for the assignment!</strong></p>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="kn">from</span> <span class="nn">IPython.display</span> <span class="kn">import</span> <span class="n">HTML</span>
+<span class="n">HTML</span><span class="p">(</span>
+<span class="sd">&quot;&quot;&quot;</span>
+<span class="sd">&lt;iframe </span>
+<span class="sd">	src=&quot;https://cmse.msu.edu/cmse201-pc-survey&quot; </span>
+<span class="sd">	width=&quot;800&quot; </span>
+<span class="sd">	height=&quot;800px&quot; </span>
+<span class="sd">	frameborder=&quot;0&quot; </span>
+<span class="sd">	marginheight=&quot;0&quot; </span>
+<span class="sd">	marginwidth=&quot;0&quot;&gt;</span>
+<span class="sd">	Loading...</span>
+<span class="sd">&lt;/iframe&gt;</span>
+<span class="sd">&quot;&quot;&quot;</span>
+<span class="p">)</span>
+</pre></div>
+</div>
+</div>
+</div>
+<div class="section" id="congratulations-you-re-done">
+<h3>Congratulations, you’re done!<a class="headerlink" href="#congratulations-you-re-done" title="Permalink to this headline">¶</a></h3>
+<p>Submit this assignment by uploading it to the course Desire2Learn web page.  Go to the “Pre-class assignments” folder, find the appropriate dropbox link, and upload it there.</p>
+<p>See you in class!</p>
+<p>Copyright © 2021, <a class="reference external" href="https://cmse.msu.edu/">Department of Computational Mathematics, Science and Engineering</a> at Michigan State University, All rights reserved.</p>
+</div>
+</div>
+</div>
+
+    <script type="text/x-thebe-config">
+    {
+        requestKernel: true,
+        binderOptions: {
+            repo: "binder-examples/jupyter-stacks-datascience",
+            ref: "master",
+        },
+        codeMirrorConfig: {
+            theme: "abcdef",
+            mode: "python"
+        },
+        kernelOptions: {
+            kernelName: "python3",
+            path: "./Day-04"
+        },
+        predefinedOutput: true
+    }
+    </script>
+    <script>kernelName = 'python3'</script>
+
+              </div>
+              
+        
+            
+
+
+
+<div class='prev-next-bottom'>
+    
+    <div id="prev">
+        <a class="left-prev" href="../Day-03/Day-03_In-Class_ListsLoopsAndSaving-STUDENT.html" title="previous page">
+            <i class="prevnext-label fas fa-angle-left"></i>
+            <div class="prevnext-info">
+                <p class="prevnext-label">previous</p>
+                <p class="prevnext-title">Day 3 In-class Assignment: The power of compound interest</p>
+            </div>
+        </a>
+    </div>
+     <div id="next">
+        <a class="right-next" href="Day-04_In-Class_AcademicIntegrity_CodingPractices-STUDENT.html" title="next page">
+            <div class="prevnext-info">
+                <p class="prevnext-label">next</p>
+                <p class="prevnext-title">Day 4 In-class Assignment: Academic Integrity and Coding Best Practices</p>
+            </div>
+            <i class="prevnext-label fas fa-angle-right"></i>
+        </a>
+     </div>
+
+</div>
+        
+        </div>
+    </div>
+    <footer class="footer mt-5 mt-md-0">
+    <div class="container">
+      <p>
+        
+          By MSU CMSE<br/>
+        
+            &copy; Copyright 2021.<br/>
+      </p>
+    </div>
+  </footer>
+</main>
+
+
+      </div>
+    </div>
+  
+  <script src="../_static/js/index.1c5a1a01449ed65a7b51.js"></script>
+
+  
+  </body>
+</html>

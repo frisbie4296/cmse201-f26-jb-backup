@@ -1,0 +1,1526 @@
+
+<!DOCTYPE html>
+
+<html>
+  <head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Homework 3: Data Analysis with Pandas, Numpy, and Matplotlib &#8212; CMSE 201</title>
+    
+  <link href="../../_static/css/theme.css" rel="stylesheet" />
+  <link href="../../_static/css/index.c5995385ac14fb8791e8eb36b4908be2.css" rel="stylesheet" />
+
+    
+  <link rel="stylesheet"
+    href="../../_static/vendor/fontawesome/5.13.0/css/all.min.css">
+  <link rel="preload" as="font" type="font/woff2" crossorigin
+    href="../../_static/vendor/fontawesome/5.13.0/webfonts/fa-solid-900.woff2">
+  <link rel="preload" as="font" type="font/woff2" crossorigin
+    href="../../_static/vendor/fontawesome/5.13.0/webfonts/fa-brands-400.woff2">
+
+    
+      
+
+    
+    <link rel="stylesheet" href="../../_static/pygments.css" type="text/css" />
+    <link rel="stylesheet" href="../../_static/sphinx-book-theme.e8f53015daec13862f6db5e763c41738.css" type="text/css" />
+    <link rel="stylesheet" type="text/css" href="../../_static/togglebutton.css" />
+    <link rel="stylesheet" type="text/css" href="../../_static/copybutton.css" />
+    <link rel="stylesheet" type="text/css" href="../../_static/mystnb.css" />
+    <link rel="stylesheet" type="text/css" href="../../_static/sphinx-thebe.css" />
+    <link rel="stylesheet" type="text/css" href="../../_static/panels-main.c949a650a448cc0ae9fd3441c0e17fb0.css" />
+    <link rel="stylesheet" type="text/css" href="../../_static/panels-variables.06eb56fa6e07937060861dad626602ad.css" />
+    
+  <link rel="preload" as="script" href="../../_static/js/index.1c5a1a01449ed65a7b51.js">
+
+    <script id="documentation_options" data-url_root="../../" src="../../_static/documentation_options.js"></script>
+    <script src="../../_static/jquery.js"></script>
+    <script src="../../_static/underscore.js"></script>
+    <script src="../../_static/doctools.js"></script>
+    <script src="../../_static/togglebutton.js"></script>
+    <script src="../../_static/clipboard.min.js"></script>
+    <script src="../../_static/copybutton.js"></script>
+    <script >var togglebuttonSelector = '.toggle, .admonition.dropdown, .tag_hide_input div.cell_input, .tag_hide-input div.cell_input, .tag_hide_output div.cell_output, .tag_hide-output div.cell_output, .tag_hide_cell.cell, .tag_hide-cell.cell';</script>
+    <script src="../../_static/sphinx-book-theme.12a9622fbb08dcb3a2a40b2c02b83a57.js"></script>
+    <script async="async" src="https://unpkg.com/thebe@0.5.1/lib/index.js"></script>
+    <script >
+        const thebe_selector = ".thebe"
+        const thebe_selector_input = "pre"
+        const thebe_selector_output = ".output"
+    </script>
+    <script async="async" src="../../_static/sphinx-thebe.js"></script>
+    <link rel="shortcut icon" href="../../_static/cmse_fav.ico"/>
+    <link rel="index" title="Index" href="../../genindex.html" />
+    <link rel="search" title="Search" href="../../search.html" />
+    <link rel="next" title="Homework 4: Fitting data using NumPy and SciPy" href="../Homework-4/HW-04-Fall2021_Final-STUDENT.html" />
+    <link rel="prev" title="Homework 2: If Statements, Functions, and Modules" href="../Homework-2/HW_02_F21-STUDENT.html" />
+    <meta name="viewport" content="width=device-width, initial-scale=1" />
+    <meta name="docsearch:language" content="en" />
+    
+  </head>
+  <body data-spy="scroll" data-target="#bd-toc-nav" data-offset="80">
+    
+    <div class="container-fluid" id="banner"></div>
+
+    
+
+    <div class="container-xl">
+      <div class="row">
+          
+<div class="col-12 col-md-3 bd-sidebar site-navigation show" id="site-navigation">
+    
+        <div class="navbar-brand-box">
+    <a class="navbar-brand text-wrap" href="../../index.html">
+      
+      <img src="../../_static/logo.png" class="logo" alt="logo">
+      
+      
+      <h1 class="site-logo" id="site-title">CMSE 201</h1>
+      
+    </a>
+</div><form class="bd-search d-flex align-items-center" action="../../search.html" method="get">
+  <i class="icon fas fa-search"></i>
+  <input type="search" class="form-control" name="q" id="search-input" placeholder="Search this book..." aria-label="Search this book..." autocomplete="off" >
+</form><nav class="bd-links" id="bd-docs-nav" aria-label="Main">
+    <div class="bd-toc-item active">
+        <ul class="nav bd-sidenav">
+ <li class="toctree-l1">
+  <a class="reference internal" href="../../intro.html">
+   Welcome to Computational Modeling and Data Analysis I!
+  </a>
+ </li>
+</ul>
+<p class="caption">
+ <span class="caption-text">
+  Course Materials
+ </span>
+</p>
+<ul class="nav bd-sidenav">
+ <li class="toctree-l1 has-children">
+  <a class="reference internal" href="../../Course_Materials-201/CourseDocuments.html">
+   Important Course information
+  </a>
+  <input class="toctree-checkbox" id="toctree-checkbox-1" name="toctree-checkbox-1" type="checkbox"/>
+  <label for="toctree-checkbox-1">
+   <i class="fas fa-chevron-down">
+   </i>
+  </label>
+  <ul>
+   <li class="toctree-l2">
+    <a class="reference internal" href="../../Course_Materials-201/CMSE201-Syllabus.html">
+     Syllabus
+    </a>
+   </li>
+   <li class="toctree-l2">
+    <a class="reference internal" href="../../Course_Materials-201/CMSE201-Schedule.html">
+     Course Schedule
+    </a>
+   </li>
+   <li class="toctree-l2">
+    <a class="reference internal" href="../../Course_Materials-201/SoftwareSetupGuide.html">
+     Software Setup Guide
+    </a>
+   </li>
+   <li class="toctree-l2">
+    <a class="reference internal" href="../../Course_Materials-201/classroom_participation.html">
+     Classroom Participation
+    </a>
+   </li>
+  </ul>
+ </li>
+</ul>
+<p class="caption">
+ <span class="caption-text">
+  Day 01
+ </span>
+</p>
+<ul class="nav bd-sidenav">
+ <li class="toctree-l1">
+  <a class="reference internal" href="../../Day-01/Day-01_In-Class_SortingAlgorithm-STUDENT.html">
+   Day 1 In-Class Assignment
+  </a>
+ </li>
+</ul>
+<p class="caption">
+ <span class="caption-text">
+  Day 02
+ </span>
+</p>
+<ul class="nav bd-sidenav">
+ <li class="toctree-l1">
+  <a class="reference internal" href="../../Day-02/Day-02_Pre-Class_IntroToPython-STUDENT.html">
+   Day 2 Pre-class Assignment: Intro to Python
+  </a>
+ </li>
+ <li class="toctree-l1">
+  <a class="reference internal" href="../../Day-02/Day-02_In-Class_OrderOfMagnitudeModeling-STUDENT.html">
+   Day 2 In-class Assignment: Order of Magnitude Modeling
+  </a>
+ </li>
+</ul>
+<p class="caption">
+ <span class="caption-text">
+  Day 03
+ </span>
+</p>
+<ul class="nav bd-sidenav">
+ <li class="toctree-l1">
+  <a class="reference internal" href="../../Day-03/Day-03_Pre-Class_ListsAndLoops-STUDENT.html">
+   Day 3: Pre-Class Assignment: Lists and Loops
+  </a>
+ </li>
+ <li class="toctree-l1">
+  <a class="reference internal" href="../../Day-03/Day-03_In-Class_ListsLoopsAndSaving-STUDENT.html">
+   Day 3 In-class Assignment: The power of compound interest
+  </a>
+ </li>
+</ul>
+<p class="caption">
+ <span class="caption-text">
+  Day 04
+ </span>
+</p>
+<ul class="nav bd-sidenav">
+ <li class="toctree-l1">
+  <a class="reference internal" href="../../Day-04/Day-04_Pre-Class_DataEthics_AcademicIntegrity-STUDENT.html">
+   Day 4 Pre-class Assignment: Introduction to Data Ethics and Practice with Lists and Loops
+  </a>
+ </li>
+ <li class="toctree-l1">
+  <a class="reference internal" href="../../Day-04/Day-04_In-Class_AcademicIntegrity_CodingPractices-STUDENT.html">
+   Day 4 In-class Assignment: Academic Integrity and Coding Best Practices
+  </a>
+ </li>
+</ul>
+<p class="caption">
+ <span class="caption-text">
+  Day 05
+ </span>
+</p>
+<ul class="nav bd-sidenav">
+ <li class="toctree-l1">
+  <a class="reference internal" href="../../Day-05/Day-05_Pre-Class_IfStatementsAndFunctions-STUDENT.html">
+   Day 5 Pre-class Assignment: Boolean logic, if statements, and an introduction to functions
+  </a>
+ </li>
+ <li class="toctree-l1">
+  <a class="reference internal" href="../../Day-05/Day-05_In-Class_IfStatementsAndFunctions-STUDENT.html">
+   Day 5 In-class Assignment: Savings for Everyone
+  </a>
+ </li>
+</ul>
+<p class="caption">
+ <span class="caption-text">
+  Day 06
+ </span>
+</p>
+<ul class="nav bd-sidenav">
+ <li class="toctree-l1">
+  <a class="reference internal" href="../../Day-06/Day-06_Pre-Class_MoreFunctions-STUDENT.html">
+   Day 6 Pre-class Assignment: Thinking more about functions
+  </a>
+ </li>
+ <li class="toctree-l1">
+  <a class="reference internal" href="../../Day-06/Day-06_In-Class_MoreFunctions-STUDENT.html">
+   Day 6 In-class Assignment: Using functions for fun and profit!
+  </a>
+ </li>
+</ul>
+<p class="caption">
+ <span class="caption-text">
+  Day 07
+ </span>
+</p>
+<ul class="nav bd-sidenav">
+ <li class="toctree-l1">
+  <a class="reference internal" href="../../Day-07/Day-07_Pre-Class_ModulesMathAndPlots-STUDENT.html">
+   Day 7 Pre-Class Assignment: Python Modules: Math and Plots
+  </a>
+ </li>
+ <li class="toctree-l1">
+  <a class="reference internal" href="../../Day-07/Day-07_In-Class_MathAndPlotting-STUDENT.html">
+   Day 7 In-class Assignment: Visualizing population growth and projectile motion
+  </a>
+ </li>
+</ul>
+<p class="caption">
+ <span class="caption-text">
+  Day 08
+ </span>
+</p>
+<ul class="nav bd-sidenav">
+ <li class="toctree-l1">
+  <a class="reference internal" href="../../Day-08/Day-08_Pre-Class_IntroToNumPy-STUDENT.html">
+   Day 8 Pre-Class: Introduction to NumPy
+  </a>
+ </li>
+ <li class="toctree-l1">
+  <a class="reference external" href="https://raw.githubusercontent.com/msu-cmse-courses/cmse201-F21-data/main/Day-08/michigan_pop.csv">
+   michigan_pop.csv
+  </a>
+ </li>
+ <li class="toctree-l1">
+  <a class="reference internal" href="../../Day-08/Day-08_In-Class_NumPyWithTheGreatLakes-STUDENT.html">
+   Day 8 In-class Assignment: Exploring Great Lakes Water Levels using NumPy
+  </a>
+ </li>
+ <li class="toctree-l1">
+  <a class="reference external" href="https://raw.githubusercontent.com/msu-cmse-courses/cmse201-F21-data/main/Day-08/lake_erie.csv">
+   lake_erie.csv
+  </a>
+ </li>
+ <li class="toctree-l1">
+  <a class="reference external" href="https://raw.githubusercontent.com/msu-cmse-courses/cmse201-F21-data/main/Day-08/lake_michigan_huron.csv">
+   lake_michigan_huron.csv
+  </a>
+ </li>
+ <li class="toctree-l1">
+  <a class="reference external" href="https://raw.githubusercontent.com/msu-cmse-courses/cmse201-F21-data/main/Day-08/lake_ontario.csv">
+   lake_ontario.csv
+  </a>
+ </li>
+ <li class="toctree-l1">
+  <a class="reference external" href="https://raw.githubusercontent.com/msu-cmse-courses/cmse201-F21-data/main/Day-08/lake_superior.csv">
+   lake_superior.csv
+  </a>
+ </li>
+</ul>
+<p class="caption">
+ <span class="caption-text">
+  Day 09
+ </span>
+</p>
+<ul class="nav bd-sidenav">
+ <li class="toctree-l1">
+  <a class="reference internal" href="../../Day-09/Day-09_Pre-Class_Pandas-STUDENT.html">
+   Day 9 Pre-class Assignment: Computational Models Overview and The Pandas Data Analysis Library
+  </a>
+ </li>
+ <li class="toctree-l1">
+  <a class="reference internal" href="../../Day-09/Day-09_In-Class_GDP-STUDENT.html">
+   Day 9 In-Class: Cleaning and Analyzing Economic Data
+  </a>
+ </li>
+</ul>
+<p class="caption">
+ <span class="caption-text">
+  Day 10
+ </span>
+</p>
+<ul class="nav bd-sidenav">
+ <li class="toctree-l1">
+  <a class="reference internal" href="../../Day-10/Day-10_Pre-Class_Masking-STUDENT.html">
+   Day 10 Pre-class Assignment: Normal Distributions, Masking, and Log Plots
+  </a>
+ </li>
+ <li class="toctree-l1">
+  <a class="reference external" href="https://raw.githubusercontent.com/msu-cmse-courses/cmse201-F21-data/main/Day-10/GDP_Cleaned.csv">
+   GDP_Cleaned.csv
+  </a>
+ </li>
+ <li class="toctree-l1">
+  <a class="reference internal" href="../../Day-10/Day-10_In-Class_Flint-STUDENT.html">
+   Day 10 In-class Assignment: Get the Lead Out: Understanding The Water Crisis in Flint, MI
+  </a>
+ </li>
+ <li class="toctree-l1">
+  <a class="reference external" href="https://raw.githubusercontent.com/msu-cmse-courses/cmse201-F21-data/main/Day-10/flint_water_data.csv">
+   flint_water_data.csv
+  </a>
+ </li>
+</ul>
+<p class="caption">
+ <span class="caption-text">
+  Day 11
+ </span>
+</p>
+<ul class="nav bd-sidenav">
+ <li class="toctree-l1">
+  <a class="reference internal" href="../../Day-11/Day-11_Pre-Class_Data_File_Formats_Manipulation-STUDENT.html">
+   Day 11 Pre-Class Assignment: Overview of data and file formats
+  </a>
+ </li>
+ <li class="toctree-l1">
+  <a class="reference external" href="https://raw.githubusercontent.com/msu-cmse-courses/cmse201-F21-data/main/Day-11/us_house_rep_by_state_2019.csv">
+   us_house_rep_by_state_2019.csv
+  </a>
+ </li>
+ <li class="toctree-l1">
+  <a class="reference external" href="https://raw.githubusercontent.com/msu-cmse-courses/cmse201-F21-data/main/Day-11/us_pop_by_state_2010_2011.csv">
+   us_pop_by_state_2010_2011.csv
+  </a>
+ </li>
+ <li class="toctree-l1">
+  <a class="reference external" href="https://github.com/msu-cmse-courses/cmse201-F21-data/raw/main/Day-11/us_pop_by_state_2012_2013_encoding_utf-16be.csv">
+   us_pop_by_state_2012_2013_encoding_utf-16be.csv
+  </a>
+ </li>
+ <li class="toctree-l1">
+  <a class="reference external" href="https://raw.githubusercontent.com/msu-cmse-courses/cmse201-F21-data/main/Day-11/us_pop_by_state_2014_2015_windows_linefeed.csv">
+   us_pop_by_state_2014_2015_windows_linefeed.csv
+  </a>
+ </li>
+ <li class="toctree-l1">
+  <a class="reference external" href="https://github.com/msu-cmse-courses/cmse201-F21-data/blob/main/Day-11/us_pop_by_state_2016a.csv?raw=true">
+   us_pop_by_state_2016a.csv
+  </a>
+ </li>
+ <li class="toctree-l1">
+  <a class="reference external" href="https://github.com/msu-cmse-courses/cmse201-F21-data/blob/main/Day-11/us_pop_by_state_2017a.yaff?raw=true">
+   us_pop_by_state2017a.yaff
+  </a>
+ </li>
+ <li class="toctree-l1">
+  <a class="reference external" href="https://github.com/msu-cmse-courses/cmse201-F21-data/blob/main/Day-11/us_pop_by_state_2018_2019.bin?raw=true">
+   us_pop_by_state_2018_2019.bin
+  </a>
+ </li>
+</ul>
+<p class="caption">
+ <span class="caption-text">
+  Day 12
+ </span>
+</p>
+<ul class="nav bd-sidenav">
+ <li class="toctree-l1">
+  <a class="reference internal" href="../../Day-12/Day-12_Pre-Class_Regression-STUDENT.html">
+   Day 12 Pre-Class Assignment: Regression
+  </a>
+ </li>
+ <li class="toctree-l1">
+  <a class="reference internal" href="../../Day-12/Day-12_In-Class_PolynomialFitting-STUDENT.html">
+   Day 12 In-Class Assignment: Linear regression and polynomial fitting
+  </a>
+ </li>
+ <li class="toctree-l1">
+  <a class="reference external" href="https://github.com/msu-cmse-courses/cmse201-F21-data/raw/main/Day-12/microprocessor-trend-data-master.zip">
+   microprocessor-trend-data-master.zip
+  </a>
+ </li>
+</ul>
+<p class="caption">
+ <span class="caption-text">
+  Day 13
+ </span>
+</p>
+<ul class="nav bd-sidenav">
+ <li class="toctree-l1">
+  <a class="reference internal" href="../../Day-13/Day-13_Pre-Class_CurveFitting-STUDENT.html">
+   Day 13 Pre-Class Assignment: Fitting functions to data (curve-fitting) and thinking more about models
+  </a>
+ </li>
+ <li class="toctree-l1">
+  <a class="reference internal" href="../../Day-13/Day-13_In-Class_FittingCurves-STUDENT.html">
+   Day 13 In-Class Assignment: (Thoughtfully) fitting models to data
+  </a>
+ </li>
+ <li class="toctree-l1">
+  <a class="reference external" href="https://raw.githubusercontent.com/msu-cmse-courses/cmse201-F21-data/main/Day-13/pop200.csv">
+   pop200.csv
+  </a>
+ </li>
+ <li class="toctree-l1">
+  <a class="reference external" href="https://raw.githubusercontent.com/msu-cmse-courses/cmse201-F21-data/main/Day-13/pop300.csv">
+   pop300.csv
+  </a>
+ </li>
+</ul>
+<p class="caption">
+ <span class="caption-text">
+  Day 14
+ </span>
+</p>
+<ul class="nav bd-sidenav">
+ <li class="toctree-l1">
+  <a class="reference internal" href="../../Day-14/Day-14_Pre-Class_ModelingWithODEs-STUDENT.html">
+   Day 14: Pre-class Assignment: Modeling with Ordinary Differential Equations
+  </a>
+ </li>
+ <li class="toctree-l1">
+  <a class="reference internal" href="../../Day-14/Day-14_In-Class_ModelingWithODEs-STUDENT.html">
+   Day 14: In-class Assignment: Modeling with ODEs
+  </a>
+ </li>
+ <li class="toctree-l1">
+  <a class="reference external" href="https://github.com/msu-cmse-courses/cmse201-F21-data/blob/main/Day-14/undamped_length.png">
+   undamped_length.png
+  </a>
+ </li>
+ <li class="toctree-l1">
+  <a class="reference external" href="https://github.com/msu-cmse-courses/cmse201-F21-data/blob/main/Day-14/undamped_vel.png">
+   undamped_vel.png
+  </a>
+ </li>
+</ul>
+<p class="caption">
+ <span class="caption-text">
+  Day 15
+ </span>
+</p>
+<ul class="nav bd-sidenav">
+ <li class="toctree-l1">
+  <a class="reference internal" href="../../Day-15/Day-15_Pre-Class_ViralKinetics-STUDENT.html">
+   Day 15 Pre-Class: Viral Kinetics
+  </a>
+ </li>
+ <li class="toctree-l1">
+  <a class="reference internal" href="../../Day-15/Day-15_In-Class_CompartmentalModeling-STUDENT.html">
+   Day 15 In-class: Building Compartmental Models
+  </a>
+ </li>
+</ul>
+<p class="caption">
+ <span class="caption-text">
+  Day 16
+ </span>
+</p>
+<ul class="nav bd-sidenav">
+ <li class="toctree-l1">
+  <a class="reference internal" href="../../Day-16/Day-16_Pre-Class_Zombies-STUDENT.html">
+   Day 16 Pre-class Assignment: ZOMBIES!!
+  </a>
+ </li>
+ <li class="toctree-l1">
+  <a class="reference internal" href="../../Day-16/Day-16_In-Class_CompartmentsWithSolveIVP-STUDENT.html">
+   Day 16 In-Class Assignment: Compartmental Modeling, moving from the model to the Code
+  </a>
+ </li>
+ <li class="toctree-l1">
+  <a class="reference external" href="https://github.com/msu-cmse-courses/cmse201-F21-data/blob/main/Day-16/latent.png">
+   latent.png
+  </a>
+ </li>
+</ul>
+<p class="caption">
+ <span class="caption-text">
+  Day 17
+ </span>
+</p>
+<ul class="nav bd-sidenav">
+ <li class="toctree-l1">
+  <a class="reference internal" href="../../Day-17/Day-17_Pre-Class_2DNumPyArrays-STUDENT.html">
+   Day 17 Pre-Class: 2D NumPy Arrays
+  </a>
+ </li>
+ <li class="toctree-l1">
+  <a class="reference external" href="https://raw.githubusercontent.com/msu-cmse-courses/cmse201-F21-data/main/Day-17/PCA_files/cars.csv">
+   cars.csv
+  </a>
+ </li>
+ <li class="toctree-l1">
+  <a class="reference external" href="https://github.com/msu-cmse-courses/cmse201-F21-data/raw/main/Day-17/PCA_files/example.jpeg">
+   example.jpeg
+  </a>
+ </li>
+ <li class="toctree-l1">
+  <a class="reference internal" href="../../Day-17/Day-17_In-Class_2DImageAnalysis-STUDENT.html">
+   Day 17 In-Class Assignment: Image Analysis
+  </a>
+ </li>
+ <li class="toctree-l1">
+  <a class="reference external" href="https://github.com/msu-cmse-courses/cmse201-F21-data/blob/main/Day-17/ICA_files/beach.jpeg">
+   beach.jpeg
+  </a>
+ </li>
+ <li class="toctree-l1">
+  <a class="reference external" href="https://github.com/msu-cmse-courses/cmse201-F21-data/blob/main/Day-17/ICA_files/landscape.jpeg">
+   landscape.jpeg
+  </a>
+ </li>
+ <li class="toctree-l1">
+  <a class="reference external" href="https://github.com/msu-cmse-courses/cmse201-F21-data/blob/main/Day-17/ICA_files/zebra.png">
+   zebra.png
+  </a>
+ </li>
+</ul>
+<p class="caption">
+ <span class="caption-text">
+  Day 18
+ </span>
+</p>
+<ul class="nav bd-sidenav">
+ <li class="toctree-l1">
+  <a class="reference internal" href="../../Day-18/Day-18_Pre-Class_ABMForestFire-STUDENT.html">
+   Day 18 Pre-class: Agent-based models and forest fires
+  </a>
+ </li>
+ <li class="toctree-l1">
+  <a class="reference internal" href="../../Day-18/Day-18_In-Class_ForestFiresPartI-STUDENT.html">
+   Day 18 Part 1 In-class Assignment: Modeling forest fires with an Agent-based Model
+  </a>
+ </li>
+</ul>
+<p class="caption">
+ <span class="caption-text">
+  Day 19
+ </span>
+</p>
+<ul class="nav bd-sidenav">
+ <li class="toctree-l1">
+  <a class="reference internal" href="../../Day-19/Day-19_Pre-Class_ABMForestFire_Part2-STUDENT.html">
+   Day 19 Pre-class: Agent-based models and forest fires, Part 2
+  </a>
+ </li>
+ <li class="toctree-l1">
+  <a class="reference internal" href="../../Day-19/Day-19_In-Class_ForestFiresPartII-STUDENT.html">
+   Day 19 In-class Assignment: Modeling forest fires with an Agent-based Model (Part II)
+  </a>
+ </li>
+</ul>
+<p class="caption">
+ <span class="caption-text">
+  Day 20
+ </span>
+</p>
+<ul class="nav bd-sidenav">
+ <li class="toctree-l1">
+  <a class="reference internal" href="../../Day-20/Day-20_Pre-Class_RandomNumbers-STUDENT.html">
+   Day 20 Pre-Class Assignment: Random Numbers
+  </a>
+ </li>
+ <li class="toctree-l1">
+  <a class="reference internal" href="../../Day-20/Day-20_In-Class_RandomWalks-STUDENT.html">
+   Day 20 In-class Assignment: Random Walks
+  </a>
+ </li>
+ <li class="toctree-l1">
+  <a class="reference external" href="https://github.com/msu-cmse-courses/cmse201-F21-data/blob/main/Day-20/distance_v_steps_randomwalk.png">
+   distance_v_steps_randomwalk.png
+  </a>
+ </li>
+</ul>
+<p class="caption">
+ <span class="caption-text">
+  Day 21
+ </span>
+</p>
+<ul class="nav bd-sidenav">
+ <li class="toctree-l1">
+  <a class="reference internal" href="../../Day-21/Day-21_Pre-Class_ProjectUpdates-STUDENT.html">
+   Day 21 Pre-class assignment: Making project progress!
+  </a>
+ </li>
+</ul>
+<p class="caption">
+ <span class="caption-text">
+  Day 22
+ </span>
+</p>
+<ul class="nav bd-sidenav">
+ <li class="toctree-l1">
+  <a class="reference internal" href="../../Day-22/Day-22_Pre-Class_Climate-STUDENT.html">
+   Day 22 Pre-class:  Global warming and climate modeling
+  </a>
+ </li>
+ <li class="toctree-l1">
+  <a class="reference internal" href="../../Day-22/Day-22_In-Class_Climate-STUDENT.html">
+   Day 22 In-class Assignment: Analyzing climate data
+  </a>
+ </li>
+ <li class="toctree-l1">
+  <a class="reference external" href="https://raw.githubusercontent.com/msu-cmse-courses/cmse201-F21-data/main/Day-22/GLB.Ts.csv">
+   GLB.Ts.csv
+  </a>
+ </li>
+ <li class="toctree-l1">
+  <a class="reference external" href="https://raw.githubusercontent.com/msu-cmse-courses/cmse201-F21-data/main/Day-22/bintanja2008.txt">
+   bintanja2008.txt
+  </a>
+ </li>
+ <li class="toctree-l1">
+  <a class="reference external" href="https://raw.githubusercontent.com/msu-cmse-courses/cmse201-F21-data/main/Day-22/ch4_annmean_gl.txt">
+   ch4_annmean_gl.txt
+  </a>
+ </li>
+ <li class="toctree-l1">
+  <a class="reference external" href="https://raw.githubusercontent.com/msu-cmse-courses/cmse201-F21-data/main/Day-22/co2_mm_mlo.txt">
+   co2_mm_mlo.txt
+  </a>
+ </li>
+ <li class="toctree-l1">
+  <a class="reference external" href="https://raw.githubusercontent.com/msu-cmse-courses/cmse201-F21-data/main/Day-22/vostok-ch4nat.txt">
+   vostok-ch4nat.txt
+  </a>
+ </li>
+ <li class="toctree-l1">
+  <a class="reference external" href="https://raw.githubusercontent.com/msu-cmse-courses/cmse201-F21-data/main/Day-22/vostok-co2nat.txt">
+   vostok-co2nat.txt
+  </a>
+ </li>
+ <li class="toctree-l1">
+  <a class="reference external" href="https://raw.githubusercontent.com/msu-cmse-courses/cmse201-F21-data/main/Day-22/vostok-deutnat.txt">
+   vostok-deutnat.txt
+  </a>
+ </li>
+</ul>
+<p class="caption">
+ <span class="caption-text">
+  Day 23
+ </span>
+</p>
+<ul class="nav bd-sidenav">
+ <li class="toctree-l1">
+  <a class="reference internal" href="../../Day-23/Day-23_Pre-Class_Climate-STUDENT.html">
+   Day 23 pre-class assignment: climate modeling
+  </a>
+ </li>
+ <li class="toctree-l1">
+  <a class="reference internal" href="../../Day-23/Day-23_In-Class_Climate-STUDENT.html">
+   Day 23 In-class Assignment: A simple model for global temperature
+  </a>
+ </li>
+ <li class="toctree-l1">
+  <a class="reference external" href="https://github.com/msu-cmse-courses/cmse201-F21-data/blob/main/Day-23/listentothee.png">
+   listentothee.png
+  </a>
+ </li>
+ <li class="toctree-l1">
+  <a class="reference external" href="https://github.com/msu-cmse-courses/cmse201-F21-data/blob/main/Day-23/simple_model.png">
+   simple_model.png
+  </a>
+ </li>
+</ul>
+<p class="caption">
+ <span class="caption-text">
+  Homework
+ </span>
+</p>
+<ul class="current nav bd-sidenav">
+ <li class="toctree-l1">
+  <a class="reference internal" href="../Homework-1/HW_01_F21_STUDENT.html">
+   Homework 1: Introduction to Loops, Lists, and Dictionaries
+  </a>
+ </li>
+ <li class="toctree-l1">
+  <a class="reference internal" href="../Homework-2/HW_02_F21-STUDENT.html">
+   Homework 2: If Statements, Functions, and Modules
+  </a>
+ </li>
+ <li class="toctree-l1 current active">
+  <a class="current reference internal" href="#">
+   Homework 3: Data Analysis with Pandas, Numpy, and Matplotlib
+  </a>
+ </li>
+ <li class="toctree-l1">
+  <a class="reference external" href="https://raw.githubusercontent.com/msu-cmse-courses/cmse201-F21-data/main/Homework/americas_gpin_2014_16.csv">
+   americas_gpin_2014_16.csv
+  </a>
+ </li>
+ <li class="toctree-l1">
+  <a class="reference internal" href="../Homework-4/HW-04-Fall2021_Final-STUDENT.html">
+   Homework 4: Fitting data using NumPy and SciPy
+  </a>
+ </li>
+ <li class="toctree-l1">
+  <a class="reference external" href="https://github.com/msu-cmse-courses/cmse201-F21-data/raw/main/Homework/Wage.csv">
+   Wage.csv
+  </a>
+ </li>
+ <li class="toctree-l1">
+  <a class="reference internal" href="../Homework-5/HW_05_F21-STUDENT.html">
+   Homework 5: Modeling Physical Systems and Heating Up the House with ODEs
+  </a>
+ </li>
+ <li class="toctree-l1">
+  <a class="reference internal" href="../Homework-6/HW-06_F21-STUDENT.html">
+   Homework 6: Agent Based Modeling
+  </a>
+ </li>
+</ul>
+<p class="caption">
+ <span class="caption-text">
+  Midterm Bootcamps
+ </span>
+</p>
+<ul class="nav bd-sidenav">
+ <li class="toctree-l1">
+  <a class="reference internal" href="../../Bootcamp_Notebooks/Bootcamp1-Python_Fundamentals_STUDENT.html">
+   Bootcamp 1: Python Fundamentals
+  </a>
+ </li>
+ <li class="toctree-l1">
+  <a class="reference internal" href="../../Bootcamp_Notebooks/Bootcamp2-InitialConceptsReview.html">
+   Bootcamp 2: Initial Concepts Review Cheatsheet
+  </a>
+ </li>
+ <li class="toctree-l1">
+  <a class="reference internal" href="../../Bootcamp_Notebooks/Bootcamp3-Debugging_STUDENT.html">
+   Bootcamp 3: Debugging
+  </a>
+ </li>
+ <li class="toctree-l1">
+  <a class="reference internal" href="../../Bootcamp_Notebooks/Bootcamp4-IfStatements_STUDENT.html">
+   Bootcamp 4: If Statements
+  </a>
+ </li>
+ <li class="toctree-l1">
+  <a class="reference internal" href="../../Bootcamp_Notebooks/Bootcamp5-Functions_STUDENT.html">
+   Bootcamp 5: Functions
+  </a>
+ </li>
+ <li class="toctree-l1">
+  <a class="reference internal" href="../../Bootcamp_Notebooks/Bootcamp6-Matplotlib_STUDENT.html">
+   Bootcamp 6: Matplotlib
+  </a>
+ </li>
+</ul>
+<p class="caption">
+ <span class="caption-text">
+  Semester Projects
+ </span>
+</p>
+<ul class="nav bd-sidenav">
+ <li class="toctree-l1">
+  <a class="reference internal" href="../../Project_Materials/CMSE201_SemesterProjectDetails.html">
+   Semester Project Details
+  </a>
+ </li>
+ <li class="toctree-l1">
+  <a class="reference internal" href="../../Project_Materials/CMSE201_FinalProject_ExampleA.html">
+   CMSE 201 Final Project Example A
+  </a>
+ </li>
+ <li class="toctree-l1">
+  <a class="reference internal" href="../../Project_Materials/CMSE201_FinalProject_ExampleB.html">
+   CMSE 201 Final Project Example B
+  </a>
+ </li>
+ <li class="toctree-l1">
+  <a class="reference external" href="https://github.com/msu-cmse-courses/cmse201-F21-data/raw/main/Projects/CMSE201_Example_Projects.zip">
+   CMSE201_Example_Projects.zip
+  </a>
+ </li>
+ <li class="toctree-l1">
+  <a class="reference internal" href="../../Project_Materials/First_Project_Checkpoint.html">
+   First Project Checkpoint
+  </a>
+ </li>
+ <li class="toctree-l1">
+  <a class="reference internal" href="../../Project_Materials/CMSE201FinalProject_RequirementsAndGradingRubric.html">
+   Requirements and Grading Rubric
+  </a>
+ </li>
+ <li class="toctree-l1">
+  <a class="reference internal" href="../../Project_Materials/CMSE201_FinalProjectTemplate.html">
+   CMSE 201 Final Project Template
+  </a>
+ </li>
+</ul>
+
+    </div>
+</nav> <!-- To handle the deprecated key -->
+
+<div class="navbar_extra_footer">
+  Powered by <a href="https://jupyterbook.org">Jupyter Book</a>
+</div>
+
+</div>
+
+
+          
+
+
+          
+<main class="col py-md-3 pl-md-4 bd-content overflow-auto" role="main">
+    
+    <div class="topbar container-xl fixed-top">
+    <div class="topbar-contents row">
+        <div class="col-12 col-md-3 bd-topbar-whitespace site-navigation show"></div>
+        <div class="col pl-md-4 topbar-main">
+            
+            <button id="navbar-toggler" class="navbar-toggler ml-0" type="button" data-toggle="collapse"
+                data-toggle="tooltip" data-placement="bottom" data-target=".site-navigation" aria-controls="navbar-menu"
+                aria-expanded="true" aria-label="Toggle navigation" aria-controls="site-navigation"
+                title="Toggle navigation" data-toggle="tooltip" data-placement="left">
+                <i class="fas fa-bars"></i>
+                <i class="fas fa-arrow-left"></i>
+                <i class="fas fa-arrow-up"></i>
+            </button>
+            
+            
+<div class="dropdown-buttons-trigger">
+    <button id="dropdown-buttons-trigger" class="btn btn-secondary topbarbtn" aria-label="Download this page"><i
+            class="fas fa-download"></i></button>
+
+    <div class="dropdown-buttons">
+        <!-- ipynb file if we had a myst markdown file -->
+        
+        <!-- Download raw file -->
+        <a class="dropdown-buttons" href="../../_sources/Homework/Homework-3/HOMEWORK_3_STUDENT.ipynb"><button type="button"
+                class="btn btn-secondary topbarbtn" title="Download source file" data-toggle="tooltip"
+                data-placement="left">.ipynb</button></a>
+        <!-- Download PDF via print -->
+        <button type="button" id="download-print" class="btn btn-secondary topbarbtn" title="Print to PDF"
+            onClick="window.print()" data-toggle="tooltip" data-placement="left">.pdf</button>
+    </div>
+</div>
+
+            <!-- Source interaction buttons -->
+
+<div class="dropdown-buttons-trigger">
+    <button id="dropdown-buttons-trigger" class="btn btn-secondary topbarbtn"
+        aria-label="Connect with source repository"><i class="fab fa-github"></i></button>
+    <div class="dropdown-buttons sourcebuttons">
+        <a class="repository-button"
+            href="https://github.com/msu-cmse-courses/cmse201-F21-jb"><button type="button" class="btn btn-secondary topbarbtn"
+                data-toggle="tooltip" data-placement="left" title="Source repository"><i
+                    class="fab fa-github"></i>repository</button></a>
+        <a class="issues-button"
+            href="https://github.com/msu-cmse-courses/cmse201-F21-jb/issues/new?title=Issue%20on%20page%20%2FHomework/Homework-3/HOMEWORK_3_STUDENT.html&body=Your%20issue%20content%20here."><button
+                type="button" class="btn btn-secondary topbarbtn" data-toggle="tooltip" data-placement="left"
+                title="Open an issue"><i class="fas fa-lightbulb"></i>open issue</button></a>
+        
+    </div>
+</div>
+
+            <!-- Full screen (wrap in <a> to have style consistency -->
+
+<a class="full-screen-button"><button type="button" class="btn btn-secondary topbarbtn" data-toggle="tooltip"
+        data-placement="bottom" onclick="toggleFullScreen()" aria-label="Fullscreen mode"
+        title="Fullscreen mode"><i
+            class="fas fa-expand"></i></button></a>
+
+            <!-- Launch buttons -->
+
+<div class="dropdown-buttons-trigger">
+    <button id="dropdown-buttons-trigger" class="btn btn-secondary topbarbtn"
+        aria-label="Launch interactive content"><i class="fas fa-rocket"></i></button>
+    <div class="dropdown-buttons">
+        
+        <a class="binder-button" href="https://mybinder.org/v2/gh/msu-cmse-courses/cmse201-F21-jb/main?urlpath=tree/Homework/Homework-3/HOMEWORK_3_STUDENT.ipynb"><button type="button"
+                class="btn btn-secondary topbarbtn" title="Launch Binder" data-toggle="tooltip"
+                data-placement="left"><img class="binder-button-logo"
+                    src="../../_static/images/logo_binder.svg"
+                    alt="Interact on binder">Binder</button></a>
+        
+        
+        
+        
+    </div>
+</div>
+
+        </div>
+
+        <!-- Table of contents -->
+        <div class="d-none d-md-block col-md-2 bd-toc show">
+            
+            <div class="tocsection onthispage pt-5 pb-3">
+                <i class="fas fa-list"></i> Contents
+            </div>
+            <nav id="bd-toc-nav" aria-label="Page">
+                <ul class="visible nav section-nav flex-column">
+ <li class="toc-h1 nav-item toc-entry">
+  <a class="reference internal nav-link" href="#">
+   Homework 3: Data Analysis with Pandas, Numpy, and Matplotlib
+  </a>
+  <ul class="visible nav section-nav flex-column">
+   <li class="toc-h2 nav-item toc-entry">
+    <a class="reference internal nav-link" href="#learning-goals">
+     Learning Goals
+    </a>
+   </li>
+   <li class="toc-h2 nav-item toc-entry">
+    <a class="reference internal nav-link" href="#introduction">
+     Introduction
+    </a>
+   </li>
+   <li class="toc-h2 nav-item toc-entry">
+    <a class="reference internal nav-link" href="#assignment-goal">
+     Assignment Goal
+    </a>
+   </li>
+   <li class="toc-h2 nav-item toc-entry">
+    <a class="reference internal nav-link" href="#grading">
+     Grading
+    </a>
+   </li>
+  </ul>
+ </li>
+ <li class="toc-h1 nav-item toc-entry">
+  <a class="reference internal nav-link" href="#academic-integrity-statement-1-points">
+   Academic integrity statement (1 points)
+  </a>
+  <ul class="visible nav section-nav flex-column">
+   <li class="toc-h2 nav-item toc-entry">
+    <a class="reference internal nav-link" href="#part-1-getting-a-feel-for-the-data">
+     Part 1: Getting a Feel for the Data
+    </a>
+    <ul class="nav section-nav flex-column">
+     <li class="toc-h3 nav-item toc-entry">
+      <a class="reference internal nav-link" href="#id1">
+       Grading
+      </a>
+     </li>
+     <li class="toc-h3 nav-item toc-entry">
+      <a class="reference internal nav-link" href="#task-1-1-1-2-points">
+       ✅  Task 1.1.1 (2 points)
+      </a>
+     </li>
+     <li class="toc-h3 nav-item toc-entry">
+      <a class="reference internal nav-link" href="#task-1-1-2-1-point">
+       ✅  Task 1.1.2 (1 point)
+      </a>
+     </li>
+     <li class="toc-h3 nav-item toc-entry">
+      <a class="reference internal nav-link" href="#task-1-2-1-1-point">
+       ✅  Task 1.2.1 (1 point)
+      </a>
+     </li>
+     <li class="toc-h3 nav-item toc-entry">
+      <a class="reference internal nav-link" href="#task-1-2-2-2-points">
+       ✅  Task 1.2.2 (2 points)
+      </a>
+     </li>
+     <li class="toc-h3 nav-item toc-entry">
+      <a class="reference internal nav-link" href="#task-1-3-better-data-visualization-2-points">
+       ✅  Task 1.3  Better Data Visualization (2 points)
+      </a>
+     </li>
+     <li class="toc-h3 nav-item toc-entry">
+      <a class="reference internal nav-link" href="#task-1-4-4-points">
+       ✅  Task 1.4 (4 points)
+      </a>
+     </li>
+    </ul>
+   </li>
+  </ul>
+ </li>
+ <li class="toc-h1 nav-item toc-entry">
+  <a class="reference internal nav-link" href="#part-2-data-filtering-and-analysis">
+   Part 2: Data Filtering and Analysis
+  </a>
+  <ul class="visible nav section-nav flex-column">
+   <li class="toc-h2 nav-item toc-entry">
+    <a class="reference internal nav-link" href="#id2">
+     Grading
+    </a>
+   </li>
+   <li class="toc-h2 nav-item toc-entry">
+    <a class="reference internal nav-link" href="#cleaning-and-filtering">
+     2.1 Cleaning and Filtering
+    </a>
+    <ul class="nav section-nav flex-column">
+     <li class="toc-h3 nav-item toc-entry">
+      <a class="reference internal nav-link" href="#task-2-1-1-2-points">
+       ✅  Task 2.1.1 (2 points)
+      </a>
+     </li>
+     <li class="toc-h3 nav-item toc-entry">
+      <a class="reference internal nav-link" href="#task-2-1-2-2-points">
+       ✅  Task 2.1.2 (2 points)
+      </a>
+     </li>
+     <li class="toc-h3 nav-item toc-entry">
+      <a class="reference internal nav-link" href="#task-2-1-3-2-points">
+       ✅  Task 2.1.3 (2 points)
+      </a>
+     </li>
+     <li class="toc-h3 nav-item toc-entry">
+      <a class="reference internal nav-link" href="#task-2-2-descriptive-statistics-7-points">
+       ✅  Task 2.2 Descriptive statistics (7 points)
+      </a>
+     </li>
+     <li class="toc-h3 nav-item toc-entry">
+      <a class="reference internal nav-link" href="#task-2-2-1-2-points">
+       ✅  Task 2.2.1 (2 points)
+      </a>
+     </li>
+    </ul>
+   </li>
+  </ul>
+ </li>
+ <li class="toc-h1 nav-item toc-entry">
+  <a class="reference internal nav-link" href="#part-3-putting-it-all-together">
+   Part 3: Putting it all Together
+  </a>
+  <ul class="visible nav section-nav flex-column">
+   <li class="toc-h2 nav-item toc-entry">
+    <a class="reference internal nav-link" href="#speeding-up-automating-the-process">
+     3.1 Speeding up/Automating the process
+    </a>
+    <ul class="nav section-nav flex-column">
+     <li class="toc-h3 nav-item toc-entry">
+      <a class="reference internal nav-link" href="#id3">
+       Grading
+      </a>
+     </li>
+     <li class="toc-h3 nav-item toc-entry">
+      <a class="reference internal nav-link" href="#task-3-1-1-expanding-to-all-commodities-2-points">
+       ✅  Task 3.1.1 Expanding to all commodities (2 points)
+      </a>
+     </li>
+     <li class="toc-h3 nav-item toc-entry">
+      <a class="reference internal nav-link" href="#task-3-1-2-expanding-statistics-to-all-commodities-3-points">
+       ✅  Task 3.1.2 Expanding statistics to all commodities (3 points)
+      </a>
+     </li>
+    </ul>
+   </li>
+   <li class="toc-h2 nav-item toc-entry">
+    <a class="reference internal nav-link" href="#testing-hypotheses">
+     3.2 Testing hypotheses
+    </a>
+    <ul class="nav section-nav flex-column">
+     <li class="toc-h3 nav-item toc-entry">
+      <a class="reference internal nav-link" href="#task-3-2-1-plotting-mean-log10-gpin-and-standard-deviation-log10-gpin-vs-number-of-producing-countries-4-points">
+       ✅  Task 3.2.1 Plotting mean log10(gpin) and standard deviation log10(gpin) vs number of producing countries (4 points)
+      </a>
+     </li>
+     <li class="toc-h3 nav-item toc-entry">
+      <a class="reference internal nav-link" href="#task-3-2-2-interpreting-plots-and-drawing-conclusions-4-pts">
+       ✅  Task 3.2.2 Interpreting plots and drawing conclusions (4 pts)
+      </a>
+     </li>
+    </ul>
+   </li>
+  </ul>
+ </li>
+ <li class="toc-h1 nav-item toc-entry">
+  <a class="reference internal nav-link" href="#congratulations-you-re-done">
+   Congratulations, you’re done!
+  </a>
+ </li>
+</ul>
+
+            </nav>
+        </div>
+    </div>
+</div>
+    <div id="main-content" class="row">
+        <div class="col-12 col-md-9 pl-md-3 pr-md-0">
+        
+              <div>
+                
+  <div class="section" id="homework-3-data-analysis-with-pandas-numpy-and-matplotlib">
+<h1>Homework 3: Data Analysis with Pandas, Numpy, and Matplotlib<a class="headerlink" href="#homework-3-data-analysis-with-pandas-numpy-and-matplotlib" title="Permalink to this headline">¶</a></h1>
+<div class="section" id="learning-goals">
+<h2>Learning Goals<a class="headerlink" href="#learning-goals" title="Permalink to this headline">¶</a></h2>
+<ul class="simple">
+<li><p>Load data into notebooks using Pandas</p></li>
+<li><p>Determine the components of the data</p></li>
+<li><p>Make meaningful visual representations of the data</p></li>
+<li><p>Draw conclusions from statistical analysis</p></li>
+</ul>
+</div>
+<div class="section" id="introduction">
+<h2>Introduction<a class="headerlink" href="#introduction" title="Permalink to this headline">¶</a></h2>
+<p>Agriculture is the foundation of human civilization. Plants and livestock provide food, medicine, building materials, fiber for clothing, and much more. Climate changes, from widespread fires to flooding and hurricanes, brought about by global warming, are concerning not only for human safety, but our ability to grow plants, raise animals, and produce commodities that sustain our lives.</p>
+<p>The <a class="reference external" href="http://www.fao.org/home/en/">Food and Agriculture Organization</a> (FAO) of the United Nations (UN) has monitored historial trends in agricultural production. As you are interested in the future of agriculture in a changing world, you want to know how agriculture has changed in recent history: which crops have increased or decreased in production and in which geographical areas?</p>
+<p>Accessing the <a class="reference external" href="http://www.fao.org/faostat/en/#data/QI">FAO database</a>, you download the Gross Production Index Number (GPIN) for numerous agricultural commodities across geographical areas of the Americas from 1961 to 2019. <a class="reference external" href="https://databank.worldbank.org/metadataglossary/wdi-database-archives-(beta)/series/AG.PRD.FOOD.XD">Gross Production Index Number</a> is a normalized production index relative to the mean production level set to a value of 100 from 2014 to 2016.</p>
+</div>
+<div class="section" id="assignment-goal">
+<h2>Assignment Goal<a class="headerlink" href="#assignment-goal" title="Permalink to this headline">¶</a></h2>
+<p>Analyze and visualize GPIN values across American geographical areas to understand historical trends in agricultural commodity production.</p>
+<p>Work through the following assignment, making sure to follow all the directions and answer all the questions.</p>
+<p><strong>This assignment is due at 11:59 pm on October 22nd.</strong> It should be uploaded into the “Homework Assignments” submission folder for Homework #3.  Submission instructions can be found at the end of the notebook.</p>
+</div>
+<hr class="docutils" />
+<div class="section" id="grading">
+<h2>Grading<a class="headerlink" href="#grading" title="Permalink to this headline">¶</a></h2>
+<ul class="simple">
+<li><p>Academic Integrity (1 points)</p></li>
+<li><p>Part 1 (12 points)</p></li>
+<li><p>Part 2 (15 points)</p></li>
+<li><p>Part 3 (13 points)</p></li>
+</ul>
+<p>Total points possible: <strong>41</strong></p>
+</div>
+</div>
+<hr class="docutils" />
+<div class="section" id="academic-integrity-statement-1-points">
+<h1>Academic integrity statement (1 points)<a class="headerlink" href="#academic-integrity-statement-1-points" title="Permalink to this headline">¶</a></h1>
+<p>In the markdown cell below, put your personal academic integrity statement (composed during the Day04 In-Class Assignment). By including this statement, you are confirming that the work you submit in the assignment is wholly your own.</p>
+<p><font size=6 color="#009600">✎</font> <em>Put your personal academic integrity statement here.</em></p>
+<div class="section" id="part-1-getting-a-feel-for-the-data">
+<h2>Part 1: Getting a Feel for the Data<a class="headerlink" href="#part-1-getting-a-feel-for-the-data" title="Permalink to this headline">¶</a></h2>
+<div class="section" id="id1">
+<h3>Grading<a class="headerlink" href="#id1" title="Permalink to this headline">¶</a></h3>
+<ul class="simple">
+<li><p>1.1.1 (2 points)</p></li>
+<li><p>1.1.2 (1 point)</p></li>
+<li><p>1.2.1 (1 point)</p></li>
+<li><p>1.2.2 (2 points)</p></li>
+<li><p>1.3 (2 points)</p></li>
+<li><p>1.4 (4 points)</p></li>
+</ul>
+<p>Before doing any data analysis, you should determine what your data looks like!</p>
+</div>
+<div class="section" id="task-1-1-1-2-points">
+<h3>✅  Task 1.1.1 (2 points)<a class="headerlink" href="#task-1-1-1-2-points" title="Permalink to this headline">¶</a></h3>
+<p><strong>Task:</strong> <em>Write a piece of code that reads in the data file <code class="docutils literal notranslate"><span class="pre">americas_gpin_2014_16.csv</span></code> and looks at the column names and first rows to make sure it was read in correctly</em></p>
+<p><strong>NOTE:</strong> The column names are as follows:</p>
+<ul class="simple">
+<li><p><code class="docutils literal notranslate"><span class="pre">geo_area</span></code>: the region the data is from</p></li>
+<li><p><code class="docutils literal notranslate"><span class="pre">item</span></code>: the agricultural commodity</p></li>
+<li><p><code class="docutils literal notranslate"><span class="pre">year</span></code>: the year the data is taken from</p></li>
+<li><p><code class="docutils literal notranslate"><span class="pre">gpin</span></code>: the Gross Production Index Number, where the mean production from 2014 to 2016 is set to 100</p></li>
+</ul>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="c1"># Put your code here</span>
+</pre></div>
+</div>
+</div>
+</div>
+</div>
+<div class="section" id="task-1-1-2-1-point">
+<h3>✅  Task 1.1.2 (1 point)<a class="headerlink" href="#task-1-1-2-1-point" title="Permalink to this headline">¶</a></h3>
+<p><strong>Task:</strong> <em>Write a piece of code that prints the factor levels and how many entries there are for each level of <code class="docutils literal notranslate"><span class="pre">geo_area</span></code>. For example it should determine how many entries there are for Mexico, for Peru, for the United States, etc. Do the same for <code class="docutils literal notranslate"><span class="pre">item</span></code>, so that the number of entries are determined for bananas, cassava, and oranges, for example. This will help us to understand the geographical areas and commodities represented in this dataset.</em></p>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="c1"># Put your code here</span>
+</pre></div>
+</div>
+</div>
+</div>
+</div>
+<div class="section" id="task-1-2-1-1-point">
+<h3>✅  Task 1.2.1 (1 point)<a class="headerlink" href="#task-1-2-1-1-point" title="Permalink to this headline">¶</a></h3>
+<p><strong>Task:</strong> <em>To understand what production looks like across years, plot Gross Production Index Number (GPIN) vs. Year. Be sure to label your axes.</em></p>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="c1"># Put your code here</span>
+</pre></div>
+</div>
+</div>
+</div>
+</div>
+<div class="section" id="task-1-2-2-2-points">
+<h3>✅  Task 1.2.2 (2 points)<a class="headerlink" href="#task-1-2-2-2-points" title="Permalink to this headline">¶</a></h3>
+<p><strong>Task:</strong> <em>There is a problem with the scale of the data. A few points have extremely high values (&gt;1,500,000) and most the points have much lower values. To better visualize the data, you need to transform it. 1) Create a new column in your dataframe that is the log10 value of <code class="docutils literal notranslate"><span class="pre">gpin</span></code> and 2) plot <code class="docutils literal notranslate"><span class="pre">log10(gpin)</span></code> vs. <code class="docutils literal notranslate"><span class="pre">year</span></code>.</em></p>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="c1"># Put your code here</span>
+</pre></div>
+</div>
+</div>
+</div>
+</div>
+<div class="section" id="task-1-3-better-data-visualization-2-points">
+<h3>✅  Task 1.3  Better Data Visualization (2 points)<a class="headerlink" href="#task-1-3-better-data-visualization-2-points" title="Permalink to this headline">¶</a></h3>
+<p>You may notice that with so many data points, it is hard to get a feel for how the data is distributed. This is sometimes referred to as “overplotting” meaning that there are so many data points on the plot, it is hard to discern any information about them. One way around this is to change the alpha level and also make the size of the points smaller.</p>
+<p><strong>Task:</strong> <em>Your task is to change the alpha level and point size of the plot you produced above. You should try different alpha levels and point sizes until you can see the structure of the data. When successful, you data should look like an hour glass: there is a wide spread (variability) of data before 2014-2016 that narrows as the years approach 2014-2016, and then the data spreads again after 2014-2016.</em></p>
+<p><strong>NOTE:</strong> There is no right answer to this question and no visualization is perfect. Choose an alpha level and point size that <em><strong>you</strong></em> think reveals the structure of the data the best. The minimum alpha you can choose before the data disappears is 0.002.</p>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="c1"># Put your code here</span>
+</pre></div>
+</div>
+</div>
+</div>
+</div>
+<div class="section" id="task-1-4-4-points">
+<h3>✅  Task 1.4 (4 points)<a class="headerlink" href="#task-1-4-4-points" title="Permalink to this headline">¶</a></h3>
+<p><strong>Task:</strong> <em>Examine your plot above.</em></p>
+<p><em>1) Describe the distribution of Gross Production Index Number vs. year.</em><br />
+<em>2) How does adjusting alpha and point size affect what you see?</em><br />
+<em>3) Based on the description of how GPIN is calculated (as relative to the mean production of 2014-2016 set to 100) why do you think the data is distributed this way?</em><br />
+<em>4) How do you interpret the distribution of data before and after 2014-2016?</em></p>
+<p><font size=6 color="#009600">✎</font> Put your answer here</p>
+</div>
+</div>
+</div>
+<div class="section" id="part-2-data-filtering-and-analysis">
+<h1>Part 2: Data Filtering and Analysis<a class="headerlink" href="#part-2-data-filtering-and-analysis" title="Permalink to this headline">¶</a></h1>
+<div class="section" id="id2">
+<h2>Grading<a class="headerlink" href="#id2" title="Permalink to this headline">¶</a></h2>
+<ul class="simple">
+<li><p>2.1.1 (2 points)</p></li>
+<li><p>2.1.2 (2 point)</p></li>
+<li><p>2.1.3 (2 point)</p></li>
+<li><p>2.2.1 (7 points)</p></li>
+<li><p>2.2.2 (2 points)</p></li>
+</ul>
+</div>
+<div class="section" id="cleaning-and-filtering">
+<h2>2.1 Cleaning and Filtering<a class="headerlink" href="#cleaning-and-filtering" title="Permalink to this headline">¶</a></h2>
+<p>Additional cleaning and filtering may be required before you can analyze the data the way you want to. There are many ways to do this, but most involve “masking” the data in some way–removing everything from your data except the values that you want.</p>
+<p>In the previous section, you took log10 of GPIN. Some of the GPIN values are 0, and taking the log10 of 0 is undefined. We need to remove the undefined <code class="docutils literal notranslate"><span class="pre">-inf</span></code> values and drop other <code class="docutils literal notranslate"><span class="pre">nan</span></code> values in the dataset to correctly analyze it.</p>
+<p>Below is one strategy for removing undefined <code class="docutils literal notranslate"><span class="pre">-inf</span></code> and <code class="docutils literal notranslate"><span class="pre">inf</span></code> values by first converting them to <code class="docutils literal notranslate"><span class="pre">nan</span></code> values and then using the <code class="docutils literal notranslate"><span class="pre">.dropna()</span></code> function to remove the value:</p>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="c1">### A Basic Example </span>
+<span class="c1"># see docs for .replace at https://pandas.pydata.org/pandas-docs/stable/reference/api/pandas.DataFrame.replace.html</span>
+<span class="c1"># see docs for .dropna at https://pandas.pydata.org/pandas-docs/stable/reference/api/pandas.DataFrame.dropna.html</span>
+
+<span class="c1"># 1. In this example we first create an array with random numbers</span>
+
+<span class="n">n</span> <span class="o">=</span> <span class="mi">5</span>
+<span class="n">random_data</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">random</span><span class="o">.</span><span class="n">standard_normal</span><span class="p">(</span><span class="n">n</span><span class="p">)</span> <span class="c1"># generates 5 random data points</span>
+
+<span class="c1"># 2. Then we add -inf and inf values to the array</span>
+
+<span class="n">random_data</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">append</span><span class="p">(</span><span class="n">random_data</span><span class="p">,</span> <span class="p">[</span><span class="o">-</span><span class="n">np</span><span class="o">.</span><span class="n">inf</span><span class="p">,</span><span class="n">np</span><span class="o">.</span><span class="n">inf</span><span class="p">])</span> <span class="c1"># add inf and -inf values</span>
+<span class="nb">print</span><span class="p">(</span><span class="n">random_data</span><span class="p">)</span> <span class="c1"># print out to check random_data array, observe inf &amp; -inf values</span>
+
+<span class="c1"># 3. The array is converted to a dataframe</span>
+
+<span class="n">random_df</span> <span class="o">=</span> <span class="n">pd</span><span class="o">.</span><span class="n">DataFrame</span><span class="p">(</span><span class="n">random_data</span><span class="p">,</span> <span class="n">columns</span><span class="o">=</span><span class="p">[</span><span class="s1">&#39;data&#39;</span><span class="p">])</span> <span class="c1"># convert array to pd.df</span>
+
+<span class="c1"># 4. We use .replace to replace inf and -inf values with nan</span>
+<span class="c1"># 5. And then drop the nan values</span>
+
+<span class="n">random_df_cleaned</span> <span class="o">=</span> <span class="n">random_df</span><span class="o">.</span><span class="n">replace</span><span class="p">([</span><span class="n">np</span><span class="o">.</span><span class="n">inf</span><span class="p">,</span> <span class="o">-</span><span class="n">np</span><span class="o">.</span><span class="n">inf</span><span class="p">],</span> <span class="n">np</span><span class="o">.</span><span class="n">nan</span><span class="p">)</span> <span class="c1"># replace inf, -inf with nan</span>
+<span class="n">random_df_cleaned</span> <span class="o">=</span> <span class="n">random_df_cleaned</span><span class="o">.</span><span class="n">dropna</span><span class="p">(</span><span class="n">subset</span><span class="o">=</span><span class="p">[</span><span class="s1">&#39;data&#39;</span><span class="p">])</span> <span class="c1"># drop nan</span>
+
+<span class="n">random_df_cleaned</span><span class="o">.</span><span class="n">describe</span><span class="p">()</span> <span class="c1"># check that inf and -inf values are removed in the dataframe</span>
+</pre></div>
+</div>
+</div>
+</div>
+<div class="section" id="task-2-1-1-2-points">
+<h3>✅  Task 2.1.1 (2 points)<a class="headerlink" href="#task-2-1-1-2-points" title="Permalink to this headline">¶</a></h3>
+<p><strong>Task:</strong> <em>Create a new ‘clean’ dataframe with <code class="docutils literal notranslate"><span class="pre">-inf</span></code> values from taking the log10 of 0 removed. You can use the above example as a template. Print the outputs of <code class="docutils literal notranslate"><span class="pre">.describe()</span></code> of 1) the original dataframe and 2) the new ‘clean’ dataframe to demonstrate that the <code class="docutils literal notranslate"><span class="pre">-inf</span></code> values have been removed.</em></p>
+<div class="alert alert-block alert-warning">
+<p><strong>IMPORTANT NOTE:</strong> To be compatible with the rest of the homework (and to make use of hints to complete this assignment after this question!) please name your new ‘clean’ dataframe <code class="docutils literal notranslate"><span class="pre">gpin_data_cleaned</span></code></p>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="c1"># Put your pseudocode and code here</span>
+</pre></div>
+</div>
+</div>
+</div>
+</div>
+<div class="section" id="task-2-1-2-2-points">
+<h3>✅  Task 2.1.2 (2 points)<a class="headerlink" href="#task-2-1-2-2-points" title="Permalink to this headline">¶</a></h3>
+<p>The next task in this assignment will require you to do analysis on <em><strong>one</strong></em> <code class="docutils literal notranslate"><span class="pre">item</span></code> commodity.</p>
+<p><strong>Task:</strong></p>
+<p><em>1.  Create a new dataframe for the <code class="docutils literal notranslate"><span class="pre">item</span></code> commodity that you want to work with. The commodity must have &gt;1,000 entries. Execute the cell below to choose a commodity with &gt;1,000 entries to create a dataframe for.</em></p>
+<p><em>2.  Check that you have successfully created a dataframe with only one commodity <code class="docutils literal notranslate"><span class="pre">item</span></code>.</em></p>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="c1"># Execute this cell for a list of items with &gt;1,000 entries</span>
+
+<span class="n">gpin_data_cleaned</span><span class="p">[</span><span class="s1">&#39;item&#39;</span><span class="p">]</span><span class="o">.</span><span class="n">value_counts</span><span class="p">()</span><span class="o">.</span><span class="n">to_frame</span><span class="p">()[</span><span class="n">gpin_data_cleaned</span><span class="p">[</span><span class="s1">&#39;item&#39;</span><span class="p">]</span><span class="o">.</span><span class="n">value_counts</span><span class="p">()</span><span class="o">.</span><span class="n">to_frame</span><span class="p">()[</span><span class="s1">&#39;item&#39;</span><span class="p">]</span><span class="o">&gt;</span><span class="mi">1000</span><span class="p">]</span>
+</pre></div>
+</div>
+</div>
+</div>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="c1"># Put your code here</span>
+</pre></div>
+</div>
+</div>
+</div>
+</div>
+<div class="section" id="task-2-1-3-2-points">
+<h3>✅  Task 2.1.3 (2 points)<a class="headerlink" href="#task-2-1-3-2-points" title="Permalink to this headline">¶</a></h3>
+<p><strong>Task:</strong> <em>How many entries are in your cleaned dataframe? How do you know that your masking is working?</em></p>
+<p><font size="+3">✎</font> <em>Put your answer here.</em></p>
+</div>
+<div class="section" id="task-2-2-descriptive-statistics-7-points">
+<h3>✅  Task 2.2 Descriptive statistics (7 points)<a class="headerlink" href="#task-2-2-descriptive-statistics-7-points" title="Permalink to this headline">¶</a></h3>
+<p>One way to visualize the distribution of data is with one-dimensional histograms.</p>
+<p><strong>Task:</strong></p>
+<p><em>1.  Plot a one-dimensional histogram of totals for commodity you chose.</em></p>
+<p><em>2.  For your commodity, calculate the mean of the total and plot them as a vertical lines on your histogram.</em></p>
+<p><em>3.  Calculate the standard deviation and plot it as a vertical band about the mean.</em></p>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="c1"># Put your pseudocode and code here</span>
+</pre></div>
+</div>
+</div>
+</div>
+</div>
+<div class="section" id="task-2-2-1-2-points">
+<h3>✅  Task 2.2.1 (2 points)<a class="headerlink" href="#task-2-2-1-2-points" title="Permalink to this headline">¶</a></h3>
+<p><strong>Task:</strong></p>
+<p><em>What do you observe about the distribution of your commodity?</em></p>
+<p><em>1. What does the standard deviation tell you about the distribution?</em></p>
+<p><em>2. Remember that GPIN is relative to the mean production value from 2014-2016 set to 100, and that you have taken the log10 value of the data, where log10(100) = 2. What does it indicate if your mean is above or below the value of 2? That is, based on the mean value relative 2, do you think production of your commodity has historically been increasing or decreasing relative to 2014-2016?</em></p>
+<p><font size=6 color="#009600">✎</font> Write your answer here</p>
+</div>
+</div>
+</div>
+<div class="section" id="part-3-putting-it-all-together">
+<h1>Part 3: Putting it all Together<a class="headerlink" href="#part-3-putting-it-all-together" title="Permalink to this headline">¶</a></h1>
+<div class="section" id="speeding-up-automating-the-process">
+<h2>3.1 Speeding up/Automating the process<a class="headerlink" href="#speeding-up-automating-the-process" title="Permalink to this headline">¶</a></h2>
+<p>For the analysis of a single commodity you did above, you’ll need the information you found in Part 2 for all commodities.</p>
+<div class="section" id="id3">
+<h3>Grading<a class="headerlink" href="#id3" title="Permalink to this headline">¶</a></h3>
+<ul class="simple">
+<li><p>3.1.1 (2 points)</p></li>
+<li><p>3.1.2 (3 points)</p></li>
+<li><p>3.2.1 (4 points)</p></li>
+<li><p>3.2.2 (4 points)</p></li>
+</ul>
+</div>
+<div class="section" id="task-3-1-1-expanding-to-all-commodities-2-points">
+<h3>✅  Task 3.1.1 Expanding to all commodities (2 points)<a class="headerlink" href="#task-3-1-1-expanding-to-all-commodities-2-points" title="Permalink to this headline">¶</a></h3>
+<p><strong>Task 1 (1pt):</strong> <em>Fix the code below to create a function for which the inputs are the overall dataframe (<code class="docutils literal notranslate"><span class="pre">frame</span></code>) and a commodity (<code class="docutils literal notranslate"><span class="pre">filter_key</span></code>) and the outputs are a dataframe containing data for just the selected commodity (<code class="docutils literal notranslate"><span class="pre">item_frame</span></code>).</em></p>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="c1"># Debug the function below</span>
+
+<span class="k">def</span> <span class="nf">item_dataframes</span><span class="p">(</span><span class="n">frame</span><span class="p">,</span><span class="n">filter_key</span><span class="p">):</span> <span class="c1"># inputs are the gpin_data_cleaned data frame and a commodity name</span>
+    <span class="n">mask</span> <span class="o">=</span> <span class="n">frame</span><span class="p">[</span><span class="s2">&quot;item&quot;</span><span class="p">]</span> <span class="c1"># this line of code creates a mask</span>
+    <span class="n">item_frame</span> <span class="o">=</span> <span class="n">frame</span><span class="p">[</span><span class="n">mask</span><span class="p">]</span> <span class="c1"># use the mask to create a new dataframe with just the selected commodity</span>
+    <span class="k">return</span> <span class="n">item_frame</span> <span class="c1"># return the dataframe with just the selected commodity</span>
+</pre></div>
+</div>
+</div>
+</div>
+<p><strong>Task 2 (1pt):</strong> <em>The code below loops through all the weight classes and store the dataframes for each weight class in a list (lists can store all types of variables including Pandas dataframes!). However, there are two bugs in the code! Fix the code below!</em></p>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="c1"># Debug the function below</span>
+
+<span class="n">item_list</span> <span class="o">=</span> <span class="nb">list</span><span class="p">(</span><span class="n">gpin_data_cleaned</span><span class="p">[</span><span class="s1">&#39;item&#39;</span><span class="p">]</span><span class="o">.</span><span class="n">unique</span><span class="p">())</span> <span class="c1"># a list of commodities </span>
+
+<span class="n">frame_list</span> <span class="c1"># an empty list to store dataframes for each commodity</span>
+
+<span class="k">for</span> <span class="n">itm</span> <span class="ow">in</span> <span class="n">item_list</span><span class="p">:</span> <span class="c1"># for each commodity in the commodity list</span>
+    <span class="n">frame_list</span><span class="o">.</span><span class="n">append</span><span class="p">(</span><span class="n">pd</span><span class="o">.</span><span class="n">DataFrame</span><span class="p">(</span><span class="n">item_dataframes</span><span class="p">()))</span> <span class="c1"># use the item_dataframes function to create a df for each commodity and append</span>
+</pre></div>
+</div>
+</div>
+</div>
+</div>
+<div class="section" id="task-3-1-2-expanding-statistics-to-all-commodities-3-points">
+<h3>✅  Task 3.1.2 Expanding statistics to all commodities (3 points)<a class="headerlink" href="#task-3-1-2-expanding-statistics-to-all-commodities-3-points" title="Permalink to this headline">¶</a></h3>
+<p>We want the mean and standard deviation for each commodity. But we also want what the commodity is as well as how many geographical areas it is produced in.</p>
+<p><strong>Task 1 (1pt):</strong> <em>Write a function that calculates and returns the following for a dataframe representing a single commodity:</em></p>
+<p><em>1. Returns the <code class="docutils literal notranslate"><span class="pre">item</span></code> value of the commodity (hint: <code class="docutils literal notranslate"><span class="pre">df['item'].unique()[0]</span></code>)</em><br />
+<em>2. Returns the count of geographical areas represented (hint: <code class="docutils literal notranslate"><span class="pre">len(df['geo_area'].unique())</span></code>)</em><br />
+<em>3. Returns the mean and standard deviation of <code class="docutils literal notranslate"><span class="pre">log10(gpin)</span></code> for the single commodity selected</em></p>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="c1"># Put your pseudocode and code for the function here</span>
+</pre></div>
+</div>
+</div>
+</div>
+<p><strong>Task 2 (2pts):</strong> <em>Then, write a loop through all of the dataframes for the commodity <code class="docutils literal notranslate"><span class="pre">items</span></code>. Save the commodity item name, the number of geographical areas it is produced in, the mean, and standard deviation for plotting in separate lists.</em></p>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="c1"># Put your pseudocode and code here</span>
+</pre></div>
+</div>
+</div>
+</div>
+</div>
+</div>
+<div class="section" id="testing-hypotheses">
+<h2>3.2 Testing hypotheses<a class="headerlink" href="#testing-hypotheses" title="Permalink to this headline">¶</a></h2>
+<p>Now that you have calculated statistics for each commodity, you are interested in testing hypotheses. You have the following ideas that you would like to test:</p>
+<ol class="simple">
+<li><p>Is mean log10(gpin) correlated with the number of countries a commodity is produced in?</p></li>
+<li><p>Is the production of commodities that are produced in a large number of countries more historically stable than production of commodities in a smaller number of countries? That is, is the standard deviation of log10(gpin) correlated with number of countries it is produced in.</p></li>
+</ol>
+<p>You decide to make a plot to visualize your data and test these hypotheses!</p>
+<div class="section" id="task-3-2-1-plotting-mean-log10-gpin-and-standard-deviation-log10-gpin-vs-number-of-producing-countries-4-points">
+<h3>✅  Task 3.2.1 Plotting mean log10(gpin) and standard deviation log10(gpin) vs number of producing countries (4 points)<a class="headerlink" href="#task-3-2-1-plotting-mean-log10-gpin-and-standard-deviation-log10-gpin-vs-number-of-producing-countries-4-points" title="Permalink to this headline">¶</a></h3>
+<p><strong>Task:</strong> <em>Using the lists above, make the following plots:</em></p>
+<ol class="simple">
+<li><p>For all commodities, plot the mean log10(gpin) value vs. the number of countries it is produced in (2pts);</p></li>
+<li><p>For all commodities, plot the standard deviation of the log10(gpin) vs. the number of countries (2pts).</p></li>
+</ol>
+<p>Be sure to label x and y axes and provide a plot title for each.</p>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="c1"># Put the code for your plot of mean log10(gpin) vs number of countried here</span>
+</pre></div>
+</div>
+</div>
+</div>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="c1"># Put the code for your plot of standard deviation log10(gpin) vs number of countried here</span>
+</pre></div>
+</div>
+</div>
+</div>
+</div>
+<div class="section" id="task-3-2-2-interpreting-plots-and-drawing-conclusions-4-pts">
+<h3>✅  Task 3.2.2 Interpreting plots and drawing conclusions (4 pts)<a class="headerlink" href="#task-3-2-2-interpreting-plots-and-drawing-conclusions-4-pts" title="Permalink to this headline">¶</a></h3>
+<div class="alert alert-block alert-warning">
+<p><strong>IMPORTANT NOTE:</strong>
+For the tasks below, remember that negative results in science are common! For one or both of your plots, there may be or may not be correlation. It is OK to say that you think the data supports or does not support the hypotheses for each of the questions! The important thing is that you 1) understand the statistics as they apply to the data and 2) do not misinterpret what your plots show above.</p>
+<p><strong>Task 1 (2pts):</strong> Based on your plot above, do you believe that mean log10(gpin) correlates with the number of countries a commodity is produced in (1pt)? Based on your answer, does the number of countries a commodity is produced in influence whether its production has historically increased or decreased (1pt)?</p>
+<p><font size=6 color="#009600">✎</font> Write your answer here</p>
+<p><strong>Task 2 (2pts):</strong> Based on your plot above, do you believe the production of commodities that are produced in a large number of countries is more historically stable than production of commodities in a smaller number of countries, as measured using standard deviation? (1pt)? Based on your answer, do you think that the number of countries a crop is produced in predicts if it will be more resilient to climate change in the future (1pt)?</p>
+<p><font size=6 color="#009600">✎</font> Write your answer here</p>
+</div>
+</div>
+</div>
+<div class="section" id="congratulations-you-re-done">
+<h1>Congratulations, you’re done!<a class="headerlink" href="#congratulations-you-re-done" title="Permalink to this headline">¶</a></h1>
+<p>Submit this assignment by uploading your notebook to the course Desire2Learn web page.  Go to the “Homework Assignments” folder, find the appropriate submission link, and upload everything there. Make sure your name is on it!</p>
+</div>
+
+    <script type="text/x-thebe-config">
+    {
+        requestKernel: true,
+        binderOptions: {
+            repo: "binder-examples/jupyter-stacks-datascience",
+            ref: "master",
+        },
+        codeMirrorConfig: {
+            theme: "abcdef",
+            mode: "python"
+        },
+        kernelOptions: {
+            kernelName: "python3",
+            path: "./Homework/Homework-3"
+        },
+        predefinedOutput: true
+    }
+    </script>
+    <script>kernelName = 'python3'</script>
+
+              </div>
+              
+        
+            
+
+
+
+<div class='prev-next-bottom'>
+    
+    <div id="prev">
+        <a class="left-prev" href="../Homework-2/HW_02_F21-STUDENT.html" title="previous page">
+            <i class="prevnext-label fas fa-angle-left"></i>
+            <div class="prevnext-info">
+                <p class="prevnext-label">previous</p>
+                <p class="prevnext-title">Homework 2: If Statements, Functions, and Modules</p>
+            </div>
+        </a>
+    </div>
+     <div id="next">
+        <a class="right-next" href="../Homework-4/HW-04-Fall2021_Final-STUDENT.html" title="next page">
+            <div class="prevnext-info">
+                <p class="prevnext-label">next</p>
+                <p class="prevnext-title">Homework 4: Fitting data using NumPy and SciPy</p>
+            </div>
+            <i class="prevnext-label fas fa-angle-right"></i>
+        </a>
+     </div>
+
+</div>
+        
+        </div>
+    </div>
+    <footer class="footer mt-5 mt-md-0">
+    <div class="container">
+      <p>
+        
+          By MSU CMSE<br/>
+        
+            &copy; Copyright 2021.<br/>
+      </p>
+    </div>
+  </footer>
+</main>
+
+
+      </div>
+    </div>
+  
+  <script src="../../_static/js/index.1c5a1a01449ed65a7b51.js"></script>
+
+  
+  </body>
+</html>

@@ -1,0 +1,2054 @@
+
+<!DOCTYPE html>
+
+<html>
+  <head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" /><meta name="generator" content="Docutils 0.17.1: http://docutils.sourceforge.net/" />
+
+    <title>Day 20 Pre-Class: 2D NumPy Arrays &#8212; CMSE 201</title>
+    
+  <!-- Loaded before other Sphinx assets -->
+  <link href="../_static/styles/theme.css?digest=1999514e3f237ded88cf" rel="stylesheet">
+<link href="../_static/styles/pydata-sphinx-theme.css?digest=1999514e3f237ded88cf" rel="stylesheet">
+
+    
+  <link rel="stylesheet"
+    href="../_static/vendor/fontawesome/5.13.0/css/all.min.css">
+  <link rel="preload" as="font" type="font/woff2" crossorigin
+    href="../_static/vendor/fontawesome/5.13.0/webfonts/fa-solid-900.woff2">
+  <link rel="preload" as="font" type="font/woff2" crossorigin
+    href="../_static/vendor/fontawesome/5.13.0/webfonts/fa-brands-400.woff2">
+
+    <link rel="stylesheet" type="text/css" href="../_static/pygments.css" />
+    <link rel="stylesheet" href="../_static/styles/sphinx-book-theme.css?digest=5115cc725059bd94278eecd172e13a965bf8f5a9" type="text/css" />
+    <link rel="stylesheet" type="text/css" href="../_static/togglebutton.css" />
+    <link rel="stylesheet" type="text/css" href="../_static/copybutton.css" />
+    <link rel="stylesheet" type="text/css" href="../_static/mystnb.css" />
+    <link rel="stylesheet" type="text/css" href="../_static/sphinx-thebe.css" />
+    <link rel="stylesheet" type="text/css" href="../_static/design-style.b7bb847fb20b106c3d81b95245e65545.min.css" />
+    
+  <!-- Pre-loaded scripts that we'll load fully later -->
+  <link rel="preload" as="script" href="../_static/scripts/pydata-sphinx-theme.js?digest=1999514e3f237ded88cf">
+
+    <script data-url_root="../" id="documentation_options" src="../_static/documentation_options.js"></script>
+    <script src="../_static/jquery.js"></script>
+    <script src="../_static/underscore.js"></script>
+    <script src="../_static/doctools.js"></script>
+    <script src="../_static/clipboard.min.js"></script>
+    <script src="../_static/copybutton.js"></script>
+    <script src="../_static/scripts/sphinx-book-theme.js?digest=9c920249402e914e316237a7dbc6769907cce411"></script>
+    <script>let toggleHintShow = 'Click to show';</script>
+    <script>let toggleHintHide = 'Click to hide';</script>
+    <script>let toggleOpenOnPrint = 'true';</script>
+    <script src="../_static/togglebutton.js"></script>
+    <script>var togglebuttonSelector = '.toggle, .admonition.dropdown, .tag_hide_input div.cell_input, .tag_hide-input div.cell_input, .tag_hide_output div.cell_output, .tag_hide-output div.cell_output, .tag_hide_cell.cell, .tag_hide-cell.cell';</script>
+    <script src="../_static/design-tabs.js"></script>
+    <script>const THEBE_JS_URL = "https://unpkg.com/thebe@0.8.2/lib/index.js"
+const thebe_selector = ".thebe,.cell"
+const thebe_selector_input = "pre"
+const thebe_selector_output = ".output, .cell_output"
+</script>
+    <script async="async" src="../_static/sphinx-thebe.js"></script>
+    <script>window.MathJax = {"options": {"processHtmlClass": "tex2jax_process|mathjax_process|math|output_area"}}</script>
+    <script defer="defer" src="https://cdn.jsdelivr.net/npm/mathjax@3/es5/tex-mml-chtml.js"></script>
+    <link rel="shortcut icon" href="../_static/cmse_fav.ico"/>
+    <link rel="index" title="Index" href="../genindex.html" />
+    <link rel="search" title="Search" href="../search.html" />
+    <link rel="next" title="Day 20 In-Class Assignment: Image Analysis" href="Day-20_In-Class_2DImageAnalysis-STUDENT.html" />
+    <link rel="prev" title="Day 19 In-Class Assignment: Compartmental Modeling, moving from the model to the Code" href="../Day-19/Day-19_In-Class_CompartmentsWithSolveIVP-STUDENT.html" />
+    <meta name="viewport" content="width=device-width, initial-scale=1" />
+    <meta name="docsearch:language" content="None">
+    
+
+    <!-- Google Analytics -->
+    
+  </head>
+  <body data-spy="scroll" data-target="#bd-toc-nav" data-offset="60">
+<!-- Checkboxes to toggle the left sidebar -->
+<input type="checkbox" class="sidebar-toggle" name="__navigation" id="__navigation" aria-label="Toggle navigation sidebar">
+<label class="overlay overlay-navbar" for="__navigation">
+    <div class="visually-hidden">Toggle navigation sidebar</div>
+</label>
+<!-- Checkboxes to toggle the in-page toc -->
+<input type="checkbox" class="sidebar-toggle" name="__page-toc" id="__page-toc" aria-label="Toggle in-page Table of Contents">
+<label class="overlay overlay-pagetoc" for="__page-toc">
+    <div class="visually-hidden">Toggle in-page Table of Contents</div>
+</label>
+<!-- Headers at the top -->
+<div class="announcement header-item noprint"></div>
+<div class="header header-item noprint"></div>
+
+    
+    <div class="container-fluid" id="banner"></div>
+
+    
+
+    <div class="container-xl">
+      <div class="row">
+          
+<!-- Sidebar -->
+<div class="bd-sidebar noprint" id="site-navigation">
+    <div class="bd-sidebar__content">
+        <div class="bd-sidebar__top"><div class="navbar-brand-box">
+    <a class="navbar-brand text-wrap" href="../index.html">
+      
+        <!-- `logo` is deprecated in Sphinx 4.0, so remove this when we stop supporting 3 -->
+        
+      
+      
+      <img src="../_static/logo.png" class="logo" alt="logo">
+      
+      
+      <h1 class="site-logo" id="site-title">CMSE 201</h1>
+      
+    </a>
+</div><form class="bd-search d-flex align-items-center" action="../search.html" method="get">
+  <i class="icon fas fa-search"></i>
+  <input type="search" class="form-control" name="q" id="search-input" placeholder="Search this book..." aria-label="Search this book..." autocomplete="off" >
+</form><nav class="bd-links" id="bd-docs-nav" aria-label="Main">
+    <div class="bd-toc-item active">
+        
+        <ul class="nav bd-sidenav bd-sidenav__home-link">
+            <li class="toctree-l1">
+                <a class="reference internal" href="../intro.html">
+                    Welcome to Computational Modeling and Data Analysis I!
+                </a>
+            </li>
+        </ul>
+        <p aria-level="2" class="caption" role="heading">
+ <span class="caption-text">
+  Course Materials
+ </span>
+</p>
+<ul class="nav bd-sidenav">
+ <li class="toctree-l1 has-children">
+  <a class="reference internal" href="../Course_Materials-201/CourseDocuments.html">
+   Important Course information
+  </a>
+  <input class="toctree-checkbox" id="toctree-checkbox-1" name="toctree-checkbox-1" type="checkbox"/>
+  <label for="toctree-checkbox-1">
+   <i class="fas fa-chevron-down">
+   </i>
+  </label>
+  <ul>
+   <li class="toctree-l2">
+    <a class="reference internal" href="../Course_Materials-201/CMSE201-Syllabus.html">
+     Syllabus
+    </a>
+   </li>
+   <li class="toctree-l2">
+    <a class="reference internal" href="../Course_Materials-201/CMSE201-Schedule.html">
+     Course Schedule
+    </a>
+   </li>
+   <li class="toctree-l2">
+    <a class="reference internal" href="../Course_Materials-201/SoftwareSetupGuide.html">
+     Software Setup Guide
+    </a>
+   </li>
+   <li class="toctree-l2">
+    <a class="reference internal" href="../Course_Materials-201/classroom_participation.html">
+     Classroom Participation
+    </a>
+   </li>
+  </ul>
+ </li>
+</ul>
+<p aria-level="2" class="caption" role="heading">
+ <span class="caption-text">
+  Day 01
+ </span>
+</p>
+<ul class="nav bd-sidenav">
+ <li class="toctree-l1">
+  <a class="reference internal" href="../Day-01/Day-01_In-Class_SortingAlgorithm-STUDENT.html">
+   Day 1 In-Class Assignment: Introductions and Sorting Algorithms
+  </a>
+ </li>
+</ul>
+<p aria-level="2" class="caption" role="heading">
+ <span class="caption-text">
+  Day 02
+ </span>
+</p>
+<ul class="nav bd-sidenav">
+ <li class="toctree-l1">
+  <a class="reference internal" href="../Day-02/Day-02_Pre-Class_IntroToPython-STUDENT.html">
+   Day 2 Pre-class Assignment: Intro to Python
+  </a>
+ </li>
+ <li class="toctree-l1">
+  <a class="reference internal" href="../Day-02/Day-02_In-Class_OrderOfMagnitudeModeling-STUDENT.html">
+   Day 2 In-class Assignment: Order of Magnitude Modeling
+  </a>
+ </li>
+</ul>
+<p aria-level="2" class="caption" role="heading">
+ <span class="caption-text">
+  Day 03
+ </span>
+</p>
+<ul class="nav bd-sidenav">
+ <li class="toctree-l1">
+  <a class="reference internal" href="../Day-03/Day-03_Pre-Class_ListsAndLoops-STUDENT.html">
+   Day 3: Pre-Class Assignment: Lists and Loops
+  </a>
+ </li>
+ <li class="toctree-l1">
+  <a class="reference internal" href="../Day-03/Day-03_In-Class_ListsLoopsAndSaving-STUDENT.html">
+   Day 3 In-class Assignment: The power of compound interest
+  </a>
+ </li>
+</ul>
+<p aria-level="2" class="caption" role="heading">
+ <span class="caption-text">
+  Day 04
+ </span>
+</p>
+<ul class="nav bd-sidenav">
+ <li class="toctree-l1">
+  <a class="reference internal" href="../Day-04/Day_04_PreClass_DataAlgorithmicBias-STUDENT.html">
+   Day 4 Pre-class Assignment: Introduction to Data Ethics: Data and Algorithmic Bias
+  </a>
+ </li>
+ <li class="toctree-l1">
+  <a class="reference internal" href="../Day-04/Day_04_In_Class_DataAlgorithmicBias-STUDENT.html">
+   Day 4 In-class Assignment: Data and Algorithmic Bias, Academic Integrity, and Coding Best Practices
+  </a>
+ </li>
+</ul>
+<p aria-level="2" class="caption" role="heading">
+ <span class="caption-text">
+  Day 05
+ </span>
+</p>
+<ul class="nav bd-sidenav">
+ <li class="toctree-l1">
+  <a class="reference internal" href="../Day-05/Day-05_Pre-Class_IfStatementsAndFunctions-STUDENT.html">
+   Day 5 Pre-class Assignment: Boolean logic, if statements, and an introduction to functions
+  </a>
+ </li>
+ <li class="toctree-l1">
+  <a class="reference internal" href="../Day-05/Day-05_In-Class_IfStatementsAndFunctions-STUDENT.html">
+   Day 5 In-class Assignment: Savings for Everyone
+  </a>
+ </li>
+</ul>
+<p aria-level="2" class="caption" role="heading">
+ <span class="caption-text">
+  Day 06
+ </span>
+</p>
+<ul class="nav bd-sidenav">
+ <li class="toctree-l1">
+  <a class="reference internal" href="../Day-06/Day-06_Pre-Class_MoreFunctions-STUDENT.html">
+   Day 6 Pre-class Assignment: Thinking more about functions
+  </a>
+ </li>
+ <li class="toctree-l1">
+  <a class="reference internal" href="../Day-06/Day-06_In-Class_FunctionsAndSquirrels-STUDENT.html">
+   Day 6 In Class Assignment: A Scurry of Squirrels in Central Park
+  </a>
+ </li>
+ <li class="toctree-l1">
+  <a class="reference internal" href="../Day-06/Day-06_In-Class_FunctionsAndSquirrels-INSTRUCTOR.html">
+   Day 6 In Class Assignment: A Scurry of Squirrels in Central Park
+  </a>
+ </li>
+</ul>
+<p aria-level="2" class="caption" role="heading">
+ <span class="caption-text">
+  Day 07
+ </span>
+</p>
+<ul class="nav bd-sidenav">
+ <li class="toctree-l1">
+  <a class="reference internal" href="../Day-07/Day-07_Pre-Class_ModulesMathAndPlots-STUDENT.html">
+   Day 7 Pre-Class Assignment: Python Modules: Numpy and Plots
+  </a>
+ </li>
+ <li class="toctree-l1">
+  <a class="reference internal" href="../Day-07/Day-07_In-Class_MathAndPlotting-STUDENT.html">
+   Day 7 In-class Assignment: Visualizing population growth
+  </a>
+ </li>
+</ul>
+<p aria-level="2" class="caption" role="heading">
+ <span class="caption-text">
+  Day 08
+ </span>
+</p>
+<ul class="nav bd-sidenav">
+ <li class="toctree-l1">
+  <a class="reference internal" href="../Day-08/Day-08_Pre-Class_IntroToNumPy-STUDENT.html">
+   Day 8 Pre-Class: Introduction to NumPy
+  </a>
+ </li>
+ <li class="toctree-l1">
+  <a class="reference external" href="https://raw.githubusercontent.com/msu-cmse-courses/cmse201-F21-data/main/Day-08/michigan_pop.csv">
+   michigan_pop.csv
+  </a>
+ </li>
+ <li class="toctree-l1">
+  <a class="reference internal" href="../Day-08/Day-08_In-Class_NumPyWithTheGreatLakes-STUDENT.html">
+   Day 8 In-class Assignment: Exploring Great Lakes Water Levels using NumPy
+  </a>
+ </li>
+ <li class="toctree-l1">
+  <a class="reference external" href="https://raw.githubusercontent.com/msu-cmse-courses/cmse201-F21-data/main/Day-08/lake_erie.csv">
+   lake_erie.csv
+  </a>
+ </li>
+ <li class="toctree-l1">
+  <a class="reference external" href="https://raw.githubusercontent.com/msu-cmse-courses/cmse201-F21-data/main/Day-08/lake_michigan_huron.csv">
+   lake_michigan_huron.csv
+  </a>
+ </li>
+ <li class="toctree-l1">
+  <a class="reference external" href="https://raw.githubusercontent.com/msu-cmse-courses/cmse201-F21-data/main/Day-08/lake_ontario.csv">
+   lake_ontario.csv
+  </a>
+ </li>
+ <li class="toctree-l1">
+  <a class="reference external" href="https://raw.githubusercontent.com/msu-cmse-courses/cmse201-F21-data/main/Day-08/lake_superior.csv">
+   lake_superior.csv
+  </a>
+ </li>
+</ul>
+<p aria-level="2" class="caption" role="heading">
+ <span class="caption-text">
+  Day 09
+ </span>
+</p>
+<ul class="nav bd-sidenav">
+ <li class="toctree-l1">
+  <a class="reference internal" href="../Day-09/Day-09_Pre-Class_Pandas-STUDENT.html">
+   Day 9 Pre-class Assignment: Computational Models Overview and The Pandas Data Analysis Library
+  </a>
+ </li>
+ <li class="toctree-l1">
+  <a class="reference internal" href="../Day-09/Day-09_In-Class_GDP-STUDENT.html">
+   Day 9 In-Class: Cleaning and Analyzing Economic Data
+  </a>
+ </li>
+ <li class="toctree-l1">
+  <a class="reference external" href="https://raw.githubusercontent.com/msu-cmse-courses/cmse201-S22-data/main/Day-10/API_NY.GDP.MKTP.CD_DS2_en_csv_v2_3011433.csv">
+   API_NY.GDP.MKTP.CD_DS2_en_csv_v2_3011433.csv
+  </a>
+ </li>
+</ul>
+<p aria-level="2" class="caption" role="heading">
+ <span class="caption-text">
+  Day 10
+ </span>
+</p>
+<ul class="nav bd-sidenav">
+ <li class="toctree-l1">
+  <a class="reference internal" href="../Day-10/Day-10_Pre-Class_Masking-STUDENT.html">
+   Day 10 Pre-class Assignment: Normal Distributions, Masking, and Log Plots
+  </a>
+ </li>
+ <li class="toctree-l1">
+  <a class="reference external" href="https://raw.githubusercontent.com/msu-cmse-courses/cmse201-S22-data/main/Day-11/GDP_Cleaned.csv">
+   GDP_Cleaned.csv
+  </a>
+ </li>
+ <li class="toctree-l1">
+  <a class="reference internal" href="../Day-10/Day-10_In-Class_Flint-STUDENT.html">
+   Day 10 In-class Assignment: Get the Lead Out: Understanding The Water Crisis in Flint, MI
+  </a>
+ </li>
+ <li class="toctree-l1">
+  <a class="reference external" href="https://raw.githubusercontent.com/msu-cmse-courses/cmse201-S22-data/main/Day-11/flint_water_data.csv">
+   flint_water_data.csv
+  </a>
+ </li>
+</ul>
+<p aria-level="2" class="caption" role="heading">
+ <span class="caption-text">
+  Day 11
+ </span>
+</p>
+<ul class="nav bd-sidenav">
+ <li class="toctree-l1">
+  <a class="reference internal" href="../Day-11/Day-11_Pre-Class_Data_File_Formats_Manipulation-STUDENT.html">
+   Day 11 Pre-Class Assignment: Overview of data and file formats
+  </a>
+ </li>
+ <li class="toctree-l1">
+  <a class="reference external" href="https://raw.githubusercontent.com/msu-cmse-courses/cmse201-S22-data/main/Day-12/us_pop_by_state_2010_2011.csv">
+   us_pop_by_state_2010_2011.csv
+  </a>
+ </li>
+ <li class="toctree-l1">
+  <a class="reference external" href="https://github.com/msu-cmse-courses/cmse201-S22-data/raw/main/Day-12/us_pop_by_state_2012_2013_encoding_utf-16be.csv">
+   us_pop_by_state_2012_2013_encoding_utf-16be.csv
+  </a>
+ </li>
+ <li class="toctree-l1">
+  <a class="reference external" href="https://raw.githubusercontent.com/msu-cmse-courses/cmse201-S22-data/main/Day-12/us_pop_by_state_2014_2015_windows_linefeed.csv">
+   us_pop_by_state_2014_2015_windows_linefeed.csv
+  </a>
+ </li>
+ <li class="toctree-l1">
+  <a class="reference external" href="https://github.com/msu-cmse-courses/cmse201-S22-data/blob/main/Day-12/us_pop_by_state_2016a.csv?raw=true">
+   us_pop_by_state_2016a.csv
+  </a>
+ </li>
+ <li class="toctree-l1">
+  <a class="reference external" href="https://github.com/msu-cmse-courses/cmse201-S22-data/blob/main/Day-12/us_pop_by_state_2017a.yaff?raw=true">
+   us_pop_by_state2017a.yaff
+  </a>
+ </li>
+ <li class="toctree-l1">
+  <a class="reference external" href="https://github.com/msu-cmse-courses/cmse201-S22-data/blob/main/Day-12/us_pop_by_state_2018_2019.bin?raw=true">
+   us_pop_by_state_2018_2019.bin
+  </a>
+ </li>
+ <li class="toctree-l1">
+  <a class="reference internal" href="../Day-11/Day-11_In-Class_Data_File_Formats_Manipulation-STUDENT.html">
+   Day 11 In-Class: Overview of data and file formats; US Population and Representation
+  </a>
+ </li>
+</ul>
+<p aria-level="2" class="caption" role="heading">
+ <span class="caption-text">
+  Day 12
+ </span>
+</p>
+<ul class="nav bd-sidenav">
+ <li class="toctree-l1">
+  <a class="reference internal" href="../Day-12/Day-12_Pre-Class_Online_Resources_STUDENT.html">
+   Day 12 Pre-class Assignment: Finding Resources Online
+  </a>
+ </li>
+ <li class="toctree-l1">
+  <a class="reference internal" href="../Day-12/Day-12_In-Class_Online_Resources_STUDENT.html">
+   Day 12 In-Class: Using Resources from Online
+  </a>
+ </li>
+</ul>
+<p aria-level="2" class="caption" role="heading">
+ <span class="caption-text">
+  Day 13
+ </span>
+</p>
+<ul class="nav bd-sidenav">
+ <li class="toctree-l1">
+  <a class="reference internal" href="../Day-13/Day-13_Pre-Class_CurveFitting-STUDENT.html">
+   Day 13 Pre-Class Assignment: Fitting functions to data (curve-fitting) and thinking more about models
+  </a>
+ </li>
+ <li class="toctree-l1">
+  <a class="reference internal" href="../Day-13/Day-13_In-Class_FittingCurves-STUDENT.html">
+   Day 13 In-Class Assignment: (Thoughtfully) fitting models to data
+  </a>
+ </li>
+ <li class="toctree-l1">
+  <a class="reference external" href="https://raw.githubusercontent.com/msu-cmse-courses/cmse201-S22-data/main/Day-14/pop200.csv">
+   pop200.csv
+  </a>
+ </li>
+ <li class="toctree-l1">
+  <a class="reference external" href="https://raw.githubusercontent.com/msu-cmse-courses/cmse201-S22-data/main/Day-14/pop300.csv">
+   pop300.csv
+  </a>
+ </li>
+</ul>
+<p aria-level="2" class="caption" role="heading">
+ <span class="caption-text">
+  Day 14
+ </span>
+</p>
+<ul class="nav bd-sidenav">
+ <li class="toctree-l1">
+  <a class="reference internal" href="../Day-14/Day-14_Pre-Class_Evaluating_Fits-STUDENT.html">
+   Day 14 Pre-Class Assignment: Making Predictions Using Data
+  </a>
+ </li>
+ <li class="toctree-l1">
+  <a class="reference internal" href="../Day-14/Day-14_In-Class_Evaluating_Fits-STUDENT.html">
+   Day 14 In-Class Assignment: Evaluating Models
+  </a>
+ </li>
+</ul>
+<p aria-level="2" class="caption" role="heading">
+ <span class="caption-text">
+  Day 15
+ </span>
+</p>
+<ul class="nav bd-sidenav">
+ <li class="toctree-l1">
+  <a class="reference internal" href="../Day-15/Day-15-Pre-Class_IntroToDataVisualization-STUDENT.html">
+   Day 15 Pre-class Assignment: Introduction to Data Visualization
+  </a>
+ </li>
+ <li class="toctree-l1">
+  <a class="reference internal" href="../Day-15/Day-15-In-Class_IntroToDataVisualization-STUDENT.html">
+   Day 15 In-Class: Introduction to Data Visualization
+  </a>
+ </li>
+</ul>
+<p aria-level="2" class="caption" role="heading">
+ <span class="caption-text">
+  Day 16
+ </span>
+</p>
+<ul class="nav bd-sidenav">
+ <li class="toctree-l1">
+  <a class="reference internal" href="../Day-16/Day-16-Intro_to_ODEs_Pre-Class_STUDENT.html">
+   Day 16: Pre-class Assignment: Introduction to Modeling with Ordinary Differential Equations
+  </a>
+ </li>
+ <li class="toctree-l1">
+  <a class="reference internal" href="../Day-16/Day-16-Intro_to_ODEs_In-Class_STUDENT.html">
+   Day 16: In-class Assignment: Introduction to Modeling with ODEs
+  </a>
+ </li>
+</ul>
+<p aria-level="2" class="caption" role="heading">
+ <span class="caption-text">
+  Day 17
+ </span>
+</p>
+<ul class="nav bd-sidenav">
+ <li class="toctree-l1">
+  <a class="reference internal" href="../Day-17/Day-17_Pre-Class_ModelingWithODEs-STUDENT.html">
+   Day 17: Pre-class Assignment: Modeling with Ordinary Differential Equations
+  </a>
+ </li>
+ <li class="toctree-l1">
+  <a class="reference internal" href="../Day-17/Day-17_In-Class_ModelingWithODEs-STUDENT.html">
+   Day 17: In-class Assignment: Modeling with ODEs
+  </a>
+ </li>
+ <li class="toctree-l1">
+  <a class="reference internal" href="../Day-17/Day-17_In-Class_ModelingWithODEs-INSTRUCTOR.html">
+   Day 17: In-class Assignment: Modeling with ODEs
+  </a>
+ </li>
+</ul>
+<p aria-level="2" class="caption" role="heading">
+ <span class="caption-text">
+  Day 18
+ </span>
+</p>
+<ul class="nav bd-sidenav">
+ <li class="toctree-l1">
+  <a class="reference internal" href="../Day-18/Day-18_Pre-Class_ViralKinetics-STUDENT.html">
+   Day 18 Pre-Class: Viral Kinetics
+  </a>
+ </li>
+ <li class="toctree-l1">
+  <a class="reference internal" href="../Day-18/Day-18_In-Class_CompartmentalModeling-STUDENT.html">
+   Day 18 In-class: Building Compartmental Models
+  </a>
+ </li>
+</ul>
+<p aria-level="2" class="caption" role="heading">
+ <span class="caption-text">
+  Day 19
+ </span>
+</p>
+<ul class="nav bd-sidenav">
+ <li class="toctree-l1">
+  <a class="reference internal" href="../Day-19/Day-19_Pre-Class_Zombies-STUDENT.html">
+   Day 19 Pre-class Assignment: ZOMBIES!!
+  </a>
+ </li>
+ <li class="toctree-l1">
+  <a class="reference internal" href="../Day-19/Day-19_In-Class_CompartmentsWithSolveIVP-STUDENT.html">
+   Day 19 In-Class Assignment: Compartmental Modeling, moving from the model to the Code
+  </a>
+ </li>
+ <li class="toctree-l1">
+  <a class="reference external" href="https://github.com/msu-cmse-courses/cmse201-F21-data/blob/main/Day-16/latent.png">
+   latent.png
+  </a>
+ </li>
+</ul>
+<p aria-level="2" class="caption" role="heading">
+ <span class="caption-text">
+  Day 20
+ </span>
+</p>
+<ul class="current nav bd-sidenav">
+ <li class="toctree-l1 current active">
+  <a class="current reference internal" href="#">
+   Day 20 Pre-Class: 2D NumPy Arrays
+  </a>
+ </li>
+ <li class="toctree-l1">
+  <a class="reference external" href="https://raw.githubusercontent.com/msu-cmse-courses/cmse201-F21-data/main/Day-17/PCA_files/cars.csv">
+   cars.csv
+  </a>
+ </li>
+ <li class="toctree-l1">
+  <a class="reference external" href="https://github.com/msu-cmse-courses/cmse201-F21-data/raw/main/Day-17/PCA_files/example.jpeg">
+   example.jpeg
+  </a>
+ </li>
+ <li class="toctree-l1">
+  <a class="reference internal" href="Day-20_In-Class_2DImageAnalysis-STUDENT.html">
+   Day 20 In-Class Assignment: Image Analysis
+  </a>
+ </li>
+ <li class="toctree-l1">
+  <a class="reference external" href="https://github.com/msu-cmse-courses/cmse201-F21-data/blob/main/Day-17/ICA_files/beach.jpeg">
+   beach.jpeg
+  </a>
+ </li>
+ <li class="toctree-l1">
+  <a class="reference external" href="https://github.com/msu-cmse-courses/cmse201-F21-data/blob/main/Day-17/ICA_files/landscape.jpeg">
+   landscape.jpeg
+  </a>
+ </li>
+ <li class="toctree-l1">
+  <a class="reference external" href="https://github.com/msu-cmse-courses/cmse201-F21-data/blob/main/Day-17/ICA_files/zebra.png">
+   zebra.png
+  </a>
+ </li>
+</ul>
+<p aria-level="2" class="caption" role="heading">
+ <span class="caption-text">
+  Day 21
+ </span>
+</p>
+<ul class="nav bd-sidenav">
+ <li class="toctree-l1">
+  <a class="reference internal" href="../Day-21/Day-21_Pre-Class_ABMForestFire-STUDENT.html">
+   Day 21 Pre-class: Agent-based models and forest fires
+  </a>
+ </li>
+ <li class="toctree-l1">
+  <a class="reference internal" href="../Day-21/Day-21_In-Class_ForestFiresPartI-STUDENT.html">
+   Day 21 Part 1 In-class Assignment: Modeling forest fires with an Agent-based Model
+  </a>
+ </li>
+</ul>
+<p aria-level="2" class="caption" role="heading">
+ <span class="caption-text">
+  Day 22
+ </span>
+</p>
+<ul class="nav bd-sidenav">
+ <li class="toctree-l1">
+  <a class="reference internal" href="../Day-22/Day-22_Pre-Class_ABMForestFire_Part2-STUDENT.html">
+   Day 22 Pre-class: Reviewing 2D Numpy Arrays
+  </a>
+ </li>
+ <li class="toctree-l1">
+  <a class="reference internal" href="../Day-22/Day-22_In-Class_ForestFiresPartII-STUDENT.html">
+   Day 22 In-class Assignment: Modeling forest fires with an Agent-based Model (Part II)
+  </a>
+ </li>
+</ul>
+<p aria-level="2" class="caption" role="heading">
+ <span class="caption-text">
+  Day 23
+ </span>
+</p>
+<ul class="nav bd-sidenav">
+ <li class="toctree-l1">
+  <a class="reference internal" href="../Day-23/Day-23_Pre-Class_ProjectWorkDay-STUDENT.html">
+   Day 23 Pre-class: Project Update Preparation
+  </a>
+ </li>
+ <li class="toctree-l1">
+  <a class="reference internal" href="../Day-23/Day-23_In-Class_ProjectWorkDay-STUDENT.html">
+   Day 23 In-class Assignment: Project Work Day
+  </a>
+ </li>
+</ul>
+<p aria-level="2" class="caption" role="heading">
+ <span class="caption-text">
+  Day 24
+ </span>
+</p>
+<ul class="nav bd-sidenav">
+ <li class="toctree-l1">
+  <a class="reference internal" href="../Day-24/Day-24_Pre-Class_Climate-STUDENT.html">
+   Day 24 Pre-class:  Global warming and climate modeling
+  </a>
+ </li>
+ <li class="toctree-l1">
+  <a class="reference internal" href="../Day-24/Day-24_In-Class_Climate-STUDENT.html">
+   Day 24 In-class Assignment: Analyzing climate data
+  </a>
+ </li>
+ <li class="toctree-l1">
+  <a class="reference external" href="https://raw.githubusercontent.com/msu-cmse-courses/cmse201-F21-data/main/Day-22/GLB.Ts.csv">
+   GLB.Ts.csv
+  </a>
+ </li>
+ <li class="toctree-l1">
+  <a class="reference external" href="https://raw.githubusercontent.com/msu-cmse-courses/cmse201-F21-data/main/Day-22/bintanja2008.txt">
+   bintanja2008.txt
+  </a>
+ </li>
+ <li class="toctree-l1">
+  <a class="reference external" href="https://raw.githubusercontent.com/msu-cmse-courses/cmse201-F21-data/main/Day-22/ch4_annmean_gl.txt">
+   ch4_annmean_gl.txt
+  </a>
+ </li>
+ <li class="toctree-l1">
+  <a class="reference external" href="https://raw.githubusercontent.com/msu-cmse-courses/cmse201-F21-data/main/Day-22/co2_mm_mlo.txt">
+   co2_mm_mlo.txt
+  </a>
+ </li>
+ <li class="toctree-l1">
+  <a class="reference external" href="https://raw.githubusercontent.com/msu-cmse-courses/cmse201-F21-data/main/Day-22/vostok-ch4nat.txt">
+   vostok-ch4nat.txt
+  </a>
+ </li>
+ <li class="toctree-l1">
+  <a class="reference external" href="https://raw.githubusercontent.com/msu-cmse-courses/cmse201-F21-data/main/Day-22/vostok-co2nat.txt">
+   vostok-co2nat.txt
+  </a>
+ </li>
+ <li class="toctree-l1">
+  <a class="reference external" href="https://raw.githubusercontent.com/msu-cmse-courses/cmse201-F21-data/main/Day-22/vostok-deutnat.txt">
+   vostok-deutnat.txt
+  </a>
+ </li>
+</ul>
+<p aria-level="2" class="caption" role="heading">
+ <span class="caption-text">
+  Day 25
+ </span>
+</p>
+<ul class="nav bd-sidenav">
+ <li class="toctree-l1">
+  <a class="reference internal" href="../Day-25/Day-25_Pre-Class_Climate-STUDENT.html">
+   Day 25 pre-class assignment: climate modeling
+  </a>
+ </li>
+ <li class="toctree-l1">
+  <a class="reference internal" href="../Day-25/Day-25_In-Class_Climate-STUDENT.html">
+   Day 25 In-class Assignment: A simple model for global temperature
+  </a>
+ </li>
+ <li class="toctree-l1">
+  <a class="reference external" href="https://github.com/msu-cmse-courses/cmse201-F21-data/blob/main/Day-23/listentothee.png">
+   listentothee.png
+  </a>
+ </li>
+ <li class="toctree-l1">
+  <a class="reference external" href="https://github.com/msu-cmse-courses/cmse201-F21-data/blob/main/Day-23/simple_model.png">
+   simple_model.png
+  </a>
+ </li>
+</ul>
+<p aria-level="2" class="caption" role="heading">
+ <span class="caption-text">
+  Homework
+ </span>
+</p>
+<ul class="nav bd-sidenav">
+ <li class="toctree-l1">
+  <a class="reference internal" href="../Homework/Homework_1/HW_01_F22_STUDENT.html">
+   Homework 1: Introduction to Variables, Lists, and Loops
+  </a>
+ </li>
+ <li class="toctree-l1">
+  <a class="reference internal" href="../Homework/Homework_2/HW_02_F22-STUDENT.html">
+   Homework 2: Dictionaries, If Statements, Functions, and Modules
+  </a>
+ </li>
+ <li class="toctree-l1">
+  <a class="reference external" href="https://raw.githubusercontent.com/msu-cmse-courses/cmse201-S22-data/main/Homework/state_data.csv">
+   state_data.csv
+  </a>
+ </li>
+ <li class="toctree-l1">
+  <a class="reference internal" href="../Homework/Homework_3/HW3_F22-STUDENT.html">
+   Homework 3: Pandas Data Analysis
+  </a>
+ </li>
+ <li class="toctree-l1">
+  <a class="reference external" href="https://raw.githubusercontent.com/msu-cmse-courses/cmse201-S22-data/main/Homework/EV_Sale.csv">
+   EV_Sale.csv
+  </a>
+ </li>
+ <li class="toctree-l1">
+  <a class="reference internal" href="../Homework/Homework_4/HW-04_STUDENT.html">
+   Homework 4: Modeling Bacterial Growth
+  </a>
+ </li>
+ <li class="toctree-l1">
+  <a class="reference external" href="https://raw.githubusercontent.com/msu-cmse-courses/cmse201-S22-data/main/OD600.csv">
+   OD600.csv
+  </a>
+ </li>
+ <li class="toctree-l1">
+  <a class="reference internal" href="../Homework/Homework_5/HW-05_STUDENT.html">
+   Homework 5: 2D Arrays and Agent-based Modeling (EXTRA CREDIT)
+  </a>
+ </li>
+ <li class="toctree-l1">
+  <a class="reference external" href="https://raw.githubusercontent.com/msu-cmse-courses/cmse201-F21-data/main/blurred-math.png">
+   blurred-math.png
+  </a>
+ </li>
+ <li class="toctree-l1">
+  <a class="reference external" href="https://raw.githubusercontent.com/msu-cmse-courses/cmse201-F21-data/main/blurred-scream.png">
+   blurred-scream.png
+  </a>
+ </li>
+ <li class="toctree-l1">
+  <a class="reference external" href="https://raw.githubusercontent.com/msu-cmse-courses/cmse201-F21-data/main/scream.jpg">
+   scream.jpg
+  </a>
+ </li>
+ <li class="toctree-l1">
+  <a class="reference internal" href="../Homework/Code_Portfolio/Code_Portfolio_Assignment.html">
+   Code Portfolio Assignment
+  </a>
+ </li>
+ <li class="toctree-l1">
+  <a class="reference internal" href="../Homework/Code_Portfolio/Code_Portfolio_Example.html">
+   Code Portfolio Example
+  </a>
+ </li>
+</ul>
+<p aria-level="2" class="caption" role="heading">
+ <span class="caption-text">
+  Bootcamps
+ </span>
+</p>
+<ul class="nav bd-sidenav">
+ <li class="toctree-l1">
+  <a class="reference internal" href="../Bootcamp_Notebooks/Bootcamp1-Python_Fundamentals_STUDENT.html">
+   Bootcamp 1: Python Fundamentals
+  </a>
+ </li>
+ <li class="toctree-l1">
+  <a class="reference internal" href="../Bootcamp_Notebooks/Bootcamp2-InitialConceptsReview.html">
+   Bootcamp 2: Initial Concepts Review Cheatsheet
+  </a>
+ </li>
+ <li class="toctree-l1">
+  <a class="reference internal" href="../Bootcamp_Notebooks/Bootcamp3-Debugging_STUDENT.html">
+   Bootcamp 3: Debugging
+  </a>
+ </li>
+ <li class="toctree-l1">
+  <a class="reference internal" href="../Bootcamp_Notebooks/Bootcamp4-IfStatements_STUDENT.html">
+   Bootcamp 4: If Statements
+  </a>
+ </li>
+ <li class="toctree-l1">
+  <a class="reference internal" href="../Bootcamp_Notebooks/Bootcamp5-Functions_STUDENT.html">
+   Bootcamp 5: Functions
+  </a>
+ </li>
+ <li class="toctree-l1">
+  <a class="reference internal" href="../Bootcamp_Notebooks/Bootcamp6-Matplotlib_STUDENT.html">
+   Bootcamp 6: Matplotlib
+  </a>
+ </li>
+ <li class="toctree-l1">
+  <a class="reference internal" href="../Bootcamp_Notebooks/Bootcamp8_Pandas_STUDENT.html">
+   Bootcamp 8: Practice with Pandas
+  </a>
+ </li>
+ <li class="toctree-l1">
+  <a class="reference internal" href="../Bootcamp_Notebooks/Bootcamp8_Pandas_INSTRUCTOR.html">
+   Bootcamp 8: Practice with Pandas (Solution)
+  </a>
+ </li>
+ <li class="toctree-l1">
+  <a class="reference external" href="https://raw.githubusercontent.com/msu-cmse-courses/cmse201-S22-data/main/weather.csv">
+   weather.csv
+  </a>
+ </li>
+ <li class="toctree-l1">
+  <a class="reference internal" href="../Bootcamp_Notebooks/Bootcamp9-ScipyCurveFit_STUDENT.html">
+   Bootcamp 9:  Scipy curve_fit
+  </a>
+ </li>
+ <li class="toctree-l1">
+  <a class="reference internal" href="../Bootcamp_Notebooks/Bootcamp9-ScipyCurveFit_INSTRUCTOR.html">
+   Bootcamp 9:  Scipy curve_fit
+  </a>
+ </li>
+ <li class="toctree-l1">
+  <a class="reference internal" href="../Bootcamp_Notebooks/Bootcamp10-CompartmentalModels_STUDENT.html">
+   Bootcamp 10: Compartmental Models
+  </a>
+ </li>
+ <li class="toctree-l1">
+  <a class="reference internal" href="../Bootcamp_Notebooks/Bootcamp10-CompartmentalModels_INSTRUCTOR.html">
+   Bootcamp 10: Compartmental Models
+  </a>
+ </li>
+ <li class="toctree-l1">
+  <a class="reference internal" href="../Bootcamp_Notebooks/Bootcamp11_Solve_IVP_STUDENT.html">
+   Bootcamp 11: Practice with
+   <code class="docutils literal notranslate">
+    <span class="pre">
+     solve_ivp
+    </span>
+   </code>
+  </a>
+ </li>
+ <li class="toctree-l1">
+  <a class="reference internal" href="../Bootcamp_Notebooks/Bootcamp11_Solve_IVP_INSTRUCTOR.html">
+   Bootcamp 11: Practice with
+   <code class="docutils literal notranslate">
+    <span class="pre">
+     solve_ivp
+    </span>
+   </code>
+  </a>
+ </li>
+</ul>
+<p aria-level="2" class="caption" role="heading">
+ <span class="caption-text">
+  Semester Project
+ </span>
+</p>
+<ul class="nav bd-sidenav">
+ <li class="toctree-l1">
+  <a class="reference internal" href="../Project_Materials/CMSE201_SemesterProjectDetails.html">
+   Semester Project Details
+  </a>
+ </li>
+ <li class="toctree-l1">
+  <a class="reference internal" href="../Project_Materials/First_Project_Checkpoint.html">
+   First Project Checkpoint
+  </a>
+ </li>
+ <li class="toctree-l1">
+  <a class="reference internal" href="../Project_Materials/CMSE201_FinalProjectTemplate.html">
+   CMSE 201 Final Project Template
+  </a>
+ </li>
+ <li class="toctree-l1">
+  <a class="reference external" href="https://raw.githubusercontent.com/msu-cmse-courses/cmse201-S22-data/main/Projects/CMSE201_ExampleProject_A.pdf">
+   CMSE201_ExampleProject_A.pdf
+  </a>
+ </li>
+ <li class="toctree-l1">
+  <a class="reference external" href="https://raw.githubusercontent.com/msu-cmse-courses/cmse201-S22-data/main/Projects/CMSE201_ExampleProject_B.pdf">
+   CMSE201_ExampleProject_B.pdf
+  </a>
+ </li>
+ <li class="toctree-l1">
+  <a class="reference external" href="https://raw.githubusercontent.com/msu-cmse-courses/cmse201-S22-data/main/Projects/CMSE201_ExampleProject_C.pdf">
+   CMSE201_ExampleProject_C.pdf
+  </a>
+ </li>
+ <li class="toctree-l1">
+  <a class="reference external" href="https://raw.githubusercontent.com/msu-cmse-courses/cmse201-S22-data/main/Projects/CMSE201_ExampleProject_D.pdf">
+   CMSE201_ExampleProject_D.pdf
+  </a>
+ </li>
+ <li class="toctree-l1">
+  <a class="reference external" href="https://raw.githubusercontent.com/msu-cmse-courses/cmse201-S22-data/main/Projects/CMSE201_ExampleProject_E.pdf">
+   CMSE201_ExampleProject_E.pdf
+  </a>
+ </li>
+ <li class="toctree-l1">
+  <a class="reference external" href="https://raw.githubusercontent.com/msu-cmse-courses/cmse201-S22-data/main/Projects/CMSE201_final_project_example_1.pdf">
+   CMSE201_final_project_example_1.pdf
+  </a>
+ </li>
+ <li class="toctree-l1">
+  <a class="reference external" href="https://raw.githubusercontent.com/msu-cmse-courses/cmse201-S22-data/main/Projects/CMSE201_final_project_example_2.pdf">
+   CMSE201_final_project_example_2.pdf
+  </a>
+ </li>
+ <li class="toctree-l1">
+  <a class="reference external" href="https://raw.githubusercontent.com/msu-cmse-courses/cmse201-S22-data/main/Projects/CMSE201_final_project_example_3.pdf">
+   CMSE201_final_project_example_3.pdf
+  </a>
+ </li>
+ <li class="toctree-l1">
+  <a class="reference external" href="https://raw.githubusercontent.com/msu-cmse-courses/cmse201-S22-data/main/Projects/CMSE201_final_project_example_4.pdf">
+   CMSE201_final_project_example_4.pdf
+  </a>
+ </li>
+ <li class="toctree-l1">
+  <a class="reference internal" href="../Project_Materials/CMSE201FinalProject_RequirementsAndGradingRubric.html">
+   Requirements and Grading Rubric
+  </a>
+ </li>
+</ul>
+
+    </div>
+</nav></div>
+        <div class="bd-sidebar__bottom">
+             <!-- To handle the deprecated key -->
+            
+            <div class="navbar_extra_footer">
+            Powered by <a href="https://jupyterbook.org">Jupyter Book</a>
+            </div>
+            
+        </div>
+    </div>
+    <div id="rtd-footer-container"></div>
+</div>
+
+
+          
+
+
+          
+<!-- A tiny helper pixel to detect if we've scrolled -->
+<div class="sbt-scroll-pixel-helper"></div>
+<!-- Main content -->
+<div class="col py-0 content-container">
+    
+    <div class="header-article row sticky-top noprint">
+        
+
+
+
+<div class="col py-1 d-flex header-article-main">
+    <div class="header-article__left">
+        
+        <label for="__navigation"
+  class="headerbtn"
+  data-toggle="tooltip"
+data-placement="right"
+title="Toggle navigation"
+>
+  
+
+<span class="headerbtn__icon-container">
+  <i class="fas fa-bars"></i>
+  </span>
+
+</label>
+
+        
+    </div>
+    <div class="header-article__right">
+<div class="menu-dropdown menu-dropdown-launch-buttons">
+  <button class="headerbtn menu-dropdown__trigger"
+      aria-label="Launch interactive content">
+      <i class="fas fa-rocket"></i>
+  </button>
+  <div class="menu-dropdown__content">
+    <ul>
+      <li>
+        <a href="https://mybinder.org/v2/gh/msu-cmse-courses/cmse201-F22-jb/main?urlpath=tree/Day-20/Day-20_Pre-Class_2DNumPyArrays-STUDENT.ipynb"
+   class="headerbtn"
+   data-toggle="tooltip"
+data-placement="left"
+title="Launch on Binder"
+>
+  
+
+<span class="headerbtn__icon-container">
+  
+    <img src="../_static/images/logo_binder.svg">
+  </span>
+<span class="headerbtn__text-container">Binder</span>
+</a>
+
+      </li>
+      
+    </ul>
+  </div>
+</div>
+
+<button onclick="toggleFullScreen()"
+  class="headerbtn"
+  data-toggle="tooltip"
+data-placement="bottom"
+title="Fullscreen mode"
+>
+  
+
+<span class="headerbtn__icon-container">
+  <i class="fas fa-expand"></i>
+  </span>
+
+</button>
+
+<div class="menu-dropdown menu-dropdown-repository-buttons">
+  <button class="headerbtn menu-dropdown__trigger"
+      aria-label="Source repositories">
+      <i class="fab fa-github"></i>
+  </button>
+  <div class="menu-dropdown__content">
+    <ul>
+      <li>
+        <a href="https://github.com/msu-cmse-courses/cmse201-F22-jb"
+   class="headerbtn"
+   data-toggle="tooltip"
+data-placement="left"
+title="Source repository"
+>
+  
+
+<span class="headerbtn__icon-container">
+  <i class="fab fa-github"></i>
+  </span>
+<span class="headerbtn__text-container">repository</span>
+</a>
+
+      </li>
+      
+      <li>
+        <a href="https://github.com/msu-cmse-courses/cmse201-F22-jb/issues/new?title=Issue%20on%20page%20%2FDay-20/Day-20_Pre-Class_2DNumPyArrays-STUDENT.html&body=Your%20issue%20content%20here."
+   class="headerbtn"
+   data-toggle="tooltip"
+data-placement="left"
+title="Open an issue"
+>
+  
+
+<span class="headerbtn__icon-container">
+  <i class="fas fa-lightbulb"></i>
+  </span>
+<span class="headerbtn__text-container">open issue</span>
+</a>
+
+      </li>
+      
+    </ul>
+  </div>
+</div>
+
+<div class="menu-dropdown menu-dropdown-download-buttons">
+  <button class="headerbtn menu-dropdown__trigger"
+      aria-label="Download this page">
+      <i class="fas fa-download"></i>
+  </button>
+  <div class="menu-dropdown__content">
+    <ul>
+      <li>
+        <a href="../_sources/Day-20/Day-20_Pre-Class_2DNumPyArrays-STUDENT.ipynb"
+   class="headerbtn"
+   data-toggle="tooltip"
+data-placement="left"
+title="Download source file"
+>
+  
+
+<span class="headerbtn__icon-container">
+  <i class="fas fa-file"></i>
+  </span>
+<span class="headerbtn__text-container">.ipynb</span>
+</a>
+
+      </li>
+      
+      <li>
+        
+<button onclick="printPdf(this)"
+  class="headerbtn"
+  data-toggle="tooltip"
+data-placement="left"
+title="Print to PDF"
+>
+  
+
+<span class="headerbtn__icon-container">
+  <i class="fas fa-file-pdf"></i>
+  </span>
+<span class="headerbtn__text-container">.pdf</span>
+</button>
+
+      </li>
+      
+    </ul>
+  </div>
+</div>
+<label for="__page-toc"
+  class="headerbtn headerbtn-page-toc"
+  
+>
+  
+
+<span class="headerbtn__icon-container">
+  <i class="fas fa-list"></i>
+  </span>
+
+</label>
+
+    </div>
+</div>
+
+<!-- Table of contents -->
+<div class="col-md-3 bd-toc show noprint">
+    <div class="tocsection onthispage pt-5 pb-3">
+        <i class="fas fa-list"></i> Contents
+    </div>
+    <nav id="bd-toc-nav" aria-label="Page">
+        <ul class="visible nav section-nav flex-column">
+ <li class="toc-h2 nav-item toc-entry">
+  <a class="reference internal nav-link" href="#p-style-text-align-right-put-your-name-here-p">
+   <p style="text-align: right;">
+    ✅ Put your name here
+   </p>
+  </a>
+ </li>
+ <li class="toc-h2 nav-item toc-entry">
+  <a class="reference internal nav-link" href="#goals-for-this-pre-class-assignment">
+   Goals for this pre-class assignment
+  </a>
+ </li>
+ <li class="toc-h2 nav-item toc-entry">
+  <a class="reference internal nav-link" href="#assignment-instructions">
+   Assignment instructions
+  </a>
+ </li>
+ <li class="toc-h2 nav-item toc-entry">
+  <a class="reference internal nav-link" href="#review-of-numpy-arrays">
+   Review of NumPy Arrays
+  </a>
+ </li>
+ <li class="toc-h2 nav-item toc-entry">
+  <a class="reference internal nav-link" href="#part-1-2d-numpy-arrays">
+   Part 1: 2D NumPy arrays
+  </a>
+  <ul class="nav section-nav flex-column">
+   <li class="toc-h3 nav-item toc-entry">
+    <a class="reference internal nav-link" href="#let-s-consider-an-example">
+     <strong>
+      1.1 Let’s consider an example:
+     </strong>
+    </a>
+   </li>
+   <li class="toc-h3 nav-item toc-entry">
+    <a class="reference internal nav-link" href="#let-s-do-another-example">
+     <strong>
+      1.2 Let’s do another example:
+     </strong>
+    </a>
+   </li>
+  </ul>
+ </li>
+ <li class="toc-h2 nav-item toc-entry">
+  <a class="reference internal nav-link" href="#part-2-masking-2d-arrays">
+   Part 2: Masking 2D arrays
+  </a>
+  <ul class="nav section-nav flex-column">
+   <li class="toc-h3 nav-item toc-entry">
+    <a class="reference internal nav-link" href="#using-masking-for-filtering-data">
+     Using Masking for Filtering Data
+    </a>
+   </li>
+  </ul>
+ </li>
+ <li class="toc-h2 nav-item toc-entry">
+  <a class="reference internal nav-link" href="#part-3-loading-images">
+   Part 3: Loading Images
+  </a>
+ </li>
+ <li class="toc-h2 nav-item toc-entry">
+  <a class="reference internal nav-link" href="#assignment-wrap-up">
+   Assignment Wrap-up
+  </a>
+  <ul class="nav section-nav flex-column">
+   <li class="toc-h3 nav-item toc-entry">
+    <a class="reference internal nav-link" href="#congratulations-you-re-done">
+     Congratulations, you’re done!
+    </a>
+   </li>
+  </ul>
+ </li>
+</ul>
+
+    </nav>
+</div>
+    </div>
+    <div class="article row">
+        <div class="col pl-md-3 pl-lg-5 content-container">
+            <!-- Table of contents that is only displayed when printing the page -->
+            <div id="jb-print-docs-body" class="onlyprint">
+                <h1>Day 20 Pre-Class: 2D NumPy Arrays</h1>
+                <!-- Table of contents -->
+                <div id="print-main-content">
+                    <div id="jb-print-toc">
+                        
+                        <div>
+                            <h2> Contents </h2>
+                        </div>
+                        <nav aria-label="Page">
+                            <ul class="visible nav section-nav flex-column">
+ <li class="toc-h2 nav-item toc-entry">
+  <a class="reference internal nav-link" href="#p-style-text-align-right-put-your-name-here-p">
+   <p style="text-align: right;">
+    ✅ Put your name here
+   </p>
+  </a>
+ </li>
+ <li class="toc-h2 nav-item toc-entry">
+  <a class="reference internal nav-link" href="#goals-for-this-pre-class-assignment">
+   Goals for this pre-class assignment
+  </a>
+ </li>
+ <li class="toc-h2 nav-item toc-entry">
+  <a class="reference internal nav-link" href="#assignment-instructions">
+   Assignment instructions
+  </a>
+ </li>
+ <li class="toc-h2 nav-item toc-entry">
+  <a class="reference internal nav-link" href="#review-of-numpy-arrays">
+   Review of NumPy Arrays
+  </a>
+ </li>
+ <li class="toc-h2 nav-item toc-entry">
+  <a class="reference internal nav-link" href="#part-1-2d-numpy-arrays">
+   Part 1: 2D NumPy arrays
+  </a>
+  <ul class="nav section-nav flex-column">
+   <li class="toc-h3 nav-item toc-entry">
+    <a class="reference internal nav-link" href="#let-s-consider-an-example">
+     <strong>
+      1.1 Let’s consider an example:
+     </strong>
+    </a>
+   </li>
+   <li class="toc-h3 nav-item toc-entry">
+    <a class="reference internal nav-link" href="#let-s-do-another-example">
+     <strong>
+      1.2 Let’s do another example:
+     </strong>
+    </a>
+   </li>
+  </ul>
+ </li>
+ <li class="toc-h2 nav-item toc-entry">
+  <a class="reference internal nav-link" href="#part-2-masking-2d-arrays">
+   Part 2: Masking 2D arrays
+  </a>
+  <ul class="nav section-nav flex-column">
+   <li class="toc-h3 nav-item toc-entry">
+    <a class="reference internal nav-link" href="#using-masking-for-filtering-data">
+     Using Masking for Filtering Data
+    </a>
+   </li>
+  </ul>
+ </li>
+ <li class="toc-h2 nav-item toc-entry">
+  <a class="reference internal nav-link" href="#part-3-loading-images">
+   Part 3: Loading Images
+  </a>
+ </li>
+ <li class="toc-h2 nav-item toc-entry">
+  <a class="reference internal nav-link" href="#assignment-wrap-up">
+   Assignment Wrap-up
+  </a>
+  <ul class="nav section-nav flex-column">
+   <li class="toc-h3 nav-item toc-entry">
+    <a class="reference internal nav-link" href="#congratulations-you-re-done">
+     Congratulations, you’re done!
+    </a>
+   </li>
+  </ul>
+ </li>
+</ul>
+
+                        </nav>
+                    </div>
+                </div>
+            </div>
+            <main id="main-content" role="main">
+                
+              <div>
+                
+  <section class="tex2jax_ignore mathjax_ignore" id="day-20-pre-class-2d-numpy-arrays">
+<h1>Day 20 Pre-Class: 2D NumPy Arrays<a class="headerlink" href="#day-20-pre-class-2d-numpy-arrays" title="Permalink to this headline">#</a></h1>
+<section id="p-style-text-align-right-put-your-name-here-p">
+<h2><p style="text-align: right;"> ✅ Put your name here</p><a class="headerlink" href="#p-style-text-align-right-put-your-name-here-p" title="Permalink to this headline">#</a></h2>
+<img src="https://i.imgur.com/mhtHvEP.png">
+</section>
+<section id="goals-for-this-pre-class-assignment">
+<h2>Goals for this pre-class assignment<a class="headerlink" href="#goals-for-this-pre-class-assignment" title="Permalink to this headline">#</a></h2>
+<p>By the end of this assignment, you should be able to:</p>
+<ul class="simple">
+<li><p>Review some of the basics of using NumPy arrays</p></li>
+<li><p>Understand the motivation behind 2D NumPy arrays</p></li>
+<li><p>Index, mask, and manipulate 2D NumPy arrays</p></li>
+</ul>
+</section>
+<section id="assignment-instructions">
+<h2>Assignment instructions<a class="headerlink" href="#assignment-instructions" title="Permalink to this headline">#</a></h2>
+<p>Watch the videos below, do the readings linked to below the videos, and complete the assigned programming problems.  Please get started early, and come to office hours if you have any questions! Make use of Slack as well!</p>
+<p><strong>This assignment is due by 11:59 p.m. the day before class,</strong> and should be uploaded into the appropriate “Pre-class assignments” submission folder.  Submission instructions can be found at the end of the notebook.</p>
+</section>
+<hr class="docutils" />
+<section id="review-of-numpy-arrays">
+<h2>Review of NumPy Arrays<a class="headerlink" href="#review-of-numpy-arrays" title="Permalink to this headline">#</a></h2>
+<p>It’s been a little while since we introduced the concept of NumPy arrays. Below are a few videos that you have seen before in the pre-class assignment that introduced NumPy arrays. If you feel like you need a review of the material or are unclear about any of the foundational concepts of using arrays, you should take the time to rewatch these videos. <strong>If you feel like you have a good understanding of the material, feel free to skip this portion of the assignment and go right ahead to working with 2D NumPy arrays.</strong></p>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="kn">from</span> <span class="nn">IPython.display</span> <span class="kn">import</span> <span class="n">YouTubeVideo</span>
+<span class="n">YouTubeVideo</span><span class="p">(</span><span class="s2">&quot;BTXyE3KLIOs&quot;</span><span class="p">,</span><span class="n">width</span><span class="o">=</span><span class="mi">640</span><span class="p">,</span><span class="n">height</span><span class="o">=</span><span class="mi">360</span><span class="p">)</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<div class="output text_html">
+<iframe
+    width="640"
+    height="360"
+    src="https://www.youtube.com/embed/BTXyE3KLIOs"
+    frameborder="0"
+    allowfullscreen
+
+></iframe>
+</div></div>
+</div>
+<p>(If the YouTube video doesn’t work, try the <a class="reference external" href="https://mediaspace.msu.edu/media/The+numpy+module/1_f2dka7x4">MediaSpace link</a>)</p>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="kn">from</span> <span class="nn">IPython.display</span> <span class="kn">import</span> <span class="n">YouTubeVideo</span>
+<span class="n">YouTubeVideo</span><span class="p">(</span><span class="s2">&quot;g7epZeDA_lQ&quot;</span><span class="p">,</span><span class="n">width</span><span class="o">=</span><span class="mi">640</span><span class="p">,</span><span class="n">height</span><span class="o">=</span><span class="mi">360</span><span class="p">)</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<div class="output text_html">
+<iframe
+    width="640"
+    height="360"
+    src="https://www.youtube.com/embed/g7epZeDA_lQ"
+    frameborder="0"
+    allowfullscreen
+
+></iframe>
+</div></div>
+</div>
+<p>(If the YouTube version doesn’t work, try the <a class="reference external" href="https://mediaspace.msu.edu/media/An+Introduction+to+NumPy+ArraysA+NumPy+Array+Basics/1_fz4bh3ng">MediaSpace link</a>)</p>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="kn">from</span> <span class="nn">IPython.display</span> <span class="kn">import</span> <span class="n">YouTubeVideo</span>
+<span class="n">YouTubeVideo</span><span class="p">(</span><span class="s2">&quot;V2C9expTF1o&quot;</span><span class="p">,</span><span class="n">width</span><span class="o">=</span><span class="mi">640</span><span class="p">,</span><span class="n">height</span><span class="o">=</span><span class="mi">360</span><span class="p">)</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<div class="output text_html">
+<iframe
+    width="640"
+    height="360"
+    src="https://www.youtube.com/embed/V2C9expTF1o"
+    frameborder="0"
+    allowfullscreen
+
+></iframe>
+</div></div>
+</div>
+<p>(If the YouTube video doesn’t work, try the <a class="reference external" href="https://mediaspace.msu.edu/media/An+Introduction+to+NumPy+ArraysA+Operations+and+Arrays/1_qu3lpypx">MediaSpace link</a>)</p>
+</section>
+<hr class="docutils" />
+<section id="part-1-2d-numpy-arrays">
+<h2>Part 1: 2D NumPy arrays<a class="headerlink" href="#part-1-2d-numpy-arrays" title="Permalink to this headline">#</a></h2>
+<p>In this assignment, we are going to spend some time thinking about higher dimensional arrays. In using the term “dimension” when talking about arrays, it can <em>almost</em> help to think about these like geometrical shapes or objects. A line only has a length to it, so we call it a one dimensional object. A square, however, has a length <em>and</em> a width, so we call it a two dimensional object. Though this metaphor can start to break down as the shapes become more complex, it works for our 1D and 2D cases. A 1D array is simply a single array of value, like <code class="docutils literal notranslate"><span class="pre">array([1,2,3,4,5])</span></code>. A 2D array, which we are going to introduce here today, is as bit more complex. 2D arrays are very commonly used in computational modeling and data analysis for reasons that will hopefully be clear after today.</p>
+<p>✅ <strong>To begin:</strong> Watch this video on an introduction to 2D NumPy arrays. In this video, we will outline some real-world examples for why we might want to use these objects and go over some of the basics of creating them and using them. Answer the questions that follow after the video. (If the YouTube video doesn’t work, this this <a class="reference external" href="https://mediaspace.msu.edu/media/2D+NumPy+Array+Basics/1_dpq27j29">MediaSpace link</a>)</p>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="kn">from</span> <span class="nn">IPython.display</span> <span class="kn">import</span> <span class="n">YouTubeVideo</span>
+<span class="n">YouTubeVideo</span><span class="p">(</span><span class="s2">&quot;KXPtg7iHbfw&quot;</span><span class="p">,</span><span class="n">width</span><span class="o">=</span><span class="mi">640</span><span class="p">,</span><span class="n">height</span><span class="o">=</span><span class="mi">360</span><span class="p">)</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<div class="output text_html">
+<iframe
+    width="640"
+    height="360"
+    src="https://www.youtube.com/embed/KXPtg7iHbfw"
+    frameborder="0"
+    allowfullscreen
+
+></iframe>
+</div></div>
+</div>
+<p>✅  <strong>Task:</strong> <em>In your own words</em>, explain the idea of a 2D array to a friend who has never coded before. Why do we call it a <strong>2D</strong> array? Can you think of an example other than the examples outlined in the videos where 2D arrays could prove to be useful?</p>
+<p><font size="+3">✎</font> <em>Put your answer here</em></p>
+<section id="let-s-consider-an-example">
+<h3><strong>1.1 Let’s consider an example:</strong><a class="headerlink" href="#let-s-consider-an-example" title="Permalink to this headline">#</a></h3>
+<p>You may remember playing the game <em>Battleship</em> as a kid, but if not, here is a brief overview of how the game works. Each player has a grid that they place ships onto. The other person playing makes guesses as to where their opponents ships are. If they guess correctly, the ship takes a “hit,” which is denoted by a red peg. If they miss, then the ship remains untouched, noted by a white peg. This continues back and forth until one player sinks all of their opponent’s ships.</p>
+<p>We are going to use this game as a very basic example for making a 2D Numpy array. The grid for a game of <em>Battleship</em> looks like the image to the right.</p>
+<table><tr><td><img src="https://proxy.duckduckgo.com/iu/?u=http%3A%2F%2Fstatic.guim.co.uk%2Fsys-images%2FGuardian%2FPix%2Fpictures%2F2012%2F4%2F4%2F1333548711318%2FBattleship-board-game-001.jpg&f=1" width=300px></td><td><img src="https://proxy.duckduckgo.com/iu/?u=https%3A%2F%2Fvignette.wikia.nocookie.net%2Fsurvivor-org%2Fimages%2F4%2F48%2FBattleship_board.jpg%2Frevision%2Flatest%3Fcb%3D20140620032009&f=1" width = 300px>
+</td></tr></table><p>First, let’s make a 2D NumPy array to represent the <em>Battleship</em> grid.  We will initialize all of the values to <strong>0</strong> using the <code class="docutils literal notranslate"><span class="pre">np.zeros</span></code> function in NumPy.</p>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="c1">##Import numpy and alias it first</span>
+<span class="kn">import</span> <span class="nn">numpy</span> <span class="k">as</span> <span class="nn">np</span>
+<span class="c1">##Make a board of zeros of shape 10 x 10</span>
+<span class="n">board</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">zeros</span><span class="p">((</span><span class="mi">10</span><span class="p">,</span> <span class="mi">10</span><span class="p">))</span>
+<span class="n">board</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<div class="output text_plain highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>array([[0., 0., 0., 0., 0., 0., 0., 0., 0., 0.],
+       [0., 0., 0., 0., 0., 0., 0., 0., 0., 0.],
+       [0., 0., 0., 0., 0., 0., 0., 0., 0., 0.],
+       [0., 0., 0., 0., 0., 0., 0., 0., 0., 0.],
+       [0., 0., 0., 0., 0., 0., 0., 0., 0., 0.],
+       [0., 0., 0., 0., 0., 0., 0., 0., 0., 0.],
+       [0., 0., 0., 0., 0., 0., 0., 0., 0., 0.],
+       [0., 0., 0., 0., 0., 0., 0., 0., 0., 0.],
+       [0., 0., 0., 0., 0., 0., 0., 0., 0., 0.],
+       [0., 0., 0., 0., 0., 0., 0., 0., 0., 0.]])
+</pre></div>
+</div>
+</div>
+</div>
+<p><strong>Now that we have our board made</strong>, we can use 2D indices to try and recreate the following <em>Battleship</em> board.</p>
+<p>For squares where a ship is present, we will have the corresponding element of the array have a value of <strong>1</strong>. We don’t want to define <em>each individual element</em> of the array. That would take a long time. But, we can use 2D indexing to speed things up a bit and change ranges of elements at a time. For example, the ship on the right-hand side of the board which occupies three squares could be placed on our board using the following line of code: <code class="docutils literal notranslate"><span class="pre">board[3:6,8]</span> <span class="pre">=</span> <span class="pre">1</span></code>, which <strong>indexes</strong> the rows 3, 4, and 5 (not 6 because the endpoint is not included!) of the board and column 8 of the board, then sets the <strong>values</strong> at those locations to be 1.</p>
+<p>Let’s start placing ships!</p>
+<p>Once you have placed the ships, look at the entries of 2D array and then use the <code class="docutils literal notranslate"><span class="pre">matplotlib</span></code> function <code class="docutils literal notranslate"><span class="pre">imshow</span></code> to visualize the board and make sure that it matches our image. What do you notice about the values in the 2D array and how do they correspond to the image?</p>
+<img src="https://proxy.duckduckgo.com/iu/?u=http%3A%2F%2Fwww.datagenetics.com%2Fblog%2Fdecember32011%2Fs1.png&f=1" width = 300px><div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="kn">import</span> <span class="nn">matplotlib.pyplot</span> <span class="k">as</span> <span class="nn">plt</span>
+<span class="o">%</span><span class="k">matplotlib</span> inline
+
+<span class="c1"># Place first boat</span>
+<span class="n">board</span><span class="p">[</span><span class="mi">3</span><span class="p">:</span><span class="mi">6</span><span class="p">,</span><span class="mi">8</span><span class="p">]</span> <span class="o">=</span> <span class="mi">1</span>
+<span class="c1"># Place second boat</span>
+<span class="n">board</span><span class="p">[</span><span class="mi">0</span><span class="p">,</span> <span class="mi">1</span><span class="p">:</span><span class="mi">4</span><span class="p">]</span> <span class="o">=</span> <span class="mi">1</span>
+
+<span class="c1"># Print the 2D Array</span>
+<span class="nb">print</span><span class="p">(</span><span class="n">board</span><span class="p">)</span>
+
+<span class="c1"># Display the board</span>
+<span class="n">plt</span><span class="o">.</span><span class="n">imshow</span><span class="p">(</span><span class="n">board</span><span class="p">)</span>
+<span class="n">plt</span><span class="o">.</span><span class="n">axis</span><span class="p">(</span><span class="s1">&#39;off&#39;</span><span class="p">)</span> <span class="c1"># Don&#39;t include the axes!</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>[[0. 1. 1. 1. 0. 0. 0. 0. 0. 0.]
+ [0. 0. 0. 0. 0. 0. 0. 0. 0. 0.]
+ [0. 0. 0. 0. 0. 0. 0. 0. 0. 0.]
+ [0. 0. 0. 0. 0. 0. 0. 0. 1. 0.]
+ [0. 0. 0. 0. 0. 0. 0. 0. 1. 0.]
+ [0. 0. 0. 0. 0. 0. 0. 0. 1. 0.]
+ [0. 0. 0. 0. 0. 0. 0. 0. 0. 0.]
+ [0. 0. 0. 0. 0. 0. 0. 0. 0. 0.]
+ [0. 0. 0. 0. 0. 0. 0. 0. 0. 0.]
+ [0. 0. 0. 0. 0. 0. 0. 0. 0. 0.]]
+</pre></div>
+</div>
+<div class="output text_plain highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>(-0.5, 9.5, 9.5, -0.5)
+</pre></div>
+</div>
+<img alt="../_images/Day-20_Pre-Class_2DNumPyArrays-STUDENT_19_2.png" src="../_images/Day-20_Pre-Class_2DNumPyArrays-STUDENT_19_2.png" />
+</div>
+</div>
+<p>✅  <strong>Task:</strong> Two of the five ships have been placed on the board for you. <strong>Use 2D indexing to place the remaining ships on the board and verify that the placement matches the image using the <code class="docutils literal notranslate"><span class="pre">plt.imshow</span></code> command.</strong></p>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="c1"># Put your code here</span>
+</pre></div>
+</div>
+</div>
+</div>
+</section>
+<hr class="docutils" />
+<section id="let-s-do-another-example">
+<h3><strong>1.2 Let’s do another example:</strong><a class="headerlink" href="#let-s-do-another-example" title="Permalink to this headline">#</a></h3>
+<p>Say we have the following dataset with some information about different cars.</p>
+<table class="colwidths-auto table">
+<thead>
+<tr class="row-odd"><th class="text-align:center head"><p>Engine Horsepower</p></th>
+<th class="text-align:center head"><p>Highway MPG</p></th>
+<th class="text-align:center head"><p>City MPG</p></th>
+<th class="text-align:center head"><p>Value ($)</p></th>
+</tr>
+</thead>
+<tbody>
+<tr class="row-even"><td class="text-align:center"><p>335</p></td>
+<td class="text-align:center"><p>26</p></td>
+<td class="text-align:center"><p>19</p></td>
+<td class="text-align:center"><p>46,135</p></td>
+</tr>
+<tr class="row-odd"><td class="text-align:center"><p>300</p></td>
+<td class="text-align:center"><p>28</p></td>
+<td class="text-align:center"><p>19</p></td>
+<td class="text-align:center"><p>40,650</p></td>
+</tr>
+<tr class="row-even"><td class="text-align:center"><p>162</p></td>
+<td class="text-align:center"><p>23</p></td>
+<td class="text-align:center"><p>15</p></td>
+<td class="text-align:center"><p>20,000</p></td>
+</tr>
+<tr class="row-odd"><td class="text-align:center"><p>184</p></td>
+<td class="text-align:center"><p>36</p></td>
+<td class="text-align:center"><p>23</p></td>
+<td class="text-align:center"><p>24,490</p></td>
+</tr>
+<tr class="row-even"><td class="text-align:center"><p>100</p></td>
+<td class="text-align:center"><p>34</p></td>
+<td class="text-align:center"><p>28</p></td>
+<td class="text-align:center"><p>17,050</p></td>
+</tr>
+<tr class="row-odd"><td class="text-align:center"><p>400</p></td>
+<td class="text-align:center"><p>15</p></td>
+<td class="text-align:center"><p>10</p></td>
+<td class="text-align:center"><p>170,829</p></td>
+</tr>
+</tbody>
+</table>
+<p>Let’s make a 2D NumPy array to represent this dataset.</p>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">dataset</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">array</span><span class="p">([[</span><span class="mi">335</span><span class="p">,</span><span class="mi">26</span><span class="p">,</span><span class="mi">19</span><span class="p">,</span><span class="mi">46135</span><span class="p">],</span>
+                   <span class="p">[</span><span class="mi">300</span><span class="p">,</span> <span class="mi">28</span><span class="p">,</span> <span class="mi">19</span><span class="p">,</span> <span class="mi">40650</span><span class="p">],</span>
+                   <span class="p">[</span><span class="mi">162</span><span class="p">,</span> <span class="mi">23</span><span class="p">,</span><span class="mi">15</span><span class="p">,</span><span class="mi">20000</span><span class="p">],</span>
+                   <span class="p">[</span><span class="mi">184</span><span class="p">,</span><span class="mi">36</span><span class="p">,</span><span class="mi">23</span><span class="p">,</span><span class="mi">24490</span><span class="p">],</span>
+                   <span class="p">[</span><span class="mi">100</span><span class="p">,</span><span class="mi">34</span><span class="p">,</span><span class="mi">28</span><span class="p">,</span><span class="mi">17050</span><span class="p">],</span>
+                   <span class="p">[</span><span class="mi">400</span><span class="p">,</span><span class="mi">15</span><span class="p">,</span><span class="mi">10</span><span class="p">,</span><span class="mi">170829</span><span class="p">]])</span>
+</pre></div>
+</div>
+</div>
+</div>
+<p>✅  <strong>Task:</strong> Explain how our dataset is now represented as a Numpy array. How is a row of information in the table represented in the 2D array? How is a column represented? Does this differ from a Pandas dataframe? This is an exercise in explaining where the data is stored and what it looks like in our code!</p>
+<p><font size="+3">✎</font> <em>Put your answer here</em></p>
+<p>Let’s try and answer a <strong>basic question</strong> of this dataset. What is the average difference between highway MPG and city MPG for the cars in our dataset?</p>
+<ul class="simple">
+<li><p>To do this, what <strong>information</strong> do we need from the dataset? As we did in Pandas, in your mind ‘highlight’ the information we want to access. We need the highway MPG and the city MPG columns from the array.</p></li>
+<li><p>What <strong>available tools</strong> do we have to do this? We can use slicing techniques as we did in the Battleship section.</p></li>
+</ul>
+<p>To start to complete this task, we can select our 2nd column and subtract the 3rd column from it.</p>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">dataset</span><span class="p">[:,</span><span class="mi">1</span><span class="p">]</span> <span class="o">-</span> <span class="n">dataset</span><span class="p">[:,</span><span class="mi">2</span><span class="p">]</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<div class="output text_plain highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>array([ 7,  9,  8, 13,  6,  5])
+</pre></div>
+</div>
+</div>
+</div>
+<p>✅  <strong>Task:</strong> How does this code remind you of the way we retreived information from dataframes in Pandas?</p>
+<p><font size="+3">✎</font> <em>Put your answer here</em></p>
+<p>This gives us the differences between the MPG’s, but if we want the average, then we need to take one additional step. We could write our own function to add up all of the values and then divide by how many values we have. (In fact, you should try and do this yourself to make sure that you can!) But, NumPy has a built-in method for taking the average of an array that we can use.</p>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="c1">##Make a new array of the differences between the highway and city MPG&#39;s</span>
+<span class="n">diff_mpgs</span> <span class="o">=</span> <span class="n">dataset</span><span class="p">[:,</span><span class="mi">1</span><span class="p">]</span> <span class="o">-</span> <span class="n">dataset</span><span class="p">[:,</span><span class="mi">2</span><span class="p">]</span>
+<span class="c1">##use the .mean() function to take the mean of an array quickly</span>
+<span class="nb">print</span><span class="p">(</span><span class="s2">&quot;The average difference between highway and city MPG&#39;s for our dataset is,&quot;</span><span class="p">,</span> <span class="n">diff_mpgs</span><span class="o">.</span><span class="n">mean</span><span class="p">())</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>The average difference between highway and city MPG&#39;s for our dataset is, 8.0
+</pre></div>
+</div>
+</div>
+</div>
+<p>This is just one possible question that we could answer of the dataset. You are going to work on trying to answer some of them on your own now.
+For each of the tasks below, <strong>explicitly note what information you need to complete the task and how you plan to access that information.</strong></p>
+<p>✅  <strong>Task:</strong> What are the values of each of the cars in our dataset in terms of <strong>British Pounds (£)</strong>? When this assignment was written, <span class="math notranslate nohighlight">\(£ 1 \approx \$ 0.85\)</span>. You should round your answers to <em>the nearest pound</em> using <code class="docutils literal notranslate"><span class="pre">np.round()</span></code> function!</p>
+<p><font size="+3">✎</font> <em>Put your answer here</em></p>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="c1">## Put your code here</span>
+</pre></div>
+</div>
+</div>
+</div>
+<p>✅  <strong>Task:</strong> Write code to display only the data for cars that have an engine horsepower greater than or equal to 300 HP. There a couple of ways that you can do this. Are you going to use a loop to do this? Are you going to select the indexes by hand? Something else?</p>
+<p><font size="+3">✎</font> <em>Put your answer here</em></p>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="c1">## Put your code here</span>
+</pre></div>
+</div>
+</div>
+</div>
+</section>
+</section>
+<hr class="docutils" />
+<section id="part-2-masking-2d-arrays">
+<h2>Part 2: Masking 2D arrays<a class="headerlink" href="#part-2-masking-2d-arrays" title="Permalink to this headline">#</a></h2>
+<p>The previous example introduced you to starting to work with data in python as a 2D array. As our datasets become larger and larger, sometimes we have to learn a few tricks to be able to select portions of our dataset and make manipulations more quickly.</p>
+<p>The following video outlines such a trick in 2D arrays called “masking.” This is conceptually the same as using masks to interact with Pandas dataframes.</p>
+<p>Watch the video and answer the questions that follow. (If the YouTube video doesn’t work, try this <a class="reference external" href="https://mediaspace.msu.edu/media/NumPy+Arrays+and+%22Masking%22/1_5bp5gzsh">MediaSpace link</a>)</p>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="kn">from</span> <span class="nn">IPython.display</span> <span class="kn">import</span> <span class="n">YouTubeVideo</span>
+<span class="n">YouTubeVideo</span><span class="p">(</span><span class="s2">&quot;bDTL4pds-18&quot;</span><span class="p">,</span><span class="n">width</span><span class="o">=</span><span class="mi">640</span><span class="p">,</span><span class="n">height</span><span class="o">=</span><span class="mi">360</span><span class="p">)</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<div class="output text_html">
+<iframe
+    width="640"
+    height="360"
+    src="https://www.youtube.com/embed/bDTL4pds-18"
+    frameborder="0"
+    allowfullscreen
+
+></iframe>
+</div></div>
+</div>
+<p>✅  <strong>Task:</strong> Explain the concept of “masking” to someone who hasn’t coded before. Why might we want to use masking? Is it always the right choice for selecting subsets of our data or parts of our arrays?</p>
+<p><font size="+3">✎</font> <em>Put your answer here</em></p>
+<p><strong>Consider an example:</strong> Before, we worked with a small dataset with some information about cars. For that example, it was really easy to see all of the data at once, make quick manipulations to it, and manually select rows based on a condition. <em>Now,</em> we are going to work with the full dataset. Make sure that <code class="docutils literal notranslate"><span class="pre">cars.csv</span></code> is in the same directory as this notebook. As a note, the full dataset has more columns and <strong>many</strong> more rows than the small example that you used prior. Work through the following examples and check your answers as you go.</p>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="c1">##First, load in the dataset WITH NUMPY</span>
+<span class="n">car_header</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">loadtxt</span><span class="p">(</span><span class="s2">&quot;cars.csv&quot;</span><span class="p">,</span> <span class="n">delimiter</span><span class="o">=</span><span class="s2">&quot;,&quot;</span><span class="p">,</span> <span class="n">dtype</span><span class="o">=</span><span class="nb">str</span><span class="p">,</span> <span class="n">max_rows</span><span class="o">=</span><span class="mi">1</span><span class="p">)</span>
+<span class="n">car_data</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">loadtxt</span><span class="p">(</span><span class="s2">&quot;cars.csv&quot;</span><span class="p">,</span> <span class="n">delimiter</span><span class="o">=</span><span class="s2">&quot;,&quot;</span><span class="p">,</span> <span class="n">dtype</span><span class="o">=</span><span class="nb">int</span><span class="p">,</span> <span class="n">skiprows</span><span class="o">=</span><span class="mi">1</span><span class="p">)</span>
+</pre></div>
+</div>
+</div>
+</div>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="nb">print</span><span class="p">(</span><span class="s2">&quot;Headers:&quot;</span><span class="p">,</span><span class="n">car_header</span><span class="p">)</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>Headers: [&#39;Year&#39; &#39;Engine HP&#39; &#39;Engine Cylinders&#39; &#39;Number of Doors&#39; &#39;highway MPG&#39;
+ &#39;city mpg&#39; &#39;Popularity&#39; &#39;MSRP&#39;]
+</pre></div>
+</div>
+</div>
+</div>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">car_data</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<div class="output text_plain highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>array([[ 2011,   335,     6, ...,    19,  3916, 46135],
+       [ 2011,   300,     6, ...,    19,  3916, 40650],
+       [ 2011,   300,     6, ...,    20,  3916, 36350],
+       ...,
+       [ 2012,   300,     6, ...,    16,   204, 50620],
+       [ 2013,   300,     6, ...,    16,   204, 50920],
+       [ 2006,   221,     6, ...,    17,    61, 28995]])
+</pre></div>
+</div>
+</div>
+</div>
+<p>✅  <strong>Question:</strong> What is the <code class="docutils literal notranslate"><span class="pre">type</span></code> of all of the elements in our 2D array? Look at both the <code class="docutils literal notranslate"><span class="pre">np.loadtxt</span></code> command and the output of the array. Why did we have to import it like that? <em>Hint:</em> This is a key component of working with NumPy arrays and something that we went over in one of the introductory videos from the previous pre-class assignment, so be sure to go back and look at that if you get stuck!</p>
+<p><font size="+3">✎</font> <em>Put your answer here</em></p>
+<p>✅  <strong>Question:</strong> Using <code class="docutils literal notranslate"><span class="pre">shape</span></code> or <code class="docutils literal notranslate"><span class="pre">len</span></code>, how many different cars are in this dataset? What challenges does this pose when trying to select portions of the data for analysis?</p>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="c1">##Put your code here</span>
+</pre></div>
+</div>
+</div>
+</div>
+<p><font size="+3">✎</font> <em>Put your answer here</em></p>
+<p>We are working with a much larger dataset now. Let’s try and answer a question together first. How many cars in our dataset have an engine horsepower of 300 HP or more?</p>
+<section id="using-masking-for-filtering-data">
+<h3>Using Masking for Filtering Data<a class="headerlink" href="#using-masking-for-filtering-data" title="Permalink to this headline">#</a></h3>
+<p>Let’s use masking to try and answer the question we posed above. <strong>Make sure you read the code comments in the following cells to understand what the code is doing.</strong> This is all very similar to what was explained in the video on masking.</p>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="c1">##First, let&#39;s see what our masking condition returns. The horsepower is the column at index 1</span>
+<span class="c1">##Remember, we only want to see whether the horsepower column of our dataset is greater than 300. If we</span>
+<span class="c1">##don&#39;t specify that when we write our masking condition, then it will check every value in our array.</span>
+<span class="c1">##Another way of saying this is that we will be masking every value in the array that&#39;s greater than 300,</span>
+<span class="c1">##not JUST the horsepower like we want</span>
+<span class="n">car_data</span><span class="p">[:,</span><span class="mi">1</span><span class="p">]</span> <span class="o">&gt;=</span> <span class="mi">300</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<div class="output text_plain highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>array([ True,  True,  True, ...,  True,  True, False])
+</pre></div>
+</div>
+</div>
+</div>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="c1">##We have an array of true and false values, so we can do some masking now</span>
+<span class="n">car_data</span><span class="p">[</span> <span class="n">car_data</span><span class="p">[:,</span> <span class="mi">1</span><span class="p">]</span> <span class="o">&gt;=</span> <span class="mi">300</span><span class="p">]</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<div class="output text_plain highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>array([[ 2011,   335,     6, ...,    19,  3916, 46135],
+       [ 2011,   300,     6, ...,    19,  3916, 40650],
+       [ 2011,   300,     6, ...,    20,  3916, 36350],
+       ...,
+       [ 2012,   300,     6, ...,    16,   204, 56670],
+       [ 2012,   300,     6, ...,    16,   204, 50620],
+       [ 2013,   300,     6, ...,    16,   204, 50920]])
+</pre></div>
+</div>
+</div>
+</div>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="c1">##One last step, we just need to know how many rows are in our dataset now that it has been masked. We can use</span>
+<span class="c1">##the .shape command or we can use the len() command. Either will work.</span>
+<span class="nb">print</span><span class="p">(</span><span class="s2">&quot;There are &quot;</span><span class="p">,</span> <span class="nb">len</span><span class="p">(</span><span class="n">car_data</span><span class="p">),</span><span class="s2">&quot;cars in our dataset.&quot;</span><span class="p">)</span>
+<span class="nb">print</span><span class="p">(</span><span class="nb">len</span><span class="p">(</span><span class="n">car_data</span><span class="p">[</span> <span class="n">car_data</span><span class="p">[:,</span> <span class="mi">1</span><span class="p">]</span> <span class="o">&gt;=</span> <span class="mi">300</span><span class="p">]),</span> <span class="s2">&quot;of them have 300 or more horsepower.&quot;</span><span class="p">)</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>There are  11814 cars in our dataset.
+3126 of them have 300 or more horsepower.
+</pre></div>
+</div>
+</div>
+</div>
+<p>That would have been a lot of cars to try and select by hand. We could have written a loop to do this, but if our dataset consisted of 100,000 cars, then a loop would take a really long time to try and find all of the ones we are looking for. Masking is an efficient way of selecting subsets of our data. Try answering the following question about the dataset on your own. The answer has been included so that you can check your work.</p>
+<p>✅  <strong>Question:</strong> What is the average cost of a car which gets at least 30 MPG highway? Round your answer to two decimal places.</p>
+<p><em>Check that your answer matches the correct answer:</em> $26,386.24</p>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="c1">## Put your code here</span>
+</pre></div>
+</div>
+</div>
+</div>
+<p>The focus of the next in-class assignment is going to be on working with arrays and doing image analysis using arrays. Masking isn’t a huge part of what is to come next, but it’s a very useful tool and we wanted to give you some exposure to it now. Who knows, it may come in handy!</p>
+</section>
+</section>
+<hr class="docutils" />
+<section id="part-3-loading-images">
+<h2>Part 3: Loading Images<a class="headerlink" href="#part-3-loading-images" title="Permalink to this headline">#</a></h2>
+<p>The last thing that you will do in this pre-class assignment is learn how we load images into python. In class, we are going to be doing some image processing, which is a rapidly evolving field where we use computation to manipulate, edit, and understand images. In order to work on these problems, though, we need to know how to get the data into our notebooks. The following code loads an image into python and displays it on the screen. <strong>Read through the code and make sure you understand what it is doing.</strong> Answer the questions that follow.</p>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="kn">from</span> <span class="nn">PIL</span> <span class="kn">import</span> <span class="n">Image</span>
+<span class="n">picture</span> <span class="o">=</span> <span class="n">Image</span><span class="o">.</span><span class="n">open</span><span class="p">(</span><span class="s2">&quot;example.jpeg&quot;</span><span class="p">)</span>
+</pre></div>
+</div>
+</div>
+</div>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="kn">import</span> <span class="nn">matplotlib.pyplot</span> <span class="k">as</span> <span class="nn">plt</span>
+<span class="o">%</span><span class="k">matplotlib</span> inline
+<span class="n">plt</span><span class="o">.</span><span class="n">imshow</span><span class="p">(</span><span class="n">picture</span><span class="p">)</span>
+<span class="n">plt</span><span class="o">.</span><span class="n">axis</span><span class="p">(</span><span class="s1">&#39;off&#39;</span><span class="p">)</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<div class="output text_plain highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>(-0.5, 499.5, 363.5, -0.5)
+</pre></div>
+</div>
+<img alt="../_images/Day-20_Pre-Class_2DNumPyArrays-STUDENT_64_1.png" src="../_images/Day-20_Pre-Class_2DNumPyArrays-STUDENT_64_1.png" />
+</div>
+</div>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="c1">## Get some basic information about our picture</span>
+<span class="n">img_array</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">asarray</span><span class="p">(</span><span class="n">picture</span><span class="p">)</span>
+<span class="n">picture_array</span> <span class="o">=</span> <span class="n">img_array</span><span class="o">.</span><span class="n">copy</span><span class="p">()</span> <span class="c1">##We have to make a copy of the array so as to not overwrite the original image</span>
+<span class="n">picture_array</span><span class="o">.</span><span class="n">shape</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<div class="output text_plain highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>(364, 500, 3)
+</pre></div>
+</div>
+</div>
+</div>
+<p>✅  <strong>Question:</strong> What does the shape of our array mean? <em>Hint:</em> Images are made up of RGB (red-green-blue pixels in an the shape of the picture).</p>
+<p><font size="+3">✎</font> <em>Put your answer here</em></p>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="c1">## Get some more information about our picture</span>
+<span class="nb">print</span><span class="p">(</span><span class="s2">&quot;Maximum value:&quot;</span><span class="p">,</span><span class="n">picture_array</span><span class="o">.</span><span class="n">max</span><span class="p">())</span>
+<span class="nb">print</span><span class="p">(</span><span class="s2">&quot;Minimum value:&quot;</span><span class="p">,</span><span class="n">picture_array</span><span class="o">.</span><span class="n">min</span><span class="p">())</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>Maximum value: 255
+Minimum value: 0
+</pre></div>
+</div>
+</div>
+</div>
+<p>Images are a 2D array of RGB vectors, which is to say that at each coordinate in our array, there is an array which tells us how much red, blue, and green makes up that pixel.  These values range from 0 to 255.</p>
+<ul class="simple">
+<li><p><strong>White pixels</strong> are made using red=255, blue=255, green=255</p></li>
+<li><p><strong>Black pixels</strong> are made using red=0, blue=0, green=0</p></li>
+</ul>
+<p>Here is an image to help you visualize the array structure of an image!</p>
+<p><img alt="image_structure.png" src="Day-20/attachment:image_structure.png" /></p>
+<p>When we load an image into python, it recognizes the structure of the file and loads it into our notebook as an RGB array. However, for the sake of our image analysis, we may want to work with each of the red, green, and blue matrices individually. The following code shows how we might do this.</p>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="c1">##The following code separates out the red, blue, and green components for each of the pixels in our image</span>
+<span class="n">red_array</span><span class="p">,</span> <span class="n">green_array</span><span class="p">,</span> <span class="n">blue_array</span> <span class="o">=</span> <span class="n">picture_array</span><span class="p">[:,:,</span><span class="mi">0</span><span class="p">],</span> <span class="n">picture_array</span><span class="p">[:,:,</span><span class="mi">1</span><span class="p">],</span> <span class="n">picture_array</span><span class="p">[:,:,</span><span class="mi">2</span><span class="p">]</span>
+</pre></div>
+</div>
+</div>
+</div>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="c1">##Let&#39;s plot each channel and see what it looks like</span>
+<span class="n">plt</span><span class="o">.</span><span class="n">imshow</span><span class="p">(</span><span class="n">red_array</span><span class="p">,</span> <span class="n">cmap</span> <span class="o">=</span> <span class="s2">&quot;Reds&quot;</span><span class="p">)</span>
+<span class="n">plt</span><span class="o">.</span><span class="n">colorbar</span><span class="p">()</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<div class="output text_plain highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>&lt;matplotlib.colorbar.Colorbar at 0x1ab8ba29790&gt;
+</pre></div>
+</div>
+<img alt="../_images/Day-20_Pre-Class_2DNumPyArrays-STUDENT_72_1.png" src="../_images/Day-20_Pre-Class_2DNumPyArrays-STUDENT_72_1.png" />
+</div>
+</div>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">plt</span><span class="o">.</span><span class="n">imshow</span><span class="p">(</span><span class="n">blue_array</span><span class="p">,</span> <span class="n">cmap</span> <span class="o">=</span> <span class="s2">&quot;Blues&quot;</span><span class="p">)</span>
+<span class="n">plt</span><span class="o">.</span><span class="n">colorbar</span><span class="p">()</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<div class="output text_plain highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>&lt;matplotlib.colorbar.Colorbar at 0x1ab8a78d490&gt;
+</pre></div>
+</div>
+<img alt="../_images/Day-20_Pre-Class_2DNumPyArrays-STUDENT_73_1.png" src="../_images/Day-20_Pre-Class_2DNumPyArrays-STUDENT_73_1.png" />
+</div>
+</div>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">plt</span><span class="o">.</span><span class="n">imshow</span><span class="p">(</span><span class="n">green_array</span><span class="p">,</span> <span class="n">cmap</span> <span class="o">=</span> <span class="s2">&quot;Greens&quot;</span><span class="p">)</span>
+<span class="n">plt</span><span class="o">.</span><span class="n">colorbar</span><span class="p">()</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<div class="output text_plain highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>&lt;matplotlib.colorbar.Colorbar at 0x1ab8bae7c70&gt;
+</pre></div>
+</div>
+<img alt="../_images/Day-20_Pre-Class_2DNumPyArrays-STUDENT_74_1.png" src="../_images/Day-20_Pre-Class_2DNumPyArrays-STUDENT_74_1.png" />
+</div>
+</div>
+<p>We can determine the average values of the individual color arrays to determine whether our image contains more red, green or blue:</p>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="nb">print</span><span class="p">(</span><span class="s2">&quot;Average red value:&quot;</span><span class="p">,</span><span class="n">red_array</span><span class="o">.</span><span class="n">mean</span><span class="p">())</span>
+<span class="nb">print</span><span class="p">(</span><span class="s2">&quot;Average blue value:&quot;</span><span class="p">,</span><span class="n">blue_array</span><span class="o">.</span><span class="n">mean</span><span class="p">())</span>
+<span class="nb">print</span><span class="p">(</span><span class="s2">&quot;Average green value:&quot;</span><span class="p">,</span><span class="n">green_array</span><span class="o">.</span><span class="n">mean</span><span class="p">())</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>Average red value: 62.41907692307692
+Average blue value: 57.51311538461538
+Average green value: 73.72024175824176
+</pre></div>
+</div>
+</div>
+</div>
+<p><strong>Looks like the green pixels win.  Go Green!</strong></p>
+<p>We are going to be working with code like this in class, so make sure you understand what the above lines all do and come to class with questions or submit them in your pre-class survey!</p>
+</section>
+<hr class="docutils" />
+<section id="assignment-wrap-up">
+<h2>Assignment Wrap-up<a class="headerlink" href="#assignment-wrap-up" title="Permalink to this headline">#</a></h2>
+<p>Please fill out the form that appears when you run the code below.  <strong>You must completely fill this out in order to receive credit for the assignment!</strong></p>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="kn">from</span> <span class="nn">IPython.display</span> <span class="kn">import</span> <span class="n">HTML</span>
+<span class="n">HTML</span><span class="p">(</span>
+<span class="sd">&quot;&quot;&quot;</span>
+<span class="sd">&lt;iframe </span>
+<span class="sd">	src=&quot;https://cmse.msu.edu/cmse201-pc-survey&quot; </span>
+<span class="sd">	width=&quot;800px&quot; </span>
+<span class="sd">	height=&quot;600px&quot; </span>
+<span class="sd">	frameborder=&quot;0&quot; </span>
+<span class="sd">	marginheight=&quot;0&quot; </span>
+<span class="sd">	marginwidth=&quot;0&quot;&gt;</span>
+<span class="sd">	Loading...</span>
+<span class="sd">&lt;/iframe&gt;</span>
+<span class="sd">&quot;&quot;&quot;</span>
+<span class="p">)</span>
+</pre></div>
+</div>
+</div>
+</div>
+<section id="congratulations-you-re-done">
+<h3>Congratulations, you’re done!<a class="headerlink" href="#congratulations-you-re-done" title="Permalink to this headline">#</a></h3>
+<p>Submit this assignment by uploading it to the course Desire2Learn web page.  Go to the “Pre-class assignments” folder, find the appropriate submission link, and upload it there.</p>
+<p>See you in class!</p>
+<p>© Copyright 2018,  Michigan State University Board of Trustees</p>
+</section>
+</section>
+</section>
+
+    <script type="text/x-thebe-config">
+    {
+        requestKernel: true,
+        binderOptions: {
+            repo: "binder-examples/jupyter-stacks-datascience",
+            ref: "master",
+        },
+        codeMirrorConfig: {
+            theme: "abcdef",
+            mode: "python"
+        },
+        kernelOptions: {
+            kernelName: "python3",
+            path: "./Day-20"
+        },
+        predefinedOutput: true
+    }
+    </script>
+    <script>kernelName = 'python3'</script>
+
+              </div>
+              
+            </main>
+            <footer class="footer-article noprint">
+                
+    <!-- Previous / next buttons -->
+<div class='prev-next-area'>
+    <a class='left-prev' id="prev-link" href="../Day-19/Day-19_In-Class_CompartmentsWithSolveIVP-STUDENT.html" title="previous page">
+        <i class="fas fa-angle-left"></i>
+        <div class="prev-next-info">
+            <p class="prev-next-subtitle">previous</p>
+            <p class="prev-next-title">Day 19 In-Class Assignment: Compartmental Modeling, moving from the model to the Code</p>
+        </div>
+    </a>
+    <a class='right-next' id="next-link" href="Day-20_In-Class_2DImageAnalysis-STUDENT.html" title="next page">
+    <div class="prev-next-info">
+        <p class="prev-next-subtitle">next</p>
+        <p class="prev-next-title">Day 20 In-Class Assignment: Image Analysis</p>
+    </div>
+    <i class="fas fa-angle-right"></i>
+    </a>
+</div>
+            </footer>
+        </div>
+    </div>
+    <div class="footer-content row">
+        <footer class="col footer"><p>
+  
+    By MSU CMSE<br/>
+  
+      &copy; Copyright 2022.<br/>
+</p>
+        </footer>
+    </div>
+    
+</div>
+
+
+      </div>
+    </div>
+  
+  <!-- Scripts loaded after <body> so the DOM is not blocked -->
+  <script src="../_static/scripts/pydata-sphinx-theme.js?digest=1999514e3f237ded88cf"></script>
+
+
+  </body>
+</html>

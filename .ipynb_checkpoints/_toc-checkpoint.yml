@@ -1,0 +1,300 @@
+# Table of contents
+
+format: jb-book
+root: intro 
+parts:
+
+#### COURSE MATERIALS SECTION ####
+  - caption: Course Materials
+    numbered: False
+    chapters:
+    - file: Course_Materials-201/CourseDocuments
+      sections:
+      - file: Course_Materials-201/CMSE201-Syllabus
+        title: Syllabus
+      - file: Course_Materials-201/CMSE201-Schedule
+        title: Course Schedule
+      - file: Course_Materials-201/SoftwareSetupGuide
+        title: Software Setup Guide
+      - file: Course_Materials-201/classroom_participation
+        title: Classroom Participation
+
+#### CodeGrade SECTION #### 
+  - caption: CodeGrade
+    numbered: False
+    chapters:
+#    - file: CodeGrade/CodeGrade_Students.pdf
+    - url: https://raw.githubusercontent.com/msu-cmse-courses/cmse201-supplemental/main/CodeGrade_Students.pdf
+      title: CodeGrade flowchart
+
+#### DAILY CONTENT SECTION #### 
+  - caption: Day 01
+    numbered: False
+    chapters:
+    - file: Day-01/Day-01_In-Class_SortingAlgorithm-STUDENT.ipynb
+  
+  - caption: Day 02
+    numbered: False
+    chapters:
+#     - file: Day-02/Day-02_Pre-Class_IntroToPython-STUDENT.ipynb
+    - file: Day-02/Day-02_In-Class_OrderOfMagnitudeModeling-STUDENT.ipynb
+    
+  - caption: Day 03
+    numbered: False
+    chapters:
+#     - file: Day-03/Day-03_Pre-Class_ListsAndLoops-STUDENT.ipynb
+    - file: Day-03/Day-03_In-Class_ListsLoopsAndSaving-STUDENT.ipynb
+    
+  - caption: Day 04
+    numbered: False
+    chapters:
+#     - file: Day-04/Day_04_PreClass_DataAlgorithmicBias-STUDENT.ipynb
+    - file: Day-04/Day_04_In_Class_DataAlgorithmicBias-STUDENT.ipynb
+    
+  - caption: Day 05
+    numbered: False
+    chapters:
+# #    - file: Day-05/Day-05_Pre-Class_IfStatementsAndFunctions-STUDENT.ipynb
+    - file: Day-05/Day-05_In-Class_IfStatementsAndFunctions-STUDENT.ipynb
+    
+  - caption: Day 06
+    numbered: False
+    chapters:
+# #    - file: Day-06/Day-06_Pre-Class_MoreFunctions-STUDENT.ipynb
+    - file: Day-06/Day-06_In-Class_FunctionsAndSquirrels-STUDENT.ipynb
+# ## ##    
+  - caption: Day 07
+    numbered: False
+    chapters: 
+# #    - file: Day-07/Day-07_Pre-Class_ReflectingOnUnderstanding-STUDENT.ipynb
+    - file: Day-07/Day-07_In-Class_ReviewingAndPracticingConcepts-STUDENT.ipynb
+    - file: Day-07/Day-07_In-Class_ReviewingAndPracticingConcepts-Solutions.ipynb
+    - file: Day-07/Debugging-STUDENT.ipynb
+# ## #    
+  - caption: Day 08
+    numbered: False
+    chapters:
+# #    - file: Day-08/Day-08_Pre-Class_ModulesMathAndPlots-STUDENT.ipynb
+    - file: Day-08/Day-08_In-Class_MathAndPlotting-STUDENT.ipynb    
+# ## ##
+  - caption: Day 09
+    numbered: False
+    chapters:
+# #    - file: Day-09/Day-09_Pre-Class_IntroToNumPy-STUDENT.ipynb
+# #    - url: https://raw.githubusercontent.com/msu-cmse-courses/cmse201-supplemental/main/ICA_datasets/michigan_pop.csv
+# #      title: michigan_pop.csv
+    - file: Day-09/Day-09_In-Class_NumPyWithTheGreatLakes-STUDENT.ipynb
+    - url: https://raw.githubusercontent.com/msu-cmse-courses/cmse201-supplemental/main/ICA_datasets/lake_erie.csv
+      title: lake_erie.csv
+    - url: https://raw.githubusercontent.com/msu-cmse-courses/cmse201-supplemental/main/ICA_datasets/lake_michigan_huron.csv
+      title: lake_michigan_huron.csv
+    - url: https://raw.githubusercontent.com/msu-cmse-courses/cmse201-supplemental/main/ICA_datasets/lake_ontario.csv
+      title: lake_ontario.csv
+    - url: https://raw.githubusercontent.com/msu-cmse-courses/cmse201-supplemental/main/ICA_datasets/lake_superior.csv
+      title: lake_superior.csv
+
+  - caption: Day 10
+    numbered: False
+    chapters:
+# #    - file: Day-10/Day-10_Pre-Class_Pandas-STUDENT.ipynb
+# #    - url: https://raw.githubusercontent.com/msu-cmse-courses/cmse201-supplemental/main/Day-09/heart_disease_data.csv
+# #      title: heart_disease_data.csv
+    - file: Day-10/Day-10_In-Class_GDP-STUDENT.ipynb
+    - url: https://raw.githubusercontent.com/msu-cmse-courses/cmse201-supplemental/main/ICA_datasets/API_NY.GDP.MKTP.CD_DS2_en_csv_v2_31795.csv
+      title: API_NY.GDP.MKTP.CD_DS2_en_csv_v2_31795.csv
+
+  - caption: Day 11
+    numbered: False
+    chapters:
+# #    - file: Day-11/Day-11_Pre-Class_Masking-STUDENT.ipynb
+# #    - url: https://raw.githubusercontent.com/msu-cmse-courses/cmse201-supplemental/main/ICA_datasets/GDP_Cleaned.csv
+# #      title: GDP_Cleaned.csv
+    - file: Day-11/Day-11_In-Class_Flint-STUDENT.ipynb
+    - url: https://raw.githubusercontent.com/msu-cmse-courses/cmse201-supplemental/main/ICA_datasets/flint_water_data.csv
+      title: flint_water_data.csv
+
+  - caption: Day 12
+    numbered: False
+    chapters:
+#     - file: Day-12/Day-12_Pre-Class_Unprocessed_Data-STUDENT.ipynb
+    - file: Day-12/Day-12_In-Class_Unprocessed_Data-STUDENT.ipynb    
+# #
+# #
+  - caption: Day 13
+    numbered: False
+    chapters:
+    - file: Day-13/Day-13_Pre-Class_Online_Resources-STUDENT.ipynb
+    - file: Day-13/Day-13_In-Class_Online_Resources-STUDENT.ipynb
+
+
+
+  - caption: Day 14
+    numbered: False
+    chapters:
+# #    - file: Day-14/Day-14_Pre-Class_Evaluating_Fits-STUDENT.ipynb
+# #    - url: https://raw.githubusercontent.com/msu-cmse-courses/cmse201-supplemental/main/image_critique_ver2.pptx
+# #      title: Image Critique
+    - file: Day-14/Day-14_In-Class_Evaluating_Fits-STUDENT.ipynb
+# ### Remember to introduce Final Projects on Day 14 too!
+
+  - caption: Day 15
+    numbered: False
+    chapters:
+# #    - file: Day-15/Day-15_Pre-Class_CurveFitting-STUDENT.ipynb
+    - url: https://raw.githubusercontent.com/msu-cmse-courses/cmse201-supplemental/main/image_critique_ver2.pptx
+      title: Image Critique
+    - file: Day-15/Day-15_In-Class_FittingCurves-STUDENT.ipynb
+    - url: https://raw.githubusercontent.com/msu-cmse-courses/cmse201-S22-data/main/Day-14/pop200.csv
+      title: pop200.csv
+    - url: https://raw.githubusercontent.com/msu-cmse-courses/cmse201-S22-data/main/Day-14/pop300.csv
+      title: pop300.csv 
+
+  - caption: Day 16
+    numbered: False
+    chapters:
+# #    - file: Day-16/Day-16-Intro_to_ODEs_Pre-Class-STUDENT.ipynb
+    - file: Day-16/Day-16-Intro_to_ODEs_In-Class_STUDENT.ipynb
+  
+  - caption: Day 17
+    numbered: False
+    chapters:
+# #    - file: Day-17/Day-17_Pre-Class_ModelingWithODEs-STUDENT.ipynb
+    - file: Day-17/Day-17_In-Class_ModelingWithODEs-STUDENT.ipynb
+
+  - caption: Day 18
+    numbered: False
+    chapters:
+# #    - file: Day-18/Day-18_Pre-Class_ViralKinetics-STUDENT.ipynb
+    - file: Day-18/Day-18_In-Class_CompartmentalModeling-STUDENT.ipynb
+
+  - caption: Day 19
+    numbered: False
+    chapters:
+# #    - file: Day-19/Day-19_Pre-Class_Zombies-STUDENT.ipynb
+    - file: Day-19/Day-19_In-Class_CompartmentsWithSolveIVP-STUDENT.ipynb
+
+  - caption: Day 20
+    numbered: False
+    chapters:
+#     - file: Day-20/Day-20_Pre-Class_IntroToDataVisualization-STUDENT.ipynb
+    - file: Day-20/Day-20_In-Class_IntroToDataVisualization-STUDENT.ipynb
+
+  - caption: Day 21
+    numbered: False
+    chapters:
+# #    - file: Day-21/Day-21_Pre-Class_2DNumPyArrays-STUDENT.ipynb
+# #    - url: https://raw.githubusercontent.com/msu-cmse-courses/cmse201-supplemental/main/Day-17/PCA_files/cars.csv
+# #      title: cars.csv
+# #    - url: https://github.com/msu-cmse-courses/cmse201-supplemental/raw/main/Day-17/PCA_files/example.jpeg
+# #      title: example.jpeg
+    - file: Day-21/Day-21_In-Class_2DImageAnalysis-STUDENT.ipynb
+    - url: https://raw.githubusercontent.com/msu-cmse-courses/cmse201-supplemental/main/Day-17/ICA_files/beach.jpeg
+      title: beach.jpeg
+    - url: https://raw.githubusercontent.com/msu-cmse-courses/cmse201-supplemental/main/Day-17/ICA_files/landscape.jpeg
+      title: landscape.jpeg
+    - url: https://raw.githubusercontent.com/msu-cmse-courses/cmse201-supplemental/main/Day-17/ICA_files/zebra.png
+      title: zebra.png
+
+
+  - caption: Day 22
+    numbered: False
+    chapters:
+    - file: Day-22/Day-22_In-Class_ForestFiresPartI-STUDENT.ipynb
+  
+  - caption: Day 23
+    numbered: False
+    chapters:
+# #    - file: Day-23/Day-23_Pre-Class_ABMForestFire-STUDENT.ipynb
+    - file: Day-23/Day-23_In-Class_ForestFiresPartII-STUDENT.ipynb
+
+
+# #
+  - caption: Day 24
+    numbered: False
+    chapters:
+# #    - file: Day-25/Day-25_Pre-Class_DataDilemmas-STUDENT.ipynb
+    - file: Day-24/Day-24_In-Class_DataDilemmas-STUDENT.ipynb
+    - file: Day-24/biased_data_gen.ipynb
+
+  - caption: Day 25
+    numbered: False
+    chapters:
+# #    - file: Day-24/Day-24_In-Class_ForestFiresPartII-STUDENT.ipynb
+#    - file: Day-25/Day-25_Pre-Class_ProjectWorkDay-STUDENT.ipynb
+    - file: Day-25/Day-25_In-Class_ProjectWorkDay-STUDENT.ipynb
+
+
+# #
+# ## ##### HOMEWORK SECTION ####
+  - caption: Homework
+    numbered: False
+    chapters:
+    - file:  Homework/Homework_01/HW_01_PythonFundamentals-STUDENT.ipynb 
+      title: Homework 1 - Python Fundamentals
+    - file:  Homework/Homework_02/HW_02_SS26-Spring-2026-STUDENT.ipynb
+      title: Homework 2 - Functions, Arrays, and Data Analysis
+    - url: https://raw.githubusercontent.com/msu-cmse-courses/cmse201-supplemental/main/stock_data.csv
+      title: stock_data.csv
+    - file:  Homework/Homework_03/HW_03_SS26_-Spring-2026-STUDENT.ipynb
+      title: Homework 3 - Loading, Cleaning, Analyzing, and Visualizing Data with Pandas
+    - url: https://raw.githubusercontent.com/msu-cmse-courses/cmse201-supplemental/main/Homework/ahuacatl.csv
+      title: ahuacatl.csv
+    - url: https://raw.githubusercontent.com/msu-cmse-courses/cmse201-supplemental/main/Homework/nahuatl_names.csv
+      title: nahuatl_names.csv
+    - file: Homework/Homework_04/HW4_SS26-STUDENT.ipynb
+      title: Homework 4 - Compartmental Models + Data Visualization
+    - url: https://raw.githubusercontent.com/msu-cmse-courses/cmse201-supplemental/main/Homework/nypd_collisions_sample.csv
+      title: nypd_collisions_sample.csv
+    - file: Homework/Homework_05/HW-05_SS26_STUDENT.ipynb
+      title: Homework 5 Extra Credit
+# #
+# ## #
+# ##   #### CODE PORTFOLIO SECTION ####
+  - caption: Code Portfolio
+    numbered: False
+    chapters:
+    - file: Homework/Code_Portfolio/Code_Portfolio_Assignment
+      title: Code Portfolio Assignment
+    - file: Homework/Code_Portfolio/Code_Portfolio_Example-CodeGrade.ipynb
+      title: Code Portfolio Example
+# #
+# #
+# # ##### SEMESTER PROJECT SECTION ####    
+  - caption: Semester Project
+    numbered: False
+    chapters:
+    - file: Project_Materials/CMSE201_SemesterProjectDetails
+      title: Semester Project Details           
+    - file: Project_Materials/Project_Plan_Check-in
+      title: Project Checkpoint
+    - file: Project_Materials/First_Project_Checkpoint.ipynb
+      title: First Project Checkpoint Jupyter Notebook Version
+    - file: Project_Materials/CMSE201_FinalProjectTemplate.ipynb
+      title: Project Template
+    - url: 'https://raw.githubusercontent.com/msu-cmse-courses/cmse201-supplemental/main/Projects/CMSE201_final_project_examples.zip'
+      title: Zip file of example projects       
+    - file: Project_Materials/CMSE201FinalProject_RequirementsAndGradingRubric
+      title: Requirements and Grading Rubric
+    - file: Project_Materials/peer_assessment.ipynb
+      title: Peer Assessment Notebook
+    - url: https://github.com/msu-cmse-courses/cmse201-supplemental/raw/main/Projects/Presentation_Evaluation_Rubric.pdf
+      title: Presentation Evaluation Rubric
+
+# # #
+# # #### PRACTICE NOTEBOOK SECTION ####
+  - caption: Practice Notebooks
+    numbered: False
+    chapters:
+    - file: Quiz_Prep_Notebooks/PracticeNotebook_IfStatements-STUDENT.ipynb
+    - file: Quiz_Prep_Notebooks/PracticeNotebook_Functions-STUDENT.ipynb
+    - file: Quiz_Prep_Notebooks/PracticeNotebook_Matplotlib-STUDENT.ipynb
+    - file: Quiz_Prep_Notebooks/filtering_ws_ver2.ipynb
+      title: Practice with Masking
+    - file: Quiz_Prep_Notebooks/PracticeNotebook_Pandas-STUDENT.ipynb
+    - url: https://raw.githubusercontent.com/msu-cmse-courses/cmse201-supplemental/main/PracticeNotebooks/weather.csv
+      title: weather.csv
+    - file: Quiz_Prep_Notebooks/PracticeNotebook_ScipyCurveFit-STUDENT.ipynb
+    - file: Quiz_Prep_Notebooks/PracticeNotebook_CompartmentalModels-STUDENT.ipynb
+    - file: Quiz_Prep_Notebooks/PracticeNotebook_SolveIVP-STUDENT.ipynb
+# ## ##
+# ## #

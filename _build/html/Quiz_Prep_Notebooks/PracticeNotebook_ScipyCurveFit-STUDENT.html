@@ -1,0 +1,825 @@
+
+<!DOCTYPE html>
+
+
+<html lang="en" data-content_root="../" >
+
+  <head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" /><meta name="viewport" content="width=device-width, initial-scale=1" />
+
+    <title>Practice with: SciPy curve_fit &#8212; CMSE 201</title>
+  
+  
+  
+  <script data-cfasync="false">
+    document.documentElement.dataset.mode = localStorage.getItem("mode") || "";
+    document.documentElement.dataset.theme = localStorage.getItem("theme") || "";
+  </script>
+  
+  <!-- Loaded before other Sphinx assets -->
+  <link href="../_static/styles/theme.css?digest=3ee479438cf8b5e0d341" rel="stylesheet" />
+<link href="../_static/styles/bootstrap.css?digest=3ee479438cf8b5e0d341" rel="stylesheet" />
+<link href="../_static/styles/pydata-sphinx-theme.css?digest=3ee479438cf8b5e0d341" rel="stylesheet" />
+
+  
+  <link href="../_static/vendor/fontawesome/6.5.2/css/all.min.css?digest=3ee479438cf8b5e0d341" rel="stylesheet" />
+  <link rel="preload" as="font" type="font/woff2" crossorigin href="../_static/vendor/fontawesome/6.5.2/webfonts/fa-solid-900.woff2" />
+<link rel="preload" as="font" type="font/woff2" crossorigin href="../_static/vendor/fontawesome/6.5.2/webfonts/fa-brands-400.woff2" />
+<link rel="preload" as="font" type="font/woff2" crossorigin href="../_static/vendor/fontawesome/6.5.2/webfonts/fa-regular-400.woff2" />
+
+    <link rel="stylesheet" type="text/css" href="../_static/pygments.css?v=fa44fd50" />
+    <link rel="stylesheet" type="text/css" href="../_static/styles/sphinx-book-theme.css?v=384b581d" />
+    <link rel="stylesheet" type="text/css" href="../_static/togglebutton.css?v=13237357" />
+    <link rel="stylesheet" type="text/css" href="../_static/copybutton.css?v=76b2166b" />
+    <link rel="stylesheet" type="text/css" href="../_static/mystnb.4510f1fc1dee50b3e5859aac5469c37c29e427902b24a333a5f9fcb2f0b3ac41.css?v=be8a1c11" />
+    <link rel="stylesheet" type="text/css" href="../_static/sphinx-thebe.css?v=4fa983c6" />
+    <link rel="stylesheet" type="text/css" href="../_static/sphinx-design.min.css?v=87e54e7c" />
+  
+  <!-- Pre-loaded scripts that we'll load fully later -->
+  <link rel="preload" as="script" href="../_static/scripts/bootstrap.js?digest=3ee479438cf8b5e0d341" />
+<link rel="preload" as="script" href="../_static/scripts/pydata-sphinx-theme.js?digest=3ee479438cf8b5e0d341" />
+  <script src="../_static/vendor/fontawesome/6.5.2/js/all.min.js?digest=3ee479438cf8b5e0d341"></script>
+
+    <script src="../_static/documentation_options.js?v=9eb32ce0"></script>
+    <script src="../_static/doctools.js?v=9a2dae69"></script>
+    <script src="../_static/sphinx_highlight.js?v=dc90522c"></script>
+    <script src="../_static/clipboard.min.js?v=a7894cd8"></script>
+    <script src="../_static/copybutton.js?v=f281be69"></script>
+    <script src="../_static/scripts/sphinx-book-theme.js?v=efea14e4"></script>
+    <script>let toggleHintShow = 'Click to show';</script>
+    <script>let toggleHintHide = 'Click to hide';</script>
+    <script>let toggleOpenOnPrint = 'true';</script>
+    <script src="../_static/togglebutton.js?v=4a39c7ea"></script>
+    <script>var togglebuttonSelector = '.toggle, .admonition.dropdown';</script>
+    <script src="../_static/design-tabs.js?v=36754332"></script>
+    <script>const THEBE_JS_URL = "https://unpkg.com/thebe@0.8.2/lib/index.js"; const thebe_selector = ".thebe,.cell"; const thebe_selector_input = "pre"; const thebe_selector_output = ".output, .cell_output"</script>
+    <script async="async" src="../_static/sphinx-thebe.js?v=c100c467"></script>
+    <script>var togglebuttonSelector = '.toggle, .admonition.dropdown';</script>
+    <script>const THEBE_JS_URL = "https://unpkg.com/thebe@0.8.2/lib/index.js"; const thebe_selector = ".thebe,.cell"; const thebe_selector_input = "pre"; const thebe_selector_output = ".output, .cell_output"</script>
+    <script>window.MathJax = {"options": {"processHtmlClass": "tex2jax_process|mathjax_process|math|output_area"}}</script>
+    <script defer="defer" src="https://cdn.jsdelivr.net/npm/mathjax@3/es5/tex-mml-chtml.js"></script>
+    <script>DOCUMENTATION_OPTIONS.pagename = 'Quiz_Prep_Notebooks/PracticeNotebook_ScipyCurveFit-STUDENT';</script>
+    <link rel="icon" href="../_static/cmse_fav.ico"/>
+    <link rel="index" title="Index" href="../genindex.html" />
+    <link rel="search" title="Search" href="../search.html" />
+    <link rel="next" title="Practice with: Compartmental Models" href="PracticeNotebook_CompartmentalModels-STUDENT.html" />
+    <link rel="prev" title="Practice with: Pandas" href="PracticeNotebook_Pandas-STUDENT.html" />
+  <meta name="viewport" content="width=device-width, initial-scale=1"/>
+  <meta name="docsearch:language" content="en"/>
+  </head>
+  
+  
+  <body data-bs-spy="scroll" data-bs-target=".bd-toc-nav" data-offset="180" data-bs-root-margin="0px 0px -60%" data-default-mode="">
+
+  
+  
+  <div id="pst-skip-link" class="skip-link d-print-none"><a href="#main-content">Skip to main content</a></div>
+  
+  <div id="pst-scroll-pixel-helper"></div>
+  
+  <button type="button" class="btn rounded-pill" id="pst-back-to-top">
+    <i class="fa-solid fa-arrow-up"></i>Back to top</button>
+
+  
+  <input type="checkbox"
+          class="sidebar-toggle"
+          id="pst-primary-sidebar-checkbox"/>
+  <label class="overlay overlay-primary" for="pst-primary-sidebar-checkbox"></label>
+  
+  <input type="checkbox"
+          class="sidebar-toggle"
+          id="pst-secondary-sidebar-checkbox"/>
+  <label class="overlay overlay-secondary" for="pst-secondary-sidebar-checkbox"></label>
+  
+  <div class="search-button__wrapper">
+    <div class="search-button__overlay"></div>
+    <div class="search-button__search-container">
+<form class="bd-search d-flex align-items-center"
+      action="../search.html"
+      method="get">
+  <i class="fa-solid fa-magnifying-glass"></i>
+  <input type="search"
+         class="form-control"
+         name="q"
+         id="search-input"
+         placeholder="Search..."
+         aria-label="Search..."
+         autocomplete="off"
+         autocorrect="off"
+         autocapitalize="off"
+         spellcheck="false"/>
+  <span class="search-button__kbd-shortcut"><kbd class="kbd-shortcut__modifier">Ctrl</kbd>+<kbd>K</kbd></span>
+</form></div>
+  </div>
+
+  <div class="pst-async-banner-revealer d-none">
+  <aside id="bd-header-version-warning" class="d-none d-print-none" aria-label="Version warning"></aside>
+</div>
+
+  
+    <header class="bd-header navbar navbar-expand-lg bd-navbar d-print-none">
+    </header>
+  
+
+  <div class="bd-container">
+    <div class="bd-container__inner bd-page-width">
+      
+      
+      
+      <div class="bd-sidebar-primary bd-sidebar">
+        
+
+  
+  <div class="sidebar-header-items sidebar-primary__section">
+    
+    
+    
+    
+  </div>
+  
+    <div class="sidebar-primary-items__start sidebar-primary__section">
+        <div class="sidebar-primary-item">
+
+  
+
+<a class="navbar-brand logo" href="../intro.html">
+  
+  
+  
+  
+  
+    
+    
+      
+    
+    
+    <img src="../_static/logo.png" class="logo__image only-light" alt="CMSE 201 - Home"/>
+    <script>document.write(`<img src="../_static/logo.png" class="logo__image only-dark" alt="CMSE 201 - Home"/>`);</script>
+  
+  
+</a></div>
+        <div class="sidebar-primary-item">
+
+ <script>
+ document.write(`
+   <button class="btn navbar-btn search-button-field search-button__button" title="Search" aria-label="Search" data-bs-placement="bottom" data-bs-toggle="tooltip">
+    <i class="fa-solid fa-magnifying-glass"></i>
+    <span class="search-button__default-text">Search</span>
+    <span class="search-button__kbd-shortcut"><kbd class="kbd-shortcut__modifier">Ctrl</kbd>+<kbd class="kbd-shortcut__modifier">K</kbd></span>
+   </button>
+ `);
+ </script></div>
+        <div class="sidebar-primary-item"><nav class="bd-links bd-docs-nav" aria-label="Main">
+    <div class="bd-toc-item navbar-nav active">
+        <p aria-level="2" class="caption" role="heading"><span class="caption-text">Course Materials</span></p>
+<ul class="nav bd-sidenav">
+<li class="toctree-l1 has-children"><a class="reference internal" href="../Course_Materials-201/CourseDocuments.html">Important Course information</a><details><summary><span class="toctree-toggle" role="presentation"><i class="fa-solid fa-chevron-down"></i></span></summary><ul>
+<li class="toctree-l2"><a class="reference internal" href="../Course_Materials-201/CMSE201-Syllabus.html">Syllabus</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../Course_Materials-201/CMSE201-Schedule.html">Course Schedule</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../Course_Materials-201/SoftwareSetupGuide.html">Software Setup Guide</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../Course_Materials-201/classroom_participation.html">Classroom Participation</a></li>
+</ul>
+</details></li>
+</ul>
+<p aria-level="2" class="caption" role="heading"><span class="caption-text">CodeGrade</span></p>
+<ul class="nav bd-sidenav">
+<li class="toctree-l1"><a class="reference external" href="https://raw.githubusercontent.com/msu-cmse-courses/cmse201-supplemental/main/CodeGrade_Students.pdf">CodeGrade flowchart</a></li>
+</ul>
+<p aria-level="2" class="caption" role="heading"><span class="caption-text">Day 01</span></p>
+<ul class="nav bd-sidenav">
+<li class="toctree-l1"><a class="reference internal" href="../Day-01/Day-01_In-Class_SortingAlgorithm-STUDENT.html">Day 1 In-Class Assignment: Introductions and Sorting Algorithms</a></li>
+
+
+
+</ul>
+<p aria-level="2" class="caption" role="heading"><span class="caption-text">Day 02</span></p>
+<ul class="nav bd-sidenav">
+<li class="toctree-l1"><a class="reference internal" href="../Day-02/Day-02_In-Class_OrderOfMagnitudeModeling-STUDENT.html">Day 2 In-class Assignment: Order of Magnitude Modeling</a></li>
+
+
+</ul>
+<p aria-level="2" class="caption" role="heading"><span class="caption-text">Day 03</span></p>
+<ul class="nav bd-sidenav">
+<li class="toctree-l1"><a class="reference internal" href="../Day-03/Day-03_In-Class_ListsLoopsAndSaving-STUDENT.html">Day 3 In-class Assignment: The power of compound interest</a></li>
+</ul>
+<p aria-level="2" class="caption" role="heading"><span class="caption-text">Day 04</span></p>
+<ul class="nav bd-sidenav">
+<li class="toctree-l1"><a class="reference internal" href="../Day-04/Day_04_In_Class_DataAlgorithmicBias-STUDENT.html">Day 4 In-class Assignment: Data and Algorithmic Bias, Academic Integrity, and Coding Best Practices</a></li>
+
+</ul>
+<p aria-level="2" class="caption" role="heading"><span class="caption-text">Day 05</span></p>
+<ul class="nav bd-sidenav">
+<li class="toctree-l1"><a class="reference internal" href="../Day-05/Day-05_In-Class_IfStatementsAndFunctions-STUDENT.html">Day 5 In-class Assignment: Savings for Everyone</a></li>
+</ul>
+<p aria-level="2" class="caption" role="heading"><span class="caption-text">Day 06</span></p>
+<ul class="nav bd-sidenav">
+<li class="toctree-l1"><a class="reference internal" href="../Day-06/Day-06_In-Class_FunctionsAndSquirrels-STUDENT.html">Day 6 In Class Assignment: A Scurry of Squirrels in Central Park</a></li>
+
+
+
+
+
+</ul>
+<p aria-level="2" class="caption" role="heading"><span class="caption-text">Day 07</span></p>
+<ul class="nav bd-sidenav">
+<li class="toctree-l1"><a class="reference internal" href="../Day-07/Day-07_In-Class_ReviewingAndPracticingConcepts-STUDENT.html">Day 7 In-class Assignment: Reviewing and practicing prior concepts</a></li>
+
+<li class="toctree-l1"><a class="reference internal" href="../Day-07/Day-07_In-Class_ReviewingAndPracticingConcepts-Solutions.html">Day 7 In-class Assignment: Reviewing and practicing prior concepts</a></li>
+
+<li class="toctree-l1"><a class="reference internal" href="../Day-07/Debugging-STUDENT.html">Practice with Debugging</a></li>
+
+
+</ul>
+<p aria-level="2" class="caption" role="heading"><span class="caption-text">Day 08</span></p>
+<ul class="nav bd-sidenav">
+<li class="toctree-l1"><a class="reference internal" href="../Day-08/Day-08_In-Class_MathAndPlotting-STUDENT.html">Day 8 In-class Assignment: Visualizing population growth</a></li>
+</ul>
+<p aria-level="2" class="caption" role="heading"><span class="caption-text">Day 09</span></p>
+<ul class="nav bd-sidenav">
+<li class="toctree-l1"><a class="reference internal" href="../Day-09/Day-09_In-Class_NumPyWithTheGreatLakes-STUDENT.html">Day 9 In-class Assignment: Exploring Great Lakes Water Levels using NumPy</a></li>
+
+<li class="toctree-l1"><a class="reference external" href="https://raw.githubusercontent.com/msu-cmse-courses/cmse201-supplemental/main/ICA_datasets/lake_erie.csv">lake_erie.csv</a></li>
+<li class="toctree-l1"><a class="reference external" href="https://raw.githubusercontent.com/msu-cmse-courses/cmse201-supplemental/main/ICA_datasets/lake_michigan_huron.csv">lake_michigan_huron.csv</a></li>
+<li class="toctree-l1"><a class="reference external" href="https://raw.githubusercontent.com/msu-cmse-courses/cmse201-supplemental/main/ICA_datasets/lake_ontario.csv">lake_ontario.csv</a></li>
+<li class="toctree-l1"><a class="reference external" href="https://raw.githubusercontent.com/msu-cmse-courses/cmse201-supplemental/main/ICA_datasets/lake_superior.csv">lake_superior.csv</a></li>
+</ul>
+<p aria-level="2" class="caption" role="heading"><span class="caption-text">Day 10</span></p>
+<ul class="nav bd-sidenav">
+<li class="toctree-l1"><a class="reference internal" href="../Day-10/Day-10_In-Class_GDP-STUDENT.html">Day 10 In-Class: Cleaning and Analyzing Economic Data</a></li>
+
+
+<li class="toctree-l1"><a class="reference external" href="https://raw.githubusercontent.com/msu-cmse-courses/cmse201-supplemental/main/ICA_datasets/API_NY.GDP.MKTP.CD_DS2_en_csv_v2_31795.csv">API_NY.GDP.MKTP.CD_DS2_en_csv_v2_31795.csv</a></li>
+</ul>
+<p aria-level="2" class="caption" role="heading"><span class="caption-text">Day 11</span></p>
+<ul class="nav bd-sidenav">
+<li class="toctree-l1"><a class="reference internal" href="../Day-11/Day-11_In-Class_Flint-STUDENT.html">Day 11 In-class Assignment: Get the Lead Out: Understanding The Water Crisis in Flint, MI</a></li>
+
+
+<li class="toctree-l1"><a class="reference external" href="https://raw.githubusercontent.com/msu-cmse-courses/cmse201-supplemental/main/ICA_datasets/flint_water_data.csv">flint_water_data.csv</a></li>
+</ul>
+<p aria-level="2" class="caption" role="heading"><span class="caption-text">Day 12</span></p>
+<ul class="nav bd-sidenav">
+<li class="toctree-l1"><a class="reference internal" href="../Day-12/Day-12_In-Class_Unprocessed_Data-STUDENT.html">Day 12 In-Class: Data Contextualization and Wrangling</a></li>
+</ul>
+<p aria-level="2" class="caption" role="heading"><span class="caption-text">Day 13</span></p>
+<ul class="nav bd-sidenav">
+<li class="toctree-l1"><a class="reference internal" href="../Day-13/Day-13_Pre-Class_Online_Resources-STUDENT.html">Day 13 Pre-class Assignment: Finding resources online and tinkering wth code</a></li>
+
+
+<li class="toctree-l1"><a class="reference internal" href="../Day-13/Day-13_In-Class_Online_Resources-STUDENT.html">Day 13 In-Class: Using online resources (code and data)</a></li>
+</ul>
+<p aria-level="2" class="caption" role="heading"><span class="caption-text">Day 14</span></p>
+<ul class="nav bd-sidenav">
+<li class="toctree-l1"><a class="reference internal" href="../Day-14/Day-14_In-Class_Evaluating_Fits-STUDENT.html">Day 14 In-Class Assignment: Evaluating Models</a></li>
+</ul>
+<p aria-level="2" class="caption" role="heading"><span class="caption-text">Day 15</span></p>
+<ul class="nav bd-sidenav">
+<li class="toctree-l1"><a class="reference external" href="https://raw.githubusercontent.com/msu-cmse-courses/cmse201-supplemental/main/image_critique_ver2.pptx">Image Critique</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../Day-15/Day-15_In-Class_FittingCurves-STUDENT.html">Day 15 In-Class Assignment: (Thoughtfully) fitting models to data</a></li>
+<li class="toctree-l1"><a class="reference external" href="https://raw.githubusercontent.com/msu-cmse-courses/cmse201-S22-data/main/Day-14/pop200.csv">pop200.csv</a></li>
+<li class="toctree-l1"><a class="reference external" href="https://raw.githubusercontent.com/msu-cmse-courses/cmse201-S22-data/main/Day-14/pop300.csv">pop300.csv</a></li>
+</ul>
+<p aria-level="2" class="caption" role="heading"><span class="caption-text">Day 16</span></p>
+<ul class="nav bd-sidenav">
+<li class="toctree-l1"><a class="reference internal" href="../Day-16/Day-16-Intro_to_ODEs_In-Class_STUDENT.html">Day 16: In-class Assignment: Introduction to Modeling with ODEs</a></li>
+</ul>
+<p aria-level="2" class="caption" role="heading"><span class="caption-text">Day 17</span></p>
+<ul class="nav bd-sidenav">
+<li class="toctree-l1"><a class="reference internal" href="../Day-17/Day-17_In-Class_ModelingWithODEs-STUDENT.html">Day 17: In-class Assignment: Modeling with Ordinary Differential Equations</a></li>
+
+
+
+</ul>
+<p aria-level="2" class="caption" role="heading"><span class="caption-text">Day 18</span></p>
+<ul class="nav bd-sidenav">
+<li class="toctree-l1"><a class="reference internal" href="../Day-18/Day-18_In-Class_CompartmentalModeling-STUDENT.html">Day 18 In-class Assignment: Building Compartmental Models</a></li>
+
+
+
+</ul>
+<p aria-level="2" class="caption" role="heading"><span class="caption-text">Day 19</span></p>
+<ul class="nav bd-sidenav">
+<li class="toctree-l1"><a class="reference internal" href="../Day-19/Day-19_In-Class_CompartmentsWithSolveIVP-STUDENT.html">Day 19 In-Class Assignment: Compartmental Modeling, moving from the model to the code</a></li>
+</ul>
+<p aria-level="2" class="caption" role="heading"><span class="caption-text">Day 20</span></p>
+<ul class="nav bd-sidenav">
+<li class="toctree-l1"><a class="reference internal" href="../Day-20/Day-20_In-Class_IntroToDataVisualization-STUDENT.html">Day 20 In-Class: Introduction to Data Visualization</a></li>
+</ul>
+<p aria-level="2" class="caption" role="heading"><span class="caption-text">Day 21</span></p>
+<ul class="nav bd-sidenav">
+<li class="toctree-l1"><a class="reference internal" href="../Day-21/Day-21_In-Class_2DImageAnalysis-STUDENT.html">Day 21 In-Class Assignment: Image Analysis</a></li>
+<li class="toctree-l1"><a class="reference external" href="https://raw.githubusercontent.com/msu-cmse-courses/cmse201-supplemental/main/Day-17/ICA_files/beach.jpeg">beach.jpeg</a></li>
+<li class="toctree-l1"><a class="reference external" href="https://raw.githubusercontent.com/msu-cmse-courses/cmse201-supplemental/main/Day-17/ICA_files/landscape.jpeg">landscape.jpeg</a></li>
+<li class="toctree-l1"><a class="reference external" href="https://raw.githubusercontent.com/msu-cmse-courses/cmse201-supplemental/main/Day-17/ICA_files/zebra.png">zebra.png</a></li>
+</ul>
+<p aria-level="2" class="caption" role="heading"><span class="caption-text">Day 22</span></p>
+<ul class="nav bd-sidenav">
+<li class="toctree-l1"><a class="reference internal" href="../Day-22/Day-22_In-Class_ForestFiresPartI-STUDENT.html">Day 22 Part 1 In-class Assignment: Modeling forest fires with an Agent-based Model</a></li>
+</ul>
+<p aria-level="2" class="caption" role="heading"><span class="caption-text">Day 23</span></p>
+<ul class="nav bd-sidenav">
+<li class="toctree-l1"><a class="reference internal" href="../Day-23/Day-23_In-Class_ForestFiresPartII-STUDENT.html">Day 23 In-class Assignment: Modeling forest fires with an Agent-based Model (Part II)</a></li>
+</ul>
+<p aria-level="2" class="caption" role="heading"><span class="caption-text">Day 24</span></p>
+<ul class="nav bd-sidenav">
+<li class="toctree-l1"><a class="reference internal" href="../Day-24/Day-24_In-Class_DataDilemmas-STUDENT.html">Day 24 - In-Class - Data Dilemmas: Ethics in an Algorithmic World</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../Day-24/biased_data_gen.html">Data Generation Sheet</a></li>
+</ul>
+<p aria-level="2" class="caption" role="heading"><span class="caption-text">Day 25</span></p>
+<ul class="nav bd-sidenav">
+<li class="toctree-l1"><a class="reference internal" href="../Day-25/Day-25_In-Class_ProjectWorkDay-STUDENT.html">Day 25 In-class Assignment: Project Work Day</a></li>
+</ul>
+<p aria-level="2" class="caption" role="heading"><span class="caption-text">Homework</span></p>
+<ul class="nav bd-sidenav">
+<li class="toctree-l1"><a class="reference internal" href="../Homework/Homework_01/HW_01_PythonFundamentals-STUDENT.html">Homework 1: Python fundamentals and using external resources to better understand code!</a></li>
+
+
+
+
+
+
+<li class="toctree-l1"><a class="reference internal" href="../Homework/Homework_02/HW_02_SS26-Spring-2026-STUDENT.html">Homework 2: Dictionaries, If Statements, Functions, and Modules</a></li>
+
+<li class="toctree-l1"><a class="reference external" href="https://raw.githubusercontent.com/msu-cmse-courses/cmse201-supplemental/main/stock_data.csv">stock_data.csv</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../Homework/Homework_03/HW_03_SS26_-Spring-2026-STUDENT.html">Homework 3 - Loading, Cleaning, Analyzing, and Visualizing Data with Pandas</a></li>
+<li class="toctree-l1"><a class="reference external" href="https://raw.githubusercontent.com/msu-cmse-courses/cmse201-supplemental/main/Homework/ahuacatl.csv">ahuacatl.csv</a></li>
+<li class="toctree-l1"><a class="reference external" href="https://raw.githubusercontent.com/msu-cmse-courses/cmse201-supplemental/main/Homework/nahuatl_names.csv">nahuatl_names.csv</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../Homework/Homework_04/HW4_SS26-STUDENT.html">Homework 4 - Compartmental Models + Data Visualization</a></li>
+<li class="toctree-l1"><a class="reference external" href="https://raw.githubusercontent.com/msu-cmse-courses/cmse201-supplemental/main/Homework/nypd_collisions_sample.csv">nypd_collisions_sample.csv</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../Homework/Homework_05/HW-05_SS26_STUDENT.html">Homework 5: Algorithmic Bias and Agent-based Modeling (EXTRA CREDIT)</a></li>
+
+
+
+</ul>
+<p aria-level="2" class="caption" role="heading"><span class="caption-text">Code Portfolio</span></p>
+<ul class="nav bd-sidenav">
+<li class="toctree-l1"><a class="reference internal" href="../Homework/Code_Portfolio/Code_Portfolio_Assignment.html">Code Portfolio Assignment</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../Homework/Code_Portfolio/Code_Portfolio_Example-CodeGrade.html">Code Portfolio Example</a></li>
+
+</ul>
+<p aria-level="2" class="caption" role="heading"><span class="caption-text">Semester Project</span></p>
+<ul class="nav bd-sidenav">
+<li class="toctree-l1"><a class="reference internal" href="../Project_Materials/CMSE201_SemesterProjectDetails.html">Semester Project Details</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../Project_Materials/Project_Plan_Check-in.html">First Project Checkpoint</a></li>
+
+
+
+<li class="toctree-l1"><a class="reference internal" href="../Project_Materials/First_Project_Checkpoint.html">First Project Checkpoint</a></li>
+
+
+
+<li class="toctree-l1"><a class="reference internal" href="../Project_Materials/CMSE201_FinalProjectTemplate.html">CMSE 201 Final Project Template</a></li>
+
+<li class="toctree-l1"><a class="reference external" href="https://raw.githubusercontent.com/msu-cmse-courses/cmse201-supplemental/main/Projects/CMSE201_final_project_examples.zip">Zip file of example projects</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../Project_Materials/CMSE201FinalProject_RequirementsAndGradingRubric.html">Requirements and Grading Rubric</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../Project_Materials/peer_assessment.html">Peer Assessment Notebook</a></li>
+<li class="toctree-l1"><a class="reference external" href="https://github.com/msu-cmse-courses/cmse201-supplemental/raw/main/Projects/Presentation_Evaluation_Rubric.pdf">Presentation Evaluation Rubric</a></li>
+</ul>
+<p aria-level="2" class="caption" role="heading"><span class="caption-text">Practice Notebooks</span></p>
+<ul class="current nav bd-sidenav">
+<li class="toctree-l1"><a class="reference internal" href="PracticeNotebook_IfStatements-STUDENT.html">Practice with: <code class="docutils literal notranslate"><span class="pre">if</span></code> statements</a></li>
+<li class="toctree-l1"><a class="reference internal" href="PracticeNotebook_Functions-STUDENT.html">Practice with: functions</a></li>
+<li class="toctree-l1"><a class="reference internal" href="PracticeNotebook_Matplotlib-STUDENT.html">Practice with: <code class="docutils literal notranslate"><span class="pre">matplotlib</span></code></a></li>
+<li class="toctree-l1"><a class="reference internal" href="filtering_ws_ver2.html">Practice with Masking</a></li>
+<li class="toctree-l1"><a class="reference internal" href="PracticeNotebook_Pandas-STUDENT.html">Practice with: Pandas</a></li>
+<li class="toctree-l1"><a class="reference external" href="https://raw.githubusercontent.com/msu-cmse-courses/cmse201-supplemental/main/PracticeNotebooks/weather.csv">weather.csv</a></li>
+<li class="toctree-l1 current active"><a class="current reference internal" href="#">Practice with: SciPy <code class="docutils literal notranslate"><span class="pre">curve_fit</span></code></a></li>
+<li class="toctree-l1"><a class="reference internal" href="PracticeNotebook_CompartmentalModels-STUDENT.html">Practice with: Compartmental Models</a></li>
+<li class="toctree-l1"><a class="reference internal" href="PracticeNotebook_SolveIVP-STUDENT.html">Practice with: <code class="docutils literal notranslate"><span class="pre">solve_ivp</span></code></a></li>
+</ul>
+
+    </div>
+</nav></div>
+    </div>
+  
+  
+  <div class="sidebar-primary-items__end sidebar-primary__section">
+  </div>
+  
+  <div id="rtd-footer-container"></div>
+
+
+      </div>
+      
+      <main id="main-content" class="bd-main" role="main">
+        
+        
+
+<div class="sbt-scroll-pixel-helper"></div>
+
+          <div class="bd-content">
+            <div class="bd-article-container">
+              
+              <div class="bd-header-article d-print-none">
+<div class="header-article-items header-article__inner">
+  
+    <div class="header-article-items__start">
+      
+        <div class="header-article-item"><label class="sidebar-toggle primary-toggle btn btn-sm" for="__primary" title="Toggle primary sidebar" data-bs-placement="bottom" data-bs-toggle="tooltip">
+  <span class="fa-solid fa-bars"></span>
+</label></div>
+      
+    </div>
+  
+  
+    <div class="header-article-items__end">
+      
+        <div class="header-article-item">
+
+<div class="article-header-buttons">
+
+
+
+
+
+<div class="dropdown dropdown-download-buttons">
+  <button class="btn dropdown-toggle" type="button" data-bs-toggle="dropdown" aria-expanded="false" aria-label="Download this page">
+    <i class="fas fa-download"></i>
+  </button>
+  <ul class="dropdown-menu">
+      
+      
+      
+      <li><a href="../_sources/Quiz_Prep_Notebooks/PracticeNotebook_ScipyCurveFit-STUDENT.ipynb" target="_blank"
+   class="btn btn-sm btn-download-source-button dropdown-item"
+   title="Download source file"
+   data-bs-placement="left" data-bs-toggle="tooltip"
+>
+  
+
+<span class="btn__icon-container">
+  <i class="fas fa-file"></i>
+  </span>
+<span class="btn__text-container">.ipynb</span>
+</a>
+</li>
+      
+      
+      
+      
+      <li>
+<button onclick="window.print()"
+  class="btn btn-sm btn-download-pdf-button dropdown-item"
+  title="Print to PDF"
+  data-bs-placement="left" data-bs-toggle="tooltip"
+>
+  
+
+<span class="btn__icon-container">
+  <i class="fas fa-file-pdf"></i>
+  </span>
+<span class="btn__text-container">.pdf</span>
+</button>
+</li>
+      
+  </ul>
+</div>
+
+
+
+
+<button onclick="toggleFullScreen()"
+  class="btn btn-sm btn-fullscreen-button"
+  title="Fullscreen mode"
+  data-bs-placement="bottom" data-bs-toggle="tooltip"
+>
+  
+
+<span class="btn__icon-container">
+  <i class="fas fa-expand"></i>
+  </span>
+
+</button>
+
+
+
+<script>
+document.write(`
+  <button class="btn btn-sm navbar-btn theme-switch-button" title="light/dark" aria-label="light/dark" data-bs-placement="bottom" data-bs-toggle="tooltip">
+    <span class="theme-switch nav-link" data-mode="light"><i class="fa-solid fa-sun fa-lg"></i></span>
+    <span class="theme-switch nav-link" data-mode="dark"><i class="fa-solid fa-moon fa-lg"></i></span>
+    <span class="theme-switch nav-link" data-mode="auto"><i class="fa-solid fa-circle-half-stroke fa-lg"></i></span>
+  </button>
+`);
+</script>
+
+
+<script>
+document.write(`
+  <button class="btn btn-sm navbar-btn search-button search-button__button" title="Search" aria-label="Search" data-bs-placement="bottom" data-bs-toggle="tooltip">
+    <i class="fa-solid fa-magnifying-glass fa-lg"></i>
+  </button>
+`);
+</script>
+<label class="sidebar-toggle secondary-toggle btn btn-sm" for="__secondary"title="Toggle secondary sidebar" data-bs-placement="bottom" data-bs-toggle="tooltip">
+    <span class="fa-solid fa-list"></span>
+</label>
+</div></div>
+      
+    </div>
+  
+</div>
+</div>
+              
+              
+
+<div id="jb-print-docs-body" class="onlyprint">
+    <h1>Practice with: SciPy curve_fit</h1>
+    <!-- Table of contents -->
+    <div id="print-main-content">
+        <div id="jb-print-toc">
+            
+            <div>
+                <h2> Contents </h2>
+            </div>
+            <nav aria-label="Page">
+                <ul class="visible nav section-nav flex-column">
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#example"><strong>Example</strong></a></li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#task-1-a-basic-example">Task 1: A Basic Example</a></li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#task-2-practice-with-goodness-of-fit">Task 2: Practice with Goodness of Fit</a></li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#task-3-fitting-with-a-more-complicated-curve">Task 3: Fitting with a more complicated curve</a></li>
+</ul>
+            </nav>
+        </div>
+    </div>
+</div>
+
+              
+                
+<div id="searchbox"></div>
+                <article class="bd-article">
+                  
+  <section class="tex2jax_ignore mathjax_ignore" id="practice-with-scipy-curve-fit">
+<h1>Practice with: SciPy <code class="docutils literal notranslate"><span class="pre">curve_fit</span></code><a class="headerlink" href="#practice-with-scipy-curve-fit" title="Link to this heading">#</a></h1>
+<p>When we want to fit a model to data, where the model is something more complex than a polynomial, we can use scipy’s curve_fit(). Using curve_fit() allows us to use regression to fit a model we define to a dataset. The model we define can be linear, polynomial, trigonometric, exponential, and many more! The image below reviews the parts of curve_fit() call.</p>
+<img src="https://github.com/msu-cmse-courses/cmse201-F21-data/blob/main/scipy_curve_fit_anatomy.png?raw=true" width=800>
+<section id="example">
+<h2><strong>Example</strong><a class="headerlink" href="#example" title="Link to this heading">#</a></h2>
+<p>The following image shows an example of using curve_fit(). You can follow this basic structure for any model you want to fit! In the example, we are fitting the model <span class="math notranslate nohighlight">\(y = A \ \rm{sin}(B \ x+C)\)</span> to our data.</p>
+<p>Once we have a best fit, we can plot our model with the best fit parameters with the data to visualize the fit. It’s also helpful to see that the fit makes sense for the data. If the line is far from the data points, then you may have an incorrect model or a bug in your code!</p>
+<img src="https://github.com/msu-cmse-courses/cmse201-F21-data/blob/main/scipy_curve_fit_example.png?raw=true" width=800></section>
+<section id="task-1-a-basic-example">
+<h2>Task 1: A Basic Example<a class="headerlink" href="#task-1-a-basic-example" title="Link to this heading">#</a></h2>
+<p>In the cell below, fit a line (<span class="math notranslate nohighlight">\(y = \rm{m} \ x + b\)</span>) to the data provided using curve_fit(). You will need to write your own function for <span class="math notranslate nohighlight">\(y = \rm{m} \ x + b\)</span>. Report the best fit slope, m, and intercept, b. Plot the data and best fit line using matplotlib. Make sure to include the necessary labels on the plot.</p>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="kn">import</span> <span class="nn">numpy</span> <span class="k">as</span> <span class="nn">np</span>
+
+<span class="c1"># data you will fit a line to</span>
+<span class="c1"># x data (generated using a uniform array)</span>
+<span class="n">my_x_data</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">arange</span><span class="p">(</span><span class="mi">0</span><span class="p">,</span><span class="mi">25</span><span class="p">,</span><span class="mf">0.5</span><span class="p">)</span>
+<span class="c1"># y data (generated by multiplying x data by a slope and adding random numbers to simulate scatter)</span>
+<span class="n">my_y_data</span> <span class="o">=</span> <span class="mf">1.5</span> <span class="o">*</span> <span class="n">my_x_data</span> <span class="o">+</span> <span class="n">np</span><span class="o">.</span><span class="n">random</span><span class="o">.</span><span class="n">normal</span><span class="p">(</span><span class="mi">5</span><span class="p">,</span><span class="mi">5</span><span class="p">,</span><span class="mi">50</span><span class="p">)</span>
+</pre></div>
+</div>
+</div>
+</div>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="c1"># write your fitting function here</span>
+</pre></div>
+</div>
+</div>
+</div>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="c1"># write your curve_fit() code and plot here</span>
+</pre></div>
+</div>
+</div>
+</div>
+</section>
+<section id="task-2-practice-with-goodness-of-fit">
+<h2>Task 2: Practice with Goodness of Fit<a class="headerlink" href="#task-2-practice-with-goodness-of-fit" title="Link to this heading">#</a></h2>
+<p>In the cell below, we have a function for calculating the Root Mean Squared Error which is (yet another) reasonable way to meaure goodness of fit! In this task, you will practice calculating goodness of fit with the function below.</p>
+<p>You are also given a function for a polynomial and a function for a sine function as well as some generated x and y data to fit.</p>
+<p>Your task is to fit the data with both the polynomial and the sine function and then using the RMSE function, determine which is the better fit. Plot the data and both of your fits as well.</p>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="c1"># RMSE function</span>
+<span class="k">def</span> <span class="nf">rmse</span><span class="p">(</span><span class="n">x_points</span><span class="p">,</span><span class="n">y_points</span><span class="p">,</span><span class="n">y_pred</span><span class="p">):</span>
+<span class="w">    </span><span class="sd">&quot;&quot;&quot;</span>
+<span class="sd">    A function for computing the RMSE of a model, based on a set of points.</span>
+<span class="sd">    </span>
+<span class="sd">    Input:</span>
+<span class="sd">    x_points  : array</span>
+<span class="sd">                A set of x points (e.g. times) that correspond to the data points, y</span>
+
+<span class="sd">    y_points  : array</span>
+<span class="sd">                A set of y points (e.g. transistor counts) that correspond to the times</span>
+<span class="sd">                x</span>
+<span class="sd">                </span>
+<span class="sd">    y_pred    : array</span>
+<span class="sd">                the array of predicted values for your model (same length as x_points and y_points)</span>
+
+<span class="sd">                </span>
+<span class="sd">                </span>
+<span class="sd">    Output:</span>
+<span class="sd">    rmse      : float</span>
+<span class="sd">                The root mean squared error of the model, computed using x and y</span>
+<span class="sd">    &quot;&quot;&quot;</span>
+    
+    <span class="n">nx</span> <span class="o">=</span> <span class="nb">len</span><span class="p">(</span><span class="n">x_points</span><span class="p">)</span>
+    <span class="n">ny</span> <span class="o">=</span> <span class="nb">len</span><span class="p">(</span><span class="n">y_points</span><span class="p">)</span>
+    
+    <span class="k">if</span> <span class="n">nx</span> <span class="o">!=</span> <span class="n">ny</span><span class="p">:</span>
+        <span class="nb">print</span><span class="p">(</span><span class="s2">&quot;Error! x and y must have the same length!&quot;</span><span class="p">)</span>
+        
+    <span class="n">sum_sq</span> <span class="o">=</span> <span class="mi">0</span>
+    <span class="k">for</span> <span class="n">i</span> <span class="ow">in</span> <span class="nb">range</span><span class="p">(</span><span class="nb">len</span><span class="p">(</span><span class="n">x_points</span><span class="p">)):</span>
+        <span class="n">sum_sq</span> <span class="o">+=</span> <span class="p">(</span><span class="n">y_points</span><span class="p">[</span><span class="n">i</span><span class="p">]</span> <span class="o">-</span> <span class="n">y_pred</span><span class="p">[</span><span class="n">i</span><span class="p">])</span><span class="o">**</span><span class="mi">2</span>
+
+    <span class="n">rmse</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">sqrt</span><span class="p">(</span><span class="n">sum_sq</span><span class="o">/</span><span class="n">nx</span><span class="p">)</span>
+    
+    <span class="k">return</span> <span class="n">rmse</span>
+</pre></div>
+</div>
+</div>
+</div>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="c1"># polynomial function for fitting</span>
+<span class="k">def</span> <span class="nf">my_approximating_polynomial</span><span class="p">(</span><span class="n">x</span><span class="p">,</span><span class="n">A</span><span class="p">,</span><span class="n">B</span><span class="p">,</span><span class="n">C</span><span class="p">):</span>
+    <span class="k">return</span> <span class="n">A</span><span class="o">*</span><span class="n">x</span><span class="o">-</span><span class="n">B</span><span class="o">*</span><span class="n">x</span><span class="o">**</span><span class="mi">3</span><span class="o">+</span><span class="n">C</span><span class="o">*</span><span class="n">x</span><span class="o">**</span><span class="mi">5</span>
+<span class="c1">#sine function for fitting</span>
+<span class="k">def</span> <span class="nf">my_sine_function</span><span class="p">(</span><span class="n">x</span><span class="p">,</span><span class="n">A</span><span class="p">,</span><span class="n">B</span><span class="p">,</span><span class="n">C</span><span class="p">):</span>
+    <span class="kn">import</span> <span class="nn">numpy</span> <span class="k">as</span> <span class="nn">np</span>
+    <span class="k">return</span> <span class="n">A</span><span class="o">*</span><span class="n">np</span><span class="o">.</span><span class="n">sin</span><span class="p">(</span><span class="n">B</span><span class="o">*</span><span class="n">x</span><span class="p">)</span><span class="o">+</span><span class="n">C</span>
+
+<span class="c1"># x values</span>
+<span class="n">x_array</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">linspace</span><span class="p">(</span><span class="mi">0</span><span class="p">,</span><span class="mi">2</span><span class="o">*</span><span class="n">np</span><span class="o">.</span><span class="n">pi</span><span class="p">,</span><span class="mi">100</span><span class="p">)</span>
+<span class="c1"># y values generated by adding random scatter</span>
+<span class="n">my_y_data</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">sin</span><span class="p">(</span><span class="n">x_array</span><span class="p">)</span> <span class="o">+</span> <span class="n">np</span><span class="o">.</span><span class="n">random</span><span class="o">.</span><span class="n">normal</span><span class="p">(</span><span class="mf">.5</span><span class="p">,</span><span class="mf">.5</span><span class="p">,</span><span class="mi">100</span><span class="p">)</span>
+</pre></div>
+</div>
+</div>
+</div>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="c1"># your code here</span>
+</pre></div>
+</div>
+</div>
+</div>
+</section>
+<section id="task-3-fitting-with-a-more-complicated-curve">
+<h2>Task 3: Fitting with a more complicated curve<a class="headerlink" href="#task-3-fitting-with-a-more-complicated-curve" title="Link to this heading">#</a></h2>
+<p>Below, you are given a dataset. You need to fit the data with the following function <span class="math notranslate nohighlight">\(y = Ae^{Bx}\)</span> using curve_fit(). Plot your data and the best fit. For extra practice, calculate the RMSE!</p>
+<p>Remember the steps for solving a curve_fit() problem. You will need to write your fitting function with the correct parameters, run your curve_fit() call, and then unpack your parameters for plotting!</p>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">x_data_exp</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">array</span><span class="p">([</span> <span class="mf">0.</span>       <span class="p">,</span>   <span class="mf">0.41666667</span><span class="p">,</span>  <span class="mf">0.83333333</span><span class="p">,</span>  <span class="mf">1.25</span>  <span class="p">,</span>      <span class="mf">1.66666667</span><span class="p">,</span>  <span class="mf">2.08333333</span><span class="p">,</span>
+  <span class="mf">2.5</span><span class="p">,</span>         <span class="mf">2.91666667</span><span class="p">,</span>  <span class="mf">3.33333333</span><span class="p">,</span>  <span class="mf">3.75</span><span class="p">,</span>        <span class="mf">4.16666667</span><span class="p">,</span> <span class="mf">4.58333333</span><span class="p">,</span>
+  <span class="mf">5.</span><span class="p">,</span>          <span class="mf">5.41666667</span><span class="p">,</span>  <span class="mf">5.83333333</span><span class="p">,</span>  <span class="mf">6.25</span><span class="p">,</span>        <span class="mf">6.66666667</span><span class="p">,</span>  <span class="mf">7.08333333</span><span class="p">,</span>
+  <span class="mf">7.5</span><span class="p">,</span>         <span class="mf">7.91666667</span><span class="p">,</span>  <span class="mf">8.33333333</span><span class="p">,</span>  <span class="mf">8.75</span><span class="p">,</span>        <span class="mf">9.16666667</span><span class="p">,</span>  <span class="mf">9.58333333</span><span class="p">,</span>
+ <span class="mf">10.</span>        <span class="p">])</span>
+
+<span class="n">y_data_exp</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">array</span><span class="p">([</span><span class="o">-</span><span class="mf">3.68337708e+00</span><span class="p">,</span>  <span class="mf">1.39658773e+01</span><span class="p">,</span>  <span class="mf">1.00650307e+01</span><span class="p">,</span> <span class="o">-</span><span class="mf">2.92657505e-02</span><span class="p">,</span>
+ <span class="o">-</span><span class="mf">7.62920546e+00</span><span class="p">,</span>  <span class="mf">2.81191792e+01</span><span class="p">,</span>  <span class="mf">8.04337494e+00</span><span class="p">,</span>  <span class="mf">2.56305766e+01</span><span class="p">,</span>
+  <span class="mf">3.87889679e+01</span><span class="p">,</span>  <span class="mf">2.14103845e+01</span><span class="p">,</span>  <span class="mf">1.88004008e+01</span><span class="p">,</span>  <span class="mf">3.01680011e+01</span><span class="p">,</span>
+  <span class="mf">3.60940131e+01</span><span class="p">,</span>  <span class="mf">3.57200248e+01</span><span class="p">,</span>  <span class="mf">5.02427770e+01</span><span class="p">,</span>  <span class="mf">4.23525345e+01</span><span class="p">,</span>
+  <span class="mf">5.37357199e+01</span><span class="p">,</span>  <span class="mf">4.29363738e+01</span><span class="p">,</span>  <span class="mf">7.97825245e+01</span><span class="p">,</span>  <span class="mf">7.01883073e+01</span><span class="p">,</span>
+  <span class="mf">1.10187785e+02</span><span class="p">,</span>  <span class="mf">1.32723668e+02</span><span class="p">,</span>  <span class="mf">1.58002488e+02</span><span class="p">,</span>  <span class="mf">1.73352344e+02</span><span class="p">,</span>
+  <span class="mf">2.27538706e+02</span><span class="p">])</span>
+<span class="nb">print</span><span class="p">(</span><span class="nb">len</span><span class="p">(</span><span class="n">x_data_exp</span><span class="p">),</span><span class="nb">len</span><span class="p">(</span><span class="n">y_data_exp</span><span class="p">))</span>
+<span class="c1">#print(x_data)</span>
+<span class="c1">#print(y_test)</span>
+</pre></div>
+</div>
+</div>
+</div>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="c1"># your code here</span>
+</pre></div>
+</div>
+</div>
+</div>
+<p>Prepared by the Department of Computational Mathematics, Science and Engineering at MSU</p>
+</section>
+</section>
+
+    <script type="text/x-thebe-config">
+    {
+        requestKernel: true,
+        binderOptions: {
+            repo: "binder-examples/jupyter-stacks-datascience",
+            ref: "master",
+        },
+        codeMirrorConfig: {
+            theme: "abcdef",
+            mode: "python"
+        },
+        kernelOptions: {
+            name: "python3",
+            path: "./Quiz_Prep_Notebooks"
+        },
+        predefinedOutput: true
+    }
+    </script>
+    <script>kernelName = 'python3'</script>
+
+                </article>
+              
+
+              
+              
+              
+              
+                <footer class="prev-next-footer d-print-none">
+                  
+<div class="prev-next-area">
+    <a class="left-prev"
+       href="PracticeNotebook_Pandas-STUDENT.html"
+       title="previous page">
+      <i class="fa-solid fa-angle-left"></i>
+      <div class="prev-next-info">
+        <p class="prev-next-subtitle">previous</p>
+        <p class="prev-next-title">Practice with: Pandas</p>
+      </div>
+    </a>
+    <a class="right-next"
+       href="PracticeNotebook_CompartmentalModels-STUDENT.html"
+       title="next page">
+      <div class="prev-next-info">
+        <p class="prev-next-subtitle">next</p>
+        <p class="prev-next-title">Practice with: Compartmental Models</p>
+      </div>
+      <i class="fa-solid fa-angle-right"></i>
+    </a>
+</div>
+                </footer>
+              
+            </div>
+            
+            
+              
+                <div class="bd-sidebar-secondary bd-toc"><div class="sidebar-secondary-items sidebar-secondary__inner">
+
+
+  <div class="sidebar-secondary-item">
+  <div class="page-toc tocsection onthispage">
+    <i class="fa-solid fa-list"></i> Contents
+  </div>
+  <nav class="bd-toc-nav page-toc">
+    <ul class="visible nav section-nav flex-column">
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#example"><strong>Example</strong></a></li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#task-1-a-basic-example">Task 1: A Basic Example</a></li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#task-2-practice-with-goodness-of-fit">Task 2: Practice with Goodness of Fit</a></li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#task-3-fitting-with-a-more-complicated-curve">Task 3: Fitting with a more complicated curve</a></li>
+</ul>
+  </nav></div>
+
+</div></div>
+              
+            
+          </div>
+          <footer class="bd-footer-content">
+            
+<div class="bd-footer-content__inner container">
+  
+  <div class="footer-item">
+    
+<p class="component-author">
+By the Department of Computational Mathematics, Science and Engineering at Michigan State University
+</p>
+
+  </div>
+  
+  <div class="footer-item">
+    
+
+  <p class="copyright">
+    
+      © Copyright 2026.
+      <br/>
+    
+  </p>
+
+  </div>
+  
+  <div class="footer-item">
+    
+  </div>
+  
+  <div class="footer-item">
+    
+  </div>
+  
+</div>
+          </footer>
+        
+
+      </main>
+    </div>
+  </div>
+  
+  <!-- Scripts loaded after <body> so the DOM is not blocked -->
+  <script src="../_static/scripts/bootstrap.js?digest=3ee479438cf8b5e0d341"></script>
+<script src="../_static/scripts/pydata-sphinx-theme.js?digest=3ee479438cf8b5e0d341"></script>
+
+  <footer class="bd-footer">
+  </footer>
+  </body>
+</html>

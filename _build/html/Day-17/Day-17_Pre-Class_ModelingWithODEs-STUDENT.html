@@ -1,0 +1,1219 @@
+
+<!DOCTYPE html>
+
+
+<html lang="en" data-content_root="../" >
+
+  <head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" /><meta name="viewport" content="width=device-width, initial-scale=1" />
+
+    <title>Day 17: Pre-class Assignment: Modeling with Ordinary Differential Equations &#8212; CMSE 201</title>
+  
+  
+  
+  <script data-cfasync="false">
+    document.documentElement.dataset.mode = localStorage.getItem("mode") || "";
+    document.documentElement.dataset.theme = localStorage.getItem("theme") || "";
+  </script>
+  
+  <!-- Loaded before other Sphinx assets -->
+  <link href="../_static/styles/theme.css?digest=3ee479438cf8b5e0d341" rel="stylesheet" />
+<link href="../_static/styles/bootstrap.css?digest=3ee479438cf8b5e0d341" rel="stylesheet" />
+<link href="../_static/styles/pydata-sphinx-theme.css?digest=3ee479438cf8b5e0d341" rel="stylesheet" />
+
+  
+  <link href="../_static/vendor/fontawesome/6.5.2/css/all.min.css?digest=3ee479438cf8b5e0d341" rel="stylesheet" />
+  <link rel="preload" as="font" type="font/woff2" crossorigin href="../_static/vendor/fontawesome/6.5.2/webfonts/fa-solid-900.woff2" />
+<link rel="preload" as="font" type="font/woff2" crossorigin href="../_static/vendor/fontawesome/6.5.2/webfonts/fa-brands-400.woff2" />
+<link rel="preload" as="font" type="font/woff2" crossorigin href="../_static/vendor/fontawesome/6.5.2/webfonts/fa-regular-400.woff2" />
+
+    <link rel="stylesheet" type="text/css" href="../_static/pygments.css?v=fa44fd50" />
+    <link rel="stylesheet" type="text/css" href="../_static/styles/sphinx-book-theme.css?v=384b581d" />
+    <link rel="stylesheet" type="text/css" href="../_static/togglebutton.css?v=13237357" />
+    <link rel="stylesheet" type="text/css" href="../_static/copybutton.css?v=76b2166b" />
+    <link rel="stylesheet" type="text/css" href="../_static/mystnb.4510f1fc1dee50b3e5859aac5469c37c29e427902b24a333a5f9fcb2f0b3ac41.css?v=be8a1c11" />
+    <link rel="stylesheet" type="text/css" href="../_static/sphinx-thebe.css?v=4fa983c6" />
+    <link rel="stylesheet" type="text/css" href="../_static/sphinx-design.min.css?v=87e54e7c" />
+  
+  <!-- Pre-loaded scripts that we'll load fully later -->
+  <link rel="preload" as="script" href="../_static/scripts/bootstrap.js?digest=3ee479438cf8b5e0d341" />
+<link rel="preload" as="script" href="../_static/scripts/pydata-sphinx-theme.js?digest=3ee479438cf8b5e0d341" />
+  <script src="../_static/vendor/fontawesome/6.5.2/js/all.min.js?digest=3ee479438cf8b5e0d341"></script>
+
+    <script src="../_static/documentation_options.js?v=9eb32ce0"></script>
+    <script src="../_static/doctools.js?v=9a2dae69"></script>
+    <script src="../_static/sphinx_highlight.js?v=dc90522c"></script>
+    <script src="../_static/clipboard.min.js?v=a7894cd8"></script>
+    <script src="../_static/copybutton.js?v=f281be69"></script>
+    <script src="../_static/scripts/sphinx-book-theme.js?v=efea14e4"></script>
+    <script>let toggleHintShow = 'Click to show';</script>
+    <script>let toggleHintHide = 'Click to hide';</script>
+    <script>let toggleOpenOnPrint = 'true';</script>
+    <script src="../_static/togglebutton.js?v=4a39c7ea"></script>
+    <script>var togglebuttonSelector = '.toggle, .admonition.dropdown';</script>
+    <script src="../_static/design-tabs.js?v=36754332"></script>
+    <script>const THEBE_JS_URL = "https://unpkg.com/thebe@0.8.2/lib/index.js"; const thebe_selector = ".thebe,.cell"; const thebe_selector_input = "pre"; const thebe_selector_output = ".output, .cell_output"</script>
+    <script async="async" src="../_static/sphinx-thebe.js?v=c100c467"></script>
+    <script>var togglebuttonSelector = '.toggle, .admonition.dropdown';</script>
+    <script>const THEBE_JS_URL = "https://unpkg.com/thebe@0.8.2/lib/index.js"; const thebe_selector = ".thebe,.cell"; const thebe_selector_input = "pre"; const thebe_selector_output = ".output, .cell_output"</script>
+    <script>window.MathJax = {"options": {"processHtmlClass": "tex2jax_process|mathjax_process|math|output_area"}}</script>
+    <script defer="defer" src="https://cdn.jsdelivr.net/npm/mathjax@3/es5/tex-mml-chtml.js"></script>
+    <script>DOCUMENTATION_OPTIONS.pagename = 'Day-17/Day-17_Pre-Class_ModelingWithODEs-STUDENT';</script>
+    <link rel="icon" href="../_static/cmse_fav.ico"/>
+    <link rel="index" title="Index" href="../genindex.html" />
+    <link rel="search" title="Search" href="../search.html" />
+    <link rel="next" title="Day 17: In-class Assignment: Modeling with ODEs" href="Day-17_In-Class_ModelingWithODEs-STUDENT.html" />
+    <link rel="prev" title="Day 16: In-class Assignment: Introduction to Modeling with ODEs" href="../Day-16/Day-16-Intro_to_ODEs_In-Class_STUDENT.html" />
+  <meta name="viewport" content="width=device-width, initial-scale=1"/>
+  <meta name="docsearch:language" content="en"/>
+  </head>
+  
+  
+  <body data-bs-spy="scroll" data-bs-target=".bd-toc-nav" data-offset="180" data-bs-root-margin="0px 0px -60%" data-default-mode="">
+
+  
+  
+  <div id="pst-skip-link" class="skip-link d-print-none"><a href="#main-content">Skip to main content</a></div>
+  
+  <div id="pst-scroll-pixel-helper"></div>
+  
+  <button type="button" class="btn rounded-pill" id="pst-back-to-top">
+    <i class="fa-solid fa-arrow-up"></i>Back to top</button>
+
+  
+  <input type="checkbox"
+          class="sidebar-toggle"
+          id="pst-primary-sidebar-checkbox"/>
+  <label class="overlay overlay-primary" for="pst-primary-sidebar-checkbox"></label>
+  
+  <input type="checkbox"
+          class="sidebar-toggle"
+          id="pst-secondary-sidebar-checkbox"/>
+  <label class="overlay overlay-secondary" for="pst-secondary-sidebar-checkbox"></label>
+  
+  <div class="search-button__wrapper">
+    <div class="search-button__overlay"></div>
+    <div class="search-button__search-container">
+<form class="bd-search d-flex align-items-center"
+      action="../search.html"
+      method="get">
+  <i class="fa-solid fa-magnifying-glass"></i>
+  <input type="search"
+         class="form-control"
+         name="q"
+         id="search-input"
+         placeholder="Search..."
+         aria-label="Search..."
+         autocomplete="off"
+         autocorrect="off"
+         autocapitalize="off"
+         spellcheck="false"/>
+  <span class="search-button__kbd-shortcut"><kbd class="kbd-shortcut__modifier">Ctrl</kbd>+<kbd>K</kbd></span>
+</form></div>
+  </div>
+
+  <div class="pst-async-banner-revealer d-none">
+  <aside id="bd-header-version-warning" class="d-none d-print-none" aria-label="Version warning"></aside>
+</div>
+
+  
+    <header class="bd-header navbar navbar-expand-lg bd-navbar d-print-none">
+    </header>
+  
+
+  <div class="bd-container">
+    <div class="bd-container__inner bd-page-width">
+      
+      
+      
+      <div class="bd-sidebar-primary bd-sidebar">
+        
+
+  
+  <div class="sidebar-header-items sidebar-primary__section">
+    
+    
+    
+    
+  </div>
+  
+    <div class="sidebar-primary-items__start sidebar-primary__section">
+        <div class="sidebar-primary-item">
+
+  
+
+<a class="navbar-brand logo" href="../intro.html">
+  
+  
+  
+  
+  
+    
+    
+      
+    
+    
+    <img src="../_static/logo.png" class="logo__image only-light" alt="CMSE 201 - Home"/>
+    <script>document.write(`<img src="../_static/logo.png" class="logo__image only-dark" alt="CMSE 201 - Home"/>`);</script>
+  
+  
+</a></div>
+        <div class="sidebar-primary-item">
+
+ <script>
+ document.write(`
+   <button class="btn navbar-btn search-button-field search-button__button" title="Search" aria-label="Search" data-bs-placement="bottom" data-bs-toggle="tooltip">
+    <i class="fa-solid fa-magnifying-glass"></i>
+    <span class="search-button__default-text">Search</span>
+    <span class="search-button__kbd-shortcut"><kbd class="kbd-shortcut__modifier">Ctrl</kbd>+<kbd class="kbd-shortcut__modifier">K</kbd></span>
+   </button>
+ `);
+ </script></div>
+        <div class="sidebar-primary-item"><nav class="bd-links bd-docs-nav" aria-label="Main">
+    <div class="bd-toc-item navbar-nav active">
+        <p aria-level="2" class="caption" role="heading"><span class="caption-text">Course Materials</span></p>
+<ul class="nav bd-sidenav">
+<li class="toctree-l1 has-children"><a class="reference internal" href="../Course_Materials-201/CourseDocuments.html">Important Course information</a><details><summary><span class="toctree-toggle" role="presentation"><i class="fa-solid fa-chevron-down"></i></span></summary><ul>
+<li class="toctree-l2"><a class="reference internal" href="../Course_Materials-201/CMSE201-Syllabus.html">Syllabus</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../Course_Materials-201/CMSE201-Schedule.html">Course Schedule</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../Course_Materials-201/SoftwareSetupGuide.html">Software Setup Guide</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../Course_Materials-201/classroom_participation.html">Classroom Participation</a></li>
+</ul>
+</details></li>
+</ul>
+<p aria-level="2" class="caption" role="heading"><span class="caption-text">Day 01</span></p>
+<ul class="nav bd-sidenav">
+<li class="toctree-l1"><a class="reference internal" href="../Day-01/Day-01_In-Class_SortingAlgorithm-STUDENT.html">Day 1 In-Class Assignment: Introductions and Sorting Algorithms</a></li>
+
+
+
+</ul>
+<p aria-level="2" class="caption" role="heading"><span class="caption-text">Day 02</span></p>
+<ul class="nav bd-sidenav">
+<li class="toctree-l1"><a class="reference internal" href="../Day-02/Day-02_Pre-Class_IntroToPython-STUDENT.html">Day 2 Pre-class Assignment: Intro to Python</a></li>
+
+
+
+<li class="toctree-l1"><a class="reference internal" href="../Day-02/Day-02_In-Class_OrderOfMagnitudeModeling-STUDENT.html">Day 2 In-class Assignment: Order of Magnitude Modeling</a></li>
+
+
+</ul>
+<p aria-level="2" class="caption" role="heading"><span class="caption-text">Day 03</span></p>
+<ul class="nav bd-sidenav">
+<li class="toctree-l1"><a class="reference internal" href="../Day-03/Day-03_Pre-Class_ListsAndLoops-STUDENT.html">Day 3: Pre-Class Assignment: Lists and Loops</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../Day-03/Day-03_In-Class_ListsLoopsAndSaving-STUDENT.html">Day 3 In-class Assignment: The power of compound interest</a></li>
+</ul>
+<p aria-level="2" class="caption" role="heading"><span class="caption-text">Day 04</span></p>
+<ul class="nav bd-sidenav">
+<li class="toctree-l1"><a class="reference internal" href="../Day-04/Day_04_PreClass_DataAlgorithmicBias-STUDENT.html">Day 4 Pre-class Assignment: Introduction to Data Ethics: Data and Algorithmic Bias</a></li>
+
+
+
+
+
+<li class="toctree-l1"><a class="reference internal" href="../Day-04/Day_04_In_Class_DataAlgorithmicBias-STUDENT.html">Day 4 In-class Assignment: Data and Algorithmic Bias, Academic Integrity, and Coding Best Practices</a></li>
+
+</ul>
+<p aria-level="2" class="caption" role="heading"><span class="caption-text">Day 05</span></p>
+<ul class="nav bd-sidenav">
+<li class="toctree-l1"><a class="reference internal" href="../Day-05/Day-05_Pre-Class_IfStatementsAndFunctions-STUDENT.html">Day 5 Pre-class Assignment: Boolean logic, if statements, and an introduction to functions</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../Day-05/Day-05_In-Class_IfStatementsAndFunctions-STUDENT.html">Day 5 In-class Assignment: Savings for Everyone</a></li>
+</ul>
+<p aria-level="2" class="caption" role="heading"><span class="caption-text">Day 06</span></p>
+<ul class="nav bd-sidenav">
+<li class="toctree-l1"><a class="reference internal" href="../Day-06/Day-06_Pre-Class_MoreFunctions-STUDENT.html">Day 6 Pre-class Assignment: Thinking more about functions</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../Day-06/Day-06_In-Class_FunctionsAndSquirrels-STUDENT.html">Day 6 In Class Assignment: A Scurry of Squirrels in Central Park</a></li>
+
+
+
+
+
+</ul>
+<p aria-level="2" class="caption" role="heading"><span class="caption-text">Day 07</span></p>
+<ul class="nav bd-sidenav">
+<li class="toctree-l1"><a class="reference internal" href="../Day-07/Day-07_Pre-Class_ReflectingOnUnderstanding-STUDENT.html">Day 7 Pre-Class Assignment: A reflection on what you’ve learned so far and an introduction to Generative Artificial Intelligence!</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../Day-07/Day-07_In-Class_ReviewingAndPracticingConcepts-STUDENT.html">Day 7 In-class Assignment: Reviewing and practicing prior concepts</a></li>
+
+<li class="toctree-l1"><a class="reference internal" href="../Day-07/Day-07_In-Class_ReviewingAndPracticingConcepts-Solutions.html">Day 7 In-class Assignment: Reviewing and practicing prior concepts</a></li>
+
+<li class="toctree-l1"><a class="reference internal" href="../Day-07/Debugging-STUDENT.html">Practice with Debugging</a></li>
+
+
+</ul>
+<p aria-level="2" class="caption" role="heading"><span class="caption-text">Day 08</span></p>
+<ul class="nav bd-sidenav">
+<li class="toctree-l1"><a class="reference internal" href="../Day-08/Day-08_Pre-Class_ModulesMathAndPlots-STUDENT.html">Day 8 Pre-Class Assignment: Python Modules: Numpy and Plots</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../Day-08/Day-08_In-Class_MathAndPlotting-STUDENT.html">Day 8 In-class Assignment: Visualizing population growth</a></li>
+</ul>
+<p aria-level="2" class="caption" role="heading"><span class="caption-text">Day 09</span></p>
+<ul class="nav bd-sidenav">
+<li class="toctree-l1"><a class="reference internal" href="../Day-09/Day-09_Pre-Class_IntroToNumPy-STUDENT.html">Day 9 Pre-Class: Introduction to NumPy</a></li>
+<li class="toctree-l1"><a class="reference external" href="https://raw.githubusercontent.com/msu-cmse-courses/cmse201-supplemental/main/ICA_datasets/michigan_pop.csv">michigan_pop.csv</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../Day-09/Day-09_In-Class_NumPyWithTheGreatLakes-STUDENT.html">Day 9 In-class Assignment: Exploring Great Lakes Water Levels using NumPy</a></li>
+
+<li class="toctree-l1"><a class="reference external" href="https://raw.githubusercontent.com/msu-cmse-courses/cmse201-supplemental/main/ICA_datasets/lake_erie.csv">lake_erie.csv</a></li>
+<li class="toctree-l1"><a class="reference external" href="https://raw.githubusercontent.com/msu-cmse-courses/cmse201-supplemental/main/ICA_datasets/lake_michigan_huron.csv">lake_michigan_huron.csv</a></li>
+<li class="toctree-l1"><a class="reference external" href="https://raw.githubusercontent.com/msu-cmse-courses/cmse201-supplemental/main/ICA_datasets/lake_ontario.csv">lake_ontario.csv</a></li>
+<li class="toctree-l1"><a class="reference external" href="https://raw.githubusercontent.com/msu-cmse-courses/cmse201-supplemental/main/ICA_datasets/lake_superior.csv">lake_superior.csv</a></li>
+</ul>
+<p aria-level="2" class="caption" role="heading"><span class="caption-text">Day 10</span></p>
+<ul class="nav bd-sidenav">
+<li class="toctree-l1"><a class="reference internal" href="../Day-10/Day-10_Pre-Class_Pandas-STUDENT.html">Day 10 Pre-class Assignment: Computational Models Overview and The Pandas Data Analysis Library</a></li>
+
+
+
+<li class="toctree-l1"><a class="reference external" href="https://raw.githubusercontent.com/msu-cmse-courses/cmse201-supplemental/main/Day-09/heart_disease_data.csv">heart_disease_data.csv</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../Day-10/Day-10_In-Class_GDP-STUDENT.html">Day 10 In-Class: Cleaning and Analyzing Economic Data</a></li>
+
+
+<li class="toctree-l1"><a class="reference external" href="https://raw.githubusercontent.com/msu-cmse-courses/cmse201-supplemental/main/ICA_datasets/API_NY.GDP.MKTP.CD_DS2_en_csv_v2_31795.csv">API_NY.GDP.MKTP.CD_DS2_en_csv_v2_31795.csv</a></li>
+</ul>
+<p aria-level="2" class="caption" role="heading"><span class="caption-text">Day 11</span></p>
+<ul class="nav bd-sidenav">
+<li class="toctree-l1"><a class="reference internal" href="../Day-11/Day-11_Pre-Class_Masking-STUDENT.html">Day 11 Pre-class Assignment: Normal Distributions, Masking, and Log Plots</a></li>
+<li class="toctree-l1"><a class="reference external" href="https://raw.githubusercontent.com/msu-cmse-courses/cmse201-supplemental/main/ICA_datasets/GDP_Cleaned.csv">GDP_Cleaned.csv</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../Day-11/Day-11_In-Class_Flint-STUDENT.html">Day 11 In-class Assignment: Get the Lead Out: Understanding The Water Crisis in Flint, MI</a></li>
+
+
+<li class="toctree-l1"><a class="reference external" href="https://raw.githubusercontent.com/msu-cmse-courses/cmse201-supplemental/main/ICA_datasets/flint_water_data.csv">flint_water_data.csv</a></li>
+</ul>
+<p aria-level="2" class="caption" role="heading"><span class="caption-text">Day 12</span></p>
+<ul class="nav bd-sidenav">
+<li class="toctree-l1"><a class="reference internal" href="../Day-12/Day-12_Pre-Class_Unprocessed_Data-STUDENT.html">Day 12 Pre-class: Introduction to Data Wrangling</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../Day-12/Day-12_In-Class_Unprocessed_Data-STUDENT.html">Day 12 In-Class: Data Contextualization and Wrangling</a></li>
+</ul>
+<p aria-level="2" class="caption" role="heading"><span class="caption-text">Day 13</span></p>
+<ul class="nav bd-sidenav">
+<li class="toctree-l1"><a class="reference internal" href="../Day-13/Day-13_Pre-Class_Online_Resources-STUDENT.html">Day 13 Pre-class Assignment: Finding resources online and tinkering wth code</a></li>
+
+
+<li class="toctree-l1"><a class="reference internal" href="../Day-13/Day-13_In-Class_Online_Resources-STUDENT.html">Day 13 In-Class: Using online resources (code and data)</a></li>
+</ul>
+<p aria-level="2" class="caption" role="heading"><span class="caption-text">Day 14</span></p>
+<ul class="nav bd-sidenav">
+<li class="toctree-l1"><a class="reference internal" href="../Day-14/Day-14_Pre-Class_Evaluating_Fits-STUDENT.html">Day 14 Pre-Class Assignment: Making Predictions Using Data</a></li>
+<li class="toctree-l1"><a class="reference external" href="https://raw.githubusercontent.com/msu-cmse-courses/cmse201-supplemental/main/image_critique_ver2.pptx">Image Critique</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../Day-14/Day-14_In-Class_Evaluating_Fits-STUDENT.html">Day 14 In-Class Assignment: Evaluating Models</a></li>
+</ul>
+<p aria-level="2" class="caption" role="heading"><span class="caption-text">Day 15</span></p>
+<ul class="nav bd-sidenav">
+<li class="toctree-l1"><a class="reference internal" href="../Day-15/Day-15_Pre-Class_CurveFitting-STUDENT.html">Day 15 Pre-Class Assignment: Fitting functions to data (curve-fitting) and thinking more about models</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../Day-15/Day-15_In-Class_FittingCurves-STUDENT.html">Day 15 In-Class Assignment: (Thoughtfully) fitting models to data</a></li>
+<li class="toctree-l1"><a class="reference external" href="https://raw.githubusercontent.com/msu-cmse-courses/cmse201-S22-data/main/Day-14/pop200.csv">pop200.csv</a></li>
+<li class="toctree-l1"><a class="reference external" href="https://raw.githubusercontent.com/msu-cmse-courses/cmse201-S22-data/main/Day-14/pop300.csv">pop300.csv</a></li>
+</ul>
+<p aria-level="2" class="caption" role="heading"><span class="caption-text">Day 16</span></p>
+<ul class="nav bd-sidenav">
+<li class="toctree-l1"><a class="reference internal" href="../Day-16/Day-16-Intro_to_ODEs_Pre-Class-STUDENT.html">Day 16 Pre-class Assignment: Introduction to Modeling with Ordinary Differential Equations</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../Day-16/Day-16-Intro_to_ODEs_In-Class_STUDENT.html">Day 16: In-class Assignment: Introduction to Modeling with ODEs</a></li>
+</ul>
+<p aria-level="2" class="caption" role="heading"><span class="caption-text">Day 17</span></p>
+<ul class="current nav bd-sidenav">
+<li class="toctree-l1 current active"><a class="current reference internal" href="#">Day 17: Pre-class Assignment: Modeling with Ordinary Differential Equations</a></li>
+<li class="toctree-l1"><a class="reference internal" href="Day-17_In-Class_ModelingWithODEs-STUDENT.html">Day 17: In-class Assignment: Modeling with ODEs</a></li>
+
+
+</ul>
+<p aria-level="2" class="caption" role="heading"><span class="caption-text">Day 18</span></p>
+<ul class="nav bd-sidenav">
+<li class="toctree-l1"><a class="reference internal" href="../Day-18/Day-18_Pre-Class_ViralKinetics-STUDENT.html">Day 18 Pre-Class: Viral Kinetics</a></li>
+
+<li class="toctree-l1"><a class="reference internal" href="../Day-18/Day-18_In-Class_CompartmentalModeling-STUDENT.html">Day 18 In-class Assignment: Building Compartmental Models</a></li>
+
+
+
+</ul>
+<p aria-level="2" class="caption" role="heading"><span class="caption-text">Day 19</span></p>
+<ul class="nav bd-sidenav">
+<li class="toctree-l1"><a class="reference internal" href="../Day-19/Day-19_Pre-Class_Zombies-STUDENT.html">Day 19 Pre-class Assignment: ZOMBIES!!</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../Day-19/Day-19_In-Class_CompartmentsWithSolveIVP-STUDENT.html">Day 19 In-Class Assignment: Compartmental Modeling, moving from the model to the code</a></li>
+</ul>
+<p aria-level="2" class="caption" role="heading"><span class="caption-text">Day 20</span></p>
+<ul class="nav bd-sidenav">
+<li class="toctree-l1"><a class="reference internal" href="../Day-20/Day-20_Pre-Class_IntroToDataVisualization-STUDENT.html">Day 20 Pre-class Assignment: Introduction to Data Visualization</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../Day-20/Day-20_In-Class_IntroToDataVisualization-STUDENT.html">Day 20 In-Class: Introduction to Data Visualization</a></li>
+</ul>
+<p aria-level="2" class="caption" role="heading"><span class="caption-text">Day 21</span></p>
+<ul class="nav bd-sidenav">
+<li class="toctree-l1"><a class="reference internal" href="../Day-21/Day-21_Pre-Class_2DNumPyArrays-STUDENT.html">Day 21 Pre-Class: 2D NumPy Arrays</a></li>
+<li class="toctree-l1"><a class="reference external" href="https://raw.githubusercontent.com/msu-cmse-courses/cmse201-supplemental/main/Day-17/PCA_files/cars.csv">cars.csv</a></li>
+<li class="toctree-l1"><a class="reference external" href="https://github.com/msu-cmse-courses/cmse201-supplemental/raw/main/Day-17/PCA_files/example.jpeg">example.jpeg</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../Day-21/Day-21_In-Class_2DImageAnalysis-STUDENT.html">Day 21 In-Class Assignment: Image Analysis</a></li>
+<li class="toctree-l1"><a class="reference external" href="https://raw.githubusercontent.com/msu-cmse-courses/cmse201-supplemental/main/Day-17/ICA_files/beach.jpeg">beach.jpeg</a></li>
+<li class="toctree-l1"><a class="reference external" href="https://raw.githubusercontent.com/msu-cmse-courses/cmse201-supplemental/main/Day-17/ICA_files/landscape.jpeg">landscape.jpeg</a></li>
+<li class="toctree-l1"><a class="reference external" href="https://raw.githubusercontent.com/msu-cmse-courses/cmse201-supplemental/main/Day-17/ICA_files/zebra.png">zebra.png</a></li>
+</ul>
+<p aria-level="2" class="caption" role="heading"><span class="caption-text">Day 22</span></p>
+<ul class="nav bd-sidenav">
+<li class="toctree-l1"><a class="reference internal" href="../Day-22/Day-22_Pre-Class_ProjectWorkDay-STUDENT.html">Day 22 Pre-class: Project Draft Presentation Preparation</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../Day-22/Day-22_In-Class_ProjectWorkDay-STUDENT.html">Day 22 In-class Assignment: Project Work Day</a></li>
+</ul>
+<p aria-level="2" class="caption" role="heading"><span class="caption-text">Day 23</span></p>
+<ul class="nav bd-sidenav">
+<li class="toctree-l1"><a class="reference internal" href="../Day-23/Day-23_Pre-Class_ABMForestFire-STUDENT.html">Day 23 Pre-class: Agent-based models and forest fires</a></li>
+
+
+
+
+
+<li class="toctree-l1"><a class="reference internal" href="../Day-23/Day-23_In-Class_ForestFiresPartI-STUDENT.html">Day 23 Part 1 In-class Assignment: Modeling forest fires with an Agent-based Model</a></li>
+</ul>
+<p aria-level="2" class="caption" role="heading"><span class="caption-text">Day 24</span></p>
+<ul class="nav bd-sidenav">
+<li class="toctree-l1"><a class="reference internal" href="../Day-24/Day-24_Pre-Class_MoreNumPyArrayManipulation-STUDENT.html">Day 24 Pre-class: More practice manipulating 2D Numpy Arrays</a></li>
+
+<li class="toctree-l1"><a class="reference internal" href="../Day-24/Day-24_In-Class_ForestFiresPartII-STUDENT.html">Day 24 In-class Assignment: Modeling forest fires with an Agent-based Model (Part II)</a></li>
+</ul>
+<p aria-level="2" class="caption" role="heading"><span class="caption-text">Day 25</span></p>
+<ul class="nav bd-sidenav">
+<li class="toctree-l1"><a class="reference internal" href="../Day-25/Day-25_Pre-Class_DataDilemmas-STUDENT.html">Day 25 Pre-Class - Data Dilemmas: Ethics in an Algorithmic World</a></li>
+
+
+<li class="toctree-l1"><a class="reference internal" href="../Day-25/Day-25_In-Class_DataDilemmas-STUDENT.html">Day 25 - In-Class - Data Dilemmas: Ethics in an Algorithmic World</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../Day-25/biased_data_gen.html">Data Generation Sheet</a></li>
+</ul>
+<p aria-level="2" class="caption" role="heading"><span class="caption-text">Homework</span></p>
+<ul class="nav bd-sidenav">
+<li class="toctree-l1"><a class="reference internal" href="../Homework/Homework_01/HW_01_PythonFundamentals-SS25-STUDENT.html">Homework 1 - Python Fundamentals</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../Homework/Homework_02/HW_02_IfelseFunctionsNumpyMatplotlib_SS25-STUDENT.html">Homework 2: Dictionaries, If Statements, Functions, and Modules</a></li>
+
+<li class="toctree-l1"><a class="reference external" href="https://raw.githubusercontent.com/msu-cmse-courses/cmse201-supplemental/main/Homework/global_temperature_anomalies.csv">global_temperature_anomalies.csv</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../Homework/Homework_03/HW3_Spring25_STUDENT.html">Homework 3 - Loading, Cleaning, Analyzing, and Visualizing Data with Pandas</a></li>
+<li class="toctree-l1"><a class="reference external" href="https://raw.githubusercontent.com/msu-cmse-courses/cmse201-supplemental/main/Homework/zipped_data_files_part1.zip">zipped_data_files_part1.zip</a></li>
+<li class="toctree-l1"><a class="reference external" href="https://raw.githubusercontent.com/msu-cmse-courses/cmse201-supplemental/main/Homework/zipped_data_files_part2.zip">zipped_data_files_part2.zip</a></li>
+<li class="toctree-l1"><a class="reference external" href="https://raw.githubusercontent.com/msu-cmse-courses/cmse201-supplemental/main/Homework/Example002.csv">Example002.csv</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../Homework/Homework_04/HW4_SS25_STUDENT.html">Homework 4 - Compartmental Models + Data Visualization</a></li>
+<li class="toctree-l1"><a class="reference external" href="https://raw.githubusercontent.com/msu-cmse-courses/cmse201-supplemental/main/Homework/auto-mpg-clean.csv">auto-mpg-clean.csv</a></li>
+<li class="toctree-l1"><a class="reference external" href="https://raw.githubusercontent.com/msu-cmse-courses/cmse201-supplemental/main/Homework/auto-mpg.data-original">auto-mpg.data-original</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../Homework/Homework_05/HW-05_SS25_STUDENT.html">Homework 5: Algorithmic Bias and Agent-based Modeling (EXTRA CREDIT)</a></li>
+
+
+
+</ul>
+<p aria-level="2" class="caption" role="heading"><span class="caption-text">Code Portfolio</span></p>
+<ul class="nav bd-sidenav">
+<li class="toctree-l1"><a class="reference internal" href="../Homework/Code_Portfolio/Code_Portfolio_Assignment.html">Code Portfolio Assignment</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../Homework/Code_Portfolio/Code_Portfolio_Example.html">Code Portfolio Example</a></li>
+
+
+
+
+</ul>
+<p aria-level="2" class="caption" role="heading"><span class="caption-text">Semester Project</span></p>
+<ul class="nav bd-sidenav">
+<li class="toctree-l1"><a class="reference internal" href="../Project_Materials/CMSE201_SemesterProjectDetails.html">Semester Project Details</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../Project_Materials/Project_Plan_Check-in.html">First Project Checkpoint</a></li>
+
+
+
+<li class="toctree-l1"><a class="reference internal" href="../Project_Materials/CMSE201_FinalProjectTemplate.html">CMSE 201 Final Project Template</a></li>
+
+<li class="toctree-l1"><a class="reference external" href="https://raw.githubusercontent.com/msu-cmse-courses/cmse201-supplemental/main/Projects/CMSE201_final_project_examples.zip">Zip file of example projects</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../Project_Materials/CMSE201FinalProject_RequirementsAndGradingRubric.html">Requirements and Grading Rubric</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../Project_Materials/peer_assessment.html">Peer Assessment Notebook</a></li>
+<li class="toctree-l1"><a class="reference external" href="https://github.com/msu-cmse-courses/cmse201-supplemental/raw/main/Projects/Presentation_Evaluation_Rubric.pdf">Presentation Evaluation Rubric</a></li>
+</ul>
+<p aria-level="2" class="caption" role="heading"><span class="caption-text">Practice Notebooks</span></p>
+<ul class="nav bd-sidenav">
+<li class="toctree-l1"><a class="reference internal" href="../Quiz_Prep_Notebooks/PracticeNotebook_IfStatements-STUDENT.html">Practice with: <code class="docutils literal notranslate"><span class="pre">if</span></code> statements</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../Quiz_Prep_Notebooks/PracticeNotebook_Functions-STUDENT.html">Practice with: functions</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../Quiz_Prep_Notebooks/PracticeNotebook_Matplotlib-STUDENT.html">Practice with: <code class="docutils literal notranslate"><span class="pre">matplotlib</span></code></a></li>
+<li class="toctree-l1"><a class="reference internal" href="../Quiz_Prep_Notebooks/filtering_ws_ver2.html">Practice with Masking</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../Quiz_Prep_Notebooks/PracticeNotebook_Pandas-STUDENT.html">Practice with: Pandas</a></li>
+<li class="toctree-l1"><a class="reference external" href="https://raw.githubusercontent.com/msu-cmse-courses/cmse201-supplemental/main/PracticeNotebooks/weather.csv">weather.csv</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../Quiz_Prep_Notebooks/PracticeNotebook_ScipyCurveFit-STUDENT.html">Practice with: SciPy <code class="docutils literal notranslate"><span class="pre">curve_fit</span></code></a></li>
+<li class="toctree-l1"><a class="reference internal" href="../Quiz_Prep_Notebooks/PracticeNotebook_CompartmentalModels-STUDENT.html">Practice with: Compartmental Models</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../Quiz_Prep_Notebooks/PracticeNotebook_SolveIVP-STUDENT.html">Practice with: <code class="docutils literal notranslate"><span class="pre">solve_ivp</span></code></a></li>
+</ul>
+
+    </div>
+</nav></div>
+    </div>
+  
+  
+  <div class="sidebar-primary-items__end sidebar-primary__section">
+  </div>
+  
+  <div id="rtd-footer-container"></div>
+
+
+      </div>
+      
+      <main id="main-content" class="bd-main" role="main">
+        
+        
+
+<div class="sbt-scroll-pixel-helper"></div>
+
+          <div class="bd-content">
+            <div class="bd-article-container">
+              
+              <div class="bd-header-article d-print-none">
+<div class="header-article-items header-article__inner">
+  
+    <div class="header-article-items__start">
+      
+        <div class="header-article-item"><label class="sidebar-toggle primary-toggle btn btn-sm" for="__primary" title="Toggle primary sidebar" data-bs-placement="bottom" data-bs-toggle="tooltip">
+  <span class="fa-solid fa-bars"></span>
+</label></div>
+      
+    </div>
+  
+  
+    <div class="header-article-items__end">
+      
+        <div class="header-article-item">
+
+<div class="article-header-buttons">
+
+
+
+
+
+<div class="dropdown dropdown-download-buttons">
+  <button class="btn dropdown-toggle" type="button" data-bs-toggle="dropdown" aria-expanded="false" aria-label="Download this page">
+    <i class="fas fa-download"></i>
+  </button>
+  <ul class="dropdown-menu">
+      
+      
+      
+      <li><a href="../_sources/Day-17/Day-17_Pre-Class_ModelingWithODEs-STUDENT.ipynb" target="_blank"
+   class="btn btn-sm btn-download-source-button dropdown-item"
+   title="Download source file"
+   data-bs-placement="left" data-bs-toggle="tooltip"
+>
+  
+
+<span class="btn__icon-container">
+  <i class="fas fa-file"></i>
+  </span>
+<span class="btn__text-container">.ipynb</span>
+</a>
+</li>
+      
+      
+      
+      
+      <li>
+<button onclick="window.print()"
+  class="btn btn-sm btn-download-pdf-button dropdown-item"
+  title="Print to PDF"
+  data-bs-placement="left" data-bs-toggle="tooltip"
+>
+  
+
+<span class="btn__icon-container">
+  <i class="fas fa-file-pdf"></i>
+  </span>
+<span class="btn__text-container">.pdf</span>
+</button>
+</li>
+      
+  </ul>
+</div>
+
+
+
+
+<button onclick="toggleFullScreen()"
+  class="btn btn-sm btn-fullscreen-button"
+  title="Fullscreen mode"
+  data-bs-placement="bottom" data-bs-toggle="tooltip"
+>
+  
+
+<span class="btn__icon-container">
+  <i class="fas fa-expand"></i>
+  </span>
+
+</button>
+
+
+
+<script>
+document.write(`
+  <button class="btn btn-sm navbar-btn theme-switch-button" title="light/dark" aria-label="light/dark" data-bs-placement="bottom" data-bs-toggle="tooltip">
+    <span class="theme-switch nav-link" data-mode="light"><i class="fa-solid fa-sun fa-lg"></i></span>
+    <span class="theme-switch nav-link" data-mode="dark"><i class="fa-solid fa-moon fa-lg"></i></span>
+    <span class="theme-switch nav-link" data-mode="auto"><i class="fa-solid fa-circle-half-stroke fa-lg"></i></span>
+  </button>
+`);
+</script>
+
+
+<script>
+document.write(`
+  <button class="btn btn-sm navbar-btn search-button search-button__button" title="Search" aria-label="Search" data-bs-placement="bottom" data-bs-toggle="tooltip">
+    <i class="fa-solid fa-magnifying-glass fa-lg"></i>
+  </button>
+`);
+</script>
+<label class="sidebar-toggle secondary-toggle btn btn-sm" for="__secondary"title="Toggle secondary sidebar" data-bs-placement="bottom" data-bs-toggle="tooltip">
+    <span class="fa-solid fa-list"></span>
+</label>
+</div></div>
+      
+    </div>
+  
+</div>
+</div>
+              
+              
+
+<div id="jb-print-docs-body" class="onlyprint">
+    <h1>Day 17: Pre-class Assignment: Modeling with Ordinary Differential Equations</h1>
+    <!-- Table of contents -->
+    <div id="print-main-content">
+        <div id="jb-print-toc">
+            
+            <div>
+                <h2> Contents </h2>
+            </div>
+            <nav aria-label="Page">
+                <ul class="visible nav section-nav flex-column">
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#put-your-name-here"><p style="text-align: right;"> ✅ Put your name here</p></a></li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#goals-for-today-s-pre-class-assignment">Goals for today’s pre-class assignment</a></li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#the-role-of-differential-equations-in-computational-modeling">The Role of Differential Equations in Computational Modeling</a></li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#modeling-a-falling-skydiver-without-air-resistance">Modeling a falling skydiver without air resistance</a><ul class="nav section-nav flex-column">
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#the-derivs-function">The <code class="docutils literal notranslate"><span class="pre">derivs</span></code> Function</a><ul class="nav section-nav flex-column">
+<li class="toc-h4 nav-item toc-entry"><a class="reference internal nav-link" href="#the-derivs-function-is-the-heart-of-how-we-will-solve-differential-equations">The <code class="docutils literal notranslate"><span class="pre">derivs</span></code> function is the heart of how we will solve differential equations.</a></li>
+</ul>
+</li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#initial-values">Initial Values</a></li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#running-the-model">Running the Model</a></li>
+</ul>
+</li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#adding-air-resistance-to-the-model">Adding air resistance to the model</a></li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#revisiting-the-population-model-with-solve-ivp">Revisiting the Population Model with <code class="docutils literal notranslate"><span class="pre">solve_ivp</span></code></a></li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#coding-the-model-a-worked-example">Coding the model: A Worked Example</a><ul class="nav section-nav flex-column">
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#run-these-cells">Run these cells!</a></li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#run-the-cell-below">Run the cell below!</a></li>
+</ul>
+</li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#reviewing-the-solve-ivp-solution-for-the-skydiver-problem">Reviewing the solve_ivp solution for the skydiver problem.</a></li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#adding-air-resistance-to-the-solve-ivp-solution">Adding air resistance to the solve_ivp solution</a><ul class="nav section-nav flex-column">
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#assignment-wrapup">Assignment wrapup</a></li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#congratulations-you-re-done">Congratulations, you’re done!</a></li>
+</ul>
+</li>
+</ul>
+            </nav>
+        </div>
+    </div>
+</div>
+
+              
+                
+<div id="searchbox"></div>
+                <article class="bd-article">
+                  
+  <section class="tex2jax_ignore mathjax_ignore" id="day-17-pre-class-assignment-modeling-with-ordinary-differential-equations">
+<h1>Day 17: Pre-class Assignment: Modeling with Ordinary Differential Equations<a class="headerlink" href="#day-17-pre-class-assignment-modeling-with-ordinary-differential-equations" title="Link to this heading">#</a></h1>
+<section id="put-your-name-here">
+<h2><p style="text-align: right;"> ✅ Put your name here</p><a class="headerlink" href="#put-your-name-here" title="Link to this heading">#</a></h2>
+<p><img src="https://static1.squarespace.com/static/59e802b9be42d61a159cbf16/5adfb43d6d2a737eeb53231a/5adfb45870a6ad380a74f016/1524612324412/Photo+Apr+17%2C+6+23+00+PM+%281%29.jpg" width= 400><p style="text-align: right;"></p>
+</p></section>
+<section id="goals-for-today-s-pre-class-assignment">
+<h2>Goals for today’s pre-class assignment<a class="headerlink" href="#goals-for-today-s-pre-class-assignment" title="Link to this heading">#</a></h2>
+<p>In this assignment, you will:</p>
+<ul class="simple">
+<li><p>Create a model for a skydiver falling using differential equations</p></li>
+<li><p>Setup a <em>system</em> of differential equations (i.e., more than 1).</p></li>
+<li><p>Solve these systems of differential equations using the update method from the previous assignment.</p></li>
+<li><p>Solve these systems of differential equations using <code class="docutils literal notranslate"><span class="pre">solve_ivp</span></code></p></li>
+</ul>
+<p>We will build off the previous assignment where we introduced using update equations to numerically integrate a (mathematical) function. Here we will expand our tool kit by numerically solving <em>multiple</em> differential equations simultaneously, and we’ll solve them using a tool built into SciPy called <code class="docutils literal notranslate"><span class="pre">solve_ivp</span></code>.</p>
+<p>But first, let’s talk about the role of differential equations in modeling.</p>
+</section>
+<hr class="docutils" />
+<section id="the-role-of-differential-equations-in-computational-modeling">
+<h2>The Role of Differential Equations in Computational Modeling<a class="headerlink" href="#the-role-of-differential-equations-in-computational-modeling" title="Link to this heading">#</a></h2>
+<p>We often use equations in computational modeling, and many of the systems we wish to model contain things that are <strong>changing</strong>:</p>
+<ul class="simple">
+<li><p>changing in time (E.g., Temperature or heart rate)</p></li>
+<li><p>changing in space (E.g., Temperature or elevation)</p></li>
+<li><p>changing strategies (E.g., deciding whether to invest)</p></li>
+<li><p>changing numbers (of people,  molecules, stars, etc.)</p></li>
+<li><p>changing prices</p></li>
+<li><p>and so on…</p></li>
+</ul>
+<p>In mathematics, we describe change with calculus and derivatives in particular. When an equation has a derivative in it, it is called a “<a class="reference external" href="https://en.wikipedia.org/wiki/Differential_equation">differential equation</a>” (as opposed to, say, an algebraic equation). The types of equations can be used to model many different systems, and in this assignment, we’ll see how we can use them to model the free-fall of a skydiver.</p>
+<p>✅  <strong>Question</strong>: What is a value or system that you deal with on a daily basis that is changing?</p>
+<p><font size=+3>✎</font> <em>Put your answer here.</em></p>
+</section>
+<hr class="docutils" />
+<section id="modeling-a-falling-skydiver-without-air-resistance">
+<h2>Modeling a falling skydiver without air resistance<a class="headerlink" href="#modeling-a-falling-skydiver-without-air-resistance" title="Link to this heading">#</a></h2>
+<p>In this assignment, we will be modeling the motion of a skydiver. There are two variables that will be changing that we need to consider:</p>
+<ul class="simple">
+<li><p>The <em>height</em> of the skydiver (I.e., how far above the ground they are). This value will change with time as the skydiver gets closer and closer to the ground during their fall.</p></li>
+<li><p>The <em>speed</em> (or, really, the <em>velocity</em>) of the skydiver * (I.e., how fast they are falling towards the ground). The longer the skydiver falls, the faster they will be falling.</p></li>
+</ul>
+<p>Since we have two values that are changing, we will need two differential equations. We can express these two values using update equations:</p>
+<div class="math notranslate nohighlight">
+\[h_{\mathrm{new}} = h_{\mathrm{old}} + \frac{dh}{dt}\Delta t\]</div>
+<div class="math notranslate nohighlight">
+\[v_{\mathrm{new}} = v_{\mathrm{old}} + \frac{dv}{dt}\Delta t\]</div>
+<p>The main variables to know are: <span class="math notranslate nohighlight">\(h\)</span> refers to height, and <span class="math notranslate nohighlight">\(v\)</span> refers to velocity.</p>
+<p><strong>Note 1:</strong> <span class="math notranslate nohighlight">\(\frac{dh}{dt} = v\)</span>, meaning that velocity is defined as the derivative of height.</p>
+<p><strong>Note 2:</strong> For the first part of this problem, <span class="math notranslate nohighlight">\(\frac{dv}{dt} = g\)</span>, where <span class="math notranslate nohighlight">\(g\)</span> is a constant equal to <span class="math notranslate nohighlight">\(-9.81\)</span>. (Everything on Earth picks up speed at <a class="reference external" href="https://www.youtube.com/watch?v=frZ9dN_ATew">roughly the same rate, as long as we ignore air resistance.</a>)</p>
+<hr class="docutils" />
+<section id="the-derivs-function">
+<h3>The <code class="docutils literal notranslate"><span class="pre">derivs</span></code> Function<a class="headerlink" href="#the-derivs-function" title="Link to this heading">#</a></h3>
+<p>In order to solve these problems numerically, we need to specify what <span class="math notranslate nohighlight">\(\frac{dh}{dt}\)</span> and <span class="math notranslate nohighlight">\(\frac{dv}{dt}\)</span> are. We’re going to use a <code class="docutils literal notranslate"><span class="pre">derivs</span></code> function, just like we did in the previous assignment, except this time it will return the derivatives for <em>two</em> equations. Specifically, we want it to return:</p>
+<div class="math notranslate nohighlight">
+\[ \frac{dh}{dt} = v \]</div>
+<div class="math notranslate nohighlight">
+\[ \frac{dv}{dt} = g \]</div>
+<p>Putting it into code, we get the following:</p>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="c1"># Create a function to compute derivatives of velocity and height</span>
+<span class="k">def</span> <span class="nf">derivs</span><span class="p">(</span><span class="n">v</span><span class="p">,</span><span class="n">g</span><span class="p">):</span>
+    
+    <span class="c1"># derivative of height is velocity</span>
+    <span class="n">dhdt</span> <span class="o">=</span> <span class="n">v</span>
+    
+    <span class="c1"># derivative of velocity is gravity for this example</span>
+    <span class="n">dvdt</span> <span class="o">=</span> <span class="n">g</span>
+    
+    <span class="k">return</span> <span class="n">dhdt</span><span class="p">,</span> <span class="n">dvdt</span>
+</pre></div>
+</div>
+</div>
+</div>
+<section id="the-derivs-function-is-the-heart-of-how-we-will-solve-differential-equations">
+<h4>The <code class="docutils literal notranslate"><span class="pre">derivs</span></code> function is the heart of how we will solve differential equations.<a class="headerlink" href="#the-derivs-function-is-the-heart-of-how-we-will-solve-differential-equations" title="Link to this heading">#</a></h4>
+<p>(It may seem silly to define a function that takes in two values and returns the same two values, but we’ll be making it more complex in a second.)</p>
+</section>
+</section>
+<hr class="docutils" />
+<section id="initial-values">
+<h3>Initial Values<a class="headerlink" href="#initial-values" title="Link to this heading">#</a></h3>
+<p>We first will begin by assuming:</p>
+<ul class="simple">
+<li><p><span class="math notranslate nohighlight">\(h_0 = 3000\)</span> meters</p></li>
+<li><p><span class="math notranslate nohighlight">\(v_0 = 0\)</span> meters/second</p></li>
+<li><p><span class="math notranslate nohighlight">\(g = -9.81\)</span> gravity: meters/second^2</p></li>
+<li><p><span class="math notranslate nohighlight">\(t_{max} = 30\)</span> falling duration: seconds</p></li>
+<li><p><span class="math notranslate nohighlight">\(dt = 1\)</span> timestep</p></li>
+</ul>
+</section>
+<section id="running-the-model">
+<h3>Running the Model<a class="headerlink" href="#running-the-model" title="Link to this heading">#</a></h3>
+<p>✅  <strong>This code numerically solves for the motion of the skydiver and plots the result. It should be similar to the code you wrote in your previous assignment. Review each line of code an make sure you understand what it’s doing and then execute the code.</strong></p>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="c1"># Import modules</span>
+<span class="kn">import</span> <span class="nn">matplotlib.pyplot</span> <span class="k">as</span> <span class="nn">plt</span>
+
+<span class="c1"># Initialize variables</span>
+<span class="n">h</span> <span class="o">=</span> <span class="mi">3000</span> <span class="c1"># initial height: m</span>
+<span class="n">v</span> <span class="o">=</span> <span class="mi">0</span> <span class="c1"># initial velocoty: m/s </span>
+<span class="n">g</span> <span class="o">=</span> <span class="o">-</span><span class="mf">9.81</span> <span class="c1"># gravity: m/s^2</span>
+<span class="n">t</span> <span class="o">=</span> <span class="mi">0</span> <span class="c1"># initial time</span>
+<span class="n">tmax</span> <span class="o">=</span> <span class="mi">30</span> <span class="c1"># Falling time</span>
+<span class="n">dt</span> <span class="o">=</span> <span class="mi">1</span> <span class="c1"># timestep</span>
+
+<span class="c1"># Initialize lists for storing data</span>
+<span class="n">height</span> <span class="o">=</span> <span class="p">[]</span>
+<span class="n">velocity</span> <span class="o">=</span> <span class="p">[]</span>
+<span class="n">time</span> <span class="o">=</span> <span class="p">[]</span>
+
+<span class="c1"># Append initial values to lists</span>
+<span class="n">height</span><span class="o">.</span><span class="n">append</span><span class="p">(</span><span class="n">h</span><span class="p">)</span>
+<span class="n">velocity</span><span class="o">.</span><span class="n">append</span><span class="p">(</span><span class="n">v</span><span class="p">)</span>
+<span class="n">time</span><span class="o">.</span><span class="n">append</span><span class="p">(</span><span class="n">t</span><span class="p">)</span>
+
+<span class="c1"># Create a time loop that will update the skydiver over time</span>
+<span class="c1"># Use a while loop that will loop until t &gt; tmax</span>
+<span class="k">while</span> <span class="n">t</span> <span class="o">&lt;=</span> <span class="n">tmax</span><span class="p">:</span>
+    
+    <span class="c1"># Compute derivatives for use in update equations</span>
+    <span class="n">dhdt</span><span class="p">,</span> <span class="n">dvdt</span> <span class="o">=</span> <span class="n">derivs</span><span class="p">(</span><span class="n">v</span><span class="p">,</span><span class="n">g</span><span class="p">)</span>
+    
+    <span class="c1"># Update Equations</span>
+    <span class="n">h_new</span> <span class="o">=</span> <span class="n">h</span> <span class="o">+</span> <span class="n">dhdt</span><span class="o">*</span><span class="n">dt</span> <span class="c1"># new height</span>
+    
+    <span class="n">v_new</span> <span class="o">=</span> <span class="n">v</span> <span class="o">+</span> <span class="n">dvdt</span><span class="o">*</span><span class="n">dt</span> <span class="c1"># new velocity</span>
+    
+    <span class="c1"># Append values to height and velocity lists</span>
+    <span class="n">height</span><span class="o">.</span><span class="n">append</span><span class="p">(</span><span class="n">h_new</span><span class="p">)</span>
+    <span class="n">velocity</span><span class="o">.</span><span class="n">append</span><span class="p">(</span><span class="n">v_new</span><span class="p">)</span>
+    
+    <span class="c1"># Update old height/velocity with new height</span>
+    <span class="n">h</span> <span class="o">=</span> <span class="n">h_new</span>
+    <span class="n">v</span> <span class="o">=</span> <span class="n">v_new</span>
+    
+    <span class="c1"># Increase time</span>
+    <span class="n">t</span> <span class="o">+=</span> <span class="n">dt</span> <span class="c1"># t = t + dt</span>
+    
+    <span class="c1"># Update time list</span>
+    <span class="n">time</span><span class="o">.</span><span class="n">append</span><span class="p">(</span><span class="n">t</span><span class="p">)</span>
+    
+<span class="c1"># Plotting height/velocity vs time </span>
+<span class="n">plt</span><span class="o">.</span><span class="n">figure</span><span class="p">(</span><span class="mi">1</span><span class="p">)</span>
+<span class="n">plt</span><span class="o">.</span><span class="n">plot</span><span class="p">(</span><span class="n">time</span><span class="p">,</span> <span class="n">height</span><span class="p">,</span> <span class="n">color</span> <span class="o">=</span> <span class="s1">&#39;green&#39;</span><span class="p">)</span>
+<span class="n">plt</span><span class="o">.</span><span class="n">xlabel</span><span class="p">(</span><span class="s1">&#39;Time [seconds]&#39;</span><span class="p">)</span>
+<span class="n">plt</span><span class="o">.</span><span class="n">ylabel</span><span class="p">(</span><span class="s1">&#39;Height [meters]&#39;</span><span class="p">)</span>
+<span class="n">plt</span><span class="o">.</span><span class="n">grid</span><span class="p">()</span>
+
+<span class="n">plt</span><span class="o">.</span><span class="n">figure</span><span class="p">(</span><span class="mi">2</span><span class="p">)</span>
+<span class="n">plt</span><span class="o">.</span><span class="n">plot</span><span class="p">(</span><span class="n">time</span><span class="p">,</span> <span class="n">velocity</span><span class="p">,</span> <span class="n">color</span> <span class="o">=</span> <span class="s1">&#39;purple&#39;</span><span class="p">)</span>
+<span class="n">plt</span><span class="o">.</span><span class="n">xlabel</span><span class="p">(</span><span class="s1">&#39;Time [seconds]&#39;</span><span class="p">)</span>
+<span class="n">plt</span><span class="o">.</span><span class="n">ylabel</span><span class="p">(</span><span class="s1">&#39;Veloctiy [meters/second]&#39;</span><span class="p">)</span>
+<span class="n">plt</span><span class="o">.</span><span class="n">grid</span><span class="p">()</span>
+</pre></div>
+</div>
+</div>
+</div>
+<p>✅  <strong>Question:</strong> If you want the model to stop when the skydiver hits the ground (going far too fast at the moment!), how might you build that into the model?</p>
+<p><font size=+3>✎</font> <em>Put your answer here.</em></p>
+</section>
+</section>
+<hr class="docutils" />
+<section id="adding-air-resistance-to-the-model">
+<h2>Adding air resistance to the model<a class="headerlink" href="#adding-air-resistance-to-the-model" title="Link to this heading">#</a></h2>
+<p>As we can see from our plots above, without air resistance the skydiver continously decreases velocity (or, “accelerates”) under the force of gravity. If they start high enough, they could reach <em>very big</em> velocities!  In reality, this isn’t how skydiving works, eventually the skydiver reaches a constant <strong>“terminal velocity”</strong>. Check out <a class="reference external" href="https://www.youtube.com/watch?v=ur40O6nQHsw">this video</a> to learn more about air resistance and terminal velocity if you’re interested.</p>
+<p>In this case, the derivative of velocity (also known as acceleration) becomes dependent on the skydiver’s velocity. It is defined to be:</p>
+<div class="math notranslate nohighlight">
+\[\frac{dv}{dt} = \frac{-0.65~A~v~\left|v\right|}{m} + g\]</div>
+<p>In this equation, <span class="math notranslate nohighlight">\(A\)</span> is the projected area of the skydiver, <span class="math notranslate nohighlight">\(\left|v\right|\)</span> is the absolute value of the velocity, and the <span class="math notranslate nohighlight">\(m\)</span> is the mass of skydiver. These make up the left term, or the acceleration due to air resistance. The right term, <span class="math notranslate nohighlight">\(g\)</span>, is the acceleration from gravity, which was used in the code above.</p>
+<p>As before, you are going to <strong>model the free-fall of the sky-diver for a total of 30 seconds</strong>, but now you need to take into account air resistance, using the formula above.</p>
+<p>You can assume that:</p>
+<ul class="simple">
+<li><p>The projected area (A) of the skydiver is <strong>0.4 m<span class="math notranslate nohighlight">\(^2\)</span></strong></p></li>
+<li><p>Their mass (m) is <strong>80 kg</strong></p></li>
+<li><p>Their initial height is <strong>2000 m</strong></p></li>
+</ul>
+<p>Finally,</p>
+<p><strong>Use a timestep (dt) of 0.1 seconds</strong>.</p>
+<p>✅  <strong>Copy an paste the code from above and modify it to use the new timestep and initial height and dvdt in the <code class="docutils literal notranslate"><span class="pre">derivs</span></code> function to account for air resistance.</strong> Think about how a skydiver might move in the air and see if your plots match those ideas. You should see that the velocity flattens out to a constant value, the terminal velocity.</p>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="c1">#Put your code here</span>
+</pre></div>
+</div>
+</div>
+</div>
+<p>✅  <strong>Question</strong>: Based on your results, what does the terminal velocity of the skydiver appear to be?</p>
+<p><font size=+3>✎</font> <em>Put your answer here.</em></p>
+</section>
+<hr class="docutils" />
+<section id="revisiting-the-population-model-with-solve-ivp">
+<h2>Revisiting the Population Model with <code class="docutils literal notranslate"><span class="pre">solve_ivp</span></code><a class="headerlink" href="#revisiting-the-population-model-with-solve-ivp" title="Link to this heading">#</a></h2>
+<p>As with many computational models, there is often more than one way to find a solution. In fact, Python has a software library called SciPy that includes a tool for solving sets of differential questions called <code class="docutils literal notranslate"><span class="pre">solve_ivp</span></code>.</p>
+<p>Watch the following video to learn how we can use this tool to model the motion of the skydiver. The <strong><a class="reference external" href="https://docs.scipy.org/doc/scipy/reference/generated/scipy.integrate.solve_ivp.html">SciPy documentation highlighted in the video can be found here</a>.</strong></p>
+<p>If the YouTube video doesn’t work, try this <a class="reference external" href="https://mediaspace.msu.edu/media/Solving+differential+equations+with+solve_ivp%28%29/1_qxx76gdo">MediaSpace link</a>.</p>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="kn">from</span> <span class="nn">IPython.display</span> <span class="kn">import</span> <span class="n">YouTubeVideo</span>
+<span class="c1"># You may want to watch the video in full screen to make sure you can see everything!</span>
+<span class="n">YouTubeVideo</span><span class="p">(</span><span class="s2">&quot;QGmJrEUNXA8&quot;</span><span class="p">,</span><span class="n">width</span><span class="o">=</span><span class="mi">640</span><span class="p">,</span><span class="n">height</span><span class="o">=</span><span class="mi">360</span><span class="p">)</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<div class="output text_html">
+        <iframe
+            width="640"
+            height="360"
+            src="https://www.youtube.com/embed/QGmJrEUNXA8"
+            frameborder="0"
+            allowfullscreen
+            
+        ></iframe>
+        </div></div>
+</div>
+</section>
+<section id="coding-the-model-a-worked-example">
+<h2>Coding the model: A Worked Example<a class="headerlink" href="#coding-the-model-a-worked-example" title="Link to this heading">#</a></h2>
+<p>As with the skydiver examples and the population model, we need a function for the derivatives to give <code class="docutils literal notranslate"><span class="pre">solve_ivp</span></code>. We are going to start with the population model you have worked with by hand on Day 16. While you look though this example, note where things look similar or different from Day 16!</p>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="c1"># Import commands</span>
+<span class="kn">import</span> <span class="nn">numpy</span> <span class="k">as</span> <span class="nn">np</span>
+<span class="kn">import</span> <span class="nn">matplotlib.pyplot</span> <span class="k">as</span> <span class="nn">plt</span>
+<span class="kn">from</span> <span class="nn">scipy.integrate</span> <span class="kn">import</span> <span class="n">solve_ivp</span> <span class="c1"># This one is new to you!</span>
+</pre></div>
+</div>
+</div>
+</div>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="c1"># Adjusting the solution from Day 16 for solve_ivp</span>
+<span class="c1"># We added time as the first input (required for solve_ivp)</span>
+<span class="c1"># P_current is a placeholder that will be the value of the population model at the current time step</span>
+
+<span class="k">def</span> <span class="nf">population_deriv</span><span class="p">(</span><span class="n">time</span><span class="p">,</span><span class="n">P_current</span><span class="p">):</span>
+    <span class="n">P</span> <span class="o">=</span> <span class="n">P_current</span> 
+    <span class="c1"># Define the differential equation for population</span>
+    <span class="n">dPdt</span> <span class="o">=</span> <span class="mf">0.01</span><span class="o">*</span><span class="n">P</span><span class="o">*</span><span class="p">(</span><span class="mi">1</span><span class="o">-</span><span class="p">(</span><span class="n">P</span><span class="o">/</span><span class="mf">1.2e10</span><span class="p">))</span>
+    <span class="k">return</span> <span class="n">dPdt</span>
+</pre></div>
+</div>
+</div>
+</div>
+<section id="run-these-cells">
+<h3>Run these cells!<a class="headerlink" href="#run-these-cells" title="Link to this heading">#</a></h3>
+<p>In the cells below, we define the initial value for our population (1 billion) and our array of time values (starting at a time of zero years and increasing to 500 years).</p>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="c1"># initial value of the population as a list! Note: The list format is required for solve_ivp</span>
+<span class="n">P0</span> <span class="o">=</span> <span class="p">[</span><span class="mf">1.0e9</span><span class="p">]</span>
+<span class="c1"># create an array of time values</span>
+<span class="n">t_vals</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">linspace</span><span class="p">(</span><span class="mi">0</span><span class="p">,</span><span class="mi">500</span><span class="p">,</span><span class="mi">500</span><span class="p">)</span>
+</pre></div>
+</div>
+</div>
+</div>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="c1"># Run a solve_ivp call and save it as a variable so you can get the results later!</span>
+
+<span class="c1"># solve_ivp takes in:</span>
+<span class="c1"># 1. The name of the function that calculates the derivatives</span>
+<span class="c1"># 2. The minimum and maximum of the time range you want to model over</span>
+<span class="c1"># 3. The initial value of your model</span>
+<span class="c1"># 4. Your array of time values</span>
+<span class="n">sol</span> <span class="o">=</span> <span class="n">solve_ivp</span><span class="p">(</span><span class="n">population_deriv</span><span class="p">,(</span><span class="mi">0</span><span class="p">,</span><span class="mi">500</span><span class="p">),</span><span class="n">P0</span><span class="p">,</span><span class="n">t_eval</span> <span class="o">=</span> <span class="n">t_vals</span><span class="p">)</span>
+</pre></div>
+</div>
+</div>
+</div>
+</section>
+<section id="run-the-cell-below">
+<h3>Run the cell below!<a class="headerlink" href="#run-the-cell-below" title="Link to this heading">#</a></h3>
+<p>This is an example of “unpacking” the modeled values calculated by <code class="docutils literal notranslate"><span class="pre">solve_ivp</span></code> for plotting (and then plotting them).</p>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="c1"># Unpack the solution for plotting!</span>
+<span class="n">time_array</span> <span class="o">=</span> <span class="n">sol</span><span class="o">.</span><span class="n">t</span>
+<span class="n">population_solution</span> <span class="o">=</span> <span class="n">sol</span><span class="o">.</span><span class="n">y</span><span class="p">[</span><span class="mi">0</span><span class="p">,:]</span>
+
+<span class="c1"># plot your solution!</span>
+<span class="n">plt</span><span class="o">.</span><span class="n">plot</span><span class="p">(</span><span class="n">sol</span><span class="o">.</span><span class="n">t</span><span class="p">,</span><span class="n">sol</span><span class="o">.</span><span class="n">y</span><span class="p">[</span><span class="mi">0</span><span class="p">,:])</span>
+<span class="n">plt</span><span class="o">.</span><span class="n">xlabel</span><span class="p">(</span><span class="s1">&#39;Time (years)&#39;</span><span class="p">)</span>
+<span class="n">plt</span><span class="o">.</span><span class="n">ylabel</span><span class="p">(</span><span class="s1">&#39;Population&#39;</span><span class="p">)</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<div class="output text_plain highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>Text(0, 0.5, &#39;Population&#39;)
+</pre></div>
+</div>
+<img alt="../_images/ad2870eda30f901a0241313c0340b1b285af0394560edbde2f3f7eea5e862298.png" src="../_images/ad2870eda30f901a0241313c0340b1b285af0394560edbde2f3f7eea5e862298.png" />
+</div>
+</div>
+</section>
+</section>
+<hr class="docutils" />
+<section id="reviewing-the-solve-ivp-solution-for-the-skydiver-problem">
+<h2>Reviewing the solve_ivp solution for the skydiver problem.<a class="headerlink" href="#reviewing-the-solve-ivp-solution-for-the-skydiver-problem" title="Link to this heading">#</a></h2>
+<p>Now we are going to <em>dive</em> in to modeling the skydiver!</p>
+<p>The code below is the same code used in the video to model the skydiver using the SciPy <code class="docutils literal notranslate"><span class="pre">solve_ivp</span></code> tool.</p>
+<p>✅  <strong>Review the code and make sure you understand each line then execute the code.</strong></p>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="c1"># Derivative function</span>
+<span class="k">def</span> <span class="nf">derivs</span><span class="p">(</span><span class="n">time</span><span class="p">,</span><span class="n">curr_vals</span><span class="p">):</span>
+    
+    <span class="c1"># Declare parameters</span>
+    <span class="n">g</span> <span class="o">=</span> <span class="o">-</span><span class="mf">9.81</span> <span class="c1"># m/s^2</span>
+    
+    <span class="c1"># Unpack the current values of the variables we wish to &quot;update&quot; from the curr_vals list</span>
+    <span class="n">h</span><span class="p">,</span> <span class="n">v</span> <span class="o">=</span> <span class="n">curr_vals</span>
+    
+    <span class="c1"># Right-hand side of odes, which are used to computer the derivative</span>
+    <span class="n">dhdt</span> <span class="o">=</span> <span class="n">v</span>
+    <span class="n">dvdt</span> <span class="o">=</span> <span class="n">g</span>
+    
+    <span class="k">return</span> <span class="n">dhdt</span><span class="p">,</span> <span class="n">dvdt</span>
+</pre></div>
+</div>
+</div>
+</div>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="c1"># Declare Variables for initial conditions</span>
+<span class="n">h0</span> <span class="o">=</span> <span class="mi">3000</span> <span class="c1"># meters</span>
+<span class="n">v0</span> <span class="o">=</span> <span class="mi">0</span> <span class="c1"># m/s</span>
+<span class="n">tmax</span> <span class="o">=</span> <span class="mi">10</span> <span class="c1"># seconds</span>
+<span class="n">dt</span> <span class="o">=</span> <span class="mi">1</span> <span class="c1"># seconds</span>
+
+<span class="c1"># Define the time array</span>
+<span class="n">time</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">arange</span><span class="p">(</span><span class="mi">0</span><span class="p">,</span> <span class="n">tmax</span> <span class="o">+</span> <span class="n">dt</span><span class="p">,</span> <span class="n">dt</span><span class="p">)</span>
+
+<span class="c1"># Store the initial values in a list</span>
+<span class="n">init</span> <span class="o">=</span> <span class="p">[</span><span class="n">h0</span><span class="p">,</span> <span class="n">v0</span><span class="p">]</span>
+
+<span class="c1"># Solve the odes with solve_ivp</span>
+<span class="n">sol</span> <span class="o">=</span> <span class="n">solve_ivp</span><span class="p">(</span><span class="n">derivs</span><span class="p">,(</span><span class="mi">0</span><span class="p">,</span><span class="n">tmax</span><span class="p">),</span><span class="n">init</span><span class="p">,</span><span class="n">t_eval</span> <span class="o">=</span> <span class="n">time</span><span class="p">)</span>
+    
+<span class="c1"># Plot the results using the values stored in the solution variable, &quot;sol&quot;</span>
+
+<span class="c1"># Plot the height using the &quot;0&quot; element from the solution</span>
+<span class="n">plt</span><span class="o">.</span><span class="n">figure</span><span class="p">(</span><span class="mi">1</span><span class="p">)</span>
+<span class="n">plt</span><span class="o">.</span><span class="n">plot</span><span class="p">(</span><span class="n">time</span><span class="p">,</span> <span class="n">sol</span><span class="o">.</span><span class="n">y</span><span class="p">[</span><span class="mi">0</span><span class="p">,:],</span><span class="n">color</span><span class="o">=</span><span class="s2">&quot;green&quot;</span><span class="p">)</span>
+<span class="n">plt</span><span class="o">.</span><span class="n">xlabel</span><span class="p">(</span><span class="s1">&#39;Time [s]&#39;</span><span class="p">)</span>
+<span class="n">plt</span><span class="o">.</span><span class="n">ylabel</span><span class="p">(</span><span class="s1">&#39;Height [m]&#39;</span><span class="p">)</span>
+<span class="n">plt</span><span class="o">.</span><span class="n">grid</span><span class="p">()</span>
+
+<span class="c1"># Plot the velocity using the \&quot;1\&quot; element from the solution</span>
+<span class="n">plt</span><span class="o">.</span><span class="n">figure</span><span class="p">(</span><span class="mi">2</span><span class="p">)</span>
+<span class="n">plt</span><span class="o">.</span><span class="n">plot</span><span class="p">(</span><span class="n">time</span><span class="p">,</span> <span class="n">sol</span><span class="o">.</span><span class="n">y</span><span class="p">[</span><span class="mi">1</span><span class="p">,:],</span><span class="n">color</span><span class="o">=</span><span class="s2">&quot;purple&quot;</span><span class="p">)</span>
+<span class="n">plt</span><span class="o">.</span><span class="n">xlabel</span><span class="p">(</span><span class="s1">&#39;Time [s]&#39;</span><span class="p">)</span>
+<span class="n">plt</span><span class="o">.</span><span class="n">ylabel</span><span class="p">(</span><span class="s1">&#39;Velocity [m/s]&#39;</span><span class="p">)</span>
+<span class="n">plt</span><span class="o">.</span><span class="n">grid</span><span class="p">()</span>
+</pre></div>
+</div>
+</div>
+</div>
+<p>✅  <strong>In your own words, describe what the variable <code class="docutils literal notranslate"><span class="pre">curr_vals</span></code> holds? You may need use the <code class="docutils literal notranslate"><span class="pre">solve_ivp</span></code> documentation mentioned above.</strong></p>
+<p><font size=+3>✎</font> <em>Put your answer here.</em></p>
+<p>✅  <strong>Try changing the order of the arguments in the function (I.e., <code class="docutils literal notranslate"><span class="pre">curr_vals</span></code> and <code class="docutils literal notranslate"><span class="pre">time</span></code>). Does it still work?</strong></p>
+<p><font size=+3>✎</font> <em>Put your answer here.</em></p>
+</section>
+<hr class="docutils" />
+<section id="adding-air-resistance-to-the-solve-ivp-solution">
+<h2>Adding air resistance to the solve_ivp solution<a class="headerlink" href="#adding-air-resistance-to-the-solve-ivp-solution" title="Link to this heading">#</a></h2>
+<p>✅  Now you’re going to try and <strong>modify the provided code that uses <code class="docutils literal notranslate"><span class="pre">solve_ivp</span></code></strong> to include air resistance <strong>using the same parameters you used when you added air resistance previously</strong>. Make sure that the solution is computed for <strong>30 seconds</strong> of skydiver freefall time and check if you get plots that look similar to your previous solution.</p>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="c1"># Derivative function</span>
+<span class="k">def</span> <span class="nf">derivs</span><span class="p">(</span><span class="n">time</span><span class="p">,</span><span class="n">curr_vals</span><span class="p">):</span>
+    
+    <span class="c1"># Declare parameters</span>
+    <span class="n">g</span> <span class="o">=</span> <span class="o">-</span><span class="mf">9.81</span> <span class="c1"># m/s^2</span>
+    <span class="n">A</span> <span class="o">=</span> <span class="err">??</span> <span class="c1"># m^2 ### MODIFY ME PLEASE!</span>
+    <span class="n">m</span> <span class="o">=</span> <span class="err">??</span>  <span class="c1"># kg ### MODIFY ME PLEASE!</span>
+    
+    <span class="c1"># Unpack the current values of the variables we wish to &quot;update&quot; from the curr_vals list</span>
+    <span class="n">h</span><span class="p">,</span> <span class="n">v</span> <span class="o">=</span> <span class="n">curr_vals</span>
+    
+    <span class="c1"># Right-hand side of odes, which are used to compute the derivative</span>
+    <span class="n">dhdt</span> <span class="o">=</span> <span class="n">v</span>
+    <span class="n">dvdt</span> <span class="o">=</span> <span class="n">g</span> <span class="o">+</span> <span class="err">??</span> <span class="c1"># MODIFY ME PLEASE! HINT: Look at your dvdt with air resistance from the update equations solution</span>
+    
+    <span class="k">return</span> <span class="n">dhdt</span><span class="p">,</span> <span class="n">dvdt</span>
+
+<span class="c1"># Declare Variables for initial conditions</span>
+<span class="n">h0</span> <span class="o">=</span> <span class="err">??</span> <span class="c1"># meters ### MODIFY ME PLEASE!</span>
+<span class="n">v0</span> <span class="o">=</span> <span class="mi">0</span> <span class="c1"># m/s</span>
+<span class="n">g</span> <span class="o">=</span> <span class="o">-</span><span class="mf">9.81</span> <span class="c1"># m/s^2</span>
+<span class="n">tmax</span> <span class="o">=</span> <span class="err">??</span> <span class="c1"># seconds ### MODIFY ME PLEASE!</span>
+<span class="n">dt</span> <span class="o">=</span> <span class="err">??</span> <span class="c1"># seconds ### MODIFY ME PLEASE!</span>
+
+<span class="c1"># Define the time array</span>
+<span class="n">time</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">arange</span><span class="p">(</span><span class="mi">0</span><span class="p">,</span> <span class="n">tmax</span> <span class="o">+</span> <span class="n">dt</span><span class="p">,</span> <span class="n">dt</span><span class="p">)</span>
+
+<span class="c1"># Store the initial values in a list</span>
+<span class="n">init</span> <span class="o">=</span> <span class="p">[</span><span class="n">h0</span><span class="p">,</span> <span class="n">v0</span><span class="p">]</span>
+
+<span class="c1"># Solve the odes with solve_ivp</span>
+<span class="n">sol</span> <span class="o">=</span> <span class="n">solve_ivp</span><span class="p">(</span><span class="n">derivs</span><span class="p">,</span> <span class="p">(</span><span class="mi">0</span><span class="p">,</span><span class="n">tmax</span><span class="p">),</span><span class="n">init</span><span class="p">,</span><span class="n">t_eval</span> <span class="o">=</span> <span class="n">time</span><span class="p">)</span>
+
+<span class="c1"># Unpack the results stored in the solution variable, &quot;sol&quot;</span>
+<span class="n">h</span> <span class="o">=</span> <span class="n">sol</span><span class="o">.</span><span class="n">y</span><span class="p">[</span><span class="mi">0</span><span class="p">,:]</span>
+<span class="n">v</span> <span class="o">=</span> <span class="n">sol</span><span class="o">.</span><span class="n">y</span><span class="p">[</span><span class="mi">1</span><span class="p">,:]</span>
+<span class="n">t</span> <span class="o">=</span> <span class="n">sol</span><span class="o">.</span><span class="n">t</span>
+
+<span class="c1"># Plot the results we unpacked from &quot;sol&quot;</span>
+
+<span class="n">plt</span><span class="o">.</span><span class="n">figure</span><span class="p">(</span><span class="mi">1</span><span class="p">)</span>
+<span class="n">plt</span><span class="o">.</span><span class="n">plot</span><span class="p">(</span><span class="n">t</span><span class="p">,</span><span class="n">h</span><span class="p">,</span><span class="n">color</span> <span class="o">=</span> <span class="s1">&#39;green&#39;</span><span class="p">)</span>
+<span class="n">plt</span><span class="o">.</span><span class="n">xlabel</span><span class="p">(</span><span class="s1">&#39;Time [s]&#39;</span><span class="p">)</span>
+<span class="n">plt</span><span class="o">.</span><span class="n">ylabel</span><span class="p">(</span><span class="s1">&#39;Height [m]&#39;</span><span class="p">)</span>
+<span class="n">plt</span><span class="o">.</span><span class="n">grid</span><span class="p">()</span>
+
+<span class="n">plt</span><span class="o">.</span><span class="n">figure</span><span class="p">(</span><span class="mi">2</span><span class="p">)</span>
+<span class="n">plt</span><span class="o">.</span><span class="n">plot</span><span class="p">(</span><span class="n">t</span><span class="p">,</span><span class="n">v</span><span class="p">,</span> <span class="n">color</span> <span class="o">=</span> <span class="s1">&#39;purple&#39;</span><span class="p">)</span>
+<span class="n">plt</span><span class="o">.</span><span class="n">xlabel</span><span class="p">(</span><span class="s1">&#39;Time [s]&#39;</span><span class="p">)</span>
+<span class="n">plt</span><span class="o">.</span><span class="n">ylabel</span><span class="p">(</span><span class="s1">&#39;Velocity [m/s]&#39;</span><span class="p">)</span>
+<span class="n">plt</span><span class="o">.</span><span class="n">grid</span><span class="p">()</span>
+</pre></div>
+</div>
+</div>
+</div>
+<p>✅  <strong>Question</strong>: Do your plots of the height and velocity of the skydiver from <code class="docutils literal notranslate"><span class="pre">solve_ivp</span></code> agree with your solution when you used the update equations?</p>
+<p><font size=+3>✎</font> <em>Put your answer here.</em></p>
+<hr class="docutils" />
+<section id="assignment-wrapup">
+<h3>Assignment wrapup<a class="headerlink" href="#assignment-wrapup" title="Link to this heading">#</a></h3>
+<p>Please fill out the form that appears when you run the code below.  <strong>You must completely fill this out in order to receive credit for the assignment!</strong></p>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="kn">from</span> <span class="nn">IPython.display</span> <span class="kn">import</span> <span class="n">HTML</span>
+<span class="n">HTML</span><span class="p">(</span>
+<span class="sd">&quot;&quot;&quot;</span>
+<span class="sd">&lt;iframe </span>
+<span class="sd">	src=&quot;https://cmse.msu.edu/cmse201-pc-survey&quot; </span>
+<span class="sd">	width=&quot;800px&quot; </span>
+<span class="sd">	height=&quot;600px&quot; </span>
+<span class="sd">	frameborder=&quot;0&quot; </span>
+<span class="sd">	marginheight=&quot;0&quot; </span>
+<span class="sd">	marginwidth=&quot;0&quot;&gt;</span>
+<span class="sd">	Loading...</span>
+<span class="sd">&lt;/iframe&gt;</span>
+<span class="sd">&quot;&quot;&quot;</span>
+<span class="p">)</span>
+</pre></div>
+</div>
+</div>
+</div>
+</section>
+<section id="congratulations-you-re-done">
+<h3>Congratulations, you’re done!<a class="headerlink" href="#congratulations-you-re-done" title="Link to this heading">#</a></h3>
+<p>Submit this assignment by uploading it to the course D2L web page.  Go to the “Pre-class assignments” folder, find the appropriate submission link, and upload it there.</p>
+<p>See you in class!</p>
+<p>© Copyright 2025,  Michigan State University Board of Trustees</p>
+</section>
+</section>
+</section>
+
+    <script type="text/x-thebe-config">
+    {
+        requestKernel: true,
+        binderOptions: {
+            repo: "binder-examples/jupyter-stacks-datascience",
+            ref: "master",
+        },
+        codeMirrorConfig: {
+            theme: "abcdef",
+            mode: "python"
+        },
+        kernelOptions: {
+            name: "python3",
+            path: "./Day-17"
+        },
+        predefinedOutput: true
+    }
+    </script>
+    <script>kernelName = 'python3'</script>
+
+                </article>
+              
+
+              
+              
+              
+              
+                <footer class="prev-next-footer d-print-none">
+                  
+<div class="prev-next-area">
+    <a class="left-prev"
+       href="../Day-16/Day-16-Intro_to_ODEs_In-Class_STUDENT.html"
+       title="previous page">
+      <i class="fa-solid fa-angle-left"></i>
+      <div class="prev-next-info">
+        <p class="prev-next-subtitle">previous</p>
+        <p class="prev-next-title">Day 16: In-class Assignment: Introduction to Modeling with ODEs</p>
+      </div>
+    </a>
+    <a class="right-next"
+       href="Day-17_In-Class_ModelingWithODEs-STUDENT.html"
+       title="next page">
+      <div class="prev-next-info">
+        <p class="prev-next-subtitle">next</p>
+        <p class="prev-next-title">Day 17: In-class Assignment: Modeling with ODEs</p>
+      </div>
+      <i class="fa-solid fa-angle-right"></i>
+    </a>
+</div>
+                </footer>
+              
+            </div>
+            
+            
+              
+                <div class="bd-sidebar-secondary bd-toc"><div class="sidebar-secondary-items sidebar-secondary__inner">
+
+
+  <div class="sidebar-secondary-item">
+  <div class="page-toc tocsection onthispage">
+    <i class="fa-solid fa-list"></i> Contents
+  </div>
+  <nav class="bd-toc-nav page-toc">
+    <ul class="visible nav section-nav flex-column">
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#put-your-name-here"><p style="text-align: right;"> ✅ Put your name here</p></a></li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#goals-for-today-s-pre-class-assignment">Goals for today’s pre-class assignment</a></li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#the-role-of-differential-equations-in-computational-modeling">The Role of Differential Equations in Computational Modeling</a></li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#modeling-a-falling-skydiver-without-air-resistance">Modeling a falling skydiver without air resistance</a><ul class="nav section-nav flex-column">
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#the-derivs-function">The <code class="docutils literal notranslate"><span class="pre">derivs</span></code> Function</a><ul class="nav section-nav flex-column">
+<li class="toc-h4 nav-item toc-entry"><a class="reference internal nav-link" href="#the-derivs-function-is-the-heart-of-how-we-will-solve-differential-equations">The <code class="docutils literal notranslate"><span class="pre">derivs</span></code> function is the heart of how we will solve differential equations.</a></li>
+</ul>
+</li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#initial-values">Initial Values</a></li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#running-the-model">Running the Model</a></li>
+</ul>
+</li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#adding-air-resistance-to-the-model">Adding air resistance to the model</a></li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#revisiting-the-population-model-with-solve-ivp">Revisiting the Population Model with <code class="docutils literal notranslate"><span class="pre">solve_ivp</span></code></a></li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#coding-the-model-a-worked-example">Coding the model: A Worked Example</a><ul class="nav section-nav flex-column">
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#run-these-cells">Run these cells!</a></li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#run-the-cell-below">Run the cell below!</a></li>
+</ul>
+</li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#reviewing-the-solve-ivp-solution-for-the-skydiver-problem">Reviewing the solve_ivp solution for the skydiver problem.</a></li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#adding-air-resistance-to-the-solve-ivp-solution">Adding air resistance to the solve_ivp solution</a><ul class="nav section-nav flex-column">
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#assignment-wrapup">Assignment wrapup</a></li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#congratulations-you-re-done">Congratulations, you’re done!</a></li>
+</ul>
+</li>
+</ul>
+  </nav></div>
+
+</div></div>
+              
+            
+          </div>
+          <footer class="bd-footer-content">
+            
+<div class="bd-footer-content__inner container">
+  
+  <div class="footer-item">
+    
+<p class="component-author">
+By the Department of Computational Mathematics, Science and Engineering at Michigan State University
+</p>
+
+  </div>
+  
+  <div class="footer-item">
+    
+
+  <p class="copyright">
+    
+      © Copyright 2023.
+      <br/>
+    
+  </p>
+
+  </div>
+  
+  <div class="footer-item">
+    
+  </div>
+  
+  <div class="footer-item">
+    
+  </div>
+  
+</div>
+          </footer>
+        
+
+      </main>
+    </div>
+  </div>
+  
+  <!-- Scripts loaded after <body> so the DOM is not blocked -->
+  <script src="../_static/scripts/bootstrap.js?digest=3ee479438cf8b5e0d341"></script>
+<script src="../_static/scripts/pydata-sphinx-theme.js?digest=3ee479438cf8b5e0d341"></script>
+
+  <footer class="bd-footer">
+  </footer>
+  </body>
+</html>

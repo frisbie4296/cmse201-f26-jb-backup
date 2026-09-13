@@ -1,0 +1,1305 @@
+
+<!DOCTYPE html>
+
+<html>
+  <head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Day 16 In-Class Assignment: Compartmental Modeling, moving from the model to the Code &#8212; CMSE 201</title>
+    
+  <link href="../_static/css/theme.css" rel="stylesheet" />
+  <link href="../_static/css/index.c5995385ac14fb8791e8eb36b4908be2.css" rel="stylesheet" />
+
+    
+  <link rel="stylesheet"
+    href="../_static/vendor/fontawesome/5.13.0/css/all.min.css">
+  <link rel="preload" as="font" type="font/woff2" crossorigin
+    href="../_static/vendor/fontawesome/5.13.0/webfonts/fa-solid-900.woff2">
+  <link rel="preload" as="font" type="font/woff2" crossorigin
+    href="../_static/vendor/fontawesome/5.13.0/webfonts/fa-brands-400.woff2">
+
+    
+      
+
+    
+    <link rel="stylesheet" href="../_static/pygments.css" type="text/css" />
+    <link rel="stylesheet" href="../_static/sphinx-book-theme.e8f53015daec13862f6db5e763c41738.css" type="text/css" />
+    <link rel="stylesheet" type="text/css" href="../_static/togglebutton.css" />
+    <link rel="stylesheet" type="text/css" href="../_static/copybutton.css" />
+    <link rel="stylesheet" type="text/css" href="../_static/mystnb.css" />
+    <link rel="stylesheet" type="text/css" href="../_static/sphinx-thebe.css" />
+    <link rel="stylesheet" type="text/css" href="../_static/panels-main.c949a650a448cc0ae9fd3441c0e17fb0.css" />
+    <link rel="stylesheet" type="text/css" href="../_static/panels-variables.06eb56fa6e07937060861dad626602ad.css" />
+    
+  <link rel="preload" as="script" href="../_static/js/index.1c5a1a01449ed65a7b51.js">
+
+    <script id="documentation_options" data-url_root="../" src="../_static/documentation_options.js"></script>
+    <script src="../_static/jquery.js"></script>
+    <script src="../_static/underscore.js"></script>
+    <script src="../_static/doctools.js"></script>
+    <script src="../_static/togglebutton.js"></script>
+    <script src="../_static/clipboard.min.js"></script>
+    <script src="../_static/copybutton.js"></script>
+    <script >var togglebuttonSelector = '.toggle, .admonition.dropdown, .tag_hide_input div.cell_input, .tag_hide-input div.cell_input, .tag_hide_output div.cell_output, .tag_hide-output div.cell_output, .tag_hide_cell.cell, .tag_hide-cell.cell';</script>
+    <script src="../_static/sphinx-book-theme.12a9622fbb08dcb3a2a40b2c02b83a57.js"></script>
+    <script async="async" src="https://cdnjs.cloudflare.com/ajax/libs/mathjax/2.7.7/latest.js?config=TeX-AMS-MML_HTMLorMML"></script>
+    <script type="text/x-mathjax-config">MathJax.Hub.Config({"tex2jax": {"inlineMath": [["\\(", "\\)"]], "displayMath": [["\\[", "\\]"]], "processRefs": false, "processEnvironments": false}})</script>
+    <script async="async" src="https://unpkg.com/thebe@0.5.1/lib/index.js"></script>
+    <script >
+        const thebe_selector = ".thebe"
+        const thebe_selector_input = "pre"
+        const thebe_selector_output = ".output"
+    </script>
+    <script async="async" src="../_static/sphinx-thebe.js"></script>
+    <link rel="shortcut icon" href="../_static/cmse_fav.ico"/>
+    <link rel="index" title="Index" href="../genindex.html" />
+    <link rel="search" title="Search" href="../search.html" />
+    <link rel="next" title="Day 17 Pre-Class: 2D NumPy Arrays" href="../Day-17/Day-17_Pre-Class_2DNumPyArrays-STUDENT.html" />
+    <link rel="prev" title="Day 16 Pre-class Assignment: ZOMBIES!!" href="Day-16_Pre-Class_Zombies-STUDENT.html" />
+    <meta name="viewport" content="width=device-width, initial-scale=1" />
+    <meta name="docsearch:language" content="en" />
+    
+  </head>
+  <body data-spy="scroll" data-target="#bd-toc-nav" data-offset="80">
+    
+    <div class="container-fluid" id="banner"></div>
+
+    
+
+    <div class="container-xl">
+      <div class="row">
+          
+<div class="col-12 col-md-3 bd-sidebar site-navigation show" id="site-navigation">
+    
+        <div class="navbar-brand-box">
+    <a class="navbar-brand text-wrap" href="../index.html">
+      
+      <img src="../_static/logo.png" class="logo" alt="logo">
+      
+      
+      <h1 class="site-logo" id="site-title">CMSE 201</h1>
+      
+    </a>
+</div><form class="bd-search d-flex align-items-center" action="../search.html" method="get">
+  <i class="icon fas fa-search"></i>
+  <input type="search" class="form-control" name="q" id="search-input" placeholder="Search this book..." aria-label="Search this book..." autocomplete="off" >
+</form><nav class="bd-links" id="bd-docs-nav" aria-label="Main">
+    <div class="bd-toc-item active">
+        <ul class="nav bd-sidenav">
+ <li class="toctree-l1">
+  <a class="reference internal" href="../intro.html">
+   Welcome to Computational Modeling and Data Analysis I!
+  </a>
+ </li>
+</ul>
+<p class="caption">
+ <span class="caption-text">
+  Course Materials
+ </span>
+</p>
+<ul class="nav bd-sidenav">
+ <li class="toctree-l1 has-children">
+  <a class="reference internal" href="../Course_Materials-201/CourseDocuments.html">
+   Important Course information
+  </a>
+  <input class="toctree-checkbox" id="toctree-checkbox-1" name="toctree-checkbox-1" type="checkbox"/>
+  <label for="toctree-checkbox-1">
+   <i class="fas fa-chevron-down">
+   </i>
+  </label>
+  <ul>
+   <li class="toctree-l2">
+    <a class="reference internal" href="../Course_Materials-201/CMSE201-Syllabus.html">
+     Syllabus
+    </a>
+   </li>
+   <li class="toctree-l2">
+    <a class="reference internal" href="../Course_Materials-201/CMSE201-Schedule.html">
+     Course Schedule
+    </a>
+   </li>
+   <li class="toctree-l2">
+    <a class="reference internal" href="../Course_Materials-201/SoftwareSetupGuide.html">
+     Software Setup Guide
+    </a>
+   </li>
+   <li class="toctree-l2">
+    <a class="reference internal" href="../Course_Materials-201/classroom_participation.html">
+     Classroom Participation
+    </a>
+   </li>
+  </ul>
+ </li>
+</ul>
+<p class="caption">
+ <span class="caption-text">
+  Day 01
+ </span>
+</p>
+<ul class="nav bd-sidenav">
+ <li class="toctree-l1">
+  <a class="reference internal" href="../Day-01/Day-01_In-Class_SortingAlgorithm-STUDENT.html">
+   Day 1 In-Class Assignment
+  </a>
+ </li>
+</ul>
+<p class="caption">
+ <span class="caption-text">
+  Day 02
+ </span>
+</p>
+<ul class="nav bd-sidenav">
+ <li class="toctree-l1">
+  <a class="reference internal" href="../Day-02/Day-02_Pre-Class_IntroToPython-STUDENT.html">
+   Day 2 Pre-class Assignment: Intro to Python
+  </a>
+ </li>
+ <li class="toctree-l1">
+  <a class="reference internal" href="../Day-02/Day-02_In-Class_OrderOfMagnitudeModeling-STUDENT.html">
+   Day 2 In-class Assignment: Order of Magnitude Modeling
+  </a>
+ </li>
+</ul>
+<p class="caption">
+ <span class="caption-text">
+  Day 03
+ </span>
+</p>
+<ul class="nav bd-sidenav">
+ <li class="toctree-l1">
+  <a class="reference internal" href="../Day-03/Day-03_Pre-Class_ListsAndLoops-STUDENT.html">
+   Day 3: Pre-Class Assignment: Lists and Loops
+  </a>
+ </li>
+ <li class="toctree-l1">
+  <a class="reference internal" href="../Day-03/Day-03_In-Class_ListsLoopsAndSaving-STUDENT.html">
+   Day 3 In-class Assignment: The power of compound interest
+  </a>
+ </li>
+</ul>
+<p class="caption">
+ <span class="caption-text">
+  Day 04
+ </span>
+</p>
+<ul class="nav bd-sidenav">
+ <li class="toctree-l1">
+  <a class="reference internal" href="../Day-04/Day-04_Pre-Class_DataEthics_AcademicIntegrity-STUDENT.html">
+   Day 4 Pre-class Assignment: Introduction to Data Ethics and Practice with Lists and Loops
+  </a>
+ </li>
+ <li class="toctree-l1">
+  <a class="reference internal" href="../Day-04/Day-04_In-Class_AcademicIntegrity_CodingPractices-STUDENT.html">
+   Day 4 In-class Assignment: Academic Integrity and Coding Best Practices
+  </a>
+ </li>
+</ul>
+<p class="caption">
+ <span class="caption-text">
+  Day 05
+ </span>
+</p>
+<ul class="nav bd-sidenav">
+ <li class="toctree-l1">
+  <a class="reference internal" href="../Day-05/Day-05_Pre-Class_IfStatementsAndFunctions-STUDENT.html">
+   Day 5 Pre-class Assignment: Boolean logic, if statements, and an introduction to functions
+  </a>
+ </li>
+ <li class="toctree-l1">
+  <a class="reference internal" href="../Day-05/Day-05_In-Class_IfStatementsAndFunctions-STUDENT.html">
+   Day 5 In-class Assignment: Savings for Everyone
+  </a>
+ </li>
+</ul>
+<p class="caption">
+ <span class="caption-text">
+  Day 06
+ </span>
+</p>
+<ul class="nav bd-sidenav">
+ <li class="toctree-l1">
+  <a class="reference internal" href="../Day-06/Day-06_Pre-Class_MoreFunctions-STUDENT.html">
+   Day 6 Pre-class Assignment: Thinking more about functions
+  </a>
+ </li>
+ <li class="toctree-l1">
+  <a class="reference internal" href="../Day-06/Day-06_In-Class_MoreFunctions-STUDENT.html">
+   Day 6 In-class Assignment: Using functions for fun and profit!
+  </a>
+ </li>
+</ul>
+<p class="caption">
+ <span class="caption-text">
+  Day 07
+ </span>
+</p>
+<ul class="nav bd-sidenav">
+ <li class="toctree-l1">
+  <a class="reference internal" href="../Day-07/Day-07_Pre-Class_ModulesMathAndPlots-STUDENT.html">
+   Day 7 Pre-Class Assignment: Python Modules: Math and Plots
+  </a>
+ </li>
+ <li class="toctree-l1">
+  <a class="reference internal" href="../Day-07/Day-07_In-Class_MathAndPlotting-STUDENT.html">
+   Day 7 In-class Assignment: Visualizing population growth and projectile motion
+  </a>
+ </li>
+</ul>
+<p class="caption">
+ <span class="caption-text">
+  Day 08
+ </span>
+</p>
+<ul class="nav bd-sidenav">
+ <li class="toctree-l1">
+  <a class="reference internal" href="../Day-08/Day-08_Pre-Class_IntroToNumPy-STUDENT.html">
+   Day 8 Pre-Class: Introduction to NumPy
+  </a>
+ </li>
+ <li class="toctree-l1">
+  <a class="reference external" href="https://raw.githubusercontent.com/msu-cmse-courses/cmse201-F21-data/main/Day-08/michigan_pop.csv">
+   michigan_pop.csv
+  </a>
+ </li>
+ <li class="toctree-l1">
+  <a class="reference internal" href="../Day-08/Day-08_In-Class_NumPyWithTheGreatLakes-STUDENT.html">
+   Day 8 In-class Assignment: Exploring Great Lakes Water Levels using NumPy
+  </a>
+ </li>
+ <li class="toctree-l1">
+  <a class="reference external" href="https://raw.githubusercontent.com/msu-cmse-courses/cmse201-F21-data/main/Day-08/lake_erie.csv">
+   lake_erie.csv
+  </a>
+ </li>
+ <li class="toctree-l1">
+  <a class="reference external" href="https://raw.githubusercontent.com/msu-cmse-courses/cmse201-F21-data/main/Day-08/lake_michigan_huron.csv">
+   lake_michigan_huron.csv
+  </a>
+ </li>
+ <li class="toctree-l1">
+  <a class="reference external" href="https://raw.githubusercontent.com/msu-cmse-courses/cmse201-F21-data/main/Day-08/lake_ontario.csv">
+   lake_ontario.csv
+  </a>
+ </li>
+ <li class="toctree-l1">
+  <a class="reference external" href="https://raw.githubusercontent.com/msu-cmse-courses/cmse201-F21-data/main/Day-08/lake_superior.csv">
+   lake_superior.csv
+  </a>
+ </li>
+</ul>
+<p class="caption">
+ <span class="caption-text">
+  Day 09
+ </span>
+</p>
+<ul class="nav bd-sidenav">
+ <li class="toctree-l1">
+  <a class="reference internal" href="../Day-09/Day-09_Pre-Class_Pandas-STUDENT.html">
+   Day 9 Pre-class Assignment: Computational Models Overview and The Pandas Data Analysis Library
+  </a>
+ </li>
+ <li class="toctree-l1">
+  <a class="reference internal" href="../Day-09/Day-09_In-Class_GDP-STUDENT.html">
+   Day 9 In-Class: Cleaning and Analyzing Economic Data
+  </a>
+ </li>
+</ul>
+<p class="caption">
+ <span class="caption-text">
+  Day 10
+ </span>
+</p>
+<ul class="nav bd-sidenav">
+ <li class="toctree-l1">
+  <a class="reference internal" href="../Day-10/Day-10_Pre-Class_Masking-STUDENT.html">
+   Day 10 Pre-class Assignment: Normal Distributions, Masking, and Log Plots
+  </a>
+ </li>
+ <li class="toctree-l1">
+  <a class="reference external" href="https://raw.githubusercontent.com/msu-cmse-courses/cmse201-F21-data/main/Day-10/GDP_Cleaned.csv">
+   GDP_Cleaned.csv
+  </a>
+ </li>
+ <li class="toctree-l1">
+  <a class="reference internal" href="../Day-10/Day-10_In-Class_Flint-STUDENT.html">
+   Day 10 In-class Assignment: Get the Lead Out: Understanding The Water Crisis in Flint, MI
+  </a>
+ </li>
+ <li class="toctree-l1">
+  <a class="reference external" href="https://raw.githubusercontent.com/msu-cmse-courses/cmse201-F21-data/main/Day-10/flint_water_data.csv">
+   flint_water_data.csv
+  </a>
+ </li>
+</ul>
+<p class="caption">
+ <span class="caption-text">
+  Day 11
+ </span>
+</p>
+<ul class="nav bd-sidenav">
+ <li class="toctree-l1">
+  <a class="reference internal" href="../Day-11/Day-11_Pre-Class_Data_File_Formats_Manipulation-STUDENT.html">
+   Day 11 Pre-Class Assignment: Overview of data and file formats
+  </a>
+ </li>
+ <li class="toctree-l1">
+  <a class="reference external" href="https://raw.githubusercontent.com/msu-cmse-courses/cmse201-F21-data/main/Day-11/us_house_rep_by_state_2019.csv">
+   us_house_rep_by_state_2019.csv
+  </a>
+ </li>
+ <li class="toctree-l1">
+  <a class="reference external" href="https://raw.githubusercontent.com/msu-cmse-courses/cmse201-F21-data/main/Day-11/us_pop_by_state_2010_2011.csv">
+   us_pop_by_state_2010_2011.csv
+  </a>
+ </li>
+ <li class="toctree-l1">
+  <a class="reference external" href="https://github.com/msu-cmse-courses/cmse201-F21-data/raw/main/Day-11/us_pop_by_state_2012_2013_encoding_utf-16be.csv">
+   us_pop_by_state_2012_2013_encoding_utf-16be.csv
+  </a>
+ </li>
+ <li class="toctree-l1">
+  <a class="reference external" href="https://raw.githubusercontent.com/msu-cmse-courses/cmse201-F21-data/main/Day-11/us_pop_by_state_2014_2015_windows_linefeed.csv">
+   us_pop_by_state_2014_2015_windows_linefeed.csv
+  </a>
+ </li>
+ <li class="toctree-l1">
+  <a class="reference external" href="https://github.com/msu-cmse-courses/cmse201-F21-data/blob/main/Day-11/us_pop_by_state_2016a.csv?raw=true">
+   us_pop_by_state_2016a.csv
+  </a>
+ </li>
+ <li class="toctree-l1">
+  <a class="reference external" href="https://github.com/msu-cmse-courses/cmse201-F21-data/blob/main/Day-11/us_pop_by_state_2017a.yaff?raw=true">
+   us_pop_by_state2017a.yaff
+  </a>
+ </li>
+ <li class="toctree-l1">
+  <a class="reference external" href="https://github.com/msu-cmse-courses/cmse201-F21-data/blob/main/Day-11/us_pop_by_state_2018_2019.bin?raw=true">
+   us_pop_by_state_2018_2019.bin
+  </a>
+ </li>
+</ul>
+<p class="caption">
+ <span class="caption-text">
+  Day 12
+ </span>
+</p>
+<ul class="nav bd-sidenav">
+ <li class="toctree-l1">
+  <a class="reference internal" href="../Day-12/Day-12_Pre-Class_Regression-STUDENT.html">
+   Day 12 Pre-Class Assignment: Regression
+  </a>
+ </li>
+ <li class="toctree-l1">
+  <a class="reference internal" href="../Day-12/Day-12_In-Class_PolynomialFitting-STUDENT.html">
+   Day 12 In-Class Assignment: Linear regression and polynomial fitting
+  </a>
+ </li>
+ <li class="toctree-l1">
+  <a class="reference external" href="https://github.com/msu-cmse-courses/cmse201-F21-data/raw/main/Day-12/microprocessor-trend-data-master.zip">
+   microprocessor-trend-data-master.zip
+  </a>
+ </li>
+</ul>
+<p class="caption">
+ <span class="caption-text">
+  Day 13
+ </span>
+</p>
+<ul class="nav bd-sidenav">
+ <li class="toctree-l1">
+  <a class="reference internal" href="../Day-13/Day-13_Pre-Class_CurveFitting-STUDENT.html">
+   Day 13 Pre-Class Assignment: Fitting functions to data (curve-fitting) and thinking more about models
+  </a>
+ </li>
+ <li class="toctree-l1">
+  <a class="reference internal" href="../Day-13/Day-13_In-Class_FittingCurves-STUDENT.html">
+   Day 13 In-Class Assignment: (Thoughtfully) fitting models to data
+  </a>
+ </li>
+ <li class="toctree-l1">
+  <a class="reference external" href="https://raw.githubusercontent.com/msu-cmse-courses/cmse201-F21-data/main/Day-13/pop200.csv">
+   pop200.csv
+  </a>
+ </li>
+ <li class="toctree-l1">
+  <a class="reference external" href="https://raw.githubusercontent.com/msu-cmse-courses/cmse201-F21-data/main/Day-13/pop300.csv">
+   pop300.csv
+  </a>
+ </li>
+</ul>
+<p class="caption">
+ <span class="caption-text">
+  Day 14
+ </span>
+</p>
+<ul class="nav bd-sidenav">
+ <li class="toctree-l1">
+  <a class="reference internal" href="../Day-14/Day-14_Pre-Class_ModelingWithODEs-STUDENT.html">
+   Day 14: Pre-class Assignment: Modeling with Ordinary Differential Equations
+  </a>
+ </li>
+ <li class="toctree-l1">
+  <a class="reference internal" href="../Day-14/Day-14_In-Class_ModelingWithODEs-STUDENT.html">
+   Day 14: In-class Assignment: Modeling with ODEs
+  </a>
+ </li>
+ <li class="toctree-l1">
+  <a class="reference external" href="https://github.com/msu-cmse-courses/cmse201-F21-data/blob/main/Day-14/undamped_length.png">
+   undamped_length.png
+  </a>
+ </li>
+ <li class="toctree-l1">
+  <a class="reference external" href="https://github.com/msu-cmse-courses/cmse201-F21-data/blob/main/Day-14/undamped_vel.png">
+   undamped_vel.png
+  </a>
+ </li>
+</ul>
+<p class="caption">
+ <span class="caption-text">
+  Day 15
+ </span>
+</p>
+<ul class="nav bd-sidenav">
+ <li class="toctree-l1">
+  <a class="reference internal" href="../Day-15/Day-15_Pre-Class_ViralKinetics-STUDENT.html">
+   Day 15 Pre-Class: Viral Kinetics
+  </a>
+ </li>
+ <li class="toctree-l1">
+  <a class="reference internal" href="../Day-15/Day-15_In-Class_CompartmentalModeling-STUDENT.html">
+   Day 15 In-class: Building Compartmental Models
+  </a>
+ </li>
+</ul>
+<p class="caption">
+ <span class="caption-text">
+  Day 16
+ </span>
+</p>
+<ul class="current nav bd-sidenav">
+ <li class="toctree-l1">
+  <a class="reference internal" href="Day-16_Pre-Class_Zombies-STUDENT.html">
+   Day 16 Pre-class Assignment: ZOMBIES!!
+  </a>
+ </li>
+ <li class="toctree-l1 current active">
+  <a class="current reference internal" href="#">
+   Day 16 In-Class Assignment: Compartmental Modeling, moving from the model to the Code
+  </a>
+ </li>
+ <li class="toctree-l1">
+  <a class="reference external" href="https://github.com/msu-cmse-courses/cmse201-F21-data/blob/main/Day-16/latent.png">
+   latent.png
+  </a>
+ </li>
+</ul>
+<p class="caption">
+ <span class="caption-text">
+  Day 17
+ </span>
+</p>
+<ul class="nav bd-sidenav">
+ <li class="toctree-l1">
+  <a class="reference internal" href="../Day-17/Day-17_Pre-Class_2DNumPyArrays-STUDENT.html">
+   Day 17 Pre-Class: 2D NumPy Arrays
+  </a>
+ </li>
+ <li class="toctree-l1">
+  <a class="reference external" href="https://raw.githubusercontent.com/msu-cmse-courses/cmse201-F21-data/main/Day-17/PCA_files/cars.csv">
+   cars.csv
+  </a>
+ </li>
+ <li class="toctree-l1">
+  <a class="reference external" href="https://github.com/msu-cmse-courses/cmse201-F21-data/raw/main/Day-17/PCA_files/example.jpeg">
+   example.jpeg
+  </a>
+ </li>
+ <li class="toctree-l1">
+  <a class="reference internal" href="../Day-17/Day-17_In-Class_2DImageAnalysis-STUDENT.html">
+   Day 17 In-Class Assignment: Image Analysis
+  </a>
+ </li>
+ <li class="toctree-l1">
+  <a class="reference external" href="https://github.com/msu-cmse-courses/cmse201-F21-data/blob/main/Day-17/ICA_files/beach.jpeg">
+   beach.jpeg
+  </a>
+ </li>
+ <li class="toctree-l1">
+  <a class="reference external" href="https://github.com/msu-cmse-courses/cmse201-F21-data/blob/main/Day-17/ICA_files/landscape.jpeg">
+   landscape.jpeg
+  </a>
+ </li>
+ <li class="toctree-l1">
+  <a class="reference external" href="https://github.com/msu-cmse-courses/cmse201-F21-data/blob/main/Day-17/ICA_files/zebra.png">
+   zebra.png
+  </a>
+ </li>
+</ul>
+<p class="caption">
+ <span class="caption-text">
+  Day 18
+ </span>
+</p>
+<ul class="nav bd-sidenav">
+ <li class="toctree-l1">
+  <a class="reference internal" href="../Day-18/Day-18_Pre-Class_ABMForestFire-STUDENT.html">
+   Day 18 Pre-class: Agent-based models and forest fires
+  </a>
+ </li>
+ <li class="toctree-l1">
+  <a class="reference internal" href="../Day-18/Day-18_In-Class_ForestFiresPartI-STUDENT.html">
+   Day 18 Part 1 In-class Assignment: Modeling forest fires with an Agent-based Model
+  </a>
+ </li>
+</ul>
+<p class="caption">
+ <span class="caption-text">
+  Day 19
+ </span>
+</p>
+<ul class="nav bd-sidenav">
+ <li class="toctree-l1">
+  <a class="reference internal" href="../Day-19/Day-19_Pre-Class_ABMForestFire_Part2-STUDENT.html">
+   Day 19 Pre-class: Agent-based models and forest fires, Part 2
+  </a>
+ </li>
+ <li class="toctree-l1">
+  <a class="reference internal" href="../Day-19/Day-19_In-Class_ForestFiresPartII-STUDENT.html">
+   Day 19 In-class Assignment: Modeling forest fires with an Agent-based Model (Part II)
+  </a>
+ </li>
+</ul>
+<p class="caption">
+ <span class="caption-text">
+  Day 20
+ </span>
+</p>
+<ul class="nav bd-sidenav">
+ <li class="toctree-l1">
+  <a class="reference internal" href="../Day-20/Day-20_Pre-Class_RandomNumbers-STUDENT.html">
+   Day 20 Pre-Class Assignment: Random Numbers
+  </a>
+ </li>
+ <li class="toctree-l1">
+  <a class="reference internal" href="../Day-20/Day-20_In-Class_RandomWalks-STUDENT.html">
+   Day 20 In-class Assignment: Random Walks
+  </a>
+ </li>
+ <li class="toctree-l1">
+  <a class="reference external" href="https://github.com/msu-cmse-courses/cmse201-F21-data/blob/main/Day-20/distance_v_steps_randomwalk.png">
+   distance_v_steps_randomwalk.png
+  </a>
+ </li>
+</ul>
+<p class="caption">
+ <span class="caption-text">
+  Day 21
+ </span>
+</p>
+<ul class="nav bd-sidenav">
+ <li class="toctree-l1">
+  <a class="reference internal" href="../Day-21/Day-21_Pre-Class_ProjectUpdates-STUDENT.html">
+   Day 21 Pre-class assignment: Making project progress!
+  </a>
+ </li>
+</ul>
+<p class="caption">
+ <span class="caption-text">
+  Day 22
+ </span>
+</p>
+<ul class="nav bd-sidenav">
+ <li class="toctree-l1">
+  <a class="reference internal" href="../Day-22/Day-22_Pre-Class_Climate-STUDENT.html">
+   Day 22 Pre-class:  Global warming and climate modeling
+  </a>
+ </li>
+ <li class="toctree-l1">
+  <a class="reference internal" href="../Day-22/Day-22_In-Class_Climate-STUDENT.html">
+   Day 22 In-class Assignment: Analyzing climate data
+  </a>
+ </li>
+ <li class="toctree-l1">
+  <a class="reference external" href="https://raw.githubusercontent.com/msu-cmse-courses/cmse201-F21-data/main/Day-22/GLB.Ts.csv">
+   GLB.Ts.csv
+  </a>
+ </li>
+ <li class="toctree-l1">
+  <a class="reference external" href="https://raw.githubusercontent.com/msu-cmse-courses/cmse201-F21-data/main/Day-22/bintanja2008.txt">
+   bintanja2008.txt
+  </a>
+ </li>
+ <li class="toctree-l1">
+  <a class="reference external" href="https://raw.githubusercontent.com/msu-cmse-courses/cmse201-F21-data/main/Day-22/ch4_annmean_gl.txt">
+   ch4_annmean_gl.txt
+  </a>
+ </li>
+ <li class="toctree-l1">
+  <a class="reference external" href="https://raw.githubusercontent.com/msu-cmse-courses/cmse201-F21-data/main/Day-22/co2_mm_mlo.txt">
+   co2_mm_mlo.txt
+  </a>
+ </li>
+ <li class="toctree-l1">
+  <a class="reference external" href="https://raw.githubusercontent.com/msu-cmse-courses/cmse201-F21-data/main/Day-22/vostok-ch4nat.txt">
+   vostok-ch4nat.txt
+  </a>
+ </li>
+ <li class="toctree-l1">
+  <a class="reference external" href="https://raw.githubusercontent.com/msu-cmse-courses/cmse201-F21-data/main/Day-22/vostok-co2nat.txt">
+   vostok-co2nat.txt
+  </a>
+ </li>
+ <li class="toctree-l1">
+  <a class="reference external" href="https://raw.githubusercontent.com/msu-cmse-courses/cmse201-F21-data/main/Day-22/vostok-deutnat.txt">
+   vostok-deutnat.txt
+  </a>
+ </li>
+</ul>
+<p class="caption">
+ <span class="caption-text">
+  Day 23
+ </span>
+</p>
+<ul class="nav bd-sidenav">
+ <li class="toctree-l1">
+  <a class="reference internal" href="../Day-23/Day-23_Pre-Class_Climate-STUDENT.html">
+   Day 23 pre-class assignment: climate modeling
+  </a>
+ </li>
+ <li class="toctree-l1">
+  <a class="reference internal" href="../Day-23/Day-23_In-Class_Climate-STUDENT.html">
+   Day 23 In-class Assignment: A simple model for global temperature
+  </a>
+ </li>
+ <li class="toctree-l1">
+  <a class="reference external" href="https://github.com/msu-cmse-courses/cmse201-F21-data/blob/main/Day-23/listentothee.png">
+   listentothee.png
+  </a>
+ </li>
+ <li class="toctree-l1">
+  <a class="reference external" href="https://github.com/msu-cmse-courses/cmse201-F21-data/blob/main/Day-23/simple_model.png">
+   simple_model.png
+  </a>
+ </li>
+</ul>
+<p class="caption">
+ <span class="caption-text">
+  Homework
+ </span>
+</p>
+<ul class="nav bd-sidenav">
+ <li class="toctree-l1">
+  <a class="reference internal" href="../Homework/Homework-1/HW_01_F21_STUDENT.html">
+   Homework 1: Introduction to Loops, Lists, and Dictionaries
+  </a>
+ </li>
+ <li class="toctree-l1">
+  <a class="reference internal" href="../Homework/Homework-2/HW_02_F21-STUDENT.html">
+   Homework 2: If Statements, Functions, and Modules
+  </a>
+ </li>
+ <li class="toctree-l1">
+  <a class="reference internal" href="../Homework/Homework-3/HOMEWORK_3_STUDENT.html">
+   Homework 3: Data Analysis with Pandas, Numpy, and Matplotlib
+  </a>
+ </li>
+ <li class="toctree-l1">
+  <a class="reference external" href="https://raw.githubusercontent.com/msu-cmse-courses/cmse201-F21-data/main/Homework/americas_gpin_2014_16.csv">
+   americas_gpin_2014_16.csv
+  </a>
+ </li>
+ <li class="toctree-l1">
+  <a class="reference internal" href="../Homework/Homework-4/HW-04-Fall2021_Final-STUDENT.html">
+   Homework 4: Fitting data using NumPy and SciPy
+  </a>
+ </li>
+ <li class="toctree-l1">
+  <a class="reference external" href="https://github.com/msu-cmse-courses/cmse201-F21-data/raw/main/Homework/Wage.csv">
+   Wage.csv
+  </a>
+ </li>
+ <li class="toctree-l1">
+  <a class="reference internal" href="../Homework/Homework-5/HW_05_F21-STUDENT.html">
+   Homework 5: Modeling Physical Systems and Heating Up the House with ODEs
+  </a>
+ </li>
+ <li class="toctree-l1">
+  <a class="reference internal" href="../Homework/Homework-6/HW-06_F21-STUDENT.html">
+   Homework 6: Agent Based Modeling
+  </a>
+ </li>
+</ul>
+<p class="caption">
+ <span class="caption-text">
+  Midterm Bootcamps
+ </span>
+</p>
+<ul class="nav bd-sidenav">
+ <li class="toctree-l1">
+  <a class="reference internal" href="../Bootcamp_Notebooks/Bootcamp1-Python_Fundamentals_STUDENT.html">
+   Bootcamp 1: Python Fundamentals
+  </a>
+ </li>
+ <li class="toctree-l1">
+  <a class="reference internal" href="../Bootcamp_Notebooks/Bootcamp2-InitialConceptsReview.html">
+   Bootcamp 2: Initial Concepts Review Cheatsheet
+  </a>
+ </li>
+ <li class="toctree-l1">
+  <a class="reference internal" href="../Bootcamp_Notebooks/Bootcamp3-Debugging_STUDENT.html">
+   Bootcamp 3: Debugging
+  </a>
+ </li>
+ <li class="toctree-l1">
+  <a class="reference internal" href="../Bootcamp_Notebooks/Bootcamp4-IfStatements_STUDENT.html">
+   Bootcamp 4: If Statements
+  </a>
+ </li>
+ <li class="toctree-l1">
+  <a class="reference internal" href="../Bootcamp_Notebooks/Bootcamp5-Functions_STUDENT.html">
+   Bootcamp 5: Functions
+  </a>
+ </li>
+ <li class="toctree-l1">
+  <a class="reference internal" href="../Bootcamp_Notebooks/Bootcamp6-Matplotlib_STUDENT.html">
+   Bootcamp 6: Matplotlib
+  </a>
+ </li>
+</ul>
+<p class="caption">
+ <span class="caption-text">
+  Semester Projects
+ </span>
+</p>
+<ul class="nav bd-sidenav">
+ <li class="toctree-l1">
+  <a class="reference internal" href="../Project_Materials/CMSE201_SemesterProjectDetails.html">
+   Semester Project Details
+  </a>
+ </li>
+ <li class="toctree-l1">
+  <a class="reference internal" href="../Project_Materials/CMSE201_FinalProject_ExampleA.html">
+   CMSE 201 Final Project Example A
+  </a>
+ </li>
+ <li class="toctree-l1">
+  <a class="reference internal" href="../Project_Materials/CMSE201_FinalProject_ExampleB.html">
+   CMSE 201 Final Project Example B
+  </a>
+ </li>
+ <li class="toctree-l1">
+  <a class="reference external" href="https://github.com/msu-cmse-courses/cmse201-F21-data/raw/main/Projects/CMSE201_Example_Projects.zip">
+   CMSE201_Example_Projects.zip
+  </a>
+ </li>
+ <li class="toctree-l1">
+  <a class="reference internal" href="../Project_Materials/First_Project_Checkpoint.html">
+   First Project Checkpoint
+  </a>
+ </li>
+ <li class="toctree-l1">
+  <a class="reference internal" href="../Project_Materials/CMSE201FinalProject_RequirementsAndGradingRubric.html">
+   Requirements and Grading Rubric
+  </a>
+ </li>
+ <li class="toctree-l1">
+  <a class="reference internal" href="../Project_Materials/CMSE201_FinalProjectTemplate.html">
+   CMSE 201 Final Project Template
+  </a>
+ </li>
+</ul>
+
+    </div>
+</nav> <!-- To handle the deprecated key -->
+
+<div class="navbar_extra_footer">
+  Powered by <a href="https://jupyterbook.org">Jupyter Book</a>
+</div>
+
+</div>
+
+
+          
+
+
+          
+<main class="col py-md-3 pl-md-4 bd-content overflow-auto" role="main">
+    
+    <div class="topbar container-xl fixed-top">
+    <div class="topbar-contents row">
+        <div class="col-12 col-md-3 bd-topbar-whitespace site-navigation show"></div>
+        <div class="col pl-md-4 topbar-main">
+            
+            <button id="navbar-toggler" class="navbar-toggler ml-0" type="button" data-toggle="collapse"
+                data-toggle="tooltip" data-placement="bottom" data-target=".site-navigation" aria-controls="navbar-menu"
+                aria-expanded="true" aria-label="Toggle navigation" aria-controls="site-navigation"
+                title="Toggle navigation" data-toggle="tooltip" data-placement="left">
+                <i class="fas fa-bars"></i>
+                <i class="fas fa-arrow-left"></i>
+                <i class="fas fa-arrow-up"></i>
+            </button>
+            
+            
+<div class="dropdown-buttons-trigger">
+    <button id="dropdown-buttons-trigger" class="btn btn-secondary topbarbtn" aria-label="Download this page"><i
+            class="fas fa-download"></i></button>
+
+    <div class="dropdown-buttons">
+        <!-- ipynb file if we had a myst markdown file -->
+        
+        <!-- Download raw file -->
+        <a class="dropdown-buttons" href="../_sources/Day-16/Day-16_In-Class_CompartmentsWithSolveIVP-STUDENT.ipynb"><button type="button"
+                class="btn btn-secondary topbarbtn" title="Download source file" data-toggle="tooltip"
+                data-placement="left">.ipynb</button></a>
+        <!-- Download PDF via print -->
+        <button type="button" id="download-print" class="btn btn-secondary topbarbtn" title="Print to PDF"
+            onClick="window.print()" data-toggle="tooltip" data-placement="left">.pdf</button>
+    </div>
+</div>
+
+            <!-- Source interaction buttons -->
+
+<div class="dropdown-buttons-trigger">
+    <button id="dropdown-buttons-trigger" class="btn btn-secondary topbarbtn"
+        aria-label="Connect with source repository"><i class="fab fa-github"></i></button>
+    <div class="dropdown-buttons sourcebuttons">
+        <a class="repository-button"
+            href="https://github.com/msu-cmse-courses/cmse201-F21-jb"><button type="button" class="btn btn-secondary topbarbtn"
+                data-toggle="tooltip" data-placement="left" title="Source repository"><i
+                    class="fab fa-github"></i>repository</button></a>
+        <a class="issues-button"
+            href="https://github.com/msu-cmse-courses/cmse201-F21-jb/issues/new?title=Issue%20on%20page%20%2FDay-16/Day-16_In-Class_CompartmentsWithSolveIVP-STUDENT.html&body=Your%20issue%20content%20here."><button
+                type="button" class="btn btn-secondary topbarbtn" data-toggle="tooltip" data-placement="left"
+                title="Open an issue"><i class="fas fa-lightbulb"></i>open issue</button></a>
+        
+    </div>
+</div>
+
+            <!-- Full screen (wrap in <a> to have style consistency -->
+
+<a class="full-screen-button"><button type="button" class="btn btn-secondary topbarbtn" data-toggle="tooltip"
+        data-placement="bottom" onclick="toggleFullScreen()" aria-label="Fullscreen mode"
+        title="Fullscreen mode"><i
+            class="fas fa-expand"></i></button></a>
+
+            <!-- Launch buttons -->
+
+<div class="dropdown-buttons-trigger">
+    <button id="dropdown-buttons-trigger" class="btn btn-secondary topbarbtn"
+        aria-label="Launch interactive content"><i class="fas fa-rocket"></i></button>
+    <div class="dropdown-buttons">
+        
+        <a class="binder-button" href="https://mybinder.org/v2/gh/msu-cmse-courses/cmse201-F21-jb/main?urlpath=tree/Day-16/Day-16_In-Class_CompartmentsWithSolveIVP-STUDENT.ipynb"><button type="button"
+                class="btn btn-secondary topbarbtn" title="Launch Binder" data-toggle="tooltip"
+                data-placement="left"><img class="binder-button-logo"
+                    src="../_static/images/logo_binder.svg"
+                    alt="Interact on binder">Binder</button></a>
+        
+        
+        
+        
+    </div>
+</div>
+
+        </div>
+
+        <!-- Table of contents -->
+        <div class="d-none d-md-block col-md-2 bd-toc show">
+            
+            <div class="tocsection onthispage pt-5 pb-3">
+                <i class="fas fa-list"></i> Contents
+            </div>
+            <nav id="bd-toc-nav" aria-label="Page">
+                <ul class="visible nav section-nav flex-column">
+ <li class="toc-h2 nav-item toc-entry">
+  <a class="reference internal nav-link" href="#p-style-text-align-right-put-your-name-here-p">
+   <p style="text-align: right;">
+    ✅ Put your name here.
+   </p>
+  </a>
+  <ul class="nav section-nav flex-column">
+   <li class="toc-h3 nav-item toc-entry">
+    <a class="reference internal nav-link" href="#p-style-text-align-right-put-your-group-member-names-here-p">
+     <p style="text-align: right;">
+      ✅ Put your group member names here.
+     </p>
+    </a>
+   </li>
+  </ul>
+ </li>
+ <li class="toc-h2 nav-item toc-entry">
+  <a class="reference internal nav-link" href="#background">
+   Background
+  </a>
+  <ul class="nav section-nav flex-column">
+   <li class="toc-h3 nav-item toc-entry">
+    <a class="reference internal nav-link" href="#presentation">
+     Presentation
+    </a>
+   </li>
+   <li class="toc-h3 nav-item toc-entry">
+    <a class="reference internal nav-link" href="#organization">
+     Organization
+    </a>
+   </li>
+  </ul>
+ </li>
+ <li class="toc-h2 nav-item toc-entry">
+  <a class="reference internal nav-link" href="#ecology-the-lotka-volterra-model">
+   Ecology: The Lotka-Volterra Model
+  </a>
+ </li>
+ <li class="toc-h2 nav-item toc-entry">
+  <a class="reference internal nav-link" href="#social-science-the-daley-kendall-model">
+   Social Science: The Daley-Kendall Model
+  </a>
+ </li>
+ <li class="toc-h2 nav-item toc-entry">
+  <a class="reference internal nav-link" href="#health-the-sir-model">
+   Health: The SIR Model
+  </a>
+  <ul class="nav section-nav flex-column">
+   <li class="toc-h3 nav-item toc-entry">
+    <a class="reference internal nav-link" href="#congratulations-you-re-done">
+     Congratulations, you’re done!
+    </a>
+   </li>
+  </ul>
+ </li>
+</ul>
+
+            </nav>
+        </div>
+    </div>
+</div>
+    <div id="main-content" class="row">
+        <div class="col-12 col-md-9 pl-md-3 pr-md-0">
+        
+              <div>
+                
+  <div class="section" id="day-16-in-class-assignment-compartmental-modeling-moving-from-the-model-to-the-code">
+<h1>Day 16 In-Class Assignment: Compartmental Modeling, moving from the model to the Code<a class="headerlink" href="#day-16-in-class-assignment-compartmental-modeling-moving-from-the-model-to-the-code" title="Permalink to this headline">¶</a></h1>
+<hr class="docutils" />
+<div class="section" id="p-style-text-align-right-put-your-name-here-p">
+<h2><p style="text-align: right;"> ✅ Put your name here.</p><a class="headerlink" href="#p-style-text-align-right-put-your-name-here-p" title="Permalink to this headline">¶</a></h2>
+<div class="section" id="p-style-text-align-right-put-your-group-member-names-here-p">
+<h3><p style="text-align: right;"> ✅ Put your group member names here.</p><a class="headerlink" href="#p-style-text-align-right-put-your-group-member-names-here-p" title="Permalink to this headline">¶</a></h3>
+<p><strong>Make to execute this cell so that you have the imports that you need!</strong></p>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="kn">import</span> <span class="nn">numpy</span> <span class="k">as</span> <span class="nn">np</span>
+<span class="kn">from</span> <span class="nn">scipy.integrate</span> <span class="kn">import</span> <span class="n">solve_ivp</span>
+<span class="o">%</span><span class="k">matplotlib</span> inline
+<span class="kn">import</span> <span class="nn">matplotlib.pyplot</span> <span class="k">as</span> <span class="nn">plt</span>
+</pre></div>
+</div>
+</div>
+</div>
+</div>
+</div>
+<div class="section" id="background">
+<h2>Background<a class="headerlink" href="#background" title="Permalink to this headline">¶</a></h2>
+<hr class="docutils" />
+<p>Previously, you explored three compartmental models. Today, you will build one of those in detail.</p>
+<p>You won’t be too surprised to learn that clever researchers have explored all of the models we explored, and some standard models have emerged. Many researchers take these simple versions as starting points and build more complex models from them. <strong>That is what <em>you</em> will do today.</strong></p>
+<p>Depending on which group you chose or were assigned to, read the description below for your model. You will learn a little about the standard model, what the logic is behind it, and what it typically tells us. Then, you will extend that model to answer some specific questions. At the end of class your group will present your model to your classmates.</p>
+<p>One of the things you won’t know as you extend the model is the value of the parameters. In general we don’t know the value of the parameters; in fact, often it is the purpose of building the model to find the parameters from data. Leave the parameters as variables in your code that you can vary. You might be able to come up with a reasonable guess, and then you can run your model for values around that good guess. Write your code so that this is easy to do: you might want to make a plot with <span class="math notranslate nohighlight">\(10\)</span> to <span class="math notranslate nohighlight">\(100\)</span> different runs for the basic model as the parameters are varied. (Or not, depends on what you do with your model.) Similarly, you won’t know the initial conditions; again, make those variables that you can vary to explore the performance of the model.</p>
+<hr class="docutils" />
+<div class="section" id="presentation">
+<h3>Presentation<a class="headerlink" href="#presentation" title="Permalink to this headline">¶</a></h3>
+<hr class="docutils" />
+<p>Every member of your group will be expected to present the results of your efforts, so you need to make sure you stay involved with your group’s efforts and understand the ins and outs of your model! You should create a <a class="reference external" href="https://docs.google.com/presentation/u/0/">Google Slides</a> presentation and share it with everyone in your group so that you can work collaboratively to add text and figures and so that everyone will have a version that they can present.</p>
+<p>In your presentation, you should cover:</p>
+<ul class="simple">
+<li><p>Which model did your group consider?</p></li>
+<li><p>What is the basic model used for this class of problems?</p></li>
+<li><p>Show an example of what the model gives in its most basic form.</p></li>
+<li><p>Describe how you modified the model, in terms of a compartmental diagram. Show how compartments are connected through transitions (one thing becomes another) and through influence (a compartment changes the rate at which things happen).</p></li>
+<li><p>Discuss how you coded it, and show some results.</p></li>
+<li><p>Give a conclusion on what you learned and what you think could be learned if the model were developed further.</p></li>
+</ul>
+<p>Note that your presentation should be about <strong>four to five</strong> minutes long, with about <strong>two</strong> minutes for questions and discussion. If no one asks questions, feel free to ask questions of the group you present to; ask them questions about your model.</p>
+</div>
+<hr class="docutils" />
+<div class="section" id="organization">
+<h3>Organization<a class="headerlink" href="#organization" title="Permalink to this headline">¶</a></h3>
+<hr class="docutils" />
+<p>Before you get started, you will need to organize your group. You might assign one person to start putting the talk slides together immediately so that the group can fill it as you go along. You don’t want to wait until the end to figure out how to put a figure into Google Slides, for example. Part of this project is to be able to complete a modeling project <strong>on time</strong> and deliver a presentation.</p>
+</div>
+</div>
+<hr class="docutils" />
+<div class="section" id="ecology-the-lotka-volterra-model">
+<h2>Ecology: The Lotka-Volterra Model<a class="headerlink" href="#ecology-the-lotka-volterra-model" title="Permalink to this headline">¶</a></h2>
+<hr class="docutils" />
+<img src="https://museum.wa.gov.au/sites/default/files/imagecache/wam_v2_page_full/news-images/Planet%20Shark%20Predator%20or%20Prey.%20Courtesy%20Grande%20Exhibitions_0.jpg" width=400px>
+<p>Ecologists have explored predator-prey situations in the context of many obvious examples (foxes and rabbits); but the model itself can also be used to explore competition between companies, chemical reactions, among many other examples. The most famous predator-prey model is the <a class="reference external" href="https://en.wikipedia.org/wiki/Lotka%E2%80%93Volterra_equations"><strong>Lotka-Volterra</strong></a> model, and it can be expressed most simply as a two-compartment model with, you guessed it, predators and prey. The simple version you will start with can be described in words as:</p>
+<ul class="simple">
+<li><p>The prey breed at some rate that is proportional to the current population of prey.</p></li>
+<li><p>The prey are removed through interactions with the predators.</p></li>
+<li><p>The predator population grows through interactions with the prey.</p></li>
+<li><p>The predators die at some rate (which includes everything from old age, disease, etc.) in proportion to their current population.</p></li>
+</ul>
+<p>In this compartmental model, we can use  <span class="math notranslate nohighlight">\(p\)</span> and <span class="math notranslate nohighlight">\({\cal P}\)</span> to represent the prey and predator populations, respectively.</p>
+<p><strong>Write down the ODEs for the Predator-Prey model using the code given below</strong>. Discuss why the terms in the equations have the form them do. These equations have an amazingly rich set of solutions!</p>
+<p>You can learn more about the model <a class="reference external" href="https://en.wikipedia.org/wiki/Lotka%E2%80%93Volterra_equations">here</a>.</p>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="c1"># Predator-Prey Equations</span>
+
+<span class="k">def</span> <span class="nf">LV</span><span class="p">(</span><span class="n">time</span><span class="p">,</span> <span class="n">current_state</span><span class="p">,</span> <span class="n">alpha</span><span class="p">,</span> <span class="n">beta</span><span class="p">,</span> <span class="n">delta</span><span class="p">,</span> <span class="n">gamma</span><span class="p">):</span>
+    
+    <span class="n">prey</span> <span class="o">=</span> <span class="n">current_state</span><span class="p">[</span><span class="mi">0</span><span class="p">]</span>
+    <span class="n">predators</span> <span class="o">=</span> <span class="n">current_state</span><span class="p">[</span><span class="mi">1</span><span class="p">]</span>
+    
+    <span class="n">prey_dot</span> <span class="o">=</span> <span class="n">alpha</span><span class="o">*</span><span class="n">prey</span> <span class="o">-</span> <span class="n">beta</span><span class="o">*</span><span class="n">prey</span><span class="o">*</span><span class="n">predators</span>
+    <span class="n">predators_dot</span> <span class="o">=</span> <span class="n">delta</span><span class="o">*</span><span class="n">prey</span><span class="o">*</span><span class="n">predators</span> <span class="o">-</span> <span class="n">gamma</span><span class="o">*</span><span class="n">predators</span>
+    
+    <span class="k">return</span> <span class="p">[</span><span class="n">prey_dot</span><span class="p">,</span> <span class="n">predators_dot</span><span class="p">]</span>
+
+<span class="n">alpha</span> <span class="o">=</span> <span class="mi">1</span>
+<span class="n">beta</span> <span class="o">=</span> <span class="mi">4</span><span class="o">/</span><span class="mi">3</span>
+<span class="n">delta</span> <span class="o">=</span> <span class="mi">1</span>
+<span class="n">gamma</span> <span class="o">=</span> <span class="mi">1</span>
+<span class="n">initial_conditions</span> <span class="o">=</span> <span class="p">[</span><span class="mi">1</span><span class="p">,</span><span class="o">.</span><span class="mi">1</span><span class="p">]</span>
+<span class="n">time</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">linspace</span><span class="p">(</span><span class="mi">0</span><span class="p">,</span><span class="mi">20</span><span class="p">,</span><span class="mi">1000</span><span class="p">)</span>
+
+<span class="n">result</span> <span class="o">=</span> <span class="n">solve_ivp</span><span class="p">(</span><span class="n">LV</span><span class="p">,</span> <span class="p">(</span><span class="mi">0</span><span class="p">,</span><span class="mi">20</span><span class="p">),</span><span class="n">initial_conditions</span><span class="p">,</span> <span class="n">t_eval</span> <span class="o">=</span> <span class="n">time</span><span class="p">,</span> <span class="n">args</span><span class="o">=</span><span class="p">(</span><span class="n">alpha</span><span class="p">,</span> <span class="n">beta</span><span class="p">,</span> <span class="n">delta</span><span class="p">,</span> <span class="n">gamma</span><span class="p">))</span>
+
+<span class="n">prey</span> <span class="o">=</span> <span class="n">result</span><span class="o">.</span><span class="n">y</span><span class="p">[</span><span class="mi">0</span><span class="p">,:]</span>
+<span class="n">predators</span> <span class="o">=</span> <span class="n">result</span><span class="o">.</span><span class="n">y</span><span class="p">[</span><span class="mi">1</span><span class="p">,:]</span>
+
+<span class="n">plt</span><span class="o">.</span><span class="n">plot</span><span class="p">(</span><span class="n">time</span><span class="p">,</span> <span class="n">prey</span><span class="p">,</span> <span class="n">label</span><span class="o">=</span><span class="s1">&#39;prey&#39;</span><span class="p">)</span>
+<span class="n">plt</span><span class="o">.</span><span class="n">plot</span><span class="p">(</span><span class="n">time</span><span class="p">,</span> <span class="n">predators</span><span class="p">,</span> <span class="n">label</span><span class="o">=</span><span class="s1">&#39;predators&#39;</span><span class="p">)</span>
+<span class="n">plt</span><span class="o">.</span><span class="n">grid</span><span class="p">()</span>
+<span class="n">plt</span><span class="o">.</span><span class="n">legend</span><span class="p">()</span>
+<span class="n">plt</span><span class="o">.</span><span class="n">xlabel</span><span class="p">(</span><span class="s1">&#39;time&#39;</span><span class="p">)</span>
+<span class="n">plt</span><span class="o">.</span><span class="n">ylabel</span><span class="p">(</span><span class="s1">&#39;population (thousands)&#39;</span><span class="p">)</span>
+<span class="n">plt</span><span class="o">.</span><span class="n">title</span><span class="p">(</span><span class="s1">&#39;Solution of the Lotka-Volterra Predator-Prey Equations&#39;</span><span class="p">)</span>
+</pre></div>
+</div>
+</div>
+</div>
+<p>Using the code above, vary the parameters in the model to get a sense for the different behaviors the basic LV model gives. Discuss the basic behavior in your presentation. Are there values of the parameters for which there are qualitatively different types of solutions? Also, discuss this. Make several plots, such as a quad subplot, to show this. Include in your plots the populations versus time <em>and</em> phase portraits (plotting one population versus the other, rather than time.)</p>
+<p>Now that you have the sense for how a standard predator-prey model works, let’s modify it. Stop and think about the LV model: is this the model you would have come up with? What would your model have looked like? For example, suppose there are no predators, what happens?</p>
+<p>Let’s explore that a bit. If we have an equation of the form
+$<span class="math notranslate nohighlight">\( \frac{dp}{dt} = \alpha p,\)</span>$</p>
+<p>we get exponential growth; this can’t continue in this way. Modify your model to include a new term of the form
+$<span class="math notranslate nohighlight">\( \frac{dp}{dt} = \alpha p\left(1 - \frac{p}{p_{max}} \right),\)</span>$</p>
+<p>where <span class="math notranslate nohighlight">\(p_{max}\)</span> is called the “carrying capapacity”. (You will modify your full code to include this modification.) Describe what it is doing mathematically and explore solutions of the model as you vary the carry capacity. Does this change the nature of the solutions you get? (Vary the parameters again to explore the possible range of solutions: do the populations ever die away? Do you always get oscillating solutions?)</p>
+</div>
+<hr class="docutils" />
+<div class="section" id="social-science-the-daley-kendall-model">
+<h2>Social Science: The Daley-Kendall Model<a class="headerlink" href="#social-science-the-daley-kendall-model" title="Permalink to this headline">¶</a></h2>
+<hr class="docutils" />
+<img src="http://www.thatsnonsense.com/wp-content/uploads/2012/01/rumours.jpg" width=400px>
+<p>The flow of information through society impacts all of us, whether it be through malicious rumors about us, government propaganda, or fake news cites attempting to influence the government. Daley and Kendall formulated a basic model for the spread of rumors that we can build new models from. Their model has three compartments:</p>
+<ol class="simple">
+<li><p>Ignorants (I): these are people ignorant of the rumor.</p></li>
+<li><p>Spreaders (S): these are people actively spreading the rumor.</p></li>
+<li><p>Stiflers (R): there are people who are bored with the rumor.</p></li>
+</ol>
+<p>More interesting than the compartments of the models are the rules in which they interact:
+$<span class="math notranslate nohighlight">\(I + S \to S + S,\)</span><span class="math notranslate nohighlight">\(
+\)</span><span class="math notranslate nohighlight">\(S + S \to S + R,\)</span><span class="math notranslate nohighlight">\(
+\)</span><span class="math notranslate nohighlight">\(R + S \to R + R.\)</span>$</p>
+<p>Think through these rules and how you would convert them into an ODE model. Look at the code below and compare with these transitions; do you see how the rules of the model became these ODEs? <strong>Write down the ODE model for the DK model based on the code below</strong>.</p>
+<p>You can learn more about the model <a class="reference external" href="https://en.wikipedia.org/wiki/Rumor_spread_in_social_network">here</a>.</p>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="c1"># Daley-Kendall Rumor Model</span>
+
+<span class="k">def</span> <span class="nf">DK</span><span class="p">(</span><span class="n">time</span><span class="p">,</span> <span class="n">current_state</span><span class="p">,</span> <span class="n">alpha</span><span class="p">,</span> <span class="n">beta</span><span class="p">):</span>
+    
+    <span class="n">ignorant</span> <span class="o">=</span> <span class="n">current_state</span><span class="p">[</span><span class="mi">0</span><span class="p">]</span>
+    <span class="n">spreader</span> <span class="o">=</span> <span class="n">current_state</span><span class="p">[</span><span class="mi">1</span><span class="p">]</span>
+    <span class="n">stifler</span> <span class="o">=</span> <span class="n">current_state</span><span class="p">[</span><span class="mi">2</span><span class="p">]</span>
+    
+    <span class="n">ignorant_dot</span> <span class="o">=</span> <span class="o">-</span><span class="n">beta</span><span class="o">*</span><span class="n">ignorant</span><span class="o">*</span><span class="n">spreader</span>
+    <span class="n">spreader_dot</span> <span class="o">=</span> <span class="n">beta</span><span class="o">*</span><span class="n">ignorant</span><span class="o">*</span><span class="n">spreader</span> <span class="o">-</span> <span class="n">alpha</span><span class="o">*</span><span class="n">spreader</span><span class="o">*</span><span class="p">(</span><span class="n">spreader</span> <span class="o">+</span> <span class="n">stifler</span><span class="p">)</span>
+    <span class="n">stifler_dot</span> <span class="o">=</span> <span class="n">alpha</span><span class="o">*</span><span class="n">spreader</span><span class="o">*</span><span class="p">(</span><span class="n">spreader</span> <span class="o">+</span> <span class="n">stifler</span><span class="p">)</span>
+    
+    <span class="k">return</span> <span class="p">[</span><span class="n">ignorant_dot</span><span class="p">,</span> <span class="n">spreader_dot</span><span class="p">,</span> <span class="n">stifler_dot</span><span class="p">]</span>
+
+<span class="n">alpha</span> <span class="o">=</span> <span class="mf">0.01</span>
+<span class="n">beta</span> <span class="o">=</span> <span class="mf">0.003</span>
+
+<span class="n">initial_conditions</span> <span class="o">=</span> <span class="p">[</span><span class="mi">1000</span><span class="p">,</span><span class="mi">1</span><span class="p">,</span><span class="mi">0</span><span class="p">]</span>
+<span class="n">time</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">linspace</span><span class="p">(</span><span class="mi">0</span><span class="p">,</span><span class="mi">20</span><span class="p">,</span><span class="mi">1000</span><span class="p">)</span>
+
+<span class="n">result</span> <span class="o">=</span> <span class="n">solve_ivp</span><span class="p">(</span><span class="n">DK</span><span class="p">,</span> <span class="p">(</span><span class="mi">0</span><span class="p">,</span><span class="mi">20</span><span class="p">),</span> <span class="n">initial_conditions</span><span class="p">,</span> <span class="n">t_eval</span> <span class="o">=</span> <span class="n">time</span><span class="p">,</span> <span class="n">args</span><span class="o">=</span><span class="p">(</span><span class="n">alpha</span><span class="p">,</span> <span class="n">beta</span><span class="p">))</span>
+
+<span class="nb">print</span><span class="p">(</span><span class="nb">type</span><span class="p">(</span><span class="n">result</span><span class="p">))</span>
+<span class="n">ignorant</span> <span class="o">=</span> <span class="n">result</span><span class="o">.</span><span class="n">y</span><span class="p">[</span><span class="mi">0</span><span class="p">,:]</span>
+<span class="n">spreader</span> <span class="o">=</span> <span class="n">result</span><span class="o">.</span><span class="n">y</span><span class="p">[</span><span class="mi">1</span><span class="p">,:]</span>
+<span class="n">stifler</span> <span class="o">=</span> <span class="n">result</span><span class="o">.</span><span class="n">y</span><span class="p">[</span><span class="mi">2</span><span class="p">,:]</span>
+
+<span class="n">plt</span><span class="o">.</span><span class="n">plot</span><span class="p">(</span><span class="n">time</span><span class="p">,</span> <span class="n">ignorant</span><span class="p">,</span> <span class="n">label</span><span class="o">=</span><span class="s1">&#39;ignorant&#39;</span><span class="p">)</span>
+<span class="n">plt</span><span class="o">.</span><span class="n">plot</span><span class="p">(</span><span class="n">time</span><span class="p">,</span> <span class="n">spreader</span><span class="p">,</span> <span class="n">label</span><span class="o">=</span><span class="s1">&#39;spreader&#39;</span><span class="p">)</span>
+<span class="n">plt</span><span class="o">.</span><span class="n">plot</span><span class="p">(</span><span class="n">time</span><span class="p">,</span> <span class="n">stifler</span><span class="p">,</span> <span class="n">label</span><span class="o">=</span><span class="s1">&#39;stifler&#39;</span><span class="p">)</span>
+<span class="n">plt</span><span class="o">.</span><span class="n">grid</span><span class="p">()</span>
+<span class="n">plt</span><span class="o">.</span><span class="n">legend</span><span class="p">()</span>
+<span class="n">plt</span><span class="o">.</span><span class="n">xlabel</span><span class="p">(</span><span class="s1">&#39;time&#39;</span><span class="p">)</span>
+<span class="n">plt</span><span class="o">.</span><span class="n">ylabel</span><span class="p">(</span><span class="s1">&#39;population (thousands)&#39;</span><span class="p">)</span>
+<span class="n">plt</span><span class="o">.</span><span class="n">title</span><span class="p">(</span><span class="s1">&#39;Solution of the Daley-Kendall Rumor Model&#39;</span><span class="p">)</span>
+</pre></div>
+</div>
+</div>
+</div>
+<p>Next, vary the parameters of the model to see what behaviors you find; build your intuition for the model. Make several plots to show this behavior, including phase portraits (plot one variable versus another, rather than time).</p>
+<p>Now, you are going to modify the model to model <a class="reference external" href="https://en.wikipedia.org/wiki/Fake_news_website">fake news</a>. Suppose you wish to create a website that sells lots of advertising and an election is coming up. Further suppose that there are two candidates running for office. You want to model this in advance to understand better how the dynamics will play out. Modify the model in these ways:</p>
+<ul class="simple">
+<li><p>Assume there are two populations of voters, one for each candidate.</p></li>
+<li><p>When you start a rumor, one voting population converts to the other.</p></li>
+</ul>
+<p>Build, code and explore (with plots) this basic model.</p>
+<p>Modify the model to include these behaviors:</p>
+<ul class="simple">
+<li><p>As people get bored with the latest rumor, some of them transition back to their original beliefs. Modify the model so that rather than becoming a stifler in the new compartment, they <em>eventually</em> transition back to being an ignorant in the original compartment. Explore this model by coding it and making plots.</p></li>
+<li><p>While one can possibly sells a lot of ads this way, consider the case where the source is another government attempting to meddle in the election. They are not interested in making money, but impacting the outcome - timing is everything. Use your model to advise the nefarious government on the optimal strategy to influence the election in the most subtle way (you don’t want people to notice that there is suddenly an enormous amount of fake news immediately before the election).</p></li>
+</ul>
+<p>In your presentation, be sure to include many plots for variants of the models to prove your points.</p>
+</div>
+<hr class="docutils" />
+<div class="section" id="health-the-sir-model">
+<h2>Health: The SIR Model<a class="headerlink" href="#health-the-sir-model" title="Permalink to this headline">¶</a></h2>
+<hr class="docutils" />
+<img src="https://openclipart.org/image/2000px/308892" width=400px>
+There are a wide range of infectious disease models, as many as there are diseases, their variants and strategies to control them. However, the starting point for modeling many infectious diseases is the SIR model, which can be understood as:  
+<ul class="simple">
+<li><p><strong>S</strong>: people susceptible to the disease (number of people who can get it)</p></li>
+<li><p><strong>I</strong>: those who are infectious with the disease (can spread it)</p></li>
+<li><p><strong>R</strong>: people recovered from the disease (they are well and not spreading)</p></li>
+</ul>
+<p><strong>Write down the ODEs for the SIR model using the code given below</strong>. Discuss why the terms in the equations have the form them do.</p>
+<p>You find out more about the model <a class="reference external" href="https://en.wikipedia.org/wiki/Compartmental_models_in_epidemiology#The_SIR_model">here</a>.</p>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="c1"># SIR Model</span>
+
+<span class="k">def</span> <span class="nf">SIR</span><span class="p">(</span><span class="n">time</span><span class="p">,</span> <span class="n">current_state</span><span class="p">,</span> <span class="n">beta</span><span class="p">,</span> <span class="n">gamma</span><span class="p">):</span>
+    
+    <span class="n">susceptible</span> <span class="o">=</span> <span class="n">current_state</span><span class="p">[</span><span class="mi">0</span><span class="p">]</span>
+    <span class="n">infectious</span> <span class="o">=</span> <span class="n">current_state</span><span class="p">[</span><span class="mi">1</span><span class="p">]</span>
+    <span class="n">recovered</span> <span class="o">=</span> <span class="n">current_state</span><span class="p">[</span><span class="mi">2</span><span class="p">]</span>
+    
+    <span class="n">susceptible_dot</span> <span class="o">=</span> <span class="o">-</span><span class="n">beta</span><span class="o">*</span><span class="n">susceptible</span><span class="o">*</span><span class="n">infectious</span>
+    <span class="n">infectious_dot</span> <span class="o">=</span> <span class="n">beta</span><span class="o">*</span><span class="n">susceptible</span><span class="o">*</span><span class="n">infectious</span> <span class="o">-</span> <span class="n">gamma</span><span class="o">*</span><span class="n">infectious</span>
+    <span class="n">recovered_dot</span> <span class="o">=</span> <span class="n">gamma</span><span class="o">*</span><span class="n">infectious</span>
+    
+    <span class="k">return</span> <span class="p">[</span><span class="n">susceptible_dot</span><span class="p">,</span> <span class="n">infectious_dot</span><span class="p">,</span> <span class="n">recovered_dot</span><span class="p">]</span>
+
+
+<span class="n">beta</span> <span class="o">=</span> <span class="mf">0.002</span>
+<span class="n">gamma</span> <span class="o">=</span> <span class="mi">1</span>
+
+<span class="n">initial_conditions</span> <span class="o">=</span> <span class="p">[</span><span class="mi">1000</span><span class="p">,</span><span class="mi">1</span><span class="p">,</span><span class="mi">0</span><span class="p">]</span>
+<span class="n">time</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">linspace</span><span class="p">(</span><span class="mi">0</span><span class="p">,</span><span class="mi">20</span><span class="p">,</span><span class="mi">1000</span><span class="p">)</span>
+
+<span class="n">result</span> <span class="o">=</span> <span class="n">solve_ivp</span><span class="p">(</span><span class="n">SIR</span><span class="p">,</span> <span class="p">(</span><span class="mi">0</span><span class="p">,</span><span class="mi">20</span><span class="p">),</span> <span class="n">initial_conditions</span><span class="p">,</span> <span class="n">t_eval</span> <span class="o">=</span> <span class="n">time</span><span class="p">,</span> <span class="n">args</span><span class="o">=</span><span class="p">(</span><span class="n">beta</span><span class="p">,</span> <span class="n">gamma</span><span class="p">))</span>
+
+<span class="n">susceptible</span> <span class="o">=</span> <span class="n">result</span><span class="o">.</span><span class="n">y</span><span class="p">[</span><span class="mi">0</span><span class="p">,:]</span>
+<span class="n">infectious</span> <span class="o">=</span> <span class="n">result</span><span class="o">.</span><span class="n">y</span><span class="p">[</span><span class="mi">1</span><span class="p">,:]</span>
+<span class="n">recovered</span> <span class="o">=</span> <span class="n">result</span><span class="o">.</span><span class="n">y</span><span class="p">[</span><span class="mi">2</span><span class="p">,:]</span>
+
+<span class="n">plt</span><span class="o">.</span><span class="n">plot</span><span class="p">(</span><span class="n">time</span><span class="p">,</span> <span class="n">susceptible</span><span class="p">,</span> <span class="n">label</span><span class="o">=</span><span class="s1">&#39;susceptible&#39;</span><span class="p">)</span>
+<span class="n">plt</span><span class="o">.</span><span class="n">plot</span><span class="p">(</span><span class="n">time</span><span class="p">,</span> <span class="n">infectious</span><span class="p">,</span> <span class="n">label</span><span class="o">=</span><span class="s1">&#39;infectious&#39;</span><span class="p">)</span>
+<span class="n">plt</span><span class="o">.</span><span class="n">plot</span><span class="p">(</span><span class="n">time</span><span class="p">,</span> <span class="n">recovered</span><span class="p">,</span> <span class="n">label</span><span class="o">=</span><span class="s1">&#39;recovered&#39;</span><span class="p">)</span>
+<span class="n">plt</span><span class="o">.</span><span class="n">grid</span><span class="p">()</span>
+<span class="n">plt</span><span class="o">.</span><span class="n">legend</span><span class="p">()</span>
+<span class="n">plt</span><span class="o">.</span><span class="n">xlabel</span><span class="p">(</span><span class="s1">&#39;time&#39;</span><span class="p">)</span>
+<span class="n">plt</span><span class="o">.</span><span class="n">ylabel</span><span class="p">(</span><span class="s1">&#39;population (thousands)&#39;</span><span class="p">)</span>
+<span class="n">plt</span><span class="o">.</span><span class="n">title</span><span class="p">(</span><span class="s1">&#39;Solution of the SIR Model&#39;</span><span class="p">)</span>
+</pre></div>
+</div>
+</div>
+</div>
+<p>Make some plots, including phase portraits (plots of populations versus each other, rather than time) to show the range of behaviors of the SIR. For example, what controls how many people stay well after the epidemic has past (final population of <strong>S</strong>)? Are there any scenarios in which all people become sick, or are there always a few who do not? Why?</p>
+<p>Now, you are going to modify this model. The first step is to add a latent compartment to the model. That is, change the model to have a temporary state in which the person is ill, but you can’t tell (they have no symptoms; they are “asymptomatic”). Explore this model, comparing it with the original. Discuss the differences in your presentation.</p>
+<p>Next, you would like to use drugs to treat this illness. Let’s suppose it is an influenza pandemic and our government has opened its stockpile of Tamiflu. Add two additional compartments that hold people who have been given the drug <em>before</em> they get ill and those to get the drug <em>once they have symptoms</em>. Explore the model:</p>
+<ul class="simple">
+<li><p>If you give the drug at the same rate to either new compartment, which reduces the number of people who get ill most? Or, do you get the same outcome?</p></li>
+<li><p>In a pandemic scenario, we will not have a vaccine (this is why it is a pandemic rather than an epidemic - it is moving quickly through the population); suppose your goal is not to reduce the number of people who get ill, but rather you want to slow the pandemic to allow time to develop a vaccine. Invent some stratgies that do this.</p></li>
+</ul>
+<p>Describe your models, and include plots comparing all of them, in your presentation.</p>
+<hr class="docutils" />
+<div class="section" id="congratulations-you-re-done">
+<h3>Congratulations, you’re done!<a class="headerlink" href="#congratulations-you-re-done" title="Permalink to this headline">¶</a></h3>
+<p>Submit this assignment by uploading your notebook and a PDF of your presentation slides it to the course Desire2Learn web page.  Go to the “In-Class Assignments” folder, find the appropriate submission link, and upload everything there. Make sure your name is on it!</p>
+<p>© Copyright 2018,  Michigan State University Board of Trustees</p>
+</div>
+</div>
+</div>
+
+    <script type="text/x-thebe-config">
+    {
+        requestKernel: true,
+        binderOptions: {
+            repo: "binder-examples/jupyter-stacks-datascience",
+            ref: "master",
+        },
+        codeMirrorConfig: {
+            theme: "abcdef",
+            mode: "python"
+        },
+        kernelOptions: {
+            kernelName: "python3",
+            path: "./Day-16"
+        },
+        predefinedOutput: true
+    }
+    </script>
+    <script>kernelName = 'python3'</script>
+
+              </div>
+              
+        
+            
+
+
+
+<div class='prev-next-bottom'>
+    
+    <div id="prev">
+        <a class="left-prev" href="Day-16_Pre-Class_Zombies-STUDENT.html" title="previous page">
+            <i class="prevnext-label fas fa-angle-left"></i>
+            <div class="prevnext-info">
+                <p class="prevnext-label">previous</p>
+                <p class="prevnext-title">Day 16 Pre-class Assignment: ZOMBIES!!</p>
+            </div>
+        </a>
+    </div>
+     <div id="next">
+        <a class="right-next" href="../Day-17/Day-17_Pre-Class_2DNumPyArrays-STUDENT.html" title="next page">
+            <div class="prevnext-info">
+                <p class="prevnext-label">next</p>
+                <p class="prevnext-title">Day 17 Pre-Class: 2D NumPy Arrays</p>
+            </div>
+            <i class="prevnext-label fas fa-angle-right"></i>
+        </a>
+     </div>
+
+</div>
+        
+        </div>
+    </div>
+    <footer class="footer mt-5 mt-md-0">
+    <div class="container">
+      <p>
+        
+          By MSU CMSE<br/>
+        
+            &copy; Copyright 2021.<br/>
+      </p>
+    </div>
+  </footer>
+</main>
+
+
+      </div>
+    </div>
+  
+  <script src="../_static/js/index.1c5a1a01449ed65a7b51.js"></script>
+
+  
+  </body>
+</html>

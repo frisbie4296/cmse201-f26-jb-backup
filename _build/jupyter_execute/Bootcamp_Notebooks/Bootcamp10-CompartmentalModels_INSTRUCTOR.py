@@ -1,0 +1,97 @@
+#!/usr/bin/env python
+# coding: utf-8
+
+# # Bootcamp 10: Compartmental Models
+
+# ## Introduction
+# 
+# In this notebook, we will be reviewing compartmental models:  what they are, how to construct them, and what they can be used for.
+# 
+# ---
+# 
+
+# ## What they are
+# 
+# **Compartmental models are mathematical models that describe the flow of material between a set of compartments.** This could depict a real-world system where a substance (e.g. water, CO2) is literally moving between different spatial compartments, or it could be more abstract, where the different compartments involve different "states" (e.g. SIR models). 
+# 
+# ### Compartments 
+# 
+# All of the three examples from class are "abstract" compartmental model systems, in that the compartments describe abstract categories:
+# 
+# - **SIR modeling of disease spread**: the compartments were "susceptible", "infected" and "recovered"
+# - **Predator-prey**: the predators and prey were each in their own compartment
+# - **Daley-Kendall rumor model**: the compartments were "ignorant", "spreader" and "stifler"
+# 
+# ### Arrows
+# 
+# In addition to a set of compartments, compartmental models use arrows to show the flow of material in and out of each compartment.  Ideally, these arrows should be labeled according to their rates.  The compartments and arrows for the SIR model are as follows:
+# 
+# ![SIR](https://github.com/msu-cmse-courses/cmse201-F21-data/blob/main/Bootcamp/CM_SIR-01.png?raw=true)
+# 
+# where there are two connections, one between S and I, the other between I and R.  The variables $\beta$ and $\gamma$ are parameters of the model.  You might be wondering why the transition from S to I depends on **both S and I**.  This is because in order for an infected individual to spread the disease to a susceptible one, both of them need to be in the same place at the same time.  In chemistry this is referred to as a "second order" reaction.  In contrast, the transition from I to R only depends on I.  This is because recovery from the illness only involves the infected individual.
+# 
+# The compartments and arrows for the predator-prey model are as follows:
+# 
+# ![LV](https://github.com/msu-cmse-courses/cmse201-F21-data/blob/main/Bootcamp/CM_LV-01.png?raw=true)
+# 
+# where $P$ is the number of predators and $p$ is the number of prey.  Here note that the two compartments aren't directly connected (you can't switch from predator to prey).  Instead the incoming arrows show birth rates and the outgoing arrows show death rates.  Again, some of the transitions depend on both $P$ and $p$, indicating that they need to "meet" in order for the "reaction" to proceed (yikes!).
+# 
+# ### Equations
+# 
+# Compartmental models are mostly used for constructing a set of equations that describe how the populations in each compartment evolve with time.  These equations are called "ordinary differential equations" (or ODEs) and they relate the **rate of change of a population** (left hand side) with the **populations and parameters** of the model.  
+# 
+# The right hand side is typically a sum of terms that are either positive or negative.  If a right-hand-side term is positive you can think of it as a **"source"**: it causes that population to **increase**.  If a right-hand-side term is negative you can think of it as a **"sink"**: it causes that population to **decrease**.
+# 
+# If the arrows in the compartmental model are accurately labeled, constructing the equations is easy!  The equations for the SIR model are:
+# 
+# \begin{align}
+# \frac{dS}{dt} &= -\beta SI \\
+# \frac{dI}{dt} &= \beta SI - \gamma I \\
+# \frac{dR}{dt} &= \gamma I \\
+# \end{align}
+# 
+# where again, a term is positive if the arrow is going in (a "source") and negative if the arrow is going out (a "sink").
+# 
+# Together these equations are called a "system" of ODEs.  The first step in modeling this system of ODEs is to code the derivatives up in a function:
+
+# In[ ]:
+
+
+def derivs(t,y,gamma,beta):
+    S, I, R = y
+    
+    dSdt = -beta*S*I
+    dIdt = beta*S*I - gamma*I
+    dRdt = gamma*I
+    
+    return dSdt, dIdt, dRdt
+
+
+# where we've used the conventions from `scipy`'s `solve_ivp` function for the arguments.
+# 
+# **Below, use the compartmental model diagram for the predator-prey model to code up a derivs function that could be used with `solve_ivp`:**
+
+# In[ ]:
+
+
+# your code here
+
+
+# In[ ]:
+
+
+### ANSWER
+def derivs(t,y,alpha,beta,gamma,delta):
+    pred, prey = y
+    
+    dpreddt = delta*pred*prey - gamma*pred
+    dpreydt = alpha*prey - beta*pred*prey
+    
+    return dpreddt, dpreydt
+
+
+# In[ ]:
+
+
+
+

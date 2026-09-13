@@ -1,0 +1,33 @@
+{
+  "assignmentId": "322573",
+  "publishedSnapshot": {
+    "published": "DEPLOY_CONFIG#build_from_copied#WZpybnKLbb4jciRMhmqPlHySmR6VE9t5H7_V0qFaYz0"
+  },
+  "setup": {
+    "metadata": {
+      "baseImageId": "base-image-2023-10-04-v1"
+    },
+    "steps": [
+      {
+        "installPython": {
+          "id": "7f89ade4-5561-4457-9126-50706c12bc70",
+          "version": "3.13"
+        }
+      },
+      {
+        "script": {
+          "description": {
+            "behavior": "collapse",
+            "value": ""
+          },
+          "id": "a0fea8ac-f39c-4849-b276-9ca72cdd3a59",
+          "name": "",
+          "script": "# Write your bash script here.\npython3 -m pip install matplotlib numpy pandas"
+        }
+      }
+    ]
+  },
+  "test": {
+    "steps": []
+  }
+}

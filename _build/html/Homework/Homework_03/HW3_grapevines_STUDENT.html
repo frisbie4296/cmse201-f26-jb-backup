@@ -1,0 +1,2006 @@
+
+<!DOCTYPE html>
+
+<html>
+  <head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" /><meta name="generator" content="Docutils 0.17.1: http://docutils.sourceforge.net/" />
+
+    <title>Homework 3: Analyzing, modeling, and visualizing data with Pandas and conceptualizing compartmental models &#8212; CMSE 201</title>
+    
+  <!-- Loaded before other Sphinx assets -->
+  <link href="../../_static/styles/theme.css?digest=1999514e3f237ded88cf" rel="stylesheet">
+<link href="../../_static/styles/pydata-sphinx-theme.css?digest=1999514e3f237ded88cf" rel="stylesheet">
+
+    
+  <link rel="stylesheet"
+    href="../../_static/vendor/fontawesome/5.13.0/css/all.min.css">
+  <link rel="preload" as="font" type="font/woff2" crossorigin
+    href="../../_static/vendor/fontawesome/5.13.0/webfonts/fa-solid-900.woff2">
+  <link rel="preload" as="font" type="font/woff2" crossorigin
+    href="../../_static/vendor/fontawesome/5.13.0/webfonts/fa-brands-400.woff2">
+
+    <link rel="stylesheet" type="text/css" href="../../_static/pygments.css" />
+    <link rel="stylesheet" href="../../_static/styles/sphinx-book-theme.css?digest=5115cc725059bd94278eecd172e13a965bf8f5a9" type="text/css" />
+    <link rel="stylesheet" type="text/css" href="../../_static/togglebutton.css" />
+    <link rel="stylesheet" type="text/css" href="../../_static/copybutton.css" />
+    <link rel="stylesheet" type="text/css" href="../../_static/mystnb.css" />
+    <link rel="stylesheet" type="text/css" href="../../_static/sphinx-thebe.css" />
+    <link rel="stylesheet" type="text/css" href="../../_static/design-style.b7bb847fb20b106c3d81b95245e65545.min.css" />
+    
+  <!-- Pre-loaded scripts that we'll load fully later -->
+  <link rel="preload" as="script" href="../../_static/scripts/pydata-sphinx-theme.js?digest=1999514e3f237ded88cf">
+
+    <script data-url_root="../../" id="documentation_options" src="../../_static/documentation_options.js"></script>
+    <script src="../../_static/jquery.js"></script>
+    <script src="../../_static/underscore.js"></script>
+    <script src="../../_static/doctools.js"></script>
+    <script src="../../_static/clipboard.min.js"></script>
+    <script src="../../_static/copybutton.js"></script>
+    <script src="../../_static/scripts/sphinx-book-theme.js?digest=9c920249402e914e316237a7dbc6769907cce411"></script>
+    <script>let toggleHintShow = 'Click to show';</script>
+    <script>let toggleHintHide = 'Click to hide';</script>
+    <script>let toggleOpenOnPrint = 'true';</script>
+    <script src="../../_static/togglebutton.js"></script>
+    <script>var togglebuttonSelector = '.toggle, .admonition.dropdown, .tag_hide_input div.cell_input, .tag_hide-input div.cell_input, .tag_hide_output div.cell_output, .tag_hide-output div.cell_output, .tag_hide_cell.cell, .tag_hide-cell.cell';</script>
+    <script src="../../_static/design-tabs.js"></script>
+    <script>const THEBE_JS_URL = "https://unpkg.com/thebe@0.8.2/lib/index.js"
+const thebe_selector = ".thebe,.cell"
+const thebe_selector_input = "pre"
+const thebe_selector_output = ".output, .cell_output"
+</script>
+    <script async="async" src="../../_static/sphinx-thebe.js"></script>
+    <script>window.MathJax = {"options": {"processHtmlClass": "tex2jax_process|mathjax_process|math|output_area"}}</script>
+    <script defer="defer" src="https://cdn.jsdelivr.net/npm/mathjax@3/es5/tex-mml-chtml.js"></script>
+    <link rel="shortcut icon" href="../../_static/cmse_fav.ico"/>
+    <link rel="index" title="Index" href="../../genindex.html" />
+    <link rel="search" title="Search" href="../../search.html" />
+    <link rel="next" title="Homework 4: Compartmental Models + Data Visualization (Fall, 2023)" href="../Homework_04/HW4_FS2023-STUDENT.html" />
+    <link rel="prev" title="Homework 2: Functions, arrays, and data analysis" href="../Homework_02/HW-02-FunctionsArraysAndDataAnalysis-STUDENT.html" />
+    <meta name="viewport" content="width=device-width, initial-scale=1" />
+    <meta name="docsearch:language" content="None">
+    
+
+    <!-- Google Analytics -->
+    
+  </head>
+  <body data-spy="scroll" data-target="#bd-toc-nav" data-offset="60">
+<!-- Checkboxes to toggle the left sidebar -->
+<input type="checkbox" class="sidebar-toggle" name="__navigation" id="__navigation" aria-label="Toggle navigation sidebar">
+<label class="overlay overlay-navbar" for="__navigation">
+    <div class="visually-hidden">Toggle navigation sidebar</div>
+</label>
+<!-- Checkboxes to toggle the in-page toc -->
+<input type="checkbox" class="sidebar-toggle" name="__page-toc" id="__page-toc" aria-label="Toggle in-page Table of Contents">
+<label class="overlay overlay-pagetoc" for="__page-toc">
+    <div class="visually-hidden">Toggle in-page Table of Contents</div>
+</label>
+<!-- Headers at the top -->
+<div class="announcement header-item noprint"></div>
+<div class="header header-item noprint"></div>
+
+    
+    <div class="container-fluid" id="banner"></div>
+
+    
+
+    <div class="container-xl">
+      <div class="row">
+          
+<!-- Sidebar -->
+<div class="bd-sidebar noprint" id="site-navigation">
+    <div class="bd-sidebar__content">
+        <div class="bd-sidebar__top"><div class="navbar-brand-box">
+    <a class="navbar-brand text-wrap" href="../../index.html">
+      
+        <!-- `logo` is deprecated in Sphinx 4.0, so remove this when we stop supporting 3 -->
+        
+      
+      
+      <img src="../../_static/logo.png" class="logo" alt="logo">
+      
+      
+      <h1 class="site-logo" id="site-title">CMSE 201</h1>
+      
+    </a>
+</div><form class="bd-search d-flex align-items-center" action="../../search.html" method="get">
+  <i class="icon fas fa-search"></i>
+  <input type="search" class="form-control" name="q" id="search-input" placeholder="Search the docs ..." aria-label="Search the docs ..." autocomplete="off" >
+</form><nav class="bd-links" id="bd-docs-nav" aria-label="Main">
+    <div class="bd-toc-item active">
+        <p aria-level="2" class="caption" role="heading">
+ <span class="caption-text">
+  Course Materials
+ </span>
+</p>
+<ul class="nav bd-sidenav">
+ <li class="toctree-l1 has-children">
+  <a class="reference internal" href="../../Course_Materials-201/CourseDocuments.html">
+   Important Course information
+  </a>
+  <input class="toctree-checkbox" id="toctree-checkbox-1" name="toctree-checkbox-1" type="checkbox"/>
+  <label for="toctree-checkbox-1">
+   <i class="fas fa-chevron-down">
+   </i>
+  </label>
+  <ul>
+   <li class="toctree-l2">
+    <a class="reference internal" href="../../Course_Materials-201/CMSE201-Syllabus.html">
+     Syllabus
+    </a>
+   </li>
+   <li class="toctree-l2">
+    <a class="reference internal" href="../../Course_Materials-201/CMSE201-Schedule.html">
+     Course Schedule
+    </a>
+   </li>
+   <li class="toctree-l2">
+    <a class="reference internal" href="../../Course_Materials-201/SoftwareSetupGuide.html">
+     Software Setup Guide
+    </a>
+   </li>
+   <li class="toctree-l2">
+    <a class="reference internal" href="../../Course_Materials-201/classroom_participation.html">
+     Classroom Participation
+    </a>
+   </li>
+  </ul>
+ </li>
+</ul>
+<p aria-level="2" class="caption" role="heading">
+ <span class="caption-text">
+  Day 01
+ </span>
+</p>
+<ul class="nav bd-sidenav">
+ <li class="toctree-l1">
+  <a class="reference internal" href="../../Day-01/Day-01_In-Class_SortingAlgorithm-STUDENT.html">
+   Day 1 In-Class Assignment: Introductions and Sorting Algorithms
+  </a>
+ </li>
+</ul>
+<p aria-level="2" class="caption" role="heading">
+ <span class="caption-text">
+  Day 02
+ </span>
+</p>
+<ul class="nav bd-sidenav">
+ <li class="toctree-l1">
+  <a class="reference internal" href="../../Day-02/Day-02_Pre-Class_IntroToPython-STUDENT.html">
+   Day 2 Pre-class Assignment: Intro to Python
+  </a>
+ </li>
+ <li class="toctree-l1">
+  <a class="reference internal" href="../../Day-02/Day-02_In-Class_OrderOfMagnitudeModeling-STUDENT.html">
+   Day 2 In-class Assignment: Order of Magnitude Modeling
+  </a>
+ </li>
+</ul>
+<p aria-level="2" class="caption" role="heading">
+ <span class="caption-text">
+  Day 03
+ </span>
+</p>
+<ul class="nav bd-sidenav">
+ <li class="toctree-l1">
+  <a class="reference internal" href="../../Day-03/Day-03_Pre-Class_ListsAndLoops-STUDENT.html">
+   Day 3: Pre-Class Assignment: Lists and Loops
+  </a>
+ </li>
+ <li class="toctree-l1">
+  <a class="reference internal" href="../../Day-03/Day-03_In-Class_ListsLoopsAndSaving-STUDENT.html">
+   Day 3 In-class Assignment: The power of compound interest
+  </a>
+ </li>
+</ul>
+<p aria-level="2" class="caption" role="heading">
+ <span class="caption-text">
+  Day 04
+ </span>
+</p>
+<ul class="nav bd-sidenav">
+ <li class="toctree-l1">
+  <a class="reference internal" href="../../Day-04/Day_04_PreClass_DataAlgorithmicBias-STUDENT.html">
+   Day 4 Pre-class Assignment: Introduction to Data Ethics: Data and Algorithmic Bias
+  </a>
+ </li>
+ <li class="toctree-l1">
+  <a class="reference internal" href="../../Day-04/Day_04_In_Class_DataAlgorithmicBias-STUDENT.html">
+   Day 4 In-class Assignment: Data and Algorithmic Bias, Academic Integrity, and Coding Best Practices
+  </a>
+ </li>
+</ul>
+<p aria-level="2" class="caption" role="heading">
+ <span class="caption-text">
+  Day 05
+ </span>
+</p>
+<ul class="nav bd-sidenav">
+ <li class="toctree-l1">
+  <a class="reference internal" href="../../Day-05/Day-05_Pre-Class_IfStatementsAndFunctions-STUDENT.html">
+   Day 5 Pre-class Assignment: Boolean logic, if statements, and an introduction to functions
+  </a>
+ </li>
+ <li class="toctree-l1">
+  <a class="reference internal" href="../../Day-05/Day-05_In-Class_IfStatementsAndFunctions-STUDENT.html">
+   Day 5 In-class Assignment: Savings for Everyone
+  </a>
+ </li>
+</ul>
+<p aria-level="2" class="caption" role="heading">
+ <span class="caption-text">
+  Day 06
+ </span>
+</p>
+<ul class="nav bd-sidenav">
+ <li class="toctree-l1">
+  <a class="reference internal" href="../../Day-06/Day-06_Pre-Class_MoreFunctions-STUDENT.html">
+   Day 6 Pre-class Assignment: Thinking more about functions
+  </a>
+ </li>
+ <li class="toctree-l1">
+  <a class="reference internal" href="../../Day-06/Day-06_In-Class_FunctionsAndSquirrels-STUDENT.html">
+   Day 6 In Class Assignment: A Scurry of Squirrels in Central Park
+  </a>
+ </li>
+</ul>
+<p aria-level="2" class="caption" role="heading">
+ <span class="caption-text">
+  Day 07
+ </span>
+</p>
+<ul class="nav bd-sidenav">
+ <li class="toctree-l1">
+  <a class="reference internal" href="../../Day-07/Day-07_Pre-Class_ReflectingOnUnderstanding-STUDENT.html">
+   Day 7 Pre-Class Assignment: A reflection on what you’ve learned so far!
+  </a>
+ </li>
+ <li class="toctree-l1">
+  <a class="reference internal" href="../../Day-07/Day-07_In-Class_ReviewingAndPracticingConcepts-STUDENT.html">
+   Day 7 In-class Assignment: Reviewing and practicing prior concepts
+  </a>
+ </li>
+ <li class="toctree-l1">
+  <a class="reference internal" href="../../Day-07/Day-07_In-Class_ReviewingAndPracticingConcepts-Solutions.html">
+   Day 7 In-class Assignment: Reviewing and practicing prior concepts (Solutions)
+  </a>
+ </li>
+ <li class="toctree-l1">
+  <a class="reference internal" href="../../Day-07/Debugging-STUDENT.html">
+   Practice with Debugging
+  </a>
+ </li>
+</ul>
+<p aria-level="2" class="caption" role="heading">
+ <span class="caption-text">
+  Day 08
+ </span>
+</p>
+<ul class="nav bd-sidenav">
+ <li class="toctree-l1">
+  <a class="reference internal" href="../../Day-08/Day-08_Pre-Class_ModulesMathAndPlots-STUDENT.html">
+   Day 8 Pre-Class Assignment: Python Modules: Numpy and Plots
+  </a>
+ </li>
+ <li class="toctree-l1">
+  <a class="reference internal" href="../../Day-08/Day-08_In-Class_MathAndPlotting-STUDENT.html">
+   Day 8 In-class Assignment: Visualizing population growth
+  </a>
+ </li>
+</ul>
+<p aria-level="2" class="caption" role="heading">
+ <span class="caption-text">
+  Day 09
+ </span>
+</p>
+<ul class="nav bd-sidenav">
+ <li class="toctree-l1">
+  <a class="reference internal" href="../../Day-09/Day-09_Pre-Class_IntroToNumPy-STUDENT.html">
+   Day 9 Pre-Class: Introduction to NumPy
+  </a>
+ </li>
+ <li class="toctree-l1">
+  <a class="reference external" href="https://raw.githubusercontent.com/msu-cmse-courses/cmse201-supplemental/main/ICA_datasets/michigan_pop.csv">
+   michigan_pop.csv
+  </a>
+ </li>
+ <li class="toctree-l1">
+  <a class="reference internal" href="../../Day-09/Day-09_In-Class_NumPyWithTheGreatLakes-STUDENT.html">
+   Day 9 In-class Assignment: Exploring Great Lakes Water Levels using NumPy
+  </a>
+ </li>
+ <li class="toctree-l1">
+  <a class="reference external" href="https://raw.githubusercontent.com/msu-cmse-courses/cmse201-supplemental/main/ICA_datasets/lake_erie.csv">
+   lake_erie.csv
+  </a>
+ </li>
+ <li class="toctree-l1">
+  <a class="reference external" href="https://raw.githubusercontent.com/msu-cmse-courses/cmse201-supplemental/main/ICA_datasets/lake_michigan_huron.csv">
+   lake_michigan_huron.csv
+  </a>
+ </li>
+ <li class="toctree-l1">
+  <a class="reference external" href="https://raw.githubusercontent.com/msu-cmse-courses/cmse201-supplemental/main/ICA_datasets/lake_ontario.csv">
+   lake_ontario.csv
+  </a>
+ </li>
+ <li class="toctree-l1">
+  <a class="reference external" href="https://raw.githubusercontent.com/msu-cmse-courses/cmse201-supplemental/main/ICA_datasets/lake_superior.csv">
+   lake_superior.csv
+  </a>
+ </li>
+</ul>
+<p aria-level="2" class="caption" role="heading">
+ <span class="caption-text">
+  Day 10
+ </span>
+</p>
+<ul class="nav bd-sidenav">
+ <li class="toctree-l1">
+  <a class="reference internal" href="../../Day-10/Day-10_Pre-Class_Pandas-STUDENT.html">
+   Day 10 Pre-class Assignment: Computational Models Overview and The Pandas Data Analysis Library
+  </a>
+ </li>
+ <li class="toctree-l1">
+  <a class="reference external" href="https://raw.githubusercontent.com/msu-cmse-courses/cmse201-supplemental/main/Day-09/heart_disease_data.csv">
+   heart_disease_data.csv
+  </a>
+ </li>
+ <li class="toctree-l1">
+  <a class="reference internal" href="../../Day-10/Day-10_In-Class_GDP-STUDENT.html">
+   Day 10 In-Class: Cleaning and Analyzing Economic Data
+  </a>
+ </li>
+ <li class="toctree-l1">
+  <a class="reference external" href="https://raw.githubusercontent.com/msu-cmse-courses/cmse201-supplemental/main/ICA_datasets/API_NY.GDP.MKTP.CD_DS2_en_csv_v2_4770391.csv">
+   API_NY.GDP.MKTP.CD_DS2_en_csv_v2_4770391.csv
+  </a>
+ </li>
+</ul>
+<p aria-level="2" class="caption" role="heading">
+ <span class="caption-text">
+  Day 11
+ </span>
+</p>
+<ul class="nav bd-sidenav">
+ <li class="toctree-l1">
+  <a class="reference internal" href="../../Day-11/Day-11_Pre-Class_Masking-STUDENT.html">
+   Day 11 Pre-class Assignment: Normal Distributions, Masking, and Log Plots
+  </a>
+ </li>
+ <li class="toctree-l1">
+  <a class="reference external" href="https://raw.githubusercontent.com/msu-cmse-courses/cmse201-supplemental/main/ICA_datasets/GDP_Cleaned.csv">
+   GDP_Cleaned.csv
+  </a>
+ </li>
+ <li class="toctree-l1">
+  <a class="reference internal" href="../../Day-11/Day-11_In-Class_Flint-STUDENT.html">
+   Day 11 In-class Assignment: Get the Lead Out: Understanding The Water Crisis in Flint, MI
+  </a>
+ </li>
+ <li class="toctree-l1">
+  <a class="reference external" href="https://raw.githubusercontent.com/msu-cmse-courses/cmse201-supplemental/main/ICA_datasets/flint_water_data.csv">
+   flint_water_data.csv
+  </a>
+ </li>
+</ul>
+<p aria-level="2" class="caption" role="heading">
+ <span class="caption-text">
+  Day 12
+ </span>
+</p>
+<ul class="nav bd-sidenav">
+ <li class="toctree-l1">
+  <a class="reference internal" href="../../Day-12/Day-12_Pre-Class_Data_File_Formats_Manipulation-STUDENT.html">
+   Day 12 Pre-Class Assignment: Overview of data and file formats
+  </a>
+ </li>
+ <li class="toctree-l1">
+  <a class="reference external" href="https://raw.githubusercontent.com/msu-cmse-courses/cmse201-supplemental/main/Day-11/us_pop_by_state_2010_2011.csv">
+   us_pop_by_state_2010_2011.csv
+  </a>
+ </li>
+ <li class="toctree-l1">
+  <a class="reference external" href="https://raw.githubusercontent.com/msu-cmse-courses/cmse201-supplemental/main/Day-11/us_pop_by_state_2012_2013_encoding_utf-16be.csv">
+   us_pop_by_state_2012_2013_encoding_utf-16be.csv
+  </a>
+ </li>
+ <li class="toctree-l1">
+  <a class="reference external" href="https://raw.githubusercontent.com/msu-cmse-courses/cmse201-supplemental/main/Day-11/us_pop_by_state_2014_2015_windows_linefeed.csv">
+   us_pop_by_state_2014_2015_windows_linefeed.csv
+  </a>
+ </li>
+ <li class="toctree-l1">
+  <a class="reference external" href="https://raw.githubusercontent.com/msu-cmse-courses/cmse201-supplemental/main/Day-11/us_pop_by_state_2016a.csv">
+   us_pop_by_state_2016a.csv
+  </a>
+ </li>
+ <li class="toctree-l1">
+  <a class="reference external" href="https://raw.githubusercontent.com/msu-cmse-courses/cmse201-supplemental/main/Day-11/us_pop_by_state_2017a.yaff">
+   us_pop_by_state2017a.yaff
+  </a>
+ </li>
+ <li class="toctree-l1">
+  <a class="reference external" href="https://raw.githubusercontent.com/msu-cmse-courses/cmse201-supplemental/main/Day-11/us_pop_by_state_2018_2019.bin">
+   us_pop_by_state_2018_2019.bin
+  </a>
+ </li>
+ <li class="toctree-l1">
+  <a class="reference internal" href="../../Day-12/Day-12_In-Class_Data_File_Formats_Manipulation-STUDENT.html">
+   Day 12 In-Class: Overview of data and file formats; US Population and Representation
+  </a>
+ </li>
+</ul>
+<p aria-level="2" class="caption" role="heading">
+ <span class="caption-text">
+  Day 13
+ </span>
+</p>
+<ul class="nav bd-sidenav">
+ <li class="toctree-l1">
+  <a class="reference internal" href="../../Day-13/Day-13_Pre-Class_Online_Resources-STUDENT.html">
+   Day 13 Pre-class Assignment: Finding resources online and tinkering with code
+  </a>
+ </li>
+ <li class="toctree-l1">
+  <a class="reference internal" href="../../Day-13/Day-13_In-Class_Online_Resources-STUDENT.html">
+   Day 13 In-Class: Using online resources (code and data)
+  </a>
+ </li>
+</ul>
+<p aria-level="2" class="caption" role="heading">
+ <span class="caption-text">
+  Day 14
+ </span>
+</p>
+<ul class="nav bd-sidenav">
+ <li class="toctree-l1">
+  <a class="reference internal" href="../../Day-14/Day-14_Pre-Class_Evaluating_Fits-STUDENT.html">
+   Day 14 Pre-Class Assignment: Making Predictions Using Data
+  </a>
+ </li>
+ <li class="toctree-l1">
+  <a class="reference internal" href="../../Day-14/Day-14_In-Class_Evaluating_Fits-STUDENT.html">
+   Day 14 In-Class Assignment: Evaluating Models
+  </a>
+ </li>
+</ul>
+<p aria-level="2" class="caption" role="heading">
+ <span class="caption-text">
+  Day 15
+ </span>
+</p>
+<ul class="nav bd-sidenav">
+ <li class="toctree-l1">
+  <a class="reference internal" href="../../Day-15/Day-15_Pre-Class_CurveFitting-STUDENT.html">
+   Day 15 Pre-Class Assignment: Fitting functions to data (curve-fitting) and thinking more about models
+  </a>
+ </li>
+ <li class="toctree-l1">
+  <a class="reference internal" href="../../Day-15/Day-15_In-Class_FittingCurves-STUDENT.html">
+   Day 15 In-Class Assignment: (Thoughtfully) fitting models to data
+  </a>
+ </li>
+ <li class="toctree-l1">
+  <a class="reference external" href="https://raw.githubusercontent.com/msu-cmse-courses/cmse201-S22-data/main/Day-14/pop200.csv">
+   pop200.csv
+  </a>
+ </li>
+ <li class="toctree-l1">
+  <a class="reference external" href="https://raw.githubusercontent.com/msu-cmse-courses/cmse201-S22-data/main/Day-14/pop300.csv">
+   pop300.csv
+  </a>
+ </li>
+</ul>
+<p aria-level="2" class="caption" role="heading">
+ <span class="caption-text">
+  Day 16
+ </span>
+</p>
+<ul class="nav bd-sidenav">
+ <li class="toctree-l1">
+  <a class="reference internal" href="../../Day-16/Day-16-Intro_to_ODEs_Pre-Class-STUDENT.html">
+   Day 16 Pre-class Assignment: Introduction to Modeling with Ordinary Differential Equations
+  </a>
+ </li>
+ <li class="toctree-l1">
+  <a class="reference internal" href="../../Day-16/Day-16-Intro_to_ODEs_In-Class_STUDENT.html">
+   Day 16: In-class Assignment: Introduction to Modeling with ODEs
+  </a>
+ </li>
+</ul>
+<p aria-level="2" class="caption" role="heading">
+ <span class="caption-text">
+  Day 17
+ </span>
+</p>
+<ul class="nav bd-sidenav">
+ <li class="toctree-l1">
+  <a class="reference internal" href="../../Day-17/Day-17_Pre-Class_ModelingWithODEs-STUDENT.html">
+   Day 17: Pre-class Assignment: Modeling with Ordinary Differential Equations
+  </a>
+ </li>
+ <li class="toctree-l1">
+  <a class="reference internal" href="../../Day-17/Day-17_In-Class_ModelingWithODEs-STUDENT.html">
+   Day 17: In-class Assignment: Modeling with ODEs
+  </a>
+ </li>
+</ul>
+<p aria-level="2" class="caption" role="heading">
+ <span class="caption-text">
+  Day 18
+ </span>
+</p>
+<ul class="nav bd-sidenav">
+ <li class="toctree-l1">
+  <a class="reference internal" href="../../Day-18/Day-18_Pre-Class_ViralKinetics-STUDENT.html">
+   Day 18 Pre-Class: Viral Kinetics
+  </a>
+ </li>
+ <li class="toctree-l1">
+  <a class="reference internal" href="../../Day-18/Day-18_In-Class_CompartmentalModeling-STUDENT.html">
+   Day 18 In-class Assignment: Building Compartmental Models
+  </a>
+ </li>
+</ul>
+<p aria-level="2" class="caption" role="heading">
+ <span class="caption-text">
+  Day 19
+ </span>
+</p>
+<ul class="nav bd-sidenav">
+ <li class="toctree-l1">
+  <a class="reference internal" href="../../Day-19/Day-19_Pre-Class_Zombies-STUDENT.html">
+   Day 19 Pre-class Assignment: ZOMBIES!!
+  </a>
+ </li>
+ <li class="toctree-l1">
+  <a class="reference internal" href="../../Day-19/Day-19_In-Class_CompartmentsWithSolveIVP-STUDENT.html">
+   Day 19 In-Class Assignment: Compartmental Modeling, moving from the model to the code
+  </a>
+ </li>
+</ul>
+<p aria-level="2" class="caption" role="heading">
+ <span class="caption-text">
+  Day 20
+ </span>
+</p>
+<ul class="nav bd-sidenav">
+ <li class="toctree-l1">
+  <a class="reference internal" href="../../Day-20/Day-20_Pre-Class_IntroToDataVisualization-STUDENT.html">
+   Day 20 Pre-class Assignment: Introduction to Data Visualization
+  </a>
+ </li>
+ <li class="toctree-l1">
+  <a class="reference internal" href="../../Day-20/Day-20_In-Class_IntroToDataVisualization-STUDENT.html">
+   Day 20 In-Class: Introduction to Data Visualization
+  </a>
+ </li>
+</ul>
+<p aria-level="2" class="caption" role="heading">
+ <span class="caption-text">
+  Day 21
+ </span>
+</p>
+<ul class="nav bd-sidenav">
+ <li class="toctree-l1">
+  <a class="reference internal" href="../../Day-21/Day-21_Pre-Class_2DNumPyArrays-STUDENT.html">
+   Day 21 Pre-Class: 2D NumPy Arrays
+  </a>
+ </li>
+ <li class="toctree-l1">
+  <a class="reference external" href="https://raw.githubusercontent.com/msu-cmse-courses/cmse201-supplemental/main/Day-17/PCA_files/cars.csv">
+   cars.csv
+  </a>
+ </li>
+ <li class="toctree-l1">
+  <a class="reference external" href="https://github.com/msu-cmse-courses/cmse201-supplemental/raw/main/Day-17/PCA_files/example.jpeg">
+   example.jpeg
+  </a>
+ </li>
+ <li class="toctree-l1">
+  <a class="reference internal" href="../../Day-21/Day-21_In-Class_2DImageAnalysis-STUDENT.html">
+   Day 21 In-Class Assignment: Image Analysis
+  </a>
+ </li>
+ <li class="toctree-l1">
+  <a class="reference external" href="https://raw.githubusercontent.com/msu-cmse-courses/cmse201-supplemental/main/Day-17/ICA_files/beach.jpeg">
+   beach.jpeg
+  </a>
+ </li>
+ <li class="toctree-l1">
+  <a class="reference external" href="https://raw.githubusercontent.com/msu-cmse-courses/cmse201-supplemental/main/Day-17/ICA_files/landscape.jpeg">
+   landscape.jpeg
+  </a>
+ </li>
+ <li class="toctree-l1">
+  <a class="reference external" href="https://raw.githubusercontent.com/msu-cmse-courses/cmse201-supplemental/main/Day-17/ICA_files/zebra.png">
+   zebra.png
+  </a>
+ </li>
+</ul>
+<p aria-level="2" class="caption" role="heading">
+ <span class="caption-text">
+  Day 22
+ </span>
+</p>
+<ul class="nav bd-sidenav">
+ <li class="toctree-l1">
+  <a class="reference internal" href="../../Day-22/Day-22_Pre-Class_ABMForestFire-STUDENT.html">
+   Day 22 Pre-class: Agent-based models and forest fires
+  </a>
+ </li>
+ <li class="toctree-l1">
+  <a class="reference internal" href="../../Day-22/Day-22_In-Class_ForestFiresPartI-STUDENT.html">
+   Day 22 Part 1 In-class Assignment: Modeling forest fires with an Agent-based Model
+  </a>
+ </li>
+</ul>
+<p aria-level="2" class="caption" role="heading">
+ <span class="caption-text">
+  Day 23
+ </span>
+</p>
+<ul class="nav bd-sidenav">
+ <li class="toctree-l1">
+  <a class="reference internal" href="../../Day-23/Day-23_Pre-Class_MoreNumPyArrayManipulation-STUDENT.html">
+   Day 23 Pre-class: More practice manipulating 2D Numpy Arrays
+  </a>
+ </li>
+ <li class="toctree-l1">
+  <a class="reference internal" href="../../Day-23/Day-23_In-Class_ForestFiresPartII-STUDENT.html">
+   Day 23 In-class Assignment: Modeling forest fires with an Agent-based Model (Part II)
+  </a>
+ </li>
+</ul>
+<p aria-level="2" class="caption" role="heading">
+ <span class="caption-text">
+  Day 24
+ </span>
+</p>
+<ul class="nav bd-sidenav">
+ <li class="toctree-l1">
+  <a class="reference internal" href="../../Day-24/Day-24_Pre-Class_ProjectWorkDay-STUDENT.html">
+   Day 24 Pre-class: Project Draft Presentation Preparation
+  </a>
+ </li>
+ <li class="toctree-l1">
+  <a class="reference internal" href="../../Day-24/Day-24_In-Class_ProjectWorkDay-STUDENT.html">
+   Day 24 In-class Assignment: Project Work Day
+  </a>
+ </li>
+</ul>
+<p aria-level="2" class="caption" role="heading">
+ <span class="caption-text">
+  Day 25
+ </span>
+</p>
+<ul class="nav bd-sidenav">
+ <li class="toctree-l1">
+  <a class="reference internal" href="../../Day-25/Day-25_Pre-Class_Climate-STUDENT.html">
+   Day 25 Pre-class:  Global warming and climate modeling
+  </a>
+ </li>
+ <li class="toctree-l1">
+  <a class="reference internal" href="../../Day-25/Day-25_In-Class_Climate-STUDENT.html">
+   Day 25 In-class Assignment: Analyzing climate data
+  </a>
+ </li>
+ <li class="toctree-l1">
+  <a class="reference external" href="https://raw.githubusercontent.com/msu-cmse-courses/cmse201-supplemental/main/Day-22/GLB.Ts.csv">
+   GLB.Ts.csv
+  </a>
+ </li>
+ <li class="toctree-l1">
+  <a class="reference external" href="https://raw.githubusercontent.com/msu-cmse-courses/cmse201-supplemental/main/Day-22/bintanja2008.txt">
+   bintanja2008.txt
+  </a>
+ </li>
+ <li class="toctree-l1">
+  <a class="reference external" href="https://raw.githubusercontent.com/msu-cmse-courses/cmse201-supplemental/main/Day-22/ch4_annmean_gl.txt">
+   ch4_annmean_gl.txt
+  </a>
+ </li>
+ <li class="toctree-l1">
+  <a class="reference external" href="https://raw.githubusercontent.com/msu-cmse-courses/cmse201-supplemental/main/Day-22/co2_mm_mlo.txt">
+   co2_mm_mlo.txt
+  </a>
+ </li>
+ <li class="toctree-l1">
+  <a class="reference external" href="https://raw.githubusercontent.com/msu-cmse-courses/cmse201-supplemental/main/Day-22/vostok-ch4nat.txt">
+   vostok-ch4nat.txt
+  </a>
+ </li>
+ <li class="toctree-l1">
+  <a class="reference external" href="https://raw.githubusercontent.com/msu-cmse-courses/cmse201-supplemental/main/Day-22/vostok-co2nat.txt">
+   vostok-co2nat.txt
+  </a>
+ </li>
+ <li class="toctree-l1">
+  <a class="reference external" href="https://raw.githubusercontent.com/msu-cmse-courses/cmse201-supplemental/main/Day-22/vostok-deutnat.txt">
+   vostok-deutnat.txt
+  </a>
+ </li>
+</ul>
+<p aria-level="2" class="caption" role="heading">
+ <span class="caption-text">
+  Homework
+ </span>
+</p>
+<ul class="current nav bd-sidenav">
+ <li class="toctree-l1">
+  <a class="reference internal" href="../Homework_01/HW_01_PythonFundamentals-STUDENT.html">
+   Homework 1 - Python Fundamentals
+  </a>
+ </li>
+ <li class="toctree-l1">
+  <a class="reference internal" href="../Homework_02/HW-02-FunctionsArraysAndDataAnalysis-STUDENT.html">
+   Homework 2 - Functions, Arrays, and Data Analysis
+  </a>
+ </li>
+ <li class="toctree-l1">
+  <a class="reference external" href="https://raw.githubusercontent.com/msu-cmse-courses/cmse201-supplemental/main/Homework/random_lists.txt">
+   random_lists.txt
+  </a>
+ </li>
+ <li class="toctree-l1">
+  <a class="reference external" href="https://raw.githubusercontent.com/msu-cmse-courses/cmse201-supplemental/main/Homework/endangered_species_HW2.csv">
+   endangered_species_HW2.csv
+  </a>
+ </li>
+ <li class="toctree-l1 current active">
+  <a class="current reference internal" href="#">
+   Homework 3: Analyzing, modeling, and visualizing data with Pandas and conceptualizing compartmental models
+  </a>
+ </li>
+ <li class="toctree-l1">
+  <a class="reference external" href="https://raw.githubusercontent.com/msu-cmse-courses/cmse201-supplemental/main/Homework/grape_harvest.csv">
+   grape_harvest.csv
+  </a>
+ </li>
+ <li class="toctree-l1">
+  <a class="reference internal" href="../Homework_04/HW4_FS2023-STUDENT.html">
+   Homework 4 - Compartmental Models + Data Visualization
+  </a>
+ </li>
+ <li class="toctree-l1">
+  <a class="reference external" href="https://raw.githubusercontent.com/msu-cmse-courses/cmse201-supplemental/main/Homework/estimated_crimes_1979_2022.csv">
+   estimated_crimes_1979_2022.csv
+  </a>
+ </li>
+ <li class="toctree-l1">
+  <a class="reference internal" href="../Homework_05/HW-05_STUDENT.html">
+   Homework 5: 2D Arrays and Agent-based Modeling (EXTRA CREDIT)
+  </a>
+ </li>
+ <li class="toctree-l1">
+  <a class="reference external" href="https://raw.githubusercontent.com/msu-cmse-courses/cmse201-supplemental/main/blurred-scream.png">
+   blurred-scream.png
+  </a>
+ </li>
+ <li class="toctree-l1">
+  <a class="reference external" href="https://raw.githubusercontent.com/msu-cmse-courses/cmse201-supplemental/main/scream.jpg">
+   scream.jpg
+  </a>
+ </li>
+</ul>
+<p aria-level="2" class="caption" role="heading">
+ <span class="caption-text">
+  Code Portfolio
+ </span>
+</p>
+<ul class="nav bd-sidenav">
+ <li class="toctree-l1">
+  <a class="reference internal" href="../Code_Portfolio/Code_Portfolio_Assignment.html">
+   Code Portfolio Assignment
+  </a>
+ </li>
+ <li class="toctree-l1">
+  <a class="reference internal" href="../Code_Portfolio/Code_Portfolio_Example.html">
+   Code Portfolio Example
+  </a>
+ </li>
+</ul>
+<p aria-level="2" class="caption" role="heading">
+ <span class="caption-text">
+  Semester Project
+ </span>
+</p>
+<ul class="nav bd-sidenav">
+ <li class="toctree-l1">
+  <a class="reference internal" href="../../Project_Materials/CMSE201_SemesterProjectDetails.html">
+   Semester Project Details
+  </a>
+ </li>
+ <li class="toctree-l1">
+  <a class="reference internal" href="../../Project_Materials/Project_Plan_Check-in.html">
+   Project Checkpoint
+  </a>
+ </li>
+ <li class="toctree-l1">
+  <a class="reference internal" href="../../Project_Materials/CMSE201_FinalProjectTemplate.html">
+   CMSE 201 Final Project Template
+  </a>
+ </li>
+ <li class="toctree-l1">
+  <a class="reference external" href="https://raw.githubusercontent.com/msu-cmse-courses/cmse201-supplemental/main/Projects/example_projects.zip">
+   Zip file of example projects
+  </a>
+ </li>
+ <li class="toctree-l1">
+  <a class="reference internal" href="../../Project_Materials/CMSE201FinalProject_RequirementsAndGradingRubric.html">
+   Requirements and Grading Rubric
+  </a>
+ </li>
+ <li class="toctree-l1">
+  <a class="reference external" href="https://github.com/msu-cmse-courses/cmse201-supplemental/raw/main/Projects/Presentation_Evaluation_Rubric.pdf">
+   Presentation Evaluation Rubric
+  </a>
+ </li>
+</ul>
+<p aria-level="2" class="caption" role="heading">
+ <span class="caption-text">
+  Practice Notebooks
+ </span>
+</p>
+<ul class="nav bd-sidenav">
+ <li class="toctree-l1">
+  <a class="reference internal" href="../../Quiz_Prep_Notebooks/PracticeNotebook_IfStatements-STUDENT.html">
+   Practice with:
+   <code class="docutils literal notranslate">
+    <span class="pre">
+     if
+    </span>
+   </code>
+   statements
+  </a>
+ </li>
+ <li class="toctree-l1">
+  <a class="reference internal" href="../../Quiz_Prep_Notebooks/PracticeNotebook_Functions-STUDENT.html">
+   Practice with: functions
+  </a>
+ </li>
+ <li class="toctree-l1">
+  <a class="reference internal" href="../../Quiz_Prep_Notebooks/PracticeNotebook_Matplotlib-STUDENT.html">
+   Practice with:
+   <code class="docutils literal notranslate">
+    <span class="pre">
+     matplotlib
+    </span>
+   </code>
+  </a>
+ </li>
+ <li class="toctree-l1">
+  <a class="reference internal" href="../../Quiz_Prep_Notebooks/PracticeNotebook_Pandas-STUDENT.html">
+   Practice with: Pandas
+  </a>
+ </li>
+ <li class="toctree-l1">
+  <a class="reference external" href="https://raw.githubusercontent.com/msu-cmse-courses/cmse201-supplemental/main/PracticeNotebooks/weather.csv">
+   weather.csv
+  </a>
+ </li>
+ <li class="toctree-l1">
+  <a class="reference internal" href="../../Quiz_Prep_Notebooks/PracticeNotebook_ScipyCurveFit-STUDENT.html">
+   Practice with: SciPy
+   <code class="docutils literal notranslate">
+    <span class="pre">
+     curve_fit
+    </span>
+   </code>
+  </a>
+ </li>
+ <li class="toctree-l1">
+  <a class="reference internal" href="../../Quiz_Prep_Notebooks/PracticeNotebook_CompartmentalModels-STUDENT.html">
+   Practice with: Compartmental Models
+  </a>
+ </li>
+ <li class="toctree-l1">
+  <a class="reference internal" href="../../Quiz_Prep_Notebooks/PracticeNotebook_SolveIVP-STUDENT.html">
+   Practice with:
+   <code class="docutils literal notranslate">
+    <span class="pre">
+     solve_ivp
+    </span>
+   </code>
+  </a>
+ </li>
+</ul>
+
+    </div>
+</nav></div>
+        <div class="bd-sidebar__bottom">
+             <!-- To handle the deprecated key -->
+            
+            <div class="navbar_extra_footer">
+            Theme by the <a href="https://ebp.jupyterbook.org">Executable Book Project</a>
+            </div>
+            
+        </div>
+    </div>
+    <div id="rtd-footer-container"></div>
+</div>
+
+
+          
+
+
+          
+<!-- A tiny helper pixel to detect if we've scrolled -->
+<div class="sbt-scroll-pixel-helper"></div>
+<!-- Main content -->
+<div class="col py-0 content-container">
+    
+    <div class="header-article row sticky-top noprint">
+        
+
+
+
+<div class="col py-1 d-flex header-article-main">
+    <div class="header-article__left">
+        
+        <label for="__navigation"
+  class="headerbtn"
+  data-toggle="tooltip"
+data-placement="right"
+title="Toggle navigation"
+>
+  
+
+<span class="headerbtn__icon-container">
+  <i class="fas fa-bars"></i>
+  </span>
+
+</label>
+
+        
+    </div>
+    <div class="header-article__right">
+<button onclick="toggleFullScreen()"
+  class="headerbtn"
+  data-toggle="tooltip"
+data-placement="bottom"
+title="Fullscreen mode"
+>
+  
+
+<span class="headerbtn__icon-container">
+  <i class="fas fa-expand"></i>
+  </span>
+
+</button>
+
+<div class="menu-dropdown menu-dropdown-download-buttons">
+  <button class="headerbtn menu-dropdown__trigger"
+      aria-label="Download this page">
+      <i class="fas fa-download"></i>
+  </button>
+  <div class="menu-dropdown__content">
+    <ul>
+      <li>
+        <a href="../../_sources/Homework/Homework_03/HW3_grapevines_STUDENT.ipynb"
+   class="headerbtn"
+   data-toggle="tooltip"
+data-placement="left"
+title="Download source file"
+>
+  
+
+<span class="headerbtn__icon-container">
+  <i class="fas fa-file"></i>
+  </span>
+<span class="headerbtn__text-container">.ipynb</span>
+</a>
+
+      </li>
+      
+      <li>
+        
+<button onclick="printPdf(this)"
+  class="headerbtn"
+  data-toggle="tooltip"
+data-placement="left"
+title="Print to PDF"
+>
+  
+
+<span class="headerbtn__icon-container">
+  <i class="fas fa-file-pdf"></i>
+  </span>
+<span class="headerbtn__text-container">.pdf</span>
+</button>
+
+      </li>
+      
+    </ul>
+  </div>
+</div>
+<label for="__page-toc"
+  class="headerbtn headerbtn-page-toc"
+  
+>
+  
+
+<span class="headerbtn__icon-container">
+  <i class="fas fa-list"></i>
+  </span>
+
+</label>
+
+    </div>
+</div>
+
+<!-- Table of contents -->
+<div class="col-md-3 bd-toc show noprint">
+    <div class="tocsection onthispage pt-5 pb-3">
+        <i class="fas fa-list"></i> Contents
+    </div>
+    <nav id="bd-toc-nav" aria-label="Page">
+        <ul class="visible nav section-nav flex-column">
+ <li class="toc-h1 nav-item toc-entry">
+  <a class="reference internal nav-link" href="#">
+   Homework 3: Analyzing, modeling, and visualizing data with Pandas and conceptualizing compartmental models
+  </a>
+  <ul class="visible nav section-nav flex-column">
+   <li class="toc-h2 nav-item toc-entry">
+    <a class="reference internal nav-link" href="#p-style-text-align-right-put-your-name-here-p">
+     <p style="text-align: right;">
+      ✅ Put your name here
+     </p>
+    </a>
+   </li>
+  </ul>
+ </li>
+ <li class="toc-h1 nav-item toc-entry">
+  <a class="reference internal nav-link" href="#grapevines-in-a-warming-world">
+   Grapevines in a warming world 🍇🔥🌎
+  </a>
+  <ul class="visible nav section-nav flex-column">
+   <li class="toc-h2 nav-item toc-entry">
+    <a class="reference internal nav-link" href="#learning-goals">
+     Learning Goals
+    </a>
+   </li>
+   <li class="toc-h2 nav-item toc-entry">
+    <a class="reference internal nav-link" href="#assignment-instructions">
+     Assignment instructions
+    </a>
+   </li>
+   <li class="toc-h2 nav-item toc-entry">
+    <a class="reference internal nav-link" href="#table-of-contents">
+     Table of Contents
+    </a>
+   </li>
+   <li class="toc-h2 nav-item toc-entry">
+    <a class="reference internal nav-link" href="#part-0-academic-integrity-statement-2-points">
+     Part 0. Academic integrity statement (2 points)
+    </a>
+   </li>
+   <li class="toc-h2 nav-item toc-entry">
+    <a class="reference internal nav-link" href="#part-1-reading-describing-and-cleaning-data-22-total-points">
+     Part 1: Reading, describing, and cleaning data (22 total points)
+    </a>
+    <ul class="nav section-nav flex-column">
+     <li class="toc-h3 nav-item toc-entry">
+      <a class="reference internal nav-link" href="#read-the-data-1-point">
+       1.1 Read the data (1 point)
+      </a>
+     </li>
+     <li class="toc-h3 nav-item toc-entry">
+      <a class="reference internal nav-link" href="#describe-the-data-3-points">
+       1.2 Describe the data (3 points)
+      </a>
+      <ul class="nav section-nav flex-column">
+       <li class="toc-h4 nav-item toc-entry">
+        <a class="reference internal nav-link" href="#task-1-point">
+         1.2.1 ✅
+         <strong>
+          Task (1 point)
+         </strong>
+        </a>
+       </li>
+       <li class="toc-h4 nav-item toc-entry">
+        <a class="reference internal nav-link" href="#task-2-points">
+         1.2.2 ✅
+         <strong>
+          Task (2 points)
+         </strong>
+        </a>
+       </li>
+      </ul>
+     </li>
+     <li class="toc-h3 nav-item toc-entry">
+      <a class="reference internal nav-link" href="#isolating-and-performing-basic-statistics-on-data-4-points">
+       1.3 Isolating and performing basic statistics on data (4 points)
+      </a>
+      <ul class="nav section-nav flex-column">
+       <li class="toc-h4 nav-item toc-entry">
+        <a class="reference internal nav-link" href="#id1">
+         1.3.1 ✅
+         <strong>
+          Task (1 point)
+         </strong>
+        </a>
+       </li>
+       <li class="toc-h4 nav-item toc-entry">
+        <a class="reference internal nav-link" href="#task-1-points">
+         1.3.2 ✅
+         <strong>
+          Task (1 points)
+         </strong>
+        </a>
+       </li>
+       <li class="toc-h4 nav-item toc-entry">
+        <a class="reference internal nav-link" href="#id2">
+         1.3.3 ✅
+         <strong>
+          Task (2 points)
+         </strong>
+        </a>
+       </li>
+      </ul>
+     </li>
+     <li class="toc-h3 nav-item toc-entry">
+      <a class="reference internal nav-link" href="#filter-the-data-using-masking-7-points">
+       1.4 Filter the data using masking (7 points)
+      </a>
+     </li>
+     <li class="toc-h3 nav-item toc-entry">
+      <a class="reference internal nav-link" href="#clean-out-the-nan-values-7-points">
+       1.5 Clean out the NaN values (7 points)
+      </a>
+      <ul class="nav section-nav flex-column">
+       <li class="toc-h4 nav-item toc-entry">
+        <a class="reference internal nav-link" href="#id3">
+         1.5.1 ✅
+         <strong>
+          Task (1 points)
+         </strong>
+        </a>
+       </li>
+       <li class="toc-h4 nav-item toc-entry">
+        <a class="reference internal nav-link" href="#id4">
+         1.5.2 ✅
+         <strong>
+          Task (2 points)
+         </strong>
+        </a>
+       </li>
+       <li class="toc-h4 nav-item toc-entry">
+        <a class="reference internal nav-link" href="#id5">
+         1.5.3 ✅
+         <strong>
+          Task (1 point)
+         </strong>
+        </a>
+       </li>
+       <li class="toc-h4 nav-item toc-entry">
+        <a class="reference internal nav-link" href="#id6">
+         1.5.4 ✅
+         <strong>
+          Task (2 points)
+         </strong>
+        </a>
+       </li>
+       <li class="toc-h4 nav-item toc-entry">
+        <a class="reference internal nav-link" href="#id7">
+         1.5.5 ✅
+         <strong>
+          Task (1 point)
+         </strong>
+        </a>
+       </li>
+      </ul>
+     </li>
+    </ul>
+   </li>
+   <li class="toc-h2 nav-item toc-entry">
+    <a class="reference internal nav-link" href="#part-2-exploratory-data-analysis-20-total-points">
+     Part 2: Exploratory Data Analysis (20 total points)
+    </a>
+    <ul class="nav section-nav flex-column">
+     <li class="toc-h3 nav-item toc-entry">
+      <a class="reference internal nav-link" href="#part-2-1-correlations-5-points">
+       Part 2.1: Correlations (5 points)
+      </a>
+     </li>
+     <li class="toc-h3 nav-item toc-entry">
+      <a class="reference internal nav-link" href="#part-2-2-visual-representation-of-correlations-15-points">
+       Part 2.2: Visual representation of correlations (15 points)
+      </a>
+     </li>
+    </ul>
+   </li>
+   <li class="toc-h2 nav-item toc-entry">
+    <a class="reference internal nav-link" href="#part-3-fitting-curves-to-data-harvest-date-as-a-function-of-temperature-anomaly-18-points">
+     Part 3: Fitting curves to data. Harvest date as a function of temperature anomaly (18 points)
+    </a>
+    <ul class="nav section-nav flex-column">
+     <li class="toc-h3 nav-item toc-entry">
+      <a class="reference internal nav-link" href="#part-3-1-model">
+       Part 3.1: Model
+      </a>
+     </li>
+     <li class="toc-h3 nav-item toc-entry">
+      <a class="reference internal nav-link" href="#part-3-2-fit-the-model">
+       Part 3.2: Fit the model
+      </a>
+     </li>
+     <li class="toc-h3 nav-item toc-entry">
+      <a class="reference internal nav-link" href="#part-3-3-check-your-model-8-points">
+       Part 3.3 Check your model (8 points)
+      </a>
+     </li>
+    </ul>
+   </li>
+   <li class="toc-h2 nav-item toc-entry">
+    <a class="reference internal nav-link" href="#part-4-compartmental-modeling-16-points">
+     Part 4: Compartmental modeling (16 points)
+    </a>
+    <ul class="nav section-nav flex-column">
+     <li class="toc-h3 nav-item toc-entry">
+      <a class="reference internal nav-link" href="#congratulations-you-re-done">
+       Congratulations, you’re done!
+      </a>
+     </li>
+    </ul>
+   </li>
+  </ul>
+ </li>
+</ul>
+
+    </nav>
+</div>
+    </div>
+    <div class="article row">
+        <div class="col pl-md-3 pl-lg-5 content-container">
+            <!-- Table of contents that is only displayed when printing the page -->
+            <div id="jb-print-docs-body" class="onlyprint">
+                <h1>Homework 3: Analyzing, modeling, and visualizing data with Pandas and conceptualizing compartmental models</h1>
+                <!-- Table of contents -->
+                <div id="print-main-content">
+                    <div id="jb-print-toc">
+                        
+                        <div>
+                            <h2> Contents </h2>
+                        </div>
+                        <nav aria-label="Page">
+                            <ul class="visible nav section-nav flex-column">
+ <li class="toc-h1 nav-item toc-entry">
+  <a class="reference internal nav-link" href="#">
+   Homework 3: Analyzing, modeling, and visualizing data with Pandas and conceptualizing compartmental models
+  </a>
+  <ul class="visible nav section-nav flex-column">
+   <li class="toc-h2 nav-item toc-entry">
+    <a class="reference internal nav-link" href="#p-style-text-align-right-put-your-name-here-p">
+     <p style="text-align: right;">
+      ✅ Put your name here
+     </p>
+    </a>
+   </li>
+  </ul>
+ </li>
+ <li class="toc-h1 nav-item toc-entry">
+  <a class="reference internal nav-link" href="#grapevines-in-a-warming-world">
+   Grapevines in a warming world 🍇🔥🌎
+  </a>
+  <ul class="visible nav section-nav flex-column">
+   <li class="toc-h2 nav-item toc-entry">
+    <a class="reference internal nav-link" href="#learning-goals">
+     Learning Goals
+    </a>
+   </li>
+   <li class="toc-h2 nav-item toc-entry">
+    <a class="reference internal nav-link" href="#assignment-instructions">
+     Assignment instructions
+    </a>
+   </li>
+   <li class="toc-h2 nav-item toc-entry">
+    <a class="reference internal nav-link" href="#table-of-contents">
+     Table of Contents
+    </a>
+   </li>
+   <li class="toc-h2 nav-item toc-entry">
+    <a class="reference internal nav-link" href="#part-0-academic-integrity-statement-2-points">
+     Part 0. Academic integrity statement (2 points)
+    </a>
+   </li>
+   <li class="toc-h2 nav-item toc-entry">
+    <a class="reference internal nav-link" href="#part-1-reading-describing-and-cleaning-data-22-total-points">
+     Part 1: Reading, describing, and cleaning data (22 total points)
+    </a>
+    <ul class="nav section-nav flex-column">
+     <li class="toc-h3 nav-item toc-entry">
+      <a class="reference internal nav-link" href="#read-the-data-1-point">
+       1.1 Read the data (1 point)
+      </a>
+     </li>
+     <li class="toc-h3 nav-item toc-entry">
+      <a class="reference internal nav-link" href="#describe-the-data-3-points">
+       1.2 Describe the data (3 points)
+      </a>
+      <ul class="nav section-nav flex-column">
+       <li class="toc-h4 nav-item toc-entry">
+        <a class="reference internal nav-link" href="#task-1-point">
+         1.2.1 ✅
+         <strong>
+          Task (1 point)
+         </strong>
+        </a>
+       </li>
+       <li class="toc-h4 nav-item toc-entry">
+        <a class="reference internal nav-link" href="#task-2-points">
+         1.2.2 ✅
+         <strong>
+          Task (2 points)
+         </strong>
+        </a>
+       </li>
+      </ul>
+     </li>
+     <li class="toc-h3 nav-item toc-entry">
+      <a class="reference internal nav-link" href="#isolating-and-performing-basic-statistics-on-data-4-points">
+       1.3 Isolating and performing basic statistics on data (4 points)
+      </a>
+      <ul class="nav section-nav flex-column">
+       <li class="toc-h4 nav-item toc-entry">
+        <a class="reference internal nav-link" href="#id1">
+         1.3.1 ✅
+         <strong>
+          Task (1 point)
+         </strong>
+        </a>
+       </li>
+       <li class="toc-h4 nav-item toc-entry">
+        <a class="reference internal nav-link" href="#task-1-points">
+         1.3.2 ✅
+         <strong>
+          Task (1 points)
+         </strong>
+        </a>
+       </li>
+       <li class="toc-h4 nav-item toc-entry">
+        <a class="reference internal nav-link" href="#id2">
+         1.3.3 ✅
+         <strong>
+          Task (2 points)
+         </strong>
+        </a>
+       </li>
+      </ul>
+     </li>
+     <li class="toc-h3 nav-item toc-entry">
+      <a class="reference internal nav-link" href="#filter-the-data-using-masking-7-points">
+       1.4 Filter the data using masking (7 points)
+      </a>
+     </li>
+     <li class="toc-h3 nav-item toc-entry">
+      <a class="reference internal nav-link" href="#clean-out-the-nan-values-7-points">
+       1.5 Clean out the NaN values (7 points)
+      </a>
+      <ul class="nav section-nav flex-column">
+       <li class="toc-h4 nav-item toc-entry">
+        <a class="reference internal nav-link" href="#id3">
+         1.5.1 ✅
+         <strong>
+          Task (1 points)
+         </strong>
+        </a>
+       </li>
+       <li class="toc-h4 nav-item toc-entry">
+        <a class="reference internal nav-link" href="#id4">
+         1.5.2 ✅
+         <strong>
+          Task (2 points)
+         </strong>
+        </a>
+       </li>
+       <li class="toc-h4 nav-item toc-entry">
+        <a class="reference internal nav-link" href="#id5">
+         1.5.3 ✅
+         <strong>
+          Task (1 point)
+         </strong>
+        </a>
+       </li>
+       <li class="toc-h4 nav-item toc-entry">
+        <a class="reference internal nav-link" href="#id6">
+         1.5.4 ✅
+         <strong>
+          Task (2 points)
+         </strong>
+        </a>
+       </li>
+       <li class="toc-h4 nav-item toc-entry">
+        <a class="reference internal nav-link" href="#id7">
+         1.5.5 ✅
+         <strong>
+          Task (1 point)
+         </strong>
+        </a>
+       </li>
+      </ul>
+     </li>
+    </ul>
+   </li>
+   <li class="toc-h2 nav-item toc-entry">
+    <a class="reference internal nav-link" href="#part-2-exploratory-data-analysis-20-total-points">
+     Part 2: Exploratory Data Analysis (20 total points)
+    </a>
+    <ul class="nav section-nav flex-column">
+     <li class="toc-h3 nav-item toc-entry">
+      <a class="reference internal nav-link" href="#part-2-1-correlations-5-points">
+       Part 2.1: Correlations (5 points)
+      </a>
+     </li>
+     <li class="toc-h3 nav-item toc-entry">
+      <a class="reference internal nav-link" href="#part-2-2-visual-representation-of-correlations-15-points">
+       Part 2.2: Visual representation of correlations (15 points)
+      </a>
+     </li>
+    </ul>
+   </li>
+   <li class="toc-h2 nav-item toc-entry">
+    <a class="reference internal nav-link" href="#part-3-fitting-curves-to-data-harvest-date-as-a-function-of-temperature-anomaly-18-points">
+     Part 3: Fitting curves to data. Harvest date as a function of temperature anomaly (18 points)
+    </a>
+    <ul class="nav section-nav flex-column">
+     <li class="toc-h3 nav-item toc-entry">
+      <a class="reference internal nav-link" href="#part-3-1-model">
+       Part 3.1: Model
+      </a>
+     </li>
+     <li class="toc-h3 nav-item toc-entry">
+      <a class="reference internal nav-link" href="#part-3-2-fit-the-model">
+       Part 3.2: Fit the model
+      </a>
+     </li>
+     <li class="toc-h3 nav-item toc-entry">
+      <a class="reference internal nav-link" href="#part-3-3-check-your-model-8-points">
+       Part 3.3 Check your model (8 points)
+      </a>
+     </li>
+    </ul>
+   </li>
+   <li class="toc-h2 nav-item toc-entry">
+    <a class="reference internal nav-link" href="#part-4-compartmental-modeling-16-points">
+     Part 4: Compartmental modeling (16 points)
+    </a>
+    <ul class="nav section-nav flex-column">
+     <li class="toc-h3 nav-item toc-entry">
+      <a class="reference internal nav-link" href="#congratulations-you-re-done">
+       Congratulations, you’re done!
+      </a>
+     </li>
+    </ul>
+   </li>
+  </ul>
+ </li>
+</ul>
+
+                        </nav>
+                    </div>
+                </div>
+            </div>
+            <main id="main-content" role="main">
+                
+              <div>
+                
+  <section class="tex2jax_ignore mathjax_ignore" id="homework-3-analyzing-modeling-and-visualizing-data-with-pandas-and-conceptualizing-compartmental-models">
+<h1>Homework 3: Analyzing, modeling, and visualizing data with Pandas and conceptualizing compartmental models<a class="headerlink" href="#homework-3-analyzing-modeling-and-visualizing-data-with-pandas-and-conceptualizing-compartmental-models" title="Permalink to this headline">#</a></h1>
+<section id="p-style-text-align-right-put-your-name-here-p">
+<h2><p style="text-align: right;"> ✅ Put your name here </p><a class="headerlink" href="#p-style-text-align-right-put-your-name-here-p" title="Permalink to this headline">#</a></h2>
+</section>
+</section>
+<section class="tex2jax_ignore mathjax_ignore" id="grapevines-in-a-warming-world">
+<h1>Grapevines in a warming world 🍇🔥🌎<a class="headerlink" href="#grapevines-in-a-warming-world" title="Permalink to this headline">#</a></h1>
+<p><img alt="IMG_4172%20Copy.jpg" src="Homework/Homework_03/attachment:IMG_4172%20Copy.jpg" /></p>
+<p>Image description: A <em>Vitis riparia</em> grape cluster hangs from a vine as late afternoon light filters through leaves. (📸 <em>Dan Chitwood, Albert A. White Memorial Park, East Lansing, Michigan. August 26, 2022</em>)</p>
+<section id="learning-goals">
+<h2>Learning Goals<a class="headerlink" href="#learning-goals" title="Permalink to this headline">#</a></h2>
+<ul class="simple">
+<li><p>Using pandas to work with data and clean it</p></li>
+<li><p>Make meaningful visual representations of the data</p></li>
+<li><p>Fitting curves to data and evaluating model fit</p></li>
+<li><p>Conceptualizing compartmental models</p></li>
+</ul>
+</section>
+<hr class="docutils" />
+<section id="assignment-instructions">
+<h2>Assignment instructions<a class="headerlink" href="#assignment-instructions" title="Permalink to this headline">#</a></h2>
+<p>Work through the following assignment, making sure to follow all of the directions and answer all of the questions.</p>
+<p><strong>This assignment is due at 11:59pm on Friday, November 3, 2023</strong></p>
+<p>It should be uploaded into D2L Homework #3.  Submission instructions can be found at the end of the notebook.</p>
+<hr class="docutils" />
+<p><a id="toc"></a></p>
+</section>
+<section id="table-of-contents">
+<h2>Table of Contents<a class="headerlink" href="#table-of-contents" title="Permalink to this headline">#</a></h2>
+<p><a class="reference external" href="#part_0">Part 0. Academic Integrity Statement</a> (2 points)</p>
+<p><a class="reference external" href="#part_1">Part 1. Reading, describing, and cleaning data</a>  (22 points)</p>
+<p><a class="reference external" href="#part_2">Part 2. Exploratory Data Analysis and Data visualization</a>  (20 points)</p>
+<p><a class="reference external" href="#part_3">Part 3. Fitting curves to data.</a> (18 points)</p>
+<p><a class="reference external" href="#part_4">Part 4. Compartmental modeling</a> (16 points)</p>
+<hr class="docutils" />
+<p><a id="part_0"></a></p>
+</section>
+<section id="part-0-academic-integrity-statement-2-points">
+<h2>Part 0. Academic integrity statement (2 points)<a class="headerlink" href="#part-0-academic-integrity-statement-2-points" title="Permalink to this headline">#</a></h2>
+<p><a class="reference external" href="#toc">Back to Top</a></p>
+<p>In the markdown cell below, paste your personal academic integrity statement. By including this statement, you are confirming that you are submitting this as your own work and not that of someone else.</p>
+<p><font size=6 color="#009600">✎</font> <em>Put your personal academic integrity statement here.</em></p>
+<p>Before we read in the data and begin working with it, let’s import the libraries that we would typically use for this task. You can always come back to this cell and import additional libraries that you need.</p>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="kn">import</span> <span class="nn">pandas</span> <span class="k">as</span> <span class="nn">pd</span>
+<span class="kn">import</span> <span class="nn">matplotlib.pyplot</span> <span class="k">as</span> <span class="nn">plt</span>
+<span class="kn">import</span> <span class="nn">numpy</span> <span class="k">as</span> <span class="nn">np</span>
+<span class="kn">import</span> <span class="nn">math</span>
+<span class="kn">from</span> <span class="nn">scipy.optimize</span> <span class="kn">import</span> <span class="n">curve_fit</span>
+</pre></div>
+</div>
+</div>
+</div>
+<hr class="docutils" />
+<p><a id="part_1"></a></p>
+</section>
+<section id="part-1-reading-describing-and-cleaning-data-22-total-points">
+<h2>Part 1: Reading, describing, and cleaning data (22 total points)<a class="headerlink" href="#part-1-reading-describing-and-cleaning-data-22-total-points" title="Permalink to this headline">#</a></h2>
+<p><a class="reference external" href="#toc">Back to Top</a></p>
+<p>After visiting Michigan and learning that wine grapes can be grown (and that wine can be made!) in such a cold place, you decide that you would like to start a vineyard there. You’ve seen the vineyards and know that, although it is possible to grow wine grapes there, that sometimes it is too cold. You wonder if because of climate change, Michigan might soon have a warmer, more suitable climate for growing grapes.</p>
+<p>You know that Europe has a long history of growing grapes, and you wonder if they kept records that might indicate how grapes respond to changes in temperature. You find a <a class="reference external" href="https://www.clim-past.net/8/1403/2012/cp-8-1403-2012.pdf">study</a><span class="math notranslate nohighlight">\(^{1}\)</span>, that has compiled numerous records of grape harvest dates for more than four centuries and also a <a class="reference external" href="http://www.climatemonitor.it/?page_id=40210&amp;lang=en">database</a><span class="math notranslate nohighlight">\(^{2}\)</span> of temperature anomalies in Europe dating back to 1655.</p>
+<p><span class="math notranslate nohighlight">\(^{1}\)</span>Daux et al. (2012). An open-access database of grape harvest dates for climate
+research: data description and quality assessment. <em>Clim. Past</em>, 8:1403–1418.<br />
+<span class="math notranslate nohighlight">\(^{2}\)</span>Mariani and Zavatti. A dataset of the European average temperature anomalies for the period 1655-2016. <a class="reference external" href="http://www.climatemonitor.it/?page_id=40210&amp;lang=en">http://www.climatemonitor.it/?page_id=40210&amp;lang=en</a>, accessed 3 October 2023.</p>
+<section id="read-the-data-1-point">
+<h3>1.1 Read the data (1 point)<a class="headerlink" href="#read-the-data-1-point" title="Permalink to this headline">#</a></h3>
+<p>✅  <strong>Task</strong></p>
+<p>Read in the data from <code class="docutils literal notranslate"><span class="pre">grape_harvest.csv</span></code> into a Pandas dataframe (0.5 pt) and display the <code class="docutils literal notranslate"><span class="pre">head</span></code> of the data (0.5 pt).</p>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="c1">## your code here</span>
+</pre></div>
+</div>
+</div>
+</div>
+</section>
+<section id="describe-the-data-3-points">
+<h3>1.2 Describe the data (3 points)<a class="headerlink" href="#describe-the-data-3-points" title="Permalink to this headline">#</a></h3>
+<section id="task-1-point">
+<h4>1.2.1 ✅  <strong>Task (1 point)</strong><a class="headerlink" href="#task-1-point" title="Permalink to this headline">#</a></h4>
+<p>Use <code class="docutils literal notranslate"><span class="pre">describe</span></code> to display several summary statistics from the data frame.</p>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="c1">## your code here</span>
+</pre></div>
+</div>
+</div>
+</div>
+</section>
+<section id="task-2-points">
+<h4>1.2.2 ✅  <strong>Task (2 points)</strong><a class="headerlink" href="#task-2-points" title="Permalink to this headline">#</a></h4>
+<p>The columns in this dataset represent the following:</p>
+<ul class="simple">
+<li><p><strong><code class="docutils literal notranslate"><span class="pre">year</span></code></strong>: the year the data was collected</p></li>
+<li><p><strong><code class="docutils literal notranslate"><span class="pre">region</span></code></strong>: the region in Europe that the data was collected from</p></li>
+<li><p><strong><code class="docutils literal notranslate"><span class="pre">harvest</span></code></strong>: the harvest date recorded. Harvest date is defined as number of days after August 31st. A negative number means the grapes were harvested before August 31st that year, and a positive number after.</p></li>
+<li><p><strong><code class="docutils literal notranslate"><span class="pre">anomaly</span></code></strong>: the temperature anomaly. For a given year, this number represents how much colder (negative) or hotter (positive) Europe was compared to a long term reference value, in degrees Celsius</p></li>
+</ul>
+<p>Using the results from <code class="docutils literal notranslate"><span class="pre">describe</span></code> above, write in the markdown cell below:</p>
+<ol class="simple">
+<li><p>The <em><strong>earliest and latest <code class="docutils literal notranslate"><span class="pre">year</span></code></strong></em> represented in this study (1 pt)</p></li>
+<li><p>The <em><strong>coldest and hottest temperature anomaly in degrees Celsius</strong></em> represented in this study (1pt)</p></li>
+</ol>
+<p><font size=8 color="#009600">✎</font> Put your answer here:</p>
+<p><strong>Part 1 (1pt):</strong></p>
+<p><strong>Part 2 (1pt):</strong></p>
+</section>
+</section>
+<section id="isolating-and-performing-basic-statistics-on-data-4-points">
+<h3>1.3 Isolating and performing basic statistics on data (4 points)<a class="headerlink" href="#isolating-and-performing-basic-statistics-on-data-4-points" title="Permalink to this headline">#</a></h3>
+<section id="id1">
+<h4>1.3.1 ✅  <strong>Task (1 point)</strong><a class="headerlink" href="#id1" title="Permalink to this headline">#</a></h4>
+<p>Display the <code class="docutils literal notranslate"><span class="pre">harvest</span></code> column on its own using the name of the column.</p>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="c1">## your code here</span>
+</pre></div>
+</div>
+</div>
+</div>
+</section>
+<section id="task-1-points">
+<h4>1.3.2 ✅  <strong>Task (1 points)</strong><a class="headerlink" href="#task-1-points" title="Permalink to this headline">#</a></h4>
+<p>Using <code class="docutils literal notranslate"><span class="pre">.iloc</span></code>, display the first five rows of just the <code class="docutils literal notranslate"><span class="pre">harvest</span></code> column.</p>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="c1">## your code here</span>
+</pre></div>
+</div>
+</div>
+</div>
+</section>
+<section id="id2">
+<h4>1.3.3 ✅  <strong>Task (2 points)</strong><a class="headerlink" href="#id2" title="Permalink to this headline">#</a></h4>
+<p>Using <code class="docutils literal notranslate"><span class="pre">mean</span></code> and <code class="docutils literal notranslate"><span class="pre">median</span></code> functions, print out the mean and median <code class="docutils literal notranslate"><span class="pre">harvest</span></code> values for all the data.</p>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="c1">## your code here</span>
+</pre></div>
+</div>
+</div>
+</div>
+</section>
+</section>
+<section id="filter-the-data-using-masking-7-points">
+<h3>1.4 Filter the data using masking (7 points)<a class="headerlink" href="#filter-the-data-using-masking-7-points" title="Permalink to this headline">#</a></h3>
+<p><strong>1.4.1</strong> ✅  <strong>Task (6 points)</strong></p>
+<p>You want to know if the grape harvest date is changing, and if so, is it getting earlier or later?</p>
+<p>You decide that you would like to know the median grape harvest date for the following 50 year intervals, as well as the median since the year 2000:</p>
+<ul class="simple">
+<li><p>1800-1849</p></li>
+<li><p>1850-1899</p></li>
+<li><p>1900-1949</p></li>
+<li><p>1950-1999</p></li>
+<li><p>2000-2007</p></li>
+</ul>
+<p><strong>For each of the above intervals, calculate the median grape harvest date. For each interval print out statements saying “The median harvest date for years (<em>insert interval here</em>) is: x.”</strong> (6 pts)</p>
+<p><strong>Hint:</strong> You can write Boolean statements for values within an interval as:</p>
+<div class="highlight-python notranslate"><div class="highlight"><pre><span></span><span class="n">data</span><span class="p">[</span><span class="s2">&quot;column&quot;</span><span class="p">]</span> <span class="o">&gt;=</span> <span class="n">value</span> <span class="o">&amp;</span> <span class="n">data</span><span class="p">[</span><span class="s2">&quot;column&quot;</span><span class="p">]</span> <span class="o">&lt;=</span> <span class="n">value</span>
+</pre></div>
+</div>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="c1">## your code here</span>
+</pre></div>
+</div>
+</div>
+</div>
+<p><strong>1.4.2</strong> ✅  <strong>Task (1 pt)</strong></p>
+<p>Is the harvest date getting earlier or later with time? Remember, <code class="docutils literal notranslate"><span class="pre">harvest</span></code> is defined as number of days after August 31st. A negative number means the grapes were harvested before August 31st that year, and a positive number after.</p>
+<p><font size=8 color="#009600">✎</font> Put your answer here</p>
+</section>
+<section id="clean-out-the-nan-values-7-points">
+<h3>1.5 Clean out the NaN values (7 points)<a class="headerlink" href="#clean-out-the-nan-values-7-points" title="Permalink to this headline">#</a></h3>
+<section id="id3">
+<h4>1.5.1 ✅  <strong>Task (1 points)</strong><a class="headerlink" href="#id3" title="Permalink to this headline">#</a></h4>
+<p>Using <code class="docutils literal notranslate"><span class="pre">value_counts</span></code>, display all the different <code class="docutils literal notranslate"><span class="pre">region</span></code> values represented in the data.</p>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="c1">## your code here</span>
+</pre></div>
+</div>
+</div>
+</div>
+</section>
+<section id="id4">
+<h4>1.5.2 ✅  <strong>Task (2 points)</strong><a class="headerlink" href="#id4" title="Permalink to this headline">#</a></h4>
+<p>Oh no!!! You observe <code class="docutils literal notranslate"><span class="pre">&quot;michigan&quot;</span></code> as a region! What is Michigan doing in this dataset?!?</p>
+<p>Using masking, create a new dataframe with only <code class="docutils literal notranslate"><span class="pre">&quot;michigan&quot;</span></code> data (1 pt) and display the results (1 pt).</p>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="c1">## your code here</span>
+</pre></div>
+</div>
+</div>
+</div>
+</section>
+<section id="id5">
+<h4>1.5.3 ✅  <strong>Task (1 point)</strong><a class="headerlink" href="#id5" title="Permalink to this headline">#</a></h4>
+<p>You observe <code class="docutils literal notranslate"><span class="pre">&quot;NaN&quot;</span></code> values in the <code class="docutils literal notranslate"><span class="pre">&quot;michigan&quot;</span></code> data. Create a new, “clean” dataframe (0.5 pt) that removes the <code class="docutils literal notranslate"><span class="pre">&quot;michigan&quot;</span></code> data and associated <code class="docutils literal notranslate"><span class="pre">&quot;NaN&quot;</span></code> data (0.5 pt). Use the built in pandas function <code class="docutils literal notranslate"><span class="pre">dropna</span></code> to do this (google it to learn more!).</p>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="c1">## your code here</span>
+</pre></div>
+</div>
+</div>
+</div>
+</section>
+<section id="id6">
+<h4>1.5.4 ✅  <strong>Task (2 points)</strong><a class="headerlink" href="#id6" title="Permalink to this headline">#</a></h4>
+<p>Now that you have the original and clean datasets, determine the number of rows in each of them (1 pt). Print out your results (1 pt).</p>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="c1">## your code here</span>
+</pre></div>
+</div>
+</div>
+</div>
+</section>
+<section id="id7">
+<h4>1.5.5 ✅  <strong>Task (1 point)</strong><a class="headerlink" href="#id7" title="Permalink to this headline">#</a></h4>
+<p>Let’s reflect on the cleaning process. Was there any <code class="docutils literal notranslate"><span class="pre">&quot;michigan&quot;</span></code> data that affected your results? (0.5 pts). For this specific dataset, if you hadn’t dropped the <code class="docutils literal notranslate"><span class="pre">&quot;NaN&quot;</span></code> data, would it matter? (0.5 pts).</p>
+<p><font size=8 color="#009600">✎</font> Put your answer here</p>
+<p><strong>Part 1 (0.5pt):</strong></p>
+<p><strong>Part 2 (0.5pt):</strong></p>
+<hr class="docutils" />
+<p><a id="part_2"></a></p>
+</section>
+</section>
+</section>
+<section id="part-2-exploratory-data-analysis-20-total-points">
+<h2>Part 2: Exploratory Data Analysis (20 total points)<a class="headerlink" href="#part-2-exploratory-data-analysis-20-total-points" title="Permalink to this headline">#</a></h2>
+<p><a class="reference external" href="#toc">Back to Top</a></p>
+<p>It’s time to explore our data! Let’s visualize our data and look for correlations in our grapevine dataset.</p>
+<section id="part-2-1-correlations-5-points">
+<h3>Part 2.1: Correlations (5 points)<a class="headerlink" href="#part-2-1-correlations-5-points" title="Permalink to this headline">#</a></h3>
+<p>There are three columns with numerical values in our dataset and one with string values. We can only look for correlations between columns with numerical values.</p>
+<p>✅  <strong>Do this (1 points):</strong> Print or display a correlation matrix using only the columns with numerical values. <em>Hint1:</em> Look up the pandas <code class="docutils literal notranslate"><span class="pre">corr</span></code> function for dataframes. <em>Hint2:</em> To select multiple columns, use the following notation: <code class="docutils literal notranslate"><span class="pre">df[[&quot;col1&quot;],</span> <span class="pre">[&quot;col2&quot;]]</span></code></p>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="c1"># Put your code here</span>
+</pre></div>
+</div>
+</div>
+</div>
+<p>✅  <strong>Answer this question (4 points):</strong> In your opinion, would you consider any of the correlations <em><strong>between</strong></em> the columns to be strong? (1 pt) For the correlations between each pair of columns, describe the direction of the correlation in plain words (3 sentences, one describing each pair) (3 pts, 1 pt each).</p>
+<p><font size=8 color="#009600">✎</font> Put your answer here</p>
+<p><strong>Part 1 (1pt):</strong></p>
+<p><strong>Part 2 (3pts):</strong></p>
+</section>
+<section id="part-2-2-visual-representation-of-correlations-15-points">
+<h3>Part 2.2: Visual representation of correlations (15 points)<a class="headerlink" href="#part-2-2-visual-representation-of-correlations-15-points" title="Permalink to this headline">#</a></h3>
+<p>The numbers above gives us a quantitative measure of the correlations in the dataset. As you can see, <code class="docutils literal notranslate"><span class="pre">year</span></code>, <code class="docutils literal notranslate"><span class="pre">anomaly</span></code>, and <code class="docutils literal notranslate"><span class="pre">harvest</span></code> all have correlative relationships with each other, regardless if these relationships are strong or weak.</p>
+<p>Visualization in data science is a very important skill!!! In the next exercise, you will visualize the relationships between these variables as scatterplots. You will create a plot for each relationship: 1) <code class="docutils literal notranslate"><span class="pre">anomaly</span></code> vs. <code class="docutils literal notranslate"><span class="pre">year</span></code>, 2) <code class="docutils literal notranslate"><span class="pre">harvest</span></code> vs. <code class="docutils literal notranslate"><span class="pre">year</span></code>, and 3) <code class="docutils literal notranslate"><span class="pre">harvest</span></code> vs. <code class="docutils literal notranslate"><span class="pre">anomaly</span></code>.</p>
+<p>We want to make a plot similar to the one below:</p>
+<p><img alt="grapevine_plot-2.jpg" src="Homework/Homework_03/attachment:grapevine_plot-2.jpg" /></p>
+<p>✅  <strong>Do this (12 points):</strong>  Use <code class="docutils literal notranslate"><span class="pre">matplotlib</span></code> to make three <em>scatter plots</em> like the ones above. For full points, do the following:</p>
+<ul class="simple">
+<li><p>Create 3 subplots using <code class="docutils literal notranslate"><span class="pre">plt.subplot</span></code>. Use 3 rows and 1 column <strong>(3 points)</strong>.</p></li>
+<li><p>Use <code class="docutils literal notranslate"><span class="pre">plt.figure</span></code> and the argument <code class="docutils literal notranslate"><span class="pre">figsize</span></code> to make a plot 4 inches wide x 6 inches long <strong>(1 point)</strong>.</p></li>
+<li><p>Plot 1) <code class="docutils literal notranslate"><span class="pre">anomaly</span></code> vs. <code class="docutils literal notranslate"><span class="pre">year</span></code>, 2) <code class="docutils literal notranslate"><span class="pre">harvest</span></code> vs. <code class="docutils literal notranslate"><span class="pre">year</span></code>, and 3) <code class="docutils literal notranslate"><span class="pre">harvest</span></code> vs. <code class="docutils literal notranslate"><span class="pre">anomaly</span></code>. Provide a title for each subplot <strong>(1 point)</strong>.</p></li>
+<li><p>Give the overall plot the title <code class="docutils literal notranslate"><span class="pre">Grapevines</span> <span class="pre">in</span> <span class="pre">a</span> <span class="pre">warming</span> <span class="pre">world</span></code> <strong>(1 point)</strong></p></li>
+<li><p>Provide x-axis labels <strong>(1 point)</strong>.</p></li>
+<li><p>Provide y-axis labels <strong>(1 point)</strong>.</p></li>
+<li><p>Create variables for point size, color, and alpha outside of the code for your plots. Use the variables you created to control size, color, and alpha in your subplots. Use the same parameters for all the plots. Choose appropriate point size, color, and alpha so that you can see the relationships in your data (avoid overplotting) <strong>(3 points, one for each)</strong>.</p></li>
+<li><p>Use <code class="docutils literal notranslate"><span class="pre">tight_layout</span></code> to give your plot optimal sizing <strong>(1 points)</strong>.</p></li>
+</ul>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="c1"># Put your code here</span>
+</pre></div>
+</div>
+</div>
+</div>
+<p>✅  <strong>Answer the following (3 points):</strong> Looking at the plots,</p>
+<ol class="simple">
+<li><p>Which plots looks like it has the strongest correlation? Justify your answer (1 point).</p></li>
+<li><p>Which plot looks the most linear? (1 point).</p></li>
+<li><p>Which plot do you believe would be the easiest to create a model for. Justify your answer (1 point).</p></li>
+</ol>
+<p><font size=8 color="#009600">✎</font> Put your answer here</p>
+<p><strong>Part 1 (1pt):</strong></p>
+<p><strong>Part 2 (1pt):</strong></p>
+<p><strong>Part 3 (1pt):</strong></p>
+<hr class="docutils" />
+<p><a id="part_3"></a></p>
+</section>
+</section>
+<section id="part-3-fitting-curves-to-data-harvest-date-as-a-function-of-temperature-anomaly-18-points">
+<h2>Part 3: Fitting curves to data. Harvest date as a function of temperature anomaly (18 points)<a class="headerlink" href="#part-3-fitting-curves-to-data-harvest-date-as-a-function-of-temperature-anomaly-18-points" title="Permalink to this headline">#</a></h2>
+<p><a class="reference external" href="#toc">Back to Top</a></p>
+<p>Now that we have visualized our data we can formulate a question in a guided way. In this section, we will ask:</p>
+<blockquote>
+<div><p>What is the relationship between harvest date and temperature anomaly? Can we predict harvest date from temperature anomaly?</p>
+</div></blockquote>
+<section id="part-3-1-model">
+<h3>Part 3.1: Model<a class="headerlink" href="#part-3-1-model" title="Permalink to this headline">#</a></h3>
+<p>In the above plots we notice that <code class="docutils literal notranslate"><span class="pre">harvest</span></code> (almost) linearly declines as <code class="docutils literal notranslate"><span class="pre">anomaly</span></code> increases in value. Specifically,</p>
+<div class="math notranslate nohighlight">
+\[ harvest  = m\times anomaly + b \]</div>
+<p>Where <span class="math notranslate nohighlight">\(harvest\)</span> is the harvest date represented by the variable <code class="docutils literal notranslate"><span class="pre">harvest</span></code>, <span class="math notranslate nohighlight">\(anomaly\)</span> is the temperature anomaly in degrees Celsius represented by the variable <code class="docutils literal notranslate"><span class="pre">anomaly</span></code>, and <span class="math notranslate nohighlight">\(m\)</span> is the slope of the line and <span class="math notranslate nohighlight">\(b\)</span> the intercept.</p>
+<p>✅  <strong>Do this (4 points):</strong></p>
+<ul class="simple">
+<li><p>Write a function called <code class="docutils literal notranslate"><span class="pre">harvest_model</span></code> that calculates harvest date based on temperature anomaly using the equation above. The equation should be constructed so that you can build a model using the <code class="docutils literal notranslate"><span class="pre">curve_fit</span></code> function in the next section.</p></li>
+</ul>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="c1"># Put your code here</span>
+</pre></div>
+</div>
+</div>
+</div>
+</section>
+<section id="part-3-2-fit-the-model">
+<h3>Part 3.2: Fit the model<a class="headerlink" href="#part-3-2-fit-the-model" title="Permalink to this headline">#</a></h3>
+<p>✅  <strong>Do this (6 points):</strong></p>
+<ul class="simple">
+<li><p>Use a dataset without <code class="docutils literal notranslate"><span class="pre">NaN</span></code> values. To build your model, it is important that you use data without <code class="docutils literal notranslate"><span class="pre">NaN</span></code> values, otherwise you will get an error. In part 1.5, you removed <code class="docutils literal notranslate"><span class="pre">NaN</span></code> values from this dataset. If you were able to successfully remove the <code class="docutils literal notranslate"><span class="pre">NaN</span></code> values, you can use the clean dataset. Otherwise, code to read in a clean dataset by url is provided. You can uncomment out this line and use this dataset if you like. (1 point)</p></li>
+<li><p>Now use <code class="docutils literal notranslate"><span class="pre">curve_fit</span></code> with your <code class="docutils literal notranslate"><span class="pre">harvest_model</span></code> function to find the slope (<span class="math notranslate nohighlight">\(m\)</span>) and intercept (<span class="math notranslate nohighlight">\(b\)</span>) parameters. (4 points)</p></li>
+<li><p>Print out the value of the slope <span class="math notranslate nohighlight">\(m\)</span>, write “The value of the slope is…” (0.5 points)</p></li>
+<li><p>Print out the value of the intercept <span class="math notranslate nohighlight">\(b\)</span>, write “The value of the intercept is…” (0.5 points)</p></li>
+</ul>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="c1"># Put your code here</span>
+
+<span class="c1"># You can use the following url from GitHub to read in a dataset with no NaNs:</span>
+<span class="c1"># clean_grape_df = pd.read_csv(&quot;https://raw.githubusercontent.com/DanChitwood/PlantsAndPython/master/grape_harvest.csv&quot;)</span>
+</pre></div>
+</div>
+</div>
+</div>
+</section>
+<section id="part-3-3-check-your-model-8-points">
+<h3>Part 3.3 Check your model (8 points)<a class="headerlink" href="#part-3-3-check-your-model-8-points" title="Permalink to this headline">#</a></h3>
+<p>✅  <strong>Do this (6 points):</strong>  Make a plot comparing your model and the data.</p>
+<ul class="simple">
+<li><p>Plot the actual data (2 points)</p></li>
+<li><p>Plot your modeled data (2 points)</p></li>
+<li><p>Use x and y axis labels and title (1 point)</p></li>
+<li><p>Adjust the color, size, and alpha of the datapoints to avoid overplotting. Make sure the plot of your model is a different color than the datapoints so that you can see it. (1 point)</p></li>
+</ul>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="c1"># Put your code here</span>
+</pre></div>
+</div>
+</div>
+</div>
+<p>✅  <strong>Answer the following (2 points):</strong>
+Do you think your model is a good model? Clearly justify your answer (looking for more than a “yes” or “no” answer).</p>
+<p><font size=8 color="#009600">✎</font> Put your answer here</p>
+<hr class="docutils" />
+<p><a id="part_4"></a></p>
+</section>
+</section>
+<section id="part-4-compartmental-modeling-16-points">
+<h2>Part 4: Compartmental modeling (16 points)<a class="headerlink" href="#part-4-compartmental-modeling-16-points" title="Permalink to this headline">#</a></h2>
+<p><a class="reference external" href="#toc">Back to Top</a></p>
+<hr class="docutils" />
+<p><strong>IMPORTANT NOTE</strong></p>
+<blockquote>
+<div><p>You will learn about compartmental models starting with the Day 18 pre-class, which will be covered just before this homework is due! The video and virus example below are from the Day 18 pre-class. <em><strong>Watch the entire video below</strong></em>. You will see that the example is about plants, which is relevant to this homework question!!! After the video, <em><strong>read the virus example and study the diagram</strong></em>.</p>
+</div></blockquote>
+<hr class="docutils" />
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="kn">from</span> <span class="nn">IPython.display</span> <span class="kn">import</span> <span class="n">YouTubeVideo</span> 
+<span class="n">YouTubeVideo</span><span class="p">(</span><span class="s2">&quot;0N3qB5vaJhA&quot;</span><span class="p">,</span><span class="n">width</span><span class="o">=</span><span class="mi">640</span><span class="p">,</span><span class="n">height</span><span class="o">=</span><span class="mi">360</span><span class="p">)</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<div class="output text_html">
+<iframe
+    width="640"
+    height="360"
+    src="https://www.youtube.com/embed/0N3qB5vaJhA"
+    frameborder="0"
+    allowfullscreen
+
+></iframe>
+</div></div>
+</div>
+<p>After watching the video above, read this example of a compartmental model of virus kinetics:</p>
+<p><img alt="fmicb-03-00319-g001.jpg" src="Homework/Homework_03/attachment:fmicb-03-00319-g001.jpg" /></p>
+<p>How do viruses work? We need to understand a bit about this in order to build our model. The most important feature is that viruses cannot reproduce on their own - that is what they need you for. Your body, to a virus, is simply a factory for making and spreading more of them. If virions were writing the history books, humans would simply be their maternity ward. The way this works is that virions enter your cells, where there is a factory at work to keep the cell functioning, and they give all of the factory workers new instructions. A factory that was making cars, once the virions enter, is now making laptops; or, in this case, rather than keeping the cell alive and healthy, the machinery of the cells makes more virions. For every virion that enters a cell, that cell might make hundreds of new virions, leading to a population explosion. Your body will need to quickly mount an immune response to keep this under control.</p>
+<p>What <em><strong>compartments</strong></em> might we need? (Look at the picture above.)</p>
+<ul class="simple">
+<li><p><strong>T</strong>arget cells; these are the healthy cells the virion might enter</p></li>
+<li><p><strong>I</strong>nfected cell; these cells produce new virions, and might die over time</p></li>
+<li><p><strong>V</strong>irion population; the number of virions at any given time during the infection</p></li>
+</ul>
+<p>What <em><strong>parameters</strong></em> will we need?</p>
+<ul class="simple">
+<li><p>rate at which cells become infected: this reduces the value of T and increases the value of I</p></li>
+<li><p>the production rate of new virions, which increases the value of V</p></li>
+<li><p>rate at which infected cells die</p></li>
+<li><p>rate at which virions degrade and leave the system</p></li>
+</ul>
+<p>What <em><strong>equations</strong></em> can we write?:</p>
+<div class="math notranslate nohighlight">
+\[\frac{dT}{dt} = -\beta TV,\]</div>
+<div class="math notranslate nohighlight">
+\[\frac{dI}{dt} = \beta TV - \delta I,\]</div>
+<div class="math notranslate nohighlight">
+\[\frac{dV}{dt} = pI - rV.\]</div>
+<p>As you saw, compartmental modeling is all about <em><strong>flow</strong></em>, about the <em><strong>rates</strong></em> of transfer between different compartments. It makes a lot of sense therefore that differential equations, which calculate rates of change of those compartments, are central to compartmental models.</p>
+<p>You can build compartmental models in the following order:</p>
+<p><strong>1. Define the compartments, the boxes, how much of something:</strong> When you descirbe the flow, transfer, or transition to one state to another, what are those states, what are the containers? Target cells (T) become infected cells (I). Infected cells (I) become virus particles (V). In the video you saw that water is in a bowl (B) before being transferred to a plant (P). Define the boxes in your model. These are usually the start and end points as something changes into another or something is transferred between containers. The variables representing the boxes represent <em><strong>what quantity is in the box</strong></em>: how many target or infected cells or virus particles, how much water in the bowl or the plant? Your boxes will be connected by arrows, or rates. Ultimately, you will be defining differential equations to model the <em><strong>rates of change</strong></em> of your compartment values.</p>
+<p><strong>2. Define the arrows, connecting to and between your boxes, the rates of change or transfer or transformation:</strong> Because the compartmental model is all about flow, the arrows between the boxes represent rates. What is the rate (<span class="math notranslate nohighlight">\(\beta\)</span>) of target cells becoming infected cells? What is the rate (<span class="math notranslate nohighlight">\(\rho\)</span>) of infected cells producing virions? What is the rate (t) of the transfer of water from the bowl to the plant? The arrows represent transfer and change. They can be between boxes, or they can interact directly with a box from the outside environment. For example, in the plant example, maybe an arrow would connect only to the water bowl if it is being filled regularly, or an arrow might connect with the plant if there is regular rain.</p>
+<p><strong>3. Define equations:</strong> Once you have your boxes and arrows, it is time to define equations. For the variable in each box, you will write an equation of the rate of change of that variable, a differential equation. For example, we write an equation for the rates of change in the the compartments of target and infected cells and virus particles as <span class="math notranslate nohighlight">\(\frac{dT}{dt}\)</span>, <span class="math notranslate nohighlight">\(\frac{dI}{dt}\)</span>, and <span class="math notranslate nohighlight">\(\frac{dV}{dt}\)</span>. We would similarly write equations for the amount of water in the bowl (<span class="math notranslate nohighlight">\(\frac{dB}{dt}\)</span>) or plant (<span class="math notranslate nohighlight">\(\frac{dP}{dt}\)</span>). The equation modeling the rate of change of a compartment always includes the parameters–the arrows–that interact with that compartment.</p>
+<p><strong>4. Alter conditions, change parameter values:</strong> Once you’ve defined your differential equations based on compartment and rate variables, it’s time to change the parameters and compare results from your model! What happens if you change the initial starting values of the compartment variables? What happens if you change the rate values? How you decide to change, alter, test, and use your model is just as important as building it. What do you learn by changing these values?</p>
+<p><strong>Now you give it a try!!!</strong></p>
+<p>In the questions below, you will build your own compartmental model! Because this assignment is plant-themed, your model will be about the flow of <em><strong>energy, water, and/or carbon</strong></em> through plants and the larger ecosystem. Before we get to the questions, some ideas are listed below for you to consider. But feel free to design your model in any way that you like! We are interested in the <em><strong>design</strong></em> of your compartmental model, not the parameter values or solving the model.</p>
+<p>☀️ <em><strong>ENERGY:</strong></em> Light energy from the sun can be intercepted by clouds, water, and soil, but sometimes it falls on leaves. Some wavelengths of light pass through the leaves, and some light is intercepted by the leaf. The light energy can be intercepted by chlorophyll molecules where it powers photosynthesis and the conversion of carbon dioxide (CO2) into sugars. Some of this energy is used for photosynthesis, but some energy is lost to heat or re-emitted as light in a process called chlorophyll fluorescence. Photosynthesis converts the light energy into sugars. The sugars store the energy in chemical bonds. The sugars and the energy they contain are used by the plant to grow leaves, fruits, and roots. The energy is transferred to other organisms that eat plants for food. Ultimately this stored chemical energy, originally from the sun, is stored as organic matter when the plant decays. Stored energy accumulated over millenia creates fossil fuels, on which we are reliant for energy and contributes to the release of CO2 into the atmosphere and climate change.</p>
+<p>💧 <em><strong>WATER:</strong></em> With respect to plants, the flow of water begins with freshwater. Water evaporates from the oceans, lakes, rivers, and soils, and it is released by plants through microscopic pores in their leaves called stomata (literally “mouths”). The evaporated water rains down back on lakes and rivers and the soil. Some of this water goes into the soil where it encounters plant roots. As water is evaporated from the stomata in leaves (a process called <a class="reference external" href="https://en.wikipedia.org/wiki/Transpiration">transpiration</a>), through capillary action, it creates tension in the vasculature of the plant, which extends from the leaves all the way down to the roots where roots draw the water into the plant. The water flows to the leaves, fruits, and other organs of the plant, and drives growth through turgor pressure. Some of this water passes through the stomata of the leaves, releasing into the atmosphere and through capillary action drawing more water through the roots, completing the cycle.</p>
+<p>🍃 <em><strong>CARBON:</strong></em> Plants build themselves and store energy in organic matter through carbon. They take in CO2 through stomata, microscopic pores in their leaves. An enzyme called <a class="reference external" href="https://en.wikipedia.org/wiki/RuBisCO">rubisco</a> (Ribulose-1,5-bisphosphate carboxylase/oxygenase), fixes the carbon from carbon dioxide into a chemical intermediate that through photosynthesis is converted into sugar. Rubisco is very inefficient, and sometimes it mistakenly interacts with oxygen (O2) to create a useless product, wasting the energy from photosynthesis. The sugars in plants are used for energy to fuel chemical reactions, structurally to build the plants, and even used directly to make sweet fruits that we eat. Sugars are the basis of storing chemical energy that plants use, other organisms eat, and that is stored in fossil fuels. It is from CO2 that plants fix into sugars that ultimately we and other organisms derive a major source of carbon that we metabolize, and ultimately expire back into the atmosphere through respiration as CO2. Carbon is also released back into the atmosphere through decay by microbes, and also through burning of fossil fuels, which has created unprecedented amounts of human-made CO2 that is contributing to climate change.</p>
+<p><strong>Based on the information above, design a compartmental model of your choosing based on plants and answer the questions below!</strong></p>
+<p>✅  <strong>Part 4.1 (4 points):</strong> First, think of a question you would like to model. State the question you would like to study or investigate below (2 points). Why is your question appropriate for compartemental modeling? (2 points)</p>
+<p><font size=8 color="#009600">✎</font> Put your answer here</p>
+<p><strong>Part 1 (2pts):</strong></p>
+<p><strong>Part 2 (2pts):</strong></p>
+<p>✅  <strong>Part 4.2 (3 points):</strong> Next, define the compartments in your model. Define at least 3 compartments (1 point). Assign a capital variable name to each of your compartments (1 point). For each of your compartments, describe what they are in a single sentence (1 point).</p>
+<p><font size=8 color="#009600">✎</font> Put your answer here</p>
+<p><strong>Part 1 (1pt):</strong></p>
+<p><strong>Part 2 (1pt):</strong></p>
+<p><strong>Part 3 (1pt):</strong></p>
+<p>✅  <strong>Part 4.3 (3 points):</strong> Next, define arrows, the parameters or rates, in your model. Arrows should connect all boxes to each other, but can also interact with a box from outside the system. Define each arrow in your model (1pt). Assign a lowercase variable name to each of your arrows (1 point). For each of your arrows, describe what they are or what they do in a single sentence (1 point).</p>
+<p><font size=8 color="#009600">✎</font> Put your answer here</p>
+<p><strong>Part 1 (1pt):</strong></p>
+<p><strong>Part 2 (1pt):</strong></p>
+<p><strong>Part 3 (1pt):</strong></p>
+<p>✅  <strong>Part 4.4 (4 points):</strong> For each compartment, define an equation describing the rate of change of that compartment using the variables your defined above. For each compartment (for example, C, but using the variable name you provided), define the rate of change for that compartment (for example, dCdt) using the variables you described above (2 points). For each equation, write out in words what the equation represents (2 points).</p>
+<p><font size=8 color="#009600">✎</font> Put your answer here</p>
+<p><strong>Part 1 (2pts):</strong></p>
+<p><strong>Part 2 (2pts):</strong></p>
+<p>✅  <strong>Part 4.5 (2 points):</strong> Finally, if you could change the initial starting compartment values or rates to modify your model, which would you change? What would you hope to learn from altering your model like this?</p>
+<p><font size=8 color="#009600">✎</font> Put your answer here</p>
+<hr class="docutils" />
+<section id="congratulations-you-re-done">
+<h3>Congratulations, you’re done!<a class="headerlink" href="#congratulations-you-re-done" title="Permalink to this headline">#</a></h3>
+<p><a class="reference external" href="#toc">Back to Top</a></p>
+<p>Submit this assignment by uploading it to the course Desire2Learn web page.  Go to the “Homework Assignments” section, find the submission folder link for Homework #3, and upload it there.</p>
+<p>© 2023 Copyright the Department of Computational Mathematics, Science and Engineering.</p>
+</section>
+</section>
+</section>
+
+    <script type="text/x-thebe-config">
+    {
+        requestKernel: true,
+        binderOptions: {
+            repo: "binder-examples/jupyter-stacks-datascience",
+            ref: "master",
+        },
+        codeMirrorConfig: {
+            theme: "abcdef",
+            mode: "python"
+        },
+        kernelOptions: {
+            kernelName: "python3",
+            path: "./Homework\Homework_03"
+        },
+        predefinedOutput: true
+    }
+    </script>
+    <script>kernelName = 'python3'</script>
+
+              </div>
+              
+            </main>
+            <footer class="footer-article noprint">
+                
+    <!-- Previous / next buttons -->
+<div class='prev-next-area'>
+    <a class='left-prev' id="prev-link" href="../Homework_02/HW-02-FunctionsArraysAndDataAnalysis-STUDENT.html" title="previous page">
+        <i class="fas fa-angle-left"></i>
+        <div class="prev-next-info">
+            <p class="prev-next-subtitle">previous</p>
+            <p class="prev-next-title">Homework 2: Functions, arrays, and data analysis</p>
+        </div>
+    </a>
+    <a class='right-next' id="next-link" href="../Homework_04/HW4_FS2023-STUDENT.html" title="next page">
+    <div class="prev-next-info">
+        <p class="prev-next-subtitle">next</p>
+        <p class="prev-next-title">Homework 4: Compartmental Models + Data Visualization (Fall, 2023)</p>
+    </div>
+    <i class="fas fa-angle-right"></i>
+    </a>
+</div>
+            </footer>
+        </div>
+    </div>
+    <div class="footer-content row">
+        <footer class="col footer"><p>
+  
+    By the Department of Computational Mathematics, Science and Engineering at Michigan State University<br/>
+  
+      &copy; Copyright 2023.<br/>
+</p>
+        </footer>
+    </div>
+    
+</div>
+
+
+      </div>
+    </div>
+  
+  <!-- Scripts loaded after <body> so the DOM is not blocked -->
+  <script src="../../_static/scripts/pydata-sphinx-theme.js?digest=1999514e3f237ded88cf"></script>
+
+
+  </body>
+</html>

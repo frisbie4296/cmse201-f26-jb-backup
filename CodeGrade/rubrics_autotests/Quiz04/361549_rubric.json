@@ -1,0 +1,166 @@
+[
+  {
+    "id": 1000523,
+    "header": "Academic Integrity Statement",
+    "description": "",
+    "description_type": "markdown",
+    "items": [
+      {
+        "id": 2490002,
+        "description": "",
+        "header": "Incomplete",
+        "points": 0.0
+      },
+      {
+        "id": 2490003,
+        "description": "Look at PCA 4.",
+        "header": "Not specific enough",
+        "points": 5.0
+      },
+      {
+        "id": 2490004,
+        "description": "",
+        "header": "Complete",
+        "points": 10.0
+      }
+    ],
+    "locked": false,
+    "type": "normal"
+  },
+  {
+    "id": 1000524,
+    "header": "Part 1.1",
+    "description": "",
+    "description_type": "markdown",
+    "items": [
+      {
+        "id": 2490005,
+        "description": "",
+        "header": "Incomplete",
+        "points": 0.0
+      },
+      {
+        "id": 2490006,
+        "description": "",
+        "header": "Partial credit",
+        "points": 5.0
+      },
+      {
+        "id": 2490026,
+        "description": "",
+        "header": "Partial credit",
+        "points": 10.0
+      },
+      {
+        "id": 2490027,
+        "description": "",
+        "header": "Partial credit",
+        "points": 15.0
+      },
+      {
+        "id": 2490028,
+        "description": "",
+        "header": "Partial credit",
+        "points": 20.0
+      },
+      {
+        "id": 2490029,
+        "description": "",
+        "header": "Complete",
+        "points": 25.0
+      }
+    ],
+    "locked": false,
+    "type": "normal"
+  },
+  {
+    "id": 1000525,
+    "header": "Part 1.2",
+    "description": "2 points per plotting call\n4 points for labels and legend",
+    "description_type": "markdown",
+    "items": [
+      {
+        "id": 2490007,
+        "description": "",
+        "header": "Incomplete",
+        "points": 0.0
+      },
+      {
+        "id": 2490008,
+        "description": "",
+        "header": "Partical credit",
+        "points": 2.0
+      },
+      {
+        "id": 2490009,
+        "description": "",
+        "header": "Partial credit",
+        "points": 4.0
+      },
+      {
+        "id": 2490010,
+        "description": "",
+        "header": "Partial credit",
+        "points": 6.0
+      },
+      {
+        "id": 2490030,
+        "description": "",
+        "header": "Partial credit",
+        "points": 8.0
+      },
+      {
+        "id": 2490031,
+        "description": "",
+        "header": "Complete",
+        "points": 10.0
+      }
+    ],
+    "locked": false,
+    "type": "normal"
+  },
+  {
+    "id": 1000526,
+    "header": "Part 1.3",
+    "description": "",
+    "description_type": "markdown",
+    "items": [
+      {
+        "id": 2490011,
+        "description": "",
+        "header": "Min points",
+        "points": 0.0
+      },
+      {
+        "id": 2490012,
+        "description": "",
+        "header": "Max points",
+        "points": 10.0
+      }
+    ],
+    "locked": false,
+    "type": "continuous"
+  },
+  {
+    "id": 1000528,
+    "header": "Part 2",
+    "description": "",
+    "description_type": "markdown",
+    "items": [
+      {
+        "id": 2490024,
+        "description": "",
+        "header": "Min points",
+        "points": 0.0
+      },
+      {
+        "id": 2490025,
+        "description": "",
+        "header": "Max points",
+        "points": 26.0
+      }
+    ],
+    "locked": false,
+    "type": "continuous"
+  }
+]

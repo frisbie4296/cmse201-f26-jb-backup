@@ -1,0 +1,186 @@
+[
+  {
+    "id": 876492,
+    "header": "Academic Integrity Statement",
+    "description": "",
+    "description_type": "markdown",
+    "items": [
+      {
+        "id": 2235161,
+        "description": "",
+        "header": "Incomplete",
+        "points": 0.0
+      },
+      {
+        "id": 2235162,
+        "description": "",
+        "header": "Complete",
+        "points": 5.0
+      }
+    ],
+    "locked": false,
+    "type": "normal"
+  },
+  {
+    "id": 876493,
+    "header": "Part 1a",
+    "description": "",
+    "description_type": "markdown",
+    "items": [
+      {
+        "id": 2235163,
+        "description": "",
+        "header": "Incomplete",
+        "points": 0.0
+      },
+      {
+        "id": 2235164,
+        "description": "an attempt that is not formatted correctly AND output is incorrect",
+        "header": "Partially complete",
+        "points": 4.0
+      },
+      {
+        "id": 2235165,
+        "description": "attempt that is not formatted correctly OR output is incorrect",
+        "header": "Partially complete",
+        "points": 7.0
+      },
+      {
+        "id": 2235166,
+        "description": "",
+        "header": "Complete",
+        "points": 10.0
+      }
+    ],
+    "locked": false,
+    "type": "normal"
+  },
+  {
+    "id": 876494,
+    "header": "Part 1b",
+    "description": "",
+    "description_type": "markdown",
+    "items": [
+      {
+        "id": 2235167,
+        "description": "",
+        "header": "Min points",
+        "points": 0.0
+      },
+      {
+        "id": 2235168,
+        "description": "",
+        "header": "Max points",
+        "points": 10.0
+      }
+    ],
+    "locked": false,
+    "type": "continuous"
+  },
+  {
+    "id": 876495,
+    "header": "Part 2a",
+    "description": "",
+    "description_type": "markdown",
+    "items": [
+      {
+        "id": 2235169,
+        "description": "",
+        "header": "Incomplete",
+        "points": 0.0
+      },
+      {
+        "id": 2235170,
+        "description": "an attempt that is not formatted correctly AND output is incorrect",
+        "header": "Partially complete",
+        "points": 4.0
+      },
+      {
+        "id": 2235171,
+        "description": "attempt that is not formatted correctly OR output is incorrect",
+        "header": "Partially complete",
+        "points": 7.0
+      },
+      {
+        "id": 2235172,
+        "description": "Correct ouput with exceptions",
+        "header": "Partially complete",
+        "points": 9.0
+      },
+      {
+        "id": 2235173,
+        "description": "",
+        "header": "Complete",
+        "points": 10.0
+      }
+    ],
+    "locked": false,
+    "type": "normal"
+  },
+  {
+    "id": 876496,
+    "header": "Part 2b",
+    "description": "",
+    "description_type": "markdown",
+    "items": [
+      {
+        "id": 2235174,
+        "description": "",
+        "header": "Min points",
+        "points": 0.0
+      },
+      {
+        "id": 2235175,
+        "description": "",
+        "header": "Max points",
+        "points": 10.0
+      }
+    ],
+    "locked": false,
+    "type": "continuous"
+  },
+  {
+    "id": 876497,
+    "header": "Part 3a",
+    "description": "",
+    "description_type": "markdown",
+    "items": [
+      {
+        "id": 2235176,
+        "description": "",
+        "header": "Min points",
+        "points": 0.0
+      },
+      {
+        "id": 2235177,
+        "description": "",
+        "header": "Max points",
+        "points": 10.0
+      }
+    ],
+    "locked": false,
+    "type": "continuous"
+  },
+  {
+    "id": 876498,
+    "header": "Part 3b",
+    "description": "",
+    "description_type": "markdown",
+    "items": [
+      {
+        "id": 2235178,
+        "description": "",
+        "header": "Min points",
+        "points": 0.0
+      },
+      {
+        "id": 2235179,
+        "description": "",
+        "header": "Max points",
+        "points": 10.0
+      }
+    ],
+    "locked": false,
+    "type": "continuous"
+  }
+]

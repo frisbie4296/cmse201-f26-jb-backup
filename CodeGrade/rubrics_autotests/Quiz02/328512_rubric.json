@@ -1,0 +1,178 @@
+[
+  {
+    "id": 917665,
+    "header": "Academic Integrity Statement",
+    "description": "",
+    "description_type": "markdown",
+    "items": [
+      {
+        "id": 2319699,
+        "description": "",
+        "header": "Incomplete",
+        "points": 0.0
+      },
+      {
+        "id": 2319700,
+        "description": "",
+        "header": "Complete",
+        "points": 10.0
+      }
+    ],
+    "locked": false,
+    "type": "normal"
+  },
+  {
+    "id": 917666,
+    "header": "Part 1a",
+    "description": "",
+    "description_type": "markdown",
+    "items": [
+      {
+        "id": 2319718,
+        "description": "",
+        "header": "Min points",
+        "points": 0.0
+      },
+      {
+        "id": 2319719,
+        "description": "",
+        "header": "Max points",
+        "points": 20.0
+      }
+    ],
+    "locked": false,
+    "type": "continuous"
+  },
+  {
+    "id": 917667,
+    "header": "Part 1b",
+    "description": "",
+    "description_type": "markdown",
+    "items": [
+      {
+        "id": 2319705,
+        "description": "",
+        "header": "Min points",
+        "points": 0.0
+      },
+      {
+        "id": 2319706,
+        "description": "",
+        "header": "Max points",
+        "points": 10.0
+      }
+    ],
+    "locked": false,
+    "type": "continuous"
+  },
+  {
+    "id": 917668,
+    "header": "Part 2a",
+    "description": "",
+    "description_type": "markdown",
+    "items": [
+      {
+        "id": 2319720,
+        "description": "",
+        "header": "Min points",
+        "points": 0.0
+      },
+      {
+        "id": 2319721,
+        "description": "",
+        "header": "Max points",
+        "points": 10.0
+      }
+    ],
+    "locked": false,
+    "type": "continuous"
+  },
+  {
+    "id": 917669,
+    "header": "Part 2b",
+    "description": "",
+    "description_type": "markdown",
+    "items": [
+      {
+        "id": 2319712,
+        "description": "",
+        "header": "Min points",
+        "points": 0.0
+      },
+      {
+        "id": 2319713,
+        "description": "",
+        "header": "Max points",
+        "points": 10.0
+      }
+    ],
+    "locked": false,
+    "type": "continuous"
+  },
+  {
+    "id": 917670,
+    "header": "Part 3",
+    "description": "",
+    "description_type": "markdown",
+    "items": [
+      {
+        "id": 2319714,
+        "description": "",
+        "header": "Min points",
+        "points": 0.0
+      },
+      {
+        "id": 2319715,
+        "description": "",
+        "header": "Max points",
+        "points": 10.0
+      }
+    ],
+    "locked": false,
+    "type": "continuous"
+  },
+  {
+    "id": 917671,
+    "header": "Part 4a",
+    "description": "",
+    "description_type": "markdown",
+    "items": [
+      {
+        "id": 2319716,
+        "description": "",
+        "header": "Min points",
+        "points": 0.0
+      },
+      {
+        "id": 2319717,
+        "description": "",
+        "header": "Max points",
+        "points": 10.0
+      }
+    ],
+    "locked": false,
+    "type": "continuous"
+  },
+  {
+    "id": 917672,
+    "header": "Part 4b",
+    "description": "",
+    "description_type": "markdown",
+    "items": [
+      {
+        "id": 2319722,
+        "description": "",
+        "header": "Min points",
+        "points": 0.0
+      },
+      {
+        "id": 2319723,
+        "description": "",
+        "header": "Max points",
+        "points": 10.0
+      }
+    ],
+    "locked": false,
+    "type": "continuous"
+  }
+]

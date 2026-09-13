@@ -1,0 +1,40 @@
+Videos pre-day 4 - need change videos from html to markdown
+Make name appear on upper left is also html
+Day 3:
+- rewrite name problem to be variable and test those 
+- for loop is probably fine without a test
+- While loop - add test for Question 5, not Question 4
+- rewrite challenge problem to be testable (using variables) - just pick a new problem (copy from in class)
+Day 4:
+- could have mean and median tested (part 3.4)
+
+Day 4:
+- 5.1.1 make the concatanate assigned to a variable
+- Change videos from html to markdown
+
+Day 5:
+- Part 2: Rewrite to make a y_list that contains the even numbers using append
+- "greater_than_6_list" doesn't need to be changed but a test should be written for it 
+- 4.3: test if function exists, test with values and see if result is as expected
+- 4.4: "In the cell below, we have definde" fix to defined
+
+Day 6: 
+- Part 3: Test if the function exsists
+- Part 3: Add into directions "Create a function called happy_birthday"
+- Test check_for_strings function for if it exists and if it works correctly
+- Time permitting: change directions to "write a function called _____" and then test to see if it exists then check for strings
+
+Day 8: DONE
+- If you see a plot, add a line that saves the figure "plt.savefig()"
+
+Day 9: DONE
+- 2.2: Make the usecols and skiprows to say "change ___ and save it to _____ (variable name) and then print" 
+- Test plotted data from michigan_pop.csv
+- If you see a plot, add a line that saves the figure "plt.savefig()"
+
+
+Other notes
+- If students have a csv file, they can't do that - we should port these things over to cmse_supplemental
+- have a scripts to compare two plots
+- check pca surveys to be links
+- could also do this for the in classes

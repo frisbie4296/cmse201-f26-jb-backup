@@ -1,0 +1,79 @@
+{
+  "assignmentId": "319690",
+  "publishedSnapshot": {
+    "published": "DEPLOY_CONFIG#BUILD_319690_cty6DyjBzeISLqYDFIxxPn-7Yj02nVwlFJIQtyGMoKBsop1LXXmEE1E4yW5IM3at99D-v-wuQmJJ3GtP-cI8TQ#SuYxHDJ0gZWIQiqxGr4qgyt5DwLt-l1m_rrs7w7YSUw"
+  },
+  "setup": {
+    "metadata": {
+      "baseImageId": "base-image-2023-10-04-v1"
+    },
+    "steps": [
+      {
+        "installPython": {
+          "id": "7f89ade4-5561-4457-9126-50706c12bc70",
+          "version": "3.13"
+        }
+      },
+      {
+        "script": {
+          "description": {
+            "behavior": "collapse",
+            "value": ""
+          },
+          "id": "a0fea8ac-f39c-4849-b276-9ca72cdd3a59",
+          "name": "",
+          "script": "# Write your bash script here.\npython3 -m pip install matplotlib numpy pandas"
+        }
+      },
+      {
+        "uploadFiles": {
+          "description": {
+            "behavior": "collapse",
+            "value": ""
+          },
+          "files": [
+            {
+              "id": "a158fc42-4b7b-48e0-b92a-87d2332c678b",
+              "path": "GDP_Cleaned.csv",
+              "size": 124773,
+              "url": "https://eu-cluster-appnestedstac-websocketserveratbucket8-17npz624rhwow.s3.eu-west-1.amazonaws.com/v1/319690/fixtures/a773dab1-767e-4e6f-9a8b-4743d0754d96?X-Amz-Algorithm=AWS4-HMAC-SHA256&X-Amz-Content-Sha256=UNSIGNED-PAYLOAD&X-Amz-Credential=ASIATXEKFQQ47VFMXEQL%2F20251229%2Feu-west-1%2Fs3%2Faws4_request&X-Amz-Date=20251229T101438Z&X-Amz-Expires=3600&X-Amz-Security-Token=IQoJb3JpZ2luX2VjENL%2F%2F%2F%2F%2F%2F%2F%2F%2F%2FwEaCWV1LXdlc3QtMSJHMEUCIQDS9bWbq4ZykO%2BvhXGC25wUHoSjPm%2BPHikE5acKXILDewIgWOQZL5wE0iBebn6FKDuYZBcJ%2FpInEX%2FAsMc1OP5SDpQqiQMIm%2F%2F%2F%2F%2F%2F%2F%2F%2F%2F%2FARAEGgwyNTU4NDAzMjI2MTciDAYIQtmdF%2B5ZpYPC0yrdAheYmqomw1Z6mVXVyO0yLz7OoQnXQH9xUqhnBOvSfp5f2IGCjCDwyrEUCOSiVDTeyEemCCSqH6HzcqeWqPrjWtG%2Fvskfcw1dG9spo3sA9mS7lYytvEdDAdsnPA%2B0V1iGw9CUnlZdztLPGjolT7%2FoxZJf3qWtxqwO41P1R2dLpGqmhtE%2F%2FbB8U%2Fnedhtj8b9ppfWMGgtwmn2Jb%2BJ8mXiEdMrfefRhjBEbljSzbHiZV7ERvE1fpKfH7ze%2FxVc%2FWmkl4vACK2U7mzznATFy2DHNYFDLhumU%2FKvbkUMV2OLSBY1vkpu6kJO6CVN6ldSNqV9hrp2tzoivNJYgORxFaIVF8faVE0kS4Uj4wdB9S46acF7gGNo%2FZyFc9fYdtYdk8qpSiqWdZuzIvLzMZkzdXEBr0SQcmqtAobgrzzaePgdOHv5DU68DsEVFDTijxb3yc%2B3kfP5USCzI9hFwL%2F1ZZYMwgJTJygY6ngGhRpU4dRrfpSQEtAYEJk39sr1wuIeyqha5nCmsRCArXW%2FeBBTcwLd2%2Bl3Sln1nhOlhqxv9dE%2B3nlGhFpBZGIfy2TdgdCNIQseKvJZAp8cYBhoLO7b4jy0aft%2Fjj%2FtZDIJtvxojZLO3igO1YvfgkCyQAH%2FTjxR9a8v0Z6olE1pZhJExLMTbDWey%2F4V6X7I%2FoG5dVIYP3ySk9FK%2BQLY%2B3A%3D%3D&X-Amz-Signature=d0d97532652deee0d8696832d84645b0038680a4aa87aa4a2db4f2a1d8e26e02&X-Amz-SignedHeaders=host&x-amz-checksum-mode=ENABLED&x-id=GetObject"
+            }
+          ],
+          "id": "9f1321af-8e29-4228-8862-201e930bc215",
+          "name": ""
+        }
+      },
+      {
+        "script": {
+          "description": {
+            "behavior": "collapse",
+            "value": ""
+          },
+          "id": "41b446f1-655f-4cb2-b31b-8517b9e86133",
+          "name": "",
+          "script": "# Write your bash script here.\nmv $FIXTURES/*.csv ."
+        }
+      }
+    ]
+  },
+  "test": {
+    "steps": [
+      {
+        "jupyterNotebook": {
+          "children": [],
+          "id": "af554338-a46b-4ac6-a1fc-1d4972ef2966",
+          "kernel": "Python 3",
+          "name": "",
+          "python3KernelVersion": "6.29.5",
+          "runPermission": "enabled",
+          "templateFile": {
+            "id": "fa1f7ad5-7bc8-4243-9d45-8f36feb3bd5b",
+            "path": "Day-11_Pre-Class_Masking-STUDENT.ipynb",
+            "size": 33982,
+            "url": "https://eu-cluster-appnestedstac-websocketserveratbucket8-17npz624rhwow.s3.eu-west-1.amazonaws.com/v1/319690/fixtures/011dfabe-02ac-42ab-b72d-5fbaf4a7b0ef?X-Amz-Algorithm=AWS4-HMAC-SHA256&X-Amz-Content-Sha256=UNSIGNED-PAYLOAD&X-Amz-Credential=ASIATXEKFQQ47VFMXEQL%2F20251229%2Feu-west-1%2Fs3%2Faws4_request&X-Amz-Date=20251229T101438Z&X-Amz-Expires=3600&X-Amz-Security-Token=IQoJb3JpZ2luX2VjENL%2F%2F%2F%2F%2F%2F%2F%2F%2F%2FwEaCWV1LXdlc3QtMSJHMEUCIQDS9bWbq4ZykO%2BvhXGC25wUHoSjPm%2BPHikE5acKXILDewIgWOQZL5wE0iBebn6FKDuYZBcJ%2FpInEX%2FAsMc1OP5SDpQqiQMIm%2F%2F%2F%2F%2F%2F%2F%2F%2F%2F%2FARAEGgwyNTU4NDAzMjI2MTciDAYIQtmdF%2B5ZpYPC0yrdAheYmqomw1Z6mVXVyO0yLz7OoQnXQH9xUqhnBOvSfp5f2IGCjCDwyrEUCOSiVDTeyEemCCSqH6HzcqeWqPrjWtG%2Fvskfcw1dG9spo3sA9mS7lYytvEdDAdsnPA%2B0V1iGw9CUnlZdztLPGjolT7%2FoxZJf3qWtxqwO41P1R2dLpGqmhtE%2F%2FbB8U%2Fnedhtj8b9ppfWMGgtwmn2Jb%2BJ8mXiEdMrfefRhjBEbljSzbHiZV7ERvE1fpKfH7ze%2FxVc%2FWmkl4vACK2U7mzznATFy2DHNYFDLhumU%2FKvbkUMV2OLSBY1vkpu6kJO6CVN6ldSNqV9hrp2tzoivNJYgORxFaIVF8faVE0kS4Uj4wdB9S46acF7gGNo%2FZyFc9fYdtYdk8qpSiqWdZuzIvLzMZkzdXEBr0SQcmqtAobgrzzaePgdOHv5DU68DsEVFDTijxb3yc%2B3kfP5USCzI9hFwL%2F1ZZYMwgJTJygY6ngGhRpU4dRrfpSQEtAYEJk39sr1wuIeyqha5nCmsRCArXW%2FeBBTcwLd2%2Bl3Sln1nhOlhqxv9dE%2B3nlGhFpBZGIfy2TdgdCNIQseKvJZAp8cYBhoLO7b4jy0aft%2Fjj%2FtZDIJtvxojZLO3igO1YvfgkCyQAH%2FTjxR9a8v0Z6olE1pZhJExLMTbDWey%2F4V6X7I%2FoG5dVIYP3ySk9FK%2BQLY%2B3A%3D%3D&X-Amz-Signature=58fdecb70f0e1076ce234d37adf7dc342229512dd1d6b2c49ca1d793b48be252&X-Amz-SignedHeaders=host&x-amz-checksum-mode=ENABLED&x-id=GetObject"
+          }
+        }
+      }
+    ]
+  }
+}

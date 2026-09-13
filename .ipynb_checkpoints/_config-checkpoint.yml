@@ -1,0 +1,67 @@
+# Book settings
+# Learn more at https://jupyterbook.org/customize/config.html
+
+title: CMSE 201 
+author: the Department of Computational Mathematics, Science and Engineering at Michigan State University
+copyright: "2026"
+logo: logo.png
+
+only_build_toc_files: true
+
+# Force re-execution of notebooks on each build.
+# See https://jupyterbook.org/content/execute.html
+execute:
+  execute_notebooks: 'off'
+
+# Define the name of the latex output file for PDF builds
+latex:
+  latex_documents:
+    targetname: book.tex
+
+# Add a bibtex file so that we can create citations
+bibtex_bibfiles:
+  - references.bib
+
+# Information about where the book exists on the web
+repository:
+  url: https://github.com/msu-cmse-courses/cmse201-s26-jb  # Online location of your book
+  #path_to_book: docs  # Optional path to your book, relative to the repository root
+  branch: main  # Which branch of the repository should be used when creating links (optional)
+
+# Add GitHub buttons to your book
+# See https://jupyterbook.org/customize/config.html#add-a-link-to-your-repository
+## DS comment, the next three lines were the defaults in here originally, but I replaced them below
+# html:
+#  favicon: "images/cmse_fav.ico"
+#  use_issues_button: true
+#  use_repository_button: true
+
+# HTML-specific settings
+html:
+  favicon                   : images/cmse_fav.ico
+  use_edit_page_button      : false
+  use_repository_button     : false
+  use_issues_button         : false
+  use_multitoc_numbering    : true
+  home_page_in_navbar       : true
+  baseurl                   : ""
+
+sphinx:
+  config:
+    suppress_warnings:
+    - myst.header
+    html_theme_options:
+      launch_buttons: {}
+
+# Launch button settings
+launch_buttons:
+  notebook_interface        : classic
+  binderhub_url             : ""
+  jupyterhub_url            : "" #https://jupyterhub.egr.msu.edu/ # doesn't work since repo isn't public
+  thebe                     : false
+  colab_url                 : "" #https://colab.research.google.com # this would be nice, but it can't be used since the repo isn't public
+
+exclude_patterns:
+  - "**/.ipynb_checkpoints/*"
+  - "**/*checkpoint.ipynb"
+  - "**/*(1).ipynb"

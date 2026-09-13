@@ -1,0 +1,348 @@
+[
+  {
+    "id": 992335,
+    "header": "Academic Integrity statement",
+    "description": "",
+    "description_type": "markdown",
+    "items": [
+      {
+        "id": 2473349,
+        "description": "",
+        "header": "Incomplete",
+        "points": 0.0
+      },
+      {
+        "id": 2473350,
+        "description": "",
+        "header": "Complete",
+        "points": 2.0
+      }
+    ],
+    "locked": false,
+    "type": "normal"
+  },
+  {
+    "id": 992336,
+    "header": "Task 1.1",
+    "description": "2 points per answer",
+    "description_type": "markdown",
+    "items": [
+      {
+        "id": 2473351,
+        "description": "",
+        "header": "Min points",
+        "points": 0.0
+      },
+      {
+        "id": 2473352,
+        "description": "",
+        "header": "Max points",
+        "points": 6.0
+      }
+    ],
+    "locked": false,
+    "type": "continuous"
+  },
+  {
+    "id": 992337,
+    "header": "Task 1.2",
+    "description": "3 points per answer",
+    "description_type": "markdown",
+    "items": [
+      {
+        "id": 2473396,
+        "description": "",
+        "header": "Min points",
+        "points": 0.0
+      },
+      {
+        "id": 2473397,
+        "description": "",
+        "header": "Max points",
+        "points": 9.0
+      }
+    ],
+    "locked": false,
+    "type": "continuous"
+  },
+  {
+    "id": 992340,
+    "header": "Task 2.1a",
+    "description": "1 point per neighbor",
+    "description_type": "markdown",
+    "items": [
+      {
+        "id": 2473364,
+        "description": "",
+        "header": "Min points",
+        "points": 0.0
+      },
+      {
+        "id": 2473365,
+        "description": "",
+        "header": "Max points",
+        "points": 4.0
+      }
+    ],
+    "locked": false,
+    "type": "continuous"
+  },
+  {
+    "id": 992341,
+    "header": "Task 2.1b",
+    "description": "3 points per working rule\n",
+    "description_type": "markdown",
+    "items": [
+      {
+        "id": 2473366,
+        "description": "",
+        "header": "Min points",
+        "points": 0.0
+      },
+      {
+        "id": 2473367,
+        "description": "",
+        "header": "Max points",
+        "points": 6.0
+      }
+    ],
+    "locked": false,
+    "type": "continuous"
+  },
+  {
+    "id": 992342,
+    "header": "Task 2.1c",
+    "description": "",
+    "description_type": "markdown",
+    "items": [
+      {
+        "id": 2473368,
+        "description": "",
+        "header": "Min points",
+        "points": 0.0
+      },
+      {
+        "id": 2473369,
+        "description": "",
+        "header": "Max points",
+        "points": 2.0
+      }
+    ],
+    "locked": false,
+    "type": "continuous"
+  },
+  {
+    "id": 992343,
+    "header": "Task 2.2",
+    "description": "2 points for repeating the pattern\n1 position for the correct variable value\n2 points for displaying the plot",
+    "description_type": "markdown",
+    "items": [
+      {
+        "id": 2473370,
+        "description": "",
+        "header": "Incomplete",
+        "points": 0.0
+      },
+      {
+        "id": 2473418,
+        "description": "",
+        "header": "Partial credit",
+        "points": 1.0
+      },
+      {
+        "id": 2473371,
+        "description": "",
+        "header": "Partial credit",
+        "points": 2.0
+      },
+      {
+        "id": 2473419,
+        "description": "",
+        "header": "Partial credit",
+        "points": 3.0
+      },
+      {
+        "id": 2473420,
+        "description": "",
+        "header": "Partial credit",
+        "points": 4.0
+      },
+      {
+        "id": 2473421,
+        "description": "",
+        "header": "Complete",
+        "points": 5.0
+      }
+    ],
+    "locked": false,
+    "type": "normal"
+  },
+  {
+    "id": 992344,
+    "header": "Task 2.3",
+    "description": "1 point for running the code\n1 point for explanation",
+    "description_type": "markdown",
+    "items": [
+      {
+        "id": 2473400,
+        "description": "",
+        "header": "Incomplete",
+        "points": 0.0
+      },
+      {
+        "id": 2473401,
+        "description": "",
+        "header": "Partial credit",
+        "points": 1.0
+      },
+      {
+        "id": 2473402,
+        "description": "",
+        "header": "Complete",
+        "points": 2.0
+      }
+    ],
+    "locked": false,
+    "type": "normal"
+  },
+  {
+    "id": 992345,
+    "header": "Task 2.4",
+    "description": "4 points for editing the rules\n4 points for explanation",
+    "description_type": "markdown",
+    "items": [
+      {
+        "id": 2473403,
+        "description": "",
+        "header": "Incomplete",
+        "points": 0.0
+      },
+      {
+        "id": 2473404,
+        "description": "",
+        "header": "Partial credit",
+        "points": 4.0
+      },
+      {
+        "id": 2473405,
+        "description": "",
+        "header": "Complete",
+        "points": 8.0
+      }
+    ],
+    "locked": false,
+    "type": "normal"
+  },
+  {
+    "id": 992346,
+    "header": "Task 3 a",
+    "description": "",
+    "description_type": "markdown",
+    "items": [
+      {
+        "id": 2473406,
+        "description": "",
+        "header": "Incomplete",
+        "points": 0.0
+      },
+      {
+        "id": 2473407,
+        "description": "",
+        "header": "Partial credit",
+        "points": 1.0
+      },
+      {
+        "id": 2473408,
+        "description": "",
+        "header": "Complete",
+        "points": 2.0
+      }
+    ],
+    "locked": false,
+    "type": "normal"
+  },
+  {
+    "id": 992347,
+    "header": "Task 3 b",
+    "description": "5 points for each correct fix",
+    "description_type": "markdown",
+    "items": [
+      {
+        "id": 2473411,
+        "description": "",
+        "header": "Incomplete",
+        "points": 0.0
+      },
+      {
+        "id": 2473412,
+        "description": "",
+        "header": "Partial credit",
+        "points": 5.0
+      },
+      {
+        "id": 2473413,
+        "description": "",
+        "header": "Complete",
+        "points": 10.0
+      }
+    ],
+    "locked": false,
+    "type": "normal"
+  },
+  {
+    "id": 992348,
+    "header": "Task 3 b second",
+    "description": "",
+    "description_type": "markdown",
+    "items": [
+      {
+        "id": 2473414,
+        "description": "",
+        "header": "Min points",
+        "points": 0.0
+      },
+      {
+        "id": 2473415,
+        "description": "",
+        "header": "Partial credit",
+        "points": 2.0
+      },
+      {
+        "id": 2473416,
+        "description": "",
+        "header": "Partial credit",
+        "points": 3.0
+      },
+      {
+        "id": 2473417,
+        "description": "",
+        "header": "Complete",
+        "points": 5.0
+      }
+    ],
+    "locked": false,
+    "type": "normal"
+  },
+  {
+    "id": 992349,
+    "header": "Task 3 c",
+    "description": "",
+    "description_type": "markdown",
+    "items": [
+      {
+        "id": 2473382,
+        "description": "",
+        "header": "Min points",
+        "points": 0.0
+      },
+      {
+        "id": 2473383,
+        "description": "",
+        "header": "Max points",
+        "points": 3.0
+      }
+    ],
+    "locked": false,
+    "type": "continuous"
+  }
+]

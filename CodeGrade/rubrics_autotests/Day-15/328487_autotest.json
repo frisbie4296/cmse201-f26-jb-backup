@@ -1,0 +1,148 @@
+{
+  "assignmentId": "328487",
+  "publishedSnapshot": {
+    "published": "DEPLOY_CONFIG#build_from_copied#I2zi9dGqklU9I-olxOco1Zce5rB8_XZLHsFRYpkJ6o4"
+  },
+  "setup": {
+    "metadata": {
+      "baseImageId": "base-image-2023-10-04-v1"
+    },
+    "steps": [
+      {
+        "installPython": {
+          "id": "7f89ade4-5561-4457-9126-50706c12bc70",
+          "version": "3.13"
+        }
+      },
+      {
+        "script": {
+          "description": {
+            "behavior": "collapse",
+            "value": ""
+          },
+          "id": "a0fea8ac-f39c-4849-b276-9ca72cdd3a59",
+          "name": "",
+          "script": "# Write your bash script here.\npython3 -m pip install matplotlib pytest numpy scikit-learn scikit-image scipy"
+        }
+      }
+    ]
+  },
+  "test": {
+    "steps": [
+      {
+        "testHide": {
+          "children": [
+            {
+              "testUploadFiles": {
+                "description": {
+                  "behavior": "collapse",
+                  "value": ""
+                },
+                "files": [
+                  {
+                    "id": "57c65995-41b9-4aaf-9e1b-c1a6c2941c3a",
+                    "path": "plot_comparing.py",
+                    "size": 1048,
+                    "url": "https://eu-cluster-appnestedstac-websocketserveratbucket8-17npz624rhwow.s3.eu-west-1.amazonaws.com/v1/328487/fixtures/4eb84544-6966-45b1-9f67-8f4f4f64847e?X-Amz-Algorithm=AWS4-HMAC-SHA256&X-Amz-Content-Sha256=UNSIGNED-PAYLOAD&X-Amz-Credential=ASIATXEKFQQ47VFMXEQL%2F20251229%2Feu-west-1%2Fs3%2Faws4_request&X-Amz-Date=20251229T101530Z&X-Amz-Expires=3600&X-Amz-Security-Token=IQoJb3JpZ2luX2VjENL%2F%2F%2F%2F%2F%2F%2F%2F%2F%2FwEaCWV1LXdlc3QtMSJHMEUCIQDS9bWbq4ZykO%2BvhXGC25wUHoSjPm%2BPHikE5acKXILDewIgWOQZL5wE0iBebn6FKDuYZBcJ%2FpInEX%2FAsMc1OP5SDpQqiQMIm%2F%2F%2F%2F%2F%2F%2F%2F%2F%2F%2FARAEGgwyNTU4NDAzMjI2MTciDAYIQtmdF%2B5ZpYPC0yrdAheYmqomw1Z6mVXVyO0yLz7OoQnXQH9xUqhnBOvSfp5f2IGCjCDwyrEUCOSiVDTeyEemCCSqH6HzcqeWqPrjWtG%2Fvskfcw1dG9spo3sA9mS7lYytvEdDAdsnPA%2B0V1iGw9CUnlZdztLPGjolT7%2FoxZJf3qWtxqwO41P1R2dLpGqmhtE%2F%2FbB8U%2Fnedhtj8b9ppfWMGgtwmn2Jb%2BJ8mXiEdMrfefRhjBEbljSzbHiZV7ERvE1fpKfH7ze%2FxVc%2FWmkl4vACK2U7mzznATFy2DHNYFDLhumU%2FKvbkUMV2OLSBY1vkpu6kJO6CVN6ldSNqV9hrp2tzoivNJYgORxFaIVF8faVE0kS4Uj4wdB9S46acF7gGNo%2FZyFc9fYdtYdk8qpSiqWdZuzIvLzMZkzdXEBr0SQcmqtAobgrzzaePgdOHv5DU68DsEVFDTijxb3yc%2B3kfP5USCzI9hFwL%2F1ZZYMwgJTJygY6ngGhRpU4dRrfpSQEtAYEJk39sr1wuIeyqha5nCmsRCArXW%2FeBBTcwLd2%2Bl3Sln1nhOlhqxv9dE%2B3nlGhFpBZGIfy2TdgdCNIQseKvJZAp8cYBhoLO7b4jy0aft%2Fjj%2FtZDIJtvxojZLO3igO1YvfgkCyQAH%2FTjxR9a8v0Z6olE1pZhJExLMTbDWey%2F4V6X7I%2FoG5dVIYP3ySk9FK%2BQLY%2B3A%3D%3D&X-Amz-Signature=f6afa77a85bc5e9286e07f9e1f3a791f13e0620e683e8c04f83e6e7fecbdfd9e&X-Amz-SignedHeaders=host&x-amz-checksum-mode=ENABLED&x-id=GetObject"
+                  },
+                  {
+                    "id": "4ce24741-2538-4359-b09e-a2edd9d5d083",
+                    "path": "task4_1sol.png",
+                    "size": 12601,
+                    "url": "https://eu-cluster-appnestedstac-websocketserveratbucket8-17npz624rhwow.s3.eu-west-1.amazonaws.com/v1/328487/fixtures/eef3e497-4501-4b10-8874-cfbca432e7d3?X-Amz-Algorithm=AWS4-HMAC-SHA256&X-Amz-Content-Sha256=UNSIGNED-PAYLOAD&X-Amz-Credential=ASIATXEKFQQ47VFMXEQL%2F20251229%2Feu-west-1%2Fs3%2Faws4_request&X-Amz-Date=20251229T101530Z&X-Amz-Expires=3600&X-Amz-Security-Token=IQoJb3JpZ2luX2VjENL%2F%2F%2F%2F%2F%2F%2F%2F%2F%2FwEaCWV1LXdlc3QtMSJHMEUCIQDS9bWbq4ZykO%2BvhXGC25wUHoSjPm%2BPHikE5acKXILDewIgWOQZL5wE0iBebn6FKDuYZBcJ%2FpInEX%2FAsMc1OP5SDpQqiQMIm%2F%2F%2F%2F%2F%2F%2F%2F%2F%2F%2FARAEGgwyNTU4NDAzMjI2MTciDAYIQtmdF%2B5ZpYPC0yrdAheYmqomw1Z6mVXVyO0yLz7OoQnXQH9xUqhnBOvSfp5f2IGCjCDwyrEUCOSiVDTeyEemCCSqH6HzcqeWqPrjWtG%2Fvskfcw1dG9spo3sA9mS7lYytvEdDAdsnPA%2B0V1iGw9CUnlZdztLPGjolT7%2FoxZJf3qWtxqwO41P1R2dLpGqmhtE%2F%2FbB8U%2Fnedhtj8b9ppfWMGgtwmn2Jb%2BJ8mXiEdMrfefRhjBEbljSzbHiZV7ERvE1fpKfH7ze%2FxVc%2FWmkl4vACK2U7mzznATFy2DHNYFDLhumU%2FKvbkUMV2OLSBY1vkpu6kJO6CVN6ldSNqV9hrp2tzoivNJYgORxFaIVF8faVE0kS4Uj4wdB9S46acF7gGNo%2FZyFc9fYdtYdk8qpSiqWdZuzIvLzMZkzdXEBr0SQcmqtAobgrzzaePgdOHv5DU68DsEVFDTijxb3yc%2B3kfP5USCzI9hFwL%2F1ZZYMwgJTJygY6ngGhRpU4dRrfpSQEtAYEJk39sr1wuIeyqha5nCmsRCArXW%2FeBBTcwLd2%2Bl3Sln1nhOlhqxv9dE%2B3nlGhFpBZGIfy2TdgdCNIQseKvJZAp8cYBhoLO7b4jy0aft%2Fjj%2FtZDIJtvxojZLO3igO1YvfgkCyQAH%2FTjxR9a8v0Z6olE1pZhJExLMTbDWey%2F4V6X7I%2FoG5dVIYP3ySk9FK%2BQLY%2B3A%3D%3D&X-Amz-Signature=6b549928cc205c929ccfafeecbbda18b01fd3f666e7d89a86b5a03fc5b59fa87&X-Amz-SignedHeaders=host&x-amz-checksum-mode=ENABLED&x-id=GetObject"
+                  },
+                  {
+                    "id": "ffe70291-3aef-4ae1-a7c6-07b63dc04570",
+                    "path": "task4_3sol.png",
+                    "size": 21773,
+                    "url": "https://eu-cluster-appnestedstac-websocketserveratbucket8-17npz624rhwow.s3.eu-west-1.amazonaws.com/v1/328487/fixtures/f68d953e-1e9e-440a-b36f-4c2d1aed30a5?X-Amz-Algorithm=AWS4-HMAC-SHA256&X-Amz-Content-Sha256=UNSIGNED-PAYLOAD&X-Amz-Credential=ASIATXEKFQQ47VFMXEQL%2F20251229%2Feu-west-1%2Fs3%2Faws4_request&X-Amz-Date=20251229T101530Z&X-Amz-Expires=3600&X-Amz-Security-Token=IQoJb3JpZ2luX2VjENL%2F%2F%2F%2F%2F%2F%2F%2F%2F%2FwEaCWV1LXdlc3QtMSJHMEUCIQDS9bWbq4ZykO%2BvhXGC25wUHoSjPm%2BPHikE5acKXILDewIgWOQZL5wE0iBebn6FKDuYZBcJ%2FpInEX%2FAsMc1OP5SDpQqiQMIm%2F%2F%2F%2F%2F%2F%2F%2F%2F%2F%2FARAEGgwyNTU4NDAzMjI2MTciDAYIQtmdF%2B5ZpYPC0yrdAheYmqomw1Z6mVXVyO0yLz7OoQnXQH9xUqhnBOvSfp5f2IGCjCDwyrEUCOSiVDTeyEemCCSqH6HzcqeWqPrjWtG%2Fvskfcw1dG9spo3sA9mS7lYytvEdDAdsnPA%2B0V1iGw9CUnlZdztLPGjolT7%2FoxZJf3qWtxqwO41P1R2dLpGqmhtE%2F%2FbB8U%2Fnedhtj8b9ppfWMGgtwmn2Jb%2BJ8mXiEdMrfefRhjBEbljSzbHiZV7ERvE1fpKfH7ze%2FxVc%2FWmkl4vACK2U7mzznATFy2DHNYFDLhumU%2FKvbkUMV2OLSBY1vkpu6kJO6CVN6ldSNqV9hrp2tzoivNJYgORxFaIVF8faVE0kS4Uj4wdB9S46acF7gGNo%2FZyFc9fYdtYdk8qpSiqWdZuzIvLzMZkzdXEBr0SQcmqtAobgrzzaePgdOHv5DU68DsEVFDTijxb3yc%2B3kfP5USCzI9hFwL%2F1ZZYMwgJTJygY6ngGhRpU4dRrfpSQEtAYEJk39sr1wuIeyqha5nCmsRCArXW%2FeBBTcwLd2%2Bl3Sln1nhOlhqxv9dE%2B3nlGhFpBZGIfy2TdgdCNIQseKvJZAp8cYBhoLO7b4jy0aft%2Fjj%2FtZDIJtvxojZLO3igO1YvfgkCyQAH%2FTjxR9a8v0Z6olE1pZhJExLMTbDWey%2F4V6X7I%2FoG5dVIYP3ySk9FK%2BQLY%2B3A%3D%3D&X-Amz-Signature=b3a500c5814fe36c11dd851cabe28cb4fb9716a7eacdc3a0e9a1548ab92842aa&X-Amz-SignedHeaders=host&x-amz-checksum-mode=ENABLED&x-id=GetObject"
+                  }
+                ],
+                "id": "fe329b4d-e09c-4fdb-ab3a-7ef82ff7fba1",
+                "name": ""
+              }
+            },
+            {
+              "program": {
+                "description": {
+                  "behavior": "collapse",
+                  "value": ""
+                },
+                "id": "1baa4e84-1c8e-433c-96f4-d8eee4166abf",
+                "name": "",
+                "script": "# Write your bash script here.\nmv $FIXTURES/*.png ."
+              }
+            }
+          ],
+          "hideType": "config",
+          "id": "6004a3a7-0d73-4cfd-8b74-6dad27e08012",
+          "preposition": "always",
+          "when": "deadline"
+        }
+      },
+      {
+        "jupyterNotebook": {
+          "children": [
+            {
+              "ioTest": {
+                "children": [
+                  {
+                    "substringMatch": {
+                      "caseSensitivity": "sensitive",
+                      "description": {
+                        "behavior": "collapse",
+                        "value": ""
+                      },
+                      "id": "cb734df7-648d-4650-b8f3-ad46ff39b1e3",
+                      "inputText": "",
+                      "name": "",
+                      "outputText": "PASSED",
+                      "whitespacesPolicy": "include"
+                    }
+                  }
+                ],
+                "id": "054c0cb5-6fa1-43a8-b717-2905c4ba1808",
+                "name": "Task 4.1 plot",
+                "script": "# Run the bash script and check the match blocks.\npython3 $FIXTURES/plot_comparing.py task4_1sol.png task4_1.png"
+              }
+            },
+            {
+              "ioTest": {
+                "children": [
+                  {
+                    "substringMatch": {
+                      "caseSensitivity": "sensitive",
+                      "description": {
+                        "behavior": "collapse",
+                        "value": ""
+                      },
+                      "id": "7bf45687-dc77-487a-bfb3-ba21a4e87d4f",
+                      "inputText": "",
+                      "name": "",
+                      "outputText": "PASSED",
+                      "whitespacesPolicy": "include"
+                    }
+                  }
+                ],
+                "id": "62d235b0-ac4b-491a-b5b1-f4b21bcf97c0",
+                "name": "Task 4.3 plot",
+                "script": "# Run the bash script and check the match blocks.\npython3 $FIXTURES/plot_comparing.py task4_3sol.png task4_3.png"
+              }
+            }
+          ],
+          "id": "3dc60060-b2af-431c-a720-59538c2fbf01",
+          "kernel": "Python 3",
+          "name": "",
+          "python3KernelVersion": "6.29.5",
+          "runPermission": "enabled",
+          "templateFile": {
+            "id": "ce56e901-55af-4517-a1e0-99edc5e2ce5b",
+            "path": "Day-15_Pre-Class_CurveFitting-STUDENT.ipynb",
+            "size": 16924,
+            "url": "https://eu-cluster-appnestedstac-websocketserveratbucket8-17npz624rhwow.s3.eu-west-1.amazonaws.com/v1/328487/fixtures/69d6c04b-d2db-4b37-8c88-6efec797f76c?X-Amz-Algorithm=AWS4-HMAC-SHA256&X-Amz-Content-Sha256=UNSIGNED-PAYLOAD&X-Amz-Credential=ASIATXEKFQQ47VFMXEQL%2F20251229%2Feu-west-1%2Fs3%2Faws4_request&X-Amz-Date=20251229T101530Z&X-Amz-Expires=3600&X-Amz-Security-Token=IQoJb3JpZ2luX2VjENL%2F%2F%2F%2F%2F%2F%2F%2F%2F%2FwEaCWV1LXdlc3QtMSJHMEUCIQDS9bWbq4ZykO%2BvhXGC25wUHoSjPm%2BPHikE5acKXILDewIgWOQZL5wE0iBebn6FKDuYZBcJ%2FpInEX%2FAsMc1OP5SDpQqiQMIm%2F%2F%2F%2F%2F%2F%2F%2F%2F%2F%2FARAEGgwyNTU4NDAzMjI2MTciDAYIQtmdF%2B5ZpYPC0yrdAheYmqomw1Z6mVXVyO0yLz7OoQnXQH9xUqhnBOvSfp5f2IGCjCDwyrEUCOSiVDTeyEemCCSqH6HzcqeWqPrjWtG%2Fvskfcw1dG9spo3sA9mS7lYytvEdDAdsnPA%2B0V1iGw9CUnlZdztLPGjolT7%2FoxZJf3qWtxqwO41P1R2dLpGqmhtE%2F%2FbB8U%2Fnedhtj8b9ppfWMGgtwmn2Jb%2BJ8mXiEdMrfefRhjBEbljSzbHiZV7ERvE1fpKfH7ze%2FxVc%2FWmkl4vACK2U7mzznATFy2DHNYFDLhumU%2FKvbkUMV2OLSBY1vkpu6kJO6CVN6ldSNqV9hrp2tzoivNJYgORxFaIVF8faVE0kS4Uj4wdB9S46acF7gGNo%2FZyFc9fYdtYdk8qpSiqWdZuzIvLzMZkzdXEBr0SQcmqtAobgrzzaePgdOHv5DU68DsEVFDTijxb3yc%2B3kfP5USCzI9hFwL%2F1ZZYMwgJTJygY6ngGhRpU4dRrfpSQEtAYEJk39sr1wuIeyqha5nCmsRCArXW%2FeBBTcwLd2%2Bl3Sln1nhOlhqxv9dE%2B3nlGhFpBZGIfy2TdgdCNIQseKvJZAp8cYBhoLO7b4jy0aft%2Fjj%2FtZDIJtvxojZLO3igO1YvfgkCyQAH%2FTjxR9a8v0Z6olE1pZhJExLMTbDWey%2F4V6X7I%2FoG5dVIYP3ySk9FK%2BQLY%2B3A%3D%3D&X-Amz-Signature=453de2c80ce2359201a5c4cab2ce03abbae08d2dcecff29491f384d21f9f0222&X-Amz-SignedHeaders=host&x-amz-checksum-mode=ENABLED&x-id=GetObject"
+          }
+        }
+      }
+    ]
+  }
+}

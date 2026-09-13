@@ -1,0 +1,983 @@
+
+<!DOCTYPE html>
+
+<html>
+  <head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" /><meta name="generator" content="Docutils 0.17.1: http://docutils.sourceforge.net/" />
+
+    <title>Homework 5: Modeling Bacterial Growth &#8212; CMSE 201</title>
+    
+  <!-- Loaded before other Sphinx assets -->
+  <link href="../../_static/styles/theme.css?digest=1999514e3f237ded88cf" rel="stylesheet">
+<link href="../../_static/styles/pydata-sphinx-theme.css?digest=1999514e3f237ded88cf" rel="stylesheet">
+
+    
+  <link rel="stylesheet"
+    href="../../_static/vendor/fontawesome/5.13.0/css/all.min.css">
+  <link rel="preload" as="font" type="font/woff2" crossorigin
+    href="../../_static/vendor/fontawesome/5.13.0/webfonts/fa-solid-900.woff2">
+  <link rel="preload" as="font" type="font/woff2" crossorigin
+    href="../../_static/vendor/fontawesome/5.13.0/webfonts/fa-brands-400.woff2">
+
+    <link rel="stylesheet" type="text/css" href="../../_static/pygments.css" />
+    <link rel="stylesheet" href="../../_static/styles/sphinx-book-theme.css?digest=5115cc725059bd94278eecd172e13a965bf8f5a9" type="text/css" />
+    <link rel="stylesheet" type="text/css" href="../../_static/togglebutton.css" />
+    <link rel="stylesheet" type="text/css" href="../../_static/copybutton.css" />
+    <link rel="stylesheet" type="text/css" href="../../_static/mystnb.css" />
+    <link rel="stylesheet" type="text/css" href="../../_static/sphinx-thebe.css" />
+    <link rel="stylesheet" type="text/css" href="../../_static/design-style.b7bb847fb20b106c3d81b95245e65545.min.css" />
+    
+  <!-- Pre-loaded scripts that we'll load fully later -->
+  <link rel="preload" as="script" href="../../_static/scripts/pydata-sphinx-theme.js?digest=1999514e3f237ded88cf">
+
+    <script data-url_root="../../" id="documentation_options" src="../../_static/documentation_options.js"></script>
+    <script src="../../_static/jquery.js"></script>
+    <script src="../../_static/underscore.js"></script>
+    <script src="../../_static/doctools.js"></script>
+    <script src="../../_static/clipboard.min.js"></script>
+    <script src="../../_static/copybutton.js"></script>
+    <script src="../../_static/scripts/sphinx-book-theme.js?digest=9c920249402e914e316237a7dbc6769907cce411"></script>
+    <script>let toggleHintShow = 'Click to show';</script>
+    <script>let toggleHintHide = 'Click to hide';</script>
+    <script>let toggleOpenOnPrint = 'true';</script>
+    <script src="../../_static/togglebutton.js"></script>
+    <script>var togglebuttonSelector = '.toggle, .admonition.dropdown, .tag_hide_input div.cell_input, .tag_hide-input div.cell_input, .tag_hide_output div.cell_output, .tag_hide-output div.cell_output, .tag_hide_cell.cell, .tag_hide-cell.cell';</script>
+    <script src="../../_static/design-tabs.js"></script>
+    <script>const THEBE_JS_URL = "https://unpkg.com/thebe@0.8.2/lib/index.js"
+const thebe_selector = ".thebe,.cell"
+const thebe_selector_input = "pre"
+const thebe_selector_output = ".output, .cell_output"
+</script>
+    <script async="async" src="../../_static/sphinx-thebe.js"></script>
+    <script>window.MathJax = {"options": {"processHtmlClass": "tex2jax_process|mathjax_process|math|output_area"}}</script>
+    <script defer="defer" src="https://cdn.jsdelivr.net/npm/mathjax@3/es5/tex-mml-chtml.js"></script>
+    <link rel="shortcut icon" href="../../_static/cmse_fav.ico"/>
+    <link rel="index" title="Index" href="../../genindex.html" />
+    <link rel="search" title="Search" href="../../search.html" />
+    <link rel="next" title="Homework 6: Programming a Robotic Sheepdog (Extra Credit)" href="../Homework_6/HW-06_Programming_a_robotic_sheepdog-STUDENT.html" />
+    <link rel="prev" title="Homework 4: Fitting data using SciPy" href="../Homework_4/HW4_S22-STUDENT.html" />
+    <meta name="viewport" content="width=device-width, initial-scale=1" />
+    <meta name="docsearch:language" content="None">
+    
+
+    <!-- Google Analytics -->
+    
+  </head>
+  <body data-spy="scroll" data-target="#bd-toc-nav" data-offset="60">
+<!-- Checkboxes to toggle the left sidebar -->
+<input type="checkbox" class="sidebar-toggle" name="__navigation" id="__navigation" aria-label="Toggle navigation sidebar">
+<label class="overlay overlay-navbar" for="__navigation">
+    <div class="visually-hidden">Toggle navigation sidebar</div>
+</label>
+<!-- Checkboxes to toggle the in-page toc -->
+<input type="checkbox" class="sidebar-toggle" name="__page-toc" id="__page-toc" aria-label="Toggle in-page Table of Contents">
+<label class="overlay overlay-pagetoc" for="__page-toc">
+    <div class="visually-hidden">Toggle in-page Table of Contents</div>
+</label>
+<!-- Headers at the top -->
+<div class="announcement header-item noprint"></div>
+<div class="header header-item noprint"></div>
+
+    
+    <div class="container-fluid" id="banner"></div>
+
+    
+
+    <div class="container-xl">
+      <div class="row">
+          
+<!-- Sidebar -->
+<div class="bd-sidebar noprint" id="site-navigation">
+    <div class="bd-sidebar__content">
+        <div class="bd-sidebar__top"><div class="navbar-brand-box">
+    <a class="navbar-brand text-wrap" href="../../index.html">
+      
+        <!-- `logo` is deprecated in Sphinx 4.0, so remove this when we stop supporting 3 -->
+        
+      
+      
+      <img src="../../_static/logo.png" class="logo" alt="logo">
+      
+      
+      <h1 class="site-logo" id="site-title">CMSE 201</h1>
+      
+    </a>
+</div><form class="bd-search d-flex align-items-center" action="../../search.html" method="get">
+  <i class="icon fas fa-search"></i>
+  <input type="search" class="form-control" name="q" id="search-input" placeholder="Search this book..." aria-label="Search this book..." autocomplete="off" >
+</form><nav class="bd-links" id="bd-docs-nav" aria-label="Main">
+    <div class="bd-toc-item active">
+        
+        <ul class="nav bd-sidenav bd-sidenav__home-link">
+            <li class="toctree-l1">
+                <a class="reference internal" href="../../intro.html">
+                    Welcome to Computational Modeling and Data Analysis I!
+                </a>
+            </li>
+        </ul>
+        <p aria-level="2" class="caption" role="heading">
+ <span class="caption-text">
+  Course Materials
+ </span>
+</p>
+<ul class="nav bd-sidenav">
+ <li class="toctree-l1 has-children">
+  <a class="reference internal" href="../../Course_Materials-201/CourseDocuments.html">
+   Important Course information
+  </a>
+  <input class="toctree-checkbox" id="toctree-checkbox-1" name="toctree-checkbox-1" type="checkbox"/>
+  <label for="toctree-checkbox-1">
+   <i class="fas fa-chevron-down">
+   </i>
+  </label>
+  <ul>
+   <li class="toctree-l2">
+    <a class="reference internal" href="../../Course_Materials-201/CMSE201-Syllabus.html">
+     Syllabus
+    </a>
+   </li>
+   <li class="toctree-l2">
+    <a class="reference internal" href="../../Course_Materials-201/classroom_participation.html">
+     Classroom Participation
+    </a>
+   </li>
+  </ul>
+ </li>
+</ul>
+<p aria-level="2" class="caption" role="heading">
+ <span class="caption-text">
+  Homework
+ </span>
+</p>
+<ul class="current nav bd-sidenav">
+ <li class="toctree-l1">
+  <a class="reference internal" href="../Homework_1/HW_01_S22_STUDENT.html">
+   Homework 1: Introduction to Loops, Lists, and Dictionaries
+  </a>
+ </li>
+ <li class="toctree-l1">
+  <a class="reference internal" href="../Homework_2/HW2_S22-STUDENT.html">
+   Homework 2: If Statements, Functions, and Modules
+  </a>
+ </li>
+ <li class="toctree-l1">
+  <a class="reference external" href="https://raw.githubusercontent.com/msu-cmse-courses/cmse201-F21-data/main/Homework/S22/game.txt">
+   game.txt
+  </a>
+ </li>
+ <li class="toctree-l1">
+  <a class="reference internal" href="../Homework_3/HW3_S22-STUDENT.html">
+   Homework 3: Pandas data analysis
+  </a>
+ </li>
+ <li class="toctree-l1">
+  <a class="reference external" href="https://raw.githubusercontent.com/msu-cmse-courses/cmse201-S22-data/main/Homework/HW_3/happiness_index.csv">
+   happiness_index.csv
+  </a>
+ </li>
+ <li class="toctree-l1">
+  <a class="reference internal" href="../Homework_4/HW4_S22-STUDENT.html">
+   Homework 4: Fitting data using SciPy
+  </a>
+ </li>
+ <li class="toctree-l1 current active">
+  <a class="current reference internal" href="#">
+   Homework 5: Modeling Bacterial Growth
+  </a>
+ </li>
+ <li class="toctree-l1">
+  <a class="reference internal" href="../Homework_6/HW-06_Programming_a_robotic_sheepdog-STUDENT.html">
+   Homework 6: Programming a Robotic Sheepdog (Extra Credit)
+  </a>
+ </li>
+ <li class="toctree-l1">
+  <a class="reference internal" href="../Code_Portfolio/Code_Portfolio_Assignment.html">
+   Code Portfolio Assignment
+  </a>
+ </li>
+ <li class="toctree-l1">
+  <a class="reference internal" href="../Code_Portfolio/Code_Portfolio_Example.html">
+   Code Portfolio Example
+  </a>
+ </li>
+</ul>
+<p aria-level="2" class="caption" role="heading">
+ <span class="caption-text">
+  Bootcamps
+ </span>
+</p>
+<ul class="nav bd-sidenav">
+ <li class="toctree-l1">
+  <a class="reference internal" href="../../Bootcamp_Notebooks/Bootcamp1-Python_Fundamentals_STUDENT.html">
+   Bootcamp 1: Python Fundamentals
+  </a>
+ </li>
+ <li class="toctree-l1">
+  <a class="reference internal" href="../../Bootcamp_Notebooks/Bootcamp2-InitialConceptsReview.html">
+   Bootcamp 2: Initial Concepts Review Cheatsheet
+  </a>
+ </li>
+ <li class="toctree-l1">
+  <a class="reference internal" href="../../Bootcamp_Notebooks/Bootcamp3-Debugging_STUDENT.html">
+   Bootcamp 3: Debugging
+  </a>
+ </li>
+ <li class="toctree-l1">
+  <a class="reference internal" href="../../Bootcamp_Notebooks/Bootcamp4-IfStatements_STUDENT.html">
+   Bootcamp 4: If Statements
+  </a>
+ </li>
+ <li class="toctree-l1">
+  <a class="reference internal" href="../../Bootcamp_Notebooks/Bootcamp5-Functions_STUDENT.html">
+   Bootcamp 5: Functions
+  </a>
+ </li>
+ <li class="toctree-l1">
+  <a class="reference internal" href="../../Bootcamp_Notebooks/Bootcamp6-Matplotlib_STUDENT.html">
+   Bootcamp 6: Matplotlib
+  </a>
+ </li>
+ <li class="toctree-l1">
+  <a class="reference internal" href="../../Bootcamp_Notebooks/Bootcamp7-Arrays_STUDENT.html">
+   Bootcamp 7: Practice with Indexing and Masking 2D Arrays
+  </a>
+ </li>
+ <li class="toctree-l1">
+  <a class="reference internal" href="../../Bootcamp_Notebooks/Bootcamp8_Pandas_STUDENT.html">
+   Bootcamp 8: Practice with Pandas
+  </a>
+ </li>
+ <li class="toctree-l1">
+  <a class="reference external" href="https://raw.githubusercontent.com/msu-cmse-courses/cmse201-F21-data/main/Homework/americas_gpin_2014_16.csv?raw=true">
+   americas_gpin_2014_16.csv
+  </a>
+ </li>
+ <li class="toctree-l1">
+  <a class="reference internal" href="../../Bootcamp_Notebooks/Bootcamp9-ScipyCurveFit_STUDENT.html">
+   Bootcamp 9:  Scipy curve_fit
+  </a>
+ </li>
+ <li class="toctree-l1">
+  <a class="reference internal" href="../../Bootcamp_Notebooks/Bootcamp10-CompartmentalModels_STUDENT.html">
+   Bootcamp 10: Compartmental Models
+  </a>
+ </li>
+ <li class="toctree-l1">
+  <a class="reference internal" href="../../Bootcamp_Notebooks/Bootcamp11_Solve_IVP_STUDENT.html">
+   Bootcamp 11: Practice with
+   <code class="docutils literal notranslate">
+    <span class="pre">
+     solve_ivp
+    </span>
+   </code>
+  </a>
+ </li>
+</ul>
+<p aria-level="2" class="caption" role="heading">
+ <span class="caption-text">
+  Semester Projects
+ </span>
+</p>
+<ul class="nav bd-sidenav">
+ <li class="toctree-l1">
+  <a class="reference internal" href="../../Project_Materials/CMSE201_SemesterProjectDetails.html">
+   Semester Project Details
+  </a>
+ </li>
+ <li class="toctree-l1">
+  <a class="reference internal" href="../../Project_Materials/Project_Work_Week_Summary.html">
+   Project Work Week Summary
+  </a>
+ </li>
+ <li class="toctree-l1">
+  <a class="reference internal" href="../../Project_Materials/Project_Rough_Draft_Guidelines_Feedback.html">
+   Rough Draft Guidelines/Feedback
+  </a>
+ </li>
+ <li class="toctree-l1">
+  <a class="reference internal" href="../../Project_Materials/Lightning_Presentation_Details.html">
+   Lightning Presentation Details
+  </a>
+ </li>
+ <li class="toctree-l1">
+  <a class="reference internal" href="../../Project_Materials/Second_Project_Checkpoint.html">
+   Second Project Checkpoint
+  </a>
+ </li>
+ <li class="toctree-l1">
+  <a class="reference internal" href="../../Project_Materials/First_Project_Checkpoint.html">
+   First Project Checkpoint
+  </a>
+ </li>
+ <li class="toctree-l1">
+  <a class="reference external" href="https://github.com/msu-cmse-courses/cmse201-S22-data/raw/main/Projects/Example_Football_Dataset.csv">
+   Example_Football_Dataset.csv
+  </a>
+ </li>
+ <li class="toctree-l1">
+  <a class="reference internal" href="../../Project_Materials/CMSE201_FinalProjectTemplate.html">
+   CMSE 201 Final Project Template
+  </a>
+ </li>
+ <li class="toctree-l1">
+  <a class="reference external" href="https://raw.githubusercontent.com/msu-cmse-courses/cmse201-S22-data/main/Projects/CMSE201_ExampleProject_A.pdf">
+   CMSE201_ExampleProject_A.pdf
+  </a>
+ </li>
+ <li class="toctree-l1">
+  <a class="reference external" href="https://raw.githubusercontent.com/msu-cmse-courses/cmse201-S22-data/main/Projects/CMSE201_ExampleProject_B.pdf">
+   CMSE201_ExampleProject_B.pdf
+  </a>
+ </li>
+ <li class="toctree-l1">
+  <a class="reference external" href="https://raw.githubusercontent.com/msu-cmse-courses/cmse201-S22-data/main/Projects/CMSE201_ExampleProject_C.pdf">
+   CMSE201_ExampleProject_C.pdf
+  </a>
+ </li>
+ <li class="toctree-l1">
+  <a class="reference external" href="https://raw.githubusercontent.com/msu-cmse-courses/cmse201-S22-data/main/Projects/CMSE201_ExampleProject_D.pdf">
+   CMSE201_ExampleProject_D.pdf
+  </a>
+ </li>
+ <li class="toctree-l1">
+  <a class="reference external" href="https://raw.githubusercontent.com/msu-cmse-courses/cmse201-S22-data/main/Projects/CMSE201_ExampleProject_E.pdf">
+   CMSE201_ExampleProject_E.pdf
+  </a>
+ </li>
+</ul>
+
+    </div>
+</nav></div>
+        <div class="bd-sidebar__bottom">
+             <!-- To handle the deprecated key -->
+            
+            <div class="navbar_extra_footer">
+            Powered by <a href="https://jupyterbook.org">Jupyter Book</a>
+            </div>
+            
+        </div>
+    </div>
+    <div id="rtd-footer-container"></div>
+</div>
+
+
+          
+
+
+          
+<!-- A tiny helper pixel to detect if we've scrolled -->
+<div class="sbt-scroll-pixel-helper"></div>
+<!-- Main content -->
+<div class="col py-0 content-container">
+    
+    <div class="header-article row sticky-top noprint">
+        
+
+
+
+<div class="col py-1 d-flex header-article-main">
+    <div class="header-article__left">
+        
+        <label for="__navigation"
+  class="headerbtn"
+  data-toggle="tooltip"
+data-placement="right"
+title="Toggle navigation"
+>
+  
+
+<span class="headerbtn__icon-container">
+  <i class="fas fa-bars"></i>
+  </span>
+
+</label>
+
+        
+    </div>
+    <div class="header-article__right">
+<div class="menu-dropdown menu-dropdown-launch-buttons">
+  <button class="headerbtn menu-dropdown__trigger"
+      aria-label="Launch interactive content">
+      <i class="fas fa-rocket"></i>
+  </button>
+  <div class="menu-dropdown__content">
+    <ul>
+      <li>
+        <a href="https://mybinder.org/v2/gh/msu-cmse-courses/cmse201-S22-jb/main?urlpath=tree/Homework/Homework_5/HW-05.ipynb"
+   class="headerbtn"
+   data-toggle="tooltip"
+data-placement="left"
+title="Launch on Binder"
+>
+  
+
+<span class="headerbtn__icon-container">
+  
+    <img src="../../_static/images/logo_binder.svg">
+  </span>
+<span class="headerbtn__text-container">Binder</span>
+</a>
+
+      </li>
+      
+    </ul>
+  </div>
+</div>
+
+<button onclick="toggleFullScreen()"
+  class="headerbtn"
+  data-toggle="tooltip"
+data-placement="bottom"
+title="Fullscreen mode"
+>
+  
+
+<span class="headerbtn__icon-container">
+  <i class="fas fa-expand"></i>
+  </span>
+
+</button>
+
+<div class="menu-dropdown menu-dropdown-repository-buttons">
+  <button class="headerbtn menu-dropdown__trigger"
+      aria-label="Source repositories">
+      <i class="fab fa-github"></i>
+  </button>
+  <div class="menu-dropdown__content">
+    <ul>
+      <li>
+        <a href="https://github.com/msu-cmse-courses/cmse201-S22-jb"
+   class="headerbtn"
+   data-toggle="tooltip"
+data-placement="left"
+title="Source repository"
+>
+  
+
+<span class="headerbtn__icon-container">
+  <i class="fab fa-github"></i>
+  </span>
+<span class="headerbtn__text-container">repository</span>
+</a>
+
+      </li>
+      
+      <li>
+        <a href="https://github.com/msu-cmse-courses/cmse201-S22-jb/issues/new?title=Issue%20on%20page%20%2FHomework/Homework_5/HW-05.html&body=Your%20issue%20content%20here."
+   class="headerbtn"
+   data-toggle="tooltip"
+data-placement="left"
+title="Open an issue"
+>
+  
+
+<span class="headerbtn__icon-container">
+  <i class="fas fa-lightbulb"></i>
+  </span>
+<span class="headerbtn__text-container">open issue</span>
+</a>
+
+      </li>
+      
+    </ul>
+  </div>
+</div>
+
+<div class="menu-dropdown menu-dropdown-download-buttons">
+  <button class="headerbtn menu-dropdown__trigger"
+      aria-label="Download this page">
+      <i class="fas fa-download"></i>
+  </button>
+  <div class="menu-dropdown__content">
+    <ul>
+      <li>
+        <a href="../../_sources/Homework/Homework_5/HW-05.ipynb"
+   class="headerbtn"
+   data-toggle="tooltip"
+data-placement="left"
+title="Download source file"
+>
+  
+
+<span class="headerbtn__icon-container">
+  <i class="fas fa-file"></i>
+  </span>
+<span class="headerbtn__text-container">.ipynb</span>
+</a>
+
+      </li>
+      
+      <li>
+        
+<button onclick="printPdf(this)"
+  class="headerbtn"
+  data-toggle="tooltip"
+data-placement="left"
+title="Print to PDF"
+>
+  
+
+<span class="headerbtn__icon-container">
+  <i class="fas fa-file-pdf"></i>
+  </span>
+<span class="headerbtn__text-container">.pdf</span>
+</button>
+
+      </li>
+      
+    </ul>
+  </div>
+</div>
+<label for="__page-toc"
+  class="headerbtn headerbtn-page-toc"
+  
+>
+  
+
+<span class="headerbtn__icon-container">
+  <i class="fas fa-list"></i>
+  </span>
+
+</label>
+
+    </div>
+</div>
+
+<!-- Table of contents -->
+<div class="col-md-3 bd-toc show noprint">
+    <div class="tocsection onthispage pt-5 pb-3">
+        <i class="fas fa-list"></i> Contents
+    </div>
+    <nav id="bd-toc-nav" aria-label="Page">
+        <ul class="visible nav section-nav flex-column">
+ <li class="toc-h1 nav-item toc-entry">
+  <a class="reference internal nav-link" href="#">
+   Homework 5: Modeling Bacterial Growth
+  </a>
+  <ul class="visible nav section-nav flex-column">
+   <li class="toc-h2 nav-item toc-entry">
+    <a class="reference internal nav-link" href="#p-style-text-align-right-put-your-name-here">
+     <p style="text-align: right;">
+      ✅ Put your name here.
+     </p>
+    </a>
+   </li>
+  </ul>
+ </li>
+ <li class="toc-h1 nav-item toc-entry">
+  <a class="reference internal nav-link" href="#cmse-201-spring-2022">
+   <strong>
+    CMSE  201 – Spring 2022
+   </strong>
+  </a>
+  <ul class="visible nav section-nav flex-column">
+   <li class="toc-h2 nav-item toc-entry">
+    <a class="reference internal nav-link" href="#goals">
+     Goals
+    </a>
+    <ul class="nav section-nav flex-column">
+     <li class="toc-h3 nav-item toc-entry">
+      <a class="reference internal nav-link" href="#by-the-end-of-the-homework-assignment-you-will-have-practiced">
+       By the end of the homework assignment you will have practiced:
+      </a>
+     </li>
+    </ul>
+   </li>
+   <li class="toc-h2 nav-item toc-entry">
+    <a class="reference internal nav-link" href="#assignment-instructions">
+     Assignment instructions
+    </a>
+   </li>
+   <li class="toc-h2 nav-item toc-entry">
+    <a class="reference internal nav-link" href="#grading">
+     Grading
+    </a>
+   </li>
+   <li class="toc-h2 nav-item toc-entry">
+    <a class="reference internal nav-link" href="#part-0-academic-integrity-statement-1-point">
+     Part 0: Academic integrity statement (1 point)
+    </a>
+   </li>
+   <li class="toc-h2 nav-item toc-entry">
+    <a class="reference internal nav-link" href="#context">
+     Context
+    </a>
+   </li>
+   <li class="toc-h2 nav-item toc-entry">
+    <a class="reference internal nav-link" href="#part-1-preliminary-1-point">
+     Part 1: Preliminary (1 point)
+    </a>
+   </li>
+   <li class="toc-h2 nav-item toc-entry">
+    <a class="reference internal nav-link" href="#part-2-find-a-numerical-solution-of-the-monod-type-model-35-points">
+     Part 2: Find a numerical solution of the Monod type model (35 points)
+    </a>
+   </li>
+   <li class="toc-h2 nav-item toc-entry">
+    <a class="reference internal nav-link" href="#part-3-first-attempt-to-model-the-impact-of-agnps-13-points">
+     Part 3: First attempt to model the impact of AgNPs (13 points)
+    </a>
+    <ul class="nav section-nav flex-column">
+     <li class="toc-h3 nav-item toc-entry">
+      <a class="reference internal nav-link" href="#congratulations-you-re-done">
+       Congratulations, you’re done!
+      </a>
+     </li>
+    </ul>
+   </li>
+  </ul>
+ </li>
+</ul>
+
+    </nav>
+</div>
+    </div>
+    <div class="article row">
+        <div class="col pl-md-3 pl-lg-5 content-container">
+            <!-- Table of contents that is only displayed when printing the page -->
+            <div id="jb-print-docs-body" class="onlyprint">
+                <h1>Homework 5: Modeling Bacterial Growth</h1>
+                <!-- Table of contents -->
+                <div id="print-main-content">
+                    <div id="jb-print-toc">
+                        
+                        <div>
+                            <h2> Contents </h2>
+                        </div>
+                        <nav aria-label="Page">
+                            <ul class="visible nav section-nav flex-column">
+ <li class="toc-h1 nav-item toc-entry">
+  <a class="reference internal nav-link" href="#">
+   Homework 5: Modeling Bacterial Growth
+  </a>
+  <ul class="visible nav section-nav flex-column">
+   <li class="toc-h2 nav-item toc-entry">
+    <a class="reference internal nav-link" href="#p-style-text-align-right-put-your-name-here">
+     <p style="text-align: right;">
+      ✅ Put your name here.
+     </p>
+    </a>
+   </li>
+  </ul>
+ </li>
+ <li class="toc-h1 nav-item toc-entry">
+  <a class="reference internal nav-link" href="#cmse-201-spring-2022">
+   <strong>
+    CMSE  201 – Spring 2022
+   </strong>
+  </a>
+  <ul class="visible nav section-nav flex-column">
+   <li class="toc-h2 nav-item toc-entry">
+    <a class="reference internal nav-link" href="#goals">
+     Goals
+    </a>
+    <ul class="nav section-nav flex-column">
+     <li class="toc-h3 nav-item toc-entry">
+      <a class="reference internal nav-link" href="#by-the-end-of-the-homework-assignment-you-will-have-practiced">
+       By the end of the homework assignment you will have practiced:
+      </a>
+     </li>
+    </ul>
+   </li>
+   <li class="toc-h2 nav-item toc-entry">
+    <a class="reference internal nav-link" href="#assignment-instructions">
+     Assignment instructions
+    </a>
+   </li>
+   <li class="toc-h2 nav-item toc-entry">
+    <a class="reference internal nav-link" href="#grading">
+     Grading
+    </a>
+   </li>
+   <li class="toc-h2 nav-item toc-entry">
+    <a class="reference internal nav-link" href="#part-0-academic-integrity-statement-1-point">
+     Part 0: Academic integrity statement (1 point)
+    </a>
+   </li>
+   <li class="toc-h2 nav-item toc-entry">
+    <a class="reference internal nav-link" href="#context">
+     Context
+    </a>
+   </li>
+   <li class="toc-h2 nav-item toc-entry">
+    <a class="reference internal nav-link" href="#part-1-preliminary-1-point">
+     Part 1: Preliminary (1 point)
+    </a>
+   </li>
+   <li class="toc-h2 nav-item toc-entry">
+    <a class="reference internal nav-link" href="#part-2-find-a-numerical-solution-of-the-monod-type-model-35-points">
+     Part 2: Find a numerical solution of the Monod type model (35 points)
+    </a>
+   </li>
+   <li class="toc-h2 nav-item toc-entry">
+    <a class="reference internal nav-link" href="#part-3-first-attempt-to-model-the-impact-of-agnps-13-points">
+     Part 3: First attempt to model the impact of AgNPs (13 points)
+    </a>
+    <ul class="nav section-nav flex-column">
+     <li class="toc-h3 nav-item toc-entry">
+      <a class="reference internal nav-link" href="#congratulations-you-re-done">
+       Congratulations, you’re done!
+      </a>
+     </li>
+    </ul>
+   </li>
+  </ul>
+ </li>
+</ul>
+
+                        </nav>
+                    </div>
+                </div>
+            </div>
+            <main id="main-content" role="main">
+                
+              <div>
+                
+  <section class="tex2jax_ignore mathjax_ignore" id="homework-5-modeling-bacterial-growth">
+<h1>Homework 5: Modeling Bacterial Growth<a class="headerlink" href="#homework-5-modeling-bacterial-growth" title="Permalink to this headline">#</a></h1>
+<section id="p-style-text-align-right-put-your-name-here">
+<h2><p style="text-align: right;"> ✅ Put your name here.<a class="headerlink" href="#p-style-text-align-right-put-your-name-here" title="Permalink to this headline">#</a></h2>
+</section>
+</section>
+<section class="tex2jax_ignore mathjax_ignore" id="cmse-201-spring-2022">
+<h1><strong>CMSE  201 – Spring 2022</strong><a class="headerlink" href="#cmse-201-spring-2022" title="Permalink to this headline">#</a></h1>
+<p><img src="https://cmse.msu.edu/sites/_cmse/assets/Image/image002.jpg"
+     alt="CMSE Logo"
+     align="right" 
+     height="100" 
+     width="100" /></p>
+<section id="goals">
+<h2>Goals<a class="headerlink" href="#goals" title="Permalink to this headline">#</a></h2>
+<p>In this homework, you will use Numpy, SciPy and Matplotlib to model the bacterial growth. This should serve as a good assessment of what you understand at this point in the course. Make sure to use Slack and help room hours if you run into issues!</p>
+<section id="by-the-end-of-the-homework-assignment-you-will-have-practiced">
+<h3>By the end of the homework assignment you will have practiced:<a class="headerlink" href="#by-the-end-of-the-homework-assignment-you-will-have-practiced" title="Permalink to this headline">#</a></h3>
+<ol class="simple">
+<li><p>Using <code class="docutils literal notranslate"><span class="pre">solve_ivp</span></code></p></li>
+<li><p>Using <code class="docutils literal notranslate"><span class="pre">matplotlib</span></code></p></li>
+<li><p>Building compartmental models</p></li>
+<li><p>Interpreting model results</p></li>
+</ol>
+</section>
+</section>
+<section id="assignment-instructions">
+<h2>Assignment instructions<a class="headerlink" href="#assignment-instructions" title="Permalink to this headline">#</a></h2>
+<p>Work through the following assignment, making sure to follow all of the directions and answer all of the questions.</p>
+<p><strong>This assignment is due at 11:59pm on Friday, Apr 1st.</strong> It should be uploaded into the “Homework Assignments” dropbox folder for Homework #5.  Submission instructions can be found at the end of the notebook.</p>
+</section>
+<section id="grading">
+<h2>Grading<a class="headerlink" href="#grading" title="Permalink to this headline">#</a></h2>
+<ul class="simple">
+<li><p>Part 0: Academic integrity statement (1 point)</p></li>
+<li><p>Part 1: Preliminary (1 point)</p>
+<ul>
+<li><p>Question 1 (1 point)</p></li>
+</ul>
+</li>
+<li><p>Part 2: Find a numerical solution of the Monod type model (35 points)</p>
+<ul>
+<li><p>Question 2 (10 points)</p></li>
+<li><p>Question 3 (5 points)</p></li>
+<li><p>Question 4 (10 points)</p></li>
+<li><p>Question 5 (10 points)</p></li>
+</ul>
+</li>
+<li><p>Part 3: First attempt to model the impact of AgNPs (13 points)</p>
+<ul>
+<li><p>Question 6 (5 points)</p></li>
+<li><p>Question 7 (8 points)</p></li>
+</ul>
+</li>
+</ul>
+<p>Total points possible: <strong>50</strong></p>
+</section>
+<hr class="docutils" />
+<section id="part-0-academic-integrity-statement-1-point">
+<h2>Part 0: Academic integrity statement (1 point)<a class="headerlink" href="#part-0-academic-integrity-statement-1-point" title="Permalink to this headline">#</a></h2>
+<p>In the markdown cell below, paste your personal academic integrity statement. By including this statement, you are confirming that you are submitting this as your own work and not that of someone else.</p>
+<p><font size=6 color="#009600">✎</font> <em>Put your personal academic integrity statement here.</em></p>
+</section>
+<section id="context">
+<h2>Context<a class="headerlink" href="#context" title="Permalink to this headline">#</a></h2>
+<p>Antimicrobial resistance is among the 10 top threats that human are facing, according to the <a class="reference external" href="https://www.who.int/news-room/fact-sheets/detail/antimicrobial-resistance">World Health Organization</a>. As a young scientist, you wish to investigate the bacterial resistance to antimicrobials using <em>Vibrio cholerae</em> as a model microorganism. This pathogen predominantly lives in aquatic environments and is the causative agent of cholera, a virulent disease that still affects millions of people, according to the World Health Organization. You therefore make some experiments to weaken the bacteria using silver nanoparticles (AgNPs) and hopefully come up with a new antimicrobial strategy. You conclude that this approach is promising to fight bacteria.</p>
+<p>In order to deepen your knowledge in this field, you now want to initiate yourself to the modeling of bacterial growth based on ordinary differential equations (ODEs). As a first step, you will focus on the modeling of bacterial growth in a liquid environment, where aquatic bacteria such as <em>Vibrio cholerae</em> can be found. More precisely, you are interested in a Monod kinetics growth model given by</p>
+<p>\begin{equation*}
+\begin{aligned}
+\frac{d C_M}{dt} =&amp;,, \frac{\mu_1,C_N}{K_s+C_N},C_M \
+\frac{d C_N}{dt} =&amp;,, -\frac{\mu_2,C_N}{K_s+C_N},C_M
+\end{aligned}
+\end{equation*}</p>
+<p>where <span class="math notranslate nohighlight">\(C_M\)</span> is the concentration of bacteria per unit of volume, <span class="math notranslate nohighlight">\(C_N\)</span> is the concentration of nutrients per unit per volume, <span class="math notranslate nohighlight">\(\mu_1\)</span> is the maximum specific growth rate, <span class="math notranslate nohighlight">\(\mu_2&gt;0\)</span> considers the effect of the yield rate and <span class="math notranslate nohighlight">\(K_s\)</span> is the concentration of nutrients where the specific growth rate, given by <span class="math notranslate nohighlight">\(\frac{\mu_1\,C_N}{K_s+C_N}\)</span> has half its maximum value.</p>
+<p>Your goal is now to understand this model and modify it to consider a more complex situation!</p>
+</section>
+<section id="part-1-preliminary-1-point">
+<h2>Part 1: Preliminary (1 point)<a class="headerlink" href="#part-1-preliminary-1-point" title="Permalink to this headline">#</a></h2>
+<p><strong>Question 1</strong>: Make sure you set up your notebook to import the right modules that you will need in this homework.</p>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="c1"># Put your code here</span>
+</pre></div>
+</div>
+</div>
+</div>
+</section>
+<section id="part-2-find-a-numerical-solution-of-the-monod-type-model-35-points">
+<h2>Part 2: Find a numerical solution of the Monod type model (35 points)<a class="headerlink" href="#part-2-find-a-numerical-solution-of-the-monod-type-model-35-points" title="Permalink to this headline">#</a></h2>
+<p>As a first step, you want to find an approximation of the solution of the presented Monod type model for a given initial condition, that is the initial concentration of bacteria and nutrients.</p>
+<p><strong>Question 2</strong>: Compute the approximation of <span class="math notranslate nohighlight">\(C_M\)</span> and <span class="math notranslate nohighlight">\(C_N\)</span> for a time interval of <span class="math notranslate nohighlight">\([0,100]\)</span> using <code class="docutils literal notranslate"><span class="pre">solve_ivp</span></code>. You consider that the initial concentration of bacteria and nutrients are respectively <span class="math notranslate nohighlight">\(0.03\)</span> and <span class="math notranslate nohighlight">\(0.3\)</span>, and the following parameters: <span class="math notranslate nohighlight">\(K_s = 0.3\)</span>, <span class="math notranslate nohighlight">\(\mu_1 = 0.05\)</span> and <span class="math notranslate nohighlight">\(\mu_2 = 0.3\)</span>.</p>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="c1"># Put your code here</span>
+</pre></div>
+</div>
+</div>
+</div>
+<p><strong>Question 3</strong>: Plot the approximations in one figure. Describe the trends you observe. Do the results make sense?</p>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="c1"># Put your code here</span>
+</pre></div>
+</div>
+</div>
+</div>
+<p><font size=6 color="#009600">✎</font> <em>Put your comment here</em></p>
+<p><strong>Question 4</strong>: Create a function <code class="docutils literal notranslate"><span class="pre">computeApproxMonodModel</span></code> that computes an approximation of <span class="math notranslate nohighlight">\(C_M\)</span> and <span class="math notranslate nohighlight">\(C_N\)</span> using the function <code class="docutils literal notranslate"><span class="pre">solve_ivp</span></code> of SciPy. The <strong>inputs</strong> are:</p>
+<ol class="simple">
+<li><p>an array containing the parameters of the model</p></li>
+<li><p>an array containing the initial conditions</p></li>
+<li><p>the time grid</p></li>
+</ol>
+<p>The <strong>outputs</strong> are:</p>
+<ol class="simple">
+<li><p>an array that contains the approximation of <span class="math notranslate nohighlight">\(C_M\)</span></p></li>
+<li><p>an array that contains the approximation of <span class="math notranslate nohighlight">\(C_N\)</span></p></li>
+</ol>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="c1"># Put your code here</span>
+</pre></div>
+</div>
+</div>
+</div>
+<p><strong>Question 5</strong>: Using your function <code class="docutils literal notranslate"><span class="pre">computeApproxMonodModel</span></code>, assess the impact of each parameter on the approximation of <span class="math notranslate nohighlight">\(C_M\)</span> and <span class="math notranslate nohighlight">\(C_N\)</span>. To do so, you want to answer these questions:</p>
+<ol class="simple">
+<li><p>What will happen if <span class="math notranslate nohighlight">\(K_s\)</span> increases/decreases but <span class="math notranslate nohighlight">\(\mu_1\)</span> and <span class="math notranslate nohighlight">\(\mu_2\)</span> are fixed?</p></li>
+<li><p>What will happen if <span class="math notranslate nohighlight">\(\mu_1\)</span> increases/decreases  but <span class="math notranslate nohighlight">\(K_s\)</span> and <span class="math notranslate nohighlight">\(\mu_2\)</span> are fixed?</p></li>
+<li><p>What will happen if <span class="math notranslate nohighlight">\(\mu_2\)</span> increases/decreases  but <span class="math notranslate nohighlight">\(K_s\)</span> and <span class="math notranslate nohighlight">\(\mu_1\)</span> are fixed?</p></li>
+<li><p>Do your answers make sense?</p></li>
+</ol>
+<p>To answer these questions, you should vary each parameter, that is <span class="math notranslate nohighlight">\(K_s\)</span>, <span class="math notranslate nohighlight">\(\mu_1\)</span> and <span class="math notranslate nohighlight">\(\mu_2\)</span>, one at a time. In other words, you should choose three reasonable values for each parameter and observe the impact of this change on the approximation of <span class="math notranslate nohighlight">\(C_M\)</span> and <span class="math notranslate nohighlight">\(C_N\)</span>. Provide numerical evidences of your claims.</p>
+<p><strong>Hint</strong>: Figures with multiple subplots could be useful.</p>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="c1"># Put your code here</span>
+</pre></div>
+</div>
+</div>
+</div>
+<p><font size=6 color="#009600">✎</font> <em>Put your comment here</em></p>
+</section>
+<section id="part-3-first-attempt-to-model-the-impact-of-agnps-13-points">
+<h2>Part 3: First attempt to model the impact of AgNPs (13 points)<a class="headerlink" href="#part-3-first-attempt-to-model-the-impact-of-agnps-13-points" title="Permalink to this headline">#</a></h2>
+<p>Now that you better understand the model to predict the bacterial growth, you want to consider the impact of the concentration of silver nanoparticles (AgNPs) - an antimicrobial agent, on the bacterial concentration. As a first attempt, you assume the decay rate, <span class="math notranslate nohighlight">\(k_A\)</span>, associated with the concentration of AgNPs is <strong>known</strong>. In this part, you will consider that the initial concentration of bacteria and nutrients at <span class="math notranslate nohighlight">\(t=0\)</span> are respectively <span class="math notranslate nohighlight">\(0.03\)</span> and <span class="math notranslate nohighlight">\(0.3\)</span>, and the following parameters: <span class="math notranslate nohighlight">\(K_s = 0.3\)</span>, <span class="math notranslate nohighlight">\(\mu_1 = 0.05\)</span> and <span class="math notranslate nohighlight">\(\mu_2 = 0.3\)</span>.</p>
+<p><strong>Question 6</strong>: Modify the presented Monod model in order to consider the impact of AgNPs.</p>
+<p><strong>Hint</strong>: You should use a compartmental representation of the basic Monod model to help you and modify it considering that the AgNP is killing off/decreasing the concentration of bacteria (<span class="math notranslate nohighlight">\(C_M\)</span>). In this context, <span class="math notranslate nohighlight">\(k_A\)</span> is the rate at which the bacteria concentration is decreasing.</p>
+<p><strong>Hint</strong>: You could use Latex to write equations in a Markdown cell. The Monod type model below is provided to give you a nice example of how you could write your model.</p>
+<p>\begin{equation*}
+\begin{aligned}
+\frac{d C_M}{dt} =&amp;,, \frac{\mu_1,C_N}{K_s+C_N},C_M \
+\frac{d C_N}{dt} =&amp;,, -\frac{\mu_2,C_N}{K_s+C_N},C_M
+\end{aligned}
+\end{equation*}</p>
+<p>It is <strong>not required</strong> that you use this format but it is strongly suggested.</p>
+<p><font size=6 color="#009600">✎</font> <em>Put your model here</em></p>
+<p><strong>Question 7</strong>: Using <code class="docutils literal notranslate"><span class="pre">solve_ivp</span></code>, assess the impact of the decay rate associated to the concentration of AgNPs on the concentration of bacteria. To do so, you want to answer these questions:</p>
+<ol class="simple">
+<li><p>What will happen if <span class="math notranslate nohighlight">\(k_A\)</span> is 0?</p></li>
+<li><p>What will happen if <span class="math notranslate nohighlight">\(k_A\)</span> increases/decreases but <span class="math notranslate nohighlight">\(K_s\)</span>, <span class="math notranslate nohighlight">\(\mu_1\)</span> and <span class="math notranslate nohighlight">\(\mu_2\)</span> are fixed?</p></li>
+<li><p>Do your answers make sense?</p></li>
+</ol>
+<p>In other words, you should choose three reasonable values for <span class="math notranslate nohighlight">\(k_A\)</span> that you added in the model and observe the impact of this change on the approximation of <span class="math notranslate nohighlight">\(C_M\)</span> and <span class="math notranslate nohighlight">\(C_N\)</span>. Provide numerical evidences of your claims.</p>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="c1"># Put your code here</span>
+</pre></div>
+</div>
+</div>
+</div>
+<p><font size=6 color="#009600">✎</font> <em>Put your comment here</em></p>
+<hr class="docutils" />
+<section id="congratulations-you-re-done">
+<h3>Congratulations, you’re done!<a class="headerlink" href="#congratulations-you-re-done" title="Permalink to this headline">#</a></h3>
+<p>Submit this assignment by uploading it to the course Desire2Learn web page.  Go to the “Homework Assignments” folder, find the dropbox link for Homework #5, and upload it there.</p>
+</section>
+</section>
+</section>
+
+    <script type="text/x-thebe-config">
+    {
+        requestKernel: true,
+        binderOptions: {
+            repo: "binder-examples/jupyter-stacks-datascience",
+            ref: "master",
+        },
+        codeMirrorConfig: {
+            theme: "abcdef",
+            mode: "python"
+        },
+        kernelOptions: {
+            kernelName: "python3",
+            path: "./Homework\Homework_5"
+        },
+        predefinedOutput: true
+    }
+    </script>
+    <script>kernelName = 'python3'</script>
+
+              </div>
+              
+            </main>
+            <footer class="footer-article noprint">
+                
+    <!-- Previous / next buttons -->
+<div class='prev-next-area'>
+    <a class='left-prev' id="prev-link" href="../Homework_4/HW4_S22-STUDENT.html" title="previous page">
+        <i class="fas fa-angle-left"></i>
+        <div class="prev-next-info">
+            <p class="prev-next-subtitle">previous</p>
+            <p class="prev-next-title">Homework 4: Fitting data using SciPy</p>
+        </div>
+    </a>
+    <a class='right-next' id="next-link" href="../Homework_6/HW-06_Programming_a_robotic_sheepdog-STUDENT.html" title="next page">
+    <div class="prev-next-info">
+        <p class="prev-next-subtitle">next</p>
+        <p class="prev-next-title">Homework 6: Programming a Robotic Sheepdog (Extra Credit)</p>
+    </div>
+    <i class="fas fa-angle-right"></i>
+    </a>
+</div>
+            </footer>
+        </div>
+    </div>
+    <div class="footer-content row">
+        <footer class="col footer"><p>
+  
+    By MSU CMSE<br/>
+  
+      &copy; Copyright 2022.<br/>
+</p>
+        </footer>
+    </div>
+    
+</div>
+
+
+      </div>
+    </div>
+  
+  <!-- Scripts loaded after <body> so the DOM is not blocked -->
+  <script src="../../_static/scripts/pydata-sphinx-theme.js?digest=1999514e3f237ded88cf"></script>
+
+
+  </body>
+</html>

@@ -1,0 +1,293 @@
+#!/usr/bin/env python
+# coding: utf-8
+
+# # Homework 2: Dictionaries, If Statements, Functions, and Modules
+
+# ### <p style="text-align: right;"> &#9989; Put your name here</p>
+
+# # __CMSE  201 &ndash; Fall 2022__
+# 
+# <img src="https://cmse.msu.edu/sites/_cmse/assets/Image/image002.jpg"
+#      alt="CMSE Logo"
+#      align="right" 
+#      height="100" 
+#      width="100" />
+# 
+# 
+# ## Learning Goals
+# 
+# ### Content Goals
+#  * Use if/elif/else statements to implement a logical flow
+#  * Write and execute functions
+#  * Use the numpy module for math and data
+#  * Display data on plots using matplotlib
+#  * Utilize dictionaries to store data
+# 
+# ### Practice Goals
+# * Coding conventions
+# * More advanced debugging
+# * Using functions to build reusable/transferable code
+# * Use visualization best practices to make informative plots
+
+# ## Assignment instructions
+# 
+# Work through the following assignment, making sure to follow all the directions and answer all the questions.
+# 
+# **This assignment is due at 11:59 pm on Friday, October 7th.** It should be uploaded into the "Homework Assignments" submission folder for Homework #2.  Submission instructions can be found at the end of the notebook.
+
+# ## Academic integrity statement (2 Points)
+# 
+# In the markdown cell below, paste your personal academic integrity statement. By including this statement, you are confirming that you are submitting this as your own work and not that of someone else.
+# 
+
+# <font size=6 color="#009600">&#9998;</font> *Put your personal academic integrity statement here.*
+
+# ---
+# ## 1. Dictionaries (10 Points)
+
+# Python dictionaries are particularly useful for keeping track of pieces of information of different types. 
+# 
+# **Scenario:** You are taking an Intro to Composition class and you want to create a resource for yourself to use while you are writing essays that keeps track of words and their definitions as well as synonyms for words you use alot. 
+
+# ### &#9989;&nbsp; 1.1 Task (5 Points)
+# 
+# In the cell below, create a Python dictionary that includes entries for the definitions of at least 5 words and entries for 5 common words associated with a list of some of their synonyms (10 total entries).
+
+# In[4]:
+
+
+# Put your answer here
+
+
+# ### &#9989;&nbsp; 1.2 Task (5 Points)
+# 
+# You have made your dictionary/thesaurus, now it's time to use it! 
+# 
+# In the cell below, construct **two** print statements using entries in your dictionary/thesaurus: (1) Prints a sentence that contains one of your words, followed by its definition and (2) Prints a sentence with one of your thesaurus entries and a sentence with one of the synonyms.
+# 
+# For example, if your word entry is `"penumbra":"the partially shaded outer region of the shadow cast by an opaque object."`, your output could be:
+# 
+# `'The penumbra of a solar eclipse is beautiful. Penumbra is the partially shaded outer region of the shadow cast by an opaque object.'`
+# 
+# If your thesaurus entry is `"sleep":["coma", "dream", "hibernation", "slumber", "trance"]`, your output could be:
+# 
+# `Bears sleep through the winter. Bears hibernate.`
+
+# In[ ]:
+
+
+# put your answer here
+
+
+# ## 2. Debugging Functions (10 Points)
+
+# In the Tasks below, you will be asked to find, describe, and fix the bugs in each example.
+
+# ### &#9989;&nbsp; 2.1 Task (5 Points)
+# 
+# In the cell below, you will find a function that takes in a percent grade and returns the corresponding GPA points grade, based on the scale we use for [CMSE 201](https://msu-cmse-courses.github.io/cmse201-F22-jb/Course_Materials-201/CMSE201-Syllabus.html). However, when you look at the test list of data, the output doesn't look quite right. In the cell below, state where the bug is occurring, how you figured it out, and then fix the bug.
+
+# In[2]:
+
+
+# function to calculate GPA grade from percentage for CMSE 201
+def homework_calculator(pct_grade):
+    if pct_grade < 60:
+        gp_grade = 0.0
+    elif pct_grade <= 65:
+        gp_grade = 1.5
+    elif pct_grade <= 70:
+        gp_grade = 2.0
+    elif pct_grade <= 75:
+        gp_grade = 2.5
+    elif pct_grade <=80:
+        gp_grade = 3.0
+    elif pct_grade == 85:
+        gp_grade = 3.5
+    else:
+        gp_grade = 4.0
+    return gp_grade
+
+
+# In[3]:
+
+
+test_data = [78,97,85,93,90,54,83] # test percent grade data
+
+for grade in test_data:
+    print(homework_calculator(grade)) # call the function and print the GPA grade for each percent
+
+
+# <font size=6 color="#009600">&#9998;</font> Put your answer here
+
+# ### &#9989;&nbsp; 2.2 Task (5 Points)
+# 
+# In the cell below, you have a function and a function call written for you, but not quite correctly. You should do/answer the following:
+# 
+# 1. What should the output of the function call be?
+# 2. What line(s) are causing the bug?
+# 3. Write a plain English description of the bug.
+# 4. Fix the bug!
+
+# In[5]:
+
+
+favorite_animal = 'elephant'
+favorite_food = 'Chicken Parmesan'
+favorite_season = 'Spring'
+
+
+# In[6]:
+
+
+# Correct this code!
+
+# A function to print my favorite things
+
+def my_favorite_things(thing1 = "penguins",thing2 = "Spaghetti and Meatballs",thing3 = "Winter"):
+    string_of_favorites = "My favorite things are: " + favorite_animal + ', ' + favorite_season + ', and ' + favorite_food + "."
+    return string_of_favorites
+
+my_favorite_things()
+
+
+# <font size=6 color="#009600">&#9998;</font> *Put your answer here*
+
+# ## 3. Functions, if/else, and Exoplanets! (10 Points)
+# 
+# When astronomers classify planets as having an "Earth-like" mass or "Jupiter-like" mass, they mean that the planet is near the mass of the Earth or near the mass of Jupiter. The specific ranges are: 
+# 
+# * Earth-like: 0.0025$-$0.006 Jupiter masses (0.8$-$1.9 Earth masses)
+# * Jupiter-like: 0.36$-$11.84 Jupiter masses
+
+# ### &#9989;&nbsp; 3.1 Task: Sorting Planetary Masses (3 points)
+# 
+# First, choose if you want to check for Jupiter-like or Earth-like planets in the data set. 
+# 
+# Then, write a function that takes in the mass of a planet (in units of Jupiter masses) and returns the Boolean "True" if it falls within the mass range of that definition and "False" if it is outside that definition.
+# 
+# Write your function in the cell below. Demonstrate that your function works using the test data given (`planetary_mass_mj_test_data`).
+
+# In[39]:
+
+
+# test planetary mass data (in Jupiter masses)
+planetary_mass_mj_test_data = [19.4, 0.00522, 4.8, 0.00264, 1.78, 10.3, 8.0, 0.91, 1.99, 0.86, 24.5, 0.00091, 7.5, 4.0]
+
+
+# ### &#9989;&nbsp; 3.2 Task: Extending to the full Data Set (2 points)
+# 
+# In the cell below, you will find a data set of planetary masses (in units of Jupiter masses as above). **Use your function** on the list to count the number of planets that fall into the category you wrote your function to find (i.e. Earth-like or Jupiter-like).
+# 
+# Citation: [NASA Exoplanet Archive](https://dataherb.github.io/flora/nasa_exoplanet_archive/)
+
+# In[42]:
+
+
+# full planetary data set (in Jupiter masses)
+
+planetary_mass_mj = [19.4, 14.74, 4.8, 4.66, 1.78, 10.3, 8.0, 0.91, 1.99, 0.86, 24.5, 13.9, 7.5, 4.0, 1.9, 20.95, 12.5, 13.82, 7.1, 3.88, 2.53, 0.54, 1.64, 0.472, 0.8306, 0.1714, 3.878, 0.02542, 0.141, 2.01, 0.016, 0.057, 0.072, 1.85, 0.87, 7.416, 3.0, 1.31, 5.3, 3.2, 13.5, 6.4, 1.04, 1.061, 1.11, 55.59, 12.47, 4.2, 0.07, 0.91, 1.7, 1.6, 0.027, 0.17, 0.04, 0.33, 0.59, 0.53, 9.78, 5.1, 10.5, 12.569, 11.6, 17.0, 1.03, 2.75, 2.33, 0.917, 1.308, 7.6, 0.535, 2.43, 3.47, 1.11, 3.47, 4.3, 17.0, 2.26, 0.038, 2.8, 0.018, 0.088, 0.27, 0.52, 10.39, 0.484, 0.85, 21.66, 0.72, 0.467, 2.96, 0.01, 0.02643, 0.22, 0.84, 0.15, 12.0293, 28.5, 11.0, 0.07636, 0.0302, 0.01054, 0.01299, 0.437, 0.00812, 6.05, 3.0, 13.0, 0.02753, 0.04616, 0.03203, 16.0, 0.00522, 0.00831, 0.30425, 0.21414, 0.0197, 0.00658, 0.02328, 0.07142, 0.00953, 0.11327, 0.03209, 0.03335, 0.0214, 0.0925, 0.82, 0.02042, 0.02014, 0.02379, 0.02287, 0.02667, 0.0409, 0.00909, 0.00371, 3.37, 0.0258, 0.0056, 0.01315, 0.03304, 2.5, 1.54, 2.3, 0.07406, 0.06636, 0.02391, 0.01032, 0.00636, 0.00727, 0.0208, 0.04373, 0.463, 0.00579, 0.0107, 0.01919, 0.026, 0.02517, 0.02246, 0.00777, 0.0197, 0.00941, 0.03483, 0.05213, 0.01901, 0.10201, 0.01643, 0.07, 4.0, 0.01686, 0.0497, 0.0173, 0.0053, 0.00887, 0.328, 0.018, 0.012, 0.008, 0.008, 0.014, 0.035, 4.96, 6.8, 0.014, 0.025, 0.01384, 0.02737, 0.02832, 0.06, 0.68, 0.017, 1.0, 4.42, 2.2756, 0.7142, 0.021, 0.046, 0.06186, 0.01545, 0.00264, 0.01271, 20.0, 16.0, 11.3, 0.04097, 0.01771, 0.02089, 0.525, 0.07362, 1.59519, 0.211, 0.851, 14.28, 3.44, 1.94, 4.193, 0.58, 3.4, 0.197, 0.292, 8.62, 7.246, 4.87, 2.47, 1.34, 0.75, 0.569, 0.07, 0.62, 0.626, 0.88, 0.65, 0.83, 2.27, 0.68, 0.92, 7.01, 7.52, 1.8482, 1.169, 0.267, 0.599, 0.671, 0.48, 1.19, 1.044, 0.662, 0.352, 4.0, 0.892, 0.493, 2.2, 0.98, 1.35, 0.309, 0.818, 1.484, 0.76, 0.582, 2.31, 1.41, 1.32, 0.527, 0.783, 0.34, 3.58, 1.84, 6.78, 1.28, 0.749, 1.855, 0.526, 0.543, 1.071, 2.17, 3.27, 1.338, 1.9795, 1.345, 2.74, 1.47, 2.26, 0.613, 0.65, 0.53, 0.672, 0.653, 1.071, 0.706, 0.88, 0.92, 1.192, 0.941, 1.222, 0.63, 1.323, 1.59, 9.7, 1.88, 0.261, 0.56, 0.7, 0.173, 0.237, 0.39, 0.768, 2.24, 0.595, 0.76, 0.921, 0.602, 3.147, 1.03, 0.806, 12.7, 0.319, 0.662, 3.4, 0.179, 0.96, 0.96, 0.821, 5.33, 1.45, 1.29, 0.577, 0.12, 12.9, 0.138, 1.61, 1.03, 0.0416, 0.0378, 0.0805, 0.0722, 0.0732, 0.2066, 0.25, 0.17, 0.41, 4.94, 8.16, 1.52, 0.05, 0.35837, 0.96, 0.09, 0.62, 0.367, 0.03524, 0.16, 1.487, 8.3, 6.93, 10.13, 0.03964, 0.04782, 0.94, 9.61, 11.0, 6.383, 0.21, 0.261, 3.5, 2.414, 1.42, 0.99, 0.86, 0.054, 0.076, 0.27, 11.09, 7.14, 4.4, 4.51, 2.83, 0.36, 0.93, 6.3, 1.14, 0.357, 0.825, 10.69, 1.1, 0.611, 4.83, 0.408, 1.4, 1.27, 1.926, 5.63, 0.174, 2.79, 0.07709, 0.622, 0.0788, 6.54, 4.5, 1.51, 2.98, 22.16, 0.02, 3.1, 0.055, 7.28, 1.96, 0.237, 2.43, 1.812, 0.41, 1.769, 3.789, 0.89, 1.6, 1.15, 1.8, 19.12, 3.31, 10.95, 5.38, 1.49, 1.42, 0.42, 2.5, 0.0318, 0.0922, 1.61, 0.82, 0.0151, 0.034, 0.027, 2.14, 26.77, 0.2, 0.865, 5.13, 2.2, 9.76, 0.415, 7.8, 0.451, 1.33, 1.18, 0.66, 9.69, 1.25, 5.3, 4.44, 3.07, 1.67, 1.21, 3.532, 6.02, 2.23, 2.28, 0.02026, 0.01759, 2.12, 6.56, 0.08983, 1.21, 1.121, 5.14, 2.3, 0.85, 1.23, 5.16, 33.7, 1.3, 0.38, 1.33, 2.75, 2.71, 2.661, 1.869, 0.02363, 0.02552, 2.95, 0.82, 5.37, 2.45, 2.58, 2.6, 0.99, 0.82, 9.88, 8.6, 0.74, 0.013, 10.67, 1.53, 14.0, 1.13, 1.9, 2.218, 0.768, 0.934, 3.62, 1.676, 1.814, 0.03321, 0.5219, 0.26, 5.1, 9.84, 0.7836, 2.201, 0.0696, 0.443, 0.05078, 1.99792, 0.31, 0.04059, 2.89, 6.43, 3.53, 1.7, 7.659, 17.193, 0.27, 8.79, 2.88, 4.04, 0.66, 10.13, 2.62, 2.72, 3.51, 2.7, 8.97, 0.598, 0.02825, 0.87, 0.01806, 0.02888, 0.04751, 1.69, 0.15, 8.03, 0.081, 0.916, 2.194, 3.18, 20.13, 0.03839, 1.685, 8.37, 2.54, 0.02, 0.64, 0.54, 0.4, 3.95, 3.57, 1.01, 0.836, 0.523, 1.99, 3.4, 1.5, 1.13, 1.54, 0.06, 1.985, 3.1, 8.52, 0.56, 0.0532, 0.076, 2.096, 3.98, 3.18, 6.9, 2.58, 0.79, 1.37, 0.0367, 0.0454, 1.599, 1.214, 17.9, 1.996, 1.864, 1.017, 24.09, 7.8, 6.29, 3.46, 0.0553, 0.23, 1.37, 0.1076, 2.036, 0.0061, 0.0168, 0.0334, 0.0442, 1.4878, 0.56, 0.73, 0.0085, 0.0076, 0.015, 0.01501, 0.52, 9.9, 1.25, 1.4, 0.73, 0.4817, 1.29, 1.808, 0.67, 0.0409, 0.51, 2.39, 5.58, 0.02778, 0.06277, 0.20734, 20.3, 0.00572, 0.00541, 0.00881, 0.00905, 0.02, 0.33, 1.26, 2.223, 1.05, 0.57, 0.0259, 0.0547, 1.3, 2.6, 0.01164, 13.0, 21.6, 0.2, 10.39, 0.01491, 0.01372, 0.05088, 0.02297, 0.034, 0.34, 1.0, 0.05223, 0.066, 14.6, 16.64, 0.2, 1.118, 1.45, 3.18, 3.09, 0.19, 9.7, 1.61, 1.56, 2.12, 8.37, 5.97, 0.7, 13.65, 2.61, 1.527, 1.13, 6.575, 1.78, 0.05638, 0.05405, 9.03, 6.0, 5.21, 15.89, 3.86, 12.89, 0.03713, 4.48, 0.915, 0.42, 1.17, 0.02665, 1.56, 1.494, 0.665, 0.162, 5.415, 5.9, 1.16, 0.98, 0.026, 1.542, 2.4, 2.43, 1.37, 8.622, 7.6, 1.22, 0.47, 1.547, 0.62, 0.0329, 0.0445, 0.0372, 0.02171, 3.04, 0.7, 0.48, 1.385, 5.97, 0.329, 9.1, 2.01, 1.75, 0.82, 0.168, 0.097, 0.0529, 0.119, 0.38, 3.76, 0.228, 0.675, 0.652, 0.696, 2.69, 3.19, 0.4, 0.797, 12.99, 9.698, 10.02, 0.02674, 0.0126, 0.0208, 0.0299, 0.0164, 0.0223, 2.7, 4.67, 2.54, 18.37, 1.56, 1.6, 2.23, 2.17, 0.81, 0.04531, 0.05, 1.927, 0.6, 2.55, 0.58, 0.0384, 0.0277, 1.79, 0.1872, 0.6579, 0.433, 0.226, 0.07, 0.35061, 2.37, 2.37, 2.3, 1.88, 7.32, 1.525, 1.615, 0.1, 1.636, 2.93, 4.954, 0.0402, 0.045, 1.21, 1.556, 1.053, 3.87, 5.78, 1.681, 0.33, 7.63, 6.92, 1.06, 2.51, 2.3, 0.25, 0.53, 0.056, 0.49, 1.295, 2.03, 6.0, 3.204, 3.06, 4.85, 1.68, 3.07, 1.97, 0.0321, 0.0371, 0.057, 6.1, 1.993, 0.27, 1.768, 3.85, 5.45, 3.097, 3.08, 2.25, 1.112, 1.8, 8.06, 0.508, 0.49, 1.0, 5.64, 2.71, 0.21, 3.93, 0.06, 0.02, 0.02473, 0.02026, 1.34, 4.38, 0.01762, 7.27, 2.7, 2.33, 1.681, 1.959, 0.20955, 0.34, 0.68, 0.099, 0.01, 2.03, 1.48, 0.92, 7.0, 14.2, 3.6, 12.4, 1.54, 0.2845, 2.11, 0.11, 8.35, 0.057, 1.11, 3.76, 3.67, 16.88, 0.37, 0.7, 1.82, 1.26, 5.0, 1.26, 3.45, 10.63, 3.74, 1.27, 20.96, 0.717, 2.5, 0.03, 1.964, 6.79, 2.33, 0.44, 0.07, 1.23, 5.69, 8.2, 1.98, 1.56, 2.68, 0.04, 0.36, 3.9, 1.31, 0.59, 0.03996, 1.42, 15.04, 0.02712, 0.03914, 0.02, 0.40902, 0.5267, 9.18, 0.428, 0.784, 9.0, 6.0, 11.1, 1.38, 5.98, 9.0, 0.05915, 2.4, 23.0, 20.5, 2.1, 5.5, 1.09, 20.0, 21.9987, 30.0, 3.23, 2.27, 7.0, 10.0, 10.0, 10.0, 5.9, 4.5, 14.48228, 6.3, 0.08495, 0.02706, 0.49, 0.5, 0.01598, 0.02328, 0.01816, 0.02358, 0.02807, 0.02363, 0.02517, 1.4, 0.398, 1.236, 0.86, 0.05978, 0.04845, 1.42, 0.223, 0.04657, 0.02058, 0.03545, 0.00091, 0.028, 0.04499, 0.09722, 0.03046, 0.04933, 0.02045, 0.03367, 0.315, 0.73, 0.0343, 0.774, 0.02042, 0.335, 0.579, 1.774, 3.7, 0.01227, 0.02454, 0.06, 0.03115, 0.09, 0.426, 0.06702, 1.9, 27.23, 0.679, 0.171, 0.95, 1.284, 1.31, 2.75, 1.31, 1.18, 4.07, 1.7, 3.382, 3.91, 0.938, 5.18, 1.94, 0.902, 0.52, 3.71, 1.39, 0.66, 2.88, 7.693, 11.8, 18.0, 3.283, 7.0, 4.57, 15.49, 0.10698, 2.0, 0.71, 0.348, 1.1, 1.45, 9.28, 0.027, 0.626, 0.01447, 0.02832, 1.93, 0.0014, 0.0021, 0.033, 0.049, 0.334, 0.11, 1.09, 0.022, 0.0145, 0.054, 0.023, 0.02218, 0.00944, 0.16, 0.01, 0.01353, 0.00944, 0.012, 0.028, 0.01636, 0.031, 0.114, 0.01447, 0.01668, 0.033, 0.02549, 0.035, 0.01104, 0.02954, 0.01196, 0.02706, 0.02297, 0.06859, 0.006, 0.009, 0.023, 0.025, 0.006, 0.079, 0.037, 0.02737, 0.009, 0.012, 0.094, 1.84, 0.432, 0.113, 0.00242, 0.00283, 0.051, 0.026, 0.00021, 0.0062, 0.00201, 8.4, 0.117, 0.25, 0.66, 0.333, 1.51968, 0.5, 0.01573, 0.15291, 5.88, 2.45, 0.006, 0.024, 0.022, 0.054, 0.052, 0.02643, 0.04122, 0.07079, 0.03052, 0.04012, 0.03168, 0.0628, 0.01598, 0.113, 0.02328, 0.01605, 0.02517, 0.0151, 0.8, 2.7, 0.534, 0.042, 1.6, 1.6, 0.0275, 0.0479, 0.226, 0.01611, 0.01951, 9.11, 13.8, 0.052, 0.051, 0.275, 0.202, 0.155, 0.118, 1.51, 1.36, 0.192, 0.177, 0.023, 0.42, 0.013, 0.01419, 0.01259, 0.036, 2.01, 0.073, 0.033, 0.019, 0.02341, 0.01145, 4.7, 6.8, 4.1, 0.5, 0.09, 0.124, 0.027, 0.22, 0.127, 0.019, 0.047, 0.014, 0.025, 0.01, 0.03776, 0.03839, 0.384, 20.1, 0.238, 0.056, 0.077, 2.2, 0.02, 0.009, 0.01007, 12.6, 0.01573, 0.06922, 0.56, 0.08055, 0.08306, 0.04782, 0.03398, 0.941, 0.211, 0.011, 0.094, 0.377, 0.183, 0.035, 1.1, 2.5, 7.3, 0.43, 0.595, 1.03, 6.97, 0.25, 0.34, 0.29, 1.27, 3.23, 5.41, 2.43, 2.82, 2.86, 0.84, 1.0, 1.37, 22.0, 0.505, 0.05034, 0.02, 4.46, 6.0, 0.376, 0.00651, 0.00997, 0.05984, 0.0124, 0.04597, 0.025, 2.067, 0.98, 0.72, 2.111, 0.007, 0.013, 0.024, 8.7, 10.41, 18.41, 15.74, 0.03335, 0.97, 2.4, 0.92, 0.37, 1.49, 1.11, 0.07, 0.57, 5.61, 18.86, 6.95, 1.39, 2.19, 2.05, 1.37, 0.668, 0.01318, 0.01211, 0.01309, 0.03, 0.013, 0.044, 0.113, 0.11, 0.378, 0.82, 0.02407, 0.00642, 0.77, 0.441, 0.63, 10.1, 2.01, 0.43, 0.01, 0.0343, 0.019, 0.019, 0.013, 0.59, 0.0218, 0.02121, 0.02124, 0.01299, 0.03823, 0.04373, 0.06576, 1.02, 0.02, 0.13655, 0.09408, 0.81, 0.202, 0.019, 0.01, 3.0, 0.034, 9.836, 0.041, 0.027, 0.011, 1.08, 0.011, 0.019, 0.01447, 0.02196, 0.00569, 0.04185, 0.00692, 0.81, 3.7, 0.01, 0.83, 0.07362, 4.1, 0.033, 0.16, 2.56, 11.0, 0.54, 0.02895, 0.27, 1.5, 0.09439, 0.05663, 0.05663, 4.8, 11.6, 8.4, 0.02108, 0.01007, 0.10603, 2.8, 0.62, 3.7, 0.6, 23.7, 6.69, 2.18, 0.32, 0.4, 0.46, 0.812, 0.74, 2.38, 0.06481, 0.229, 1.339, 0.93, 2.9, 7.33, 2.3, 14.15, 2.66, 5.54, 2.6, 3.8, 0.04436, 0.017, 0.73, 0.27, 0.25171, 0.06, 0.18, 4.6, 0.19, 0.53, 0.88, 0.145, 0.86, 1.85, 2.73, 0.39, 0.47, 0.11012, 12.569, 0.29, 0.0073, 0.64, 2.7, 0.51, 3.09, 0.17399, 0.26335, 0.56, 0.72, 3.4, 0.06607, 2.54, 0.05632, 4.1, 4.18, 0.43, 13.38, 0.0045, 0.01029, 0.401, 0.02832, 1.59, 0.014, 0.75, 0.04383, 4.8, 1.8, 2.8, 1.39, 0.62, 1.26, 1.18, 1.01, 1.03, 4.5, 14.0, 8.0, 10.48949, 0.531, 2.31, 0.0062, 6e-05, 0.01353, 0.01227, 2.5, 1.2, 0.7949, 0.54, 1.88, 7.79, 0.004, 1.294, 0.736, 2.494, 4.31, 6.1, 4.32, 0.668, 1.88, 0.371, 1.19, 16.0, 9.0, 4.2, 0.0044, 6.28536, 13.0, 9.7, 3.8, 1.66, 0.02895, 0.02989, 0.02086, 0.04279, 2.51, 1.22, 5.42, 0.62927, 0.09439, 0.00267, 0.00434, 0.00129, 0.00195, 0.00214, 0.00422, 2.5, 10.0, 3.42, 5.4, 10.78, 0.0033, 0.00349, 0.84, 1.49, 1.91, 0.78, 1.79, 1.28, 14.0, 15.0, 16.0, 6.3, 7.7, 3.2, 0.7, 11.2, 0.854, 3.15, 1.26, 0.51, 1.49, 1.272, 1.8, 1.62, 0.12, 0.79, 0.475, 1.769, 0.3, 0.514, 1.23, 1.465, 4.85, 1.183, 0.899, 0.6, 0.28411, 0.20199, 0.18, 1.0, 0.36, 1.23, 0.27, 0.41, 1.16, 1.9, 1.51, 1.22, 0.117, 8.84, 2.44, 2.69, 0.84, 0.44, 0.89, 0.275, 0.54, 0.31, 0.39, 0.128, 2.79, 0.55, 1.24, 0.278, 2.49, 5.2, 1.87, 2.13, 0.658, 0.101, 8.0, 0.42, 0.561, 0.78, 1.6, 1.084, 0.47, 3.69, 1.3, 0.99, 0.508, 1.66, 10.42954, 0.17368, 0.9, 0.299, 0.148, 0.502, 0.57, 0.98, 1.069, 1.0, 2.3, 0.931, 0.311, 0.3, 0.67, 0.884, 1.24, 0.44, 0.85, 0.907, 0.23, 2.43, 0.478, 2.63, 2.093, 0.56, 0.71, 2.361, 1.8, 3.44, 0.28, 1.186, 0.85, 3.18, 0.527, 1.78, 0.87, 0.964, 1.91, 1.14243, 1.25287, 0.04122, 0.02149, 0.8, 0.37, 1.58, 1.4688, 0.46, 2.132, 16.35, 0.59, 0.61, 0.45, 0.644, 0.97, 0.863, 0.37, 0.55, 2.68, 0.52, 0.37, 1.271, 1.55, 2.35, 0.43, 1.08, 0.29, 0.96, 0.59, 1.39, 2.3, 2.86, 0.72, 1.07, 0.92, 2.29, 1.11, 0.85, 2.54, 9.45, 0.538, 0.729, 1.17, 0.3, 0.694, 1.265, 2.18, 0.42, 5.9, 0.63, 1.34, 0.805, 1.47, 0.5, 0.618, 1.44, 0.48, 1.36, 0.922, 2.43, 7.5, 22.0, 4.01, 1.12, 0.00601, 0.01073, 0.02423, 0.83, 0.566, 0.26, 1.37, 7.29, 1.42, 1.19, 4.4, 0.709, 0.00236, 0.00308, 0.00359, 1.8, 6.47, 7.8, 9.0, 6.1, 6.7, 1.55, 3.25, 7.6, 8.78, 1.85, 1.02, 4.58, 8.82, 13.616, 1.811, 2.4, 22.206, 24.662, 1.7, 1.5, 4.1, 0.01517, 1.53, 1.0449, 0.07866, 4.32, 0.01237, 0.01237, 0.00551, 0.00576, 20.6, 0.6876, 1.981, 4.132, 2.8]
+
+
+# ### &#9989;&nbsp; 3.3 Task: Adding Complexity (3 points)
+# 
+# What if you wanted to categorize multiple planets? In the cell below, write a new function that takes in a planetary mass (in Jupiter masses) and determines if the planet is a Jupiter-like planet or an Earth-like planet. You can choose to build from your previous code or start from scratch. You may find it helpful to make use of the test data again!
+# 
+# Demonstrate that your code works by writing code that runs your function and determines the number of Jupiter-like and Earth-like planets in the full data set.
+
+# In[44]:
+
+
+# put your work here
+
+
+# ### &#9989;&nbsp; 3.4 Task: Reflections (2 points)
+# 
+# In the cell below, answer the following reflection questions:
+# * In Part 3.3, did you use your function from 3.1 at all? 
+# * In what way? (Or if you didn't, why not?)
+# * If writing a function was the most efficient way to solve this problem, why? If not, what other way(s) could you solve it? 
+
+# <font size=6 color="#009600">&#9998;</font> *Put your answers here.*
+
+# ## 4. Numpy, matplotlib, and functions (18 Points)
+
+# ### &#9989;&nbsp; 4.1 Task: Making a plotting function  (6 points)
+# 
+# In CMSE 201, you will be making plots often. To help future you save time, you are going to write a function to use when you make plots!
+# 
+# In the cells below, write a function that takes in arrays of x and y values and displays a plot containing 4 subplots. You should use plt.subplot() and make use of labels, line shapes, and colors to make your plots clear. 
+# 
+# **You must also test your function with the test data to receive full credit**
+# 
+# Citation: [US Census Bureau Historical Population Change data](https://www.census.gov/data/tables/time-series/dec/popchange-data-text.html)
+
+# In[8]:
+
+
+# test data here
+import numpy as np
+
+years = np.array([1910,1920,1930,1940,1950,1960,1970,1980,1990,2000,2010,2020])
+US_population = np.array([92228531, 106021568, 123202660, 132165129,
+       151325798, 179323175, 203211926, 226545805,
+       248709873, 281421906, 308745538, 331449281])
+MI_population = np.array([2810173, 3668412, 4842325, 5256106, 6371766,
+       7823194, 8875083, 9262078, 9295297, 9938444,
+    9883640, 10077331])
+VT_population = np.array([355956, 352428, 359611, 359231, 377747, 389881,
+       444330, 511456, 562758, 608827, 625741, 643077])
+PA_population = np.array([7665111, 8720017, 9631350, 9900180, 10498012,
+       11319366, 11793909, 11863895, 11881643,
+       12281054, 12702379, 13002700])
+
+
+# In[9]:
+
+
+# put your answer here
+
+
+
+# ### &#9989;&nbsp; 4.2 Task: Using `numpy` arrays and functions for calculations (6 points)
+# 
+# The populations of different states can vary alot from state to state, so how can we explore population growth in a way that lets us compare between states? We'll use the **percent difference** in population. 
+# 
+# We can calculate the percent difference like this:
+# 
+# $\% \ difference = \frac{(final-initial)}{initial} \times 100$
+# 
+# In the cell below, write a function that takes in an array of y values and calculates the percent difference between each value. Demonstrate that your code works using one of the population arrays from 4.1.
+
+# In[78]:
+
+
+# put your code here
+
+
+
+# ### &#9989;&nbsp; 4.3 Task: Putting it all together (6 points)
+# 
+# Along with this homework assignment, you will find a .csv file with some additional state population data (`state_data.csv`). 
+# 
+# In the cell(s) below, use the data from the file (and the functions you wrote) to calculate the percent difference and generate plots for **four new states** of your choice. 
+# 
+#  Remember that you can open up data files in Jupyter to see what the data looks like!
+
+# In[94]:
+
+
+# put your work here
+
+
+# ---
+# 
+# ### Congratulations, you're done! ###
+# 
+# Submit this assignment by uploading it to the course Desire2Learn web page. Go to the "Homework Assignments" section, find the submission folder link for Homework #2, and upload it there.
+
+# In[ ]:
+
+
+
+

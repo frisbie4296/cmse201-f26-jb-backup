@@ -1,0 +1,718 @@
+[
+  {
+    "id": 821780,
+    "header": "Task 0.1 Academic integrity statement",
+    "description": "",
+    "description_type": "markdown",
+    "items": [
+      {
+        "id": 2123453,
+        "description": "",
+        "header": "Incomplete",
+        "points": 0.0
+      },
+      {
+        "id": 2123454,
+        "description": "",
+        "header": "Complete",
+        "points": 2.0
+      }
+    ],
+    "locked": false,
+    "type": "normal"
+  },
+  {
+    "id": 822169,
+    "header": "Task 0.2 Going to Office Hours",
+    "description": "",
+    "description_type": "markdown",
+    "items": [
+      {
+        "id": 2124231,
+        "description": "",
+        "header": "Incomplete",
+        "points": 0.0
+      },
+      {
+        "id": 2124232,
+        "description": "",
+        "header": "Complete",
+        "points": 8.0
+      }
+    ],
+    "locked": false,
+    "type": "normal"
+  },
+  {
+    "id": 822170,
+    "header": "Task 1.1",
+    "description": "",
+    "description_type": "markdown",
+    "items": [
+      {
+        "id": 2124233,
+        "description": "",
+        "header": "Min points",
+        "points": 0.0
+      },
+      {
+        "id": 2124234,
+        "description": "",
+        "header": "Max points",
+        "points": 4.0
+      }
+    ],
+    "locked": false,
+    "type": "continuous"
+  },
+  {
+    "id": 822171,
+    "header": "Task 1.2",
+    "description": "",
+    "description_type": "markdown",
+    "items": [
+      {
+        "id": 2124235,
+        "description": "",
+        "header": "Min points",
+        "points": 0.0
+      },
+      {
+        "id": 2124236,
+        "description": "",
+        "header": "Max points",
+        "points": 4.0
+      }
+    ],
+    "locked": false,
+    "type": "continuous"
+  },
+  {
+    "id": 822172,
+    "header": "Task 1.3",
+    "description": "",
+    "description_type": "markdown",
+    "items": [
+      {
+        "id": 2124237,
+        "description": "",
+        "header": "Incomplete",
+        "points": 0.0
+      },
+      {
+        "id": 2124238,
+        "description": "",
+        "header": "Complete",
+        "points": 2.0
+      }
+    ],
+    "locked": false,
+    "type": "normal"
+  },
+  {
+    "id": 822173,
+    "header": "Task 1.4",
+    "description": "",
+    "description_type": "markdown",
+    "items": [
+      {
+        "id": 2124239,
+        "description": "",
+        "header": "Incomplete",
+        "points": 0.0
+      },
+      {
+        "id": 2124240,
+        "description": "",
+        "header": "Partially complete",
+        "points": 2.0
+      },
+      {
+        "id": 2124241,
+        "description": "The code runs without bugs and includes a reasonable answer",
+        "header": "Complete",
+        "points": 4.0
+      }
+    ],
+    "locked": false,
+    "type": "normal"
+  },
+  {
+    "id": 822174,
+    "header": "Task 2.1",
+    "description": "",
+    "description_type": "markdown",
+    "items": [
+      {
+        "id": 2124242,
+        "description": "",
+        "header": "Incomplete",
+        "points": 0.0
+      },
+      {
+        "id": 2124243,
+        "description": "1 method only",
+        "header": "Partially complete",
+        "points": 2.0
+      },
+      {
+        "id": 2124244,
+        "description": "",
+        "header": "Complete",
+        "points": 4.0
+      }
+    ],
+    "locked": false,
+    "type": "normal"
+  },
+  {
+    "id": 822585,
+    "header": "Task 2.2",
+    "description": "",
+    "description_type": "markdown",
+    "items": [
+      {
+        "id": 2125070,
+        "description": "",
+        "header": "Incomplete",
+        "points": 0.0
+      },
+      {
+        "id": 2125071,
+        "description": "Printing",
+        "header": "Partially complete",
+        "points": 1.0
+      },
+      {
+        "id": 2125072,
+        "description": "Correctly changing the last entry",
+        "header": "Partially complete",
+        "points": 2.0
+      },
+      {
+        "id": 2125073,
+        "description": "",
+        "header": "Complete",
+        "points": 3.0
+      }
+    ],
+    "locked": false,
+    "type": "normal"
+  },
+  {
+    "id": 822586,
+    "header": "Task 2.3",
+    "description": "",
+    "description_type": "markdown",
+    "items": [
+      {
+        "id": 2125074,
+        "description": "",
+        "header": "Incomplete",
+        "points": 0.0
+      },
+      {
+        "id": 2125075,
+        "description": "Printing",
+        "header": "Partially complete",
+        "points": 1.0
+      },
+      {
+        "id": 2125076,
+        "description": "Appending",
+        "header": "Partially complete",
+        "points": 2.0
+      },
+      {
+        "id": 2125077,
+        "description": "",
+        "header": "Complete",
+        "points": 3.0
+      }
+    ],
+    "locked": false,
+    "type": "normal"
+  },
+  {
+    "id": 822587,
+    "header": "Task 3.1",
+    "description": "1 point for creating an empty list\n1 point for for loop setup\n1 point for appending\n1 point for printing",
+    "description_type": "markdown",
+    "items": [
+      {
+        "id": 2125078,
+        "description": "",
+        "header": "Incomplete",
+        "points": 0.0
+      },
+      {
+        "id": 2125079,
+        "description": "",
+        "header": "Partially complete",
+        "points": 1.0
+      },
+      {
+        "id": 2125080,
+        "description": "",
+        "header": "Partially complete",
+        "points": 2.0
+      },
+      {
+        "id": 2125081,
+        "description": "",
+        "header": "Partially complete",
+        "points": 3.0
+      },
+      {
+        "id": 2125082,
+        "description": "",
+        "header": "Complete",
+        "points": 4.0
+      }
+    ],
+    "locked": false,
+    "type": "normal"
+  },
+  {
+    "id": 822588,
+    "header": "Task 3.2",
+    "description": "1 point for the correct sum \n1 point for either showing code or explaining work",
+    "description_type": "markdown",
+    "items": [
+      {
+        "id": 2125083,
+        "description": "",
+        "header": "Incomplete",
+        "points": 0.0
+      },
+      {
+        "id": 2125084,
+        "description": "",
+        "header": "Partially complete",
+        "points": 1.0
+      },
+      {
+        "id": 2125085,
+        "description": "",
+        "header": "Complete",
+        "points": 2.0
+      }
+    ],
+    "locked": false,
+    "type": "normal"
+  },
+  {
+    "id": 822599,
+    "header": "Task 3.3",
+    "description": "1 point for looping\n1 point for tracking running total\n1 point for printing the correct total",
+    "description_type": "markdown",
+    "items": [
+      {
+        "id": 2125106,
+        "description": "",
+        "header": "Incomplete",
+        "points": 0.0
+      },
+      {
+        "id": 2125107,
+        "description": "",
+        "header": "Partially complete",
+        "points": 1.0
+      },
+      {
+        "id": 2125108,
+        "description": "",
+        "header": "Partially complete",
+        "points": 2.0
+      },
+      {
+        "id": 2125109,
+        "description": "",
+        "header": "Complete",
+        "points": 3.0
+      }
+    ],
+    "locked": false,
+    "type": "normal"
+  },
+  {
+    "id": 822600,
+    "header": "Task 3.4",
+    "description": "",
+    "description_type": "markdown",
+    "items": [
+      {
+        "id": 2125110,
+        "description": "",
+        "header": "Incomplete",
+        "points": 0.0
+      },
+      {
+        "id": 2125111,
+        "description": "",
+        "header": "Complete",
+        "points": 1.0
+      }
+    ],
+    "locked": false,
+    "type": "normal"
+  },
+  {
+    "id": 822601,
+    "header": "Task 3.5",
+    "description": "",
+    "description_type": "markdown",
+    "items": [
+      {
+        "id": 2125112,
+        "description": "",
+        "header": "Incomplete",
+        "points": 0.0
+      },
+      {
+        "id": 2125113,
+        "description": "",
+        "header": "Complete",
+        "points": 1.0
+      }
+    ],
+    "locked": false,
+    "type": "normal"
+  },
+  {
+    "id": 822602,
+    "header": "Task 3.6",
+    "description": "1/3 a point for each correct.",
+    "description_type": "markdown",
+    "items": [
+      {
+        "id": 2125114,
+        "description": "",
+        "header": "Min points",
+        "points": 0.0
+      },
+      {
+        "id": 2125115,
+        "description": "",
+        "header": "Max points",
+        "points": 2.0
+      }
+    ],
+    "locked": false,
+    "type": "continuous"
+  },
+  {
+    "id": 822603,
+    "header": "Task 3.7",
+    "description": "1/3 a point for each correct.",
+    "description_type": "markdown",
+    "items": [
+      {
+        "id": 2129714,
+        "description": "",
+        "header": "Min points",
+        "points": 0.0
+      },
+      {
+        "id": 2129715,
+        "description": "",
+        "header": "Max points",
+        "points": 1.0
+      }
+    ],
+    "locked": false,
+    "type": "continuous"
+  },
+  {
+    "id": 824814,
+    "header": "Task 3.8",
+    "description": "1 point for range explanation\n1 point for len explanation\n1 point for range(len()) explanantion\n1 point for i explanation",
+    "description_type": "markdown",
+    "items": [
+      {
+        "id": 2129566,
+        "description": "",
+        "header": "Incomplete",
+        "points": 0.0
+      },
+      {
+        "id": 2129567,
+        "description": "",
+        "header": "Partially complete",
+        "points": 1.0
+      },
+      {
+        "id": 2129568,
+        "description": "",
+        "header": "Partially complete",
+        "points": 2.0
+      },
+      {
+        "id": 2129569,
+        "description": "",
+        "header": "Partially complete",
+        "points": 3.0
+      },
+      {
+        "id": 2129570,
+        "description": "",
+        "header": "Complete",
+        "points": 4.0
+      }
+    ],
+    "locked": false,
+    "type": "normal"
+  },
+  {
+    "id": 824815,
+    "header": "Task 3.9",
+    "description": "5 points for loop with the correct pieces\n1 point for printing ",
+    "description_type": "markdown",
+    "items": [
+      {
+        "id": 2135044,
+        "description": "",
+        "header": "Min points",
+        "points": 0.0
+      },
+      {
+        "id": 2135045,
+        "description": "",
+        "header": "Max points",
+        "points": 6.0
+      }
+    ],
+    "locked": false,
+    "type": "continuous"
+  },
+  {
+    "id": 824816,
+    "header": "Task 3.10",
+    "description": "1 point print\n1 point calculation/modification\n1 point for loop",
+    "description_type": "markdown",
+    "items": [
+      {
+        "id": 2129578,
+        "description": "",
+        "header": "Incomplete",
+        "points": 0.0
+      },
+      {
+        "id": 2129579,
+        "description": "",
+        "header": "Partially complete",
+        "points": 1.0
+      },
+      {
+        "id": 2129580,
+        "description": "",
+        "header": "Partially complete",
+        "points": 2.0
+      },
+      {
+        "id": 2129581,
+        "description": "",
+        "header": "Complete",
+        "points": 3.0
+      }
+    ],
+    "locked": false,
+    "type": "normal"
+  },
+  {
+    "id": 824817,
+    "header": "Task 4.1",
+    "description": "1 point set up \n1 point correct calculation\n1 point for correct answer",
+    "description_type": "markdown",
+    "items": [
+      {
+        "id": 2129582,
+        "description": "",
+        "header": "Incomplete",
+        "points": 0.0
+      },
+      {
+        "id": 2129583,
+        "description": "",
+        "header": "Partially complete",
+        "points": 1.0
+      },
+      {
+        "id": 2129584,
+        "description": "",
+        "header": "Partially complete",
+        "points": 2.0
+      },
+      {
+        "id": 2129585,
+        "description": "",
+        "header": "Complete",
+        "points": 3.0
+      }
+    ],
+    "locked": false,
+    "type": "normal"
+  },
+  {
+    "id": 824818,
+    "header": "Task 4.2",
+    "description": "",
+    "description_type": "markdown",
+    "items": [
+      {
+        "id": 2129586,
+        "description": "",
+        "header": "Incomplete",
+        "points": 0.0
+      },
+      {
+        "id": 2129587,
+        "description": "",
+        "header": "Complete",
+        "points": 1.0
+      }
+    ],
+    "locked": false,
+    "type": "normal"
+  },
+  {
+    "id": 824819,
+    "header": "Task 4.3",
+    "description": "1 point for defining variables\n1 point for correct while loop condition\n2 points for correct while loop\n1 point for printing out flips",
+    "description_type": "markdown",
+    "items": [
+      {
+        "id": 2135050,
+        "description": "",
+        "header": "Min points",
+        "points": 0.0
+      },
+      {
+        "id": 2135051,
+        "description": "",
+        "header": "Max points",
+        "points": 5.0
+      }
+    ],
+    "locked": false,
+    "type": "continuous"
+  },
+  {
+    "id": 824820,
+    "header": "Task 4.4",
+    "description": "1 point for statistical reasoning\n1 point for comparison with their code",
+    "description_type": "markdown",
+    "items": [
+      {
+        "id": 2129594,
+        "description": "",
+        "header": "Incomplete",
+        "points": 0.0
+      },
+      {
+        "id": 2129595,
+        "description": "",
+        "header": "Partially complete",
+        "points": 1.0
+      },
+      {
+        "id": 2129596,
+        "description": "",
+        "header": "Complete",
+        "points": 2.0
+      }
+    ],
+    "locked": false,
+    "type": "normal"
+  },
+  {
+    "id": 824821,
+    "header": "Task 5.1",
+    "description": "",
+    "description_type": "markdown",
+    "items": [
+      {
+        "id": 2129597,
+        "description": "",
+        "header": "Incomplete",
+        "points": 0.0
+      },
+      {
+        "id": 2129598,
+        "description": "1 answer",
+        "header": "Partially complete",
+        "points": 1.0
+      },
+      {
+        "id": 2129599,
+        "description": "2 answers",
+        "header": "Partially complete",
+        "points": 2.0
+      },
+      {
+        "id": 2129600,
+        "description": "",
+        "header": "Complete",
+        "points": 3.0
+      }
+    ],
+    "locked": false,
+    "type": "normal"
+  },
+  {
+    "id": 824822,
+    "header": "Task 5.2",
+    "description": "For each of (a), (b), and (c):\n- 0.5 pt — Provides two distinct inputs that lead to two different outputs and explains why the outputs differ.\n- 0.5 pt — Clear problem statement that matches the example code’s behavior.",
+    "description_type": "markdown",
+    "items": [
+      {
+        "id": 2129601,
+        "description": "",
+        "header": "Min points",
+        "points": 0.0
+      },
+      {
+        "id": 2129602,
+        "description": "",
+        "header": "Max points",
+        "points": 3.0
+      }
+    ],
+    "locked": false,
+    "type": "continuous"
+  },
+  {
+    "id": 824823,
+    "header": "Task 5.3",
+    "description": "",
+    "description_type": "markdown",
+    "items": [
+      {
+        "id": 2129603,
+        "description": "",
+        "header": "Incomplete",
+        "points": 0.0
+      },
+      {
+        "id": 2129604,
+        "description": "an attempt that doesn't have correct output",
+        "header": "Partially complete",
+        "points": 1.0
+      },
+      {
+        "id": 2129605,
+        "description": "a correct answer that is missing the justification",
+        "header": "Partially complete",
+        "points": 2.0
+      },
+      {
+        "id": 2129606,
+        "description": "a correct answer with demonstration that it is correct",
+        "header": "Complete",
+        "points": 3.0
+      }
+    ],
+    "locked": false,
+    "type": "normal"
+  }
+]

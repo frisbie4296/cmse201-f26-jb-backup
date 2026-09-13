@@ -1,0 +1,306 @@
+[
+  {
+    "id": 931930,
+    "header": "Academic Integrity statement",
+    "description": "",
+    "description_type": "markdown",
+    "items": [
+      {
+        "id": 2349084,
+        "description": "",
+        "header": "Incomplete",
+        "points": 0.0
+      },
+      {
+        "id": 2349085,
+        "description": "",
+        "header": "Complete",
+        "points": 2.0
+      }
+    ],
+    "locked": false,
+    "type": "normal"
+  },
+  {
+    "id": 931931,
+    "header": "Task 1.0",
+    "description": "",
+    "description_type": "markdown",
+    "items": [
+      {
+        "id": 2349139,
+        "description": "",
+        "header": "Min points",
+        "points": 0.0
+      },
+      {
+        "id": 2349140,
+        "description": "",
+        "header": "Max points",
+        "points": 4.0
+      }
+    ],
+    "locked": false,
+    "type": "continuous"
+  },
+  {
+    "id": 931932,
+    "header": "Task 1.1",
+    "description": "0.5 points for reading in data\n0.5 points for displaying the head of the data",
+    "description_type": "markdown",
+    "items": [
+      {
+        "id": 2349149,
+        "description": "",
+        "header": "Incomplete",
+        "points": 0.0
+      },
+      {
+        "id": 2349151,
+        "description": "",
+        "header": "Partially complete",
+        "points": 0.5
+      },
+      {
+        "id": 2349150,
+        "description": "",
+        "header": "Complete",
+        "points": 1.0
+      }
+    ],
+    "locked": false,
+    "type": "normal"
+  },
+  {
+    "id": 931933,
+    "header": "Task 1.2",
+    "description": "1.2.1 - 1 point\n1.2.2 - 2 points",
+    "description_type": "markdown",
+    "items": [
+      {
+        "id": 2349091,
+        "description": "",
+        "header": "Incomplete",
+        "points": 0.0
+      },
+      {
+        "id": 2349092,
+        "description": "Reasonable answer, no source cited",
+        "header": "Partially complete",
+        "points": 1.0
+      },
+      {
+        "id": 2349093,
+        "description": "",
+        "header": "Partially complete",
+        "points": 2.0
+      },
+      {
+        "id": 2349176,
+        "description": "",
+        "header": "Complete",
+        "points": 3.0
+      }
+    ],
+    "locked": false,
+    "type": "normal"
+  },
+  {
+    "id": 931934,
+    "header": "Task 1.3",
+    "description": "1.3.1 - 1 point\n1.3.2 - 1 point\n1.3.3 - 4 points",
+    "description_type": "markdown",
+    "items": [
+      {
+        "id": 2349094,
+        "description": "",
+        "header": "Min points",
+        "points": 0.0
+      },
+      {
+        "id": 2349095,
+        "description": "",
+        "header": "Max points",
+        "points": 6.0
+      }
+    ],
+    "locked": false,
+    "type": "continuous"
+  },
+  {
+    "id": 931935,
+    "header": "Task 1.4",
+    "description": "1.4.1 - 6 points (5 points setting up and using correct masks, 1 point printing results)\n1.4.2 - 2 points",
+    "description_type": "markdown",
+    "items": [
+      {
+        "id": 2349096,
+        "description": "",
+        "header": "Min points",
+        "points": 0.0
+      },
+      {
+        "id": 2349097,
+        "description": "",
+        "header": "Max points",
+        "points": 8.0
+      }
+    ],
+    "locked": false,
+    "type": "continuous"
+  },
+  {
+    "id": 931936,
+    "header": "Task 1.5",
+    "description": "1.5.1 - 2 points\n1.5.2 - 2 points\n1.5.3 - 2 points\n1.5.5 - 1 point",
+    "description_type": "markdown",
+    "items": [
+      {
+        "id": 2349098,
+        "description": "",
+        "header": "Min points",
+        "points": 0.0
+      },
+      {
+        "id": 2349099,
+        "description": "",
+        "header": "Max points",
+        "points": 7.0
+      }
+    ],
+    "locked": false,
+    "type": "continuous"
+  },
+  {
+    "id": 931937,
+    "header": "Task 2.1",
+    "description": "",
+    "description_type": "markdown",
+    "items": [
+      {
+        "id": 2349100,
+        "description": "",
+        "header": "Min points",
+        "points": 0.0
+      },
+      {
+        "id": 2349101,
+        "description": "",
+        "header": "Max points",
+        "points": 8.0
+      }
+    ],
+    "locked": false,
+    "type": "continuous"
+  },
+  {
+    "id": 931938,
+    "header": "Task 2.2",
+    "description": "",
+    "description_type": "markdown",
+    "items": [
+      {
+        "id": 2349102,
+        "description": "",
+        "header": "Min points",
+        "points": 0.0
+      },
+      {
+        "id": 2349103,
+        "description": "",
+        "header": "Max points",
+        "points": 9.0
+      }
+    ],
+    "locked": false,
+    "type": "continuous"
+  },
+  {
+    "id": 931939,
+    "header": "Task 2.3",
+    "description": "",
+    "description_type": "markdown",
+    "items": [
+      {
+        "id": 2349172,
+        "description": "",
+        "header": "Min points",
+        "points": 0.0
+      },
+      {
+        "id": 2349173,
+        "description": "",
+        "header": "Max points",
+        "points": 8.0
+      }
+    ],
+    "locked": false,
+    "type": "continuous"
+  },
+  {
+    "id": 931940,
+    "header": "Task 3.1",
+    "description": "3 points for correct function definition\n1 point for correct calculation in the function\n",
+    "description_type": "markdown",
+    "items": [
+      {
+        "id": 2349108,
+        "description": "",
+        "header": "Min points",
+        "points": 0.0
+      },
+      {
+        "id": 2349109,
+        "description": "",
+        "header": "Max points",
+        "points": 4.0
+      }
+    ],
+    "locked": false,
+    "type": "continuous"
+  },
+  {
+    "id": 931941,
+    "header": "Task 3.2",
+    "description": "",
+    "description_type": "markdown",
+    "items": [
+      {
+        "id": 2349110,
+        "description": "",
+        "header": "Min points",
+        "points": 0.0
+      },
+      {
+        "id": 2349111,
+        "description": "",
+        "header": "Max points",
+        "points": 10.0
+      }
+    ],
+    "locked": false,
+    "type": "continuous"
+  },
+  {
+    "id": 931942,
+    "header": "Task 3.3",
+    "description": "",
+    "description_type": "markdown",
+    "items": [
+      {
+        "id": 2349112,
+        "description": "",
+        "header": "Min points",
+        "points": 0.0
+      },
+      {
+        "id": 2349113,
+        "description": "",
+        "header": "Max points",
+        "points": 10.0
+      }
+    ],
+    "locked": false,
+    "type": "continuous"
+  }
+]

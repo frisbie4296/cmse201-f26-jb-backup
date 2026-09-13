@@ -1,0 +1,1284 @@
+
+<!DOCTYPE html>
+
+
+<html lang="en" data-content_root="../" >
+
+  <head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" /><meta name="viewport" content="width=device-width, initial-scale=1" />
+
+    <title>Day 20 Pre-class Assignment: Introduction to Data Visualization &#8212; CMSE 201</title>
+  
+  
+  
+  <script data-cfasync="false">
+    document.documentElement.dataset.mode = localStorage.getItem("mode") || "";
+    document.documentElement.dataset.theme = localStorage.getItem("theme") || "";
+  </script>
+  
+  <!-- Loaded before other Sphinx assets -->
+  <link href="../_static/styles/theme.css?digest=3ee479438cf8b5e0d341" rel="stylesheet" />
+<link href="../_static/styles/bootstrap.css?digest=3ee479438cf8b5e0d341" rel="stylesheet" />
+<link href="../_static/styles/pydata-sphinx-theme.css?digest=3ee479438cf8b5e0d341" rel="stylesheet" />
+
+  
+  <link href="../_static/vendor/fontawesome/6.5.2/css/all.min.css?digest=3ee479438cf8b5e0d341" rel="stylesheet" />
+  <link rel="preload" as="font" type="font/woff2" crossorigin href="../_static/vendor/fontawesome/6.5.2/webfonts/fa-solid-900.woff2" />
+<link rel="preload" as="font" type="font/woff2" crossorigin href="../_static/vendor/fontawesome/6.5.2/webfonts/fa-brands-400.woff2" />
+<link rel="preload" as="font" type="font/woff2" crossorigin href="../_static/vendor/fontawesome/6.5.2/webfonts/fa-regular-400.woff2" />
+
+    <link rel="stylesheet" type="text/css" href="../_static/pygments.css?v=fa44fd50" />
+    <link rel="stylesheet" type="text/css" href="../_static/styles/sphinx-book-theme.css?v=384b581d" />
+    <link rel="stylesheet" type="text/css" href="../_static/togglebutton.css?v=13237357" />
+    <link rel="stylesheet" type="text/css" href="../_static/copybutton.css?v=76b2166b" />
+    <link rel="stylesheet" type="text/css" href="../_static/mystnb.4510f1fc1dee50b3e5859aac5469c37c29e427902b24a333a5f9fcb2f0b3ac41.css?v=be8a1c11" />
+    <link rel="stylesheet" type="text/css" href="../_static/sphinx-thebe.css?v=4fa983c6" />
+    <link rel="stylesheet" type="text/css" href="../_static/sphinx-design.min.css?v=87e54e7c" />
+  
+  <!-- Pre-loaded scripts that we'll load fully later -->
+  <link rel="preload" as="script" href="../_static/scripts/bootstrap.js?digest=3ee479438cf8b5e0d341" />
+<link rel="preload" as="script" href="../_static/scripts/pydata-sphinx-theme.js?digest=3ee479438cf8b5e0d341" />
+  <script src="../_static/vendor/fontawesome/6.5.2/js/all.min.js?digest=3ee479438cf8b5e0d341"></script>
+
+    <script src="../_static/documentation_options.js?v=9eb32ce0"></script>
+    <script src="../_static/doctools.js?v=9a2dae69"></script>
+    <script src="../_static/sphinx_highlight.js?v=dc90522c"></script>
+    <script src="../_static/clipboard.min.js?v=a7894cd8"></script>
+    <script src="../_static/copybutton.js?v=f281be69"></script>
+    <script src="../_static/scripts/sphinx-book-theme.js?v=efea14e4"></script>
+    <script>let toggleHintShow = 'Click to show';</script>
+    <script>let toggleHintHide = 'Click to hide';</script>
+    <script>let toggleOpenOnPrint = 'true';</script>
+    <script src="../_static/togglebutton.js?v=4a39c7ea"></script>
+    <script>var togglebuttonSelector = '.toggle, .admonition.dropdown';</script>
+    <script src="../_static/design-tabs.js?v=36754332"></script>
+    <script>const THEBE_JS_URL = "https://unpkg.com/thebe@0.8.2/lib/index.js"; const thebe_selector = ".thebe,.cell"; const thebe_selector_input = "pre"; const thebe_selector_output = ".output, .cell_output"</script>
+    <script async="async" src="../_static/sphinx-thebe.js?v=c100c467"></script>
+    <script>var togglebuttonSelector = '.toggle, .admonition.dropdown';</script>
+    <script>const THEBE_JS_URL = "https://unpkg.com/thebe@0.8.2/lib/index.js"; const thebe_selector = ".thebe,.cell"; const thebe_selector_input = "pre"; const thebe_selector_output = ".output, .cell_output"</script>
+    <script>DOCUMENTATION_OPTIONS.pagename = 'Day-20/Day-20_Pre-Class_IntroToDataVisualization-STUDENT';</script>
+    <link rel="icon" href="../_static/cmse_fav.ico"/>
+    <link rel="index" title="Index" href="../genindex.html" />
+    <link rel="search" title="Search" href="../search.html" />
+    <link rel="next" title="Day 20 In-Class: Introduction to Data Visualization" href="Day-20_In-Class_IntroToDataVisualization-STUDENT.html" />
+    <link rel="prev" title="Day 19 In-Class Assignment: Compartmental Modeling, moving from the model to the code" href="../Day-19/Day-19_In-Class_CompartmentsWithSolveIVP-STUDENT.html" />
+  <meta name="viewport" content="width=device-width, initial-scale=1"/>
+  <meta name="docsearch:language" content="en"/>
+  </head>
+  
+  
+  <body data-bs-spy="scroll" data-bs-target=".bd-toc-nav" data-offset="180" data-bs-root-margin="0px 0px -60%" data-default-mode="">
+
+  
+  
+  <div id="pst-skip-link" class="skip-link d-print-none"><a href="#main-content">Skip to main content</a></div>
+  
+  <div id="pst-scroll-pixel-helper"></div>
+  
+  <button type="button" class="btn rounded-pill" id="pst-back-to-top">
+    <i class="fa-solid fa-arrow-up"></i>Back to top</button>
+
+  
+  <input type="checkbox"
+          class="sidebar-toggle"
+          id="pst-primary-sidebar-checkbox"/>
+  <label class="overlay overlay-primary" for="pst-primary-sidebar-checkbox"></label>
+  
+  <input type="checkbox"
+          class="sidebar-toggle"
+          id="pst-secondary-sidebar-checkbox"/>
+  <label class="overlay overlay-secondary" for="pst-secondary-sidebar-checkbox"></label>
+  
+  <div class="search-button__wrapper">
+    <div class="search-button__overlay"></div>
+    <div class="search-button__search-container">
+<form class="bd-search d-flex align-items-center"
+      action="../search.html"
+      method="get">
+  <i class="fa-solid fa-magnifying-glass"></i>
+  <input type="search"
+         class="form-control"
+         name="q"
+         id="search-input"
+         placeholder="Search..."
+         aria-label="Search..."
+         autocomplete="off"
+         autocorrect="off"
+         autocapitalize="off"
+         spellcheck="false"/>
+  <span class="search-button__kbd-shortcut"><kbd class="kbd-shortcut__modifier">Ctrl</kbd>+<kbd>K</kbd></span>
+</form></div>
+  </div>
+
+  <div class="pst-async-banner-revealer d-none">
+  <aside id="bd-header-version-warning" class="d-none d-print-none" aria-label="Version warning"></aside>
+</div>
+
+  
+    <header class="bd-header navbar navbar-expand-lg bd-navbar d-print-none">
+    </header>
+  
+
+  <div class="bd-container">
+    <div class="bd-container__inner bd-page-width">
+      
+      
+      
+      <div class="bd-sidebar-primary bd-sidebar">
+        
+
+  
+  <div class="sidebar-header-items sidebar-primary__section">
+    
+    
+    
+    
+  </div>
+  
+    <div class="sidebar-primary-items__start sidebar-primary__section">
+        <div class="sidebar-primary-item">
+
+  
+
+<a class="navbar-brand logo" href="../intro.html">
+  
+  
+  
+  
+  
+    
+    
+      
+    
+    
+    <img src="../_static/logo.png" class="logo__image only-light" alt="CMSE 201 - Home"/>
+    <script>document.write(`<img src="../_static/logo.png" class="logo__image only-dark" alt="CMSE 201 - Home"/>`);</script>
+  
+  
+</a></div>
+        <div class="sidebar-primary-item">
+
+ <script>
+ document.write(`
+   <button class="btn navbar-btn search-button-field search-button__button" title="Search" aria-label="Search" data-bs-placement="bottom" data-bs-toggle="tooltip">
+    <i class="fa-solid fa-magnifying-glass"></i>
+    <span class="search-button__default-text">Search</span>
+    <span class="search-button__kbd-shortcut"><kbd class="kbd-shortcut__modifier">Ctrl</kbd>+<kbd class="kbd-shortcut__modifier">K</kbd></span>
+   </button>
+ `);
+ </script></div>
+        <div class="sidebar-primary-item"><nav class="bd-links bd-docs-nav" aria-label="Main">
+    <div class="bd-toc-item navbar-nav active">
+        <p aria-level="2" class="caption" role="heading"><span class="caption-text">Course Materials</span></p>
+<ul class="nav bd-sidenav">
+<li class="toctree-l1 has-children"><a class="reference internal" href="../Course_Materials-201/CourseDocuments.html">Important Course information</a><details><summary><span class="toctree-toggle" role="presentation"><i class="fa-solid fa-chevron-down"></i></span></summary><ul>
+<li class="toctree-l2"><a class="reference internal" href="../Course_Materials-201/CMSE201-Syllabus.html">Syllabus</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../Course_Materials-201/CMSE201-Schedule.html">Course Schedule</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../Course_Materials-201/SoftwareSetupGuide.html">Software Setup Guide</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../Course_Materials-201/classroom_participation.html">Classroom Participation</a></li>
+</ul>
+</details></li>
+</ul>
+<p aria-level="2" class="caption" role="heading"><span class="caption-text">Day 01</span></p>
+<ul class="nav bd-sidenav">
+<li class="toctree-l1"><a class="reference internal" href="../Day-01/Day-01_In-Class_SortingAlgorithm-STUDENT.html">Day 1 In-Class Assignment: Introductions and Sorting Algorithms</a></li>
+
+
+
+</ul>
+<p aria-level="2" class="caption" role="heading"><span class="caption-text">Day 02</span></p>
+<ul class="nav bd-sidenav">
+<li class="toctree-l1"><a class="reference internal" href="../Day-02/Day-02_Pre-Class_IntroToPython-STUDENT.html">Day 2 Pre-class Assignment: Intro to Python</a></li>
+
+
+
+<li class="toctree-l1"><a class="reference internal" href="../Day-02/Day-02_In-Class_OrderOfMagnitudeModeling-STUDENT.html">Day 2 In-class Assignment: Order of Magnitude Modeling</a></li>
+
+
+</ul>
+<p aria-level="2" class="caption" role="heading"><span class="caption-text">Day 03</span></p>
+<ul class="nav bd-sidenav">
+<li class="toctree-l1"><a class="reference internal" href="../Day-03/Day-03_Pre-Class_ListsAndLoops-STUDENT.html">Day 3: Pre-Class Assignment: Lists and Loops</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../Day-03/Day-03_In-Class_ListsLoopsAndSaving-STUDENT.html">Day 3 In-class Assignment: The power of compound interest</a></li>
+</ul>
+<p aria-level="2" class="caption" role="heading"><span class="caption-text">Day 04</span></p>
+<ul class="nav bd-sidenav">
+<li class="toctree-l1"><a class="reference internal" href="../Day-04/Day_04_PreClass_DataAlgorithmicBias-STUDENT.html">Day 4 Pre-class Assignment: Introduction to Data Ethics: Data and Algorithmic Bias</a></li>
+
+
+
+
+
+<li class="toctree-l1"><a class="reference internal" href="../Day-04/Day_04_In_Class_DataAlgorithmicBias-STUDENT.html">Day 4 In-class Assignment: Data and Algorithmic Bias, Academic Integrity, and Coding Best Practices</a></li>
+
+</ul>
+<p aria-level="2" class="caption" role="heading"><span class="caption-text">Day 05</span></p>
+<ul class="nav bd-sidenav">
+<li class="toctree-l1"><a class="reference internal" href="../Day-05/Day-05_Pre-Class_IfStatementsAndFunctions-STUDENT.html">Day 5 Pre-class Assignment: Boolean logic, if statements, and an introduction to functions</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../Day-05/Day-05_In-Class_IfStatementsAndFunctions-STUDENT.html">Day 5 In-class Assignment: Savings for Everyone</a></li>
+</ul>
+<p aria-level="2" class="caption" role="heading"><span class="caption-text">Day 06</span></p>
+<ul class="nav bd-sidenav">
+<li class="toctree-l1"><a class="reference internal" href="../Day-06/Day-06_Pre-Class_MoreFunctions-STUDENT.html">Day 6 Pre-class Assignment: Thinking more about functions</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../Day-06/Day-06_In-Class_FunctionsAndSquirrels-STUDENT.html">Day 6 In Class Assignment: A Scurry of Squirrels in Central Park</a></li>
+
+
+
+
+
+</ul>
+<p aria-level="2" class="caption" role="heading"><span class="caption-text">Day 07</span></p>
+<ul class="nav bd-sidenav">
+<li class="toctree-l1"><a class="reference internal" href="../Day-07/Day-07_Pre-Class_ReflectingOnUnderstanding-STUDENT.html">Day 7 Pre-Class Assignment: A reflection on what you’ve learned so far and an introduction to Generative Artificial Intelligence!</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../Day-07/Day-07_In-Class_ReviewingAndPracticingConcepts-STUDENT.html">Day 7 In-class Assignment: Reviewing and practicing prior concepts</a></li>
+
+<li class="toctree-l1"><a class="reference internal" href="../Day-07/Day-07_In-Class_ReviewingAndPracticingConcepts-Solutions.html">Day 7 In-class Assignment: Reviewing and practicing prior concepts</a></li>
+
+<li class="toctree-l1"><a class="reference internal" href="../Day-07/Debugging-STUDENT.html">Practice with Debugging</a></li>
+
+
+</ul>
+<p aria-level="2" class="caption" role="heading"><span class="caption-text">Day 08</span></p>
+<ul class="nav bd-sidenav">
+<li class="toctree-l1"><a class="reference internal" href="../Day-08/Day-08_Pre-Class_ModulesMathAndPlots-STUDENT.html">Day 8 Pre-Class Assignment: Python Modules: Numpy and Plots</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../Day-08/Day-08_In-Class_MathAndPlotting-STUDENT.html">Day 8 In-class Assignment: Visualizing population growth</a></li>
+</ul>
+<p aria-level="2" class="caption" role="heading"><span class="caption-text">Day 09</span></p>
+<ul class="nav bd-sidenav">
+<li class="toctree-l1"><a class="reference internal" href="../Day-09/Day-09_Pre-Class_IntroToNumPy-STUDENT.html">Day 9 Pre-Class: Introduction to NumPy</a></li>
+<li class="toctree-l1"><a class="reference external" href="https://raw.githubusercontent.com/msu-cmse-courses/cmse201-supplemental/main/ICA_datasets/michigan_pop.csv">michigan_pop.csv</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../Day-09/Day-09_In-Class_NumPyWithTheGreatLakes-STUDENT.html">Day 9 In-class Assignment: Exploring Great Lakes Water Levels using NumPy</a></li>
+
+<li class="toctree-l1"><a class="reference external" href="https://raw.githubusercontent.com/msu-cmse-courses/cmse201-supplemental/main/ICA_datasets/lake_erie.csv">lake_erie.csv</a></li>
+<li class="toctree-l1"><a class="reference external" href="https://raw.githubusercontent.com/msu-cmse-courses/cmse201-supplemental/main/ICA_datasets/lake_michigan_huron.csv">lake_michigan_huron.csv</a></li>
+<li class="toctree-l1"><a class="reference external" href="https://raw.githubusercontent.com/msu-cmse-courses/cmse201-supplemental/main/ICA_datasets/lake_ontario.csv">lake_ontario.csv</a></li>
+<li class="toctree-l1"><a class="reference external" href="https://raw.githubusercontent.com/msu-cmse-courses/cmse201-supplemental/main/ICA_datasets/lake_superior.csv">lake_superior.csv</a></li>
+</ul>
+<p aria-level="2" class="caption" role="heading"><span class="caption-text">Day 10</span></p>
+<ul class="nav bd-sidenav">
+<li class="toctree-l1"><a class="reference internal" href="../Day-10/Day-10_Pre-Class_Pandas-STUDENT.html">Day 10 Pre-class Assignment: Computational Models Overview and The Pandas Data Analysis Library</a></li>
+
+
+
+<li class="toctree-l1"><a class="reference external" href="https://raw.githubusercontent.com/msu-cmse-courses/cmse201-supplemental/main/Day-09/heart_disease_data.csv">heart_disease_data.csv</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../Day-10/Day-10_In-Class_GDP-STUDENT.html">Day 10 In-Class: Cleaning and Analyzing Economic Data</a></li>
+
+
+<li class="toctree-l1"><a class="reference external" href="https://raw.githubusercontent.com/msu-cmse-courses/cmse201-supplemental/main/ICA_datasets/API_NY.GDP.MKTP.CD_DS2_en_csv_v2_31795.csv">API_NY.GDP.MKTP.CD_DS2_en_csv_v2_31795.csv</a></li>
+</ul>
+<p aria-level="2" class="caption" role="heading"><span class="caption-text">Day 11</span></p>
+<ul class="nav bd-sidenav">
+<li class="toctree-l1"><a class="reference internal" href="../Day-11/Day-11_Pre-Class_Masking-STUDENT.html">Day 11 Pre-class Assignment: Normal Distributions, Masking, and Log Plots</a></li>
+<li class="toctree-l1"><a class="reference external" href="https://raw.githubusercontent.com/msu-cmse-courses/cmse201-supplemental/main/ICA_datasets/GDP_Cleaned.csv">GDP_Cleaned.csv</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../Day-11/Day-11_In-Class_Flint-STUDENT.html">Day 11 In-class Assignment: Get the Lead Out: Understanding The Water Crisis in Flint, MI</a></li>
+
+
+<li class="toctree-l1"><a class="reference external" href="https://raw.githubusercontent.com/msu-cmse-courses/cmse201-supplemental/main/ICA_datasets/flint_water_data.csv">flint_water_data.csv</a></li>
+</ul>
+<p aria-level="2" class="caption" role="heading"><span class="caption-text">Day 12</span></p>
+<ul class="nav bd-sidenav">
+<li class="toctree-l1"><a class="reference internal" href="../Day-12/Day-12_Pre-Class_Unprocessed_Data-STUDENT.html">Day 12 Pre-class: Introduction to Data Wrangling</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../Day-12/Day-12_In-Class_Unprocessed_Data-STUDENT.html">Day 12 In-Class: Data Contextualization and Wrangling</a></li>
+</ul>
+<p aria-level="2" class="caption" role="heading"><span class="caption-text">Day 13</span></p>
+<ul class="nav bd-sidenav">
+<li class="toctree-l1"><a class="reference internal" href="../Day-13/Day-13_Pre-Class_Online_Resources-STUDENT.html">Day 13 Pre-class Assignment: Finding resources online and tinkering wth code</a></li>
+
+
+<li class="toctree-l1"><a class="reference internal" href="../Day-13/Day-13_In-Class_Online_Resources-STUDENT.html">Day 13 In-Class: Using online resources (code and data)</a></li>
+</ul>
+<p aria-level="2" class="caption" role="heading"><span class="caption-text">Day 14</span></p>
+<ul class="nav bd-sidenav">
+<li class="toctree-l1"><a class="reference internal" href="../Day-14/Day-14_Pre-Class_Evaluating_Fits-STUDENT.html">Day 14 Pre-Class Assignment: Making Predictions Using Data</a></li>
+<li class="toctree-l1"><a class="reference external" href="https://raw.githubusercontent.com/msu-cmse-courses/cmse201-supplemental/main/image_critique_ver2.pptx">Image Critique</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../Day-14/Day-14_In-Class_Evaluating_Fits-STUDENT.html">Day 14 In-Class Assignment: Evaluating Models</a></li>
+</ul>
+<p aria-level="2" class="caption" role="heading"><span class="caption-text">Day 15</span></p>
+<ul class="nav bd-sidenav">
+<li class="toctree-l1"><a class="reference internal" href="../Day-15/Day-15_Pre-Class_CurveFitting-STUDENT.html">Day 15 Pre-Class Assignment: Fitting functions to data (curve-fitting) and thinking more about models</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../Day-15/Day-15_In-Class_FittingCurves-STUDENT.html">Day 15 In-Class Assignment: (Thoughtfully) fitting models to data</a></li>
+<li class="toctree-l1"><a class="reference external" href="https://raw.githubusercontent.com/msu-cmse-courses/cmse201-S22-data/main/Day-14/pop200.csv">pop200.csv</a></li>
+<li class="toctree-l1"><a class="reference external" href="https://raw.githubusercontent.com/msu-cmse-courses/cmse201-S22-data/main/Day-14/pop300.csv">pop300.csv</a></li>
+</ul>
+<p aria-level="2" class="caption" role="heading"><span class="caption-text">Day 16</span></p>
+<ul class="nav bd-sidenav">
+<li class="toctree-l1"><a class="reference internal" href="../Day-16/Day-16-Intro_to_ODEs_Pre-Class-STUDENT.html">Day 16 Pre-class Assignment: Introduction to Modeling with Ordinary Differential Equations</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../Day-16/Day-16-Intro_to_ODEs_In-Class_STUDENT.html">Day 16: In-class Assignment: Introduction to Modeling with ODEs</a></li>
+</ul>
+<p aria-level="2" class="caption" role="heading"><span class="caption-text">Day 17</span></p>
+<ul class="nav bd-sidenav">
+<li class="toctree-l1"><a class="reference internal" href="../Day-17/Day-17_Pre-Class_ModelingWithODEs-STUDENT.html">Day 17: Pre-class Assignment: Modeling with Ordinary Differential Equations</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../Day-17/Day-17_In-Class_ModelingWithODEs-STUDENT.html">Day 17: In-class Assignment: Modeling with ODEs</a></li>
+
+
+</ul>
+<p aria-level="2" class="caption" role="heading"><span class="caption-text">Day 18</span></p>
+<ul class="nav bd-sidenav">
+<li class="toctree-l1"><a class="reference internal" href="../Day-18/Day-18_Pre-Class_ViralKinetics-STUDENT.html">Day 18 Pre-Class: Viral Kinetics</a></li>
+
+<li class="toctree-l1"><a class="reference internal" href="../Day-18/Day-18_In-Class_CompartmentalModeling-STUDENT.html">Day 18 In-class Assignment: Building Compartmental Models</a></li>
+
+
+
+</ul>
+<p aria-level="2" class="caption" role="heading"><span class="caption-text">Day 19</span></p>
+<ul class="nav bd-sidenav">
+<li class="toctree-l1"><a class="reference internal" href="../Day-19/Day-19_Pre-Class_Zombies-STUDENT.html">Day 19 Pre-class Assignment: ZOMBIES!!</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../Day-19/Day-19_In-Class_CompartmentsWithSolveIVP-STUDENT.html">Day 19 In-Class Assignment: Compartmental Modeling, moving from the model to the code</a></li>
+</ul>
+<p aria-level="2" class="caption" role="heading"><span class="caption-text">Day 20</span></p>
+<ul class="current nav bd-sidenav">
+<li class="toctree-l1 current active"><a class="current reference internal" href="#">Day 20 Pre-class Assignment: Introduction to Data Visualization</a></li>
+<li class="toctree-l1"><a class="reference internal" href="Day-20_In-Class_IntroToDataVisualization-STUDENT.html">Day 20 In-Class: Introduction to Data Visualization</a></li>
+</ul>
+<p aria-level="2" class="caption" role="heading"><span class="caption-text">Day 21</span></p>
+<ul class="nav bd-sidenav">
+<li class="toctree-l1"><a class="reference internal" href="../Day-21/Day-21_Pre-Class_2DNumPyArrays-STUDENT.html">Day 21 Pre-Class: 2D NumPy Arrays</a></li>
+<li class="toctree-l1"><a class="reference external" href="https://raw.githubusercontent.com/msu-cmse-courses/cmse201-supplemental/main/Day-17/PCA_files/cars.csv">cars.csv</a></li>
+<li class="toctree-l1"><a class="reference external" href="https://github.com/msu-cmse-courses/cmse201-supplemental/raw/main/Day-17/PCA_files/example.jpeg">example.jpeg</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../Day-21/Day-21_In-Class_2DImageAnalysis-STUDENT.html">Day 21 In-Class Assignment: Image Analysis</a></li>
+<li class="toctree-l1"><a class="reference external" href="https://raw.githubusercontent.com/msu-cmse-courses/cmse201-supplemental/main/Day-17/ICA_files/beach.jpeg">beach.jpeg</a></li>
+<li class="toctree-l1"><a class="reference external" href="https://raw.githubusercontent.com/msu-cmse-courses/cmse201-supplemental/main/Day-17/ICA_files/landscape.jpeg">landscape.jpeg</a></li>
+<li class="toctree-l1"><a class="reference external" href="https://raw.githubusercontent.com/msu-cmse-courses/cmse201-supplemental/main/Day-17/ICA_files/zebra.png">zebra.png</a></li>
+</ul>
+<p aria-level="2" class="caption" role="heading"><span class="caption-text">Day 22</span></p>
+<ul class="nav bd-sidenav">
+<li class="toctree-l1"><a class="reference internal" href="../Day-22/Day-22_Pre-Class_ProjectWorkDay-STUDENT.html">Day 22 Pre-class: Project Draft Presentation Preparation</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../Day-22/Day-22_In-Class_ProjectWorkDay-STUDENT.html">Day 22 In-class Assignment: Project Work Day</a></li>
+</ul>
+<p aria-level="2" class="caption" role="heading"><span class="caption-text">Day 23</span></p>
+<ul class="nav bd-sidenav">
+<li class="toctree-l1"><a class="reference internal" href="../Day-23/Day-23_Pre-Class_ABMForestFire-STUDENT.html">Day 23 Pre-class: Agent-based models and forest fires</a></li>
+
+
+
+
+
+<li class="toctree-l1"><a class="reference internal" href="../Day-23/Day-23_In-Class_ForestFiresPartI-STUDENT.html">Day 23 Part 1 In-class Assignment: Modeling forest fires with an Agent-based Model</a></li>
+</ul>
+<p aria-level="2" class="caption" role="heading"><span class="caption-text">Day 24</span></p>
+<ul class="nav bd-sidenav">
+<li class="toctree-l1"><a class="reference internal" href="../Day-24/Day-24_Pre-Class_MoreNumPyArrayManipulation-STUDENT.html">Day 24 Pre-class: More practice manipulating 2D Numpy Arrays</a></li>
+
+<li class="toctree-l1"><a class="reference internal" href="../Day-24/Day-24_In-Class_ForestFiresPartII-STUDENT.html">Day 24 In-class Assignment: Modeling forest fires with an Agent-based Model (Part II)</a></li>
+</ul>
+<p aria-level="2" class="caption" role="heading"><span class="caption-text">Day 25</span></p>
+<ul class="nav bd-sidenav">
+<li class="toctree-l1"><a class="reference internal" href="../Day-25/Day-25_Pre-Class_DataDilemmas-STUDENT.html">Day 25 Pre-Class - Data Dilemmas: Ethics in an Algorithmic World</a></li>
+
+
+<li class="toctree-l1"><a class="reference internal" href="../Day-25/Day-25_In-Class_DataDilemmas-STUDENT.html">Day 25 - In-Class - Data Dilemmas: Ethics in an Algorithmic World</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../Day-25/biased_data_gen.html">Data Generation Sheet</a></li>
+</ul>
+<p aria-level="2" class="caption" role="heading"><span class="caption-text">Homework</span></p>
+<ul class="nav bd-sidenav">
+<li class="toctree-l1"><a class="reference internal" href="../Homework/Homework_01/HW_01_PythonFundamentals-SS25-STUDENT.html">Homework 1 - Python Fundamentals</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../Homework/Homework_02/HW_02_IfelseFunctionsNumpyMatplotlib_SS25-STUDENT.html">Homework 2: Dictionaries, If Statements, Functions, and Modules</a></li>
+
+<li class="toctree-l1"><a class="reference external" href="https://raw.githubusercontent.com/msu-cmse-courses/cmse201-supplemental/main/Homework/global_temperature_anomalies.csv">global_temperature_anomalies.csv</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../Homework/Homework_03/HW3_Spring25_STUDENT.html">Homework 3 - Loading, Cleaning, Analyzing, and Visualizing Data with Pandas</a></li>
+<li class="toctree-l1"><a class="reference external" href="https://raw.githubusercontent.com/msu-cmse-courses/cmse201-supplemental/main/Homework/zipped_data_files_part1.zip">zipped_data_files_part1.zip</a></li>
+<li class="toctree-l1"><a class="reference external" href="https://raw.githubusercontent.com/msu-cmse-courses/cmse201-supplemental/main/Homework/zipped_data_files_part2.zip">zipped_data_files_part2.zip</a></li>
+<li class="toctree-l1"><a class="reference external" href="https://raw.githubusercontent.com/msu-cmse-courses/cmse201-supplemental/main/Homework/Example002.csv">Example002.csv</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../Homework/Homework_04/HW4_SS25_STUDENT.html">Homework 4 - Compartmental Models + Data Visualization</a></li>
+<li class="toctree-l1"><a class="reference external" href="https://raw.githubusercontent.com/msu-cmse-courses/cmse201-supplemental/main/Homework/auto-mpg-clean.csv">auto-mpg-clean.csv</a></li>
+<li class="toctree-l1"><a class="reference external" href="https://raw.githubusercontent.com/msu-cmse-courses/cmse201-supplemental/main/Homework/auto-mpg.data-original">auto-mpg.data-original</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../Homework/Homework_05/HW-05_SS25_STUDENT.html">Homework 5: Algorithmic Bias and Agent-based Modeling (EXTRA CREDIT)</a></li>
+
+
+
+</ul>
+<p aria-level="2" class="caption" role="heading"><span class="caption-text">Code Portfolio</span></p>
+<ul class="nav bd-sidenav">
+<li class="toctree-l1"><a class="reference internal" href="../Homework/Code_Portfolio/Code_Portfolio_Assignment.html">Code Portfolio Assignment</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../Homework/Code_Portfolio/Code_Portfolio_Example.html">Code Portfolio Example</a></li>
+
+
+
+
+</ul>
+<p aria-level="2" class="caption" role="heading"><span class="caption-text">Semester Project</span></p>
+<ul class="nav bd-sidenav">
+<li class="toctree-l1"><a class="reference internal" href="../Project_Materials/CMSE201_SemesterProjectDetails.html">Semester Project Details</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../Project_Materials/Project_Plan_Check-in.html">First Project Checkpoint</a></li>
+
+
+
+<li class="toctree-l1"><a class="reference internal" href="../Project_Materials/CMSE201_FinalProjectTemplate.html">CMSE 201 Final Project Template</a></li>
+
+<li class="toctree-l1"><a class="reference external" href="https://raw.githubusercontent.com/msu-cmse-courses/cmse201-supplemental/main/Projects/CMSE201_final_project_examples.zip">Zip file of example projects</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../Project_Materials/CMSE201FinalProject_RequirementsAndGradingRubric.html">Requirements and Grading Rubric</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../Project_Materials/peer_assessment.html">Peer Assessment Notebook</a></li>
+<li class="toctree-l1"><a class="reference external" href="https://github.com/msu-cmse-courses/cmse201-supplemental/raw/main/Projects/Presentation_Evaluation_Rubric.pdf">Presentation Evaluation Rubric</a></li>
+</ul>
+<p aria-level="2" class="caption" role="heading"><span class="caption-text">Practice Notebooks</span></p>
+<ul class="nav bd-sidenav">
+<li class="toctree-l1"><a class="reference internal" href="../Quiz_Prep_Notebooks/PracticeNotebook_IfStatements-STUDENT.html">Practice with: <code class="docutils literal notranslate"><span class="pre">if</span></code> statements</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../Quiz_Prep_Notebooks/PracticeNotebook_Functions-STUDENT.html">Practice with: functions</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../Quiz_Prep_Notebooks/PracticeNotebook_Matplotlib-STUDENT.html">Practice with: <code class="docutils literal notranslate"><span class="pre">matplotlib</span></code></a></li>
+<li class="toctree-l1"><a class="reference internal" href="../Quiz_Prep_Notebooks/filtering_ws_ver2.html">Practice with Masking</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../Quiz_Prep_Notebooks/PracticeNotebook_Pandas-STUDENT.html">Practice with: Pandas</a></li>
+<li class="toctree-l1"><a class="reference external" href="https://raw.githubusercontent.com/msu-cmse-courses/cmse201-supplemental/main/PracticeNotebooks/weather.csv">weather.csv</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../Quiz_Prep_Notebooks/PracticeNotebook_ScipyCurveFit-STUDENT.html">Practice with: SciPy <code class="docutils literal notranslate"><span class="pre">curve_fit</span></code></a></li>
+<li class="toctree-l1"><a class="reference internal" href="../Quiz_Prep_Notebooks/PracticeNotebook_CompartmentalModels-STUDENT.html">Practice with: Compartmental Models</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../Quiz_Prep_Notebooks/PracticeNotebook_SolveIVP-STUDENT.html">Practice with: <code class="docutils literal notranslate"><span class="pre">solve_ivp</span></code></a></li>
+</ul>
+
+    </div>
+</nav></div>
+    </div>
+  
+  
+  <div class="sidebar-primary-items__end sidebar-primary__section">
+  </div>
+  
+  <div id="rtd-footer-container"></div>
+
+
+      </div>
+      
+      <main id="main-content" class="bd-main" role="main">
+        
+        
+
+<div class="sbt-scroll-pixel-helper"></div>
+
+          <div class="bd-content">
+            <div class="bd-article-container">
+              
+              <div class="bd-header-article d-print-none">
+<div class="header-article-items header-article__inner">
+  
+    <div class="header-article-items__start">
+      
+        <div class="header-article-item"><label class="sidebar-toggle primary-toggle btn btn-sm" for="__primary" title="Toggle primary sidebar" data-bs-placement="bottom" data-bs-toggle="tooltip">
+  <span class="fa-solid fa-bars"></span>
+</label></div>
+      
+    </div>
+  
+  
+    <div class="header-article-items__end">
+      
+        <div class="header-article-item">
+
+<div class="article-header-buttons">
+
+
+
+
+
+<div class="dropdown dropdown-download-buttons">
+  <button class="btn dropdown-toggle" type="button" data-bs-toggle="dropdown" aria-expanded="false" aria-label="Download this page">
+    <i class="fas fa-download"></i>
+  </button>
+  <ul class="dropdown-menu">
+      
+      
+      
+      <li><a href="../_sources/Day-20/Day-20_Pre-Class_IntroToDataVisualization-STUDENT.ipynb" target="_blank"
+   class="btn btn-sm btn-download-source-button dropdown-item"
+   title="Download source file"
+   data-bs-placement="left" data-bs-toggle="tooltip"
+>
+  
+
+<span class="btn__icon-container">
+  <i class="fas fa-file"></i>
+  </span>
+<span class="btn__text-container">.ipynb</span>
+</a>
+</li>
+      
+      
+      
+      
+      <li>
+<button onclick="window.print()"
+  class="btn btn-sm btn-download-pdf-button dropdown-item"
+  title="Print to PDF"
+  data-bs-placement="left" data-bs-toggle="tooltip"
+>
+  
+
+<span class="btn__icon-container">
+  <i class="fas fa-file-pdf"></i>
+  </span>
+<span class="btn__text-container">.pdf</span>
+</button>
+</li>
+      
+  </ul>
+</div>
+
+
+
+
+<button onclick="toggleFullScreen()"
+  class="btn btn-sm btn-fullscreen-button"
+  title="Fullscreen mode"
+  data-bs-placement="bottom" data-bs-toggle="tooltip"
+>
+  
+
+<span class="btn__icon-container">
+  <i class="fas fa-expand"></i>
+  </span>
+
+</button>
+
+
+
+<script>
+document.write(`
+  <button class="btn btn-sm navbar-btn theme-switch-button" title="light/dark" aria-label="light/dark" data-bs-placement="bottom" data-bs-toggle="tooltip">
+    <span class="theme-switch nav-link" data-mode="light"><i class="fa-solid fa-sun fa-lg"></i></span>
+    <span class="theme-switch nav-link" data-mode="dark"><i class="fa-solid fa-moon fa-lg"></i></span>
+    <span class="theme-switch nav-link" data-mode="auto"><i class="fa-solid fa-circle-half-stroke fa-lg"></i></span>
+  </button>
+`);
+</script>
+
+
+<script>
+document.write(`
+  <button class="btn btn-sm navbar-btn search-button search-button__button" title="Search" aria-label="Search" data-bs-placement="bottom" data-bs-toggle="tooltip">
+    <i class="fa-solid fa-magnifying-glass fa-lg"></i>
+  </button>
+`);
+</script>
+<label class="sidebar-toggle secondary-toggle btn btn-sm" for="__secondary"title="Toggle secondary sidebar" data-bs-placement="bottom" data-bs-toggle="tooltip">
+    <span class="fa-solid fa-list"></span>
+</label>
+</div></div>
+      
+    </div>
+  
+</div>
+</div>
+              
+              
+
+<div id="jb-print-docs-body" class="onlyprint">
+    <h1>Day 20 Pre-class Assignment: Introduction to Data Visualization</h1>
+    <!-- Table of contents -->
+    <div id="print-main-content">
+        <div id="jb-print-toc">
+            
+            <div>
+                <h2> Contents </h2>
+            </div>
+            <nav aria-label="Page">
+                <ul class="visible nav section-nav flex-column">
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#your-name-here"><p style="text-align: right;"> ✅ Your name here</p></a></li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#goals-for-today-s-pre-class-assignment">Goals for Today’s Pre-Class Assignment</a></li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#assignment-instructions">Assignment instructions</a></li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#plots-are-visual-stories-a-good-plot-conveys-a-message-that-is-both-convincing-and-easy-to-understand">Plots are visual stories. A good plot conveys a message that is both <strong>convincing</strong> and <strong>easy to understand.</strong></a></li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#best-practices-of-data-visualization">1. Best Practices of Data Visualization</a><ul class="nav section-nav flex-column">
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#what-makes-a-good-graph">What makes a good graph?</a></li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#how-to-avoid-making-graphs-like-the-one-above">How to avoid making graphs like the one above</a></li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#a-note-on-ethics">A note on ethics</a><ul class="nav section-nav flex-column">
+<li class="toc-h4 nav-item toc-entry"><a class="reference internal nav-link" href="#reflection">✅  <strong>1.1</strong> Reflection</a></li>
+</ul>
+</li>
+</ul>
+</li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#choosing-the-right-tools-for-the-job">2. Choosing the Right Tools for the Job</a><ul class="nav section-nav flex-column">
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#explore-the-data-visualization-catalogue-are-there-any-types-of-graphs-that-stand-out-to-you-pick-one-and-describe-how-it-represents-data-when-would-be-a-good-time-to-use-it">✅  <strong>2.1</strong> Explore The Data Visualization Catalogue. Are there any types of graphs that stand out to you? Pick one and describe how it represents data. When would be a good time to use it?</a></li>
+</ul>
+</li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#some-notes-when-dealing-with-datasets">3. Some Notes When Dealing with Datasets</a><ul class="nav section-nav flex-column">
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#when-might-you-need-to-engage-in-these-processes-give-an-example-for-each-category">✅  <strong>3.1</strong> When might you need to engage in these processes? Give an example for each category.</a></li>
+</ul>
+</li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#telling-a-story-with-a-plot">4. Telling a Story with a Plot</a><ul class="nav section-nav flex-column">
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#look-at-the-figure-and-write-down-what-information-or-what-story-the-plot-is-telling-you">✅  <strong>4.1</strong> Look at the figure and write down what information (or what <em>story</em>) the plot is telling you.</a></li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#stop-make-sure-you-complete-the-above-question-before-looking-at-the-next-part">🛑 STOP. MAKE SURE YOU COMPLETE THE ABOVE QUESTION BEFORE LOOKING AT THE NEXT PART.</a><ul class="nav section-nav flex-column">
+<li class="toc-h4 nav-item toc-entry"><a class="reference internal nav-link" href="#do-you-find-this-plot-easy-to-read-is-it-convincing">✅  <strong>4.2</strong> Do you find this plot easy to read? Is it convincing?</a></li>
+</ul>
+</li>
+</ul>
+</li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#introducing-seaborn">5. Introducing Seaborn</a><ul class="nav section-nav flex-column">
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#how-does-seaborn-handle-data">5.0 How does Seaborn handle data?</a><ul class="nav section-nav flex-column">
+<li class="toc-h4 nav-item toc-entry"><a class="reference internal nav-link" href="#what-stands-out-to-you-what-do-you-think-the-story-of-this-figure-is">✅  <strong>5.1</strong> What stands out to you? What do you think the story of this figure is?</a></li>
+<li class="toc-h4 nav-item toc-entry"><a class="reference internal nav-link" href="#now-go-through-the-seaborn-example-gallery-and-try-to-create-one-of-the-plots-they-present">✅  <strong>5.2</strong> Now, go through the Seaborn example gallery and try to create one of the plots they present.</a></li>
+<li class="toc-h4 nav-item toc-entry"><a class="reference internal nav-link" href="#what-do-you-think-the-story-is-for-the-plot-you-made">✅  <strong>5.3</strong> What do you think the story is for the plot you made?</a></li>
+</ul>
+</li>
+</ul>
+</li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#making-your-figure-for-in-class">6. Making your Figure for In-Class</a><ul class="nav section-nav flex-column">
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#use-materials-from-day-12-data-contexting-and-wrangling-and-day-13-finding-resources-online-or-data-you-might-have-found-for-your-semester-project-to-create-a-plot">✅  <strong>6.1</strong> Use materials from Day 12 (Data Contexting and Wrangling) and Day 13 (Finding Resources Online) or data you might have found for your semester project to create a plot!</a></li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#before-you-make-your-plot-recall-that-the-context-of-your-data-is-critical-for-understanding-what-claims-you-can-make-from-your-plot">✅  <strong>6.1.1</strong> Before you make your plot, recall that the context of your data is critical for understanding what claims you can make from your plot.</a></li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#i-nthe-cell-below-write-the-code-you-need-to-make-your-plot">✅  <strong>6.1.2</strong> I nthe cell below, write the code you need to make your plot.</a></li>
+</ul>
+</li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#assignment-wrap-up">Assignment wrap-up</a><ul class="nav section-nav flex-column">
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#congratulations-you-re-done">Congratulations, you’re done!</a><ul class="nav section-nav flex-column">
+<li class="toc-h4 nav-item toc-entry"><a class="reference internal nav-link" href="#original-content-for-this-assignment-was-created-by-alexa-gordon">Original content for this assignment was created by <strong>Alexa Gordon</strong></a></li>
+</ul>
+</li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#sources">Sources</a></li>
+</ul>
+</li>
+</ul>
+            </nav>
+        </div>
+    </div>
+</div>
+
+              
+                
+<div id="searchbox"></div>
+                <article class="bd-article">
+                  
+  <section class="tex2jax_ignore mathjax_ignore" id="day-20-pre-class-assignment-introduction-to-data-visualization">
+<h1>Day 20 Pre-class Assignment: Introduction to Data Visualization<a class="headerlink" href="#day-20-pre-class-assignment-introduction-to-data-visualization" title="Link to this heading">#</a></h1>
+<section id="your-name-here">
+<h2><p style="text-align: right;"> ✅ Your name here</p><a class="headerlink" href="#your-name-here" title="Link to this heading">#</a></h2>
+</section>
+<section id="goals-for-today-s-pre-class-assignment">
+<h2>Goals for Today’s Pre-Class Assignment<a class="headerlink" href="#goals-for-today-s-pre-class-assignment" title="Link to this heading">#</a></h2>
+<p>By the end of this assignment, you should be able to:</p>
+<ul class="simple">
+<li><p>Understand the best practices of data visualization</p></li>
+<li><p>Understand what types of graphs are available and when to use them</p></li>
+<li><p>Understand how to choose the right data visualization tools</p></li>
+<li><p>Understand how to interact critically with datasets</p></li>
+</ul>
+</section>
+<section id="assignment-instructions">
+<h2>Assignment instructions<a class="headerlink" href="#assignment-instructions" title="Link to this heading">#</a></h2>
+<p>In today’s assignment we’ll be developing our ability to make effective plots. The most important lesson that we want you to come away with is:</p>
+</section>
+<section id="plots-are-visual-stories-a-good-plot-conveys-a-message-that-is-both-convincing-and-easy-to-understand">
+<h2>Plots are visual stories. A good plot conveys a message that is both <strong>convincing</strong> and <strong>easy to understand.</strong><a class="headerlink" href="#plots-are-visual-stories-a-good-plot-conveys-a-message-that-is-both-convincing-and-easy-to-understand" title="Link to this heading">#</a></h2>
+</section>
+<hr class="docutils" />
+<section id="best-practices-of-data-visualization">
+<h2>1. Best Practices of Data Visualization<a class="headerlink" href="#best-practices-of-data-visualization" title="Link to this heading">#</a></h2>
+<p>Broadly, a visualization is a visual representation of information. When it comes to data visualizations, <a class="reference external" href="http://albertocairo.com/">Alberto Cairo</a> defines them as “a display of data designed to enable analysis, exploration, and discovery.” Data visualizations aren’t intended mainly to convey messages that are predefined by their designers. Instead, they are often conceived as tools that let people extract their own conclusions from the data (The Truthful Art: Data, Charts, and Maps for Communication pg. 31). In this preclass, you will learn about the best practices when it comes to creating data visualizations and how to make effective visualizations.</p>
+<section id="what-makes-a-good-graph">
+<h3>What makes a good graph?<a class="headerlink" href="#what-makes-a-good-graph" title="Link to this heading">#</a></h3>
+<p><a class="reference external" href="https://www.edwardtufte.com/tufte/">Edward Tufte</a> talks about what goes into a good visualization in his book “The Visual Display of Quantitative Information”. Visualizations of graphical excellence share these qualities according to Tufte (pg.51):</p>
+<ul class="simple">
+<li><p>Well-designed presentation of interesting data with substance, statistics, and design</p></li>
+<li><p>Complex ideas are communicated with clarity, precision, and efficiency</p></li>
+<li><p>Gives the viewer the greatest number of ideas in the shortest amount of time by using the least ink and space</p></li>
+<li><p>Multivariate (show mulitple variables)</p></li>
+<li><p>Telling the truth about the data</p></li>
+</ul>
+<p>Let’s examine some visualizations to see if they fit these criteria.</p>
+<img src="https://assets.climatecentral.org/images/made/7-23-13-Guardian-ipcc-climate-change-chart-v2_1050_780_s_c1_c_c.jpg" width="750px">
+<p>This graph from Climate Central shows the deviation in average temperature from 1961 to 1990 due to climate change over the last 1000 years. It contains information from tree rings, ice cores, and historical records all shown in blue and thermometer readings in red. Tufte’s first criterion is a bit subjective, but one can argue that it’s very well-designed, the data is compelling, and the design choices are clear. The data is complex, but the meaning is clear. The sharp trend in red leads the reader to ask questions of the visualization. There are certainly multiple variables being plotted. We can’t say for certain if the visualization is telling the truth without deeper investigation into the creators of the visualization, but the Earth is certainly warming due to climate change. This visualization passes all of Tufte’s criteria for graphical excellence.</p>
+<img src="https://i.redd.it/odrp7dh0h0541.jpg">
+<p>This second graph is courtesy of the subreddit r/dataisugly. The intention of this graph was to show the conditions at which exoplanets form. Let’s apply Tufte’s criteria once again. This graph is not well-designed. The data being shown is certainly complex, but it is not conveyed in a clear, precise, or efficient manner. The only ideas it gives the viewer are to close the tab and ask themselves how something like this could be created. It is overly-multivariate, trying to show at least six different variables. From a astronomer’s perspective, the graph is telling the truth, but not in a clear fashion. <strong>Please don’t make graphs like this!</strong></p>
+</section>
+<section id="how-to-avoid-making-graphs-like-the-one-above">
+<h3>How to avoid making graphs like the one above<a class="headerlink" href="#how-to-avoid-making-graphs-like-the-one-above" title="Link to this heading">#</a></h3>
+<p>Tufte provides some guidelines on graphical integrity: how to make accurate, truthful, and efficient visualizations (pg. 77):</p>
+<ul class="simple">
+<li><p>The representation of numbers should be directly proportional to the numerical quantities represented (scaling by the area of shapes can be accidentally misleading if done incorrectly).</p></li>
+<li><p>Clear, detailed, and thorough labeling should be used to defeat distortion and ambiguity.</p></li>
+<li><p>Write out explanations of the data on the graph itself.</p></li>
+<li><p>Label important events in the data.</p></li>
+<li><p>In time-series graphs of money, use standard units (meaning normalized units) and account for inflation</p></li>
+<li><p>The number of dimensions represented should not exceed the number of dimensions in the data</p></li>
+<li><p>Do not quote data out of context.</p></li>
+</ul>
+</section>
+<section id="a-note-on-ethics">
+<h3>A note on ethics<a class="headerlink" href="#a-note-on-ethics" title="Link to this heading">#</a></h3>
+<p>Some of these guidelines seek to instruct in how to make good visualizations, but others go into the ethics of data visualization. Data visualizations are a powerful tool to make arguments and sway opinions, and it is very easy to mislead others, either accidentally or purposefully, with the design choices you make. Cairo states, “If someone hides data from you, it’s probably because he has something to hide (pg. 47).” Make sure your design choices in your graphics don’t accidentally mislead the viewers by saying something you didn’t intend.</p>
+<section id="reflection">
+<h4>✅  <strong>1.1</strong> Reflection<a class="headerlink" href="#reflection" title="Link to this heading">#</a></h4>
+<p>On Day 12, we explored <a class="reference external" href="https://data-feminism.mitpress.mit.edu/pub/czq9dfs5/release/3">Data Feminism Chapter 6: The Number Don’t Speak for Themselves</a>. In some ways, there is some tension between the approaches of Tufte, Cairo, and D’Ignazio and Klein in the way they suggest presenting data. In the cell below, compare and contrast their viewpoints. Then <strong>discuss how you want to integrate these viewpoints into your practice</strong>.</p>
+</section>
+</section>
+</section>
+<hr class="docutils" />
+<section id="choosing-the-right-tools-for-the-job">
+<h2>2. Choosing the Right Tools for the Job<a class="headerlink" href="#choosing-the-right-tools-for-the-job" title="Link to this heading">#</a></h2>
+<p>Now that you have a basic understanding of some of the best practices when it comes to data visualization, you’re probably wondering how to put these principles into practice. One important factor to consider is choosing the right type of graph for your data. Cairo has some good advice to get started (pg. 124-125):</p>
+<ol class="arabic simple">
+<li><p><strong>Think about the task or tasks you want to enable,</strong> or the message that you wish to convey. Do you want to compare, to see change or flow, to reveal relationships or connections, to envision temporal or spatial patterns and trends? We could summarize this point with a sentance that sound tautological, but isn’t: <strong>plot what you need to plot.</strong> And if you don’t know what it is that you need to plot yet, plot many features of your data until the stories they may hide rise up.</p></li>
+<li><p><strong>Try different graphic forms.</strong> If you have more than one task on your wish list, you may need to represent your data in several ways.</p></li>
+<li><p><strong>Arrange the components of the graphic</strong> so as to make it as wasy as possible to extract meaning from it. Whenever it’s appropriate, add interactivity to your visualization so people can organize the data at will.</p></li>
+<li><p><strong>Test the outcomes</strong> yourself and with people who are representative of your audience - even if it is in a non-scientific, non-systematic manner.</p></li>
+</ol>
+<p>With this in mind, let’s explore some of the many types of graphs.</p>
+<section id="explore-the-data-visualization-catalogue-are-there-any-types-of-graphs-that-stand-out-to-you-pick-one-and-describe-how-it-represents-data-when-would-be-a-good-time-to-use-it">
+<h3>✅  <strong>2.1</strong> Explore <a class="reference external" href="https://datavizcatalogue.com/">The Data Visualization Catalogue</a>. Are there any types of graphs that stand out to you? Pick one and describe how it represents data. When would be a good time to use it?<a class="headerlink" href="#explore-the-data-visualization-catalogue-are-there-any-types-of-graphs-that-stand-out-to-you-pick-one-and-describe-how-it-represents-data-when-would-be-a-good-time-to-use-it" title="Link to this heading">#</a></h3>
+<p><em>Put your answer here</em></p>
+</section>
+</section>
+<hr class="docutils" />
+<section id="some-notes-when-dealing-with-datasets">
+<h2>3. Some Notes When Dealing with Datasets<a class="headerlink" href="#some-notes-when-dealing-with-datasets" title="Link to this heading">#</a></h2>
+<p>Making nice visualizations out of your data is important, but the real focus is on the data itself. Not all datasets come in nicely wrapped packages; sometimes you need to put in a lot of work to get it into a format that can be visualized. Part of that formatting is understanding the data itself. Make sure to read the documentation/header/description when you download the data and understand what the creator meant by each column title; this might be different than what you interpret the titles to mean, and it can have significant effects on the results your visualizations show.</p>
+<p>Once you understand the data, it’s time to get it in shape. There are three main categories to this process: binning, filtering, and smoothing.</p>
+<ol class="arabic simple">
+<li><p>Binning - This refers to grouping the data into different sections. An example could be grouping states by region (ie Midwest, Northeast, South, Central) if you had a data on the 50 states.</p></li>
+<li><p>Filtering - This refers to creating subsets of data. A large dataset may include columns that isn’t of any use to the project you’re working on. In order to make it more manageable, it’s totally fine to get rid of it by filtering that portion out. pandas is a great tool for this kind of data manipulation.</p></li>
+<li><p>Smoothing - This refers to getting rid of noise - statistical variance - in your data. Examples of this include calculating averages or fitting curves to show the behavior of certain variables.</p></li>
+</ol>
+<section id="when-might-you-need-to-engage-in-these-processes-give-an-example-for-each-category">
+<h3>✅  <strong>3.1</strong> When might you need to engage in these processes? Give an example for each category.<a class="headerlink" href="#when-might-you-need-to-engage-in-these-processes-give-an-example-for-each-category" title="Link to this heading">#</a></h3>
+<p>Put your answer here.</p>
+</section>
+</section>
+<hr class="docutils" />
+<section id="telling-a-story-with-a-plot">
+<h2>4. Telling a Story with a Plot<a class="headerlink" href="#telling-a-story-with-a-plot" title="Link to this heading">#</a></h2>
+<p>At the beginning of this notebook, the <strong>plots tell a (visual) story.</strong> In this section, we’ll go through an example of determining a plot’s story. Below is a figure showing information about fuel efficiency.</p>
+<img src="https://raw.githubusercontent.com/msu-cmse-courses/cmse201-S22-data/main/Day-20/Fuel_Efficiency.jpg">
+<section id="look-at-the-figure-and-write-down-what-information-or-what-story-the-plot-is-telling-you">
+<h3>✅  <strong>4.1</strong> Look at the figure and write down what information (or what <em>story</em>) the plot is telling you.<a class="headerlink" href="#look-at-the-figure-and-write-down-what-information-or-what-story-the-plot-is-telling-you" title="Link to this heading">#</a></h3>
+<p>Here are some tips for things to look for:</p>
+<ul class="simple">
+<li><p>General trendlines. What are the overall trends you see in the data?</p></li>
+<li><p>Places with dramatic changes in the slope or departures from the “normal.”</p></li>
+<li><p>(For data with multiple variables) Places where one of the variables does (or doesn’t) exist.</p></li>
+</ul>
+<p><em>Write down what you think the story of this figure is.</em></p>
+</section>
+<section id="stop-make-sure-you-complete-the-above-question-before-looking-at-the-next-part">
+<h3>🛑 STOP. MAKE SURE YOU COMPLETE THE ABOVE QUESTION BEFORE LOOKING AT THE NEXT PART.<a class="headerlink" href="#stop-make-sure-you-complete-the-above-question-before-looking-at-the-next-part" title="Link to this heading">#</a></h3>
+<p>Looking at this plot, there are a few things that you might have noticed.</p>
+<ul class="simple">
+<li><p>SUV wasn’t a category in this dataset before 1999.</p></li>
+<li><p>(Median) Fuel efficiency for trucks actually appears to have <em>decreased</em> in the mid/late 80s.</p></li>
+</ul>
+<p>But the biggest thing to notice is that the fuel efficiency of all automobiles has been increasing since the late 2000s/early 2010s. The plot would suggest that there was some kind of change that occurred during this period.</p>
+<section id="do-you-find-this-plot-easy-to-read-is-it-convincing">
+<h4>✅  <strong>4.2</strong> Do you find this plot easy to read? Is it convincing?<a class="headerlink" href="#do-you-find-this-plot-easy-to-read-is-it-convincing" title="Link to this heading">#</a></h4>
+<p><em>Write down whether you think the plot is easy to read/convincing.</em></p>
+</section>
+</section>
+</section>
+<hr class="docutils" />
+<section id="introducing-seaborn">
+<h2>5. Introducing Seaborn<a class="headerlink" href="#introducing-seaborn" title="Link to this heading">#</a></h2>
+<p><a class="reference external" href="https://seaborn.pydata.org/index.html"><strong>Seaborn</strong></a> is an excellent package for making more sophisticated plots. Seaborn has many built-in features, and many of the default parameters are set up in an aesthetically pleasing way. There is also an <a class="reference external" href="https://seaborn.pydata.org/examples/index.html">extensive gallery of examples</a>.</p>
+<section id="how-does-seaborn-handle-data">
+<h3>5.0 How does Seaborn handle data?<a class="headerlink" href="#how-does-seaborn-handle-data" title="Link to this heading">#</a></h3>
+<p>When exploring Seaborn documentation, you may notice that it handles data differently than you have seen before! For exploration purposes, Seaborn actually has some default datasets that you can load directly with the Seaborn load_dataset() function. These default datasets are actually Pandas dataframes that come with Seaborn. <strong>How do we know what these datasets are and how to access them?</strong></p>
+<p>Run the code below to import seaborn (this is a new import command!) and then display the names of available datasets.</p>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="kn">import</span> <span class="nn">seaborn</span> <span class="k">as</span> <span class="nn">sns</span> <span class="c1"># import Seaborn</span>
+
+<span class="n">sns</span><span class="o">.</span><span class="n">get_dataset_names</span><span class="p">()</span> <span class="c1"># display all of the names of the built-in datasets that Seaborn has</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<div class="output text_plain highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>[&#39;anagrams&#39;,
+ &#39;anscombe&#39;,
+ &#39;attention&#39;,
+ &#39;brain_networks&#39;,
+ &#39;car_crashes&#39;,
+ &#39;diamonds&#39;,
+ &#39;dots&#39;,
+ &#39;dowjones&#39;,
+ &#39;exercise&#39;,
+ &#39;flights&#39;,
+ &#39;fmri&#39;,
+ &#39;geyser&#39;,
+ &#39;glue&#39;,
+ &#39;healthexp&#39;,
+ &#39;iris&#39;,
+ &#39;mpg&#39;,
+ &#39;penguins&#39;,
+ &#39;planets&#39;,
+ &#39;seaice&#39;,
+ &#39;taxis&#39;,
+ &#39;tips&#39;,
+ &#39;titanic&#39;,
+ &#39;anagrams&#39;,
+ &#39;anagrams&#39;,
+ &#39;anscombe&#39;,
+ &#39;anscombe&#39;,
+ &#39;attention&#39;,
+ &#39;attention&#39;,
+ &#39;brain_networks&#39;,
+ &#39;brain_networks&#39;,
+ &#39;car_crashes&#39;,
+ &#39;car_crashes&#39;,
+ &#39;diamonds&#39;,
+ &#39;diamonds&#39;,
+ &#39;dots&#39;,
+ &#39;dots&#39;,
+ &#39;dowjones&#39;,
+ &#39;dowjones&#39;,
+ &#39;exercise&#39;,
+ &#39;exercise&#39;,
+ &#39;flights&#39;,
+ &#39;flights&#39;,
+ &#39;fmri&#39;,
+ &#39;fmri&#39;,
+ &#39;geyser&#39;,
+ &#39;geyser&#39;,
+ &#39;glue&#39;,
+ &#39;glue&#39;,
+ &#39;healthexp&#39;,
+ &#39;healthexp&#39;,
+ &#39;iris&#39;,
+ &#39;iris&#39;,
+ &#39;mpg&#39;,
+ &#39;mpg&#39;,
+ &#39;penguins&#39;,
+ &#39;penguins&#39;,
+ &#39;planets&#39;,
+ &#39;planets&#39;,
+ &#39;seaice&#39;,
+ &#39;seaice&#39;,
+ &#39;taxis&#39;,
+ &#39;taxis&#39;,
+ &#39;tips&#39;,
+ &#39;tips&#39;,
+ &#39;titanic&#39;,
+ &#39;titanic&#39;,
+ &#39;anagrams&#39;,
+ &#39;anscombe&#39;,
+ &#39;attention&#39;,
+ &#39;brain_networks&#39;,
+ &#39;car_crashes&#39;,
+ &#39;diamonds&#39;,
+ &#39;dots&#39;,
+ &#39;dowjones&#39;,
+ &#39;exercise&#39;,
+ &#39;flights&#39;,
+ &#39;fmri&#39;,
+ &#39;geyser&#39;,
+ &#39;glue&#39;,
+ &#39;healthexp&#39;,
+ &#39;iris&#39;,
+ &#39;mpg&#39;,
+ &#39;penguins&#39;,
+ &#39;planets&#39;,
+ &#39;seaice&#39;,
+ &#39;taxis&#39;,
+ &#39;tips&#39;,
+ &#39;titanic&#39;]
+</pre></div>
+</div>
+</div>
+</div>
+<hr class="docutils" />
+<p>Now that you know the names of the default datasets you can use to explore what Seaborn can do, let’s use one as an example (we’ll use “mpg”)!</p>
+<p>Run the code in the cells below. The first loads the dataset and the second creates a figure using Seaborn.</p>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">sns</span><span class="o">.</span><span class="n">set_theme</span><span class="p">(</span><span class="n">style</span><span class="o">=</span><span class="s2">&quot;white&quot;</span><span class="p">)</span> <span class="c1"># sets the visual theme for Seaborn</span>
+
+<span class="n">mpg</span> <span class="o">=</span> <span class="n">sns</span><span class="o">.</span><span class="n">load_dataset</span><span class="p">(</span><span class="s2">&quot;mpg&quot;</span><span class="p">)</span> <span class="c1"># loads the &#39;mpg&#39; default dataset</span>
+
+<span class="n">mpg</span><span class="o">.</span><span class="n">head</span><span class="p">()</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<div class="output text_html"><div>
+<style scoped>
+    .dataframe tbody tr th:only-of-type {
+        vertical-align: middle;
+    }
+
+    .dataframe tbody tr th {
+        vertical-align: top;
+    }
+
+    .dataframe thead th {
+        text-align: right;
+    }
+</style>
+<table border="1" class="dataframe">
+  <thead>
+    <tr style="text-align: right;">
+      <th></th>
+      <th>mpg</th>
+      <th>cylinders</th>
+      <th>displacement</th>
+      <th>horsepower</th>
+      <th>weight</th>
+      <th>acceleration</th>
+      <th>model_year</th>
+      <th>origin</th>
+      <th>name</th>
+    </tr>
+  </thead>
+  <tbody>
+    <tr>
+      <th>0</th>
+      <td>18.0</td>
+      <td>8</td>
+      <td>307.0</td>
+      <td>130.0</td>
+      <td>3504</td>
+      <td>12.0</td>
+      <td>70</td>
+      <td>usa</td>
+      <td>chevrolet chevelle malibu</td>
+    </tr>
+    <tr>
+      <th>1</th>
+      <td>15.0</td>
+      <td>8</td>
+      <td>350.0</td>
+      <td>165.0</td>
+      <td>3693</td>
+      <td>11.5</td>
+      <td>70</td>
+      <td>usa</td>
+      <td>buick skylark 320</td>
+    </tr>
+    <tr>
+      <th>2</th>
+      <td>18.0</td>
+      <td>8</td>
+      <td>318.0</td>
+      <td>150.0</td>
+      <td>3436</td>
+      <td>11.0</td>
+      <td>70</td>
+      <td>usa</td>
+      <td>plymouth satellite</td>
+    </tr>
+    <tr>
+      <th>3</th>
+      <td>16.0</td>
+      <td>8</td>
+      <td>304.0</td>
+      <td>150.0</td>
+      <td>3433</td>
+      <td>12.0</td>
+      <td>70</td>
+      <td>usa</td>
+      <td>amc rebel sst</td>
+    </tr>
+    <tr>
+      <th>4</th>
+      <td>17.0</td>
+      <td>8</td>
+      <td>302.0</td>
+      <td>140.0</td>
+      <td>3449</td>
+      <td>10.5</td>
+      <td>70</td>
+      <td>usa</td>
+      <td>ford torino</td>
+    </tr>
+  </tbody>
+</table>
+</div></div></div>
+</div>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="c1"># Plots some of the data using Seaborn&#39;s relplot function!</span>
+<span class="n">sns</span><span class="o">.</span><span class="n">relplot</span><span class="p">(</span><span class="n">x</span><span class="o">=</span><span class="s2">&quot;horsepower&quot;</span><span class="p">,</span> <span class="n">y</span><span class="o">=</span><span class="s2">&quot;mpg&quot;</span><span class="p">,</span> <span class="n">hue</span><span class="o">=</span><span class="s2">&quot;origin&quot;</span><span class="p">,</span> <span class="n">size</span><span class="o">=</span><span class="s2">&quot;weight&quot;</span><span class="p">,</span>
+           <span class="n">sizes</span><span class="o">=</span><span class="p">(</span><span class="mi">40</span><span class="p">,</span> <span class="mi">400</span><span class="p">),</span> <span class="n">alpha</span><span class="o">=</span><span class="mf">.5</span><span class="p">,</span> <span class="n">palette</span><span class="o">=</span><span class="s2">&quot;muted&quot;</span><span class="p">,</span>
+           <span class="n">height</span><span class="o">=</span><span class="mi">6</span><span class="p">,</span> <span class="n">data</span><span class="o">=</span><span class="n">mpg</span><span class="p">)</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<div class="output stderr highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>C:\Users\rache\anaconda3\Lib\site-packages\seaborn\axisgrid.py:118: UserWarning: The figure layout has changed to tight
+  self._figure.tight_layout(*args, **kwargs)
+</pre></div>
+</div>
+<div class="output text_plain highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>&lt;seaborn.axisgrid.FacetGrid at 0x1f06d217650&gt;
+</pre></div>
+</div>
+<img alt="../_images/113ac219dad90a46ceee7e6d644bce53fb83ba783d77c6b5b017c58f50b6d7b0.png" src="../_images/113ac219dad90a46ceee7e6d644bce53fb83ba783d77c6b5b017c58f50b6d7b0.png" />
+</div>
+</div>
+<section id="what-stands-out-to-you-what-do-you-think-the-story-of-this-figure-is">
+<h4>✅  <strong>5.1</strong> What stands out to you? What do you think the story of this figure is?<a class="headerlink" href="#what-stands-out-to-you-what-do-you-think-the-story-of-this-figure-is" title="Link to this heading">#</a></h4>
+<p><em>Write down what you think the story being told in this plot?</em></p>
+</section>
+<section id="now-go-through-the-seaborn-example-gallery-and-try-to-create-one-of-the-plots-they-present">
+<h4>✅  <strong>5.2</strong> Now, go through the <a class="reference external" href="https://seaborn.pydata.org/examples/index.html">Seaborn example gallery</a> and try to create one of the plots they present.<a class="headerlink" href="#now-go-through-the-seaborn-example-gallery-and-try-to-create-one-of-the-plots-they-present" title="Link to this heading">#</a></h4>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="c1">#Write your code for the Seaborn plot here</span>
+</pre></div>
+</div>
+</div>
+</div>
+</section>
+<section id="what-do-you-think-the-story-is-for-the-plot-you-made">
+<h4>✅  <strong>5.3</strong> What do you think the story is for the plot you made?<a class="headerlink" href="#what-do-you-think-the-story-is-for-the-plot-you-made" title="Link to this heading">#</a></h4>
+<p><em>Write down what you think the story being told in this plot?</em></p>
+</section>
+</section>
+</section>
+<hr class="docutils" />
+<section id="making-your-figure-for-in-class">
+<h2>6. Making your Figure for In-Class<a class="headerlink" href="#making-your-figure-for-in-class" title="Link to this heading">#</a></h2>
+<p>For the upcoming in-class assignment, you will be working with your group to create the best plot possible (based on the measures discussed above).</p>
+<section id="use-materials-from-day-12-data-contexting-and-wrangling-and-day-13-finding-resources-online-or-data-you-might-have-found-for-your-semester-project-to-create-a-plot">
+<h3>✅  <strong>6.1</strong> Use materials from Day 12 (Data Contexting and Wrangling) and Day 13 (Finding Resources Online) or data you might have found for your semester project to create a plot!<a class="headerlink" href="#use-materials-from-day-12-data-contexting-and-wrangling-and-day-13-finding-resources-online-or-data-you-might-have-found-for-your-semester-project-to-create-a-plot" title="Link to this heading">#</a></h3>
+<p>You can use Seaborn or Matplotlib, and you should put your plot <strong>in a slide</strong>, which you will present to your group in class.</p>
+<p><strong>NOTE:</strong> If you are using Seaborn, you will need to load your data into a Pandas dataframe and then you can use Seaborn plotting functions with your dataframe as the data input in the plotting function.</p>
+<div class="highlight-python notranslate"><div class="highlight"><pre><span></span><span class="c1">### AN EXAMPLE WITH SEABORN AND NON-DEFAULT DATA ###</span>
+<span class="kn">import</span> <span class="nn">pandas</span> <span class="k">as</span> <span class="nn">pd</span>
+<span class="n">my_dataframe</span> <span class="o">=</span> <span class="n">pd</span><span class="o">.</span><span class="n">read_csv</span><span class="p">(</span><span class="s1">&#39;this_is_cool_data.csv&#39;</span><span class="p">)</span>
+
+<span class="n">sns</span><span class="o">.</span><span class="n">relplot</span><span class="p">(</span><span class="n">x</span><span class="o">=</span><span class="s2">&quot;my_x_column_name&quot;</span><span class="p">,</span> <span class="n">y</span><span class="o">=</span><span class="s2">&quot;my_y_column_name&quot;</span><span class="p">,</span> <span class="n">hue</span><span class="o">=</span><span class="s2">&quot;a_different_column_name&quot;</span><span class="p">,</span> <span class="n">size</span><span class="o">=</span><span class="s2">&quot;another_column_name&quot;</span><span class="p">,</span>
+            <span class="n">sizes</span><span class="o">=</span><span class="p">(</span><span class="mi">40</span><span class="p">,</span> <span class="mi">400</span><span class="p">),</span> <span class="n">alpha</span><span class="o">=</span><span class="mf">.5</span><span class="p">,</span> <span class="n">palette</span><span class="o">=</span><span class="s2">&quot;muted&quot;</span><span class="p">,</span>
+            <span class="n">height</span><span class="o">=</span><span class="mi">6</span><span class="p">,</span> <span class="n">data</span><span class="o">=</span><span class="n">my_dataframe</span><span class="p">)</span>
+</pre></div>
+</div>
+</section>
+<section id="before-you-make-your-plot-recall-that-the-context-of-your-data-is-critical-for-understanding-what-claims-you-can-make-from-your-plot">
+<h3>✅  <strong>6.1.1</strong> Before you make your plot, recall that the context of your data is critical for understanding what claims you can make from your plot.<a class="headerlink" href="#before-you-make-your-plot-recall-that-the-context-of-your-data-is-critical-for-understanding-what-claims-you-can-make-from-your-plot" title="Link to this heading">#</a></h3>
+<p>In the cell below, answer the following Data Context questions from Day 12 to generate your data context statement:</p>
+<ol class="arabic simple">
+<li><p>Who collected/generated the data?</p></li>
+<li><p>How was the data collected/generated?</p></li>
+<li><p>Who/what is included in the data?</p></li>
+<li><p>Who/what is <strong>not</strong> included in the data?</p></li>
+<li><p>What are the limitations or biases of the data?</p></li>
+</ol>
+<p><strong>NOTE:</strong> You will be expected to share this context statement with your group in class (and potentially with the rest of the class).</p>
+</section>
+<section id="i-nthe-cell-below-write-the-code-you-need-to-make-your-plot">
+<h3>✅  <strong>6.1.2</strong> I nthe cell below, write the code you need to make your plot.<a class="headerlink" href="#i-nthe-cell-below-write-the-code-you-need-to-make-your-plot" title="Link to this heading">#</a></h3>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="c1"># Write code for making your plot here using whatever dataset you chose</span>
+</pre></div>
+</div>
+</div>
+</div>
+</section>
+</section>
+<hr class="docutils" />
+<section id="assignment-wrap-up">
+<h2>Assignment wrap-up<a class="headerlink" href="#assignment-wrap-up" title="Link to this heading">#</a></h2>
+<p>Please fill out the form that appears when you run the code below.  <strong>You must completely fill this out in order to receive credit for the assignment!</strong></p>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="kn">from</span> <span class="nn">IPython.display</span> <span class="kn">import</span> <span class="n">HTML</span>
+<span class="n">HTML</span><span class="p">(</span>
+<span class="sd">&quot;&quot;&quot;</span>
+<span class="sd">&lt;iframe </span>
+<span class="sd">	src=&quot;https://cmse.msu.edu/cmse201-pc-survey&quot; </span>
+<span class="sd">	width=&quot;800px&quot; </span>
+<span class="sd">	height=&quot;600px&quot; </span>
+<span class="sd">	frameborder=&quot;0&quot; </span>
+<span class="sd">	marginheight=&quot;0&quot; </span>
+<span class="sd">	marginwidth=&quot;0&quot;&gt;</span>
+<span class="sd">	Loading...</span>
+<span class="sd">&lt;/iframe&gt;</span>
+<span class="sd">&quot;&quot;&quot;</span>
+<span class="p">)</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<div class="output text_html">
+<iframe 
+	src="https://cmse.msu.edu/cmse201-pc-survey" 
+	width="800px" 
+	height="600px" 
+	frameborder="0" 
+	marginheight="0" 
+	marginwidth="0">
+	Loading...
+</iframe>
+</div></div>
+</div>
+<section id="congratulations-you-re-done">
+<h3>Congratulations, you’re done!<a class="headerlink" href="#congratulations-you-re-done" title="Link to this heading">#</a></h3>
+<section id="original-content-for-this-assignment-was-created-by-alexa-gordon">
+<h4>Original content for this assignment was created by <strong>Alexa Gordon</strong><a class="headerlink" href="#original-content-for-this-assignment-was-created-by-alexa-gordon" title="Link to this heading">#</a></h4>
+</section>
+</section>
+<section id="sources">
+<h3>Sources<a class="headerlink" href="#sources" title="Link to this heading">#</a></h3>
+<ul class="simple">
+<li><p>The Truthful Art: Data, Charts, and Maps for Communication by Alberto Cairo</p></li>
+<li><p>The Visual Display of Quantitative Information by Edward Tufte</p></li>
+<li><p>CMSE 402 assignments</p></li>
+<li><p>Other links throughout the assignment</p></li>
+</ul>
+<p>Copyright © 2025, <a class="reference external" href="https://cmse.msu.edu/">Department of Computational Mathematics, Science and Engineering</a> at Michigan State University, All rights reserved.</p>
+</section>
+</section>
+</section>
+
+    <script type="text/x-thebe-config">
+    {
+        requestKernel: true,
+        binderOptions: {
+            repo: "binder-examples/jupyter-stacks-datascience",
+            ref: "master",
+        },
+        codeMirrorConfig: {
+            theme: "abcdef",
+            mode: "python"
+        },
+        kernelOptions: {
+            name: "python3",
+            path: "./Day-20"
+        },
+        predefinedOutput: true
+    }
+    </script>
+    <script>kernelName = 'python3'</script>
+
+                </article>
+              
+
+              
+              
+              
+              
+                <footer class="prev-next-footer d-print-none">
+                  
+<div class="prev-next-area">
+    <a class="left-prev"
+       href="../Day-19/Day-19_In-Class_CompartmentsWithSolveIVP-STUDENT.html"
+       title="previous page">
+      <i class="fa-solid fa-angle-left"></i>
+      <div class="prev-next-info">
+        <p class="prev-next-subtitle">previous</p>
+        <p class="prev-next-title">Day 19 In-Class Assignment: Compartmental Modeling, moving from the model to the code</p>
+      </div>
+    </a>
+    <a class="right-next"
+       href="Day-20_In-Class_IntroToDataVisualization-STUDENT.html"
+       title="next page">
+      <div class="prev-next-info">
+        <p class="prev-next-subtitle">next</p>
+        <p class="prev-next-title">Day 20 In-Class: Introduction to Data Visualization</p>
+      </div>
+      <i class="fa-solid fa-angle-right"></i>
+    </a>
+</div>
+                </footer>
+              
+            </div>
+            
+            
+              
+                <div class="bd-sidebar-secondary bd-toc"><div class="sidebar-secondary-items sidebar-secondary__inner">
+
+
+  <div class="sidebar-secondary-item">
+  <div class="page-toc tocsection onthispage">
+    <i class="fa-solid fa-list"></i> Contents
+  </div>
+  <nav class="bd-toc-nav page-toc">
+    <ul class="visible nav section-nav flex-column">
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#your-name-here"><p style="text-align: right;"> ✅ Your name here</p></a></li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#goals-for-today-s-pre-class-assignment">Goals for Today’s Pre-Class Assignment</a></li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#assignment-instructions">Assignment instructions</a></li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#plots-are-visual-stories-a-good-plot-conveys-a-message-that-is-both-convincing-and-easy-to-understand">Plots are visual stories. A good plot conveys a message that is both <strong>convincing</strong> and <strong>easy to understand.</strong></a></li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#best-practices-of-data-visualization">1. Best Practices of Data Visualization</a><ul class="nav section-nav flex-column">
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#what-makes-a-good-graph">What makes a good graph?</a></li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#how-to-avoid-making-graphs-like-the-one-above">How to avoid making graphs like the one above</a></li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#a-note-on-ethics">A note on ethics</a><ul class="nav section-nav flex-column">
+<li class="toc-h4 nav-item toc-entry"><a class="reference internal nav-link" href="#reflection">✅  <strong>1.1</strong> Reflection</a></li>
+</ul>
+</li>
+</ul>
+</li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#choosing-the-right-tools-for-the-job">2. Choosing the Right Tools for the Job</a><ul class="nav section-nav flex-column">
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#explore-the-data-visualization-catalogue-are-there-any-types-of-graphs-that-stand-out-to-you-pick-one-and-describe-how-it-represents-data-when-would-be-a-good-time-to-use-it">✅  <strong>2.1</strong> Explore The Data Visualization Catalogue. Are there any types of graphs that stand out to you? Pick one and describe how it represents data. When would be a good time to use it?</a></li>
+</ul>
+</li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#some-notes-when-dealing-with-datasets">3. Some Notes When Dealing with Datasets</a><ul class="nav section-nav flex-column">
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#when-might-you-need-to-engage-in-these-processes-give-an-example-for-each-category">✅  <strong>3.1</strong> When might you need to engage in these processes? Give an example for each category.</a></li>
+</ul>
+</li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#telling-a-story-with-a-plot">4. Telling a Story with a Plot</a><ul class="nav section-nav flex-column">
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#look-at-the-figure-and-write-down-what-information-or-what-story-the-plot-is-telling-you">✅  <strong>4.1</strong> Look at the figure and write down what information (or what <em>story</em>) the plot is telling you.</a></li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#stop-make-sure-you-complete-the-above-question-before-looking-at-the-next-part">🛑 STOP. MAKE SURE YOU COMPLETE THE ABOVE QUESTION BEFORE LOOKING AT THE NEXT PART.</a><ul class="nav section-nav flex-column">
+<li class="toc-h4 nav-item toc-entry"><a class="reference internal nav-link" href="#do-you-find-this-plot-easy-to-read-is-it-convincing">✅  <strong>4.2</strong> Do you find this plot easy to read? Is it convincing?</a></li>
+</ul>
+</li>
+</ul>
+</li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#introducing-seaborn">5. Introducing Seaborn</a><ul class="nav section-nav flex-column">
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#how-does-seaborn-handle-data">5.0 How does Seaborn handle data?</a><ul class="nav section-nav flex-column">
+<li class="toc-h4 nav-item toc-entry"><a class="reference internal nav-link" href="#what-stands-out-to-you-what-do-you-think-the-story-of-this-figure-is">✅  <strong>5.1</strong> What stands out to you? What do you think the story of this figure is?</a></li>
+<li class="toc-h4 nav-item toc-entry"><a class="reference internal nav-link" href="#now-go-through-the-seaborn-example-gallery-and-try-to-create-one-of-the-plots-they-present">✅  <strong>5.2</strong> Now, go through the Seaborn example gallery and try to create one of the plots they present.</a></li>
+<li class="toc-h4 nav-item toc-entry"><a class="reference internal nav-link" href="#what-do-you-think-the-story-is-for-the-plot-you-made">✅  <strong>5.3</strong> What do you think the story is for the plot you made?</a></li>
+</ul>
+</li>
+</ul>
+</li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#making-your-figure-for-in-class">6. Making your Figure for In-Class</a><ul class="nav section-nav flex-column">
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#use-materials-from-day-12-data-contexting-and-wrangling-and-day-13-finding-resources-online-or-data-you-might-have-found-for-your-semester-project-to-create-a-plot">✅  <strong>6.1</strong> Use materials from Day 12 (Data Contexting and Wrangling) and Day 13 (Finding Resources Online) or data you might have found for your semester project to create a plot!</a></li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#before-you-make-your-plot-recall-that-the-context-of-your-data-is-critical-for-understanding-what-claims-you-can-make-from-your-plot">✅  <strong>6.1.1</strong> Before you make your plot, recall that the context of your data is critical for understanding what claims you can make from your plot.</a></li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#i-nthe-cell-below-write-the-code-you-need-to-make-your-plot">✅  <strong>6.1.2</strong> I nthe cell below, write the code you need to make your plot.</a></li>
+</ul>
+</li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#assignment-wrap-up">Assignment wrap-up</a><ul class="nav section-nav flex-column">
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#congratulations-you-re-done">Congratulations, you’re done!</a><ul class="nav section-nav flex-column">
+<li class="toc-h4 nav-item toc-entry"><a class="reference internal nav-link" href="#original-content-for-this-assignment-was-created-by-alexa-gordon">Original content for this assignment was created by <strong>Alexa Gordon</strong></a></li>
+</ul>
+</li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#sources">Sources</a></li>
+</ul>
+</li>
+</ul>
+  </nav></div>
+
+</div></div>
+              
+            
+          </div>
+          <footer class="bd-footer-content">
+            
+<div class="bd-footer-content__inner container">
+  
+  <div class="footer-item">
+    
+<p class="component-author">
+By the Department of Computational Mathematics, Science and Engineering at Michigan State University
+</p>
+
+  </div>
+  
+  <div class="footer-item">
+    
+
+  <p class="copyright">
+    
+      © Copyright 2023.
+      <br/>
+    
+  </p>
+
+  </div>
+  
+  <div class="footer-item">
+    
+  </div>
+  
+  <div class="footer-item">
+    
+  </div>
+  
+</div>
+          </footer>
+        
+
+      </main>
+    </div>
+  </div>
+  
+  <!-- Scripts loaded after <body> so the DOM is not blocked -->
+  <script src="../_static/scripts/bootstrap.js?digest=3ee479438cf8b5e0d341"></script>
+<script src="../_static/scripts/pydata-sphinx-theme.js?digest=3ee479438cf8b5e0d341"></script>
+
+  <footer class="bd-footer">
+  </footer>
+  </body>
+</html>

@@ -1,0 +1,870 @@
+
+<!DOCTYPE html>
+
+
+<html lang="en" data-content_root="../" >
+
+  <head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" /><meta name="viewport" content="width=device-width, initial-scale=1" />
+
+    <title>Day 14 In-Class Assignment: Evaluating Models &#8212; CMSE 201</title>
+  
+  
+  
+  <script data-cfasync="false">
+    document.documentElement.dataset.mode = localStorage.getItem("mode") || "";
+    document.documentElement.dataset.theme = localStorage.getItem("theme") || "";
+  </script>
+  
+  <!-- Loaded before other Sphinx assets -->
+  <link href="../_static/styles/theme.css?digest=3ee479438cf8b5e0d341" rel="stylesheet" />
+<link href="../_static/styles/bootstrap.css?digest=3ee479438cf8b5e0d341" rel="stylesheet" />
+<link href="../_static/styles/pydata-sphinx-theme.css?digest=3ee479438cf8b5e0d341" rel="stylesheet" />
+
+  
+  <link href="../_static/vendor/fontawesome/6.5.2/css/all.min.css?digest=3ee479438cf8b5e0d341" rel="stylesheet" />
+  <link rel="preload" as="font" type="font/woff2" crossorigin href="../_static/vendor/fontawesome/6.5.2/webfonts/fa-solid-900.woff2" />
+<link rel="preload" as="font" type="font/woff2" crossorigin href="../_static/vendor/fontawesome/6.5.2/webfonts/fa-brands-400.woff2" />
+<link rel="preload" as="font" type="font/woff2" crossorigin href="../_static/vendor/fontawesome/6.5.2/webfonts/fa-regular-400.woff2" />
+
+    <link rel="stylesheet" type="text/css" href="../_static/pygments.css?v=fa44fd50" />
+    <link rel="stylesheet" type="text/css" href="../_static/styles/sphinx-book-theme.css?v=384b581d" />
+    <link rel="stylesheet" type="text/css" href="../_static/togglebutton.css?v=13237357" />
+    <link rel="stylesheet" type="text/css" href="../_static/copybutton.css?v=76b2166b" />
+    <link rel="stylesheet" type="text/css" href="../_static/mystnb.4510f1fc1dee50b3e5859aac5469c37c29e427902b24a333a5f9fcb2f0b3ac41.css?v=be8a1c11" />
+    <link rel="stylesheet" type="text/css" href="../_static/sphinx-thebe.css?v=4fa983c6" />
+    <link rel="stylesheet" type="text/css" href="../_static/sphinx-design.min.css?v=87e54e7c" />
+  
+  <!-- Pre-loaded scripts that we'll load fully later -->
+  <link rel="preload" as="script" href="../_static/scripts/bootstrap.js?digest=3ee479438cf8b5e0d341" />
+<link rel="preload" as="script" href="../_static/scripts/pydata-sphinx-theme.js?digest=3ee479438cf8b5e0d341" />
+  <script src="../_static/vendor/fontawesome/6.5.2/js/all.min.js?digest=3ee479438cf8b5e0d341"></script>
+
+    <script src="../_static/documentation_options.js?v=9eb32ce0"></script>
+    <script src="../_static/doctools.js?v=9a2dae69"></script>
+    <script src="../_static/sphinx_highlight.js?v=dc90522c"></script>
+    <script src="../_static/clipboard.min.js?v=a7894cd8"></script>
+    <script src="../_static/copybutton.js?v=f281be69"></script>
+    <script src="../_static/scripts/sphinx-book-theme.js?v=efea14e4"></script>
+    <script>let toggleHintShow = 'Click to show';</script>
+    <script>let toggleHintHide = 'Click to hide';</script>
+    <script>let toggleOpenOnPrint = 'true';</script>
+    <script src="../_static/togglebutton.js?v=4a39c7ea"></script>
+    <script>var togglebuttonSelector = '.toggle, .admonition.dropdown';</script>
+    <script src="../_static/design-tabs.js?v=36754332"></script>
+    <script>const THEBE_JS_URL = "https://unpkg.com/thebe@0.8.2/lib/index.js"; const thebe_selector = ".thebe,.cell"; const thebe_selector_input = "pre"; const thebe_selector_output = ".output, .cell_output"</script>
+    <script async="async" src="../_static/sphinx-thebe.js?v=c100c467"></script>
+    <script>var togglebuttonSelector = '.toggle, .admonition.dropdown';</script>
+    <script>const THEBE_JS_URL = "https://unpkg.com/thebe@0.8.2/lib/index.js"; const thebe_selector = ".thebe,.cell"; const thebe_selector_input = "pre"; const thebe_selector_output = ".output, .cell_output"</script>
+    <script>window.MathJax = {"options": {"processHtmlClass": "tex2jax_process|mathjax_process|math|output_area"}}</script>
+    <script defer="defer" src="https://cdn.jsdelivr.net/npm/mathjax@3/es5/tex-mml-chtml.js"></script>
+    <script>DOCUMENTATION_OPTIONS.pagename = 'Day-14/Day-14_In-Class_Evaluating_Fits-STUDENT';</script>
+    <link rel="icon" href="../_static/cmse_fav.ico"/>
+    <link rel="index" title="Index" href="../genindex.html" />
+    <link rel="search" title="Search" href="../search.html" />
+    <link rel="next" title="Day 15 In-Class Assignment: (Thoughtfully) fitting models to data" href="../Day-15/Day-15_In-Class_FittingCurves-STUDENT.html" />
+    <link rel="prev" title="Day 13 In-Class: Using online resources (code and data)" href="../Day-13/Day-13_In-Class_Online_Resources-STUDENT.html" />
+  <meta name="viewport" content="width=device-width, initial-scale=1"/>
+  <meta name="docsearch:language" content="en"/>
+  </head>
+  
+  
+  <body data-bs-spy="scroll" data-bs-target=".bd-toc-nav" data-offset="180" data-bs-root-margin="0px 0px -60%" data-default-mode="">
+
+  
+  
+  <div id="pst-skip-link" class="skip-link d-print-none"><a href="#main-content">Skip to main content</a></div>
+  
+  <div id="pst-scroll-pixel-helper"></div>
+  
+  <button type="button" class="btn rounded-pill" id="pst-back-to-top">
+    <i class="fa-solid fa-arrow-up"></i>Back to top</button>
+
+  
+  <input type="checkbox"
+          class="sidebar-toggle"
+          id="pst-primary-sidebar-checkbox"/>
+  <label class="overlay overlay-primary" for="pst-primary-sidebar-checkbox"></label>
+  
+  <input type="checkbox"
+          class="sidebar-toggle"
+          id="pst-secondary-sidebar-checkbox"/>
+  <label class="overlay overlay-secondary" for="pst-secondary-sidebar-checkbox"></label>
+  
+  <div class="search-button__wrapper">
+    <div class="search-button__overlay"></div>
+    <div class="search-button__search-container">
+<form class="bd-search d-flex align-items-center"
+      action="../search.html"
+      method="get">
+  <i class="fa-solid fa-magnifying-glass"></i>
+  <input type="search"
+         class="form-control"
+         name="q"
+         id="search-input"
+         placeholder="Search..."
+         aria-label="Search..."
+         autocomplete="off"
+         autocorrect="off"
+         autocapitalize="off"
+         spellcheck="false"/>
+  <span class="search-button__kbd-shortcut"><kbd class="kbd-shortcut__modifier">Ctrl</kbd>+<kbd>K</kbd></span>
+</form></div>
+  </div>
+
+  <div class="pst-async-banner-revealer d-none">
+  <aside id="bd-header-version-warning" class="d-none d-print-none" aria-label="Version warning"></aside>
+</div>
+
+  
+    <header class="bd-header navbar navbar-expand-lg bd-navbar d-print-none">
+    </header>
+  
+
+  <div class="bd-container">
+    <div class="bd-container__inner bd-page-width">
+      
+      
+      
+      <div class="bd-sidebar-primary bd-sidebar">
+        
+
+  
+  <div class="sidebar-header-items sidebar-primary__section">
+    
+    
+    
+    
+  </div>
+  
+    <div class="sidebar-primary-items__start sidebar-primary__section">
+        <div class="sidebar-primary-item">
+
+  
+
+<a class="navbar-brand logo" href="../intro.html">
+  
+  
+  
+  
+  
+    
+    
+      
+    
+    
+    <img src="../_static/logo.png" class="logo__image only-light" alt="CMSE 201 - Home"/>
+    <script>document.write(`<img src="../_static/logo.png" class="logo__image only-dark" alt="CMSE 201 - Home"/>`);</script>
+  
+  
+</a></div>
+        <div class="sidebar-primary-item">
+
+ <script>
+ document.write(`
+   <button class="btn navbar-btn search-button-field search-button__button" title="Search" aria-label="Search" data-bs-placement="bottom" data-bs-toggle="tooltip">
+    <i class="fa-solid fa-magnifying-glass"></i>
+    <span class="search-button__default-text">Search</span>
+    <span class="search-button__kbd-shortcut"><kbd class="kbd-shortcut__modifier">Ctrl</kbd>+<kbd class="kbd-shortcut__modifier">K</kbd></span>
+   </button>
+ `);
+ </script></div>
+        <div class="sidebar-primary-item"><nav class="bd-links bd-docs-nav" aria-label="Main">
+    <div class="bd-toc-item navbar-nav active">
+        <p aria-level="2" class="caption" role="heading"><span class="caption-text">Course Materials</span></p>
+<ul class="nav bd-sidenav">
+<li class="toctree-l1 has-children"><a class="reference internal" href="../Course_Materials-201/CourseDocuments.html">Important Course information</a><details><summary><span class="toctree-toggle" role="presentation"><i class="fa-solid fa-chevron-down"></i></span></summary><ul>
+<li class="toctree-l2"><a class="reference internal" href="../Course_Materials-201/CMSE201-Syllabus.html">Syllabus</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../Course_Materials-201/CMSE201-Schedule.html">Course Schedule</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../Course_Materials-201/SoftwareSetupGuide.html">Software Setup Guide</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../Course_Materials-201/classroom_participation.html">Classroom Participation</a></li>
+</ul>
+</details></li>
+</ul>
+<p aria-level="2" class="caption" role="heading"><span class="caption-text">CodeGrade</span></p>
+<ul class="nav bd-sidenav">
+<li class="toctree-l1"><a class="reference external" href="https://raw.githubusercontent.com/msu-cmse-courses/cmse201-supplemental/main/CodeGrade_Students.pdf">CodeGrade flowchart</a></li>
+</ul>
+<p aria-level="2" class="caption" role="heading"><span class="caption-text">Day 01</span></p>
+<ul class="nav bd-sidenav">
+<li class="toctree-l1"><a class="reference internal" href="../Day-01/Day-01_In-Class_SortingAlgorithm-STUDENT.html">Day 1 In-Class Assignment: Introductions and Sorting Algorithms</a></li>
+
+
+
+</ul>
+<p aria-level="2" class="caption" role="heading"><span class="caption-text">Day 02</span></p>
+<ul class="nav bd-sidenav">
+<li class="toctree-l1"><a class="reference internal" href="../Day-02/Day-02_In-Class_OrderOfMagnitudeModeling-STUDENT.html">Day 2 In-class Assignment: Order of Magnitude Modeling</a></li>
+
+
+</ul>
+<p aria-level="2" class="caption" role="heading"><span class="caption-text">Day 03</span></p>
+<ul class="nav bd-sidenav">
+<li class="toctree-l1"><a class="reference internal" href="../Day-03/Day-03_In-Class_ListsLoopsAndSaving-STUDENT.html">Day 3 In-class Assignment: The power of compound interest</a></li>
+</ul>
+<p aria-level="2" class="caption" role="heading"><span class="caption-text">Day 04</span></p>
+<ul class="nav bd-sidenav">
+<li class="toctree-l1"><a class="reference internal" href="../Day-04/Day_04_In_Class_DataAlgorithmicBias-STUDENT.html">Day 4 In-class Assignment: Data and Algorithmic Bias, Academic Integrity, and Coding Best Practices</a></li>
+
+</ul>
+<p aria-level="2" class="caption" role="heading"><span class="caption-text">Day 05</span></p>
+<ul class="nav bd-sidenav">
+<li class="toctree-l1"><a class="reference internal" href="../Day-05/Day-05_In-Class_IfStatementsAndFunctions-STUDENT.html">Day 5 In-class Assignment: Savings for Everyone</a></li>
+</ul>
+<p aria-level="2" class="caption" role="heading"><span class="caption-text">Day 06</span></p>
+<ul class="nav bd-sidenav">
+<li class="toctree-l1"><a class="reference internal" href="../Day-06/Day-06_In-Class_FunctionsAndSquirrels-STUDENT.html">Day 6 In Class Assignment: A Scurry of Squirrels in Central Park</a></li>
+
+
+
+
+
+</ul>
+<p aria-level="2" class="caption" role="heading"><span class="caption-text">Day 07</span></p>
+<ul class="nav bd-sidenav">
+<li class="toctree-l1"><a class="reference internal" href="../Day-07/Day-07_In-Class_ReviewingAndPracticingConcepts-STUDENT.html">Day 7 In-class Assignment: Reviewing and practicing prior concepts</a></li>
+
+<li class="toctree-l1"><a class="reference internal" href="../Day-07/Day-07_In-Class_ReviewingAndPracticingConcepts-Solutions.html">Day 7 In-class Assignment: Reviewing and practicing prior concepts</a></li>
+
+<li class="toctree-l1"><a class="reference internal" href="../Day-07/Debugging-STUDENT.html">Practice with Debugging</a></li>
+
+
+</ul>
+<p aria-level="2" class="caption" role="heading"><span class="caption-text">Day 08</span></p>
+<ul class="nav bd-sidenav">
+<li class="toctree-l1"><a class="reference internal" href="../Day-08/Day-08_In-Class_MathAndPlotting-STUDENT.html">Day 8 In-class Assignment: Visualizing population growth</a></li>
+</ul>
+<p aria-level="2" class="caption" role="heading"><span class="caption-text">Day 09</span></p>
+<ul class="nav bd-sidenav">
+<li class="toctree-l1"><a class="reference internal" href="../Day-09/Day-09_In-Class_NumPyWithTheGreatLakes-STUDENT.html">Day 9 In-class Assignment: Exploring Great Lakes Water Levels using NumPy</a></li>
+
+<li class="toctree-l1"><a class="reference external" href="https://raw.githubusercontent.com/msu-cmse-courses/cmse201-supplemental/main/ICA_datasets/lake_erie.csv">lake_erie.csv</a></li>
+<li class="toctree-l1"><a class="reference external" href="https://raw.githubusercontent.com/msu-cmse-courses/cmse201-supplemental/main/ICA_datasets/lake_michigan_huron.csv">lake_michigan_huron.csv</a></li>
+<li class="toctree-l1"><a class="reference external" href="https://raw.githubusercontent.com/msu-cmse-courses/cmse201-supplemental/main/ICA_datasets/lake_ontario.csv">lake_ontario.csv</a></li>
+<li class="toctree-l1"><a class="reference external" href="https://raw.githubusercontent.com/msu-cmse-courses/cmse201-supplemental/main/ICA_datasets/lake_superior.csv">lake_superior.csv</a></li>
+</ul>
+<p aria-level="2" class="caption" role="heading"><span class="caption-text">Day 10</span></p>
+<ul class="nav bd-sidenav">
+<li class="toctree-l1"><a class="reference internal" href="../Day-10/Day-10_In-Class_GDP-STUDENT.html">Day 10 In-Class: Cleaning and Analyzing Economic Data</a></li>
+
+
+<li class="toctree-l1"><a class="reference external" href="https://raw.githubusercontent.com/msu-cmse-courses/cmse201-supplemental/main/ICA_datasets/API_NY.GDP.MKTP.CD_DS2_en_csv_v2_31795.csv">API_NY.GDP.MKTP.CD_DS2_en_csv_v2_31795.csv</a></li>
+</ul>
+<p aria-level="2" class="caption" role="heading"><span class="caption-text">Day 11</span></p>
+<ul class="nav bd-sidenav">
+<li class="toctree-l1"><a class="reference internal" href="../Day-11/Day-11_In-Class_Flint-STUDENT.html">Day 11 In-class Assignment: Get the Lead Out: Understanding The Water Crisis in Flint, MI</a></li>
+
+
+<li class="toctree-l1"><a class="reference external" href="https://raw.githubusercontent.com/msu-cmse-courses/cmse201-supplemental/main/ICA_datasets/flint_water_data.csv">flint_water_data.csv</a></li>
+</ul>
+<p aria-level="2" class="caption" role="heading"><span class="caption-text">Day 12</span></p>
+<ul class="nav bd-sidenav">
+<li class="toctree-l1"><a class="reference internal" href="../Day-12/Day-12_In-Class_Unprocessed_Data-STUDENT.html">Day 12 In-Class: Data Contextualization and Wrangling</a></li>
+</ul>
+<p aria-level="2" class="caption" role="heading"><span class="caption-text">Day 13</span></p>
+<ul class="nav bd-sidenav">
+<li class="toctree-l1"><a class="reference internal" href="../Day-13/Day-13_Pre-Class_Online_Resources-STUDENT.html">Day 13 Pre-class Assignment: Finding resources online and tinkering wth code</a></li>
+
+
+<li class="toctree-l1"><a class="reference internal" href="../Day-13/Day-13_In-Class_Online_Resources-STUDENT.html">Day 13 In-Class: Using online resources (code and data)</a></li>
+</ul>
+<p aria-level="2" class="caption" role="heading"><span class="caption-text">Day 14</span></p>
+<ul class="current nav bd-sidenav">
+<li class="toctree-l1 current active"><a class="current reference internal" href="#">Day 14 In-Class Assignment: Evaluating Models</a></li>
+</ul>
+<p aria-level="2" class="caption" role="heading"><span class="caption-text">Day 15</span></p>
+<ul class="nav bd-sidenav">
+<li class="toctree-l1"><a class="reference external" href="https://raw.githubusercontent.com/msu-cmse-courses/cmse201-supplemental/main/image_critique_ver2.pptx">Image Critique</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../Day-15/Day-15_In-Class_FittingCurves-STUDENT.html">Day 15 In-Class Assignment: (Thoughtfully) fitting models to data</a></li>
+<li class="toctree-l1"><a class="reference external" href="https://raw.githubusercontent.com/msu-cmse-courses/cmse201-S22-data/main/Day-14/pop200.csv">pop200.csv</a></li>
+<li class="toctree-l1"><a class="reference external" href="https://raw.githubusercontent.com/msu-cmse-courses/cmse201-S22-data/main/Day-14/pop300.csv">pop300.csv</a></li>
+</ul>
+<p aria-level="2" class="caption" role="heading"><span class="caption-text">Day 16</span></p>
+<ul class="nav bd-sidenav">
+<li class="toctree-l1"><a class="reference internal" href="../Day-16/Day-16-Intro_to_ODEs_In-Class_STUDENT.html">Day 16: In-class Assignment: Introduction to Modeling with ODEs</a></li>
+</ul>
+<p aria-level="2" class="caption" role="heading"><span class="caption-text">Day 17</span></p>
+<ul class="nav bd-sidenav">
+<li class="toctree-l1"><a class="reference internal" href="../Day-17/Day-17_In-Class_ModelingWithODEs-STUDENT.html">Day 17: In-class Assignment: Modeling with Ordinary Differential Equations</a></li>
+
+
+
+</ul>
+<p aria-level="2" class="caption" role="heading"><span class="caption-text">Day 18</span></p>
+<ul class="nav bd-sidenav">
+<li class="toctree-l1"><a class="reference internal" href="../Day-18/Day-18_In-Class_CompartmentalModeling-STUDENT.html">Day 18 In-class Assignment: Building Compartmental Models</a></li>
+
+
+
+</ul>
+<p aria-level="2" class="caption" role="heading"><span class="caption-text">Day 19</span></p>
+<ul class="nav bd-sidenav">
+<li class="toctree-l1"><a class="reference internal" href="../Day-19/Day-19_In-Class_CompartmentsWithSolveIVP-STUDENT.html">Day 19 In-Class Assignment: Compartmental Modeling, moving from the model to the code</a></li>
+</ul>
+<p aria-level="2" class="caption" role="heading"><span class="caption-text">Day 20</span></p>
+<ul class="nav bd-sidenav">
+<li class="toctree-l1"><a class="reference internal" href="../Day-20/Day-20_In-Class_IntroToDataVisualization-STUDENT.html">Day 20 In-Class: Introduction to Data Visualization</a></li>
+</ul>
+<p aria-level="2" class="caption" role="heading"><span class="caption-text">Day 21</span></p>
+<ul class="nav bd-sidenav">
+<li class="toctree-l1"><a class="reference internal" href="../Day-21/Day-21_In-Class_2DImageAnalysis-STUDENT.html">Day 21 In-Class Assignment: Image Analysis</a></li>
+<li class="toctree-l1"><a class="reference external" href="https://raw.githubusercontent.com/msu-cmse-courses/cmse201-supplemental/main/Day-17/ICA_files/beach.jpeg">beach.jpeg</a></li>
+<li class="toctree-l1"><a class="reference external" href="https://raw.githubusercontent.com/msu-cmse-courses/cmse201-supplemental/main/Day-17/ICA_files/landscape.jpeg">landscape.jpeg</a></li>
+<li class="toctree-l1"><a class="reference external" href="https://raw.githubusercontent.com/msu-cmse-courses/cmse201-supplemental/main/Day-17/ICA_files/zebra.png">zebra.png</a></li>
+</ul>
+<p aria-level="2" class="caption" role="heading"><span class="caption-text">Day 22</span></p>
+<ul class="nav bd-sidenav">
+<li class="toctree-l1"><a class="reference internal" href="../Day-22/Day-22_In-Class_ForestFiresPartI-STUDENT.html">Day 22 Part 1 In-class Assignment: Modeling forest fires with an Agent-based Model</a></li>
+</ul>
+<p aria-level="2" class="caption" role="heading"><span class="caption-text">Day 23</span></p>
+<ul class="nav bd-sidenav">
+<li class="toctree-l1"><a class="reference internal" href="../Day-23/Day-23_In-Class_ForestFiresPartII-STUDENT.html">Day 23 In-class Assignment: Modeling forest fires with an Agent-based Model (Part II)</a></li>
+</ul>
+<p aria-level="2" class="caption" role="heading"><span class="caption-text">Day 24</span></p>
+<ul class="nav bd-sidenav">
+<li class="toctree-l1"><a class="reference internal" href="../Day-24/Day-24_In-Class_DataDilemmas-STUDENT.html">Day 24 - In-Class - Data Dilemmas: Ethics in an Algorithmic World</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../Day-24/biased_data_gen.html">Data Generation Sheet</a></li>
+</ul>
+<p aria-level="2" class="caption" role="heading"><span class="caption-text">Day 25</span></p>
+<ul class="nav bd-sidenav">
+<li class="toctree-l1"><a class="reference internal" href="../Day-25/Day-25_In-Class_ProjectWorkDay-STUDENT.html">Day 25 In-class Assignment: Project Work Day</a></li>
+</ul>
+<p aria-level="2" class="caption" role="heading"><span class="caption-text">Homework</span></p>
+<ul class="nav bd-sidenav">
+<li class="toctree-l1"><a class="reference internal" href="../Homework/Homework_01/HW_01_PythonFundamentals-STUDENT.html">Homework 1: Python fundamentals and using external resources to better understand code!</a></li>
+
+
+
+
+
+
+<li class="toctree-l1"><a class="reference internal" href="../Homework/Homework_02/HW_02_SS26-Spring-2026-STUDENT.html">Homework 2: Dictionaries, If Statements, Functions, and Modules</a></li>
+
+<li class="toctree-l1"><a class="reference external" href="https://raw.githubusercontent.com/msu-cmse-courses/cmse201-supplemental/main/stock_data.csv">stock_data.csv</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../Homework/Homework_03/HW_03_SS26_-Spring-2026-STUDENT.html">Homework 3 - Loading, Cleaning, Analyzing, and Visualizing Data with Pandas</a></li>
+<li class="toctree-l1"><a class="reference external" href="https://raw.githubusercontent.com/msu-cmse-courses/cmse201-supplemental/main/Homework/ahuacatl.csv">ahuacatl.csv</a></li>
+<li class="toctree-l1"><a class="reference external" href="https://raw.githubusercontent.com/msu-cmse-courses/cmse201-supplemental/main/Homework/nahuatl_names.csv">nahuatl_names.csv</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../Homework/Homework_04/HW4_SS26-STUDENT.html">Homework 4 - Compartmental Models + Data Visualization</a></li>
+<li class="toctree-l1"><a class="reference external" href="https://raw.githubusercontent.com/msu-cmse-courses/cmse201-supplemental/main/Homework/nypd_collisions_sample.csv">nypd_collisions_sample.csv</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../Homework/Homework_05/HW-05_SS26_STUDENT.html">Homework 5: Algorithmic Bias and Agent-based Modeling (EXTRA CREDIT)</a></li>
+
+
+
+</ul>
+<p aria-level="2" class="caption" role="heading"><span class="caption-text">Code Portfolio</span></p>
+<ul class="nav bd-sidenav">
+<li class="toctree-l1"><a class="reference internal" href="../Homework/Code_Portfolio/Code_Portfolio_Assignment.html">Code Portfolio Assignment</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../Homework/Code_Portfolio/Code_Portfolio_Example-CodeGrade.html">Code Portfolio Example</a></li>
+
+</ul>
+<p aria-level="2" class="caption" role="heading"><span class="caption-text">Semester Project</span></p>
+<ul class="nav bd-sidenav">
+<li class="toctree-l1"><a class="reference internal" href="../Project_Materials/CMSE201_SemesterProjectDetails.html">Semester Project Details</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../Project_Materials/Project_Plan_Check-in.html">First Project Checkpoint</a></li>
+
+
+
+<li class="toctree-l1"><a class="reference internal" href="../Project_Materials/First_Project_Checkpoint.html">First Project Checkpoint</a></li>
+
+
+
+<li class="toctree-l1"><a class="reference internal" href="../Project_Materials/CMSE201_FinalProjectTemplate.html">CMSE 201 Final Project Template</a></li>
+
+<li class="toctree-l1"><a class="reference external" href="https://raw.githubusercontent.com/msu-cmse-courses/cmse201-supplemental/main/Projects/CMSE201_final_project_examples.zip">Zip file of example projects</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../Project_Materials/CMSE201FinalProject_RequirementsAndGradingRubric.html">Requirements and Grading Rubric</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../Project_Materials/peer_assessment.html">Peer Assessment Notebook</a></li>
+<li class="toctree-l1"><a class="reference external" href="https://github.com/msu-cmse-courses/cmse201-supplemental/raw/main/Projects/Presentation_Evaluation_Rubric.pdf">Presentation Evaluation Rubric</a></li>
+</ul>
+<p aria-level="2" class="caption" role="heading"><span class="caption-text">Practice Notebooks</span></p>
+<ul class="nav bd-sidenav">
+<li class="toctree-l1"><a class="reference internal" href="../Quiz_Prep_Notebooks/PracticeNotebook_IfStatements-STUDENT.html">Practice with: <code class="docutils literal notranslate"><span class="pre">if</span></code> statements</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../Quiz_Prep_Notebooks/PracticeNotebook_Functions-STUDENT.html">Practice with: functions</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../Quiz_Prep_Notebooks/PracticeNotebook_Matplotlib-STUDENT.html">Practice with: <code class="docutils literal notranslate"><span class="pre">matplotlib</span></code></a></li>
+<li class="toctree-l1"><a class="reference internal" href="../Quiz_Prep_Notebooks/filtering_ws_ver2.html">Practice with Masking</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../Quiz_Prep_Notebooks/PracticeNotebook_Pandas-STUDENT.html">Practice with: Pandas</a></li>
+<li class="toctree-l1"><a class="reference external" href="https://raw.githubusercontent.com/msu-cmse-courses/cmse201-supplemental/main/PracticeNotebooks/weather.csv">weather.csv</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../Quiz_Prep_Notebooks/PracticeNotebook_ScipyCurveFit-STUDENT.html">Practice with: SciPy <code class="docutils literal notranslate"><span class="pre">curve_fit</span></code></a></li>
+<li class="toctree-l1"><a class="reference internal" href="../Quiz_Prep_Notebooks/PracticeNotebook_CompartmentalModels-STUDENT.html">Practice with: Compartmental Models</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../Quiz_Prep_Notebooks/PracticeNotebook_SolveIVP-STUDENT.html">Practice with: <code class="docutils literal notranslate"><span class="pre">solve_ivp</span></code></a></li>
+</ul>
+
+    </div>
+</nav></div>
+    </div>
+  
+  
+  <div class="sidebar-primary-items__end sidebar-primary__section">
+  </div>
+  
+  <div id="rtd-footer-container"></div>
+
+
+      </div>
+      
+      <main id="main-content" class="bd-main" role="main">
+        
+        
+
+<div class="sbt-scroll-pixel-helper"></div>
+
+          <div class="bd-content">
+            <div class="bd-article-container">
+              
+              <div class="bd-header-article d-print-none">
+<div class="header-article-items header-article__inner">
+  
+    <div class="header-article-items__start">
+      
+        <div class="header-article-item"><label class="sidebar-toggle primary-toggle btn btn-sm" for="__primary" title="Toggle primary sidebar" data-bs-placement="bottom" data-bs-toggle="tooltip">
+  <span class="fa-solid fa-bars"></span>
+</label></div>
+      
+    </div>
+  
+  
+    <div class="header-article-items__end">
+      
+        <div class="header-article-item">
+
+<div class="article-header-buttons">
+
+
+
+
+
+<div class="dropdown dropdown-download-buttons">
+  <button class="btn dropdown-toggle" type="button" data-bs-toggle="dropdown" aria-expanded="false" aria-label="Download this page">
+    <i class="fas fa-download"></i>
+  </button>
+  <ul class="dropdown-menu">
+      
+      
+      
+      <li><a href="../_sources/Day-14/Day-14_In-Class_Evaluating_Fits-STUDENT.ipynb" target="_blank"
+   class="btn btn-sm btn-download-source-button dropdown-item"
+   title="Download source file"
+   data-bs-placement="left" data-bs-toggle="tooltip"
+>
+  
+
+<span class="btn__icon-container">
+  <i class="fas fa-file"></i>
+  </span>
+<span class="btn__text-container">.ipynb</span>
+</a>
+</li>
+      
+      
+      
+      
+      <li>
+<button onclick="window.print()"
+  class="btn btn-sm btn-download-pdf-button dropdown-item"
+  title="Print to PDF"
+  data-bs-placement="left" data-bs-toggle="tooltip"
+>
+  
+
+<span class="btn__icon-container">
+  <i class="fas fa-file-pdf"></i>
+  </span>
+<span class="btn__text-container">.pdf</span>
+</button>
+</li>
+      
+  </ul>
+</div>
+
+
+
+
+<button onclick="toggleFullScreen()"
+  class="btn btn-sm btn-fullscreen-button"
+  title="Fullscreen mode"
+  data-bs-placement="bottom" data-bs-toggle="tooltip"
+>
+  
+
+<span class="btn__icon-container">
+  <i class="fas fa-expand"></i>
+  </span>
+
+</button>
+
+
+
+<script>
+document.write(`
+  <button class="btn btn-sm navbar-btn theme-switch-button" title="light/dark" aria-label="light/dark" data-bs-placement="bottom" data-bs-toggle="tooltip">
+    <span class="theme-switch nav-link" data-mode="light"><i class="fa-solid fa-sun fa-lg"></i></span>
+    <span class="theme-switch nav-link" data-mode="dark"><i class="fa-solid fa-moon fa-lg"></i></span>
+    <span class="theme-switch nav-link" data-mode="auto"><i class="fa-solid fa-circle-half-stroke fa-lg"></i></span>
+  </button>
+`);
+</script>
+
+
+<script>
+document.write(`
+  <button class="btn btn-sm navbar-btn search-button search-button__button" title="Search" aria-label="Search" data-bs-placement="bottom" data-bs-toggle="tooltip">
+    <i class="fa-solid fa-magnifying-glass fa-lg"></i>
+  </button>
+`);
+</script>
+<label class="sidebar-toggle secondary-toggle btn btn-sm" for="__secondary"title="Toggle secondary sidebar" data-bs-placement="bottom" data-bs-toggle="tooltip">
+    <span class="fa-solid fa-list"></span>
+</label>
+</div></div>
+      
+    </div>
+  
+</div>
+</div>
+              
+              
+
+<div id="jb-print-docs-body" class="onlyprint">
+    <h1>Day 14 In-Class Assignment: Evaluating Models</h1>
+    <!-- Table of contents -->
+    <div id="print-main-content">
+        <div id="jb-print-toc">
+            
+            <div>
+                <h2> Contents </h2>
+            </div>
+            <nav aria-label="Page">
+                <ul class="visible nav section-nav flex-column">
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#put-your-name-here"><p style="text-align: right;"> ✅ Put your name here.</p></a><ul class="nav section-nav flex-column">
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#put-your-group-member-names-here"><p style="text-align: right;"> ✅ Put your group member names here.</p></a></li>
+</ul>
+</li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#assignment-instructions">Assignment instructions</a></li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#coming-to-a-consensus-on-goodness-of-fit">1. Coming to a Consensus on Goodness of Fit</a></li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#stop-check-in-with-an-instructor-before-you-move-on">🛑 STOP! Check in with an instructor before you move on!</a></li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#modeling-the-air-atop-everest">2. Modeling the Air Atop Everest</a><ul class="nav section-nav flex-column">
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#use-the-data-provided-to-test-out-different-models-decide-on-one-model-that-you-feel-best-fits-the-data">✅  <strong>2.1</strong> Use the data provided to test out different models. Decide on one model that you feel best fits the data.</a></li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#linear-model">Linear Model</a></li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#quadratic-model">Quadratic Model</a></li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#exponential-model">Exponential Model</a><ul class="nav section-nav flex-column">
+<li class="toc-h4 nav-item toc-entry"><a class="reference internal nav-link" href="#code-up-the-algorithm-you-defined-in-part-1-and-quantitatively-compare-how-well-each-model-fits-the-data">✅  <strong>2.2</strong> Code up the algorithm you defined in part 1 and <em>quantitatively</em> compare how well each model fits the data.</a></li>
+<li class="toc-h4 nav-item toc-entry"><a class="reference internal nav-link" href="#which-model-best-fits-the-data-is-it-substantially-better-than-the-other-models">✅  <strong>2.3</strong> Which model best fits the data? Is it substantially better than the other models?</a></li>
+<li class="toc-h4 nav-item toc-entry"><a class="reference internal nav-link" href="#mount-everest-is-8-85-kilometers-high-what-does-each-model-predict-for-the-density-of-air-on-top-of-mount-everest">✅  <strong>2.4</strong> Mount Everest is 8.85 kilometers high. What does each model predict for the density of air on top of Mount Everest?</a></li>
+<li class="toc-h4 nav-item toc-entry"><a class="reference internal nav-link" href="#what-do-you-believe-the-density-of-of-air-is-at-the-top-of-mount-everest-justify-your-answer-using-the-results-from-the-previous-questions">✅  <strong>2.5</strong> What do you believe the density of of air is at the top of Mount Everest? Justify your answer using the results from the previous questions.</a></li>
+<li class="toc-h4 nav-item toc-entry"><a class="reference internal nav-link" href="#show-and-tell-an-audience-in-this-task-you-will-prepare-a-mini-presentation-to-share-your-answers-to-part-2-1-with-the-class-save-the-figure-s-that-support-your-answers-for-part-2-1-and-include-it-in-a-1-slide-presentation-that-you-will-present-to-your-teammates-and-other-class-groups-your-slide-must-follow-best-practices-for-presentation-such-as">✅  <strong>2.6</strong> <strong>Show and tell an audience</strong>: In this task you will prepare a mini presentation to share your answers to part 2.1 with the class. Save the figure(s) that support your answers for part 2.1, and include it in a 1-slide presentation that you will present to your teammates and other class groups. Your slide must follow best practices for presentation such as:</a></li>
+<li class="toc-h4 nav-item toc-entry"><a class="reference internal nav-link" href="#show-and-tell-a-readership-in-this-task-you-will-prepare-a-mini-report-to-share-your-answers-to-the-questions-above-save-the-figure-that-supports-your-answers-for-part-2-1-and-include-it-in-a-1-page-report-your-report-must-follow-best-practices-for-including-figures-such-as">✅  <strong>2.7</strong> <strong>Show and tell a readership</strong>: in this task you will prepare a mini report to share your answers to the questions above. Save the figure that supports your answers for part 2.1, and include it in a 1-page report. Your report must follow best practices for including figures, such as:</a></li>
+<li class="toc-h4 nav-item toc-entry"><a class="reference internal nav-link" href="#what-did-you-observe-when-preparing-your-slide-and-report-do-the-figures-needed-for-2-6-and-2-7-require-different-formatting-did-something-about-preparing-these-figures-surprise-you">✅  <strong>2.8</strong> What did you observe when preparing your slide and report? Do the figures needed for 2.6 and 2.7 require different formatting? Did something about preparing these figures surprise you?</a></li>
+</ul>
+</li>
+</ul>
+</li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#to-wrap-up-check-in-with-your-instructor-and-report-your-findings-from-part-2-8">To wrap up, check in with your instructor and report your findings from Part 2.8!</a></li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#assignment-wrapup">Assignment wrapup</a></li>
+</ul>
+            </nav>
+        </div>
+    </div>
+</div>
+
+              
+                
+<div id="searchbox"></div>
+                <article class="bd-article">
+                  
+  <section class="tex2jax_ignore mathjax_ignore" id="day-14-in-class-assignment-evaluating-models">
+<h1>Day 14 In-Class Assignment: Evaluating Models<a class="headerlink" href="#day-14-in-class-assignment-evaluating-models" title="Link to this heading">#</a></h1>
+<section id="put-your-name-here">
+<h2><p style="text-align: right;"> ✅ Put your name here.</p><a class="headerlink" href="#put-your-name-here" title="Link to this heading">#</a></h2>
+<section id="put-your-group-member-names-here">
+<h3><p style="text-align: right;"> ✅ Put your group member names here.</p><a class="headerlink" href="#put-your-group-member-names-here" title="Link to this heading">#</a></h3>
+<img src="https://cdn.britannica.com/17/83817-050-67C814CD/Mount-Everest.jpg" width=400>
+<p>In this assignment we’re going to look at how we might evaluate the models we fit to data.</p>
+<p>The <strong>learning goals</strong> of the assignment are to:</p>
+<ul class="simple">
+<li><p>Describe the utility of fitting trendlines to data, in the context of making predictions about the future</p></li>
+<li><p>Use best-fit lines to make predictions</p></li>
+<li><p>Quantitatively and qualitatively describe how to determine the goodness of fit for a given line</p></li>
+</ul>
+</section>
+</section>
+<section id="assignment-instructions">
+<h2>Assignment instructions<a class="headerlink" href="#assignment-instructions" title="Link to this heading">#</a></h2>
+<p>Work with your group to complete this assignment. Instructions for submitting this assignment are at the end of the notebook. The assignment is due at the end of class.</p>
+</section>
+<hr class="docutils" />
+<section id="coming-to-a-consensus-on-goodness-of-fit">
+<h2>1. Coming to a Consensus on Goodness of Fit<a class="headerlink" href="#coming-to-a-consensus-on-goodness-of-fit" title="Link to this heading">#</a></h2>
+<p>✅  In the pre-class assignment, you were tasked with coming up with an algorithm for determining the goodness of fit (Part 2.2). Discuss with your group the different algorithms that you each came up with. What are the differences between each of your algorithms? What are the benefits of each algorithm? What are the drawbacks?</p>
+<p><strong>As a group,</strong> reach a consensus on a good algorithm for determining the goodness of fit. Write your group’s algorithm in the cell below. When thinking about how to design your algorithm it can be useful to explore the concept of a “<strong>residual</strong>” when fitting a line to data. Basically, a residual is a measurement of how far a data point is from the expected value generated by our line (or curve) of best fit. You can see a visual representation of this here: <a class="reference external" href="https://www.khanacademy.org/math/statistics-probability/describing-relationships-quantitative-data/regression-library/a/introduction-to-residuals">https://www.khanacademy.org/math/statistics-probability/describing-relationships-quantitative-data/regression-library/a/introduction-to-residuals</a></p>
+<p><font size=+3>✎</font> <em>Put your answer here.</em></p>
+</section>
+<section id="stop-check-in-with-an-instructor-before-you-move-on">
+<h2>🛑 STOP! Check in with an instructor before you move on!<a class="headerlink" href="#stop-check-in-with-an-instructor-before-you-move-on" title="Link to this heading">#</a></h2>
+</section>
+<hr class="docutils" />
+<section id="modeling-the-air-atop-everest">
+<h2>2. Modeling the Air Atop Everest<a class="headerlink" href="#modeling-the-air-atop-everest" title="Link to this heading">#</a></h2>
+<p>The higher you are above sea level, the thinner the air gets. For instance, in Denver (elevation: 1 mile, or 1600 meters), air density is about 12% lower than it is in East Lansing. For every eight breaths you take in Michigan, you’ll need nine breaths in Denver to get the equivalent amount of air.</p>
+<p>This difference in air density with altitude can be lethal for mountain climbers, where the density of air can be a third or less the value at sea level. Meaning that for every one breath you take in Michigan, you’d need to take <em>three</em> breaths on top of Mount Everest to get the equivalent amount of air.</p>
+<p>You are working for a company that specializes in selling air tanks to climbers. You’ve been tasked with writing a piece of code that can determine the density of air for a given altitude so that your company can calculate how many air tanks a climber will need.</p>
+<p>You don’t have much of a physics or chemistry background, so you’re not sure how to make a physical model for this situation. But you do have data from a previous expedition, where the climbers took measurements of the density at different heights.</p>
+<section id="use-the-data-provided-to-test-out-different-models-decide-on-one-model-that-you-feel-best-fits-the-data">
+<h3>✅  <strong>2.1</strong> Use the data provided to test out different models. Decide on one model that you feel best fits the data.<a class="headerlink" href="#use-the-data-provided-to-test-out-different-models-decide-on-one-model-that-you-feel-best-fits-the-data" title="Link to this heading">#</a></h3>
+<p>The three models you should test out are:</p>
+</section>
+<section id="linear-model">
+<h3>Linear Model<a class="headerlink" href="#linear-model" title="Link to this heading">#</a></h3>
+<div class="math notranslate nohighlight">
+\[y = Ax + B\]</div>
+</section>
+<section id="quadratic-model">
+<h3>Quadratic Model<a class="headerlink" href="#quadratic-model" title="Link to this heading">#</a></h3>
+<div class="math notranslate nohighlight">
+\[y = Ax^2 + Bx + C\]</div>
+</section>
+<section id="exponential-model">
+<h3>Exponential Model<a class="headerlink" href="#exponential-model" title="Link to this heading">#</a></h3>
+<div class="math notranslate nohighlight">
+\[y = A\exp(-Bx) + C\]</div>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="c1">#Data to use for your model</span>
+<span class="c1">#Height is in kilometers, density is in kg/m^3</span>
+<span class="kn">import</span> <span class="nn">numpy</span> <span class="k">as</span> <span class="nn">np</span>
+<span class="n">height</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">array</span><span class="p">([</span><span class="mf">0.0</span><span class="p">,</span><span class="mf">0.17</span><span class="p">,</span><span class="mf">0.34</span><span class="p">,</span><span class="mf">0.52</span><span class="p">,</span><span class="mf">0.69</span><span class="p">,</span><span class="mf">0.86</span><span class="p">,</span><span class="mf">1.03</span><span class="p">,</span><span class="mf">1.21</span><span class="p">,</span><span class="mf">1.38</span><span class="p">,</span><span class="mf">1.55</span><span class="p">,</span><span class="mf">1.72</span><span class="p">,</span><span class="mf">1.9</span><span class="p">,</span><span class="mf">2.07</span><span class="p">,</span><span class="mf">2.24</span><span class="p">,</span><span class="mf">2.41</span><span class="p">,</span><span class="mf">2.59</span><span class="p">,</span><span class="mf">2.76</span><span class="p">,</span><span class="mf">2.93</span><span class="p">,</span><span class="mf">3.1</span><span class="p">,</span><span class="mf">3.28</span><span class="p">,</span><span class="mf">3.45</span><span class="p">,</span><span class="mf">3.62</span><span class="p">,</span><span class="mf">3.79</span><span class="p">,</span><span class="mf">3.97</span><span class="p">,</span><span class="mf">4.14</span><span class="p">,</span><span class="mf">4.31</span><span class="p">,</span><span class="mf">4.48</span><span class="p">,</span><span class="mf">4.66</span><span class="p">,</span><span class="mf">4.83</span><span class="p">,</span><span class="mf">5.0</span><span class="p">])</span>
+<span class="n">density</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">array</span><span class="p">([</span><span class="mf">1.2</span><span class="p">,</span><span class="mf">1.23</span><span class="p">,</span><span class="mf">1.19</span><span class="p">,</span><span class="mf">1.2</span><span class="p">,</span><span class="mf">1.17</span><span class="p">,</span><span class="mf">1.12</span><span class="p">,</span><span class="mf">1.07</span><span class="p">,</span><span class="mf">1.05</span><span class="p">,</span><span class="mf">1.06</span><span class="p">,</span><span class="mf">1.04</span><span class="p">,</span><span class="mf">1.03</span><span class="p">,</span><span class="mf">1.01</span><span class="p">,</span><span class="mf">0.95</span><span class="p">,</span><span class="mf">0.97</span><span class="p">,</span><span class="mf">0.96</span><span class="p">,</span><span class="mf">0.93</span><span class="p">,</span><span class="mf">0.93</span><span class="p">,</span><span class="mf">0.88</span><span class="p">,</span><span class="mf">0.87</span><span class="p">,</span><span class="mf">0.9</span><span class="p">,</span><span class="mf">0.83</span><span class="p">,</span><span class="mf">0.84</span><span class="p">,</span><span class="mf">0.84</span><span class="p">,</span><span class="mf">0.8</span><span class="p">,</span><span class="mf">0.79</span><span class="p">,</span><span class="mf">0.8</span><span class="p">,</span><span class="mf">0.78</span><span class="p">,</span><span class="mf">0.77</span><span class="p">,</span><span class="mf">0.73</span><span class="p">,</span><span class="mf">0.76</span><span class="p">])</span>
+</pre></div>
+</div>
+</div>
+</div>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="c1"># Write your code here</span>
+</pre></div>
+</div>
+</div>
+</div>
+<section id="code-up-the-algorithm-you-defined-in-part-1-and-quantitatively-compare-how-well-each-model-fits-the-data">
+<h4>✅  <strong>2.2</strong> Code up the algorithm you defined in part 1 and <em>quantitatively</em> compare how well each model fits the data.<a class="headerlink" href="#code-up-the-algorithm-you-defined-in-part-1-and-quantitatively-compare-how-well-each-model-fits-the-data" title="Link to this heading">#</a></h4>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="c1"># Write your code for calculating goodness of fit here</span>
+</pre></div>
+</div>
+</div>
+</div>
+</section>
+<section id="which-model-best-fits-the-data-is-it-substantially-better-than-the-other-models">
+<h4>✅  <strong>2.3</strong> Which model best fits the data? Is it substantially better than the other models?<a class="headerlink" href="#which-model-best-fits-the-data-is-it-substantially-better-than-the-other-models" title="Link to this heading">#</a></h4>
+<p><em>Write your answer here</em></p>
+</section>
+<section id="mount-everest-is-8-85-kilometers-high-what-does-each-model-predict-for-the-density-of-air-on-top-of-mount-everest">
+<h4>✅  <strong>2.4</strong> Mount Everest is 8.85 kilometers high. What does each model predict for the density of air on top of Mount Everest?<a class="headerlink" href="#mount-everest-is-8-85-kilometers-high-what-does-each-model-predict-for-the-density-of-air-on-top-of-mount-everest" title="Link to this heading">#</a></h4>
+<p><font size=+3>✎</font> <em>Put your answer here.</em></p>
+</section>
+<section id="what-do-you-believe-the-density-of-of-air-is-at-the-top-of-mount-everest-justify-your-answer-using-the-results-from-the-previous-questions">
+<h4>✅  <strong>2.5</strong> What do you believe the density of of air is at the top of Mount Everest? Justify your answer using the results from the previous questions.<a class="headerlink" href="#what-do-you-believe-the-density-of-of-air-is-at-the-top-of-mount-everest-justify-your-answer-using-the-results-from-the-previous-questions" title="Link to this heading">#</a></h4>
+<p><font size=+3>✎</font> <em>Put your answer here.</em></p>
+</section>
+<section id="show-and-tell-an-audience-in-this-task-you-will-prepare-a-mini-presentation-to-share-your-answers-to-part-2-1-with-the-class-save-the-figure-s-that-support-your-answers-for-part-2-1-and-include-it-in-a-1-slide-presentation-that-you-will-present-to-your-teammates-and-other-class-groups-your-slide-must-follow-best-practices-for-presentation-such-as">
+<h4>✅  <strong>2.6</strong> <strong>Show and tell an audience</strong>: In this task you will prepare a mini presentation to share your answers to part 2.1 with the class. Save the figure(s) that support your answers for part 2.1, and include it in a 1-slide presentation that you will present to your teammates and other class groups. Your slide must follow best practices for presentation such as:<a class="headerlink" href="#show-and-tell-an-audience-in-this-task-you-will-prepare-a-mini-presentation-to-share-your-answers-to-part-2-1-with-the-class-save-the-figure-s-that-support-your-answers-for-part-2-1-and-include-it-in-a-1-slide-presentation-that-you-will-present-to-your-teammates-and-other-class-groups-your-slide-must-follow-best-practices-for-presentation-such-as" title="Link to this heading">#</a></h4>
+<ul class="simple">
+<li><p>The models must be clearly presented (for example, in legends, figure title, or as figure captions)</p></li>
+<li><p>The selected figures must enhance understanding, i.e., do not use media that does not support the purpose or improves understanding. Everything on the slide must have a purpose.</p></li>
+<li><p>The fonts and lines must be legible from any where in the classroom. You might need to experiment with different font sizes and line widths to find something that works well.</p></li>
+<li><p>Consider adding the formatting that gives clear figures in the slides in your code portfolio for easy future access.</p></li>
+</ul>
+</section>
+<section id="show-and-tell-a-readership-in-this-task-you-will-prepare-a-mini-report-to-share-your-answers-to-the-questions-above-save-the-figure-that-supports-your-answers-for-part-2-1-and-include-it-in-a-1-page-report-your-report-must-follow-best-practices-for-including-figures-such-as">
+<h4>✅  <strong>2.7</strong> <strong>Show and tell a readership</strong>: in this task you will prepare a mini report to share your answers to the questions above. Save the figure that supports your answers for part 2.1, and include it in a 1-page report. Your report must follow best practices for including figures, such as:<a class="headerlink" href="#show-and-tell-a-readership-in-this-task-you-will-prepare-a-mini-report-to-share-your-answers-to-the-questions-above-save-the-figure-that-supports-your-answers-for-part-2-1-and-include-it-in-a-1-page-report-your-report-must-follow-best-practices-for-including-figures-such-as" title="Link to this heading">#</a></h4>
+<ul class="simple">
+<li><p>The models must be clearly presented (for example, in legends, figure title, or as figure captions)</p></li>
+<li><p>The selected figures must enhance understanding, i.e., do not use media that does not support the purpose or improves understanding.</p></li>
+<li><p>The fonts and lines must be legible. Typically, it is good practice to make sure the fonts in the figure are of the same size as those in the rest of the document. You might need to experiment with different font sizes and line widths to find something that works well.</p></li>
+<li><p>Make sure the figures are of sufficient resolution, which for is 300 DPI (dots per inch). See the <code class="docutils literal notranslate"><span class="pre">dpi</span></code> argument in the <code class="docutils literal notranslate"><span class="pre">savefig</span></code> function.</p></li>
+<li><p>Consider adding the formatting that gives clear figures in reports in your code portfolio for easy future access.</p></li>
+</ul>
+</section>
+<section id="what-did-you-observe-when-preparing-your-slide-and-report-do-the-figures-needed-for-2-6-and-2-7-require-different-formatting-did-something-about-preparing-these-figures-surprise-you">
+<h4>✅  <strong>2.8</strong> What did you observe when preparing your slide and report? Do the figures needed for 2.6 and 2.7 require different formatting? Did something about preparing these figures surprise you?<a class="headerlink" href="#what-did-you-observe-when-preparing-your-slide-and-report-do-the-figures-needed-for-2-6-and-2-7-require-different-formatting-did-something-about-preparing-these-figures-surprise-you" title="Link to this heading">#</a></h4>
+<p><strong>NOTE:</strong> Please make sure your share your group’s presentation and report with your instructors!</p>
+<p><font size=+3>✎</font> <em>Put your answer here.</em></p>
+</section>
+</section>
+</section>
+<hr class="docutils" />
+<section id="to-wrap-up-check-in-with-your-instructor-and-report-your-findings-from-part-2-8">
+<h2>To wrap up, check in with your instructor and report your findings from Part 2.8!<a class="headerlink" href="#to-wrap-up-check-in-with-your-instructor-and-report-your-findings-from-part-2-8" title="Link to this heading">#</a></h2>
+</section>
+<hr class="docutils" />
+<section id="assignment-wrapup">
+<h2>Assignment wrapup<a class="headerlink" href="#assignment-wrapup" title="Link to this heading">#</a></h2>
+<p>Please fill out the form that appears when you run the code below. <strong>You must completely fill this out in order to receive credit for the assignment!</strong></p>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="kn">from</span> <span class="nn">IPython.display</span> <span class="kn">import</span> <span class="n">HTML</span>
+<span class="n">HTML</span><span class="p">(</span>
+<span class="sd">&quot;&quot;&quot;</span>
+<span class="sd">&lt;iframe </span>
+<span class="sd">	src=&quot;https://cmse.msu.edu/cmse201-ic-survey&quot; </span>
+<span class="sd">	width=&quot;800px&quot; </span>
+<span class="sd">	height=&quot;600px&quot; </span>
+<span class="sd">	frameborder=&quot;0&quot; </span>
+<span class="sd">	marginheight=&quot;0&quot; </span>
+<span class="sd">	marginwidth=&quot;0&quot;&gt;</span>
+<span class="sd">	Loading...</span>
+<span class="sd">&lt;/iframe&gt;</span>
+<span class="sd">&quot;&quot;&quot;</span>
+<span class="p">)</span>
+</pre></div>
+</div>
+</div>
+</div>
+<p>© Copyright 2025,  <a class="reference external" href="https://cmse.msu.edu">Department of Computational Mathematics, Science and Engineering</a> at Michigan State University.</p>
+</section>
+</section>
+
+    <script type="text/x-thebe-config">
+    {
+        requestKernel: true,
+        binderOptions: {
+            repo: "binder-examples/jupyter-stacks-datascience",
+            ref: "master",
+        },
+        codeMirrorConfig: {
+            theme: "abcdef",
+            mode: "python"
+        },
+        kernelOptions: {
+            name: "python3",
+            path: "./Day-14"
+        },
+        predefinedOutput: true
+    }
+    </script>
+    <script>kernelName = 'python3'</script>
+
+                </article>
+              
+
+              
+              
+              
+              
+                <footer class="prev-next-footer d-print-none">
+                  
+<div class="prev-next-area">
+    <a class="left-prev"
+       href="../Day-13/Day-13_In-Class_Online_Resources-STUDENT.html"
+       title="previous page">
+      <i class="fa-solid fa-angle-left"></i>
+      <div class="prev-next-info">
+        <p class="prev-next-subtitle">previous</p>
+        <p class="prev-next-title">Day 13 In-Class: Using online resources (code and data)</p>
+      </div>
+    </a>
+    <a class="right-next"
+       href="../Day-15/Day-15_In-Class_FittingCurves-STUDENT.html"
+       title="next page">
+      <div class="prev-next-info">
+        <p class="prev-next-subtitle">next</p>
+        <p class="prev-next-title">Day 15 In-Class Assignment: (Thoughtfully) fitting models to data</p>
+      </div>
+      <i class="fa-solid fa-angle-right"></i>
+    </a>
+</div>
+                </footer>
+              
+            </div>
+            
+            
+              
+                <div class="bd-sidebar-secondary bd-toc"><div class="sidebar-secondary-items sidebar-secondary__inner">
+
+
+  <div class="sidebar-secondary-item">
+  <div class="page-toc tocsection onthispage">
+    <i class="fa-solid fa-list"></i> Contents
+  </div>
+  <nav class="bd-toc-nav page-toc">
+    <ul class="visible nav section-nav flex-column">
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#put-your-name-here"><p style="text-align: right;"> ✅ Put your name here.</p></a><ul class="nav section-nav flex-column">
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#put-your-group-member-names-here"><p style="text-align: right;"> ✅ Put your group member names here.</p></a></li>
+</ul>
+</li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#assignment-instructions">Assignment instructions</a></li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#coming-to-a-consensus-on-goodness-of-fit">1. Coming to a Consensus on Goodness of Fit</a></li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#stop-check-in-with-an-instructor-before-you-move-on">🛑 STOP! Check in with an instructor before you move on!</a></li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#modeling-the-air-atop-everest">2. Modeling the Air Atop Everest</a><ul class="nav section-nav flex-column">
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#use-the-data-provided-to-test-out-different-models-decide-on-one-model-that-you-feel-best-fits-the-data">✅  <strong>2.1</strong> Use the data provided to test out different models. Decide on one model that you feel best fits the data.</a></li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#linear-model">Linear Model</a></li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#quadratic-model">Quadratic Model</a></li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#exponential-model">Exponential Model</a><ul class="nav section-nav flex-column">
+<li class="toc-h4 nav-item toc-entry"><a class="reference internal nav-link" href="#code-up-the-algorithm-you-defined-in-part-1-and-quantitatively-compare-how-well-each-model-fits-the-data">✅  <strong>2.2</strong> Code up the algorithm you defined in part 1 and <em>quantitatively</em> compare how well each model fits the data.</a></li>
+<li class="toc-h4 nav-item toc-entry"><a class="reference internal nav-link" href="#which-model-best-fits-the-data-is-it-substantially-better-than-the-other-models">✅  <strong>2.3</strong> Which model best fits the data? Is it substantially better than the other models?</a></li>
+<li class="toc-h4 nav-item toc-entry"><a class="reference internal nav-link" href="#mount-everest-is-8-85-kilometers-high-what-does-each-model-predict-for-the-density-of-air-on-top-of-mount-everest">✅  <strong>2.4</strong> Mount Everest is 8.85 kilometers high. What does each model predict for the density of air on top of Mount Everest?</a></li>
+<li class="toc-h4 nav-item toc-entry"><a class="reference internal nav-link" href="#what-do-you-believe-the-density-of-of-air-is-at-the-top-of-mount-everest-justify-your-answer-using-the-results-from-the-previous-questions">✅  <strong>2.5</strong> What do you believe the density of of air is at the top of Mount Everest? Justify your answer using the results from the previous questions.</a></li>
+<li class="toc-h4 nav-item toc-entry"><a class="reference internal nav-link" href="#show-and-tell-an-audience-in-this-task-you-will-prepare-a-mini-presentation-to-share-your-answers-to-part-2-1-with-the-class-save-the-figure-s-that-support-your-answers-for-part-2-1-and-include-it-in-a-1-slide-presentation-that-you-will-present-to-your-teammates-and-other-class-groups-your-slide-must-follow-best-practices-for-presentation-such-as">✅  <strong>2.6</strong> <strong>Show and tell an audience</strong>: In this task you will prepare a mini presentation to share your answers to part 2.1 with the class. Save the figure(s) that support your answers for part 2.1, and include it in a 1-slide presentation that you will present to your teammates and other class groups. Your slide must follow best practices for presentation such as:</a></li>
+<li class="toc-h4 nav-item toc-entry"><a class="reference internal nav-link" href="#show-and-tell-a-readership-in-this-task-you-will-prepare-a-mini-report-to-share-your-answers-to-the-questions-above-save-the-figure-that-supports-your-answers-for-part-2-1-and-include-it-in-a-1-page-report-your-report-must-follow-best-practices-for-including-figures-such-as">✅  <strong>2.7</strong> <strong>Show and tell a readership</strong>: in this task you will prepare a mini report to share your answers to the questions above. Save the figure that supports your answers for part 2.1, and include it in a 1-page report. Your report must follow best practices for including figures, such as:</a></li>
+<li class="toc-h4 nav-item toc-entry"><a class="reference internal nav-link" href="#what-did-you-observe-when-preparing-your-slide-and-report-do-the-figures-needed-for-2-6-and-2-7-require-different-formatting-did-something-about-preparing-these-figures-surprise-you">✅  <strong>2.8</strong> What did you observe when preparing your slide and report? Do the figures needed for 2.6 and 2.7 require different formatting? Did something about preparing these figures surprise you?</a></li>
+</ul>
+</li>
+</ul>
+</li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#to-wrap-up-check-in-with-your-instructor-and-report-your-findings-from-part-2-8">To wrap up, check in with your instructor and report your findings from Part 2.8!</a></li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#assignment-wrapup">Assignment wrapup</a></li>
+</ul>
+  </nav></div>
+
+</div></div>
+              
+            
+          </div>
+          <footer class="bd-footer-content">
+            
+<div class="bd-footer-content__inner container">
+  
+  <div class="footer-item">
+    
+<p class="component-author">
+By the Department of Computational Mathematics, Science and Engineering at Michigan State University
+</p>
+
+  </div>
+  
+  <div class="footer-item">
+    
+
+  <p class="copyright">
+    
+      © Copyright 2026.
+      <br/>
+    
+  </p>
+
+  </div>
+  
+  <div class="footer-item">
+    
+  </div>
+  
+  <div class="footer-item">
+    
+  </div>
+  
+</div>
+          </footer>
+        
+
+      </main>
+    </div>
+  </div>
+  
+  <!-- Scripts loaded after <body> so the DOM is not blocked -->
+  <script src="../_static/scripts/bootstrap.js?digest=3ee479438cf8b5e0d341"></script>
+<script src="../_static/scripts/pydata-sphinx-theme.js?digest=3ee479438cf8b5e0d341"></script>
+
+  <footer class="bd-footer">
+  </footer>
+  </body>
+</html>

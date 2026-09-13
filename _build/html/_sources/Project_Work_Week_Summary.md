@@ -1,0 +1,6 @@
+# Project Work Week Summary
+
+- **April 10th:** You will be submitting a rough draft of your semester project. You can find guidelines to keep in mind for the rough draft [**here**](Project_Materials/Project_Rough_Draft_Guidelines_Feedback). **NOTE:** We do not necessarily expect you to adhere to all of these in the rough draft, but you should have them sorted when you submit your final draft. You should also have your lightning presentation ready to go.
+- **April 11th/12th:** You will give lightning presentations in class and give feedback on your classmates' presentations. You can find details about these presentations [**here**](Project_Materials/Lightning_Presentation_Details). Make sure to look this over before completing your presentations slides!
+- **April 13th/14th:** Your pre-class assignment will be to look over group mates' project notebooks and provide feedback. You can find details about this feedback process [**here**](Project_Materials/Project_Rough_Draft_Guidelines_Feedback).
+- **April 17th:** You will use the feedback you received from the previous work week to complete and submit your second project checkpoint, details about which can be found [**here**](Project_Materials/Second_Project_Checkpoint). 

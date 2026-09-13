@@ -1,0 +1,1492 @@
+
+<!DOCTYPE html>
+
+<html>
+  <head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" /><meta name="generator" content="Docutils 0.17.1: http://docutils.sourceforge.net/" />
+
+    <title>Homework 4: Compartmental Models + Data Visualization (Fall, 2023) &#8212; CMSE 201</title>
+    
+  <!-- Loaded before other Sphinx assets -->
+  <link href="../../_static/styles/theme.css?digest=1999514e3f237ded88cf" rel="stylesheet">
+<link href="../../_static/styles/pydata-sphinx-theme.css?digest=1999514e3f237ded88cf" rel="stylesheet">
+
+    
+  <link rel="stylesheet"
+    href="../../_static/vendor/fontawesome/5.13.0/css/all.min.css">
+  <link rel="preload" as="font" type="font/woff2" crossorigin
+    href="../../_static/vendor/fontawesome/5.13.0/webfonts/fa-solid-900.woff2">
+  <link rel="preload" as="font" type="font/woff2" crossorigin
+    href="../../_static/vendor/fontawesome/5.13.0/webfonts/fa-brands-400.woff2">
+
+    <link rel="stylesheet" type="text/css" href="../../_static/pygments.css" />
+    <link rel="stylesheet" href="../../_static/styles/sphinx-book-theme.css?digest=5115cc725059bd94278eecd172e13a965bf8f5a9" type="text/css" />
+    <link rel="stylesheet" type="text/css" href="../../_static/togglebutton.css" />
+    <link rel="stylesheet" type="text/css" href="../../_static/copybutton.css" />
+    <link rel="stylesheet" type="text/css" href="../../_static/mystnb.css" />
+    <link rel="stylesheet" type="text/css" href="../../_static/sphinx-thebe.css" />
+    <link rel="stylesheet" type="text/css" href="../../_static/design-style.b7bb847fb20b106c3d81b95245e65545.min.css" />
+    
+  <!-- Pre-loaded scripts that we'll load fully later -->
+  <link rel="preload" as="script" href="../../_static/scripts/pydata-sphinx-theme.js?digest=1999514e3f237ded88cf">
+
+    <script data-url_root="../../" id="documentation_options" src="../../_static/documentation_options.js"></script>
+    <script src="../../_static/jquery.js"></script>
+    <script src="../../_static/underscore.js"></script>
+    <script src="../../_static/doctools.js"></script>
+    <script src="../../_static/clipboard.min.js"></script>
+    <script src="../../_static/copybutton.js"></script>
+    <script src="../../_static/scripts/sphinx-book-theme.js?digest=9c920249402e914e316237a7dbc6769907cce411"></script>
+    <script>let toggleHintShow = 'Click to show';</script>
+    <script>let toggleHintHide = 'Click to hide';</script>
+    <script>let toggleOpenOnPrint = 'true';</script>
+    <script src="../../_static/togglebutton.js"></script>
+    <script>var togglebuttonSelector = '.toggle, .admonition.dropdown, .tag_hide_input div.cell_input, .tag_hide-input div.cell_input, .tag_hide_output div.cell_output, .tag_hide-output div.cell_output, .tag_hide_cell.cell, .tag_hide-cell.cell';</script>
+    <script src="../../_static/design-tabs.js"></script>
+    <script>const THEBE_JS_URL = "https://unpkg.com/thebe@0.8.2/lib/index.js"
+const thebe_selector = ".thebe,.cell"
+const thebe_selector_input = "pre"
+const thebe_selector_output = ".output, .cell_output"
+</script>
+    <script async="async" src="../../_static/sphinx-thebe.js"></script>
+    <script>window.MathJax = {"options": {"processHtmlClass": "tex2jax_process|mathjax_process|math|output_area"}}</script>
+    <script defer="defer" src="https://cdn.jsdelivr.net/npm/mathjax@3/es5/tex-mml-chtml.js"></script>
+    <link rel="shortcut icon" href="../../_static/cmse_fav.ico"/>
+    <link rel="index" title="Index" href="../../genindex.html" />
+    <link rel="search" title="Search" href="../../search.html" />
+    <link rel="next" title="Homework 5: 2D Arrays and Agent-based Modeling (EXTRA CREDIT)" href="../Homework_05/HW-05_STUDENT.html" />
+    <link rel="prev" title="Homework 3: Analyzing, modeling, and visualizing data with Pandas and conceptualizing compartmental models" href="../Homework_03/HW3_grapevines_STUDENT.html" />
+    <meta name="viewport" content="width=device-width, initial-scale=1" />
+    <meta name="docsearch:language" content="None">
+    
+
+    <!-- Google Analytics -->
+    
+  </head>
+  <body data-spy="scroll" data-target="#bd-toc-nav" data-offset="60">
+<!-- Checkboxes to toggle the left sidebar -->
+<input type="checkbox" class="sidebar-toggle" name="__navigation" id="__navigation" aria-label="Toggle navigation sidebar">
+<label class="overlay overlay-navbar" for="__navigation">
+    <div class="visually-hidden">Toggle navigation sidebar</div>
+</label>
+<!-- Checkboxes to toggle the in-page toc -->
+<input type="checkbox" class="sidebar-toggle" name="__page-toc" id="__page-toc" aria-label="Toggle in-page Table of Contents">
+<label class="overlay overlay-pagetoc" for="__page-toc">
+    <div class="visually-hidden">Toggle in-page Table of Contents</div>
+</label>
+<!-- Headers at the top -->
+<div class="announcement header-item noprint"></div>
+<div class="header header-item noprint"></div>
+
+    
+    <div class="container-fluid" id="banner"></div>
+
+    
+
+    <div class="container-xl">
+      <div class="row">
+          
+<!-- Sidebar -->
+<div class="bd-sidebar noprint" id="site-navigation">
+    <div class="bd-sidebar__content">
+        <div class="bd-sidebar__top"><div class="navbar-brand-box">
+    <a class="navbar-brand text-wrap" href="../../index.html">
+      
+        <!-- `logo` is deprecated in Sphinx 4.0, so remove this when we stop supporting 3 -->
+        
+      
+      
+      <img src="../../_static/logo.png" class="logo" alt="logo">
+      
+      
+      <h1 class="site-logo" id="site-title">CMSE 201</h1>
+      
+    </a>
+</div><form class="bd-search d-flex align-items-center" action="../../search.html" method="get">
+  <i class="icon fas fa-search"></i>
+  <input type="search" class="form-control" name="q" id="search-input" placeholder="Search the docs ..." aria-label="Search the docs ..." autocomplete="off" >
+</form><nav class="bd-links" id="bd-docs-nav" aria-label="Main">
+    <div class="bd-toc-item active">
+        <p aria-level="2" class="caption" role="heading">
+ <span class="caption-text">
+  Course Materials
+ </span>
+</p>
+<ul class="nav bd-sidenav">
+ <li class="toctree-l1 has-children">
+  <a class="reference internal" href="../../Course_Materials-201/CourseDocuments.html">
+   Important Course information
+  </a>
+  <input class="toctree-checkbox" id="toctree-checkbox-1" name="toctree-checkbox-1" type="checkbox"/>
+  <label for="toctree-checkbox-1">
+   <i class="fas fa-chevron-down">
+   </i>
+  </label>
+  <ul>
+   <li class="toctree-l2">
+    <a class="reference internal" href="../../Course_Materials-201/CMSE201-Syllabus.html">
+     Syllabus
+    </a>
+   </li>
+   <li class="toctree-l2">
+    <a class="reference internal" href="../../Course_Materials-201/CMSE201-Schedule.html">
+     Course Schedule
+    </a>
+   </li>
+   <li class="toctree-l2">
+    <a class="reference internal" href="../../Course_Materials-201/SoftwareSetupGuide.html">
+     Software Setup Guide
+    </a>
+   </li>
+   <li class="toctree-l2">
+    <a class="reference internal" href="../../Course_Materials-201/classroom_participation.html">
+     Classroom Participation
+    </a>
+   </li>
+  </ul>
+ </li>
+</ul>
+<p aria-level="2" class="caption" role="heading">
+ <span class="caption-text">
+  Day 01
+ </span>
+</p>
+<ul class="nav bd-sidenav">
+ <li class="toctree-l1">
+  <a class="reference internal" href="../../Day-01/Day-01_In-Class_SortingAlgorithm-STUDENT.html">
+   Day 1 In-Class Assignment: Introductions and Sorting Algorithms
+  </a>
+ </li>
+</ul>
+<p aria-level="2" class="caption" role="heading">
+ <span class="caption-text">
+  Day 02
+ </span>
+</p>
+<ul class="nav bd-sidenav">
+ <li class="toctree-l1">
+  <a class="reference internal" href="../../Day-02/Day-02_Pre-Class_IntroToPython-STUDENT.html">
+   Day 2 Pre-class Assignment: Intro to Python
+  </a>
+ </li>
+ <li class="toctree-l1">
+  <a class="reference internal" href="../../Day-02/Day-02_In-Class_OrderOfMagnitudeModeling-STUDENT.html">
+   Day 2 In-class Assignment: Order of Magnitude Modeling
+  </a>
+ </li>
+</ul>
+<p aria-level="2" class="caption" role="heading">
+ <span class="caption-text">
+  Day 03
+ </span>
+</p>
+<ul class="nav bd-sidenav">
+ <li class="toctree-l1">
+  <a class="reference internal" href="../../Day-03/Day-03_Pre-Class_ListsAndLoops-STUDENT.html">
+   Day 3: Pre-Class Assignment: Lists and Loops
+  </a>
+ </li>
+ <li class="toctree-l1">
+  <a class="reference internal" href="../../Day-03/Day-03_In-Class_ListsLoopsAndSaving-STUDENT.html">
+   Day 3 In-class Assignment: The power of compound interest
+  </a>
+ </li>
+</ul>
+<p aria-level="2" class="caption" role="heading">
+ <span class="caption-text">
+  Day 04
+ </span>
+</p>
+<ul class="nav bd-sidenav">
+ <li class="toctree-l1">
+  <a class="reference internal" href="../../Day-04/Day_04_PreClass_DataAlgorithmicBias-STUDENT.html">
+   Day 4 Pre-class Assignment: Introduction to Data Ethics: Data and Algorithmic Bias
+  </a>
+ </li>
+ <li class="toctree-l1">
+  <a class="reference internal" href="../../Day-04/Day_04_In_Class_DataAlgorithmicBias-STUDENT.html">
+   Day 4 In-class Assignment: Data and Algorithmic Bias, Academic Integrity, and Coding Best Practices
+  </a>
+ </li>
+</ul>
+<p aria-level="2" class="caption" role="heading">
+ <span class="caption-text">
+  Day 05
+ </span>
+</p>
+<ul class="nav bd-sidenav">
+ <li class="toctree-l1">
+  <a class="reference internal" href="../../Day-05/Day-05_Pre-Class_IfStatementsAndFunctions-STUDENT.html">
+   Day 5 Pre-class Assignment: Boolean logic, if statements, and an introduction to functions
+  </a>
+ </li>
+ <li class="toctree-l1">
+  <a class="reference internal" href="../../Day-05/Day-05_In-Class_IfStatementsAndFunctions-STUDENT.html">
+   Day 5 In-class Assignment: Savings for Everyone
+  </a>
+ </li>
+</ul>
+<p aria-level="2" class="caption" role="heading">
+ <span class="caption-text">
+  Day 06
+ </span>
+</p>
+<ul class="nav bd-sidenav">
+ <li class="toctree-l1">
+  <a class="reference internal" href="../../Day-06/Day-06_Pre-Class_MoreFunctions-STUDENT.html">
+   Day 6 Pre-class Assignment: Thinking more about functions
+  </a>
+ </li>
+ <li class="toctree-l1">
+  <a class="reference internal" href="../../Day-06/Day-06_In-Class_FunctionsAndSquirrels-STUDENT.html">
+   Day 6 In Class Assignment: A Scurry of Squirrels in Central Park
+  </a>
+ </li>
+</ul>
+<p aria-level="2" class="caption" role="heading">
+ <span class="caption-text">
+  Day 07
+ </span>
+</p>
+<ul class="nav bd-sidenav">
+ <li class="toctree-l1">
+  <a class="reference internal" href="../../Day-07/Day-07_Pre-Class_ReflectingOnUnderstanding-STUDENT.html">
+   Day 7 Pre-Class Assignment: A reflection on what you’ve learned so far!
+  </a>
+ </li>
+ <li class="toctree-l1">
+  <a class="reference internal" href="../../Day-07/Day-07_In-Class_ReviewingAndPracticingConcepts-STUDENT.html">
+   Day 7 In-class Assignment: Reviewing and practicing prior concepts
+  </a>
+ </li>
+ <li class="toctree-l1">
+  <a class="reference internal" href="../../Day-07/Day-07_In-Class_ReviewingAndPracticingConcepts-Solutions.html">
+   Day 7 In-class Assignment: Reviewing and practicing prior concepts (Solutions)
+  </a>
+ </li>
+ <li class="toctree-l1">
+  <a class="reference internal" href="../../Day-07/Debugging-STUDENT.html">
+   Practice with Debugging
+  </a>
+ </li>
+</ul>
+<p aria-level="2" class="caption" role="heading">
+ <span class="caption-text">
+  Day 08
+ </span>
+</p>
+<ul class="nav bd-sidenav">
+ <li class="toctree-l1">
+  <a class="reference internal" href="../../Day-08/Day-08_Pre-Class_ModulesMathAndPlots-STUDENT.html">
+   Day 8 Pre-Class Assignment: Python Modules: Numpy and Plots
+  </a>
+ </li>
+ <li class="toctree-l1">
+  <a class="reference internal" href="../../Day-08/Day-08_In-Class_MathAndPlotting-STUDENT.html">
+   Day 8 In-class Assignment: Visualizing population growth
+  </a>
+ </li>
+</ul>
+<p aria-level="2" class="caption" role="heading">
+ <span class="caption-text">
+  Day 09
+ </span>
+</p>
+<ul class="nav bd-sidenav">
+ <li class="toctree-l1">
+  <a class="reference internal" href="../../Day-09/Day-09_Pre-Class_IntroToNumPy-STUDENT.html">
+   Day 9 Pre-Class: Introduction to NumPy
+  </a>
+ </li>
+ <li class="toctree-l1">
+  <a class="reference external" href="https://raw.githubusercontent.com/msu-cmse-courses/cmse201-supplemental/main/ICA_datasets/michigan_pop.csv">
+   michigan_pop.csv
+  </a>
+ </li>
+ <li class="toctree-l1">
+  <a class="reference internal" href="../../Day-09/Day-09_In-Class_NumPyWithTheGreatLakes-STUDENT.html">
+   Day 9 In-class Assignment: Exploring Great Lakes Water Levels using NumPy
+  </a>
+ </li>
+ <li class="toctree-l1">
+  <a class="reference external" href="https://raw.githubusercontent.com/msu-cmse-courses/cmse201-supplemental/main/ICA_datasets/lake_erie.csv">
+   lake_erie.csv
+  </a>
+ </li>
+ <li class="toctree-l1">
+  <a class="reference external" href="https://raw.githubusercontent.com/msu-cmse-courses/cmse201-supplemental/main/ICA_datasets/lake_michigan_huron.csv">
+   lake_michigan_huron.csv
+  </a>
+ </li>
+ <li class="toctree-l1">
+  <a class="reference external" href="https://raw.githubusercontent.com/msu-cmse-courses/cmse201-supplemental/main/ICA_datasets/lake_ontario.csv">
+   lake_ontario.csv
+  </a>
+ </li>
+ <li class="toctree-l1">
+  <a class="reference external" href="https://raw.githubusercontent.com/msu-cmse-courses/cmse201-supplemental/main/ICA_datasets/lake_superior.csv">
+   lake_superior.csv
+  </a>
+ </li>
+</ul>
+<p aria-level="2" class="caption" role="heading">
+ <span class="caption-text">
+  Day 10
+ </span>
+</p>
+<ul class="nav bd-sidenav">
+ <li class="toctree-l1">
+  <a class="reference internal" href="../../Day-10/Day-10_Pre-Class_Pandas-STUDENT.html">
+   Day 10 Pre-class Assignment: Computational Models Overview and The Pandas Data Analysis Library
+  </a>
+ </li>
+ <li class="toctree-l1">
+  <a class="reference external" href="https://raw.githubusercontent.com/msu-cmse-courses/cmse201-supplemental/main/Day-09/heart_disease_data.csv">
+   heart_disease_data.csv
+  </a>
+ </li>
+ <li class="toctree-l1">
+  <a class="reference internal" href="../../Day-10/Day-10_In-Class_GDP-STUDENT.html">
+   Day 10 In-Class: Cleaning and Analyzing Economic Data
+  </a>
+ </li>
+ <li class="toctree-l1">
+  <a class="reference external" href="https://raw.githubusercontent.com/msu-cmse-courses/cmse201-supplemental/main/ICA_datasets/API_NY.GDP.MKTP.CD_DS2_en_csv_v2_4770391.csv">
+   API_NY.GDP.MKTP.CD_DS2_en_csv_v2_4770391.csv
+  </a>
+ </li>
+</ul>
+<p aria-level="2" class="caption" role="heading">
+ <span class="caption-text">
+  Day 11
+ </span>
+</p>
+<ul class="nav bd-sidenav">
+ <li class="toctree-l1">
+  <a class="reference internal" href="../../Day-11/Day-11_Pre-Class_Masking-STUDENT.html">
+   Day 11 Pre-class Assignment: Normal Distributions, Masking, and Log Plots
+  </a>
+ </li>
+ <li class="toctree-l1">
+  <a class="reference external" href="https://raw.githubusercontent.com/msu-cmse-courses/cmse201-supplemental/main/ICA_datasets/GDP_Cleaned.csv">
+   GDP_Cleaned.csv
+  </a>
+ </li>
+ <li class="toctree-l1">
+  <a class="reference internal" href="../../Day-11/Day-11_In-Class_Flint-STUDENT.html">
+   Day 11 In-class Assignment: Get the Lead Out: Understanding The Water Crisis in Flint, MI
+  </a>
+ </li>
+ <li class="toctree-l1">
+  <a class="reference external" href="https://raw.githubusercontent.com/msu-cmse-courses/cmse201-supplemental/main/ICA_datasets/flint_water_data.csv">
+   flint_water_data.csv
+  </a>
+ </li>
+</ul>
+<p aria-level="2" class="caption" role="heading">
+ <span class="caption-text">
+  Day 12
+ </span>
+</p>
+<ul class="nav bd-sidenav">
+ <li class="toctree-l1">
+  <a class="reference internal" href="../../Day-12/Day-12_Pre-Class_Data_File_Formats_Manipulation-STUDENT.html">
+   Day 12 Pre-Class Assignment: Overview of data and file formats
+  </a>
+ </li>
+ <li class="toctree-l1">
+  <a class="reference external" href="https://raw.githubusercontent.com/msu-cmse-courses/cmse201-supplemental/main/Day-11/us_pop_by_state_2010_2011.csv">
+   us_pop_by_state_2010_2011.csv
+  </a>
+ </li>
+ <li class="toctree-l1">
+  <a class="reference external" href="https://raw.githubusercontent.com/msu-cmse-courses/cmse201-supplemental/main/Day-11/us_pop_by_state_2012_2013_encoding_utf-16be.csv">
+   us_pop_by_state_2012_2013_encoding_utf-16be.csv
+  </a>
+ </li>
+ <li class="toctree-l1">
+  <a class="reference external" href="https://raw.githubusercontent.com/msu-cmse-courses/cmse201-supplemental/main/Day-11/us_pop_by_state_2014_2015_windows_linefeed.csv">
+   us_pop_by_state_2014_2015_windows_linefeed.csv
+  </a>
+ </li>
+ <li class="toctree-l1">
+  <a class="reference external" href="https://raw.githubusercontent.com/msu-cmse-courses/cmse201-supplemental/main/Day-11/us_pop_by_state_2016a.csv">
+   us_pop_by_state_2016a.csv
+  </a>
+ </li>
+ <li class="toctree-l1">
+  <a class="reference external" href="https://raw.githubusercontent.com/msu-cmse-courses/cmse201-supplemental/main/Day-11/us_pop_by_state_2017a.yaff">
+   us_pop_by_state2017a.yaff
+  </a>
+ </li>
+ <li class="toctree-l1">
+  <a class="reference external" href="https://raw.githubusercontent.com/msu-cmse-courses/cmse201-supplemental/main/Day-11/us_pop_by_state_2018_2019.bin">
+   us_pop_by_state_2018_2019.bin
+  </a>
+ </li>
+ <li class="toctree-l1">
+  <a class="reference internal" href="../../Day-12/Day-12_In-Class_Data_File_Formats_Manipulation-STUDENT.html">
+   Day 12 In-Class: Overview of data and file formats; US Population and Representation
+  </a>
+ </li>
+</ul>
+<p aria-level="2" class="caption" role="heading">
+ <span class="caption-text">
+  Day 13
+ </span>
+</p>
+<ul class="nav bd-sidenav">
+ <li class="toctree-l1">
+  <a class="reference internal" href="../../Day-13/Day-13_Pre-Class_Online_Resources-STUDENT.html">
+   Day 13 Pre-class Assignment: Finding resources online and tinkering with code
+  </a>
+ </li>
+ <li class="toctree-l1">
+  <a class="reference internal" href="../../Day-13/Day-13_In-Class_Online_Resources-STUDENT.html">
+   Day 13 In-Class: Using online resources (code and data)
+  </a>
+ </li>
+</ul>
+<p aria-level="2" class="caption" role="heading">
+ <span class="caption-text">
+  Day 14
+ </span>
+</p>
+<ul class="nav bd-sidenav">
+ <li class="toctree-l1">
+  <a class="reference internal" href="../../Day-14/Day-14_Pre-Class_Evaluating_Fits-STUDENT.html">
+   Day 14 Pre-Class Assignment: Making Predictions Using Data
+  </a>
+ </li>
+ <li class="toctree-l1">
+  <a class="reference internal" href="../../Day-14/Day-14_In-Class_Evaluating_Fits-STUDENT.html">
+   Day 14 In-Class Assignment: Evaluating Models
+  </a>
+ </li>
+</ul>
+<p aria-level="2" class="caption" role="heading">
+ <span class="caption-text">
+  Day 15
+ </span>
+</p>
+<ul class="nav bd-sidenav">
+ <li class="toctree-l1">
+  <a class="reference internal" href="../../Day-15/Day-15_Pre-Class_CurveFitting-STUDENT.html">
+   Day 15 Pre-Class Assignment: Fitting functions to data (curve-fitting) and thinking more about models
+  </a>
+ </li>
+ <li class="toctree-l1">
+  <a class="reference internal" href="../../Day-15/Day-15_In-Class_FittingCurves-STUDENT.html">
+   Day 15 In-Class Assignment: (Thoughtfully) fitting models to data
+  </a>
+ </li>
+ <li class="toctree-l1">
+  <a class="reference external" href="https://raw.githubusercontent.com/msu-cmse-courses/cmse201-S22-data/main/Day-14/pop200.csv">
+   pop200.csv
+  </a>
+ </li>
+ <li class="toctree-l1">
+  <a class="reference external" href="https://raw.githubusercontent.com/msu-cmse-courses/cmse201-S22-data/main/Day-14/pop300.csv">
+   pop300.csv
+  </a>
+ </li>
+</ul>
+<p aria-level="2" class="caption" role="heading">
+ <span class="caption-text">
+  Day 16
+ </span>
+</p>
+<ul class="nav bd-sidenav">
+ <li class="toctree-l1">
+  <a class="reference internal" href="../../Day-16/Day-16-Intro_to_ODEs_Pre-Class-STUDENT.html">
+   Day 16 Pre-class Assignment: Introduction to Modeling with Ordinary Differential Equations
+  </a>
+ </li>
+ <li class="toctree-l1">
+  <a class="reference internal" href="../../Day-16/Day-16-Intro_to_ODEs_In-Class_STUDENT.html">
+   Day 16: In-class Assignment: Introduction to Modeling with ODEs
+  </a>
+ </li>
+</ul>
+<p aria-level="2" class="caption" role="heading">
+ <span class="caption-text">
+  Day 17
+ </span>
+</p>
+<ul class="nav bd-sidenav">
+ <li class="toctree-l1">
+  <a class="reference internal" href="../../Day-17/Day-17_Pre-Class_ModelingWithODEs-STUDENT.html">
+   Day 17: Pre-class Assignment: Modeling with Ordinary Differential Equations
+  </a>
+ </li>
+ <li class="toctree-l1">
+  <a class="reference internal" href="../../Day-17/Day-17_In-Class_ModelingWithODEs-STUDENT.html">
+   Day 17: In-class Assignment: Modeling with ODEs
+  </a>
+ </li>
+</ul>
+<p aria-level="2" class="caption" role="heading">
+ <span class="caption-text">
+  Day 18
+ </span>
+</p>
+<ul class="nav bd-sidenav">
+ <li class="toctree-l1">
+  <a class="reference internal" href="../../Day-18/Day-18_Pre-Class_ViralKinetics-STUDENT.html">
+   Day 18 Pre-Class: Viral Kinetics
+  </a>
+ </li>
+ <li class="toctree-l1">
+  <a class="reference internal" href="../../Day-18/Day-18_In-Class_CompartmentalModeling-STUDENT.html">
+   Day 18 In-class Assignment: Building Compartmental Models
+  </a>
+ </li>
+</ul>
+<p aria-level="2" class="caption" role="heading">
+ <span class="caption-text">
+  Day 19
+ </span>
+</p>
+<ul class="nav bd-sidenav">
+ <li class="toctree-l1">
+  <a class="reference internal" href="../../Day-19/Day-19_Pre-Class_Zombies-STUDENT.html">
+   Day 19 Pre-class Assignment: ZOMBIES!!
+  </a>
+ </li>
+ <li class="toctree-l1">
+  <a class="reference internal" href="../../Day-19/Day-19_In-Class_CompartmentsWithSolveIVP-STUDENT.html">
+   Day 19 In-Class Assignment: Compartmental Modeling, moving from the model to the code
+  </a>
+ </li>
+</ul>
+<p aria-level="2" class="caption" role="heading">
+ <span class="caption-text">
+  Day 20
+ </span>
+</p>
+<ul class="nav bd-sidenav">
+ <li class="toctree-l1">
+  <a class="reference internal" href="../../Day-20/Day-20_Pre-Class_IntroToDataVisualization-STUDENT.html">
+   Day 20 Pre-class Assignment: Introduction to Data Visualization
+  </a>
+ </li>
+ <li class="toctree-l1">
+  <a class="reference internal" href="../../Day-20/Day-20_In-Class_IntroToDataVisualization-STUDENT.html">
+   Day 20 In-Class: Introduction to Data Visualization
+  </a>
+ </li>
+</ul>
+<p aria-level="2" class="caption" role="heading">
+ <span class="caption-text">
+  Day 21
+ </span>
+</p>
+<ul class="nav bd-sidenav">
+ <li class="toctree-l1">
+  <a class="reference internal" href="../../Day-21/Day-21_Pre-Class_2DNumPyArrays-STUDENT.html">
+   Day 21 Pre-Class: 2D NumPy Arrays
+  </a>
+ </li>
+ <li class="toctree-l1">
+  <a class="reference external" href="https://raw.githubusercontent.com/msu-cmse-courses/cmse201-supplemental/main/Day-17/PCA_files/cars.csv">
+   cars.csv
+  </a>
+ </li>
+ <li class="toctree-l1">
+  <a class="reference external" href="https://github.com/msu-cmse-courses/cmse201-supplemental/raw/main/Day-17/PCA_files/example.jpeg">
+   example.jpeg
+  </a>
+ </li>
+ <li class="toctree-l1">
+  <a class="reference internal" href="../../Day-21/Day-21_In-Class_2DImageAnalysis-STUDENT.html">
+   Day 21 In-Class Assignment: Image Analysis
+  </a>
+ </li>
+ <li class="toctree-l1">
+  <a class="reference external" href="https://raw.githubusercontent.com/msu-cmse-courses/cmse201-supplemental/main/Day-17/ICA_files/beach.jpeg">
+   beach.jpeg
+  </a>
+ </li>
+ <li class="toctree-l1">
+  <a class="reference external" href="https://raw.githubusercontent.com/msu-cmse-courses/cmse201-supplemental/main/Day-17/ICA_files/landscape.jpeg">
+   landscape.jpeg
+  </a>
+ </li>
+ <li class="toctree-l1">
+  <a class="reference external" href="https://raw.githubusercontent.com/msu-cmse-courses/cmse201-supplemental/main/Day-17/ICA_files/zebra.png">
+   zebra.png
+  </a>
+ </li>
+</ul>
+<p aria-level="2" class="caption" role="heading">
+ <span class="caption-text">
+  Day 22
+ </span>
+</p>
+<ul class="nav bd-sidenav">
+ <li class="toctree-l1">
+  <a class="reference internal" href="../../Day-22/Day-22_Pre-Class_ABMForestFire-STUDENT.html">
+   Day 22 Pre-class: Agent-based models and forest fires
+  </a>
+ </li>
+ <li class="toctree-l1">
+  <a class="reference internal" href="../../Day-22/Day-22_In-Class_ForestFiresPartI-STUDENT.html">
+   Day 22 Part 1 In-class Assignment: Modeling forest fires with an Agent-based Model
+  </a>
+ </li>
+</ul>
+<p aria-level="2" class="caption" role="heading">
+ <span class="caption-text">
+  Day 23
+ </span>
+</p>
+<ul class="nav bd-sidenav">
+ <li class="toctree-l1">
+  <a class="reference internal" href="../../Day-23/Day-23_Pre-Class_MoreNumPyArrayManipulation-STUDENT.html">
+   Day 23 Pre-class: More practice manipulating 2D Numpy Arrays
+  </a>
+ </li>
+ <li class="toctree-l1">
+  <a class="reference internal" href="../../Day-23/Day-23_In-Class_ForestFiresPartII-STUDENT.html">
+   Day 23 In-class Assignment: Modeling forest fires with an Agent-based Model (Part II)
+  </a>
+ </li>
+</ul>
+<p aria-level="2" class="caption" role="heading">
+ <span class="caption-text">
+  Day 24
+ </span>
+</p>
+<ul class="nav bd-sidenav">
+ <li class="toctree-l1">
+  <a class="reference internal" href="../../Day-24/Day-24_Pre-Class_ProjectWorkDay-STUDENT.html">
+   Day 24 Pre-class: Project Draft Presentation Preparation
+  </a>
+ </li>
+ <li class="toctree-l1">
+  <a class="reference internal" href="../../Day-24/Day-24_In-Class_ProjectWorkDay-STUDENT.html">
+   Day 24 In-class Assignment: Project Work Day
+  </a>
+ </li>
+</ul>
+<p aria-level="2" class="caption" role="heading">
+ <span class="caption-text">
+  Day 25
+ </span>
+</p>
+<ul class="nav bd-sidenav">
+ <li class="toctree-l1">
+  <a class="reference internal" href="../../Day-25/Day-25_Pre-Class_Climate-STUDENT.html">
+   Day 25 Pre-class:  Global warming and climate modeling
+  </a>
+ </li>
+ <li class="toctree-l1">
+  <a class="reference internal" href="../../Day-25/Day-25_In-Class_Climate-STUDENT.html">
+   Day 25 In-class Assignment: Analyzing climate data
+  </a>
+ </li>
+ <li class="toctree-l1">
+  <a class="reference external" href="https://raw.githubusercontent.com/msu-cmse-courses/cmse201-supplemental/main/Day-22/GLB.Ts.csv">
+   GLB.Ts.csv
+  </a>
+ </li>
+ <li class="toctree-l1">
+  <a class="reference external" href="https://raw.githubusercontent.com/msu-cmse-courses/cmse201-supplemental/main/Day-22/bintanja2008.txt">
+   bintanja2008.txt
+  </a>
+ </li>
+ <li class="toctree-l1">
+  <a class="reference external" href="https://raw.githubusercontent.com/msu-cmse-courses/cmse201-supplemental/main/Day-22/ch4_annmean_gl.txt">
+   ch4_annmean_gl.txt
+  </a>
+ </li>
+ <li class="toctree-l1">
+  <a class="reference external" href="https://raw.githubusercontent.com/msu-cmse-courses/cmse201-supplemental/main/Day-22/co2_mm_mlo.txt">
+   co2_mm_mlo.txt
+  </a>
+ </li>
+ <li class="toctree-l1">
+  <a class="reference external" href="https://raw.githubusercontent.com/msu-cmse-courses/cmse201-supplemental/main/Day-22/vostok-ch4nat.txt">
+   vostok-ch4nat.txt
+  </a>
+ </li>
+ <li class="toctree-l1">
+  <a class="reference external" href="https://raw.githubusercontent.com/msu-cmse-courses/cmse201-supplemental/main/Day-22/vostok-co2nat.txt">
+   vostok-co2nat.txt
+  </a>
+ </li>
+ <li class="toctree-l1">
+  <a class="reference external" href="https://raw.githubusercontent.com/msu-cmse-courses/cmse201-supplemental/main/Day-22/vostok-deutnat.txt">
+   vostok-deutnat.txt
+  </a>
+ </li>
+</ul>
+<p aria-level="2" class="caption" role="heading">
+ <span class="caption-text">
+  Homework
+ </span>
+</p>
+<ul class="current nav bd-sidenav">
+ <li class="toctree-l1">
+  <a class="reference internal" href="../Homework_01/HW_01_PythonFundamentals-STUDENT.html">
+   Homework 1 - Python Fundamentals
+  </a>
+ </li>
+ <li class="toctree-l1">
+  <a class="reference internal" href="../Homework_02/HW-02-FunctionsArraysAndDataAnalysis-STUDENT.html">
+   Homework 2 - Functions, Arrays, and Data Analysis
+  </a>
+ </li>
+ <li class="toctree-l1">
+  <a class="reference external" href="https://raw.githubusercontent.com/msu-cmse-courses/cmse201-supplemental/main/Homework/random_lists.txt">
+   random_lists.txt
+  </a>
+ </li>
+ <li class="toctree-l1">
+  <a class="reference external" href="https://raw.githubusercontent.com/msu-cmse-courses/cmse201-supplemental/main/Homework/endangered_species_HW2.csv">
+   endangered_species_HW2.csv
+  </a>
+ </li>
+ <li class="toctree-l1">
+  <a class="reference internal" href="../Homework_03/HW3_grapevines_STUDENT.html">
+   Homework 3: Analyzing, modeling, and visualizing data with Pandas and conceptualizing compartmental models
+  </a>
+ </li>
+ <li class="toctree-l1">
+  <a class="reference external" href="https://raw.githubusercontent.com/msu-cmse-courses/cmse201-supplemental/main/Homework/grape_harvest.csv">
+   grape_harvest.csv
+  </a>
+ </li>
+ <li class="toctree-l1 current active">
+  <a class="current reference internal" href="#">
+   Homework 4 - Compartmental Models + Data Visualization
+  </a>
+ </li>
+ <li class="toctree-l1">
+  <a class="reference external" href="https://raw.githubusercontent.com/msu-cmse-courses/cmse201-supplemental/main/Homework/estimated_crimes_1979_2022.csv">
+   estimated_crimes_1979_2022.csv
+  </a>
+ </li>
+ <li class="toctree-l1">
+  <a class="reference internal" href="../Homework_05/HW-05_STUDENT.html">
+   Homework 5: 2D Arrays and Agent-based Modeling (EXTRA CREDIT)
+  </a>
+ </li>
+ <li class="toctree-l1">
+  <a class="reference external" href="https://raw.githubusercontent.com/msu-cmse-courses/cmse201-supplemental/main/blurred-scream.png">
+   blurred-scream.png
+  </a>
+ </li>
+ <li class="toctree-l1">
+  <a class="reference external" href="https://raw.githubusercontent.com/msu-cmse-courses/cmse201-supplemental/main/scream.jpg">
+   scream.jpg
+  </a>
+ </li>
+</ul>
+<p aria-level="2" class="caption" role="heading">
+ <span class="caption-text">
+  Code Portfolio
+ </span>
+</p>
+<ul class="nav bd-sidenav">
+ <li class="toctree-l1">
+  <a class="reference internal" href="../Code_Portfolio/Code_Portfolio_Assignment.html">
+   Code Portfolio Assignment
+  </a>
+ </li>
+ <li class="toctree-l1">
+  <a class="reference internal" href="../Code_Portfolio/Code_Portfolio_Example.html">
+   Code Portfolio Example
+  </a>
+ </li>
+</ul>
+<p aria-level="2" class="caption" role="heading">
+ <span class="caption-text">
+  Semester Project
+ </span>
+</p>
+<ul class="nav bd-sidenav">
+ <li class="toctree-l1">
+  <a class="reference internal" href="../../Project_Materials/CMSE201_SemesterProjectDetails.html">
+   Semester Project Details
+  </a>
+ </li>
+ <li class="toctree-l1">
+  <a class="reference internal" href="../../Project_Materials/Project_Plan_Check-in.html">
+   Project Checkpoint
+  </a>
+ </li>
+ <li class="toctree-l1">
+  <a class="reference internal" href="../../Project_Materials/CMSE201_FinalProjectTemplate.html">
+   CMSE 201 Final Project Template
+  </a>
+ </li>
+ <li class="toctree-l1">
+  <a class="reference external" href="https://raw.githubusercontent.com/msu-cmse-courses/cmse201-supplemental/main/Projects/example_projects.zip">
+   Zip file of example projects
+  </a>
+ </li>
+ <li class="toctree-l1">
+  <a class="reference internal" href="../../Project_Materials/CMSE201FinalProject_RequirementsAndGradingRubric.html">
+   Requirements and Grading Rubric
+  </a>
+ </li>
+ <li class="toctree-l1">
+  <a class="reference external" href="https://github.com/msu-cmse-courses/cmse201-supplemental/raw/main/Projects/Presentation_Evaluation_Rubric.pdf">
+   Presentation Evaluation Rubric
+  </a>
+ </li>
+</ul>
+<p aria-level="2" class="caption" role="heading">
+ <span class="caption-text">
+  Practice Notebooks
+ </span>
+</p>
+<ul class="nav bd-sidenav">
+ <li class="toctree-l1">
+  <a class="reference internal" href="../../Quiz_Prep_Notebooks/PracticeNotebook_IfStatements-STUDENT.html">
+   Practice with:
+   <code class="docutils literal notranslate">
+    <span class="pre">
+     if
+    </span>
+   </code>
+   statements
+  </a>
+ </li>
+ <li class="toctree-l1">
+  <a class="reference internal" href="../../Quiz_Prep_Notebooks/PracticeNotebook_Functions-STUDENT.html">
+   Practice with: functions
+  </a>
+ </li>
+ <li class="toctree-l1">
+  <a class="reference internal" href="../../Quiz_Prep_Notebooks/PracticeNotebook_Matplotlib-STUDENT.html">
+   Practice with:
+   <code class="docutils literal notranslate">
+    <span class="pre">
+     matplotlib
+    </span>
+   </code>
+  </a>
+ </li>
+ <li class="toctree-l1">
+  <a class="reference internal" href="../../Quiz_Prep_Notebooks/PracticeNotebook_Pandas-STUDENT.html">
+   Practice with: Pandas
+  </a>
+ </li>
+ <li class="toctree-l1">
+  <a class="reference external" href="https://raw.githubusercontent.com/msu-cmse-courses/cmse201-supplemental/main/PracticeNotebooks/weather.csv">
+   weather.csv
+  </a>
+ </li>
+ <li class="toctree-l1">
+  <a class="reference internal" href="../../Quiz_Prep_Notebooks/PracticeNotebook_ScipyCurveFit-STUDENT.html">
+   Practice with: SciPy
+   <code class="docutils literal notranslate">
+    <span class="pre">
+     curve_fit
+    </span>
+   </code>
+  </a>
+ </li>
+ <li class="toctree-l1">
+  <a class="reference internal" href="../../Quiz_Prep_Notebooks/PracticeNotebook_CompartmentalModels-STUDENT.html">
+   Practice with: Compartmental Models
+  </a>
+ </li>
+ <li class="toctree-l1">
+  <a class="reference internal" href="../../Quiz_Prep_Notebooks/PracticeNotebook_SolveIVP-STUDENT.html">
+   Practice with:
+   <code class="docutils literal notranslate">
+    <span class="pre">
+     solve_ivp
+    </span>
+   </code>
+  </a>
+ </li>
+</ul>
+
+    </div>
+</nav></div>
+        <div class="bd-sidebar__bottom">
+             <!-- To handle the deprecated key -->
+            
+            <div class="navbar_extra_footer">
+            Theme by the <a href="https://ebp.jupyterbook.org">Executable Book Project</a>
+            </div>
+            
+        </div>
+    </div>
+    <div id="rtd-footer-container"></div>
+</div>
+
+
+          
+
+
+          
+<!-- A tiny helper pixel to detect if we've scrolled -->
+<div class="sbt-scroll-pixel-helper"></div>
+<!-- Main content -->
+<div class="col py-0 content-container">
+    
+    <div class="header-article row sticky-top noprint">
+        
+
+
+
+<div class="col py-1 d-flex header-article-main">
+    <div class="header-article__left">
+        
+        <label for="__navigation"
+  class="headerbtn"
+  data-toggle="tooltip"
+data-placement="right"
+title="Toggle navigation"
+>
+  
+
+<span class="headerbtn__icon-container">
+  <i class="fas fa-bars"></i>
+  </span>
+
+</label>
+
+        
+    </div>
+    <div class="header-article__right">
+<button onclick="toggleFullScreen()"
+  class="headerbtn"
+  data-toggle="tooltip"
+data-placement="bottom"
+title="Fullscreen mode"
+>
+  
+
+<span class="headerbtn__icon-container">
+  <i class="fas fa-expand"></i>
+  </span>
+
+</button>
+
+<div class="menu-dropdown menu-dropdown-download-buttons">
+  <button class="headerbtn menu-dropdown__trigger"
+      aria-label="Download this page">
+      <i class="fas fa-download"></i>
+  </button>
+  <div class="menu-dropdown__content">
+    <ul>
+      <li>
+        <a href="../../_sources/Homework/Homework_04/HW4_FS2023-STUDENT.ipynb"
+   class="headerbtn"
+   data-toggle="tooltip"
+data-placement="left"
+title="Download source file"
+>
+  
+
+<span class="headerbtn__icon-container">
+  <i class="fas fa-file"></i>
+  </span>
+<span class="headerbtn__text-container">.ipynb</span>
+</a>
+
+      </li>
+      
+      <li>
+        
+<button onclick="printPdf(this)"
+  class="headerbtn"
+  data-toggle="tooltip"
+data-placement="left"
+title="Print to PDF"
+>
+  
+
+<span class="headerbtn__icon-container">
+  <i class="fas fa-file-pdf"></i>
+  </span>
+<span class="headerbtn__text-container">.pdf</span>
+</button>
+
+      </li>
+      
+    </ul>
+  </div>
+</div>
+<label for="__page-toc"
+  class="headerbtn headerbtn-page-toc"
+  
+>
+  
+
+<span class="headerbtn__icon-container">
+  <i class="fas fa-list"></i>
+  </span>
+
+</label>
+
+    </div>
+</div>
+
+<!-- Table of contents -->
+<div class="col-md-3 bd-toc show noprint">
+    <div class="tocsection onthispage pt-5 pb-3">
+        <i class="fas fa-list"></i> Contents
+    </div>
+    <nav id="bd-toc-nav" aria-label="Page">
+        <ul class="visible nav section-nav flex-column">
+ <li class="toc-h2 nav-item toc-entry">
+  <a class="reference internal nav-link" href="#assignment-instructions">
+   Assignment instructions
+  </a>
+ </li>
+ <li class="toc-h2 nav-item toc-entry">
+  <a class="reference internal nav-link" href="#table-of-contents">
+   Table of Contents
+  </a>
+ </li>
+ <li class="toc-h2 nav-item toc-entry">
+  <a class="reference internal nav-link" href="#part-0-academic-integrity-statement-2-points">
+   Part 0. Academic integrity statement (2 points)
+  </a>
+ </li>
+ <li class="toc-h2 nav-item toc-entry">
+  <a class="reference internal nav-link" href="#part-1-understanding-compartmental-models-23-total-points">
+   Part 1. Understanding compartmental models (23 total points)
+  </a>
+ </li>
+ <li class="toc-h2 nav-item toc-entry">
+  <a class="reference internal nav-link" href="#part-2-solving-differential-equations-numerically-20-total-points">
+   Part 2. Solving differential equations numerically (20 total points)
+  </a>
+ </li>
+ <li class="toc-h2 nav-item toc-entry">
+  <a class="reference internal nav-link" href="#part-3-interpreting-model-behavior-for-different-parameters-and-initial-conditions-15-total-points">
+   Part 3. Interpreting model behavior for different parameters and initial conditions  (15 total points)
+  </a>
+ </li>
+ <li class="toc-h2 nav-item toc-entry">
+  <a class="reference internal nav-link" href="#part-4-data-visualization-for-the-great-american-crime-decline">
+   Part 4. Data Visualization for the Great American Crime Decline
+  </a>
+ </li>
+ <li class="toc-h2 nav-item toc-entry">
+  <a class="reference internal nav-link" href="#part-5-data-interpretation">
+   Part 5. Data Interpretation
+  </a>
+ </li>
+ <li class="toc-h2 nav-item toc-entry">
+  <a class="reference internal nav-link" href="#congratulations-you-re-done">
+   Congratulations, you’re done!
+  </a>
+ </li>
+</ul>
+
+    </nav>
+</div>
+    </div>
+    <div class="article row">
+        <div class="col pl-md-3 pl-lg-5 content-container">
+            <!-- Table of contents that is only displayed when printing the page -->
+            <div id="jb-print-docs-body" class="onlyprint">
+                <h1>Homework 4: Compartmental Models + Data Visualization (Fall, 2023)</h1>
+                <!-- Table of contents -->
+                <div id="print-main-content">
+                    <div id="jb-print-toc">
+                        
+                        <div>
+                            <h2> Contents </h2>
+                        </div>
+                        <nav aria-label="Page">
+                            <ul class="visible nav section-nav flex-column">
+ <li class="toc-h2 nav-item toc-entry">
+  <a class="reference internal nav-link" href="#assignment-instructions">
+   Assignment instructions
+  </a>
+ </li>
+ <li class="toc-h2 nav-item toc-entry">
+  <a class="reference internal nav-link" href="#table-of-contents">
+   Table of Contents
+  </a>
+ </li>
+ <li class="toc-h2 nav-item toc-entry">
+  <a class="reference internal nav-link" href="#part-0-academic-integrity-statement-2-points">
+   Part 0. Academic integrity statement (2 points)
+  </a>
+ </li>
+ <li class="toc-h2 nav-item toc-entry">
+  <a class="reference internal nav-link" href="#part-1-understanding-compartmental-models-23-total-points">
+   Part 1. Understanding compartmental models (23 total points)
+  </a>
+ </li>
+ <li class="toc-h2 nav-item toc-entry">
+  <a class="reference internal nav-link" href="#part-2-solving-differential-equations-numerically-20-total-points">
+   Part 2. Solving differential equations numerically (20 total points)
+  </a>
+ </li>
+ <li class="toc-h2 nav-item toc-entry">
+  <a class="reference internal nav-link" href="#part-3-interpreting-model-behavior-for-different-parameters-and-initial-conditions-15-total-points">
+   Part 3. Interpreting model behavior for different parameters and initial conditions  (15 total points)
+  </a>
+ </li>
+ <li class="toc-h2 nav-item toc-entry">
+  <a class="reference internal nav-link" href="#part-4-data-visualization-for-the-great-american-crime-decline">
+   Part 4. Data Visualization for the Great American Crime Decline
+  </a>
+ </li>
+ <li class="toc-h2 nav-item toc-entry">
+  <a class="reference internal nav-link" href="#part-5-data-interpretation">
+   Part 5. Data Interpretation
+  </a>
+ </li>
+ <li class="toc-h2 nav-item toc-entry">
+  <a class="reference internal nav-link" href="#congratulations-you-re-done">
+   Congratulations, you’re done!
+  </a>
+ </li>
+</ul>
+
+                        </nav>
+                    </div>
+                </div>
+            </div>
+            <main id="main-content" role="main">
+                
+              <div>
+                
+  <section class="tex2jax_ignore mathjax_ignore" id="homework-4-compartmental-models-data-visualization-fall-2023">
+<h1>Homework 4: Compartmental Models + Data Visualization (Fall, 2023)<a class="headerlink" href="#homework-4-compartmental-models-data-visualization-fall-2023" title="Permalink to this headline">#</a></h1>
+<section id="assignment-instructions">
+<h2>Assignment instructions<a class="headerlink" href="#assignment-instructions" title="Permalink to this headline">#</a></h2>
+<p>Work through the following assignment, making sure to follow all of the directions and answer all of the questions.</p>
+<p><strong>This assignment is due at 11:59pm on Sunday, December 3, 2023</strong></p>
+<p>It should be uploaded into D2L Homework #4.  Submission instructions can be found at the end of the notebook.</p>
+<hr class="docutils" />
+<p><a id="toc"></a></p>
+</section>
+<section id="table-of-contents">
+<h2>Table of Contents<a class="headerlink" href="#table-of-contents" title="Permalink to this headline">#</a></h2>
+<p><a class="reference external" href="#part_0">Part 0. Academic Integrity Statement</a> (2 points)</p>
+<p><a class="reference external" href="#part_1">Part 1. Understanding compartmental models</a>  (23 points)</p>
+<p><a class="reference external" href="#part_2">Part 2. Simulating differential equations</a>  (20 points)</p>
+<p><a class="reference external" href="#part_3">Part 3. Interpreting results of simulations</a> (15 points)</p>
+<p><a class="reference external" href="#part_4">Part 4. Data visualization</a> (17 points)</p>
+<p><a class="reference external" href="#part_5">Part 5. Data interpretation</a> (16 points)</p>
+<p>Total points = 93.</p>
+<hr class="docutils" />
+<p><a id="part_0"></a></p>
+</section>
+<section id="part-0-academic-integrity-statement-2-points">
+<h2>Part 0. Academic integrity statement (2 points)<a class="headerlink" href="#part-0-academic-integrity-statement-2-points" title="Permalink to this headline">#</a></h2>
+<p><a class="reference external" href="#toc">Back to Top</a></p>
+<p>In the markdown cell below, paste your personal academic integrity statement. By including this statement, you are confirming that you are submitting this as your own work and not that of someone else.</p>
+<p><font size=6 color="#009600">✎</font> <em>Put your personal academic integrity statement here.</em></p>
+<hr class="docutils" />
+<p><a id = "part_1"></a></p>
+</section>
+<section id="part-1-understanding-compartmental-models-23-total-points">
+<h2>Part 1. Understanding compartmental models (23 total points)<a class="headerlink" href="#part-1-understanding-compartmental-models-23-total-points" title="Permalink to this headline">#</a></h2>
+<p><a class="reference external" href="#toc">Back to Top</a></p>
+<p>Antibiotic resistence is developed when germs or bacteria that could be killed by antibiotics in the past can still survive and grow when the same antibiotics are applied. It is a major global public health threat, according to the Centers for Disease Control and Prevention (CDC). Here’s a graph that summarizes how antibiotic resistence can be developed (<a class="reference external" href="https://www.cdc.gov/narms/faq.html">source: CDC</a>):</p>
+<img src="https://github.com/msu-cmse-courses/cmse201-supplemental/blob/main/Homework/01_cdc_ar.jpeg?raw=true">
+<p>Now, someone wrote down a compartmental model for antibiotic resistence:</p>
+<!-- ![antibiotics_model.png](attachment:antibiotics_model.png) -->
+<div>
+<img src="https://github.com/msu-cmse-courses/cmse201-supplemental/blob/main/Homework/02_antibiotics_model.png?raw=true" width="400"/>
+</div>
+You will need to conceptually analyze this model and write down the model as ordinary differential equations (ODEs).<p>✅  <strong>Part 1.1 (5 points)</strong></p>
+<p>Describe in the cell below: how many compartments there are in the model, and what each of the compartments stands for.</p>
+<p><font size=6 color="#009600">✎</font> <em>Put your answer here</em></p>
+<p>✅  <strong>Part 1.2 (8 points)</strong></p>
+<p>Describe in the cell below the interpretation of each of the following parameters</p>
+<ul class="simple">
+<li><p><span class="math notranslate nohighlight">\(b\)</span></p></li>
+<li><p><span class="math notranslate nohighlight">\(k_S\)</span></p></li>
+<li><p><span class="math notranslate nohighlight">\(k_R\)</span></p></li>
+<li><p><span class="math notranslate nohighlight">\(c\)</span></p></li>
+</ul>
+<p>in terms <strong>what rate it represents</strong> and <strong>in which step of the above CDC infograph it was reflected</strong>.</p>
+<p><font size=6 color="#009600">✎</font> <em>Put your answer here</em></p>
+<p>✅  <strong>Part 1.3 (4 points)</strong></p>
+<p>Answer in the cell below: Which of <span class="math notranslate nohighlight">\(k_S\)</span> and <span class="math notranslate nohighlight">\(k_R\)</span> should be bigger for the model to be realistic? Why?</p>
+<p><font size=6 color="#009600">✎</font> <em>Put your answer here</em></p>
+<p>✅  <strong>Part 1.4 (6 points)</strong></p>
+<p>In the cell below, write down the ordinary differential equations associated with this compartmental model.</p>
+<p><font size=6 color="#009600">✎</font> <em>Put your answer here</em></p>
+<p><a id="part_2"></a></p>
+</section>
+<section id="part-2-solving-differential-equations-numerically-20-total-points">
+<h2>Part 2. Solving differential equations numerically (20 total points)<a class="headerlink" href="#part-2-solving-differential-equations-numerically-20-total-points" title="Permalink to this headline">#</a></h2>
+<p><a class="reference external" href="#toc">Back to Top</a></p>
+<p>In previous assignments, you have used <code class="docutils literal notranslate"><span class="pre">solve_ivp</span></code> to compute the numeric solution of the logistic model of the growth of a single population. Recall, the Logistic population model is described by the following differential equations:</p>
+<p>\begin{equation}
+\frac{dP}{dt} = kP\Big(1-\frac{P}{C}\Big),
+\end{equation}</p>
+<p>where <span class="math notranslate nohighlight">\(P =\)</span> population, <span class="math notranslate nohighlight">\(k =\)</span> growth rate, and <span class="math notranslate nohighlight">\(C =\)</span> the carrying capacity.</p>
+<p>Examples code for computing the solution for for <span class="math notranslate nohighlight">\(P_0 =0.1\)</span> billion (initial population), <span class="math notranslate nohighlight">\(k=1\)</span>, and <span class="math notranslate nohighlight">\(C =1\)</span> billion is provided below:</p>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="c1"># example code to compute a numeric solution of the logistic model</span>
+<span class="kn">import</span> <span class="nn">numpy</span> <span class="k">as</span> <span class="nn">np</span>
+<span class="kn">from</span> <span class="nn">scipy.integrate</span> <span class="kn">import</span> <span class="n">solve_ivp</span>
+
+<span class="c1"># define the derivative</span>
+<span class="k">def</span> <span class="nf">logistic</span><span class="p">(</span><span class="n">time</span><span class="p">,</span> <span class="n">current_state</span><span class="p">):</span>
+    <span class="n">p</span> <span class="o">=</span> <span class="n">current_state</span>   
+    <span class="n">dpdt</span> <span class="o">=</span> <span class="n">p</span><span class="o">*</span><span class="p">(</span><span class="mi">1</span><span class="o">-</span><span class="n">p</span><span class="p">)</span>    
+    <span class="k">return</span> <span class="n">dpdt</span>
+
+<span class="c1"># compute numeric solution</span>
+<span class="n">initial_p</span> <span class="o">=</span> <span class="p">[</span><span class="mf">0.1</span><span class="p">]</span>
+<span class="n">time</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">linspace</span><span class="p">(</span><span class="mi">0</span><span class="p">,</span><span class="mi">10</span><span class="p">,</span><span class="mi">50</span><span class="p">)</span>
+
+<span class="n">result</span> <span class="o">=</span> <span class="n">solve_ivp</span><span class="p">(</span><span class="n">logistic</span><span class="p">,</span> <span class="p">(</span><span class="mi">0</span><span class="p">,</span><span class="mi">20</span><span class="p">),</span> <span class="n">initial_p</span><span class="p">,</span> <span class="n">t_eval</span> <span class="o">=</span> <span class="n">time</span><span class="p">)</span>
+
+<span class="c1"># unpack solution</span>
+<span class="n">numerical_p</span> <span class="o">=</span> <span class="n">result</span><span class="o">.</span><span class="n">y</span><span class="p">[</span><span class="mi">0</span><span class="p">,:]</span>
+</pre></div>
+</div>
+</div>
+</div>
+<p>Now you wonder: what happens if there are two different species competing for the same resources? (Such as the great white sharks and the seven-gill sharks 😉) How would the population growth of one species interfere with that of the other?</p>
+<p>Luckily, such models already exist. One of them is a generalization of the logistic model to take into account resource competition between two species <span class="math notranslate nohighlight">\(u\)</span> and <span class="math notranslate nohighlight">\(v\)</span> and we have the following competitive Lotka-Volterra model:</p>
+<div class="math notranslate nohighlight">
+\[ \frac{du}{dt} = r_1u(1-(\frac{u +a_{12} v}{K_1}))\]</div>
+<div class="math notranslate nohighlight">
+\[ \frac{dv}{dt} = r_2v(1 -(\frac{v + a_{21}u}{K_2})).\]</div>
+<p>Here, <span class="math notranslate nohighlight">\(a_{12}\)</span> represents the competitive effect species <span class="math notranslate nohighlight">\(v\)</span> has on the population of species <span class="math notranslate nohighlight">\(u\)</span> and <span class="math notranslate nohighlight">\(a_{21}\)</span> represents the competitive effect species u has on the population of species v. These values do not have to be equal. Because this is the competitive version of the model, all interactions must be harmful (competition) and therefore all a-values are positive.</p>
+<p>After scaling, the <strong>two species competitive Lotka-Volterra model</strong> can become to the simplified case:
+\begin{align}
+\frac{du}{dt} &amp;= u(1-u -\alpha v)  &amp;(1)\
+\frac{dv}{dt} &amp;= rv(1 -v-\beta u). &amp;(2)
+\end{align}</p>
+<p>We say that the competition on the species u (resp.
+on the species v) is <strong>strong</strong> if <span class="math notranslate nohighlight">\(\alpha &gt; 1\)</span> (resp. <span class="math notranslate nohighlight">\(\beta &gt; 1\)</span>).We say that the competition on the species
+u (resp. on the species v) is <strong>weak</strong> if <span class="math notranslate nohighlight">\(0 &lt; \alpha &lt; 1\)</span> (resp. <span class="math notranslate nohighlight">\(0 &lt; \beta&lt; 1\)</span>).</p>
+<p><strong>Your job for this part of the assignment is implementing and computing the numeric solutions for the two species competitive Lotka-Volterra model as described by equations 1 and 2 above. You can do so by adapting the code for the logistic model above.</strong></p>
+<p>✅  <strong>Part 2.1 (8 points)</strong><br />
+Define the derivative function for the two species competitive Lotka-Volterra model in the cell below (to be used as an input later for <code class="docutils literal notranslate"><span class="pre">solve_ivp</span></code> – so pay attention to the format).</p>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="c1"># write your function here</span>
+</pre></div>
+</div>
+</div>
+</div>
+<p>✅  <strong>Part 2.2 (6 points)</strong></p>
+<p>Using <code class="docutils literal notranslate"><span class="pre">solve_ivp</span></code>, compute the numeric solution for two species competitive Lotka-Volterra model with the parameters <span class="math notranslate nohighlight">\(r=1\)</span>, <span class="math notranslate nohighlight">\(\alpha=2/3,\)</span> <span class="math notranslate nohighlight">\(\beta =1/4\)</span>, the initial conditions <span class="math notranslate nohighlight">\([u_0,v_0]= [0.9,0.5]\)</span>, and the final time equal 20. Unpack the result you get from <code class="docutils literal notranslate"><span class="pre">solve_ivp</span></code> into separate variables <code class="docutils literal notranslate"><span class="pre">u</span></code> and <code class="docutils literal notranslate"><span class="pre">v</span></code>.</p>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="c1"># put your code here</span>
+</pre></div>
+</div>
+</div>
+</div>
+<p>✅  <strong>Part 2.3 (4 points)</strong></p>
+<p>Plot the solutions of <span class="math notranslate nohighlight">\(u\)</span> and <span class="math notranslate nohighlight">\(v\)</span> as a function of time in the cell below. Be sure to add appropriate axis labels and legends.</p>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="c1"># put our code here</span>
+</pre></div>
+</div>
+</div>
+</div>
+<p>✅  <strong>Part 2.4 (2 points)</strong></p>
+<p>When <span class="math notranslate nohighlight">\(0 &lt; \alpha,\beta &lt;1\)</span>, we call the model a weak competitive Lotka-Volterra model. Check with the plot above to see what will happen as time goes on. Can the two species, i.e. <span class="math notranslate nohighlight">\(u\)</span> and <span class="math notranslate nohighlight">\(v\)</span>, coexist or one species will die out?</p>
+<p><font size=6 color="#009600">✎</font> <em>Put your answer here</em></p>
+<p><a id="part_3"></a></p>
+</section>
+<section id="part-3-interpreting-model-behavior-for-different-parameters-and-initial-conditions-15-total-points">
+<h2>Part 3. Interpreting model behavior for different parameters and initial conditions  (15 total points)<a class="headerlink" href="#part-3-interpreting-model-behavior-for-different-parameters-and-initial-conditions-15-total-points" title="Permalink to this headline">#</a></h2>
+<p>In Part 2, you have explored the two species competitive Lotka-Volterra model in a weak-weak scenario, i.e. neither species were very competitive with parameters <span class="math notranslate nohighlight">\(\alpha\)</span> and <span class="math notranslate nohighlight">\(\beta\)</span> both less than 1.</p>
+<p>In this part, you will be shown the solutions of the model under a couple of different competition scenarios and initial conditions. You will be asked to interpret these plots.</p>
+<p>✅  <strong>Part 3.1 (5 points)</strong> Strong weak competition</p>
+<p>The figure below shows the  numerically solved population growth dynamics of the two species <span class="math notranslate nohighlight">\(u\)</span> and <span class="math notranslate nohighlight">\(v\)</span>:</p>
+<img src="https://github.com/msu-cmse-courses/cmse201-supplemental/blob/main/Homework/03_CLV_strongweak.png?raw=true">
+<p>The initial population was <span class="math notranslate nohighlight">\(u_0 = 0.9\)</span> and <span class="math notranslate nohighlight">\(v_0 = 0.5\)</span>. The parameters were <span class="math notranslate nohighlight">\(\alpha = 2\)</span> and <span class="math notranslate nohighlight">\(\beta=3/4\)</span>. In the cell below, answer the following questions:</p>
+<ol class="simple">
+<li><p>Based on the plot, which species was more successful at the beginning? which species was more successful at the end? Here success is measured by population size.</p></li>
+<li><p>Based on the plot, which species was more competitive?</p></li>
+<li><p>Connecting your visual interpretations to the model parameters <span class="math notranslate nohighlight">\(\alpha\)</span> and <span class="math notranslate nohighlight">\(\beta\)</span>, explain how these two parameters determine which species is strongly competitive and which species is weakly competitive.</p></li>
+</ol>
+<p><font size=6 color="#009600">✎</font> <em>Put your answer here</em></p>
+<p>✅  <strong>Part 3.2 (4 points)</strong> Weak strong competition</p>
+<p>Now we changed the parameters so that <span class="math notranslate nohighlight">\(\alpha=1/2\)</span> and <span class="math notranslate nohighlight">\(\beta =2\)</span>, with initial conditions remain the same. We obtained the following figure:</p>
+<img src="https://github.com/msu-cmse-courses/cmse201-supplemental/blob/main/Homework/04_CLV_weakstrong.png?raw=true">
+<p>In the cell below, answer the following questions:</p>
+<ol class="simple">
+<li><p>How is this figure different from the one in Part 3.1?</p></li>
+<li><p>How are the changes in parameters <span class="math notranslate nohighlight">\(\alpha\)</span> and <span class="math notranslate nohighlight">\(\beta\)</span> related to changes in the figure?</p></li>
+</ol>
+<p><font size=6 color="#009600">✎</font> <em>Put your answer here</em></p>
+<p>✅  <strong>Part 3.3 (6 points)</strong> Strong strong competition</p>
+<p>We changed the parameters again to be <span class="math notranslate nohighlight">\(\alpha=2\)</span> and <span class="math notranslate nohighlight">\(\beta =3\)</span>.</p>
+<p>First, we set the initial population of the two species to be <span class="math notranslate nohighlight">\(u_0 = 0.9\)</span> and <span class="math notranslate nohighlight">\(v_0 = 0.4\)</span>. We obtained the figure below:</p>
+<img src="https://github.com/msu-cmse-courses/cmse201-supplemental/blob/main/Homework/05_CLV_strongstrong1.png?raw=true"><p>Then, we use a different set of initial population levels with <span class="math notranslate nohighlight">\(u_0 = 0.4\)</span> and <span class="math notranslate nohighlight">\(v_0 = 0.9\)</span>. We obtained the figure below:</p>
+<img src="https://github.com/msu-cmse-courses/cmse201-supplemental/blob/main/Homework/06_CLV_strongstrong2.png?raw=true">
+<p>Compare the two figures, and answer the following questions in the cell below:</p>
+<ol class="simple">
+<li><p>In what aspects are these two figures different in terms of the final outcome?</p></li>
+<li><p>What differences in the model caused the differences in the figures?</p></li>
+<li><p>Why would the short term dynamics of the two figures look different, even if you swap the color in the second figure?</p></li>
+</ol>
+<p><font size=6 color="#009600">✎</font> <em>Put your answer here</em></p>
+<p><a id="part_4"></a></p>
+</section>
+<section id="part-4-data-visualization-for-the-great-american-crime-decline">
+<h2>Part 4. Data Visualization for the Great American Crime Decline<a class="headerlink" href="#part-4-data-visualization-for-the-great-american-crime-decline" title="Permalink to this headline">#</a></h2>
+<p>In the 1990s, crime rates in the US plummeted – but nobody knows why! Criminologists have come up with different theories but none can account for the magnitude of the drop (read <a class="reference external" href="https://www.themarshallproject.org/2014/11/24/10-not-entirely-crazy-theories-explaining-the-great-crime-decline">this article</a> for some of the major theories). Thus, the cause of this <strong>great American crime decline</strong> remains a mystery.</p>
+<p>You decided to the take the matter into your own hands.</p>
+<p>✅  <strong>Part 4.1 (2 points)</strong> Data Context</p>
+<p>You found some crime data online from <a class="reference external" href="https://cde.ucr.cjis.gov/LATEST/webapp/#/pages/about">this website</a>. Describe briefly in the cell below how the data was collected.</p>
+<p><font size=6 color="#009600">✎</font> <em>Put your answer here</em></p>
+<p>✅  <strong>Part 4.2 (3 points)</strong> Loading and cleaning data</p>
+<p>Now that you know something about the context of your data, it’s time to read it into your notebook.</p>
+<p>In the cell below:</p>
+<ul class="simple">
+<li><p>Read in the data file <code class="docutils literal notranslate"><span class="pre">estimated_crimes_1979_2022.csv</span></code></p></li>
+<li><p>Remove any rows with NaN values in the “state_abbr” column and save it as a new dataframe</p></li>
+<li><p>Drop any columns with remaining NaN values from your new dataframe</p></li>
+</ul>
+<p>If your cleaning worked correctly, you should have roughly 2200 rows and 12 columns.</p>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="c1"># put your code here</span>
+</pre></div>
+</div>
+</div>
+</div>
+<p>✅  <strong>Part 4.3 (4 points)</strong> Choosing a question and getting the data</p>
+<p>Recall the key pieces to an effective data visualization (from the Day 20 Pre Class and In Class assignments). There are many visualizations you could make from this data to gain some insight into how crime has changed in the past 44 years. Potential questions that can be answered with the data are listed below.</p>
+<p><strong>RQ 1:</strong> How are Property Crime rate and the Burglary rate related for the ten highest population states?</p>
+<p><strong>RQ 2:</strong> How do the most common categories of crime compare between the 5 most populous states and the 5 least populous states?</p>
+<p><strong>RQ 3:</strong> Choose one category of crime and at least 5 different states. How does the crime rate change over time for each state?</p>
+<p>In the cell(s) below, indicate which question you are going to explore. Then, using your clean data set, extract the data necessary for answering your question (i.e. use masking to extract state data, remove rows or columns you will not use, etc.).</p>
+<p><strong>Display your extracted data for full credit</strong></p>
+<p><font size=6 color="#009600">✎</font> <em>Write down your choice and specify the states and types of crimes involved if appropriate</em></p>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="c1"># put your code here to extract a subset of data relevant to your question</span>
+</pre></div>
+</div>
+</div>
+</div>
+<p>✅  <strong>Part 4.3 (8 points)</strong> Making a Plot</p>
+<p>Now that you have only the data you need, it’s time to create a plot! Using the plotting tools you have explored (i.e. <code class="docutils literal notranslate"><span class="pre">matplotlib.pyplot</span></code>, <code class="docutils literal notranslate"><span class="pre">seaborn</span></code>, and/or <code class="docutils literal notranslate"><span class="pre">pandas</span></code>), create a plot that answers your question. Your plot will be graded with the rubric from Day 20:</p>
+<ol class="simple">
+<li><p><strong>Does the plot tell a story? (4 Points)</strong></p></li>
+<li><p><strong>No wasted space (2 points)</strong></p></li>
+<li><p><strong>Labels, legend, and title are informative without cluttering (1 points)</strong></p></li>
+<li><p><strong>Presenting multi-variable data (1 points)</strong></p></li>
+</ol>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="c1"># put your code here to create a plot</span>
+</pre></div>
+</div>
+</div>
+</div>
+<p><a id="part_5"></a></p>
+</section>
+<section id="part-5-data-interpretation">
+<h2>Part 5. Data Interpretation<a class="headerlink" href="#part-5-data-interpretation" title="Permalink to this headline">#</a></h2>
+<p>As described in <a class="reference external" href="https://www.themarshallproject.org/2014/11/24/10-not-entirely-crazy-theories-explaining-the-great-crime-decline">this article</a>, increased policing has been considered a potential explanation for the great American crime decline. In the part of the assignment, you will interpret visualizations of policing and crime data (<a class="reference external" href="https://cde.ucr.cjis.gov/LATEST/webapp/#/pages/downloads">source</a>) to infer whether increased policing is a main cause of the crime decline.</p>
+<p>✅  <strong>Part 5.1 (2 points)</strong></p>
+<p>Based on <a class="reference external" href="https://www.themarshallproject.org/2014/11/24/10-not-entirely-crazy-theories-explaining-the-great-crime-decline">this article</a>, answer in the cell below, what would be evidence <strong>against</strong> of the increased policing theory?</p>
+<p><font size=6 color="#009600">✎</font> <em>Put your answer here</em></p>
+<p>✅  <strong>Part 5.2 (10 points)</strong></p>
+<p>The below graphs shows the crime rates (left) and policing rates (right) over the years for a few different states.</p>
+<img src="https://github.com/msu-cmse-courses/cmse201-supplemental/blob/main/Homework/07_vcrime_police_by_year.png?raw=true">
+<p>Examine the figures and answer the following questions in the cell below:</p>
+<ol class="simple">
+<li><p>Is there a great Amercian crime decline? What features of the figures provide evidence for your claim?</p></li>
+<li><p>Is there a increase in policing during the 1990s (i.e. period of the crime decline)?</p></li>
+<li><p>Is increased policing a good explanation for the crime decline? What features of the figures support your claim?</p></li>
+</ol>
+<p><font size=6 color="#009600">✎</font> <em>Put your answer here</em></p>
+<p>✅  <strong>Part 5.3 (4 points)</strong></p>
+<p>Below is a visualization of the relationship between the violent crime rates and the policing rates for the same year.</p>
+<img src="https://github.com/msu-cmse-courses/cmse201-supplemental/blob/main/Homework/08_vcrime_by_police.png?raw=true">
+<p>Examine the figure and answer the following questions:</p>
+<ol class="simple">
+<li><p>Based on the figure, do you think increased policing is a good explanation for the great crime decline? Why?</p></li>
+<li><p>How would you plot the data differently to better show whether or not increased policing can reduce crime? Why?</p></li>
+</ol>
+<p><font size=6 color="#009600">✎</font> <em>Put your answer here</em></p>
+</section>
+<section id="congratulations-you-re-done">
+<h2>Congratulations, you’re done!<a class="headerlink" href="#congratulations-you-re-done" title="Permalink to this headline">#</a></h2>
+<p>Submit this assignment by uploading your notebook to the course Desire2Learn web page.  Go to the “Homework” folder, find the appropriate submission link, and upload everything there. Make sure your name is on it!</p>
+<p>© Copyright 2023,  Department of Computational Mathematics, Science and Engineering at Michigan State University</p>
+</section>
+</section>
+
+    <script type="text/x-thebe-config">
+    {
+        requestKernel: true,
+        binderOptions: {
+            repo: "binder-examples/jupyter-stacks-datascience",
+            ref: "master",
+        },
+        codeMirrorConfig: {
+            theme: "abcdef",
+            mode: "python"
+        },
+        kernelOptions: {
+            kernelName: "python3",
+            path: "./Homework\Homework_04"
+        },
+        predefinedOutput: true
+    }
+    </script>
+    <script>kernelName = 'python3'</script>
+
+              </div>
+              
+            </main>
+            <footer class="footer-article noprint">
+                
+    <!-- Previous / next buttons -->
+<div class='prev-next-area'>
+    <a class='left-prev' id="prev-link" href="../Homework_03/HW3_grapevines_STUDENT.html" title="previous page">
+        <i class="fas fa-angle-left"></i>
+        <div class="prev-next-info">
+            <p class="prev-next-subtitle">previous</p>
+            <p class="prev-next-title">Homework 3: Analyzing, modeling, and visualizing data with Pandas and conceptualizing compartmental models</p>
+        </div>
+    </a>
+    <a class='right-next' id="next-link" href="../Homework_05/HW-05_STUDENT.html" title="next page">
+    <div class="prev-next-info">
+        <p class="prev-next-subtitle">next</p>
+        <p class="prev-next-title">Homework 5: 2D Arrays and Agent-based Modeling (EXTRA CREDIT)</p>
+    </div>
+    <i class="fas fa-angle-right"></i>
+    </a>
+</div>
+            </footer>
+        </div>
+    </div>
+    <div class="footer-content row">
+        <footer class="col footer"><p>
+  
+    By the Department of Computational Mathematics, Science and Engineering at Michigan State University<br/>
+  
+      &copy; Copyright 2023.<br/>
+</p>
+        </footer>
+    </div>
+    
+</div>
+
+
+      </div>
+    </div>
+  
+  <!-- Scripts loaded after <body> so the DOM is not blocked -->
+  <script src="../../_static/scripts/pydata-sphinx-theme.js?digest=1999514e3f237ded88cf"></script>
+
+
+  </body>
+</html>

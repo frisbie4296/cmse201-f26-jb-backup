@@ -1,0 +1,1104 @@
+
+<!DOCTYPE html>
+
+<html>
+  <head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" /><meta name="generator" content="Docutils 0.17.1: http://docutils.sourceforge.net/" />
+
+    <title>Homework 3: Pandas data analysis &#8212; CMSE 201</title>
+    
+  <!-- Loaded before other Sphinx assets -->
+  <link href="../../_static/styles/theme.css?digest=1999514e3f237ded88cf" rel="stylesheet">
+<link href="../../_static/styles/pydata-sphinx-theme.css?digest=1999514e3f237ded88cf" rel="stylesheet">
+
+    
+  <link rel="stylesheet"
+    href="../../_static/vendor/fontawesome/5.13.0/css/all.min.css">
+  <link rel="preload" as="font" type="font/woff2" crossorigin
+    href="../../_static/vendor/fontawesome/5.13.0/webfonts/fa-solid-900.woff2">
+  <link rel="preload" as="font" type="font/woff2" crossorigin
+    href="../../_static/vendor/fontawesome/5.13.0/webfonts/fa-brands-400.woff2">
+
+    <link rel="stylesheet" type="text/css" href="../../_static/pygments.css" />
+    <link rel="stylesheet" href="../../_static/styles/sphinx-book-theme.css?digest=5115cc725059bd94278eecd172e13a965bf8f5a9" type="text/css" />
+    <link rel="stylesheet" type="text/css" href="../../_static/togglebutton.css" />
+    <link rel="stylesheet" type="text/css" href="../../_static/copybutton.css" />
+    <link rel="stylesheet" type="text/css" href="../../_static/mystnb.css" />
+    <link rel="stylesheet" type="text/css" href="../../_static/sphinx-thebe.css" />
+    <link rel="stylesheet" type="text/css" href="../../_static/design-style.b7bb847fb20b106c3d81b95245e65545.min.css" />
+    
+  <!-- Pre-loaded scripts that we'll load fully later -->
+  <link rel="preload" as="script" href="../../_static/scripts/pydata-sphinx-theme.js?digest=1999514e3f237ded88cf">
+
+    <script data-url_root="../../" id="documentation_options" src="../../_static/documentation_options.js"></script>
+    <script src="../../_static/jquery.js"></script>
+    <script src="../../_static/underscore.js"></script>
+    <script src="../../_static/doctools.js"></script>
+    <script src="../../_static/clipboard.min.js"></script>
+    <script src="../../_static/copybutton.js"></script>
+    <script src="../../_static/scripts/sphinx-book-theme.js?digest=9c920249402e914e316237a7dbc6769907cce411"></script>
+    <script>let toggleHintShow = 'Click to show';</script>
+    <script>let toggleHintHide = 'Click to hide';</script>
+    <script>let toggleOpenOnPrint = 'true';</script>
+    <script src="../../_static/togglebutton.js"></script>
+    <script>var togglebuttonSelector = '.toggle, .admonition.dropdown, .tag_hide_input div.cell_input, .tag_hide-input div.cell_input, .tag_hide_output div.cell_output, .tag_hide-output div.cell_output, .tag_hide_cell.cell, .tag_hide-cell.cell';</script>
+    <script src="../../_static/design-tabs.js"></script>
+    <script>const THEBE_JS_URL = "https://unpkg.com/thebe@0.8.2/lib/index.js"
+const thebe_selector = ".thebe,.cell"
+const thebe_selector_input = "pre"
+const thebe_selector_output = ".output, .cell_output"
+</script>
+    <script async="async" src="../../_static/sphinx-thebe.js"></script>
+    <script>window.MathJax = {"options": {"processHtmlClass": "tex2jax_process|mathjax_process|math|output_area"}}</script>
+    <script defer="defer" src="https://cdn.jsdelivr.net/npm/mathjax@3/es5/tex-mml-chtml.js"></script>
+    <link rel="shortcut icon" href="../../_static/cmse_fav.ico"/>
+    <link rel="index" title="Index" href="../../genindex.html" />
+    <link rel="search" title="Search" href="../../search.html" />
+    <link rel="next" title="Homework 4: Fitting data using SciPy" href="../Homework_4/HW4_S22-STUDENT.html" />
+    <link rel="prev" title="Homework 2: If Statements, Functions, and Modules" href="../Homework_2/HW2_S22-STUDENT.html" />
+    <meta name="viewport" content="width=device-width, initial-scale=1" />
+    <meta name="docsearch:language" content="None">
+    
+
+    <!-- Google Analytics -->
+    
+  </head>
+  <body data-spy="scroll" data-target="#bd-toc-nav" data-offset="60">
+<!-- Checkboxes to toggle the left sidebar -->
+<input type="checkbox" class="sidebar-toggle" name="__navigation" id="__navigation" aria-label="Toggle navigation sidebar">
+<label class="overlay overlay-navbar" for="__navigation">
+    <div class="visually-hidden">Toggle navigation sidebar</div>
+</label>
+<!-- Checkboxes to toggle the in-page toc -->
+<input type="checkbox" class="sidebar-toggle" name="__page-toc" id="__page-toc" aria-label="Toggle in-page Table of Contents">
+<label class="overlay overlay-pagetoc" for="__page-toc">
+    <div class="visually-hidden">Toggle in-page Table of Contents</div>
+</label>
+<!-- Headers at the top -->
+<div class="announcement header-item noprint"></div>
+<div class="header header-item noprint"></div>
+
+    
+    <div class="container-fluid" id="banner"></div>
+
+    
+
+    <div class="container-xl">
+      <div class="row">
+          
+<!-- Sidebar -->
+<div class="bd-sidebar noprint" id="site-navigation">
+    <div class="bd-sidebar__content">
+        <div class="bd-sidebar__top"><div class="navbar-brand-box">
+    <a class="navbar-brand text-wrap" href="../../index.html">
+      
+        <!-- `logo` is deprecated in Sphinx 4.0, so remove this when we stop supporting 3 -->
+        
+      
+      
+      <img src="../../_static/logo.png" class="logo" alt="logo">
+      
+      
+      <h1 class="site-logo" id="site-title">CMSE 201</h1>
+      
+    </a>
+</div><form class="bd-search d-flex align-items-center" action="../../search.html" method="get">
+  <i class="icon fas fa-search"></i>
+  <input type="search" class="form-control" name="q" id="search-input" placeholder="Search this book..." aria-label="Search this book..." autocomplete="off" >
+</form><nav class="bd-links" id="bd-docs-nav" aria-label="Main">
+    <div class="bd-toc-item active">
+        
+        <ul class="nav bd-sidenav bd-sidenav__home-link">
+            <li class="toctree-l1">
+                <a class="reference internal" href="../../intro.html">
+                    Welcome to Computational Modeling and Data Analysis I!
+                </a>
+            </li>
+        </ul>
+        <p aria-level="2" class="caption" role="heading">
+ <span class="caption-text">
+  Course Materials
+ </span>
+</p>
+<ul class="nav bd-sidenav">
+ <li class="toctree-l1 has-children">
+  <a class="reference internal" href="../../Course_Materials-201/CourseDocuments.html">
+   Important Course information
+  </a>
+  <input class="toctree-checkbox" id="toctree-checkbox-1" name="toctree-checkbox-1" type="checkbox"/>
+  <label for="toctree-checkbox-1">
+   <i class="fas fa-chevron-down">
+   </i>
+  </label>
+  <ul>
+   <li class="toctree-l2">
+    <a class="reference internal" href="../../Course_Materials-201/CMSE201-Syllabus.html">
+     Syllabus
+    </a>
+   </li>
+   <li class="toctree-l2">
+    <a class="reference internal" href="../../Course_Materials-201/classroom_participation.html">
+     Classroom Participation
+    </a>
+   </li>
+  </ul>
+ </li>
+</ul>
+<p aria-level="2" class="caption" role="heading">
+ <span class="caption-text">
+  Homework
+ </span>
+</p>
+<ul class="current nav bd-sidenav">
+ <li class="toctree-l1">
+  <a class="reference internal" href="../Homework_1/HW_01_S22_STUDENT.html">
+   Homework 1: Introduction to Loops, Lists, and Dictionaries
+  </a>
+ </li>
+ <li class="toctree-l1">
+  <a class="reference internal" href="../Homework_2/HW2_S22-STUDENT.html">
+   Homework 2: If Statements, Functions, and Modules
+  </a>
+ </li>
+ <li class="toctree-l1">
+  <a class="reference external" href="https://raw.githubusercontent.com/msu-cmse-courses/cmse201-F21-data/main/Homework/S22/game.txt">
+   game.txt
+  </a>
+ </li>
+ <li class="toctree-l1 current active">
+  <a class="current reference internal" href="#">
+   Homework 3: Pandas data analysis
+  </a>
+ </li>
+ <li class="toctree-l1">
+  <a class="reference external" href="https://raw.githubusercontent.com/msu-cmse-courses/cmse201-S22-data/main/Homework/HW_3/happiness_index.csv">
+   happiness_index.csv
+  </a>
+ </li>
+ <li class="toctree-l1">
+  <a class="reference internal" href="../Homework_4/HW4_S22-STUDENT.html">
+   Homework 4: Fitting data using SciPy
+  </a>
+ </li>
+ <li class="toctree-l1">
+  <a class="reference internal" href="../Homework_5/HW-05.html">
+   Homework 5: Modeling Bacterial Growth
+  </a>
+ </li>
+ <li class="toctree-l1">
+  <a class="reference internal" href="../Homework_6/HW-06_Programming_a_robotic_sheepdog-STUDENT.html">
+   Homework 6: Programming a Robotic Sheepdog (Extra Credit)
+  </a>
+ </li>
+ <li class="toctree-l1">
+  <a class="reference internal" href="../Code_Portfolio/Code_Portfolio_Assignment.html">
+   Code Portfolio Assignment
+  </a>
+ </li>
+ <li class="toctree-l1">
+  <a class="reference internal" href="../Code_Portfolio/Code_Portfolio_Example.html">
+   Code Portfolio Example
+  </a>
+ </li>
+</ul>
+<p aria-level="2" class="caption" role="heading">
+ <span class="caption-text">
+  Bootcamps
+ </span>
+</p>
+<ul class="nav bd-sidenav">
+ <li class="toctree-l1">
+  <a class="reference internal" href="../../Bootcamp_Notebooks/Bootcamp1-Python_Fundamentals_STUDENT.html">
+   Bootcamp 1: Python Fundamentals
+  </a>
+ </li>
+ <li class="toctree-l1">
+  <a class="reference internal" href="../../Bootcamp_Notebooks/Bootcamp2-InitialConceptsReview.html">
+   Bootcamp 2: Initial Concepts Review Cheatsheet
+  </a>
+ </li>
+ <li class="toctree-l1">
+  <a class="reference internal" href="../../Bootcamp_Notebooks/Bootcamp3-Debugging_STUDENT.html">
+   Bootcamp 3: Debugging
+  </a>
+ </li>
+ <li class="toctree-l1">
+  <a class="reference internal" href="../../Bootcamp_Notebooks/Bootcamp4-IfStatements_STUDENT.html">
+   Bootcamp 4: If Statements
+  </a>
+ </li>
+ <li class="toctree-l1">
+  <a class="reference internal" href="../../Bootcamp_Notebooks/Bootcamp5-Functions_STUDENT.html">
+   Bootcamp 5: Functions
+  </a>
+ </li>
+ <li class="toctree-l1">
+  <a class="reference internal" href="../../Bootcamp_Notebooks/Bootcamp6-Matplotlib_STUDENT.html">
+   Bootcamp 6: Matplotlib
+  </a>
+ </li>
+ <li class="toctree-l1">
+  <a class="reference internal" href="../../Bootcamp_Notebooks/Bootcamp7-Arrays_STUDENT.html">
+   Bootcamp 7: Practice with Indexing and Masking 2D Arrays
+  </a>
+ </li>
+ <li class="toctree-l1">
+  <a class="reference internal" href="../../Bootcamp_Notebooks/Bootcamp8_Pandas_STUDENT.html">
+   Bootcamp 8: Practice with Pandas
+  </a>
+ </li>
+ <li class="toctree-l1">
+  <a class="reference external" href="https://raw.githubusercontent.com/msu-cmse-courses/cmse201-F21-data/main/Homework/americas_gpin_2014_16.csv?raw=true">
+   americas_gpin_2014_16.csv
+  </a>
+ </li>
+ <li class="toctree-l1">
+  <a class="reference internal" href="../../Bootcamp_Notebooks/Bootcamp9-ScipyCurveFit_STUDENT.html">
+   Bootcamp 9:  Scipy curve_fit
+  </a>
+ </li>
+ <li class="toctree-l1">
+  <a class="reference internal" href="../../Bootcamp_Notebooks/Bootcamp10-CompartmentalModels_STUDENT.html">
+   Bootcamp 10: Compartmental Models
+  </a>
+ </li>
+ <li class="toctree-l1">
+  <a class="reference internal" href="../../Bootcamp_Notebooks/Bootcamp11_Solve_IVP_STUDENT.html">
+   Bootcamp 11: Practice with
+   <code class="docutils literal notranslate">
+    <span class="pre">
+     solve_ivp
+    </span>
+   </code>
+  </a>
+ </li>
+</ul>
+<p aria-level="2" class="caption" role="heading">
+ <span class="caption-text">
+  Semester Projects
+ </span>
+</p>
+<ul class="nav bd-sidenav">
+ <li class="toctree-l1">
+  <a class="reference internal" href="../../Project_Materials/CMSE201_SemesterProjectDetails.html">
+   Semester Project Details
+  </a>
+ </li>
+ <li class="toctree-l1">
+  <a class="reference internal" href="../../Project_Materials/Project_Work_Week_Summary.html">
+   Project Work Week Summary
+  </a>
+ </li>
+ <li class="toctree-l1">
+  <a class="reference internal" href="../../Project_Materials/Project_Rough_Draft_Guidelines_Feedback.html">
+   Rough Draft Guidelines/Feedback
+  </a>
+ </li>
+ <li class="toctree-l1">
+  <a class="reference internal" href="../../Project_Materials/Lightning_Presentation_Details.html">
+   Lightning Presentation Details
+  </a>
+ </li>
+ <li class="toctree-l1">
+  <a class="reference internal" href="../../Project_Materials/Second_Project_Checkpoint.html">
+   Second Project Checkpoint
+  </a>
+ </li>
+ <li class="toctree-l1">
+  <a class="reference internal" href="../../Project_Materials/First_Project_Checkpoint.html">
+   First Project Checkpoint
+  </a>
+ </li>
+ <li class="toctree-l1">
+  <a class="reference external" href="https://github.com/msu-cmse-courses/cmse201-S22-data/raw/main/Projects/Example_Football_Dataset.csv">
+   Example_Football_Dataset.csv
+  </a>
+ </li>
+ <li class="toctree-l1">
+  <a class="reference internal" href="../../Project_Materials/CMSE201_FinalProjectTemplate.html">
+   CMSE 201 Final Project Template
+  </a>
+ </li>
+ <li class="toctree-l1">
+  <a class="reference external" href="https://raw.githubusercontent.com/msu-cmse-courses/cmse201-S22-data/main/Projects/CMSE201_ExampleProject_A.pdf">
+   CMSE201_ExampleProject_A.pdf
+  </a>
+ </li>
+ <li class="toctree-l1">
+  <a class="reference external" href="https://raw.githubusercontent.com/msu-cmse-courses/cmse201-S22-data/main/Projects/CMSE201_ExampleProject_B.pdf">
+   CMSE201_ExampleProject_B.pdf
+  </a>
+ </li>
+ <li class="toctree-l1">
+  <a class="reference external" href="https://raw.githubusercontent.com/msu-cmse-courses/cmse201-S22-data/main/Projects/CMSE201_ExampleProject_C.pdf">
+   CMSE201_ExampleProject_C.pdf
+  </a>
+ </li>
+ <li class="toctree-l1">
+  <a class="reference external" href="https://raw.githubusercontent.com/msu-cmse-courses/cmse201-S22-data/main/Projects/CMSE201_ExampleProject_D.pdf">
+   CMSE201_ExampleProject_D.pdf
+  </a>
+ </li>
+ <li class="toctree-l1">
+  <a class="reference external" href="https://raw.githubusercontent.com/msu-cmse-courses/cmse201-S22-data/main/Projects/CMSE201_ExampleProject_E.pdf">
+   CMSE201_ExampleProject_E.pdf
+  </a>
+ </li>
+</ul>
+
+    </div>
+</nav></div>
+        <div class="bd-sidebar__bottom">
+             <!-- To handle the deprecated key -->
+            
+            <div class="navbar_extra_footer">
+            Powered by <a href="https://jupyterbook.org">Jupyter Book</a>
+            </div>
+            
+        </div>
+    </div>
+    <div id="rtd-footer-container"></div>
+</div>
+
+
+          
+
+
+          
+<!-- A tiny helper pixel to detect if we've scrolled -->
+<div class="sbt-scroll-pixel-helper"></div>
+<!-- Main content -->
+<div class="col py-0 content-container">
+    
+    <div class="header-article row sticky-top noprint">
+        
+
+
+
+<div class="col py-1 d-flex header-article-main">
+    <div class="header-article__left">
+        
+        <label for="__navigation"
+  class="headerbtn"
+  data-toggle="tooltip"
+data-placement="right"
+title="Toggle navigation"
+>
+  
+
+<span class="headerbtn__icon-container">
+  <i class="fas fa-bars"></i>
+  </span>
+
+</label>
+
+        
+    </div>
+    <div class="header-article__right">
+<div class="menu-dropdown menu-dropdown-launch-buttons">
+  <button class="headerbtn menu-dropdown__trigger"
+      aria-label="Launch interactive content">
+      <i class="fas fa-rocket"></i>
+  </button>
+  <div class="menu-dropdown__content">
+    <ul>
+      <li>
+        <a href="https://mybinder.org/v2/gh/msu-cmse-courses/cmse201-S22-jb/main?urlpath=tree/Homework/Homework_3/HW3_S22-STUDENT.ipynb"
+   class="headerbtn"
+   data-toggle="tooltip"
+data-placement="left"
+title="Launch on Binder"
+>
+  
+
+<span class="headerbtn__icon-container">
+  
+    <img src="../../_static/images/logo_binder.svg">
+  </span>
+<span class="headerbtn__text-container">Binder</span>
+</a>
+
+      </li>
+      
+    </ul>
+  </div>
+</div>
+
+<button onclick="toggleFullScreen()"
+  class="headerbtn"
+  data-toggle="tooltip"
+data-placement="bottom"
+title="Fullscreen mode"
+>
+  
+
+<span class="headerbtn__icon-container">
+  <i class="fas fa-expand"></i>
+  </span>
+
+</button>
+
+<div class="menu-dropdown menu-dropdown-repository-buttons">
+  <button class="headerbtn menu-dropdown__trigger"
+      aria-label="Source repositories">
+      <i class="fab fa-github"></i>
+  </button>
+  <div class="menu-dropdown__content">
+    <ul>
+      <li>
+        <a href="https://github.com/msu-cmse-courses/cmse201-S22-jb"
+   class="headerbtn"
+   data-toggle="tooltip"
+data-placement="left"
+title="Source repository"
+>
+  
+
+<span class="headerbtn__icon-container">
+  <i class="fab fa-github"></i>
+  </span>
+<span class="headerbtn__text-container">repository</span>
+</a>
+
+      </li>
+      
+      <li>
+        <a href="https://github.com/msu-cmse-courses/cmse201-S22-jb/issues/new?title=Issue%20on%20page%20%2FHomework/Homework_3/HW3_S22-STUDENT.html&body=Your%20issue%20content%20here."
+   class="headerbtn"
+   data-toggle="tooltip"
+data-placement="left"
+title="Open an issue"
+>
+  
+
+<span class="headerbtn__icon-container">
+  <i class="fas fa-lightbulb"></i>
+  </span>
+<span class="headerbtn__text-container">open issue</span>
+</a>
+
+      </li>
+      
+    </ul>
+  </div>
+</div>
+
+<div class="menu-dropdown menu-dropdown-download-buttons">
+  <button class="headerbtn menu-dropdown__trigger"
+      aria-label="Download this page">
+      <i class="fas fa-download"></i>
+  </button>
+  <div class="menu-dropdown__content">
+    <ul>
+      <li>
+        <a href="../../_sources/Homework/Homework_3/HW3_S22-STUDENT.ipynb"
+   class="headerbtn"
+   data-toggle="tooltip"
+data-placement="left"
+title="Download source file"
+>
+  
+
+<span class="headerbtn__icon-container">
+  <i class="fas fa-file"></i>
+  </span>
+<span class="headerbtn__text-container">.ipynb</span>
+</a>
+
+      </li>
+      
+      <li>
+        
+<button onclick="printPdf(this)"
+  class="headerbtn"
+  data-toggle="tooltip"
+data-placement="left"
+title="Print to PDF"
+>
+  
+
+<span class="headerbtn__icon-container">
+  <i class="fas fa-file-pdf"></i>
+  </span>
+<span class="headerbtn__text-container">.pdf</span>
+</button>
+
+      </li>
+      
+    </ul>
+  </div>
+</div>
+<label for="__page-toc"
+  class="headerbtn headerbtn-page-toc"
+  
+>
+  
+
+<span class="headerbtn__icon-container">
+  <i class="fas fa-list"></i>
+  </span>
+
+</label>
+
+    </div>
+</div>
+
+<!-- Table of contents -->
+<div class="col-md-3 bd-toc show noprint">
+    <div class="tocsection onthispage pt-5 pb-3">
+        <i class="fas fa-list"></i> Contents
+    </div>
+    <nav id="bd-toc-nav" aria-label="Page">
+        <ul class="visible nav section-nav flex-column">
+ <li class="toc-h1 nav-item toc-entry">
+  <a class="reference internal nav-link" href="#">
+   Homework 3: Pandas data analysis
+  </a>
+  <ul class="visible nav section-nav flex-column">
+   <li class="toc-h2 nav-item toc-entry">
+    <a class="reference internal nav-link" href="#p-style-text-align-right-put-your-name-here-p">
+     <p style="text-align: right;">
+      ✅
+      <strong>
+       Put your name here
+      </strong>
+     </p>
+    </a>
+   </li>
+  </ul>
+ </li>
+ <li class="toc-h1 nav-item toc-entry">
+  <a class="reference internal nav-link" href="#cmse-201-spring-2022">
+   <strong>
+    CMSE  201 – Spring 2022
+   </strong>
+  </a>
+  <ul class="visible nav section-nav flex-column">
+   <li class="toc-h2 nav-item toc-entry">
+    <a class="reference internal nav-link" href="#learning-goals">
+     Learning Goals
+    </a>
+   </li>
+   <li class="toc-h2 nav-item toc-entry">
+    <a class="reference internal nav-link" href="#assignment-instructions">
+     Assignment instructions
+    </a>
+   </li>
+   <li class="toc-h2 nav-item toc-entry">
+    <a class="reference internal nav-link" href="#grading">
+     Grading
+    </a>
+   </li>
+   <li class="toc-h2 nav-item toc-entry">
+    <a class="reference internal nav-link" href="#academic-integrity-statement-1-point">
+     Academic integrity statement (1 point)
+    </a>
+    <ul class="nav section-nav flex-column">
+     <li class="toc-h3 nav-item toc-entry">
+      <a class="reference internal nav-link" href="#part-0-revisit-plotting-in-hw2-6-total-points">
+       Part 0: Revisit plotting in HW2 (6 total points)
+      </a>
+     </li>
+     <li class="toc-h3 nav-item toc-entry">
+      <a class="reference internal nav-link" href="#part-1-reading-describing-and-cleaning-the-data-22-total-points">
+       Part 1: Reading, Describing, and Cleaning the Data (22 total points)
+      </a>
+     </li>
+     <li class="toc-h3 nav-item toc-entry">
+      <a class="reference internal nav-link" href="#read-the-data-4-points">
+       1.1 Read the data (4 points)
+      </a>
+     </li>
+     <li class="toc-h3 nav-item toc-entry">
+      <a class="reference internal nav-link" href="#clean-the-data-8-total-points">
+       1.2 Clean the data (8 total points)
+      </a>
+      <ul class="nav section-nav flex-column">
+       <li class="toc-h4 nav-item toc-entry">
+        <a class="reference internal nav-link" href="#remove-and-track-excess-data-2-points">
+         1.2.1 Remove and track excess data (2 points)
+        </a>
+       </li>
+       <li class="toc-h4 nav-item toc-entry">
+        <a class="reference internal nav-link" href="#focus-on-the-2018-data-3-points">
+         1.2.2 Focus on the 2018 data (3 points)
+        </a>
+       </li>
+       <li class="toc-h4 nav-item toc-entry">
+        <a class="reference internal nav-link" href="#missing-data-3-points">
+         1.2.3 Missing data (3 points)
+        </a>
+       </li>
+      </ul>
+     </li>
+     <li class="toc-h3 nav-item toc-entry">
+      <a class="reference internal nav-link" href="#describe-the-data-10-points">
+       1.3 Describe the data (10 points)
+      </a>
+     </li>
+    </ul>
+   </li>
+   <li class="toc-h2 nav-item toc-entry">
+    <a class="reference internal nav-link" href="#part-2-data-analysis-21-total-points">
+     Part 2: Data analysis (21 total points)
+    </a>
+    <ul class="nav section-nav flex-column">
+     <li class="toc-h3 nav-item toc-entry">
+      <a class="reference internal nav-link" href="#the-ranking-12-points">
+       2.1 The ranking (12 points)
+      </a>
+     </li>
+     <li class="toc-h3 nav-item toc-entry">
+      <a class="reference internal nav-link" href="#determining-which-features-will-matter-9-points">
+       2.2 Determining which features will matter (9 points)
+      </a>
+     </li>
+     <li class="toc-h3 nav-item toc-entry">
+      <a class="reference internal nav-link" href="#congratulations-you-re-done">
+       Congratulations, you’re done!
+      </a>
+     </li>
+    </ul>
+   </li>
+  </ul>
+ </li>
+</ul>
+
+    </nav>
+</div>
+    </div>
+    <div class="article row">
+        <div class="col pl-md-3 pl-lg-5 content-container">
+            <!-- Table of contents that is only displayed when printing the page -->
+            <div id="jb-print-docs-body" class="onlyprint">
+                <h1>Homework 3: Pandas data analysis</h1>
+                <!-- Table of contents -->
+                <div id="print-main-content">
+                    <div id="jb-print-toc">
+                        
+                        <div>
+                            <h2> Contents </h2>
+                        </div>
+                        <nav aria-label="Page">
+                            <ul class="visible nav section-nav flex-column">
+ <li class="toc-h1 nav-item toc-entry">
+  <a class="reference internal nav-link" href="#">
+   Homework 3: Pandas data analysis
+  </a>
+  <ul class="visible nav section-nav flex-column">
+   <li class="toc-h2 nav-item toc-entry">
+    <a class="reference internal nav-link" href="#p-style-text-align-right-put-your-name-here-p">
+     <p style="text-align: right;">
+      ✅
+      <strong>
+       Put your name here
+      </strong>
+     </p>
+    </a>
+   </li>
+  </ul>
+ </li>
+ <li class="toc-h1 nav-item toc-entry">
+  <a class="reference internal nav-link" href="#cmse-201-spring-2022">
+   <strong>
+    CMSE  201 – Spring 2022
+   </strong>
+  </a>
+  <ul class="visible nav section-nav flex-column">
+   <li class="toc-h2 nav-item toc-entry">
+    <a class="reference internal nav-link" href="#learning-goals">
+     Learning Goals
+    </a>
+   </li>
+   <li class="toc-h2 nav-item toc-entry">
+    <a class="reference internal nav-link" href="#assignment-instructions">
+     Assignment instructions
+    </a>
+   </li>
+   <li class="toc-h2 nav-item toc-entry">
+    <a class="reference internal nav-link" href="#grading">
+     Grading
+    </a>
+   </li>
+   <li class="toc-h2 nav-item toc-entry">
+    <a class="reference internal nav-link" href="#academic-integrity-statement-1-point">
+     Academic integrity statement (1 point)
+    </a>
+    <ul class="nav section-nav flex-column">
+     <li class="toc-h3 nav-item toc-entry">
+      <a class="reference internal nav-link" href="#part-0-revisit-plotting-in-hw2-6-total-points">
+       Part 0: Revisit plotting in HW2 (6 total points)
+      </a>
+     </li>
+     <li class="toc-h3 nav-item toc-entry">
+      <a class="reference internal nav-link" href="#part-1-reading-describing-and-cleaning-the-data-22-total-points">
+       Part 1: Reading, Describing, and Cleaning the Data (22 total points)
+      </a>
+     </li>
+     <li class="toc-h3 nav-item toc-entry">
+      <a class="reference internal nav-link" href="#read-the-data-4-points">
+       1.1 Read the data (4 points)
+      </a>
+     </li>
+     <li class="toc-h3 nav-item toc-entry">
+      <a class="reference internal nav-link" href="#clean-the-data-8-total-points">
+       1.2 Clean the data (8 total points)
+      </a>
+      <ul class="nav section-nav flex-column">
+       <li class="toc-h4 nav-item toc-entry">
+        <a class="reference internal nav-link" href="#remove-and-track-excess-data-2-points">
+         1.2.1 Remove and track excess data (2 points)
+        </a>
+       </li>
+       <li class="toc-h4 nav-item toc-entry">
+        <a class="reference internal nav-link" href="#focus-on-the-2018-data-3-points">
+         1.2.2 Focus on the 2018 data (3 points)
+        </a>
+       </li>
+       <li class="toc-h4 nav-item toc-entry">
+        <a class="reference internal nav-link" href="#missing-data-3-points">
+         1.2.3 Missing data (3 points)
+        </a>
+       </li>
+      </ul>
+     </li>
+     <li class="toc-h3 nav-item toc-entry">
+      <a class="reference internal nav-link" href="#describe-the-data-10-points">
+       1.3 Describe the data (10 points)
+      </a>
+     </li>
+    </ul>
+   </li>
+   <li class="toc-h2 nav-item toc-entry">
+    <a class="reference internal nav-link" href="#part-2-data-analysis-21-total-points">
+     Part 2: Data analysis (21 total points)
+    </a>
+    <ul class="nav section-nav flex-column">
+     <li class="toc-h3 nav-item toc-entry">
+      <a class="reference internal nav-link" href="#the-ranking-12-points">
+       2.1 The ranking (12 points)
+      </a>
+     </li>
+     <li class="toc-h3 nav-item toc-entry">
+      <a class="reference internal nav-link" href="#determining-which-features-will-matter-9-points">
+       2.2 Determining which features will matter (9 points)
+      </a>
+     </li>
+     <li class="toc-h3 nav-item toc-entry">
+      <a class="reference internal nav-link" href="#congratulations-you-re-done">
+       Congratulations, you’re done!
+      </a>
+     </li>
+    </ul>
+   </li>
+  </ul>
+ </li>
+</ul>
+
+                        </nav>
+                    </div>
+                </div>
+            </div>
+            <main id="main-content" role="main">
+                
+              <div>
+                
+  <section class="tex2jax_ignore mathjax_ignore" id="homework-3-pandas-data-analysis">
+<h1>Homework 3: Pandas data analysis<a class="headerlink" href="#homework-3-pandas-data-analysis" title="Permalink to this headline">#</a></h1>
+<section id="p-style-text-align-right-put-your-name-here-p">
+<h2><p style="text-align: right;"> ✅ <strong>Put your name here</strong> </p><a class="headerlink" href="#p-style-text-align-right-put-your-name-here-p" title="Permalink to this headline">#</a></h2>
+</section>
+</section>
+<section class="tex2jax_ignore mathjax_ignore" id="cmse-201-spring-2022">
+<h1><strong>CMSE  201 – Spring 2022</strong><a class="headerlink" href="#cmse-201-spring-2022" title="Permalink to this headline">#</a></h1>
+<p><img src="https://cmse.msu.edu/sites/_cmse/assets/Image/image002.jpg"
+     alt="CMSE Logo"
+     align="right" 
+     height="100" 
+     width="100" /></p>
+<section id="learning-goals">
+<h2>Learning Goals<a class="headerlink" href="#learning-goals" title="Permalink to this headline">#</a></h2>
+<ul class="simple">
+<li><p>Load data into notebooks using Pandas</p></li>
+<li><p>Determine the components of the data</p></li>
+<li><p>Make meaningful visual representations of the data</p></li>
+<li><p>Draw conclusions from statistical analysis</p></li>
+</ul>
+</section>
+<hr class="docutils" />
+<section id="assignment-instructions">
+<h2>Assignment instructions<a class="headerlink" href="#assignment-instructions" title="Permalink to this headline">#</a></h2>
+<p>Work through the following assignment, making sure to follow all of the directions and answer all of the questions.</p>
+<p><strong>This assignment is due at 11:59pm on Friday, Feb. 25th</strong></p>
+<p>It should be uploaded into D2L Homework #3.  Submission instructions can be found at the end of the notebook.</p>
+</section>
+<section id="grading">
+<h2>Grading<a class="headerlink" href="#grading" title="Permalink to this headline">#</a></h2>
+<ul class="simple">
+<li><p>Academic integrity statement: 1 pt</p></li>
+<li><p>Part 0: Revisit plotting in HW2: 6 pts</p></li>
+<li><p>Part 1: Reading, Describing, and Cleaning the Data: 22 pts</p></li>
+<li><p>Part 2: Data analysis: 21 pts</p></li>
+</ul>
+<p><strong>Total:</strong> 50 pts</p>
+</section>
+<section id="academic-integrity-statement-1-point">
+<h2>Academic integrity statement (1 point)<a class="headerlink" href="#academic-integrity-statement-1-point" title="Permalink to this headline">#</a></h2>
+<p>In the markdown cell below, paste your personal academic integrity statement. By including this statement, you are confirming that you are submitting this as your own work and not that of someone else.</p>
+<p><font size=6 color="#009600">✎</font> <em>Put your personal academic integrity statement here.</em></p>
+<p>Before we read in the data and begin working with it, let’s import the libraries that we would typically use for this task. You can always come back to this cell and import additional libraries that you need.</p>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="kn">import</span> <span class="nn">pandas</span> <span class="k">as</span> <span class="nn">pd</span>
+<span class="kn">import</span> <span class="nn">matplotlib.pyplot</span> <span class="k">as</span> <span class="nn">plt</span>
+<span class="kn">import</span> <span class="nn">numpy</span> <span class="k">as</span> <span class="nn">np</span>
+<span class="kn">import</span> <span class="nn">math</span>
+<span class="o">%</span><span class="k">matplotlib</span> inline
+</pre></div>
+</div>
+</div>
+</div>
+<section id="part-0-revisit-plotting-in-hw2-6-total-points">
+<h3>Part 0: Revisit plotting in HW2 (6 total points)<a class="headerlink" href="#part-0-revisit-plotting-in-hw2-6-total-points" title="Permalink to this headline">#</a></h3>
+<p>In question 4 of HW2, we consider two equations that give the (x,y) points for values of k (ranging from 0 to 9000). When all 9000 points are plotted, you will see that it draws out a flower design.</p>
+<p><span class="math notranslate nohighlight">\(x(k) = \mathrm{cos}\Big(\frac{14 \pi k}{9000}\Big)\Big(1-\frac{3}{4}\mathrm{sin}\Big(\frac{20\pi k}{9000}\Big)-\frac{1}{4}\mathrm{cos}\Big(\frac{60 \pi k}{9000}\Big)\Big)\)</span></p>
+<p><span class="math notranslate nohighlight">\(y(k) = \mathrm{sin}\Big(\frac{14 \pi k}{9000}\Big)\Big(1-\frac{3}{4}\mathrm{sin}\Big(\frac{20\pi k}{9000}\Big)-\frac{1}{4}\mathrm{cos}\Big(\frac{60 \pi k}{9000}\Big)\Big)\)</span></p>
+<p>The goal here is to revisit this problem, and achieve the same purpose by using numpy arrary and functions. Now the code will be much shorter. (Note: in this question, you are not allowed to use <code class="docutils literal notranslate"><span class="pre">list</span></code> and you no longer need to define <code class="docutils literal notranslate"><span class="pre">draw_flower_points</span></code> function.)</p>
+<p><font size=8 color="#009600">✎</font> Do This - Write a piece of code to define <code class="docutils literal notranslate"><span class="pre">k</span></code> as a numpy array ranging from 0 to 9000 with 500 points. (2 points) Use <code class="docutils literal notranslate"><span class="pre">np.sin</span></code> and <code class="docutils literal notranslate"><span class="pre">np.cos</span></code> to define <code class="docutils literal notranslate"><span class="pre">x_k</span></code> and <code class="docutils literal notranslate"><span class="pre">y_k</span></code> as the corresponding numpy. (3 points) Then plot the final flower design. (1 point)</p>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="c1">## your code here</span>
+</pre></div>
+</div>
+</div>
+</div>
+</section>
+<section id="part-1-reading-describing-and-cleaning-the-data-22-total-points">
+<h3>Part 1: Reading, Describing, and Cleaning the Data (22 total points)<a class="headerlink" href="#part-1-reading-describing-and-cleaning-the-data-22-total-points" title="Permalink to this headline">#</a></h3>
+<p>The United Nations compiles an annual publication called the <a class="reference external" href="https://en.wikipedia.org/wiki/World_Happiness_Report">World Happiness Report</a> that ranks countries by the “happiness score” or “life ladder”. These scores are based on a surveys of citizens of each country on a variety of factors such as:</p>
+<ul class="simple">
+<li><p>Gross Domestic Product (GDP) per capita</p></li>
+<li><p>Perceptions of social support</p></li>
+<li><p>Life expectancy</p></li>
+<li><p>Freedom of choice</p></li>
+</ul>
+<p><a class="reference external" href="https://worldhappiness.report/">Data from the UN</a> is available from 2005-2019, which we have downloaded in a <code class="docutils literal notranslate"><span class="pre">.csv</span></code> format. The survey has changed over time, so that some factors and questions have been omitted. So some of the data is incomplete or missing.</p>
+</section>
+<section id="read-the-data-4-points">
+<h3>1.1 Read the data (4 points)<a class="headerlink" href="#read-the-data-4-points" title="Permalink to this headline">#</a></h3>
+<p><font size=8 color="#009600">✎</font> Do This - Read in the survey data from <code class="docutils literal notranslate"><span class="pre">happiness_index.csv</span></code> into a DataFrame and print the <code class="docutils literal notranslate"><span class="pre">.head()</span></code> of the data, use <code class="docutils literal notranslate"><span class="pre">describe</span></code> to get a feel of this dataset.</p>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="c1">## your code here</span>
+</pre></div>
+</div>
+</div>
+</div>
+</section>
+<section id="clean-the-data-8-total-points">
+<h3>1.2 Clean the data (8 total points)<a class="headerlink" href="#clean-the-data-8-total-points" title="Permalink to this headline">#</a></h3>
+<section id="remove-and-track-excess-data-2-points">
+<h4>1.2.1 Remove and track excess data (2 points)<a class="headerlink" href="#remove-and-track-excess-data-2-points" title="Permalink to this headline">#</a></h4>
+<p>We need to remove the excess features that are not present in every year’s data.</p>
+<p><font size=8 color="#009600">✎</font> Do This - Drop the columns that are not the following:</p>
+<ul class="simple">
+<li><p>Country name</p></li>
+<li><p>year</p></li>
+<li><p>Life Ladder</p></li>
+<li><p>Log GDP per capita</p></li>
+<li><p>Social support</p></li>
+<li><p>Healthy life expectancy at birth</p></li>
+<li><p>Freedom to make life choices</p></li>
+<li><p>Generosity</p></li>
+<li><p>Perceptions of corruption</p></li>
+<li><p>Positive affect</p></li>
+<li><p>Negative affect</p></li>
+<li><p>Confidence in national government</p></li>
+<li><p>Democratic Quality</p></li>
+<li><p>Delivery Quality</p></li>
+</ul>
+<p>Make sure to make a list of the columns that you dropped. This is important if you need to report what you didn’t consider in the model. Print the <code class="docutils literal notranslate"><span class="pre">.head()</span></code> of the DataFrame after dropping the unneeded columns.</p>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="c1">## your code here</span>
+</pre></div>
+</div>
+</div>
+</div>
+</section>
+<section id="focus-on-the-2018-data-3-points">
+<h4>1.2.2 Focus on the 2018 data (3 points)<a class="headerlink" href="#focus-on-the-2018-data-3-points" title="Permalink to this headline">#</a></h4>
+<p>Your data should include scores for a variety of years (2005-2019) for each country. Let’s focus on a single year: 2018.</p>
+<p><font size=8 color="#009600">✎</font> Do This - Use mask to filter your data to focus only on the latest available data from 2018. Print the <code class="docutils literal notranslate"><span class="pre">.head()</span></code> of that DataFrame.</p>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="c1">## your code here</span>
+</pre></div>
+</div>
+</div>
+</div>
+</section>
+<section id="missing-data-3-points">
+<h4>1.2.3 Missing data (3 points)<a class="headerlink" href="#missing-data-3-points" title="Permalink to this headline">#</a></h4>
+<p>Not all the countries have reported values for every feature. You should check if any countries have missing data. We could impute these missing data in a variety of ways, but instead to make our work a little simpler, we will simply drop a country if it has any missing data.</p>
+<p><font size=8 color="#009600">✎</font> Do This - Drop any country from the data that is missing data.</p>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="c1">## your code here</span>
+</pre></div>
+</div>
+</div>
+</div>
+</section>
+</section>
+<section id="describe-the-data-10-points">
+<h3>1.3 Describe the data (10 points)<a class="headerlink" href="#describe-the-data-10-points" title="Permalink to this headline">#</a></h3>
+<p>Now that you have a cleaned data set, let’s look into the data. We can start that by describing the data and making histograms of it.</p>
+<p><font size=8 color="#009600">✎</font> Do This - Focusing on the data collected in the survey (i.e., not the country name or year), <em>describe</em> the data by using the <code class="docutils literal notranslate"><span class="pre">describe</span></code> function in pandas. (2 points)</p>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="c1">## your code here</span>
+</pre></div>
+</div>
+</div>
+</div>
+<p><font size=8 color="#009600">✎</font> Do This - We can use numpy functions to verify what we have obtained in the description in the previous part. Define a Numpy array to be the same as the column of data corresponding to the feature ‘Life Ladder’. Use Numpy functions to compute the mean and the standard deviation of this array. Does it agree with what you had from the previous question? (4 points)</p>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="c1">## your code here</span>
+</pre></div>
+</div>
+</div>
+</div>
+<p><font size=8 color="#009600">✎</font> Do This -Make histograms describing the distributions of all the features. (4 points)</p>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="c1">## your code here</span>
+</pre></div>
+</div>
+</div>
+</div>
+</section>
+</section>
+<section id="part-2-data-analysis-21-total-points">
+<h2>Part 2: Data analysis (21 total points)<a class="headerlink" href="#part-2-data-analysis-21-total-points" title="Permalink to this headline">#</a></h2>
+<p>Now  we will analyze the cleaned dataset.</p>
+<section id="the-ranking-12-points">
+<h3>2.1 The ranking (12 points)<a class="headerlink" href="#the-ranking-12-points" title="Permalink to this headline">#</a></h3>
+<p>The rankings of national happiness are based on a Cantril ladder survey. Nationally representative samples of respondents are asked to think of a ladder, with the best possible life for them being a 10, and the worst possible life being a 0.  This is represented by ‘Life Ladder’ in the dataset.</p>
+<p><font size=8 color="#009600">✎</font> Do This - Reorder the dataframe   according to descending values of the ‘Life Ladder’ score using <code class="docutils literal notranslate"><span class="pre">sort_values</span></code> (Refer to  (<a class="reference external" href="https://pandas.pydata.org/docs/reference/api/pandas.DataFrame.sort_values.html#pandas.DataFrame.sort_values">https://pandas.pydata.org/docs/reference/api/pandas.DataFrame.sort_values.html#pandas.DataFrame.sort_values</a>). Which are the top 3 happiest  countries? (4 points)</p>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="c1">## your code here</span>
+</pre></div>
+</div>
+</div>
+</div>
+<p><font size=8 color="#009600">✎</font> Do This -  Replace the index of the sorted dataframe to be the ranking of the ranking of the country. (4 points)</p>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="c1">## your code here</span>
+</pre></div>
+</div>
+</div>
+</div>
+<p><font size=8 color="#009600">✎</font> Do this - Use mask to find the United States in this ranking. What’s the ranking of the U.S.? (4 points)</p>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="c1">## your code here</span>
+</pre></div>
+</div>
+</div>
+</div>
+</section>
+<section id="determining-which-features-will-matter-9-points">
+<h3>2.2 Determining which features will matter (9 points)<a class="headerlink" href="#determining-which-features-will-matter-9-points" title="Permalink to this headline">#</a></h3>
+<p>We want to understand what variables matters for people’s happiness. We will do this by starting the correlation of the features with <code class="docutils literal notranslate"><span class="pre">Life</span> <span class="pre">Ladder</span></code>.</p>
+<p><font size=8 color="#009600">✎</font> Do this - Make   <code class="docutils literal notranslate"><span class="pre">scatter</span></code> plots of <code class="docutils literal notranslate"><span class="pre">Life</span> <span class="pre">Ladder</span></code> vs. all other features. (5 points)</p>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="c1">## your code here</span>
+</pre></div>
+</div>
+</div>
+</div>
+<p><font size=8 color="#009600">✎</font> Do this -  Look at your plots, for each feature, is it correlated to <code class="docutils literal notranslate"><span class="pre">Life</span> <span class="pre">Ladder</span></code>? If so, is it positively or negatively correlated? Explain your reasoning (4 points)</p>
+<p><font size=6 color="#009600">✎</font> Write your answer here</p>
+</section>
+<hr class="docutils" />
+<section id="congratulations-you-re-done">
+<h3>Congratulations, you’re done!<a class="headerlink" href="#congratulations-you-re-done" title="Permalink to this headline">#</a></h3>
+<p>Submit this assignment by uploading it to the course Desire2Learn web page.  Go to the “Homework Assignments” section, find the submission folder link for Homework #3, and upload it there.</p>
+<p>© Copyright Michigan State University Board of Trustees</p>
+</section>
+</section>
+</section>
+
+    <script type="text/x-thebe-config">
+    {
+        requestKernel: true,
+        binderOptions: {
+            repo: "binder-examples/jupyter-stacks-datascience",
+            ref: "master",
+        },
+        codeMirrorConfig: {
+            theme: "abcdef",
+            mode: "python"
+        },
+        kernelOptions: {
+            kernelName: "python3",
+            path: "./Homework\Homework_3"
+        },
+        predefinedOutput: true
+    }
+    </script>
+    <script>kernelName = 'python3'</script>
+
+              </div>
+              
+            </main>
+            <footer class="footer-article noprint">
+                
+    <!-- Previous / next buttons -->
+<div class='prev-next-area'>
+    <a class='left-prev' id="prev-link" href="../Homework_2/HW2_S22-STUDENT.html" title="previous page">
+        <i class="fas fa-angle-left"></i>
+        <div class="prev-next-info">
+            <p class="prev-next-subtitle">previous</p>
+            <p class="prev-next-title">Homework 2: If Statements, Functions, and Modules</p>
+        </div>
+    </a>
+    <a class='right-next' id="next-link" href="../Homework_4/HW4_S22-STUDENT.html" title="next page">
+    <div class="prev-next-info">
+        <p class="prev-next-subtitle">next</p>
+        <p class="prev-next-title">Homework 4: Fitting data using SciPy</p>
+    </div>
+    <i class="fas fa-angle-right"></i>
+    </a>
+</div>
+            </footer>
+        </div>
+    </div>
+    <div class="footer-content row">
+        <footer class="col footer"><p>
+  
+    By MSU CMSE<br/>
+  
+      &copy; Copyright 2022.<br/>
+</p>
+        </footer>
+    </div>
+    
+</div>
+
+
+      </div>
+    </div>
+  
+  <!-- Scripts loaded after <body> so the DOM is not blocked -->
+  <script src="../../_static/scripts/pydata-sphinx-theme.js?digest=1999514e3f237ded88cf"></script>
+
+
+  </body>
+</html>

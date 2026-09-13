@@ -1,0 +1,512 @@
+[
+  {
+    "id": 870970,
+    "header": "Academic Integrity statement",
+    "description": "",
+    "description_type": "markdown",
+    "items": [
+      {
+        "id": 2224010,
+        "description": "",
+        "header": "Incomplete",
+        "points": 0.0
+      },
+      {
+        "id": 2224011,
+        "description": "",
+        "header": "Complete",
+        "points": 2.0
+      }
+    ],
+    "locked": false,
+    "type": "normal"
+  },
+  {
+    "id": 870971,
+    "header": "Task 1.0",
+    "description": "",
+    "description_type": "markdown",
+    "items": [
+      {
+        "id": 2224012,
+        "description": "",
+        "header": "Incomplete",
+        "points": 0.0
+      },
+      {
+        "id": 2224013,
+        "description": "Reasonable answer, no source cited",
+        "header": "Partially complete",
+        "points": 0.5
+      },
+      {
+        "id": 2224014,
+        "description": "",
+        "header": "Complete",
+        "points": 1.0
+      }
+    ],
+    "locked": false,
+    "type": "normal"
+  },
+  {
+    "id": 870972,
+    "header": "Task 1.1",
+    "description": "0.2 points for each correct entry",
+    "description_type": "markdown",
+    "items": [
+      {
+        "id": 2224015,
+        "description": "",
+        "header": "Min points",
+        "points": 0.0
+      },
+      {
+        "id": 2224016,
+        "description": "",
+        "header": "Max points",
+        "points": 2.0
+      }
+    ],
+    "locked": false,
+    "type": "continuous"
+  },
+  {
+    "id": 870973,
+    "header": "Task 1.2",
+    "description": "",
+    "description_type": "markdown",
+    "items": [
+      {
+        "id": 2224017,
+        "description": "",
+        "header": "Incomplete",
+        "points": 0.0
+      },
+      {
+        "id": 2224018,
+        "description": "Reasonable answer, no source cited",
+        "header": "Partially complete",
+        "points": 1.0
+      },
+      {
+        "id": 2224019,
+        "description": "",
+        "header": "Complete",
+        "points": 2.0
+      }
+    ],
+    "locked": false,
+    "type": "normal"
+  },
+  {
+    "id": 870974,
+    "header": "Task 1.3",
+    "description": "1/3 point for each correct indexing/print",
+    "description_type": "markdown",
+    "items": [
+      {
+        "id": 2224020,
+        "description": "",
+        "header": "Min points",
+        "points": 0.0
+      },
+      {
+        "id": 2224021,
+        "description": "",
+        "header": "Max points",
+        "points": 1.0
+      }
+    ],
+    "locked": false,
+    "type": "continuous"
+  },
+  {
+    "id": 870975,
+    "header": "Task 1.4",
+    "description": "1/3 point for switching keys to values\n1/3 point for switching values to keys\n1/3 for creating a new dictionary\n1 point for correct mapping",
+    "description_type": "markdown",
+    "items": [
+      {
+        "id": 2224022,
+        "description": "",
+        "header": "Min points",
+        "points": 0.0
+      },
+      {
+        "id": 2224023,
+        "description": "",
+        "header": "Max points",
+        "points": 2.0
+      }
+    ],
+    "locked": false,
+    "type": "continuous"
+  },
+  {
+    "id": 870976,
+    "header": "Task 1.5",
+    "description": "1 point for correct loop set up\n0.5 point for correct variable usage\n0.5 point for printing",
+    "description_type": "markdown",
+    "items": [
+      {
+        "id": 2224024,
+        "description": "",
+        "header": "Min points",
+        "points": 0.0
+      },
+      {
+        "id": 2224025,
+        "description": "",
+        "header": "Max points",
+        "points": 2.0
+      }
+    ],
+    "locked": false,
+    "type": "continuous"
+  },
+  {
+    "id": 870977,
+    "header": "Task 2.1",
+    "description": "1/2 point for identifying each bug\n1/2 point for fixing each bug\n1 point for explanation",
+    "description_type": "markdown",
+    "items": [
+      {
+        "id": 2224026,
+        "description": "",
+        "header": "Min points",
+        "points": 0.0
+      },
+      {
+        "id": 2224027,
+        "description": "",
+        "header": "Max points",
+        "points": 5.0
+      }
+    ],
+    "locked": false,
+    "type": "continuous"
+  },
+  {
+    "id": 870978,
+    "header": "Task 2.2",
+    "description": "0.5 point for naming each error\n0.5 point for fixing each error",
+    "description_type": "markdown",
+    "items": [
+      {
+        "id": 2224028,
+        "description": "",
+        "header": "Min points",
+        "points": 0.0
+      },
+      {
+        "id": 2224029,
+        "description": "",
+        "header": "Max points",
+        "points": 5.0
+      }
+    ],
+    "locked": false,
+    "type": "continuous"
+  },
+  {
+    "id": 870979,
+    "header": "Task 3.1",
+    "description": "1 point for defining a function\n1 point for if statement\n1 point for demonstrating that the code works",
+    "description_type": "markdown",
+    "items": [
+      {
+        "id": 2224030,
+        "description": "",
+        "header": "Incomplete",
+        "points": 0.0
+      },
+      {
+        "id": 2224031,
+        "description": "",
+        "header": "Partially complete",
+        "points": 1.0
+      },
+      {
+        "id": 2224032,
+        "description": "",
+        "header": "Partially complete",
+        "points": 2.0
+      },
+      {
+        "id": 2224033,
+        "description": "",
+        "header": "Complete",
+        "points": 3.0
+      }
+    ],
+    "locked": false,
+    "type": "normal"
+  },
+  {
+    "id": 871043,
+    "header": "Task 3.2",
+    "description": "1/2 point for setting up the loop\n1/2 point for printing the correct answer\n1 point for using the function to get to an answer",
+    "description_type": "markdown",
+    "items": [
+      {
+        "id": 2224160,
+        "description": "",
+        "header": "Min points",
+        "points": 0.0
+      },
+      {
+        "id": 2224161,
+        "description": "",
+        "header": "Max points",
+        "points": 2.0
+      }
+    ],
+    "locked": false,
+    "type": "continuous"
+  },
+  {
+    "id": 871044,
+    "header": "Task 3.3",
+    "description": "1 point for new function\n1 point for correct if statement(s)\n1 point for printing",
+    "description_type": "markdown",
+    "items": [
+      {
+        "id": 2224162,
+        "description": "",
+        "header": "Min points",
+        "points": 0.0
+      },
+      {
+        "id": 2224163,
+        "description": "",
+        "header": "Max points",
+        "points": 3.0
+      }
+    ],
+    "locked": false,
+    "type": "continuous"
+  },
+  {
+    "id": 875104,
+    "header": "Task 3.4",
+    "description": "",
+    "description_type": "markdown",
+    "items": [
+      {
+        "id": 2232484,
+        "description": "",
+        "header": "Min points",
+        "points": 0.0
+      },
+      {
+        "id": 2232485,
+        "description": "",
+        "header": "Max points",
+        "points": 5.0
+      }
+    ],
+    "locked": false,
+    "type": "continuous"
+  },
+  {
+    "id": 871045,
+    "header": "Task 3.5",
+    "description": "",
+    "description_type": "markdown",
+    "items": [
+      {
+        "id": 2224164,
+        "description": "",
+        "header": "Incomplete",
+        "points": 0.0
+      },
+      {
+        "id": 2224165,
+        "description": "",
+        "header": "Complete",
+        "points": 2.0
+      }
+    ],
+    "locked": false,
+    "type": "normal"
+  },
+  {
+    "id": 871046,
+    "header": "Task 4.1",
+    "description": "1 point for inputs\n1 point for labels\n1 point for subplot\n1 point for correctly plotting data\n1 point for test\n1 point for reflection answer",
+    "description_type": "markdown",
+    "items": [
+      {
+        "id": 2224166,
+        "description": "",
+        "header": "Incomplete",
+        "points": 0.0
+      },
+      {
+        "id": 2224167,
+        "description": "",
+        "header": "Partially complete",
+        "points": 1.0
+      },
+      {
+        "id": 2224168,
+        "description": "",
+        "header": "Partially complete",
+        "points": 2.0
+      },
+      {
+        "id": 2224169,
+        "description": "",
+        "header": "Partially complete",
+        "points": 3.0
+      },
+      {
+        "id": 2224170,
+        "description": "",
+        "header": "Partially complete",
+        "points": 4.0
+      },
+      {
+        "id": 2224171,
+        "description": "",
+        "header": "Partially complete",
+        "points": 5.0
+      },
+      {
+        "id": 2224172,
+        "description": "",
+        "header": "Complete",
+        "points": 6.0
+      }
+    ],
+    "locked": false,
+    "type": "normal"
+  },
+  {
+    "id": 871047,
+    "header": "Task 4.2",
+    "description": "1 point for def\n2 points for calculations\n1 point for correct return\n2 points for testing",
+    "description_type": "markdown",
+    "items": [
+      {
+        "id": 2224173,
+        "description": "",
+        "header": "Incomplete",
+        "points": 0.0
+      },
+      {
+        "id": 2224174,
+        "description": "",
+        "header": "Partially complete",
+        "points": 1.0
+      },
+      {
+        "id": 2224175,
+        "description": "",
+        "header": "Partially complete",
+        "points": 2.0
+      },
+      {
+        "id": 2224176,
+        "description": "",
+        "header": "Partially complete",
+        "points": 3.0
+      },
+      {
+        "id": 2224177,
+        "description": "",
+        "header": "Partially complete",
+        "points": 4.0
+      },
+      {
+        "id": 2224178,
+        "description": "",
+        "header": "Partially complete",
+        "points": 5.0
+      },
+      {
+        "id": 2224179,
+        "description": "",
+        "header": "Complete",
+        "points": 6.0
+      }
+    ],
+    "locked": false,
+    "type": "normal"
+  },
+  {
+    "id": 871048,
+    "header": "Task 4.3",
+    "description": "2 points for loading the data\n1 point for defining arrays\n1 point for correct calculation\n2 points for the correct code plotting the data",
+    "description_type": "markdown",
+    "items": [
+      {
+        "id": 2224180,
+        "description": "",
+        "header": "Incomplete",
+        "points": 0.0
+      },
+      {
+        "id": 2224181,
+        "description": "",
+        "header": "Partially complete",
+        "points": 1.0
+      },
+      {
+        "id": 2224182,
+        "description": "",
+        "header": "Partially complete",
+        "points": 2.0
+      },
+      {
+        "id": 2224183,
+        "description": "",
+        "header": "Partially complete",
+        "points": 3.0
+      },
+      {
+        "id": 2224184,
+        "description": "",
+        "header": "Partially complete",
+        "points": 4.0
+      },
+      {
+        "id": 2224185,
+        "description": "",
+        "header": "Partially complete",
+        "points": 5.0
+      },
+      {
+        "id": 2224186,
+        "description": "",
+        "header": "Complete",
+        "points": 6.0
+      }
+    ],
+    "locked": false,
+    "type": "normal"
+  },
+  {
+    "id": 875105,
+    "header": "Task 4.4",
+    "description": "",
+    "description_type": "markdown",
+    "items": [
+      {
+        "id": 2232486,
+        "description": "",
+        "header": "Min points",
+        "points": 0.0
+      },
+      {
+        "id": 2232487,
+        "description": "",
+        "header": "Max points",
+        "points": 5.0
+      }
+    ],
+    "locked": false,
+    "type": "continuous"
+  }
+]

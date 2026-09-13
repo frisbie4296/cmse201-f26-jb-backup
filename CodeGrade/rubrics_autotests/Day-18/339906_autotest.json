@@ -1,0 +1,50 @@
+{
+  "assignmentId": "339906",
+  "publishedSnapshot": {
+    "published": "DEPLOY_CONFIG#build_from_copied#ADkRsTdcELZm1yfWvYgtSDg6bsdSX32pUcZun6sxiME"
+  },
+  "setup": {
+    "metadata": {
+      "baseImageId": "base-image-2023-10-04-v1"
+    },
+    "steps": [
+      {
+        "installPython": {
+          "id": "7f89ade4-5561-4457-9126-50706c12bc70",
+          "version": "3.13"
+        }
+      },
+      {
+        "script": {
+          "description": {
+            "behavior": "collapse",
+            "value": ""
+          },
+          "id": "a0fea8ac-f39c-4849-b276-9ca72cdd3a59",
+          "name": "",
+          "script": "# Write your bash script here.\npython3 -m pip install matplotlib pytest numpy scikit-learn scikit-image scipy"
+        }
+      }
+    ]
+  },
+  "test": {
+    "steps": [
+      {
+        "jupyterNotebook": {
+          "children": [],
+          "id": "3dc60060-b2af-431c-a720-59538c2fbf01",
+          "kernel": "Python 3",
+          "name": "",
+          "python3KernelVersion": "6.29.5",
+          "runPermission": "enabled",
+          "templateFile": {
+            "id": "2a038d28-b6a9-441a-98b6-8139ac7deedf",
+            "path": "Day-18_Pre-Class_ViralKinetics-STUDENT.ipynb",
+            "size": 54647,
+            "url": "https://eu-cluster-appnestedstac-websocketserveratbucket8-17npz624rhwow.s3.eu-west-1.amazonaws.com/v1/339906/fixtures/3dcb6f5e-27c4-42ae-b441-6d4d6341d5cd?X-Amz-Algorithm=AWS4-HMAC-SHA256&X-Amz-Content-Sha256=UNSIGNED-PAYLOAD&X-Amz-Credential=ASIATXEKFQQ4YRXWPROC%2F20251229%2Feu-west-1%2Fs3%2Faws4_request&X-Amz-Date=20251229T101617Z&X-Amz-Expires=3600&X-Amz-Security-Token=IQoJb3JpZ2luX2VjENH%2F%2F%2F%2F%2F%2F%2F%2F%2F%2FwEaCWV1LXdlc3QtMSJGMEQCIHBw2I7AcWw%2FiBkuaA2n6hYWVzymE%2B8eFI2H2f2BNaCKAiBIXlAS19grOEYfbmbMClICdubxamhlXts7p1FmTcbxOCqJAwia%2F%2F%2F%2F%2F%2F%2F%2F%2F%2F8BEAQaDDI1NTg0MDMyMjYxNyIMXbDOpk%2B7asPF4xAPKt0CJWz6%2FxtrNPHD9VPn9DKJVqWfpExyN7ifq1ucALcRjsqRKnc9qAoHAJsyeuZE88snt2nzLDdwdzbO%2FmkZPMK9Q83kwMdArELAqiBXEuVblYkziv8XD16G%2FtFcyMZgUOp%2FtWWGHkR1vQYDZ7vqqGN5E1B9c0GobvsUv%2B5UDbLjVPp2sGzXjaswDDnAmDz08GYRicOc3EynHqN6rzFatyc1zeHNZpgOmb%2BSbD4Mt4e1c%2FaDyA4Bakoijzo6d4vdfcOM3rP%2Fejj1wm8a3EBuT%2F%2B7Can%2FxRsdjdsM1y29SNz3zcux1cROeMS6v5zhfLm4xkb8loypHXjRN2WiY%2FBtq8Zlkoerzt%2BefQ1J3lwLT1g0iOntw8cuz2eClY%2Fj00Zr6KsEwwUb%2FMFG8P08cnLIBcscfnUOOt7O8taXTT1e46zQsemh%2B7TDdUfguibRQBnElyFCkbVJIQeiwudNf90pADCAiMnKBjqfAff8XDTL7s53sqVxGfi7dMmdKd9noNZXYtTb8yf%2FthYF8eeufLD8sdJsdDYtAW0IF9smGNigvH8fdHBQFaKv6w4rZTOE7TzG5vQY1qSUwFN30GNr3pjoNlbAZa9mL3cjRwMNCAbetGc%2BUiHPqBr4gbYaoLELRs5BsgzMgMrSkG6ouIlVahbgdA4XqQzZxvoO%2BkrIDaBzRXFqET4nvxjzeg%3D%3D&X-Amz-Signature=e6a4e55c013806db1dc63e44c9bccdb9ee6acfc8d981942eb15d95a3a52c02cb&X-Amz-SignedHeaders=host&x-amz-checksum-mode=ENABLED&x-id=GetObject"
+          }
+        }
+      }
+    ]
+  }
+}

@@ -1,0 +1,1784 @@
+
+<!DOCTYPE html>
+
+<html>
+  <head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" /><meta name="generator" content="Docutils 0.17.1: http://docutils.sourceforge.net/" />
+
+    <title>Homework 2: Functions, arrays, and data analysis &#8212; CMSE 201</title>
+    
+  <!-- Loaded before other Sphinx assets -->
+  <link href="../../_static/styles/theme.css?digest=1999514e3f237ded88cf" rel="stylesheet">
+<link href="../../_static/styles/pydata-sphinx-theme.css?digest=1999514e3f237ded88cf" rel="stylesheet">
+
+    
+  <link rel="stylesheet"
+    href="../../_static/vendor/fontawesome/5.13.0/css/all.min.css">
+  <link rel="preload" as="font" type="font/woff2" crossorigin
+    href="../../_static/vendor/fontawesome/5.13.0/webfonts/fa-solid-900.woff2">
+  <link rel="preload" as="font" type="font/woff2" crossorigin
+    href="../../_static/vendor/fontawesome/5.13.0/webfonts/fa-brands-400.woff2">
+
+    <link rel="stylesheet" type="text/css" href="../../_static/pygments.css" />
+    <link rel="stylesheet" href="../../_static/styles/sphinx-book-theme.css?digest=5115cc725059bd94278eecd172e13a965bf8f5a9" type="text/css" />
+    <link rel="stylesheet" type="text/css" href="../../_static/togglebutton.css" />
+    <link rel="stylesheet" type="text/css" href="../../_static/copybutton.css" />
+    <link rel="stylesheet" type="text/css" href="../../_static/mystnb.css" />
+    <link rel="stylesheet" type="text/css" href="../../_static/sphinx-thebe.css" />
+    <link rel="stylesheet" type="text/css" href="../../_static/design-style.b7bb847fb20b106c3d81b95245e65545.min.css" />
+    
+  <!-- Pre-loaded scripts that we'll load fully later -->
+  <link rel="preload" as="script" href="../../_static/scripts/pydata-sphinx-theme.js?digest=1999514e3f237ded88cf">
+
+    <script data-url_root="../../" id="documentation_options" src="../../_static/documentation_options.js"></script>
+    <script src="../../_static/jquery.js"></script>
+    <script src="../../_static/underscore.js"></script>
+    <script src="../../_static/doctools.js"></script>
+    <script src="../../_static/clipboard.min.js"></script>
+    <script src="../../_static/copybutton.js"></script>
+    <script src="../../_static/scripts/sphinx-book-theme.js?digest=9c920249402e914e316237a7dbc6769907cce411"></script>
+    <script>let toggleHintShow = 'Click to show';</script>
+    <script>let toggleHintHide = 'Click to hide';</script>
+    <script>let toggleOpenOnPrint = 'true';</script>
+    <script src="../../_static/togglebutton.js"></script>
+    <script>var togglebuttonSelector = '.toggle, .admonition.dropdown, .tag_hide_input div.cell_input, .tag_hide-input div.cell_input, .tag_hide_output div.cell_output, .tag_hide-output div.cell_output, .tag_hide_cell.cell, .tag_hide-cell.cell';</script>
+    <script src="../../_static/design-tabs.js"></script>
+    <script>const THEBE_JS_URL = "https://unpkg.com/thebe@0.8.2/lib/index.js"
+const thebe_selector = ".thebe,.cell"
+const thebe_selector_input = "pre"
+const thebe_selector_output = ".output, .cell_output"
+</script>
+    <script async="async" src="../../_static/sphinx-thebe.js"></script>
+    <script>window.MathJax = {"options": {"processHtmlClass": "tex2jax_process|mathjax_process|math|output_area"}}</script>
+    <script defer="defer" src="https://cdn.jsdelivr.net/npm/mathjax@3/es5/tex-mml-chtml.js"></script>
+    <link rel="shortcut icon" href="../../_static/cmse_fav.ico"/>
+    <link rel="index" title="Index" href="../../genindex.html" />
+    <link rel="search" title="Search" href="../../search.html" />
+    <link rel="next" title="Homework 3: Analyzing, modeling, and visualizing data with Pandas and conceptualizing compartmental models" href="../Homework_03/HW3_grapevines_STUDENT.html" />
+    <link rel="prev" title="Homework 1: Python fundamentals" href="../Homework_01/HW_01_PythonFundamentals-STUDENT.html" />
+    <meta name="viewport" content="width=device-width, initial-scale=1" />
+    <meta name="docsearch:language" content="None">
+    
+
+    <!-- Google Analytics -->
+    
+  </head>
+  <body data-spy="scroll" data-target="#bd-toc-nav" data-offset="60">
+<!-- Checkboxes to toggle the left sidebar -->
+<input type="checkbox" class="sidebar-toggle" name="__navigation" id="__navigation" aria-label="Toggle navigation sidebar">
+<label class="overlay overlay-navbar" for="__navigation">
+    <div class="visually-hidden">Toggle navigation sidebar</div>
+</label>
+<!-- Checkboxes to toggle the in-page toc -->
+<input type="checkbox" class="sidebar-toggle" name="__page-toc" id="__page-toc" aria-label="Toggle in-page Table of Contents">
+<label class="overlay overlay-pagetoc" for="__page-toc">
+    <div class="visually-hidden">Toggle in-page Table of Contents</div>
+</label>
+<!-- Headers at the top -->
+<div class="announcement header-item noprint"></div>
+<div class="header header-item noprint"></div>
+
+    
+    <div class="container-fluid" id="banner"></div>
+
+    
+
+    <div class="container-xl">
+      <div class="row">
+          
+<!-- Sidebar -->
+<div class="bd-sidebar noprint" id="site-navigation">
+    <div class="bd-sidebar__content">
+        <div class="bd-sidebar__top"><div class="navbar-brand-box">
+    <a class="navbar-brand text-wrap" href="../../index.html">
+      
+        <!-- `logo` is deprecated in Sphinx 4.0, so remove this when we stop supporting 3 -->
+        
+      
+      
+      <img src="../../_static/logo.png" class="logo" alt="logo">
+      
+      
+      <h1 class="site-logo" id="site-title">CMSE 201</h1>
+      
+    </a>
+</div><form class="bd-search d-flex align-items-center" action="../../search.html" method="get">
+  <i class="icon fas fa-search"></i>
+  <input type="search" class="form-control" name="q" id="search-input" placeholder="Search the docs ..." aria-label="Search the docs ..." autocomplete="off" >
+</form><nav class="bd-links" id="bd-docs-nav" aria-label="Main">
+    <div class="bd-toc-item active">
+        <p aria-level="2" class="caption" role="heading">
+ <span class="caption-text">
+  Course Materials
+ </span>
+</p>
+<ul class="nav bd-sidenav">
+ <li class="toctree-l1 has-children">
+  <a class="reference internal" href="../../Course_Materials-201/CourseDocuments.html">
+   Important Course information
+  </a>
+  <input class="toctree-checkbox" id="toctree-checkbox-1" name="toctree-checkbox-1" type="checkbox"/>
+  <label for="toctree-checkbox-1">
+   <i class="fas fa-chevron-down">
+   </i>
+  </label>
+  <ul>
+   <li class="toctree-l2">
+    <a class="reference internal" href="../../Course_Materials-201/CMSE201-Syllabus.html">
+     Syllabus
+    </a>
+   </li>
+   <li class="toctree-l2">
+    <a class="reference internal" href="../../Course_Materials-201/CMSE201-Schedule.html">
+     Course Schedule
+    </a>
+   </li>
+   <li class="toctree-l2">
+    <a class="reference internal" href="../../Course_Materials-201/SoftwareSetupGuide.html">
+     Software Setup Guide
+    </a>
+   </li>
+   <li class="toctree-l2">
+    <a class="reference internal" href="../../Course_Materials-201/classroom_participation.html">
+     Classroom Participation
+    </a>
+   </li>
+  </ul>
+ </li>
+</ul>
+<p aria-level="2" class="caption" role="heading">
+ <span class="caption-text">
+  Day 01
+ </span>
+</p>
+<ul class="nav bd-sidenav">
+ <li class="toctree-l1">
+  <a class="reference internal" href="../../Day-01/Day-01_In-Class_SortingAlgorithm-STUDENT.html">
+   Day 1 In-Class Assignment: Introductions and Sorting Algorithms
+  </a>
+ </li>
+</ul>
+<p aria-level="2" class="caption" role="heading">
+ <span class="caption-text">
+  Day 02
+ </span>
+</p>
+<ul class="nav bd-sidenav">
+ <li class="toctree-l1">
+  <a class="reference internal" href="../../Day-02/Day-02_Pre-Class_IntroToPython-STUDENT.html">
+   Day 2 Pre-class Assignment: Intro to Python
+  </a>
+ </li>
+ <li class="toctree-l1">
+  <a class="reference internal" href="../../Day-02/Day-02_In-Class_OrderOfMagnitudeModeling-STUDENT.html">
+   Day 2 In-class Assignment: Order of Magnitude Modeling
+  </a>
+ </li>
+</ul>
+<p aria-level="2" class="caption" role="heading">
+ <span class="caption-text">
+  Day 03
+ </span>
+</p>
+<ul class="nav bd-sidenav">
+ <li class="toctree-l1">
+  <a class="reference internal" href="../../Day-03/Day-03_Pre-Class_ListsAndLoops-STUDENT.html">
+   Day 3: Pre-Class Assignment: Lists and Loops
+  </a>
+ </li>
+ <li class="toctree-l1">
+  <a class="reference internal" href="../../Day-03/Day-03_In-Class_ListsLoopsAndSaving-STUDENT.html">
+   Day 3 In-class Assignment: The power of compound interest
+  </a>
+ </li>
+</ul>
+<p aria-level="2" class="caption" role="heading">
+ <span class="caption-text">
+  Day 04
+ </span>
+</p>
+<ul class="nav bd-sidenav">
+ <li class="toctree-l1">
+  <a class="reference internal" href="../../Day-04/Day_04_PreClass_DataAlgorithmicBias-STUDENT.html">
+   Day 4 Pre-class Assignment: Introduction to Data Ethics: Data and Algorithmic Bias
+  </a>
+ </li>
+ <li class="toctree-l1">
+  <a class="reference internal" href="../../Day-04/Day_04_In_Class_DataAlgorithmicBias-STUDENT.html">
+   Day 4 In-class Assignment: Data and Algorithmic Bias, Academic Integrity, and Coding Best Practices
+  </a>
+ </li>
+</ul>
+<p aria-level="2" class="caption" role="heading">
+ <span class="caption-text">
+  Day 05
+ </span>
+</p>
+<ul class="nav bd-sidenav">
+ <li class="toctree-l1">
+  <a class="reference internal" href="../../Day-05/Day-05_Pre-Class_IfStatementsAndFunctions-STUDENT.html">
+   Day 5 Pre-class Assignment: Boolean logic, if statements, and an introduction to functions
+  </a>
+ </li>
+ <li class="toctree-l1">
+  <a class="reference internal" href="../../Day-05/Day-05_In-Class_IfStatementsAndFunctions-STUDENT.html">
+   Day 5 In-class Assignment: Savings for Everyone
+  </a>
+ </li>
+</ul>
+<p aria-level="2" class="caption" role="heading">
+ <span class="caption-text">
+  Day 06
+ </span>
+</p>
+<ul class="nav bd-sidenav">
+ <li class="toctree-l1">
+  <a class="reference internal" href="../../Day-06/Day-06_Pre-Class_MoreFunctions-STUDENT.html">
+   Day 6 Pre-class Assignment: Thinking more about functions
+  </a>
+ </li>
+ <li class="toctree-l1">
+  <a class="reference internal" href="../../Day-06/Day-06_In-Class_FunctionsAndSquirrels-STUDENT.html">
+   Day 6 In Class Assignment: A Scurry of Squirrels in Central Park
+  </a>
+ </li>
+</ul>
+<p aria-level="2" class="caption" role="heading">
+ <span class="caption-text">
+  Day 07
+ </span>
+</p>
+<ul class="nav bd-sidenav">
+ <li class="toctree-l1">
+  <a class="reference internal" href="../../Day-07/Day-07_Pre-Class_ReflectingOnUnderstanding-STUDENT.html">
+   Day 7 Pre-Class Assignment: A reflection on what you’ve learned so far!
+  </a>
+ </li>
+ <li class="toctree-l1">
+  <a class="reference internal" href="../../Day-07/Day-07_In-Class_ReviewingAndPracticingConcepts-STUDENT.html">
+   Day 7 In-class Assignment: Reviewing and practicing prior concepts
+  </a>
+ </li>
+ <li class="toctree-l1">
+  <a class="reference internal" href="../../Day-07/Day-07_In-Class_ReviewingAndPracticingConcepts-Solutions.html">
+   Day 7 In-class Assignment: Reviewing and practicing prior concepts (Solutions)
+  </a>
+ </li>
+ <li class="toctree-l1">
+  <a class="reference internal" href="../../Day-07/Debugging-STUDENT.html">
+   Practice with Debugging
+  </a>
+ </li>
+</ul>
+<p aria-level="2" class="caption" role="heading">
+ <span class="caption-text">
+  Day 08
+ </span>
+</p>
+<ul class="nav bd-sidenav">
+ <li class="toctree-l1">
+  <a class="reference internal" href="../../Day-08/Day-08_Pre-Class_ModulesMathAndPlots-STUDENT.html">
+   Day 8 Pre-Class Assignment: Python Modules: Numpy and Plots
+  </a>
+ </li>
+ <li class="toctree-l1">
+  <a class="reference internal" href="../../Day-08/Day-08_In-Class_MathAndPlotting-STUDENT.html">
+   Day 8 In-class Assignment: Visualizing population growth
+  </a>
+ </li>
+</ul>
+<p aria-level="2" class="caption" role="heading">
+ <span class="caption-text">
+  Day 09
+ </span>
+</p>
+<ul class="nav bd-sidenav">
+ <li class="toctree-l1">
+  <a class="reference internal" href="../../Day-09/Day-09_Pre-Class_IntroToNumPy-STUDENT.html">
+   Day 9 Pre-Class: Introduction to NumPy
+  </a>
+ </li>
+ <li class="toctree-l1">
+  <a class="reference external" href="https://raw.githubusercontent.com/msu-cmse-courses/cmse201-supplemental/main/ICA_datasets/michigan_pop.csv">
+   michigan_pop.csv
+  </a>
+ </li>
+ <li class="toctree-l1">
+  <a class="reference internal" href="../../Day-09/Day-09_In-Class_NumPyWithTheGreatLakes-STUDENT.html">
+   Day 9 In-class Assignment: Exploring Great Lakes Water Levels using NumPy
+  </a>
+ </li>
+ <li class="toctree-l1">
+  <a class="reference external" href="https://raw.githubusercontent.com/msu-cmse-courses/cmse201-supplemental/main/ICA_datasets/lake_erie.csv">
+   lake_erie.csv
+  </a>
+ </li>
+ <li class="toctree-l1">
+  <a class="reference external" href="https://raw.githubusercontent.com/msu-cmse-courses/cmse201-supplemental/main/ICA_datasets/lake_michigan_huron.csv">
+   lake_michigan_huron.csv
+  </a>
+ </li>
+ <li class="toctree-l1">
+  <a class="reference external" href="https://raw.githubusercontent.com/msu-cmse-courses/cmse201-supplemental/main/ICA_datasets/lake_ontario.csv">
+   lake_ontario.csv
+  </a>
+ </li>
+ <li class="toctree-l1">
+  <a class="reference external" href="https://raw.githubusercontent.com/msu-cmse-courses/cmse201-supplemental/main/ICA_datasets/lake_superior.csv">
+   lake_superior.csv
+  </a>
+ </li>
+</ul>
+<p aria-level="2" class="caption" role="heading">
+ <span class="caption-text">
+  Day 10
+ </span>
+</p>
+<ul class="nav bd-sidenav">
+ <li class="toctree-l1">
+  <a class="reference internal" href="../../Day-10/Day-10_Pre-Class_Pandas-STUDENT.html">
+   Day 10 Pre-class Assignment: Computational Models Overview and The Pandas Data Analysis Library
+  </a>
+ </li>
+ <li class="toctree-l1">
+  <a class="reference external" href="https://raw.githubusercontent.com/msu-cmse-courses/cmse201-supplemental/main/Day-09/heart_disease_data.csv">
+   heart_disease_data.csv
+  </a>
+ </li>
+ <li class="toctree-l1">
+  <a class="reference internal" href="../../Day-10/Day-10_In-Class_GDP-STUDENT.html">
+   Day 10 In-Class: Cleaning and Analyzing Economic Data
+  </a>
+ </li>
+ <li class="toctree-l1">
+  <a class="reference external" href="https://raw.githubusercontent.com/msu-cmse-courses/cmse201-supplemental/main/ICA_datasets/API_NY.GDP.MKTP.CD_DS2_en_csv_v2_4770391.csv">
+   API_NY.GDP.MKTP.CD_DS2_en_csv_v2_4770391.csv
+  </a>
+ </li>
+</ul>
+<p aria-level="2" class="caption" role="heading">
+ <span class="caption-text">
+  Day 11
+ </span>
+</p>
+<ul class="nav bd-sidenav">
+ <li class="toctree-l1">
+  <a class="reference internal" href="../../Day-11/Day-11_Pre-Class_Masking-STUDENT.html">
+   Day 11 Pre-class Assignment: Normal Distributions, Masking, and Log Plots
+  </a>
+ </li>
+ <li class="toctree-l1">
+  <a class="reference external" href="https://raw.githubusercontent.com/msu-cmse-courses/cmse201-supplemental/main/ICA_datasets/GDP_Cleaned.csv">
+   GDP_Cleaned.csv
+  </a>
+ </li>
+ <li class="toctree-l1">
+  <a class="reference internal" href="../../Day-11/Day-11_In-Class_Flint-STUDENT.html">
+   Day 11 In-class Assignment: Get the Lead Out: Understanding The Water Crisis in Flint, MI
+  </a>
+ </li>
+ <li class="toctree-l1">
+  <a class="reference external" href="https://raw.githubusercontent.com/msu-cmse-courses/cmse201-supplemental/main/ICA_datasets/flint_water_data.csv">
+   flint_water_data.csv
+  </a>
+ </li>
+</ul>
+<p aria-level="2" class="caption" role="heading">
+ <span class="caption-text">
+  Day 12
+ </span>
+</p>
+<ul class="nav bd-sidenav">
+ <li class="toctree-l1">
+  <a class="reference internal" href="../../Day-12/Day-12_Pre-Class_Data_File_Formats_Manipulation-STUDENT.html">
+   Day 12 Pre-Class Assignment: Overview of data and file formats
+  </a>
+ </li>
+ <li class="toctree-l1">
+  <a class="reference external" href="https://raw.githubusercontent.com/msu-cmse-courses/cmse201-supplemental/main/Day-11/us_pop_by_state_2010_2011.csv">
+   us_pop_by_state_2010_2011.csv
+  </a>
+ </li>
+ <li class="toctree-l1">
+  <a class="reference external" href="https://raw.githubusercontent.com/msu-cmse-courses/cmse201-supplemental/main/Day-11/us_pop_by_state_2012_2013_encoding_utf-16be.csv">
+   us_pop_by_state_2012_2013_encoding_utf-16be.csv
+  </a>
+ </li>
+ <li class="toctree-l1">
+  <a class="reference external" href="https://raw.githubusercontent.com/msu-cmse-courses/cmse201-supplemental/main/Day-11/us_pop_by_state_2014_2015_windows_linefeed.csv">
+   us_pop_by_state_2014_2015_windows_linefeed.csv
+  </a>
+ </li>
+ <li class="toctree-l1">
+  <a class="reference external" href="https://raw.githubusercontent.com/msu-cmse-courses/cmse201-supplemental/main/Day-11/us_pop_by_state_2016a.csv">
+   us_pop_by_state_2016a.csv
+  </a>
+ </li>
+ <li class="toctree-l1">
+  <a class="reference external" href="https://raw.githubusercontent.com/msu-cmse-courses/cmse201-supplemental/main/Day-11/us_pop_by_state_2017a.yaff">
+   us_pop_by_state2017a.yaff
+  </a>
+ </li>
+ <li class="toctree-l1">
+  <a class="reference external" href="https://raw.githubusercontent.com/msu-cmse-courses/cmse201-supplemental/main/Day-11/us_pop_by_state_2018_2019.bin">
+   us_pop_by_state_2018_2019.bin
+  </a>
+ </li>
+ <li class="toctree-l1">
+  <a class="reference internal" href="../../Day-12/Day-12_In-Class_Data_File_Formats_Manipulation-STUDENT.html">
+   Day 12 In-Class: Overview of data and file formats; US Population and Representation
+  </a>
+ </li>
+</ul>
+<p aria-level="2" class="caption" role="heading">
+ <span class="caption-text">
+  Day 13
+ </span>
+</p>
+<ul class="nav bd-sidenav">
+ <li class="toctree-l1">
+  <a class="reference internal" href="../../Day-13/Day-13_Pre-Class_Online_Resources-STUDENT.html">
+   Day 13 Pre-class Assignment: Finding resources online and tinkering with code
+  </a>
+ </li>
+ <li class="toctree-l1">
+  <a class="reference internal" href="../../Day-13/Day-13_In-Class_Online_Resources-STUDENT.html">
+   Day 13 In-Class: Using online resources (code and data)
+  </a>
+ </li>
+</ul>
+<p aria-level="2" class="caption" role="heading">
+ <span class="caption-text">
+  Day 14
+ </span>
+</p>
+<ul class="nav bd-sidenav">
+ <li class="toctree-l1">
+  <a class="reference internal" href="../../Day-14/Day-14_Pre-Class_Evaluating_Fits-STUDENT.html">
+   Day 14 Pre-Class Assignment: Making Predictions Using Data
+  </a>
+ </li>
+ <li class="toctree-l1">
+  <a class="reference internal" href="../../Day-14/Day-14_In-Class_Evaluating_Fits-STUDENT.html">
+   Day 14 In-Class Assignment: Evaluating Models
+  </a>
+ </li>
+</ul>
+<p aria-level="2" class="caption" role="heading">
+ <span class="caption-text">
+  Day 15
+ </span>
+</p>
+<ul class="nav bd-sidenav">
+ <li class="toctree-l1">
+  <a class="reference internal" href="../../Day-15/Day-15_Pre-Class_CurveFitting-STUDENT.html">
+   Day 15 Pre-Class Assignment: Fitting functions to data (curve-fitting) and thinking more about models
+  </a>
+ </li>
+ <li class="toctree-l1">
+  <a class="reference internal" href="../../Day-15/Day-15_In-Class_FittingCurves-STUDENT.html">
+   Day 15 In-Class Assignment: (Thoughtfully) fitting models to data
+  </a>
+ </li>
+ <li class="toctree-l1">
+  <a class="reference external" href="https://raw.githubusercontent.com/msu-cmse-courses/cmse201-S22-data/main/Day-14/pop200.csv">
+   pop200.csv
+  </a>
+ </li>
+ <li class="toctree-l1">
+  <a class="reference external" href="https://raw.githubusercontent.com/msu-cmse-courses/cmse201-S22-data/main/Day-14/pop300.csv">
+   pop300.csv
+  </a>
+ </li>
+</ul>
+<p aria-level="2" class="caption" role="heading">
+ <span class="caption-text">
+  Day 16
+ </span>
+</p>
+<ul class="nav bd-sidenav">
+ <li class="toctree-l1">
+  <a class="reference internal" href="../../Day-16/Day-16-Intro_to_ODEs_Pre-Class-STUDENT.html">
+   Day 16 Pre-class Assignment: Introduction to Modeling with Ordinary Differential Equations
+  </a>
+ </li>
+ <li class="toctree-l1">
+  <a class="reference internal" href="../../Day-16/Day-16-Intro_to_ODEs_In-Class_STUDENT.html">
+   Day 16: In-class Assignment: Introduction to Modeling with ODEs
+  </a>
+ </li>
+</ul>
+<p aria-level="2" class="caption" role="heading">
+ <span class="caption-text">
+  Day 17
+ </span>
+</p>
+<ul class="nav bd-sidenav">
+ <li class="toctree-l1">
+  <a class="reference internal" href="../../Day-17/Day-17_Pre-Class_ModelingWithODEs-STUDENT.html">
+   Day 17: Pre-class Assignment: Modeling with Ordinary Differential Equations
+  </a>
+ </li>
+ <li class="toctree-l1">
+  <a class="reference internal" href="../../Day-17/Day-17_In-Class_ModelingWithODEs-STUDENT.html">
+   Day 17: In-class Assignment: Modeling with ODEs
+  </a>
+ </li>
+</ul>
+<p aria-level="2" class="caption" role="heading">
+ <span class="caption-text">
+  Day 18
+ </span>
+</p>
+<ul class="nav bd-sidenav">
+ <li class="toctree-l1">
+  <a class="reference internal" href="../../Day-18/Day-18_Pre-Class_ViralKinetics-STUDENT.html">
+   Day 18 Pre-Class: Viral Kinetics
+  </a>
+ </li>
+ <li class="toctree-l1">
+  <a class="reference internal" href="../../Day-18/Day-18_In-Class_CompartmentalModeling-STUDENT.html">
+   Day 18 In-class Assignment: Building Compartmental Models
+  </a>
+ </li>
+</ul>
+<p aria-level="2" class="caption" role="heading">
+ <span class="caption-text">
+  Day 19
+ </span>
+</p>
+<ul class="nav bd-sidenav">
+ <li class="toctree-l1">
+  <a class="reference internal" href="../../Day-19/Day-19_Pre-Class_Zombies-STUDENT.html">
+   Day 19 Pre-class Assignment: ZOMBIES!!
+  </a>
+ </li>
+ <li class="toctree-l1">
+  <a class="reference internal" href="../../Day-19/Day-19_In-Class_CompartmentsWithSolveIVP-STUDENT.html">
+   Day 19 In-Class Assignment: Compartmental Modeling, moving from the model to the code
+  </a>
+ </li>
+</ul>
+<p aria-level="2" class="caption" role="heading">
+ <span class="caption-text">
+  Day 20
+ </span>
+</p>
+<ul class="nav bd-sidenav">
+ <li class="toctree-l1">
+  <a class="reference internal" href="../../Day-20/Day-20_Pre-Class_IntroToDataVisualization-STUDENT.html">
+   Day 20 Pre-class Assignment: Introduction to Data Visualization
+  </a>
+ </li>
+ <li class="toctree-l1">
+  <a class="reference internal" href="../../Day-20/Day-20_In-Class_IntroToDataVisualization-STUDENT.html">
+   Day 20 In-Class: Introduction to Data Visualization
+  </a>
+ </li>
+</ul>
+<p aria-level="2" class="caption" role="heading">
+ <span class="caption-text">
+  Day 21
+ </span>
+</p>
+<ul class="nav bd-sidenav">
+ <li class="toctree-l1">
+  <a class="reference internal" href="../../Day-21/Day-21_Pre-Class_2DNumPyArrays-STUDENT.html">
+   Day 21 Pre-Class: 2D NumPy Arrays
+  </a>
+ </li>
+ <li class="toctree-l1">
+  <a class="reference external" href="https://raw.githubusercontent.com/msu-cmse-courses/cmse201-supplemental/main/Day-17/PCA_files/cars.csv">
+   cars.csv
+  </a>
+ </li>
+ <li class="toctree-l1">
+  <a class="reference external" href="https://github.com/msu-cmse-courses/cmse201-supplemental/raw/main/Day-17/PCA_files/example.jpeg">
+   example.jpeg
+  </a>
+ </li>
+ <li class="toctree-l1">
+  <a class="reference internal" href="../../Day-21/Day-21_In-Class_2DImageAnalysis-STUDENT.html">
+   Day 21 In-Class Assignment: Image Analysis
+  </a>
+ </li>
+ <li class="toctree-l1">
+  <a class="reference external" href="https://raw.githubusercontent.com/msu-cmse-courses/cmse201-supplemental/main/Day-17/ICA_files/beach.jpeg">
+   beach.jpeg
+  </a>
+ </li>
+ <li class="toctree-l1">
+  <a class="reference external" href="https://raw.githubusercontent.com/msu-cmse-courses/cmse201-supplemental/main/Day-17/ICA_files/landscape.jpeg">
+   landscape.jpeg
+  </a>
+ </li>
+ <li class="toctree-l1">
+  <a class="reference external" href="https://raw.githubusercontent.com/msu-cmse-courses/cmse201-supplemental/main/Day-17/ICA_files/zebra.png">
+   zebra.png
+  </a>
+ </li>
+</ul>
+<p aria-level="2" class="caption" role="heading">
+ <span class="caption-text">
+  Day 22
+ </span>
+</p>
+<ul class="nav bd-sidenav">
+ <li class="toctree-l1">
+  <a class="reference internal" href="../../Day-22/Day-22_Pre-Class_ABMForestFire-STUDENT.html">
+   Day 22 Pre-class: Agent-based models and forest fires
+  </a>
+ </li>
+ <li class="toctree-l1">
+  <a class="reference internal" href="../../Day-22/Day-22_In-Class_ForestFiresPartI-STUDENT.html">
+   Day 22 Part 1 In-class Assignment: Modeling forest fires with an Agent-based Model
+  </a>
+ </li>
+</ul>
+<p aria-level="2" class="caption" role="heading">
+ <span class="caption-text">
+  Day 23
+ </span>
+</p>
+<ul class="nav bd-sidenav">
+ <li class="toctree-l1">
+  <a class="reference internal" href="../../Day-23/Day-23_Pre-Class_MoreNumPyArrayManipulation-STUDENT.html">
+   Day 23 Pre-class: More practice manipulating 2D Numpy Arrays
+  </a>
+ </li>
+ <li class="toctree-l1">
+  <a class="reference internal" href="../../Day-23/Day-23_In-Class_ForestFiresPartII-STUDENT.html">
+   Day 23 In-class Assignment: Modeling forest fires with an Agent-based Model (Part II)
+  </a>
+ </li>
+</ul>
+<p aria-level="2" class="caption" role="heading">
+ <span class="caption-text">
+  Day 24
+ </span>
+</p>
+<ul class="nav bd-sidenav">
+ <li class="toctree-l1">
+  <a class="reference internal" href="../../Day-24/Day-24_Pre-Class_ProjectWorkDay-STUDENT.html">
+   Day 24 Pre-class: Project Draft Presentation Preparation
+  </a>
+ </li>
+ <li class="toctree-l1">
+  <a class="reference internal" href="../../Day-24/Day-24_In-Class_ProjectWorkDay-STUDENT.html">
+   Day 24 In-class Assignment: Project Work Day
+  </a>
+ </li>
+</ul>
+<p aria-level="2" class="caption" role="heading">
+ <span class="caption-text">
+  Day 25
+ </span>
+</p>
+<ul class="nav bd-sidenav">
+ <li class="toctree-l1">
+  <a class="reference internal" href="../../Day-25/Day-25_Pre-Class_Climate-STUDENT.html">
+   Day 25 Pre-class:  Global warming and climate modeling
+  </a>
+ </li>
+ <li class="toctree-l1">
+  <a class="reference internal" href="../../Day-25/Day-25_In-Class_Climate-STUDENT.html">
+   Day 25 In-class Assignment: Analyzing climate data
+  </a>
+ </li>
+ <li class="toctree-l1">
+  <a class="reference external" href="https://raw.githubusercontent.com/msu-cmse-courses/cmse201-supplemental/main/Day-22/GLB.Ts.csv">
+   GLB.Ts.csv
+  </a>
+ </li>
+ <li class="toctree-l1">
+  <a class="reference external" href="https://raw.githubusercontent.com/msu-cmse-courses/cmse201-supplemental/main/Day-22/bintanja2008.txt">
+   bintanja2008.txt
+  </a>
+ </li>
+ <li class="toctree-l1">
+  <a class="reference external" href="https://raw.githubusercontent.com/msu-cmse-courses/cmse201-supplemental/main/Day-22/ch4_annmean_gl.txt">
+   ch4_annmean_gl.txt
+  </a>
+ </li>
+ <li class="toctree-l1">
+  <a class="reference external" href="https://raw.githubusercontent.com/msu-cmse-courses/cmse201-supplemental/main/Day-22/co2_mm_mlo.txt">
+   co2_mm_mlo.txt
+  </a>
+ </li>
+ <li class="toctree-l1">
+  <a class="reference external" href="https://raw.githubusercontent.com/msu-cmse-courses/cmse201-supplemental/main/Day-22/vostok-ch4nat.txt">
+   vostok-ch4nat.txt
+  </a>
+ </li>
+ <li class="toctree-l1">
+  <a class="reference external" href="https://raw.githubusercontent.com/msu-cmse-courses/cmse201-supplemental/main/Day-22/vostok-co2nat.txt">
+   vostok-co2nat.txt
+  </a>
+ </li>
+ <li class="toctree-l1">
+  <a class="reference external" href="https://raw.githubusercontent.com/msu-cmse-courses/cmse201-supplemental/main/Day-22/vostok-deutnat.txt">
+   vostok-deutnat.txt
+  </a>
+ </li>
+</ul>
+<p aria-level="2" class="caption" role="heading">
+ <span class="caption-text">
+  Homework
+ </span>
+</p>
+<ul class="current nav bd-sidenav">
+ <li class="toctree-l1">
+  <a class="reference internal" href="../Homework_01/HW_01_PythonFundamentals-STUDENT.html">
+   Homework 1 - Python Fundamentals
+  </a>
+ </li>
+ <li class="toctree-l1 current active">
+  <a class="current reference internal" href="#">
+   Homework 2 - Functions, Arrays, and Data Analysis
+  </a>
+ </li>
+ <li class="toctree-l1">
+  <a class="reference external" href="https://raw.githubusercontent.com/msu-cmse-courses/cmse201-supplemental/main/Homework/random_lists.txt">
+   random_lists.txt
+  </a>
+ </li>
+ <li class="toctree-l1">
+  <a class="reference external" href="https://raw.githubusercontent.com/msu-cmse-courses/cmse201-supplemental/main/Homework/endangered_species_HW2.csv">
+   endangered_species_HW2.csv
+  </a>
+ </li>
+ <li class="toctree-l1">
+  <a class="reference internal" href="../Homework_03/HW3_grapevines_STUDENT.html">
+   Homework 3: Analyzing, modeling, and visualizing data with Pandas and conceptualizing compartmental models
+  </a>
+ </li>
+ <li class="toctree-l1">
+  <a class="reference external" href="https://raw.githubusercontent.com/msu-cmse-courses/cmse201-supplemental/main/Homework/grape_harvest.csv">
+   grape_harvest.csv
+  </a>
+ </li>
+ <li class="toctree-l1">
+  <a class="reference internal" href="../Homework_04/HW4_FS2023-STUDENT.html">
+   Homework 4 - Compartmental Models + Data Visualization
+  </a>
+ </li>
+ <li class="toctree-l1">
+  <a class="reference external" href="https://raw.githubusercontent.com/msu-cmse-courses/cmse201-supplemental/main/Homework/estimated_crimes_1979_2022.csv">
+   estimated_crimes_1979_2022.csv
+  </a>
+ </li>
+ <li class="toctree-l1">
+  <a class="reference internal" href="../Homework_05/HW-05_STUDENT.html">
+   Homework 5: 2D Arrays and Agent-based Modeling (EXTRA CREDIT)
+  </a>
+ </li>
+ <li class="toctree-l1">
+  <a class="reference external" href="https://raw.githubusercontent.com/msu-cmse-courses/cmse201-supplemental/main/blurred-scream.png">
+   blurred-scream.png
+  </a>
+ </li>
+ <li class="toctree-l1">
+  <a class="reference external" href="https://raw.githubusercontent.com/msu-cmse-courses/cmse201-supplemental/main/scream.jpg">
+   scream.jpg
+  </a>
+ </li>
+</ul>
+<p aria-level="2" class="caption" role="heading">
+ <span class="caption-text">
+  Code Portfolio
+ </span>
+</p>
+<ul class="nav bd-sidenav">
+ <li class="toctree-l1">
+  <a class="reference internal" href="../Code_Portfolio/Code_Portfolio_Assignment.html">
+   Code Portfolio Assignment
+  </a>
+ </li>
+ <li class="toctree-l1">
+  <a class="reference internal" href="../Code_Portfolio/Code_Portfolio_Example.html">
+   Code Portfolio Example
+  </a>
+ </li>
+</ul>
+<p aria-level="2" class="caption" role="heading">
+ <span class="caption-text">
+  Semester Project
+ </span>
+</p>
+<ul class="nav bd-sidenav">
+ <li class="toctree-l1">
+  <a class="reference internal" href="../../Project_Materials/CMSE201_SemesterProjectDetails.html">
+   Semester Project Details
+  </a>
+ </li>
+ <li class="toctree-l1">
+  <a class="reference internal" href="../../Project_Materials/Project_Plan_Check-in.html">
+   Project Checkpoint
+  </a>
+ </li>
+ <li class="toctree-l1">
+  <a class="reference internal" href="../../Project_Materials/CMSE201_FinalProjectTemplate.html">
+   CMSE 201 Final Project Template
+  </a>
+ </li>
+ <li class="toctree-l1">
+  <a class="reference external" href="https://raw.githubusercontent.com/msu-cmse-courses/cmse201-supplemental/main/Projects/example_projects.zip">
+   Zip file of example projects
+  </a>
+ </li>
+ <li class="toctree-l1">
+  <a class="reference internal" href="../../Project_Materials/CMSE201FinalProject_RequirementsAndGradingRubric.html">
+   Requirements and Grading Rubric
+  </a>
+ </li>
+ <li class="toctree-l1">
+  <a class="reference external" href="https://github.com/msu-cmse-courses/cmse201-supplemental/raw/main/Projects/Presentation_Evaluation_Rubric.pdf">
+   Presentation Evaluation Rubric
+  </a>
+ </li>
+</ul>
+<p aria-level="2" class="caption" role="heading">
+ <span class="caption-text">
+  Practice Notebooks
+ </span>
+</p>
+<ul class="nav bd-sidenav">
+ <li class="toctree-l1">
+  <a class="reference internal" href="../../Quiz_Prep_Notebooks/PracticeNotebook_IfStatements-STUDENT.html">
+   Practice with:
+   <code class="docutils literal notranslate">
+    <span class="pre">
+     if
+    </span>
+   </code>
+   statements
+  </a>
+ </li>
+ <li class="toctree-l1">
+  <a class="reference internal" href="../../Quiz_Prep_Notebooks/PracticeNotebook_Functions-STUDENT.html">
+   Practice with: functions
+  </a>
+ </li>
+ <li class="toctree-l1">
+  <a class="reference internal" href="../../Quiz_Prep_Notebooks/PracticeNotebook_Matplotlib-STUDENT.html">
+   Practice with:
+   <code class="docutils literal notranslate">
+    <span class="pre">
+     matplotlib
+    </span>
+   </code>
+  </a>
+ </li>
+ <li class="toctree-l1">
+  <a class="reference internal" href="../../Quiz_Prep_Notebooks/PracticeNotebook_Pandas-STUDENT.html">
+   Practice with: Pandas
+  </a>
+ </li>
+ <li class="toctree-l1">
+  <a class="reference external" href="https://raw.githubusercontent.com/msu-cmse-courses/cmse201-supplemental/main/PracticeNotebooks/weather.csv">
+   weather.csv
+  </a>
+ </li>
+ <li class="toctree-l1">
+  <a class="reference internal" href="../../Quiz_Prep_Notebooks/PracticeNotebook_ScipyCurveFit-STUDENT.html">
+   Practice with: SciPy
+   <code class="docutils literal notranslate">
+    <span class="pre">
+     curve_fit
+    </span>
+   </code>
+  </a>
+ </li>
+ <li class="toctree-l1">
+  <a class="reference internal" href="../../Quiz_Prep_Notebooks/PracticeNotebook_CompartmentalModels-STUDENT.html">
+   Practice with: Compartmental Models
+  </a>
+ </li>
+ <li class="toctree-l1">
+  <a class="reference internal" href="../../Quiz_Prep_Notebooks/PracticeNotebook_SolveIVP-STUDENT.html">
+   Practice with:
+   <code class="docutils literal notranslate">
+    <span class="pre">
+     solve_ivp
+    </span>
+   </code>
+  </a>
+ </li>
+</ul>
+
+    </div>
+</nav></div>
+        <div class="bd-sidebar__bottom">
+             <!-- To handle the deprecated key -->
+            
+            <div class="navbar_extra_footer">
+            Theme by the <a href="https://ebp.jupyterbook.org">Executable Book Project</a>
+            </div>
+            
+        </div>
+    </div>
+    <div id="rtd-footer-container"></div>
+</div>
+
+
+          
+
+
+          
+<!-- A tiny helper pixel to detect if we've scrolled -->
+<div class="sbt-scroll-pixel-helper"></div>
+<!-- Main content -->
+<div class="col py-0 content-container">
+    
+    <div class="header-article row sticky-top noprint">
+        
+
+
+
+<div class="col py-1 d-flex header-article-main">
+    <div class="header-article__left">
+        
+        <label for="__navigation"
+  class="headerbtn"
+  data-toggle="tooltip"
+data-placement="right"
+title="Toggle navigation"
+>
+  
+
+<span class="headerbtn__icon-container">
+  <i class="fas fa-bars"></i>
+  </span>
+
+</label>
+
+        
+    </div>
+    <div class="header-article__right">
+<button onclick="toggleFullScreen()"
+  class="headerbtn"
+  data-toggle="tooltip"
+data-placement="bottom"
+title="Fullscreen mode"
+>
+  
+
+<span class="headerbtn__icon-container">
+  <i class="fas fa-expand"></i>
+  </span>
+
+</button>
+
+<div class="menu-dropdown menu-dropdown-download-buttons">
+  <button class="headerbtn menu-dropdown__trigger"
+      aria-label="Download this page">
+      <i class="fas fa-download"></i>
+  </button>
+  <div class="menu-dropdown__content">
+    <ul>
+      <li>
+        <a href="../../_sources/Homework/Homework_02/HW-02-FunctionsArraysAndDataAnalysis-STUDENT.ipynb"
+   class="headerbtn"
+   data-toggle="tooltip"
+data-placement="left"
+title="Download source file"
+>
+  
+
+<span class="headerbtn__icon-container">
+  <i class="fas fa-file"></i>
+  </span>
+<span class="headerbtn__text-container">.ipynb</span>
+</a>
+
+      </li>
+      
+      <li>
+        
+<button onclick="printPdf(this)"
+  class="headerbtn"
+  data-toggle="tooltip"
+data-placement="left"
+title="Print to PDF"
+>
+  
+
+<span class="headerbtn__icon-container">
+  <i class="fas fa-file-pdf"></i>
+  </span>
+<span class="headerbtn__text-container">.pdf</span>
+</button>
+
+      </li>
+      
+    </ul>
+  </div>
+</div>
+<label for="__page-toc"
+  class="headerbtn headerbtn-page-toc"
+  
+>
+  
+
+<span class="headerbtn__icon-container">
+  <i class="fas fa-list"></i>
+  </span>
+
+</label>
+
+    </div>
+</div>
+
+<!-- Table of contents -->
+<div class="col-md-3 bd-toc show noprint">
+    <div class="tocsection onthispage pt-5 pb-3">
+        <i class="fas fa-list"></i> Contents
+    </div>
+    <nav id="bd-toc-nav" aria-label="Page">
+        <ul class="visible nav section-nav flex-column">
+ <li class="toc-h2 nav-item toc-entry">
+  <a class="reference internal nav-link" href="#p-style-text-align-right-put-your-name-here-p">
+   <p style="text-align: right;">
+    ✅
+    <strong>
+     Put your name here
+    </strong>
+   </p>
+  </a>
+ </li>
+ <li class="toc-h2 nav-item toc-entry">
+  <a class="reference internal nav-link" href="#learning-goals">
+   Learning Goals
+  </a>
+  <ul class="nav section-nav flex-column">
+   <li class="toc-h3 nav-item toc-entry">
+    <a class="reference internal nav-link" href="#content-goals">
+     Content Goals
+    </a>
+   </li>
+   <li class="toc-h3 nav-item toc-entry">
+    <a class="reference internal nav-link" href="#practice-goals">
+     Practice Goals
+    </a>
+   </li>
+  </ul>
+ </li>
+ <li class="toc-h2 nav-item toc-entry">
+  <a class="reference internal nav-link" href="#assignment-instructions">
+   Assignment instructions
+  </a>
+ </li>
+ <li class="toc-h2 nav-item toc-entry">
+  <a class="reference internal nav-link" href="#version-check">
+   Version check
+  </a>
+ </li>
+ <li class="toc-h2 nav-item toc-entry">
+  <a class="reference internal nav-link" href="#writing-functions-in-python-20-points">
+   1. Writing functions in Python (20 points)
+  </a>
+  <ul class="nav section-nav flex-column">
+   <li class="toc-h3 nav-item toc-entry">
+    <a class="reference internal nav-link" href="#question-1-1-4-points-writing-a-function-to-sum-elements-in-a-list">
+     ✅  Question 1.1 (4 points): Writing a function to sum elements in a list
+    </a>
+   </li>
+   <li class="toc-h3 nav-item toc-entry">
+    <a class="reference internal nav-link" href="#question-1-2-2-points-testing-a-function-is-correct">
+     ✅  Question 1.2 (2 points): Testing a function is correct
+    </a>
+   </li>
+   <li class="toc-h3 nav-item toc-entry">
+    <a class="reference internal nav-link" href="#question-1-3-2-points-thinking-about-edge-cases">
+     ✅  Question 1.3 (2 points): Thinking about edge cases
+    </a>
+   </li>
+   <li class="toc-h3 nav-item toc-entry">
+    <a class="reference internal nav-link" href="#question-1-4-4-points-counting-certain-elements-in-a-list">
+     ✅  Question 1.4 (4 points): Counting certain elements in a list
+    </a>
+   </li>
+   <li class="toc-h3 nav-item toc-entry">
+    <a class="reference internal nav-link" href="#question-1-5-6-points-is-this-a-probability-distribution">
+     ✅  Question 1.5 (6 points): Is this a probability distribution?
+    </a>
+   </li>
+   <li class="toc-h3 nav-item toc-entry">
+    <a class="reference internal nav-link" href="#question-1-6-2-points-code-discovery">
+     ✅  Question 1.6 (2 points): Code discovery
+    </a>
+   </li>
+  </ul>
+ </li>
+ <li class="toc-h2 nav-item toc-entry">
+  <a class="reference internal nav-link" href="#computing-with-arrays-20-points">
+   2. Computing with arrays (20 points)
+  </a>
+  <ul class="nav section-nav flex-column">
+   <li class="toc-h3 nav-item toc-entry">
+    <a class="reference internal nav-link" href="#question-2-1-5-points-are-these-lists-equal">
+     ✅  Question 2.1 (5 points): Are these lists equal?
+    </a>
+   </li>
+   <li class="toc-h3 nav-item toc-entry">
+    <a class="reference internal nav-link" href="#question-2-2-5-points-the-sum-of-two-lists">
+     ✅  Question 2.2 (5 points): The sum of two lists
+    </a>
+   </li>
+   <li class="toc-h3 nav-item toc-entry">
+    <a class="reference internal nav-link" href="#question-2-3-3-points-comparing-to-numpy-array-sum">
+     ✅  Question 2.3 (3 points): Comparing to NumPy array sum
+    </a>
+   </li>
+   <li class="toc-h3 nav-item toc-entry">
+    <a class="reference internal nav-link" href="#question-2-4-7-points-working-with-numpy-arrays">
+     ✅  Question 2.4 (7 points): Working with NumPy arrays
+    </a>
+   </li>
+  </ul>
+ </li>
+ <li class="toc-h2 nav-item toc-entry">
+  <a class="reference internal nav-link" href="#analyzing-and-visualizing-endangered-species-data-30-points">
+   3. Analyzing and Visualizing Endangered Species Data (30 points)
+  </a>
+  <ul class="nav section-nav flex-column">
+   <li class="toc-h3 nav-item toc-entry">
+    <a class="reference internal nav-link" href="#question-3-1-5-points-data-context">
+     ✅  Question 3.1 (5 points): Data Context
+    </a>
+   </li>
+   <li class="toc-h3 nav-item toc-entry">
+    <a class="reference internal nav-link" href="#question-3-2-5-points-reading-in-the-data">
+     ✅  Question 3.2 (5 points): Reading in the data
+    </a>
+   </li>
+   <li class="toc-h3 nav-item toc-entry">
+    <a class="reference internal nav-link" href="#question-3-3-5-points-exploring-the-data">
+     ✅  Question 3.3 (5 points): Exploring the Data
+    </a>
+   </li>
+   <li class="toc-h3 nav-item toc-entry">
+    <a class="reference internal nav-link" href="#question-3-4-7-points-analyzing-the-data">
+     ✅  Question 3.4 (7 points): Analyzing the Data
+    </a>
+   </li>
+   <li class="toc-h3 nav-item toc-entry">
+    <a class="reference internal nav-link" href="#question-3-5-8-points-visualizing-the-data-8-points">
+     ✅  Question 3.5 (8 points): Visualizing the Data (8 points)
+    </a>
+   </li>
+  </ul>
+ </li>
+ <li class="toc-h2 nav-item toc-entry">
+  <a class="reference internal nav-link" href="#wait-before-you-submit-your-notebook-read-the-following-important-recommendations">
+   Wait! Before you submit your notebook, read the following important recommendations
+  </a>
+  <ul class="nav section-nav flex-column">
+   <li class="toc-h3 nav-item toc-entry">
+    <a class="reference internal nav-link" href="#congratulations-you-re-done">
+     Congratulations, you’re done!
+    </a>
+   </li>
+  </ul>
+ </li>
+</ul>
+
+    </nav>
+</div>
+    </div>
+    <div class="article row">
+        <div class="col pl-md-3 pl-lg-5 content-container">
+            <!-- Table of contents that is only displayed when printing the page -->
+            <div id="jb-print-docs-body" class="onlyprint">
+                <h1>Homework 2: Functions, arrays, and data analysis</h1>
+                <!-- Table of contents -->
+                <div id="print-main-content">
+                    <div id="jb-print-toc">
+                        
+                        <div>
+                            <h2> Contents </h2>
+                        </div>
+                        <nav aria-label="Page">
+                            <ul class="visible nav section-nav flex-column">
+ <li class="toc-h2 nav-item toc-entry">
+  <a class="reference internal nav-link" href="#p-style-text-align-right-put-your-name-here-p">
+   <p style="text-align: right;">
+    ✅
+    <strong>
+     Put your name here
+    </strong>
+   </p>
+  </a>
+ </li>
+ <li class="toc-h2 nav-item toc-entry">
+  <a class="reference internal nav-link" href="#learning-goals">
+   Learning Goals
+  </a>
+  <ul class="nav section-nav flex-column">
+   <li class="toc-h3 nav-item toc-entry">
+    <a class="reference internal nav-link" href="#content-goals">
+     Content Goals
+    </a>
+   </li>
+   <li class="toc-h3 nav-item toc-entry">
+    <a class="reference internal nav-link" href="#practice-goals">
+     Practice Goals
+    </a>
+   </li>
+  </ul>
+ </li>
+ <li class="toc-h2 nav-item toc-entry">
+  <a class="reference internal nav-link" href="#assignment-instructions">
+   Assignment instructions
+  </a>
+ </li>
+ <li class="toc-h2 nav-item toc-entry">
+  <a class="reference internal nav-link" href="#version-check">
+   Version check
+  </a>
+ </li>
+ <li class="toc-h2 nav-item toc-entry">
+  <a class="reference internal nav-link" href="#writing-functions-in-python-20-points">
+   1. Writing functions in Python (20 points)
+  </a>
+  <ul class="nav section-nav flex-column">
+   <li class="toc-h3 nav-item toc-entry">
+    <a class="reference internal nav-link" href="#question-1-1-4-points-writing-a-function-to-sum-elements-in-a-list">
+     ✅  Question 1.1 (4 points): Writing a function to sum elements in a list
+    </a>
+   </li>
+   <li class="toc-h3 nav-item toc-entry">
+    <a class="reference internal nav-link" href="#question-1-2-2-points-testing-a-function-is-correct">
+     ✅  Question 1.2 (2 points): Testing a function is correct
+    </a>
+   </li>
+   <li class="toc-h3 nav-item toc-entry">
+    <a class="reference internal nav-link" href="#question-1-3-2-points-thinking-about-edge-cases">
+     ✅  Question 1.3 (2 points): Thinking about edge cases
+    </a>
+   </li>
+   <li class="toc-h3 nav-item toc-entry">
+    <a class="reference internal nav-link" href="#question-1-4-4-points-counting-certain-elements-in-a-list">
+     ✅  Question 1.4 (4 points): Counting certain elements in a list
+    </a>
+   </li>
+   <li class="toc-h3 nav-item toc-entry">
+    <a class="reference internal nav-link" href="#question-1-5-6-points-is-this-a-probability-distribution">
+     ✅  Question 1.5 (6 points): Is this a probability distribution?
+    </a>
+   </li>
+   <li class="toc-h3 nav-item toc-entry">
+    <a class="reference internal nav-link" href="#question-1-6-2-points-code-discovery">
+     ✅  Question 1.6 (2 points): Code discovery
+    </a>
+   </li>
+  </ul>
+ </li>
+ <li class="toc-h2 nav-item toc-entry">
+  <a class="reference internal nav-link" href="#computing-with-arrays-20-points">
+   2. Computing with arrays (20 points)
+  </a>
+  <ul class="nav section-nav flex-column">
+   <li class="toc-h3 nav-item toc-entry">
+    <a class="reference internal nav-link" href="#question-2-1-5-points-are-these-lists-equal">
+     ✅  Question 2.1 (5 points): Are these lists equal?
+    </a>
+   </li>
+   <li class="toc-h3 nav-item toc-entry">
+    <a class="reference internal nav-link" href="#question-2-2-5-points-the-sum-of-two-lists">
+     ✅  Question 2.2 (5 points): The sum of two lists
+    </a>
+   </li>
+   <li class="toc-h3 nav-item toc-entry">
+    <a class="reference internal nav-link" href="#question-2-3-3-points-comparing-to-numpy-array-sum">
+     ✅  Question 2.3 (3 points): Comparing to NumPy array sum
+    </a>
+   </li>
+   <li class="toc-h3 nav-item toc-entry">
+    <a class="reference internal nav-link" href="#question-2-4-7-points-working-with-numpy-arrays">
+     ✅  Question 2.4 (7 points): Working with NumPy arrays
+    </a>
+   </li>
+  </ul>
+ </li>
+ <li class="toc-h2 nav-item toc-entry">
+  <a class="reference internal nav-link" href="#analyzing-and-visualizing-endangered-species-data-30-points">
+   3. Analyzing and Visualizing Endangered Species Data (30 points)
+  </a>
+  <ul class="nav section-nav flex-column">
+   <li class="toc-h3 nav-item toc-entry">
+    <a class="reference internal nav-link" href="#question-3-1-5-points-data-context">
+     ✅  Question 3.1 (5 points): Data Context
+    </a>
+   </li>
+   <li class="toc-h3 nav-item toc-entry">
+    <a class="reference internal nav-link" href="#question-3-2-5-points-reading-in-the-data">
+     ✅  Question 3.2 (5 points): Reading in the data
+    </a>
+   </li>
+   <li class="toc-h3 nav-item toc-entry">
+    <a class="reference internal nav-link" href="#question-3-3-5-points-exploring-the-data">
+     ✅  Question 3.3 (5 points): Exploring the Data
+    </a>
+   </li>
+   <li class="toc-h3 nav-item toc-entry">
+    <a class="reference internal nav-link" href="#question-3-4-7-points-analyzing-the-data">
+     ✅  Question 3.4 (7 points): Analyzing the Data
+    </a>
+   </li>
+   <li class="toc-h3 nav-item toc-entry">
+    <a class="reference internal nav-link" href="#question-3-5-8-points-visualizing-the-data-8-points">
+     ✅  Question 3.5 (8 points): Visualizing the Data (8 points)
+    </a>
+   </li>
+  </ul>
+ </li>
+ <li class="toc-h2 nav-item toc-entry">
+  <a class="reference internal nav-link" href="#wait-before-you-submit-your-notebook-read-the-following-important-recommendations">
+   Wait! Before you submit your notebook, read the following important recommendations
+  </a>
+  <ul class="nav section-nav flex-column">
+   <li class="toc-h3 nav-item toc-entry">
+    <a class="reference internal nav-link" href="#congratulations-you-re-done">
+     Congratulations, you’re done!
+    </a>
+   </li>
+  </ul>
+ </li>
+</ul>
+
+                        </nav>
+                    </div>
+                </div>
+            </div>
+            <main id="main-content" role="main">
+                
+              <div>
+                
+  <section class="tex2jax_ignore mathjax_ignore" id="homework-2-functions-arrays-and-data-analysis">
+<h1>Homework 2: Functions, arrays, and data analysis<a class="headerlink" href="#homework-2-functions-arrays-and-data-analysis" title="Permalink to this headline">#</a></h1>
+<section id="p-style-text-align-right-put-your-name-here-p">
+<h2><p style="text-align: right;"> ✅ <strong>Put your name here</strong> </p><a class="headerlink" href="#p-style-text-align-right-put-your-name-here-p" title="Permalink to this headline">#</a></h2>
+<p><img src="https://cmse.msu.edu/sites/_cmse/assets/Image/image002.jpg"
+     alt="CMSE Logo"
+     align="right" 
+     width="100" /></p>
+</section>
+<section id="learning-goals">
+<h2>Learning Goals<a class="headerlink" href="#learning-goals" title="Permalink to this headline">#</a></h2>
+<section id="content-goals">
+<h3>Content Goals<a class="headerlink" href="#content-goals" title="Permalink to this headline">#</a></h3>
+<ul class="simple">
+<li><p>Practice how to define and use functions in Python (including using the <code class="docutils literal notranslate"><span class="pre">return</span></code> statement and default arguments)</p></li>
+<li><p>Use functions, conditional logic, and packages to do calculations with lists / arrays of numbers</p></li>
+<li><p>Practice using NumPy and Matplotlib and use them to read, analyze, visualize, and interpret data</p></li>
+</ul>
+</section>
+<section id="practice-goals">
+<h3>Practice Goals<a class="headerlink" href="#practice-goals" title="Permalink to this headline">#</a></h3>
+<ul class="simple">
+<li><p>Use the internet as a resource for learning how to write code, learn new things, and troubleshoot problems</p></li>
+</ul>
+</section>
+</section>
+<hr class="docutils" />
+<section id="assignment-instructions">
+<h2>Assignment instructions<a class="headerlink" href="#assignment-instructions" title="Permalink to this headline">#</a></h2>
+<p>Work through the following assignment, making sure to follow all the directions and answer all the questions.</p>
+<p><strong>This assignment is due at 11:59 pm on Friday, October 13.</strong> It should be uploaded into the “Homework Assignments” submission folder for Homework #2.  Submission instructions can be found at the end of the notebook.</p>
+</section>
+<hr class="docutils" />
+<section id="version-check">
+<h2>Version check<a class="headerlink" href="#version-check" title="Permalink to this headline">#</a></h2>
+<p>Before you begin, make sure your Jupyter kernel is Python 3. There are significant differences between Python 2 and Python 3, and we use Python 3 in this course. The kernel type at the upper-right corner should say “Python 3”, and the following code should show a version of the form: <code class="docutils literal notranslate"><span class="pre">3.x.y</span></code> (where “x” and “y” are the sub-version numbers).</p>
+<p>If your kernel is Python 2, try selecting Python 3 from the Kernel menu above under the sub-menu “Change kernel”. If that does not work, consult the Teams help channel for assistance.</p>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="kn">import</span> <span class="nn">sys</span>
+<span class="nb">print</span><span class="p">(</span><span class="n">sys</span><span class="o">.</span><span class="n">version</span><span class="p">)</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>3.10.12 (main, Jun 11 2023, 05:26:28) [GCC 11.4.0]
+</pre></div>
+</div>
+</div>
+</div>
+</section>
+<hr class="docutils" />
+<section id="writing-functions-in-python-20-points">
+<h2>1. Writing functions in Python (20 points)<a class="headerlink" href="#writing-functions-in-python-20-points" title="Permalink to this headline">#</a></h2>
+<p>Remember, functions are a great programming concept because they are:</p>
+<ol class="simple">
+<li><p>Modular</p></li>
+<li><p>Re-usable</p></li>
+<li><p>Useful</p></li>
+</ol>
+<p>While functions can help us to build progressively more sophisticated code, we need to make sure we understand the basic structure of a function to properly write them.</p>
+<section id="question-1-1-4-points-writing-a-function-to-sum-elements-in-a-list">
+<h3>✅  Question 1.1 (4 points): Writing a function to sum elements in a list<a class="headerlink" href="#question-1-1-4-points-writing-a-function-to-sum-elements-in-a-list" title="Permalink to this headline">#</a></h3>
+<p>Write a function to return the sum of a list of integers.</p>
+<p>Examples:</p>
+<ul class="simple">
+<li><p>The sum of <code class="docutils literal notranslate"><span class="pre">[1,</span> <span class="pre">2,</span> <span class="pre">3]</span></code> is <code class="docutils literal notranslate"><span class="pre">1</span> <span class="pre">+</span> <span class="pre">2</span> <span class="pre">+</span> <span class="pre">3</span> <span class="pre">=</span> <span class="pre">6</span></code>.</p></li>
+<li><p>The sum of <code class="docutils literal notranslate"><span class="pre">[-1,</span> <span class="pre">0,</span> <span class="pre">1]</span></code> is <code class="docutils literal notranslate"><span class="pre">-1</span> <span class="pre">+</span> <span class="pre">0</span> <span class="pre">+</span> <span class="pre">1</span> <span class="pre">=</span> <span class="pre">0</span></code>.</p></li>
+</ul>
+<p>Note: Write the function “from scratch” - don’t use any built-in Python functions.</p>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="c1"># Your code here.</span>
+</pre></div>
+</div>
+</div>
+</div>
+</section>
+<section id="question-1-2-2-points-testing-a-function-is-correct">
+<h3>✅  Question 1.2 (2 points): Testing a function is correct<a class="headerlink" href="#question-1-2-2-points-testing-a-function-is-correct" title="Permalink to this headline">#</a></h3>
+<p>Python has a built-in function called <code class="docutils literal notranslate"><span class="pre">sum</span></code> which can be used to calculate the value of a list. Compare your function to Python’s <code class="docutils literal notranslate"><span class="pre">sum</span></code> on at least one list and show they give the same answer.</p>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="c1"># Your code here.</span>
+</pre></div>
+</div>
+</div>
+</div>
+</section>
+<section id="question-1-3-2-points-thinking-about-edge-cases">
+<h3>✅  Question 1.3 (2 points): Thinking about edge cases<a class="headerlink" href="#question-1-3-2-points-thinking-about-edge-cases" title="Permalink to this headline">#</a></h3>
+<p>What happens if you try to compute the sum of a list of integers with an empty list? This is an example of an <em>edge case</em> in programming - it refers to the situation in which the general rule may not apply. This happens quite often in many contexts and is important to keep in mind when writing functions.</p>
+<p>In the cell below, explore what happens when you pass an empty list into your function and what happens when you pass an empty list into Python’s <code class="docutils literal notranslate"><span class="pre">sum</span></code> function. After that, reflect on the behavior - are they the same? different? is one more appropriate for certain situations? are there any other options for the behavior of the function on an empty list?</p>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="c1"># Your code here.</span>
+</pre></div>
+</div>
+</div>
+</div>
+<p><font size=6 color="#009600">✎</font> <em>Respond to the questions here.</em></p>
+</section>
+<section id="question-1-4-4-points-counting-certain-elements-in-a-list">
+<h3>✅  Question 1.4 (4 points): Counting certain elements in a list<a class="headerlink" href="#question-1-4-4-points-counting-certain-elements-in-a-list" title="Permalink to this headline">#</a></h3>
+<p>Write a function to return the number of elements in a list that are greater than or equal some <code class="docutils literal notranslate"><span class="pre">threshold</span></code> value. The function should take the list of numbers and the <code class="docutils literal notranslate"><span class="pre">threshold</span></code> value as input parameters, and set the default value of <code class="docutils literal notranslate"><span class="pre">threshold</span></code> to <code class="docutils literal notranslate"><span class="pre">0.0</span></code>. Include at least one check to show your function is correct.</p>
+<p>Examples:</p>
+<ul class="simple">
+<li><p>The number of elements in <code class="docutils literal notranslate"><span class="pre">[-1.0,</span> <span class="pre">2.1,</span> <span class="pre">5.0]</span></code> greater than or equal to <code class="docutils literal notranslate"><span class="pre">threshold=0.0</span></code> is <code class="docutils literal notranslate"><span class="pre">2</span></code>.</p></li>
+<li><p>The number of elements in <code class="docutils literal notranslate"><span class="pre">[-1.0,</span> <span class="pre">2.1,</span> <span class="pre">5.0]</span></code> greater than or equal to <code class="docutils literal notranslate"><span class="pre">threshold=3.2</span></code> is <code class="docutils literal notranslate"><span class="pre">1</span></code>.</p></li>
+</ul>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="c1"># Your code here.</span>
+</pre></div>
+</div>
+</div>
+</div>
+</section>
+<section id="question-1-5-6-points-is-this-a-probability-distribution">
+<h3>✅  Question 1.5 (6 points): Is this a probability distribution?<a class="headerlink" href="#question-1-5-6-points-is-this-a-probability-distribution" title="Permalink to this headline">#</a></h3>
+<p>A <em>probability distribution</em> is a list of non-negative numbers that sums to one. For example, we can describe a fair coin by the probability distribution <code class="docutils literal notranslate"><span class="pre">[0.5,</span> <span class="pre">0.5]</span></code> corresponding to the probability of heads and tails.</p>
+<p>Write a function that inputs a list of numbers and returns <code class="docutils literal notranslate"><span class="pre">True</span></code> if the list of numbers is a probability distribution, else returns <code class="docutils literal notranslate"><span class="pre">False</span></code>. This function should use at least one of the functions you’ve written above.</p>
+<p>Examples:</p>
+<ul class="simple">
+<li><p><code class="docutils literal notranslate"><span class="pre">[0,</span> <span class="pre">1/3,</span> <span class="pre">1/3,</span> <span class="pre">1/3]</span></code> is a probability distribution.</p></li>
+<li><p><code class="docutils literal notranslate"><span class="pre">[-1,</span> <span class="pre">1,</span> <span class="pre">1]</span></code> is not a probability distribution because it has a negative number.</p></li>
+<li><p><code class="docutils literal notranslate"><span class="pre">[1/2,</span> <span class="pre">1/2,</span> <span class="pre">1/2]</span></code> is not a probability distribution because its values don’t sum to one.</p></li>
+</ul>
+<p>Note: Checking if the sum of values is exactly <code class="docutils literal notranslate"><span class="pre">1</span></code> can be unsafe using <code class="docutils literal notranslate"><span class="pre">==</span></code> with floating point numbers.  Instead you should use the function <code class="docutils literal notranslate"><span class="pre">np.isclose</span></code> from the <code class="docutils literal notranslate"><span class="pre">numpy</span></code> library to do this. Reminder: You can get help for a function using the <code class="docutils literal notranslate"><span class="pre">help</span></code> command, or look at documentation online.</p>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="c1"># Your code here.</span>
+</pre></div>
+</div>
+</div>
+</div>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="k">assert</span> <span class="n">is_probabiliy_distribution</span><span class="p">([</span><span class="mi">0</span><span class="p">,</span> <span class="mi">1</span> <span class="o">/</span> <span class="mi">3</span><span class="p">,</span> <span class="mi">1</span> <span class="o">/</span> <span class="mi">3</span><span class="p">,</span> <span class="mi">1</span> <span class="o">/</span> <span class="mi">3</span><span class="p">])</span>
+<span class="k">assert</span> <span class="ow">not</span> <span class="n">is_probabiliy_distribution</span><span class="p">([</span><span class="o">-</span><span class="mi">1</span><span class="p">,</span> <span class="mi">1</span><span class="p">,</span> <span class="mi">1</span><span class="p">])</span>
+<span class="k">assert</span> <span class="ow">not</span> <span class="n">is_probabiliy_distribution</span><span class="p">([</span><span class="mi">1</span> <span class="o">/</span> <span class="mi">2</span><span class="p">,</span> <span class="mi">1</span> <span class="o">/</span> <span class="mi">2</span><span class="p">,</span> <span class="mi">1</span> <span class="o">/</span> <span class="mi">2</span><span class="p">])</span>
+</pre></div>
+</div>
+</div>
+</div>
+</section>
+<section id="question-1-6-2-points-code-discovery">
+<h3>✅  Question 1.6 (2 points): Code discovery<a class="headerlink" href="#question-1-6-2-points-code-discovery" title="Permalink to this headline">#</a></h3>
+<p>Being able to write functions is a must-have skill, but it’s also important to be able to search for functions online or in documentation so you don’t always have to write everything from scratch.</p>
+<p>Find a function in Python that’s either built-in (like <code class="docutils literal notranslate"><span class="pre">sum</span></code>) or in a package (like <code class="docutils literal notranslate"><span class="pre">np.isclose</span></code>) which we have <em>not</em> discussed previously, describe what it does below, and show and example of using it.</p>
+<p><font size=6 color="#009600">✎</font> <em>Respond to the questions here.</em></p>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="c1"># Your code here.</span>
+</pre></div>
+</div>
+</div>
+</div>
+</section>
+</section>
+<hr class="docutils" />
+<section id="computing-with-arrays-20-points">
+<h2>2. Computing with arrays (20 points)<a class="headerlink" href="#computing-with-arrays-20-points" title="Permalink to this headline">#</a></h2>
+<p>NumPy arrays are very useful ways to store and work with data because they do operations in parallel. In this question you’ll practice writing functions to do operations on lists in parallel, then practice using NumPy to do the same task. Finally, you’ll use NumPy to read in and analyze data.</p>
+<section id="question-2-1-5-points-are-these-lists-equal">
+<h3>✅  Question 2.1 (5 points): Are these lists equal?<a class="headerlink" href="#question-2-1-5-points-are-these-lists-equal" title="Permalink to this headline">#</a></h3>
+<p>Two lists are equal if:</p>
+<ul class="simple">
+<li><p>They have the same length.</p></li>
+<li><p>Every element is equal.</p></li>
+</ul>
+<p>Write a function which inputs two lists of numbers and returns <code class="docutils literal notranslate"><span class="pre">True</span></code> if they are equal, else returns <code class="docutils literal notranslate"><span class="pre">False</span></code>. Check your function on at least two example inputs to show its working correctly.</p>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="c1"># Your code here.</span>
+</pre></div>
+</div>
+</div>
+</div>
+</section>
+<section id="question-2-2-5-points-the-sum-of-two-lists">
+<h3>✅  Question 2.2 (5 points): The sum of two lists<a class="headerlink" href="#question-2-2-5-points-the-sum-of-two-lists" title="Permalink to this headline">#</a></h3>
+<p>Given two lists with the same length, we define their sum element-wise. For example, <code class="docutils literal notranslate"><span class="pre">[1,</span> <span class="pre">2,</span> <span class="pre">3]</span> <span class="pre">+</span> <span class="pre">[1,</span> <span class="pre">0,</span> <span class="pre">1]</span> <span class="pre">=</span> <span class="pre">[1</span> <span class="pre">+</span> <span class="pre">1,</span> <span class="pre">2</span> <span class="pre">+</span> <span class="pre">0,</span> <span class="pre">3</span> <span class="pre">+</span> <span class="pre">1]</span> <span class="pre">=</span> <span class="pre">[2,</span> <span class="pre">2,</span> <span class="pre">4]</span></code>.</p>
+<p>Write a function that inputs two lists of numbers and returns the sum of the two lists. You can assume the lists have the same length. Test your function on at least two example inputs to show its working correctly.</p>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="c1"># Your code here.</span>
+</pre></div>
+</div>
+</div>
+</div>
+</section>
+<section id="question-2-3-3-points-comparing-to-numpy-array-sum">
+<h3>✅  Question 2.3 (3 points): Comparing to NumPy array sum<a class="headerlink" href="#question-2-3-3-points-comparing-to-numpy-array-sum" title="Permalink to this headline">#</a></h3>
+<p>NumPy arrays are very convenient because they do operations in parallel. In the cell below, create two NumPy arrays and add them together. Compare this result to your function which computes the element-wise sum of two lists and show they give the same answer.</p>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="c1"># Your code here.</span>
+</pre></div>
+</div>
+</div>
+</div>
+</section>
+<section id="question-2-4-7-points-working-with-numpy-arrays">
+<h3>✅  Question 2.4 (7 points): Working with NumPy arrays<a class="headerlink" href="#question-2-4-7-points-working-with-numpy-arrays" title="Permalink to this headline">#</a></h3>
+<p>There’s a file called <code class="docutils literal notranslate"><span class="pre">random_lists.txt</span></code> on the course website along with this homework. This data is two-dimensional: each column of the data is a list, and there are multiple columns. Load this file into a NumPy array and determine the indices of the columns that are probability distributions.</p>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="c1"># Your code here.</span>
+</pre></div>
+</div>
+</div>
+</div>
+</section>
+</section>
+<hr class="docutils" />
+<section id="analyzing-and-visualizing-endangered-species-data-30-points">
+<h2>3. Analyzing and Visualizing Endangered Species Data (30 points)<a class="headerlink" href="#analyzing-and-visualizing-endangered-species-data-30-points" title="Permalink to this headline">#</a></h2>
+<p>You are a zoologist exploring data from the International Union for Conservation of Nature’s (IUCN) Red List, a tool that leverages research and data to provide a comprehensive assessment of an organism’s extinction risk. Put simply, the Red List provides a status on nearly all species on Earth as to whether it is doing ok, Vulnerable to extinction, Endangered, or even Extinct (<a class="reference external" href="https://data.world/project-data-viz/iucn-redlist-changes-2002-to-2022-pdv-10-2022/workspace/project-summary?agentid=project-data-viz&amp;datasetid=iucn-redlist-changes-2002-to-2022-pdv-10-2022">Source</a>).</p>
+<p>The structure of the data is as follows:</p>
+<ul class="simple">
+<li><p>Column 0: Year (ranging from 2002-2022)</p></li>
+<li><p>Column 1: Mammal Species Assessed</p></li>
+<li><p>Column 2: Bird Species Assessed</p></li>
+<li><p>Column 3: Reptile Species Assessed</p></li>
+<li><p>Column 4: Amphibian Species Assessed</p></li>
+<li><p>Column 5: Fish Species Assessed</p></li>
+<li><p>Column 6: Insect Species Assessed</p></li>
+<li><p>Column 7: Mollusc Species Assessed</p></li>
+<li><p>Column 8: Other Invertebrate Species Assessed</p></li>
+<li><p>Column 9: Plant Species Assessed</p></li>
+<li><p>Column 10: Fungus &amp; Protist Species Assessed</p></li>
+<li><p>Column 11: Mammal Species Critically Endangered</p></li>
+<li><p>Column 12: Bird Species Critically Endangered</p></li>
+<li><p>Column 13: Reptile Species Critically Endangered</p></li>
+<li><p>Column 14: Amphibian Species Critically Endangered</p></li>
+<li><p>Column 15: Fish Species Critically Endangered</p></li>
+<li><p>Column 16: Insect Species Critically Endangered</p></li>
+<li><p>Column 17: Mollusc Species Critically Endangered</p></li>
+<li><p>Column 18: Other Invertebrate Species Critically Endangered</p></li>
+<li><p>Column 19: Plant Species Critically Endangered</p></li>
+<li><p>Column 20: Fungus &amp; Protist Species Critically Endangered</p></li>
+<li><p>Column 21: Mammal Species  Endangered</p></li>
+<li><p>Column 22: Bird Species Endangered</p></li>
+<li><p>Column 23: Reptile Species Endangered</p></li>
+<li><p>Column 24: Amphibian Species Endangered</p></li>
+<li><p>Column 25: Fish Species Endangered</p></li>
+<li><p>Column 26: Insect Species  Endangered</p></li>
+<li><p>Column 27: Mollusc Species Endangered</p></li>
+<li><p>Column 28: Other Invertebrate Species Endangered</p></li>
+<li><p>Column 29: Plant Species Endangered</p></li>
+<li><p>Column 30: Fungus &amp; Protist Species  Endangered</p></li>
+<li><p>Column 31: Mammal Species Vulnerable</p></li>
+<li><p>Column 32: Bird Species Vulnerable</p></li>
+<li><p>Column 33: Reptile Species Vulnerable</p></li>
+<li><p>Column 34: Amphibian Species Vulnerable</p></li>
+<li><p>Column 35: Fish Species Vulnerable</p></li>
+<li><p>Column 36: Insect Species Vulnerable</p></li>
+<li><p>Column 37: Mollusc Species Vulnerable</p></li>
+<li><p>Column 38: Other Invertebrate Species Vulnerable</p></li>
+<li><p>Column 39: Plant Species Vulnerable</p></li>
+<li><p>Column 40: Fungus &amp; Protist Species Vulnerable</p></li>
+</ul>
+<section id="question-3-1-5-points-data-context">
+<h3>✅  Question 3.1 (5 points): Data Context<a class="headerlink" href="#question-3-1-5-points-data-context" title="Permalink to this headline">#</a></h3>
+<p>Before you examine the data itself, you need to determine the context of the data set. Visit the <a class="reference external" href="https://www.iucnredlist.org/">IUCN Red List Website</a>, and spend at least 15 minutes exploring the website to determine some context for the data set. Some ideas for what to look for are:</p>
+<ul class="simple">
+<li><p>How IUCN defines the different categories (e.g. “Criticically Endangered” vs. “Endangered”).</p></li>
+<li><p>Who collects the data?</p></li>
+<li><p>How is IUCN funded?</p></li>
+<li><p>How often is the data reviewed? Who reviews it?</p></li>
+</ul>
+<p>For more information or reading on the importance of data context, check out <a class="reference external" href="https://data-feminism.mitpress.mit.edu/pub/czq9dfs5/release/3">The Numbers Don’t Speak for Themselves</a>.</p>
+<p><font size=+3>✎</font> <em>Your answer here</em></p>
+</section>
+<section id="question-3-2-5-points-reading-in-the-data">
+<h3>✅  Question 3.2 (5 points): Reading in the data<a class="headerlink" href="#question-3-2-5-points-reading-in-the-data" title="Permalink to this headline">#</a></h3>
+<p>In the cell below, read in the data file <code class="docutils literal notranslate"><span class="pre">endangered_species_HW2.csv</span></code> <strong>with <code class="docutils literal notranslate"><span class="pre">np.loadtxt()</span></code>.</strong> (Yes, you have learned <code class="docutils literal notranslate"><span class="pre">pandas</span></code>, but we’re practicing with <code class="docutils literal notranslate"><span class="pre">numpy</span></code> here!)</p>
+<p>There are 41 columns of data, so you should pick one endangered category (i.e. ‘Vulnerable, Endangered, or Critically Endangered) and read in <strong>only those columns along with the Year column and Total Species Assessed columns.</strong> That should result in 21 columns of data. Make sure you double check that you have the columns that you want!</p>
+<p>Each column should have its own variable name, and you can accomplish this either as you read in the file or by defining the variables after you read them in.</p>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="c1"># Put your code here!</span>
+</pre></div>
+</div>
+</div>
+</div>
+</section>
+<section id="question-3-3-5-points-exploring-the-data">
+<h3>✅  Question 3.3 (5 points): Exploring the Data<a class="headerlink" href="#question-3-3-5-points-exploring-the-data" title="Permalink to this headline">#</a></h3>
+<p>When presented with a new data file, the first goal is to understand the data. In the cell(s) below, make at least <strong>four</strong> plots of the data using plt.subplot(). Make sure to include all of the appropriate components and make your plots readable! Then, describe one thing you notice from each plot.</p>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="c1"># Put your code here</span>
+</pre></div>
+</div>
+</div>
+</div>
+<p><font size=+3>✎</font> <em>Your answers here</em></p>
+</section>
+<section id="question-3-4-7-points-analyzing-the-data">
+<h3>✅  Question 3.4 (7 points): Analyzing the Data<a class="headerlink" href="#question-3-4-7-points-analyzing-the-data" title="Permalink to this headline">#</a></h3>
+<p>Now, it’s time to do some statistics to see if we can find some meaning from this data.</p>
+<p>First, choose a species category (e.g. “Mammals”) from your existing data. Keep your previously chosen Red List category the same so you don’t have to read in new data!</p>
+<p>Then, do the following calculations:</p>
+<ul class="simple">
+<li><p>Calculate the percentage of your Red List category in the total species assessed category (e.g. (mammals critically endangered / total mammals assessed)  <span class="math notranslate nohighlight">\(\times\)</span> 100 )</p></li>
+<li><p>Calculate the Mean, Standard Deviation, and Median of your total species assessed category using the <code class="docutils literal notranslate"><span class="pre">numpy</span></code> functions</p></li>
+<li><p>Calculate the Mean, Standard Deviation, and Median of your Red List species category using the <code class="docutils literal notranslate"><span class="pre">numpy</span></code> functions</p></li>
+</ul>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="c1"># Put your answer here</span>
+</pre></div>
+</div>
+</div>
+</div>
+</section>
+<section id="question-3-5-8-points-visualizing-the-data-8-points">
+<h3>✅  Question 3.5 (8 points): Visualizing the Data (8 points)<a class="headerlink" href="#question-3-5-8-points-visualizing-the-data-8-points" title="Permalink to this headline">#</a></h3>
+<p>Now let’s visualize our calculations! You are going to create <strong>three plots</strong>:</p>
+<ol class="simple">
+<li><p>Total Species Assessed over time, with mean, standard deviation (plus and minus!), and median plotted as horizontal lines.</p></li>
+<li><p>Red List category over time, with mean, standard deviation (plus and minus!), and median plotted as horizontal lines.</p></li>
+<li><p>Plot of percentage over time.</p></li>
+</ol>
+<p>Note: You can use <code class="docutils literal notranslate"><span class="pre">plt.axhline()</span></code> for horizontal lines on plots!</p>
+<p>Then, answer the following questions for <strong>each plot</strong>:</p>
+<ol class="simple">
+<li><p>In plain English, describe how the values are changing with time.</p></li>
+<li><p>Is there a difference between the mean and median? If so, what might that indicate?</p></li>
+<li><p>Where do the standard deviations lie in relation to the data and the mean and what does that tell us about the data?</p></li>
+<li><p>Recall the context you explored early in this problem, how does the context apply here?</p></li>
+</ol>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="c1"># Put your code here</span>
+</pre></div>
+</div>
+</div>
+</div>
+<p><font size=+3>✎</font> <em>Your answers here</em></p>
+</section>
+</section>
+<hr class="docutils" />
+<section id="wait-before-you-submit-your-notebook-read-the-following-important-recommendations">
+<h2>Wait! Before you submit your notebook, read the following important recommendations<a class="headerlink" href="#wait-before-you-submit-your-notebook-read-the-following-important-recommendations" title="Permalink to this headline">#</a></h2>
+<p>When your TA opens your notebook to grade the assignment, it will be really useful if your notebook is saved in a fully executed state so that they can see the output of all your code. Additionally, it may be necessary from time to time for the TA to actually run your notebook, but when they run the notebook, it is important that you are certain that all the code will actually run for them!</p>
+<p>You should get into the following habit: <strong>before you save and submit your final notebook for your assignments, go to the “Kernel” tab at the top of the notebook and select “Restart and Run all”.</strong> This will restart your notebook and try to run the code cell-by-cell from the top to the bottom. Once it finished, review you notebook and make sure there weren’t any errors that popped up. Sometimes, when working with notebooks, we accidentally change code in one cell that break our code in another cell. If your TA stumbles across code cells that don’t work, <strong>they will likely have to give you a zero for those portions of the notebook that don’t work</strong>. Testing your notebook one last time is a good way to make sure this doesn’t happen.</p>
+<p><strong>Once you’ve tested your whole notebook again, make sure you save it one last time before you upload it to D2L.</strong></p>
+<hr class="docutils" />
+<section id="congratulations-you-re-done">
+<h3>Congratulations, you’re done!<a class="headerlink" href="#congratulations-you-re-done" title="Permalink to this headline">#</a></h3>
+<p>Submit this assignment by uploading it to the course Desire2Learn web page. Go to the “Homework Assignments” section, find the submission folder link for Homework #2, and upload it there.</p>
+<p>Copyright © 2023, <a class="reference external" href="https://cmse.msu.edu/">Department of Computational Mathematics, Science and Engineering</a> at Michigan State University, All rights reserved.</p>
+</section>
+</section>
+</section>
+
+    <script type="text/x-thebe-config">
+    {
+        requestKernel: true,
+        binderOptions: {
+            repo: "binder-examples/jupyter-stacks-datascience",
+            ref: "master",
+        },
+        codeMirrorConfig: {
+            theme: "abcdef",
+            mode: "python"
+        },
+        kernelOptions: {
+            kernelName: "python3",
+            path: "./Homework\Homework_02"
+        },
+        predefinedOutput: true
+    }
+    </script>
+    <script>kernelName = 'python3'</script>
+
+              </div>
+              
+            </main>
+            <footer class="footer-article noprint">
+                
+    <!-- Previous / next buttons -->
+<div class='prev-next-area'>
+    <a class='left-prev' id="prev-link" href="../Homework_01/HW_01_PythonFundamentals-STUDENT.html" title="previous page">
+        <i class="fas fa-angle-left"></i>
+        <div class="prev-next-info">
+            <p class="prev-next-subtitle">previous</p>
+            <p class="prev-next-title">Homework 1: Python fundamentals</p>
+        </div>
+    </a>
+    <a class='right-next' id="next-link" href="../Homework_03/HW3_grapevines_STUDENT.html" title="next page">
+    <div class="prev-next-info">
+        <p class="prev-next-subtitle">next</p>
+        <p class="prev-next-title">Homework 3: Analyzing, modeling, and visualizing data with Pandas and conceptualizing compartmental models</p>
+    </div>
+    <i class="fas fa-angle-right"></i>
+    </a>
+</div>
+            </footer>
+        </div>
+    </div>
+    <div class="footer-content row">
+        <footer class="col footer"><p>
+  
+    By the Department of Computational Mathematics, Science and Engineering at Michigan State University<br/>
+  
+      &copy; Copyright 2023.<br/>
+</p>
+        </footer>
+    </div>
+    
+</div>
+
+
+      </div>
+    </div>
+  
+  <!-- Scripts loaded after <body> so the DOM is not blocked -->
+  <script src="../../_static/scripts/pydata-sphinx-theme.js?digest=1999514e3f237ded88cf"></script>
+
+
+  </body>
+</html>

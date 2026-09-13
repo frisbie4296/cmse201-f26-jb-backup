@@ -1,0 +1,214 @@
+[
+  {
+    "id": 965426,
+    "header": "Academic Integrity Statement",
+    "description": "",
+    "description_type": "markdown",
+    "items": [
+      {
+        "id": 2417658,
+        "description": "",
+        "header": "Incomplete",
+        "points": 0.0
+      },
+      {
+        "id": 2430667,
+        "description": "Look at PCA 4.",
+        "header": "Not specific enough",
+        "points": 5.0
+      },
+      {
+        "id": 2417659,
+        "description": "",
+        "header": "Complete",
+        "points": 10.0
+      }
+    ],
+    "locked": false,
+    "type": "normal"
+  },
+  {
+    "id": 965427,
+    "header": "Part 1.1",
+    "description": "",
+    "description_type": "markdown",
+    "items": [
+      {
+        "id": 2417678,
+        "description": "",
+        "header": "Min points",
+        "points": 0.0
+      },
+      {
+        "id": 2417679,
+        "description": "",
+        "header": "Max points",
+        "points": 5.0
+      }
+    ],
+    "locked": false,
+    "type": "normal"
+  },
+  {
+    "id": 965428,
+    "header": "Part 1.2",
+    "description": "",
+    "description_type": "markdown",
+    "items": [
+      {
+        "id": 2417682,
+        "description": "",
+        "header": "Incomplete",
+        "points": 0.0
+      },
+      {
+        "id": 2417683,
+        "description": "",
+        "header": "Partical credit",
+        "points": 5.0
+      },
+      {
+        "id": 2417684,
+        "description": "",
+        "header": "Partial credit",
+        "points": 10.0
+      },
+      {
+        "id": 2417685,
+        "description": "",
+        "header": "Complete",
+        "points": 15.0
+      }
+    ],
+    "locked": false,
+    "type": "normal"
+  },
+  {
+    "id": 965429,
+    "header": "Part 1.3",
+    "description": "",
+    "description_type": "markdown",
+    "items": [
+      {
+        "id": 2417664,
+        "description": "",
+        "header": "Min points",
+        "points": 0.0
+      },
+      {
+        "id": 2417665,
+        "description": "",
+        "header": "Max points",
+        "points": 10.0
+      }
+    ],
+    "locked": false,
+    "type": "continuous"
+  },
+  {
+    "id": 965430,
+    "header": "Part 1.4",
+    "description": "",
+    "description_type": "markdown",
+    "items": [
+      {
+        "id": 2417666,
+        "description": "",
+        "header": "Min points",
+        "points": 0.0
+      },
+      {
+        "id": 2417667,
+        "description": "",
+        "header": "Max points",
+        "points": 20.0
+      }
+    ],
+    "locked": false,
+    "type": "continuous"
+  },
+  {
+    "id": 965431,
+    "header": "Part 2.1",
+    "description": "",
+    "description_type": "markdown",
+    "items": [
+      {
+        "id": 2417708,
+        "description": "",
+        "header": "Incomplete",
+        "points": 0.0
+      },
+      {
+        "id": 2430623,
+        "description": "",
+        "header": "Partial credit",
+        "points": 2.5
+      },
+      {
+        "id": 2417709,
+        "description": "",
+        "header": "Partial credit",
+        "points": 5.0
+      },
+      {
+        "id": 2430624,
+        "description": "",
+        "header": "Partial credit",
+        "points": 7.5
+      },
+      {
+        "id": 2417710,
+        "description": "",
+        "header": "Complete",
+        "points": 10.0
+      }
+    ],
+    "locked": false,
+    "type": "normal"
+  },
+  {
+    "id": 965432,
+    "header": "Part 2.2",
+    "description": "",
+    "description_type": "markdown",
+    "items": [
+      {
+        "id": 2417670,
+        "description": "",
+        "header": "Min points",
+        "points": 0.0
+      },
+      {
+        "id": 2417671,
+        "description": "",
+        "header": "Max points",
+        "points": 10.0
+      }
+    ],
+    "locked": false,
+    "type": "continuous"
+  },
+  {
+    "id": 965433,
+    "header": "Part 2.3",
+    "description": "",
+    "description_type": "markdown",
+    "items": [
+      {
+        "id": 2417672,
+        "description": "",
+        "header": "Min points",
+        "points": 0.0
+      },
+      {
+        "id": 2417673,
+        "description": "",
+        "header": "Max points",
+        "points": 20.0
+      }
+    ],
+    "locked": false,
+    "type": "continuous"
+  }
+]
