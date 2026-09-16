@@ -49,18 +49,18 @@ parts:
     numbered: False
     chapters:
     - file: Day-04/Day_04_PreClass_DataAlgorithmicBias-STUDENT.ipynb
-#     - file: Day-04/Day_04_In_Class_DataAlgorithmicBias-STUDENT.ipynb
+    - file: Day-04/Day_04_In_Class_DataAlgorithmicBias-STUDENT.ipynb
     
-#   - caption: Day 05
-#     numbered: False
-#     chapters:
-# # #    - file: Day-05/Day-05_Pre-Class_IfStatementsAndFunctions-STUDENT.ipynb
-#     - file: Day-05/Day-05_In-Class_IfStatementsAndFunctions-STUDENT.ipynb
+  - caption: Day 05
+    numbered: False
+    chapters:
+    - file: Day-05/Day-05_Pre-Class_IfStatementsAndFunctions-STUDENT.ipynb
+    - file: Day-05/Day-05_In-Class_IfStatementsAndFunctions-STUDENT.ipynb
     
-#   - caption: Day 06
-#     numbered: False
-#     chapters:
-# # #    - file: Day-06/Day-06_Pre-Class_MoreFunctions-STUDENT.ipynb
+  - caption: Day 06
+    numbered: False
+    chapters:
+   - file: Day-06/Day-06_Pre-Class_MoreFunctions-STUDENT.ipynb
 #     - file: Day-06/Day-06_In-Class_FunctionsAndSquirrels-STUDENT.ipynb
 # # ## ##    
 #   - caption: Day 07
