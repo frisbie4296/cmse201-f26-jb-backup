@@ -60,7 +60,7 @@ parts:
   - caption: Day 06
     numbered: False
     chapters:
-   - file: Day-06/Day-06_Pre-Class_MoreFunctions-STUDENT.ipynb
+    - file: Day-06/Day-06_Pre-Class_MoreFunctions-STUDENT.ipynb
 #     - file: Day-06/Day-06_In-Class_FunctionsAndSquirrels-STUDENT.ipynb
 # # ## ##    
 #   - caption: Day 07
