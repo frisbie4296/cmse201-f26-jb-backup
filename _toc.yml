@@ -229,7 +229,7 @@ parts:
   - caption: Homework
     numbered: False
     chapters:
-    - file:  Homework/Homework_01/HW_01_PythonFundamentals-Student.ipynb
+    - file:  Homework/Homework_01/HW_01_PythonFundamentals-STUDENT.ipynb
       title: Homework 1 - Python Fundamentals
 #     - file:  Homework/Homework_02/HW_02_SS26-Spring-2026-STUDENT.ipynb
 #       title: Homework 2 - Functions, Arrays, and Data Analysis
